@@ -47,7 +47,7 @@ library(easystats)
 
 df <- haven::read_sav("Study 1.sav") |> 
   mutate_all(as.numeric) |> 
-  mutate(Gender = as.character(ifelse(Gender == 1, "Male", "Female")))
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
   
 paste0(
   "Data from the [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) (Murphy et al., 2020), downloaded from OSF, included ",
@@ -134,15 +134,43 @@ lavaan::cfa(data=data)
 anova(cfa5, cfa5mod)
 ```
 
+
+## New sample
+
+```{r, message=FALSE, warning=FALSE, results='asis'}
+df2 <- haven::read_sav("Study 6 IAS.sav") |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
+  
+paste0(
+  "Data from the [study 6](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) (Murphy et al., 2020), downloaded from OSF, included ",
+  report::report_participants(df2, age = "Age", sex = NA, gender = "Gender"),
+  "."
+)
+```
+
+```{r, message=FALSE, warning=FALSE}
+cfa5mod_refit <- update(cfa5mod, data=df2)
+cfa5_refit <- update(cfa5, data=df2)
+cfa4mod_refit <- update(cfa4mod, data=df2)
+
+anova(cfa5mod_refit, cfa5_refit, cfa4mod_refit)
+```
+
+
+
 ## Final Model
 
+```{r, message=FALSE, warning=FALSE}
+final <- update(cfa5mod, data = datawizard::data_merge(df, df2, join="bind"))
+```
 
 ```{r, message=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 library(tidySEM)
 
 
 graph_data <- tidySEM::prepare_graph(cfa5mod, 
-                   layout=get_layout(cfa5mod, layout_algorithm = "layout_with_kk"), 
+                   layout=get_layout(cfa5mod, layout_algorithm = "layout_nicely"), 
                    variance_diameter=NA) 
 
 nodes(graph_data) <- nodes(graph_data) |> 

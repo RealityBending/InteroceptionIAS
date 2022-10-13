@@ -38,7 +38,7 @@ library(easystats)
 
 df <- haven::read_sav("Study 1.sav") |> 
   mutate_all(as.numeric) |> 
-  mutate(Gender = as.character(ifelse(Gender == 1, "Male", "Female")))
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
   
 paste0(
   "Data from the [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) (Murphy et al., 2020), downloaded from OSF, included ",
@@ -50,8 +50,8 @@ paste0(
 \[1\] “Data from the [study
 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769)
 (Murphy et al., 2020), downloaded from OSF, included 451 participants
-(Mean age = 25.8, SD = 8.4, range: \[18, 69\]; Gender: 70.5% women,
-29.5% men, 0.00% non-binary).”
+(Mean age = 25.8, SD = 8.4, range: \[18, 69\]; Gender: 69.4% women,
+29.5% men, 1.11% non-binary).”
 
 ## EFA
 
@@ -215,14 +215,54 @@ anova(cfa5, cfa5mod)
 # Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
+## New sample
+
+``` r
+df2 <- haven::read_sav("Study 6 IAS.sav") |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
+  
+paste0(
+  "Data from the [study 6](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) (Murphy et al., 2020), downloaded from OSF, included ",
+  report::report_participants(df2, age = "Age", sex = NA, gender = "Gender"),
+  "."
+)
+```
+
+\[1\] “Data from the [study
+6](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769)
+(Murphy et al., 2020), downloaded from OSF, included 375 participants
+(Mean age = 35.3, SD = 16.9, range: \[18, 91\]; Gender: 70.1% women,
+28.5% men, 1.33% non-binary).”
+
+``` r
+cfa5mod_refit <- update(cfa5mod, data=df2)
+cfa5_refit <- update(cfa5, data=df2)
+cfa4mod_refit <- update(cfa4mod, data=df2)
+
+anova(cfa5mod_refit, cfa5_refit, cfa4mod_refit)
+# Chi-Squared Difference Test
+# 
+#                Df   AIC   BIC Chisq Chisq diff Df diff Pr(>Chisq)    
+# cfa5mod_refit 125 16205 16386   339                                  
+# cfa5_refit    142 17051 17240   412       72.8      17    7.2e-09 ***
+# cfa4mod_refit 146 17076 17248   444       32.1       4    1.8e-06 ***
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
 ## Final Model
+
+``` r
+final <- update(cfa5mod, data = datawizard::data_merge(df, df2, join="bind"))
+```
 
 ``` r
 library(tidySEM)
 
 
 graph_data <- tidySEM::prepare_graph(cfa5mod, 
-                   layout=get_layout(cfa5mod, layout_algorithm = "layout_with_kk"), 
+                   layout=get_layout(cfa5mod, layout_algorithm = "layout_nicely"), 
                    variance_diameter=NA) 
 
 nodes(graph_data) <- nodes(graph_data) |> 
@@ -232,7 +272,7 @@ nodes(graph_data) <- nodes(graph_data) |>
 plot(graph_data)
 ```
 
-![](figures/unnamed-chunk-8-1.png)<!-- -->
+![](figures/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
 performance::performance(cfa5mod) |> 
