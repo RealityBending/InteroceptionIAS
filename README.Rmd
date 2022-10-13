@@ -1,0 +1,187 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Interoceptive Accuracy Scale Re-analysed (IAS-R) 
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  dpi = 450,
+  fig.path = "figures/",
+  comment = "#",
+  message = FALSE,
+  warning = FALSE
+)
+
+options(
+  knitr.kable.NA = "",
+  digits = 4,
+  width = 80
+)
+```
+
+- Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & Bird, G. (2020). [Testing the independence of self-reported interoceptive accuracy and attention](https://journals.sagepub.com/doi/full/10.1177/1747021819879826). Quarterly Journal of Experimental Psychology, 73(1), 115-133. https://doi.org/10.31234/osf.io/fqgu4
+
+**Aim**. Re-analyze the raw data from [Murphy et al. (2020)](https://journals.sagepub.com/doi/full/10.1177/1747021819879826) (study 1) regarding the factor structure of the Interoceptive Accuracy Scale (IAS) by using the *Method Agreement Procedure* for the number of factors to extract and performing a CFA model comparison.
+
+**Conclusion**. EFA suggested a 1-factor and 4-factors solutions, but the latter was favoured by CFA. Additionally, CFA suggested that a 5-factors model (obtained by separating *Nociception* from *Interoception*) was superior: 
+
+- *Interoception*: Heart, Hungry, Breathing, Thirsty, Temperature, Sexual arousal.
+- *Nociception*: Muscles, Bruise, Pain.
+- *Expulsion*: Burp, Sneeze, Wind.
+- *Elimination*: Vomit, Defecate, Urinate.
+- *Skin*: Itch, Tickle, Affective touch.
+
+The final revised scale, made of 18 items (6 for interoception and 3 per secondary dimension), is available below.
+
+## Data
+
+Data from the [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) was downloaded from OSF.
+
+
+```{r, message=FALSE, warning=FALSE, results='asis'}
+library(tidyverse)
+library(easystats)
+
+df <- haven::read_sav("Study 1.sav") |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", "Female")))
+  
+report::report_participants(df, age = "Age", sex = NA, gender = "Gender")
+```
+
+## EFA
+
+```{r, message=FALSE, warning=FALSE}
+data <- select(df, -Age, -Gender)
+
+n <- parameters::n_factors(data)
+
+n
+plot(n)
+```
+
+The *Method Agreement Procedure*
+
+```{r, message=FALSE, warning=FALSE}
+efa1 <- parameters::factor_analysis(data, n=1, sort = TRUE)
+efa1
+
+efa4 <- parameters::factor_analysis(data, n=4, rotation = "oblimin", sort = TRUE)
+efa4
+```
+
+
+## CFA
+
+We compared the two models suggested by EFA (1-factor and 4-factors), with two additional model based on the latter: one with 2 items removed (Blood sugar and Taste), and one with additionally the *Interoception* factor split into two (with the pain-related items grouped together).
+
+```{r, message=FALSE, warning=FALSE}
+library(lavaan)
+
+cfa1 <- lavaan::cfa(parameters::efa_to_cfa(efa1, 
+                                           names="IAS"), data=data)
+cfa4 <- lavaan::cfa(parameters::efa_to_cfa(efa4, 
+                                           names=c("Skin", "Expulsion", "Interoception", "Elimination"),
+                                           threshold = "max"), data=data)
+
+cfa4mod <- "
+Skin =~ Affective_touch + Tickle + Itch
+Expulsion =~ Sneeze + Cough + Wind + Burp
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Temp + Sex_arousal + Muscles + Bruise + Pain
+Elimination =~ Urinate + Defecate + Vomit
+" |> 
+lavaan::cfa(data=data)
+
+cfa5 <- "
+Skin =~ Affective_touch + Tickle + Itch
+Expulsion =~ Sneeze + Cough + Wind + Burp
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Temp + Sex_arousal
+Nociception =~ Muscles + Bruise + Pain
+Elimination =~ Urinate + Defecate + Vomit
+" |> 
+lavaan::cfa(data=data)
+
+anova(cfa1, cfa4, cfa4mod, cfa5)
+```
+
+## Final Model
+
+Additionally, we removed the least loaded items of expulsion (cough) to improve the balance (3 items per secondary scales, and 6 for interoception).
+
+```{r, message=FALSE, warning=FALSE}
+cfa5mod <- "
+Skin =~ Affective_touch + Tickle + Itch
+Expulsion =~ Sneeze + Wind + Burp
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Temp + Sex_arousal
+Nociception =~ Muscles + Bruise + Pain
+Elimination =~ Urinate + Defecate + Vomit
+" |> 
+lavaan::cfa(data=data)
+
+anova(cfa5, cfa5mod)
+```
+
+```{r, message=FALSE, warning=FALSE}
+parameters::parameters(cfa5) |> 
+  display()
+```
+
+```{r, message=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+library(tidySEM)
+
+
+graph_data <- tidySEM::prepare_graph(cfa5mod, 
+                   layout=get_layout(cfa5mod, layout_algorithm = "layout_with_kk"), 
+                   variance_diameter=NA) 
+
+nodes(graph_data) <- nodes(graph_data) |> 
+  mutate(fill = ifelse(shape == "rect", "grey", "#F06292"))
+
+
+plot(graph_data)
+```
+
+## Final Scale
+
+**Instructions**. Below are several statements regarding how accurately you can perceive specific bodily sensations. Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception.
+
+**Scale**. Disagree - Agree.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+set.seed(3)
+
+items <- c(
+  "***(Interoception)*** I can always accurately perceive when my heart is beating fast",
+  "***(Interoception)*** I can always accurately perceive when I am hungry",
+  "***(Interoception)*** I can always accurately perceive when I am breathing fast",
+  "***(Interoception)*** I can always accurately perceive when I am thirsty",
+  "***(Interoception)*** I can always accurately perceive when I am hot/cold",
+  "***(Interoception)*** I can always accurately perceive when I am sexually aroused",
+  "***(Elimination)*** I can always accurately perceive when I need to urinate",
+  "***(Elimination)*** I can always accurately perceive when I need to defecate",
+  "***(Elimination)*** I can always accurately perceive when I am going to vomit",
+  "***(Expulsion)*** I can always accurately perceive when I am going to pass wind",
+  "***(Expulsion)*** I can always accurately perceive when I am going to burp",
+  "***(Expulsion)*** I can always accurately perceive when I am going to sneeze",
+  "***(Nociception)*** I can always accurately perceive when my muscles are tired/sore",
+  "***(Nociception)*** I can always accurately perceive when I am going to get a bruise",
+  "***(Nociception)*** I can always accurately perceive when I am in pain",
+  "***(Skin)*** I can always accurately perceive when someone is touching me affectionately rather than non-affectionately",
+  "***(Skin)*** I can always accurately perceive when something is going to be ticklish",
+  "***(Skin)*** I can always accurately perceive when something is going to be itchy"
+) 
+
+cat(paste0(1:18, ". ", items, collapse = "\n"))
+```
+
+
+
+
+
+
