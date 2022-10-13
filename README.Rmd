@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Interoceptive Accuracy Scale Re-analysed (IAS-R) 
+# Interoceptive Accuracy Scale Revised (IAS-R) 
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 knitr::opts_chunk$set(
@@ -23,23 +23,22 @@ options(
 )
 ```
 
-- Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & Bird, G. (2020). [Testing the independence of self-reported interoceptive accuracy and attention](https://journals.sagepub.com/doi/full/10.1177/1747021819879826). Quarterly Journal of Experimental Psychology, 73(1), 115-133. https://doi.org/10.31234/osf.io/fqgu4
+<sub>A reanalysis of Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & Bird, G. (2020). [Testing the independence of self-reported interoceptive accuracy and attention](https://journals.sagepub.com/doi/full/10.1177/1747021819879826). Quarterly Journal of Experimental Psychology, 73(1), 115-133. https://doi.org/10.31234/osf.io/fqgu4</sub>
 
-**Aim**. Re-analyze the raw data from [Murphy et al. (2020)](https://journals.sagepub.com/doi/full/10.1177/1747021819879826) (study 1) regarding the factor structure of the Interoceptive Accuracy Scale (IAS) by using the *Method Agreement Procedure* for the number of factors to extract and performing a CFA model comparison.
+We present a re-analysis of the data from [**Murphy et al. (2020)**](https://journals.sagepub.com/doi/full/10.1177/1747021819879826) (study 1) regarding the factor structure of the **Interoceptive Accuracy Scale (IAS)**. In particular, we apply the *Method Agreement Procedure* to estimate the optimal number of latent factors, and perform a further model comparison using Confirmatory Factor Analysis (CFA).
 
-**Conclusion**. EFA suggested a 1-factor and 4-factors solutions, but the latter was favoured by CFA. Additionally, CFA suggested that a 5-factors model (obtained by separating *Nociception* from *Interoception*) was superior: 
+Exploratory Factor Analysis suggested a 1-factor and 4-factors solutions, but the latter was favoured by CFA. Further comparison suggested that a 5-factors model (obtained by separating *Nociception* from *Interoception*) had a superior fit. The 5 factors are: 
 
-- *Interoception*: Heart, Hungry, Breathing, Thirsty, Temperature, Sexual arousal.
-- *Nociception*: Muscles, Bruise, Pain.
-- *Expulsion*: Burp, Sneeze, Wind.
-- *Elimination*: Vomit, Defecate, Urinate.
-- *Skin*: Itch, Tickle, Affective touch.
+- **Interoception**: Heart, Hungry, Breathing, Thirsty, Temperature, Sexual arousal.
+- **Nociception**: Muscles, Bruise, Pain.
+- **Expulsion**: Burp, Sneeze, Wind.
+- **Elimination**: Vomit, Defecate, Urinate.
+- **Skin**: Itch, Tickle, Affective touch.
 
-The final revised scale, made of 18 items (6 for interoception and 3 per secondary dimension), is available below.
+The final revised scale, made of 18 items (6 for interoception and 3 per secondary dimension), is available [below](#IAS-R).
 
-## Data
+## Participants
 
-Data from the [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) was downloaded from OSF.
 
 
 ```{r, message=FALSE, warning=FALSE, results='asis'}
@@ -50,8 +49,14 @@ df <- haven::read_sav("Study 1.sav") |>
   mutate_all(as.numeric) |> 
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", "Female")))
   
-report::report_participants(df, age = "Age", sex = NA, gender = "Gender")
+paste0(
+  "Data from the [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) (Murphy et al., 2020), downloaded from OSF, included ",
+  report::report_participants(df, age = "Age", sex = NA, gender = "Gender"),
+  "."
+)
 ```
+
+
 
 ## EFA
 
@@ -64,7 +69,7 @@ n
 plot(n)
 ```
 
-The *Method Agreement Procedure*
+The *Method Agreement Procedure* suggested that 1 factor was optimal, followed by 4 factors.
 
 ```{r, message=FALSE, warning=FALSE}
 efa1 <- parameters::factor_analysis(data, n=1, sort = TRUE)
@@ -77,8 +82,6 @@ efa4
 
 ## CFA
 
-We compared the two models suggested by EFA (1-factor and 4-factors), with two additional model based on the latter: one with 2 items removed (Blood sugar and Taste), and one with additionally the *Interoception* factor split into two (with the pain-related items grouped together).
-
 ```{r, message=FALSE, warning=FALSE}
 library(lavaan)
 
@@ -88,6 +91,15 @@ cfa4 <- lavaan::cfa(parameters::efa_to_cfa(efa4,
                                            names=c("Skin", "Expulsion", "Interoception", "Elimination"),
                                            threshold = "max"), data=data)
 
+
+anova(cfa1, cfa4)
+```
+
+
+The 4-factors model suggested by EFA presented a significantly better fit than the 1-factor model. We then compared that model to two variants: one with 2 items removed (Blood sugar and Taste), and another with, additionally, the *Interoception* factor split into two (with the pain-related items grouped together). The latter model (*CFA-5*), was significantly superior to the others. Additionally, we removed the least loaded items of expulsion (cough) to improve the balance (3 items per secondary scales, and 6 for interoception), which significantly improved the model fit.
+
+
+```{r, message=FALSE, warning=FALSE}
 cfa4mod <- "
 Skin =~ Affective_touch + Tickle + Itch
 Expulsion =~ Sneeze + Cough + Wind + Burp
@@ -105,12 +117,9 @@ Elimination =~ Urinate + Defecate + Vomit
 " |> 
 lavaan::cfa(data=data)
 
-anova(cfa1, cfa4, cfa4mod, cfa5)
+anova(cfa4, cfa4mod, cfa5)
 ```
 
-## Final Model
-
-Additionally, we removed the least loaded items of expulsion (cough) to improve the balance (3 items per secondary scales, and 6 for interoception).
 
 ```{r, message=FALSE, warning=FALSE}
 cfa5mod <- "
@@ -125,10 +134,8 @@ lavaan::cfa(data=data)
 anova(cfa5, cfa5mod)
 ```
 
-```{r, message=FALSE, warning=FALSE}
-parameters::parameters(cfa5) |> 
-  display()
-```
+## Final Model
+
 
 ```{r, message=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 library(tidySEM)
@@ -145,7 +152,18 @@ nodes(graph_data) <- nodes(graph_data) |>
 plot(graph_data)
 ```
 
-## Final Scale
+
+```{r, message=FALSE, warning=FALSE}
+performance::performance(cfa5mod) |> 
+  display()
+```
+
+```{r, message=FALSE, warning=FALSE}
+parameters::parameters(cfa5mod) |> 
+  display()
+```
+
+## IAS-R
 
 **Instructions**. Below are several statements regarding how accurately you can perceive specific bodily sensations. Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
 

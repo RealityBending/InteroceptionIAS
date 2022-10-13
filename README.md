@@ -1,39 +1,36 @@
 
-# Interoceptive Accuracy Scale Re-analysed (IAS-R)
+# Interoceptive Accuracy Scale Revised (IAS-R)
 
--   Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., &
-    Bird, G. (2020). [Testing the independence of self-reported
-    interoceptive accuracy and
-    attention](https://journals.sagepub.com/doi/full/10.1177/1747021819879826).
-    Quarterly Journal of Experimental Psychology, 73(1), 115-133.
-    <https://doi.org/10.31234/osf.io/fqgu4>
+<sub>A reanalysis of Murphy, J., Brewer, R., Plans, D., Khalsa, S. S.,
+Catmur, C., & Bird, G. (2020). [Testing the independence of
+self-reported interoceptive accuracy and
+attention](https://journals.sagepub.com/doi/full/10.1177/1747021819879826).
+Quarterly Journal of Experimental Psychology, 73(1), 115-133.
+<https://doi.org/10.31234/osf.io/fqgu4></sub>
 
-**Aim**. Re-analyze the raw data from [Murphy et
-al. (2020)](https://journals.sagepub.com/doi/full/10.1177/1747021819879826)
-(study 1) regarding the factor structure of the Interoceptive Accuracy
-Scale (IAS) by using the *Method Agreement Procedure* for the number of
-factors to extract and performing a CFA model comparison.
+We present a re-analysis of the data from [**Murphy et
+al. (2020)**](https://journals.sagepub.com/doi/full/10.1177/1747021819879826)
+(study 1) regarding the factor structure of the **Interoceptive Accuracy
+Scale (IAS)**. In particular, we apply the *Method Agreement Procedure*
+to estimate the optimal number of latent factors, and perform a further
+model comparison using Confirmatory Factor Analysis (CFA).
 
-**Conclusion**. EFA suggested a 1-factor and 4-factors solutions, but
-the latter was favoured by CFA. Additionally, CFA suggested that a
-5-factors model (obtained by separating *Nociception* from
-*Interoception*) was superior:
+Exploratory Factor Analysis suggested a 1-factor and 4-factors
+solutions, but the latter was favoured by CFA. Further comparison
+suggested that a 5-factors model (obtained by separating *Nociception*
+from *Interoception*) had a superior fit. The 5 factors are:
 
--   *Interoception*: Heart, Hungry, Breathing, Thirsty, Temperature,
+-   **Interoception**: Heart, Hungry, Breathing, Thirsty, Temperature,
     Sexual arousal.
--   *Nociception*: Muscles, Bruise, Pain.
--   *Expulsion*: Burp, Sneeze, Wind.
--   *Elimination*: Vomit, Defecate, Urinate.
--   *Skin*: Itch, Tickle, Affective touch.
+-   **Nociception**: Muscles, Bruise, Pain.
+-   **Expulsion**: Burp, Sneeze, Wind.
+-   **Elimination**: Vomit, Defecate, Urinate.
+-   **Skin**: Itch, Tickle, Affective touch.
 
 The final revised scale, made of 18 items (6 for interoception and 3 per
-secondary dimension), is available below.
+secondary dimension), is available [below](#IAS-R).
 
-## Data
-
-Data from the [study
-1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) was
-downloaded from OSF.
+## Participants
 
 ``` r
 library(tidyverse)
@@ -43,11 +40,18 @@ df <- haven::read_sav("Study 1.sav") |>
   mutate_all(as.numeric) |> 
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", "Female")))
   
-report::report_participants(df, age = "Age", sex = NA, gender = "Gender")
+paste0(
+  "Data from the [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) (Murphy et al., 2020), downloaded from OSF, included ",
+  report::report_participants(df, age = "Age", sex = NA, gender = "Gender"),
+  "."
+)
 ```
 
-\[1\] “451 participants (Mean age = 25.8, SD = 8.4, range: \[18, 69\];
-Gender: 70.5% women, 29.5% men, 0.00% non-binary)”
+\[1\] “Data from the [study
+1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769)
+(Murphy et al., 2020), downloaded from OSF, included 451 participants
+(Mean age = 25.8, SD = 8.4, range: \[18, 69\]; Gender: 70.5% women,
+29.5% men, 0.00% non-binary).”
 
 ## EFA
 
@@ -65,7 +69,8 @@ plot(n)
 
 ![](figures/unnamed-chunk-3-1.png)<!-- -->
 
-The *Method Agreement Procedure*
+The *Method Agreement Procedure* suggested that 1 factor was optimal,
+followed by 4 factors.
 
 ``` r
 efa1 <- parameters::factor_analysis(data, n=1, sort = TRUE)
@@ -131,11 +136,6 @@ efa4
 
 ## CFA
 
-We compared the two models suggested by EFA (1-factor and 4-factors),
-with two additional model based on the latter: one with 2 items removed
-(Blood sugar and Taste), and one with additionally the *Interoception*
-factor split into two (with the pain-related items grouped together).
-
 ``` r
 library(lavaan)
 
@@ -145,6 +145,28 @@ cfa4 <- lavaan::cfa(parameters::efa_to_cfa(efa4,
                                            names=c("Skin", "Expulsion", "Interoception", "Elimination"),
                                            threshold = "max"), data=data)
 
+
+anova(cfa1, cfa4)
+# Chi-Squared Difference Test
+# 
+#       Df   AIC   BIC Chisq Chisq diff Df diff Pr(>Chisq)    
+# cfa4 183 23648 23846   545                                  
+# cfa1 189 23868 24041   777        232       6     <2e-16 ***
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+The 4-factors model suggested by EFA presented a significantly better
+fit than the 1-factor model. We then compared that model to two
+variants: one with 2 items removed (Blood sugar and Taste), and another
+with, additionally, the *Interoception* factor split into two (with the
+pain-related items grouped together). The latter model (*CFA-5*), was
+significantly superior to the others. Additionally, we removed the least
+loaded items of expulsion (cough) to improve the balance (3 items per
+secondary scales, and 6 for interoception), which significantly improved
+the model fit.
+
+``` r
 cfa4mod <- "
 Skin =~ Affective_touch + Tickle + Itch
 Expulsion =~ Sneeze + Cough + Wind + Burp
@@ -162,23 +184,16 @@ Elimination =~ Urinate + Defecate + Vomit
 " |> 
 lavaan::cfa(data=data)
 
-anova(cfa1, cfa4, cfa4mod, cfa5)
+anova(cfa4, cfa4mod, cfa5)
 # Chi-Squared Difference Test
 # 
 #          Df   AIC   BIC Chisq Chisq diff Df diff Pr(>Chisq)    
 # cfa5    142 21353 21551   441                                  
 # cfa4mod 146 21374 21555   469       28.8       4    8.4e-06 ***
 # cfa4    183 23648 23846   545       75.6      37    0.00019 ***
-# cfa1    189 23868 24041   777      231.9       6    < 2e-16 ***
 # ---
 # Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
-
-## Final Model
-
-Additionally, we removed the least loaded items of expulsion (cough) to
-improve the balance (3 items per secondary scales, and 6 for
-interoception).
 
 ``` r
 cfa5mod <- "
@@ -200,49 +215,7 @@ anova(cfa5, cfa5mod)
 # Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-``` r
-parameters::parameters(cfa5) |> 
-  display()
-```
-
-| Link                          | Coefficient |  SE  |    95% CI    |   z   |    p    |
-|:------------------------------|:-----------:|:----:|:------------:|:-----:|:-------:|
-| Skin =\~ Affective_touch      |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
-| Skin =\~ Tickle               |    1.21     | 0.12 | (0.98, 1.43) | 10.48 | \< .001 |
-| Skin =\~ Itch                 |    1.18     | 0.11 | (0.96, 1.40) | 10.34 | \< .001 |
-| Expulsion =\~ Sneeze          |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
-| Expulsion =\~ Cough           |    0.95     | 0.08 | (0.79, 1.11) | 11.45 | \< .001 |
-| Expulsion =\~ Wind            |    0.96     | 0.09 | (0.79, 1.13) | 10.97 | \< .001 |
-| Expulsion =\~ Burp            |    1.01     | 0.09 | (0.84, 1.18) | 11.53 | \< .001 |
-| Interoception =\~ Heart       |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
-| Interoception =\~ Hungry      |    1.46     | 0.20 | (1.06, 1.86) | 7.13  | \< .001 |
-| Interoception =\~ Breathing   |    1.30     | 0.17 | (0.96, 1.63) | 7.59  | \< .001 |
-| Interoception =\~ Thirsty     |    1.43     | 0.20 | (1.04, 1.82) | 7.24  | \< .001 |
-| Interoception =\~ Temp        |    1.48     | 0.19 | (1.11, 1.86) | 7.80  | \< .001 |
-| Interoception =\~ Sex_arousal |    1.05     | 0.16 | (0.73, 1.38) | 6.45  | \< .001 |
-| Nociception =\~ Muscles       |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
-| Nociception =\~ Bruise        |    1.11     | 0.12 | (0.87, 1.35) | 9.12  | \< .001 |
-| Nociception =\~ Pain          |    1.09     | 0.10 | (0.89, 1.29) | 10.66 | \< .001 |
-| Elimination =\~ Urinate       |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
-| Elimination =\~ Defecate      |    1.00     | 0.10 | (0.81, 1.19) | 10.37 | \< .001 |
-| Elimination =\~ Vomit         |    0.95     | 0.11 | (0.74, 1.16) | 8.97  | \< .001 |
-
-\# Loading
-
-| Link                           | Coefficient |  SE  |    95% CI    |  z   |    p    |
-|:-------------------------------|:-----------:|:----:|:------------:|:----:|:-------:|
-| Skin \~\~ Expulsion            |    0.23     | 0.03 | (0.17, 0.30) | 7.07 | \< .001 |
-| Skin \~\~ Interoception        |    0.14     | 0.02 | (0.09, 0.18) | 5.85 | \< .001 |
-| Skin \~\~ Nociception          |    0.24     | 0.03 | (0.18, 0.31) | 7.21 | \< .001 |
-| Skin \~\~ Elimination          |    0.18     | 0.03 | (0.12, 0.24) | 6.02 | \< .001 |
-| Expulsion \~\~ Interoception   |    0.14     | 0.02 | (0.10, 0.19) | 6.30 | \< .001 |
-| Expulsion \~\~ Nociception     |    0.22     | 0.03 | (0.17, 0.28) | 7.44 | \< .001 |
-| Expulsion \~\~ Elimination     |    0.24     | 0.03 | (0.18, 0.30) | 7.64 | \< .001 |
-| Interoception \~\~ Nociception |    0.17     | 0.02 | (0.12, 0.21) | 6.65 | \< .001 |
-| Interoception \~\~ Elimination |    0.16     | 0.02 | (0.11, 0.21) | 6.57 | \< .001 |
-| Nociception \~\~ Elimination   |    0.23     | 0.03 | (0.17, 0.29) | 7.41 | \< .001 |
-
-\# Correlation
+## Final Model
 
 ``` r
 library(tidySEM)
@@ -261,7 +234,59 @@ plot(graph_data)
 
 ![](figures/unnamed-chunk-8-1.png)<!-- -->
 
-## Final Scale
+``` r
+performance::performance(cfa5mod) |> 
+  display()
+```
+
+| Chi2(125) | p (Chi2) | Baseline(153) | p (Baseline) | GFI  | AGFI | NFI  | NNFI | CFI  | RMSEA |    RMSEA CI    | p (RMSEA) | RMR  | SRMR | RFI  | PNFI | IFI  | RNI  | Loglikelihood |   AIC    |   BIC    | BIC_adjusted |
+|:----------|:--------:|:-------------:|:------------:|:----:|:----:|:----:|:----:|:----:|:-----:|:--------------:|:---------:|:----:|:----:|:----:|:----:|:----:|:----:|:-------------:|:--------:|:--------:|:------------:|
+| 379.08    | \< .001  |    2234.49    |   \< .001    | 0.91 | 0.88 | 0.83 | 0.85 | 0.88 | 0.07  | \[0.06, 0.07\] |  \< .001  | 0.05 | 0.06 | 0.79 | 0.68 | 0.88 | 0.88 |   -10135.67   | 20363.34 | 20552.47 |   20406.48   |
+
+``` r
+parameters::parameters(cfa5mod) |> 
+  display()
+```
+
+| Link                          | Coefficient |  SE  |    95% CI    |   z   |    p    |
+|:------------------------------|:-----------:|:----:|:------------:|:-----:|:-------:|
+| Skin =\~ Affective_touch      |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
+| Skin =\~ Tickle               |    1.19     | 0.11 | (0.97, 1.41) | 10.57 | \< .001 |
+| Skin =\~ Itch                 |    1.16     | 0.11 | (0.94, 1.38) | 10.40 | \< .001 |
+| Expulsion =\~ Sneeze          |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
+| Expulsion =\~ Wind            |    1.13     | 0.11 | (0.92, 1.35) | 10.38 | \< .001 |
+| Expulsion =\~ Burp            |    1.09     | 0.11 | (0.88, 1.30) | 10.22 | \< .001 |
+| Interoception =\~ Heart       |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
+| Interoception =\~ Hungry      |    1.46     | 0.20 | (1.06, 1.86) | 7.16  | \< .001 |
+| Interoception =\~ Breathing   |    1.29     | 0.17 | (0.96, 1.62) | 7.60  | \< .001 |
+| Interoception =\~ Thirsty     |    1.43     | 0.20 | (1.04, 1.81) | 7.27  | \< .001 |
+| Interoception =\~ Temp        |    1.47     | 0.19 | (1.10, 1.84) | 7.80  | \< .001 |
+| Interoception =\~ Sex_arousal |    1.06     | 0.16 | (0.74, 1.38) | 6.48  | \< .001 |
+| Nociception =\~ Muscles       |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
+| Nociception =\~ Bruise        |    1.10     | 0.12 | (0.86, 1.34) | 9.02  | \< .001 |
+| Nociception =\~ Pain          |    1.10     | 0.10 | (0.89, 1.30) | 10.66 | \< .001 |
+| Elimination =\~ Urinate       |    1.00     | 0.00 | (1.00, 1.00) |       | \< .001 |
+| Elimination =\~ Defecate      |    1.00     | 0.10 | (0.81, 1.19) | 10.43 | \< .001 |
+| Elimination =\~ Vomit         |    0.95     | 0.11 | (0.75, 1.16) | 9.05  | \< .001 |
+
+\# Loading
+
+| Link                           | Coefficient |  SE  |    95% CI    |  z   |    p    |
+|:-------------------------------|:-----------:|:----:|:------------:|:----:|:-------:|
+| Skin \~\~ Expulsion            |    0.22     | 0.03 | (0.16, 0.29) | 6.85 | \< .001 |
+| Skin \~\~ Interoception        |    0.14     | 0.02 | (0.09, 0.18) | 5.89 | \< .001 |
+| Skin \~\~ Nociception          |    0.25     | 0.03 | (0.18, 0.31) | 7.24 | \< .001 |
+| Skin \~\~ Elimination          |    0.18     | 0.03 | (0.12, 0.24) | 6.06 | \< .001 |
+| Expulsion \~\~ Interoception   |    0.13     | 0.02 | (0.09, 0.18) | 6.11 | \< .001 |
+| Expulsion \~\~ Nociception     |    0.20     | 0.03 | (0.14, 0.26) | 6.95 | \< .001 |
+| Expulsion \~\~ Elimination     |    0.24     | 0.03 | (0.17, 0.30) | 7.47 | \< .001 |
+| Interoception \~\~ Nociception |    0.17     | 0.02 | (0.12, 0.21) | 6.66 | \< .001 |
+| Interoception \~\~ Elimination |    0.16     | 0.02 | (0.12, 0.21) | 6.59 | \< .001 |
+| Nociception \~\~ Elimination   |    0.23     | 0.03 | (0.17, 0.29) | 7.44 | \< .001 |
+
+\# Correlation
+
+## IAS-R
 
 **Instructions**. Below are several statements regarding how accurately
 you can perceive specific bodily sensations. Please rate on the scale
