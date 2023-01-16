@@ -1,0 +1,307 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  man,floatsintext]{apa6}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{english}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+% Manuscript styling
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+% Table formatting
+\usepackage{longtable}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+% \usepackage{etoolbox}
+\makeatletter
+\patchcmd{\HyOrg@maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\patchcmd{\HyOrg@maketitle}
+  {\section{\protect\normalfont{\@title}}}
+  {\section*{\protect\normalfont{\@title}}}
+  {}{\typeout{Failed to patch title.}}
+\makeatother
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
+\keywords{PHQ-4; depression; anxiety; brief questionnaire; short scale\newline\indent Word count: 1249}
+\usepackage{lineno}
+
+\linenumbers
+\usepackage{csquotes}
+\usepackage[titles]{tocloft}
+\cftpagenumbersoff{figure}
+\renewcommand{\cftfigpresnum}{\itshape\figurename\enspace}
+\renewcommand{\cftfigaftersnum}{.\space}
+\setlength{\cftfigindent}{0pt}
+\setlength{\cftafterloftitleskip}{0pt}
+\settowidth{\cftfignumwidth}{Figure 10.\qquad}
+\usepackage[labelfont=bf, font={scriptsize, color=gray}]{caption}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={The Revised Interoceptive Accuracy Scale (IAS-R)},
+  pdfauthor={Dominique Makowski1, An Shu Te2, \& S.H. Annabel Chen2, 3, 4, 5},
+  pdflang={en-EN},
+  pdfkeywords={PHQ-4; depression; anxiety; brief questionnaire; short scale},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{\textbf{The Revised Interoceptive Accuracy Scale (IAS-R)}}
+\author{Dominique Makowski\textsuperscript{1}, An Shu Te\textsuperscript{2}, \& S.H. Annabel Chen\textsuperscript{2, 3, 4, 5}}
+\date{}
+
+
+\shorttitle{PHQ-4R}
+
+\authornote{
+
+The authors made the following contributions. Dominique Makowski: Conceptualization, Data curation, Formal Analysis, Funding acquisition, Investigation, Methodology, Project administration, Resources, Software, Supervision, Validation, Visualization, Writing -- original draft; An Shu Te: Project administration, Resources, Software, Investigation, Writing -- original draft; S.H. Annabel Chen: Project administration, Supervision, Writing -- review \& editing.
+
+Correspondence concerning this article should be addressed to Dominique Makowski, HSS 04-18, 48 Nanyang Avenue, Singapore. E-mail: \href{mailto:dom.makowski@gmail.com}{\nolinkurl{dom.makowski@gmail.com}}
+
+}
+
+\affiliation{\vspace{0.5cm}\textsuperscript{1} School of Psychology, University of Sussex, UK\\\textsuperscript{2} School of Social Sciences, Nanyang Technological University, Singapore\\\textsuperscript{3} LKC Medicine, Nanyang Technological University, Singapore\\\textsuperscript{4} National Institute of Education, Singapore\\\textsuperscript{5} Centre for Research and Development in Learning, Nanyang Technological University, Singapore}
+
+\abstract{%
+Something something.
+}
+
+
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Interoception - definition - is the trending topic.
+Unfortunately, it is also notably hard to measure.
+
+Scales are useful to capture metacognitive and subjective aspects and beliefs
+While the relationship between scales and tasks is a strong point of contention, it is important to continue developing sound scales from a structural (i.e., factorial) standpoint.
+
+One of the most recent scale is the IAS, which is interesting because\ldots{}
+
+The purpose of this work is to re-analyze the factor structure of the scale using complementary statistical approaches. and propose a revised version.
+
+\hypertarget{study-1}{%
+\section{Study 1}\label{study-1}}
+
+Study 1 is a re-analysis of the data from Murphy et al. (2020) regarding the factor structure of the Interoceptive Accuracy Scale (IAS). The aim is to use a finer-grained method for estimating the optimal number of latent factors (namely, the \emph{Method Agreement Procedure}, in Lüdecke et al., 2020; Makowski, 2018), and perform a statistical model comparison using Confirmatory Factor Analysis (CFA).
+
+\hypertarget{participants}{%
+\subsection{Participants}\label{participants}}
+
+The exploratory factor analysis (EFA) and initial model selection was performed on the data from \href{https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769}{study 1} of Murphy et al. (2020), downloaded from OSF, included 451 participants (Mean age = 25.8, SD = 8.4, range: {[}18, 69{]}; Gender: 69.4\% women, 29.5\% men, 1.11\% non-binary). Data from the \href{https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769}{study 6}, which included 375 participants (Mean age = 35.3, SD = 16.9, range: {[}18, 91{]}; Gender: 70.1\% women, 28.5\% men, 1.33\% non-binary), was used as a test-set for confirmatory analysis.
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+The \emph{Method Agreement Procedure} suggested 1 latent factor as optimal, supported by 5 (31.25\%) out of 16 methods (Bentler, Acceleration factor, Scree (R2), VSS complexity 1, Velicer's MAP), followed by 4 factors supported by 4 methods (Kaiser criterion, beta score, optimal coordinates, parallel analysis).
+
+We fitted the simple-structure (i.e., each variable loading only unto its maximal latent factor) of these two models using CFA, underlining the 4-factors model as having a significantly better fit (\(\Delta \chi^2(6) = 232, p < .001; BIC_{EFA-1} = 23041, BIC_{EFA-4} = 23846\)). Using the EFA loading patterns and the CFA modification indices, we then compared the initial 4-factor model to two variants: one with 2 items removed (Blood sugar and Taste), and another with, additionally, the \emph{Interoception} factor split into two (with the pain-related items grouped together). The latter model (\emph{CFA-5}), was significantly superior to the others (\(\Delta \chi^2(4) = 28.8, p < .001; BIC_{EFA-4mod} = 21555, BIC_{CFA-5} = 21551\)). Finally, we removed the least loaded items of expulsion (cough) to improve the balance (3 items per secondary scales, and 6 for interoception), which significantly improved the model fit (\(\Delta \chi^2(17) = 61.4, p < .001; BIC_{CFA-5mod} = 20552\)).
+
+Finally, we re-fitted the models on a new data set (study 6 of Murphy et al., 2020).
+
+\hypertarget{summary}{%
+\subsection{Summary}\label{summary}}
+
+Exploratory Factor Analysis suggested a 1-factor and 4-factors solutions, but the latter was favoured by CFA. Further comparison suggested that a 5-factors model (obtained by separating \emph{Nociception} from \emph{Interoception}) had a superior fit. The 5 factors are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Interoception}: Heart, Hungry, Breathing, Thirsty, Temperature, Sexual arousal.
+\item
+  \textbf{Nociception}: Muscles, Bruise, Pain.
+\item
+  \textbf{Expulsion}: Burp, Sneeze, Wind.
+\item
+  \textbf{Elimination}: Vomit, Defecate, Urinate.
+\item
+  \textbf{Skin}: Itch, Tickle, Affective touch.
+\end{itemize}
+
+The final revised scale, made of 18 items (6 for interoception and 3 per secondary dimension), is available \protect\hyperlink{IAS-R}{below}.
+
+\hypertarget{study-2}{%
+\section{Study 2}\label{study-2}}
+
+\newpage
+
+\hypertarget{data-availability}{%
+\section{Data Availability}\label{data-availability}}
+
+The dataset analysed during the current study are available in the GitHub repository \url{https://github.com/DominiqueMakowski/InteroceptiveAccuracyScale}.
+
+\hypertarget{funding}{%
+\section{Funding}\label{funding}}
+
+This work was supported by the Presidential Postdoctoral Fellowship Grant (NTU-PPF-2020-10014) from Nanyang Technological University (awarded to DM).
+
+\hypertarget{acknowledgments}{%
+\section{Acknowledgments}\label{acknowledgments}}
+
+We warmly thank the original authors of (Murphy et al., 2020) for making their data and material open-access, which enabled the present follow-up study.
+
+\newpage
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-ludecke2020extracting}{}}%
+Lüdecke, D., Ben-Shachar, M. S., Patil, I., \& Makowski, D. (2020). Extracting, computing and exploring the parameters of statistical models using r. \emph{Journal of Open Source Software}, \emph{5}(53), 2445.
+
+\leavevmode\vadjust pre{\hypertarget{ref-makowski2018psycho}{}}%
+Makowski, D. (2018). The psycho package: An efficient and publishing-oriented workflow for psychological science. \emph{Journal of Open Source Software}, \emph{3}(22), 470.
+
+\leavevmode\vadjust pre{\hypertarget{ref-murphy2020testing}{}}%
+Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., \& Bird, G. (2020). Testing the independence of self-reported interoceptive accuracy and attention. \emph{Quarterly Journal of Experimental Psychology}, \emph{73}(1), 115--133.
+
+\end{CSLReferences}
+
+
+\clearpage
+\renewcommand{\listfigurename}{Figure captions}
+
+
+\end{document}
