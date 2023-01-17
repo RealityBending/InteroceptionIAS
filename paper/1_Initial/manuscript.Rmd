@@ -1,5 +1,5 @@
 ---
-title             : "**The Revised Interoceptive Accuracy Scale (IAS-R)**"
+title             : "**The Revised Interoceptive Accuracy Scale (IAS-R) Confirms Links between Interoception and Personality and Psychopathological Traits**"
 shorttitle        : "PHQ-4R"
 author:
   - name          : "Dominique Makowski"
@@ -52,7 +52,7 @@ affiliation:
 abstract: |
   Something something.
   
-keywords          : "PHQ-4; depression; anxiety; brief questionnaire; short scale"
+keywords          : "IAS-R; Interoception; Personality; Psychopathology; Validation"
 wordcount         : "1249"
 bibliography      : references.bib
 floatsintext      : yes
@@ -112,46 +112,81 @@ The exploratory factor analysis (EFA) and initial model selection was performed 
 
 The *Method Agreement Procedure* suggested 1 latent factor as optimal, supported by 5 (31.25%) out of 16 methods (Bentler, Acceleration factor, Scree (R2), VSS complexity 1, Velicer's MAP), followed by 4 factors supported by 4 methods (Kaiser criterion, beta score, optimal coordinates, parallel analysis).
 
-We fitted the simple-structure (i.e., each variable loading only unto its maximal latent factor) of these two models using CFA, underlining the 4-factors model as having a significantly better fit ($\Delta \chi^2(6) = 232, p < .001; BIC_{CFA-1} = 25141, BIC_{CFA-4} = 24945$). Using the EFA loading patterns and the CFA modification indices, we then compared the initial 4-factor model to two variants: one with 2 items removed (Blood sugar and Taste), and another with, additionally, the *Interoception* factor split into two (with the pain-related items grouped together as a *Nociception* factor). The latter model (*CFA-5*), was significantly superior to the others ($\Delta \chi^2(4) = 28.8, p < .001; BIC_{CFA-4mod} = 22563, BIC_{CFA-5} = 22559$). We then removed the least loaded items of *Expulsion* (cough) to improve the balance (6 items for interoception and 3 per secondary scales), which significantly improved the model fit ($\Delta \chi^2(17) = 61.4, p < .001; BIC_{CFA-5mod} = 21256$). Finally, we tested a hierarchical model in which the interoception dimension was, in addition to its own 6 items, loaded by the secondary latent factors (Skin, Expulsion, Nociception, Elimination), but this model did not improve the fit ($BIC_{CFA-5h} = 21452$), suggesting that the 4 secondary latent factors are not subdimensions of the interoception factor.
+We fitted the simple-structure (i.e., each variable loading only unto its maximal latent factor) of these two models using CFA, which underlined the 4-factors model as having a significantly better fit ($\Delta \chi^2(6) = 232, p < .001; BIC_{CFA-1} = 25141, BIC_{CFA-4} = 24945$). Using the EFA loading patterns and the CFA modification indices, we then compared the initial 4-factor model to two variants: one with 2 items removed (Blood sugar and Taste), and another with, additionally, the *Interoception* factor split into two (with the pain-related items grouped together in a *Nociception* factor). The latter model (*CFA-5*), was significantly superior to the others ($\Delta \chi^2(4) = 28.8, p < .001; BIC_{CFA-4mod} = 22563, BIC_{CFA-5} = 22559$). We then removed the least loaded item of *Expulsion* (cough) to improve the balance (6 items for interoception and 3 per secondary scales), which significantly improved the model fit ($\Delta \chi^2(17) = 61.4, p < .001; BIC_{CFA-5mod} = 21256$). Finally, we tested a hierarchical model in which the interoception dimension was, in addition to its own 6 items, loaded by the secondary latent factors (*Skin*, *Expulsion*, *Nociception*, *Elimination*), but this model did not improve the fit ($BIC_{CFA-5h} = 21452$).
 
-Finally, we re-fitted the CFA models on a new data set [study 6 of @murphy2020testing], which confirmed that the 5-factor balanced model had the better fit ($BIC_{CFA-5mod} = 17316; BIC_{CFA-5h} = 17323; BIC_{CFA-5} = 18257; BIC_{EFA-4mod} = 18265$). However, the final model had barely acceptable indices of fit in both samples (Sample 1: $RMSEA = .067$ (acceptable < .08), $CFI = .878$ (acceptable > .9), $SRMR = .057$ (acceptable < .08); Sample 2: $RMSEA = .068$, $CFI = .906$, $SRMR = .063$).
+Finally, we re-fitted the CFA models on a new data set [study 6 of @murphy2020testing], which confirmed that the 5-factor balanced model had the better fit relative to the other models ($BIC_{CFA-5mod} = 17316; BIC_{CFA-5h} = 17323; BIC_{CFA-5} = 18257; BIC_{EFA-4mod} = 18265$). However, the final model had poor to barely acceptable absolute indices of fit in both samples (Sample 1: $RMSEA = .067$ (acceptable < .08), $CFI = .878$ (acceptable > .9), $SRMR = .057$ (acceptable < .08); Sample 2: $RMSEA = .068$, $CFI = .906$, $SRMR = .063$).
 
 ## Summary
 
-Exploratory Factor Analysis suggested a 1-factor and 4-factors solutions, but the latter was favoured by CFA. Further comparison suggested that a 5-factors model (obtained by separating *Nociception* from *Interoception* and balancing the number of items per dimension) had a superior fit. The 5 factors (with their items) are **Interoception** (Heart, Hungry, Breathing, Thirsty, Temperature, Sexual arousal); **Nociception** (Muscles, Bruise, Pain); **Expulsion** (Burp, Sneeze, Wind); **Elimination** (Vomit, Defecate, Urinate); **Skin** (Itch, Tickle, Affective touch). However, the indices of fit for this model were relatively low.
+Exploratory Factor Analysis suggested a 1-factor and 4-factors solutions, but the latter was favoured by CFA. Further comparison suggested that a 5-factors model (obtained by separating *Nociception* from *Interoception* and balancing the number of items per dimension) had a superior fit. The 5 factors (with their items) are **Interoception** (Heart, Hungry, Breathing, Thirsty, Temperature, Sexual arousal); **Nociception** (Muscles, Bruise, Pain); **Expulsion** (Burp, Sneeze, Wind); **Elimination** (Vomit, Defecate, Urinate); **Skin** (Itch, Tickle, Affective touch). However, absolute indices of fit for this model were relatively low.
 
 # Study 2
 
-The final revised scale, made of 18 items (6 for interoception and 3 per secondary dimension), was administered to a new sample in an online study. The response was chained from a 5-point Likert scale (**ANSHU TO CONFIRM**) to a analog scale.
+The revised scale, made of 18 items (6 for interoception and 3 per secondary dimension), was administered to a new sample in an online study. The response was changed from a 5-point Likert scale (**ANSHU TO CONFIRM**) to a analog scale.
 
 ## Participants
 
 485 participants (Mean age = 30.1, SD = 10.1, range: [18, 73]; Sex: 50.3% females, 49.7% males).
 **Update based on para from PHQ4**
 
+Note that as the MAIA and the PI were done on a different session 2, we only have n = ... for their correlations.
+
 ## Results
 
-Despite changing the response format for analog scales, the distribution of answers was similar to that of the original validation samples, with a modal answer of around 75% of the scale for most of the items (see **Figure 1A**). Contrary to our expectations, the *Method Agreement Procedure* for EFA suggested 4 latent factor (supported by 31.58% of methods), rather than the 5 hypothesized (supported by 0 methods). CFA confirmed that the 4-factor model derived from the EFA had a better fit than this 5-factor model and than a 1-factor model ($BIC_{CFA-4} = 22758, BIC_{CFA-1} = 22911, BIC_{CFA-1} = 23065$). We then re-balanced the 4-factor model to keep 3 items per factor and remove items that strongly loaded on more than one factor in the EFA (e.g., Temperature and Sneeze, see **Figure 1B**). Finally, we compare the resulting model to one with a fifth latent factor (*Interoception*) loaded by the 4 others latent factors. Adding this general score did not significantly change the model's fit ($\Delta \chi^2(2) = 5.85, p = .054; BIC_{CFA-4mod} = 15140, BIC_{CFA-4h} = 15259$). Importantly, the resulting model (see **Figure 1C**) had excellent indices of fit ($RMSEA = .0347$, $CFI = .9796$, $SRMR = .0364$). Finally, we re-fitted this model on the two samples from study 1, and report improved indices of fit over the initial best model (Sample 1: $RMSEA = .068$, $CFI = .9020$, $SRMR = .0556$; Sample 2: $RMSEA = .066$, $CFI = .9315$, $SRMR = .0504$).
+Despite changing the response format to analog scales, the distribution of answers was similar to that of the original validation samples, with a modal answer at around 75% of the scale for most of the items (see **Figure 1A**). Contrary to our expectations, the *Method Agreement Procedure* for EFA suggested 4 latent factor (supported by 5/16 methods), rather than the 5 hypothesized (supported by 0 methods). CFA confirmed that the 4-factor model derived from the EFA had a better fit than this 5-factor model and than a 1-factor model ($BIC_{CFA-4} = 22758, BIC_{CFA-1} = 22911, BIC_{CFA-1} = 23065$). We then re-balanced the 4-factor model to keep 3 items per factor and remove items that strongly loaded on more than one factor in the EFA (e.g., Temperature and Sneeze, see **Figure 1B**). Finally, we compared the resulting model to one with a fifth latent factor (*Interoception*) loaded by the 4 others latent factors. Adding this general score did not significantly change the model's fit ($\Delta \chi^2(2) = 5.85, p = .054; BIC_{CFA-4mod} = 15140, BIC_{CFA-4h} = 15259$). Importantly, the resulting model (see **Figure 1C**) had excellent indices of fit ($RMSEA = .0347$, $CFI = .9796$, $SRMR = .0364$). Finally, we re-fitted this model on the two samples from study 1, which revealed much improved indices of fit over the initial best model (Sample 1: $RMSEA = .068$, $CFI = .9020$, $SRMR = .0556$; Sample 2: $RMSEA = .066$, $CFI = .9315$, $SRMR = .0504$).
+
+We ran a Bayesian correlations analysis (with a narrow prior centred around 0)
+<!-- , which allows to quantify in favour and against the null hypothesis, -->
+between the individual facet scores extracted from the final model and the MAIA-2 dimensions (administered online on a different session). As all correlations are presented in **Figure 2**, we will focus in the following on a subset of key results.
+<!-- (with at least strong evidence in favour of a relationship, i.e., BF >= 10).  -->
+
+Correlations with the IPIP6 personality scale highlighted a positive relationship between the *Homeostatis* interoceptive dimension with *Agreeableness* ($r_{homeostasis} = .14, BF = 17.91$) and *Conscientiousness* ($TODO$); and a negative relationship with *Honesty-Humility* ($TODO$) and *Neuroticism* ($TODO$). This facet also negatively related to several pathological personality traits measured by the PID-5, such as *Psychoticism* ($TODO$), *Negative Affect* ($TODO$), and *Detachment* ($TODO$). In line with that, we also report negative relationships with schizotypical characteristics, including *Social Anxiety* ($TODO$), *Odd Speech*($TODO$), *No Close Friends* ($TODO$) and *Constricted Affect* ($TODO$); as well positive relationship with autistic traits, such as *Switching* ($TODO$) and *Social Skills* ($TODO$).
 
 
 
 
 
-# Study 3
-
-
+## Summary
 
 
 
 
 # General Discussion
 
+Whether this scale truly captures interoceptive accuracy is still a matter of debate (as is whether accuracy should even be focus of interoception research, see **recent review paper that I shared**). In any case, this scale has some advantages over others in that the items are straightforward and do directly relate to bodily processes, without being conflated (at least in their formulation) with emotional or attentional aspects. Despite being at first glance very different from the other personality measures, we found consistent and strong relationships.
+
+
+The fact that the *Homeostatis* dimension was the most significantly correlated with other subjective measures could be that it captures the most overt and key features of bodily signals (that relates to primal needs). As such, it might be the subscale with the most meaningful variability and accuracy. However, the relationships observed with this subscale were also consistently present for the other subscales (though typically with a lesser magnitude).
+
+\newpage
+
+# Revised Interoceptive Accuracy Scale (IAS-R)
+
+**Scoring**. Each scale can be answered on an analog scale (Disagree - Agree). Items can be averaged per dimension, and dimensions can be averaged to get a general Interoception score. 
+
+**Instructions**. "Below are several statements regarding how accurately you can perceive specific bodily sensations. Please rate on the scale on how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low. Please only rate how well you can perceive these signals without using external cues. For example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception".
+
+```{r message=FALSE, warning=FALSE, out.width="100%"}
+papaja::apa_table(
+  data.frame(
+    Facet = c("\\textbf{Anxiety}", "", "", "\\textbf{Homeostatis}", "", ""),
+    Item = c("Breathing", "Muscles", "I can always accurately perceive when my heart is beating fast", "Itch", "Tickle", "Bruise")
+    ),
+  caption = "",
+  escape = FALSE,
+  font_size = "scriptsize",
+  col.names = c("Facet", "Item"),
+  midrules = c(3),
+  placement = "!h")
+```
 
 \newpage
 
 # Data Availability
 
-The dataset analysed during the current study are available in the GitHub repository https://github.com/DominiqueMakowski/InteroceptiveAccuracyScale.
+The dataset analysed during the current study are available in the GitHub repository https://github.com/DominiqueMakowski/InteroceptiveAccuracyScale. 
+
+
 
 # Funding
 

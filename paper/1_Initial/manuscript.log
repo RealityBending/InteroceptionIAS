@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.8)  15 JAN 2023 13:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.8)  17 JAN 2023 15:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -703,29 +703,31 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ] [2] [3] [4]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 251.
-(c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5] [6] [7] [8] AED endfloat: Processing end Figures and Tables (./manuscript.aux)
+Underfull \vbox (badness 2443) has occurred while \output is active []
+
+[5] [6]
+Underfull \vbox (badness 4752) has occurred while \output is active []
+
+[7] [8]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 298.
+[9] [10] [11] AED endfloat: Processing end Figures and Tables (./manuscript.aux)
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 6BAD37A3A7828DBD3CE8164572F46BE0;1379.
+(rerunfilecheck)             Checksum: C8DCA2F23DD8DFCC51FB526222E657B9;2542.
  ) 
 Here is how much of TeX's memory you used:
- 16343 strings out of 478053
- 269729 string characters out of 5839309
- 1859787 words of memory out of 5000000
- 36135 multiletter control sequences out of 15000+600000
- 555881 words of font info for 68 fonts, out of 8000000 for 9000
+ 16367 strings out of 478053
+ 269624 string characters out of 5839309
+ 1861787 words of memory out of 5000000
+ 36139 multiletter control sequences out of 15000+600000
+ 566369 words of font info for 77 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 70i,11n,77p,1030b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{IAS-R} has been referenced but does not exist, replaced by a fixed one
-
-{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on manuscript.pdf (8 pages, 151391 bytes).
+ 70i,11n,77p,1559b,667s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/Users/domma/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
+Output written on manuscript.pdf (11 pages, 194604 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 142 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
- 97 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 216 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 137 words of extra memory for PDF output out of 10000 (max. 10000000)
 

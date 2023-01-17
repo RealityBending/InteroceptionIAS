@@ -445,11 +445,11 @@ vars <- c("Homeostasis", "Skin", "Elimination", "Muscle", "Interoception")
 
 ```{r, message=FALSE, warning=FALSE}
 make_correlation <- function(x, y) {
-  cor <- correlation::correlation(x,
-    y,
+  set.seed(3)
+  cor <- correlation::correlation(
+    x, y,
     bayesian = TRUE,
-    bayesian_prior = "medium.narrow",
-    sort = TRUE
+    bayesian_prior = "medium.narrow"
   ) |>
     datawizard::data_remove(c("ROPE_Percentage"))
 
@@ -462,10 +462,11 @@ make_correlation <- function(x, y) {
     )$BF,
     name = NULL, stars = FALSE
   )
-
+  
   r <- filter(cor, BF >= 10)
 
-  if(nrow(r) == 0) list(data = cor, print = "No significant (BF >= 10) correlations.")
+  if(nrow(r) == 0) return(list(data = cor, print = "No significant (BF >= 10) correlations."))
+
   
   to_print <- r |>
     arrange(Parameter1, desc(BF)) |>
@@ -490,7 +491,7 @@ asq <- make_correlation(df[vars], select(df, starts_with("ASQ_")))
 export_table(asq$print)
 spq <- make_correlation(df[vars], select(df, starts_with("SPQ_"))) 
 export_table(spq$print)
-bpd <- make_correlation(df[vars], select(df, starts_with("BPD_"))) 
+bpd <- make_correlation(df[vars], select(df, starts_with("BPD"))) 
 export_table(bpd$print)
 phq <- make_correlation(df[vars], select(df, starts_with("PHQ4_"))) 
 export_table(phq$print)
@@ -503,8 +504,10 @@ pi <- make_correlation(df[vars], select(df, starts_with("PI_")))
 export_table(pi$print)
 gcbs <- make_correlation(df[vars], select(df, starts_with("GCBS_"))) 
 export_table(gcbs$print)
-age <- make_correlation(df[vars], select(df, Age)) 
+age <- make_correlation(df[vars], data.frame(Age = df$Age)) 
 export_table(age$print)
+sex <- make_correlation(df[vars], data.frame(Sex = ifelse(df$Sex == "Male", 0, 1)) )
+export_table(sex$print)
 ```
 
 
@@ -513,19 +516,31 @@ p_cor <- rbind(
   mutate(ipip$data, Domain = "Normal Personality"),
   mutate(pid$data, Domain = "Maladaptive Personality"),
   mutate(asq$data, Domain = "Autistic Traits"),
-  mutate(spq$data, Domain = "Schizotypic Traits")
+  mutate(spq$data, Domain = "Schizotypic Traits"),
+  mutate(phq$data, Domain = "Mood Disorders"),
+  mutate(gcbs$data, Domain = "Conspiracy Beliefs")
+  # mutate(age$data, Domain = "Demographic"),
+  # mutate(sex$data, Domain = "Demographic")
 ) |> 
   mutate(alpha = ifelse(BF >= 10, "BF >= 10", "BF < 10"),
          Parameter1 = fct_relevel(Parameter1, "Interoception", "Muscle", "Homeostasis", "Elimination", "Skin"),
          Domain = fct_relevel(Domain, "Normal Personality", "Maladaptive Personality", "Autistic Traits", "Schizotypic Traits"),
-         Parameter2 = str_remove_all(Parameter2, "IPIP6_|PID5_|ASQ_|SPQ_")) |>
+         Parameter2 = str_remove_all(Parameter2, "IPIP6_|PID5_|ASQ_|SPQ_|GCBS_"),
+         Parameter2 = str_replace(Parameter2, "Sex", "Sex (Female vs. Male)"),
+         Parameter2 = str_replace(Parameter2, "HonestyHumility", "Honesty-Humility"),
+         color = as.character(sign(rho))) |>
   ggplot(aes(x = rho, y = Parameter2)) +
   geom_bar(aes(alpha = alpha, fill = rho), stat = "identity") +
+  geom_linerange(aes(alpha = alpha, xmin = CI_low, xmax = CI_high, color = color)) +
+  geom_vline(xintercept = 0) +
   facet_grid(Domain~Parameter1, scales="free_y", switch ="y") +
   scale_alpha_manual(values = c(0.2, 1)) +
-  scale_fill_gradient2(low = "#2196F3", high = "#FF5722") +
+  scale_fill_gradient2(low = "#2196F3", high = "#FF5722", limits = c(-0.25, 0.25)) +
+  scale_colour_manual(values = c("#2196F3", "#FF5722")) +
+  scale_x_continuous(expand = c(0, 0)) +
+  coord_cartesian(xlim = c(-0.3, 0.3)) +
   labs(title = "Correlates of IAS-R Dimensions") +
-  guides(alpha = "none", fill = "none") +
+  guides(alpha = "none", fill = "none", color="none") +
   theme_minimal() +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
