@@ -137,12 +137,10 @@ Despite changing the response format to analog scales, the distribution of answe
 
 We ran a Bayesian correlations analysis (with a narrow prior centred around 0)
 <!-- , which allows to quantify in favour and against the null hypothesis, -->
-between the individual facet scores extracted from the final model and the MAIA-2 dimensions (administered online on a different session). As all correlations are presented in **Figure 2**, we will focus in the following on a subset of key results.
+between the individual facet scores extracted from the final model and the MAIA-2 dimensions (administered online on a different session). All dimensions of the IAS-R correlated with all the MAIA facets with the notable exception of *Not-reacting* and *Not-worrying*. As all correlations are presented in **Figure 2**, we will focus in the following on a subset of key results.
 <!-- (with at least strong evidence in favour of a relationship, i.e., BF >= 10).  -->
 
-Correlations with the IPIP6 personality scale highlighted a positive relationship between the *Homeostatis* interoceptive dimension with *Agreeableness* ($r_{homeostasis} = .14, BF = 17.91$) and *Conscientiousness* ($TODO$); and a negative relationship with *Honesty-Humility* ($TODO$) and *Neuroticism* ($TODO$). This facet also negatively related to several pathological personality traits measured by the PID-5, such as *Psychoticism* ($TODO$), *Negative Affect* ($TODO$), and *Detachment* ($TODO$). In line with that, we also report negative relationships with schizotypical characteristics, including *Social Anxiety* ($TODO$), *Odd Speech*($TODO$), *No Close Friends* ($TODO$) and *Constricted Affect* ($TODO$); as well positive relationship with autistic traits, such as *Switching* ($TODO$) and *Social Skills* ($TODO$).
-
-
+Correlations with the IPIP6 personality scale highlighted a positive relationship between the *Homeostatis* interoceptive dimension with *Agreeableness* ($r_{homeostasis} = .14, BF = 17.91$) and *Conscientiousness* ($TODO$); and a negative relationship with *Honesty-Humility* ($TODO$) and *Neuroticism* ($TODO$). This facet also negatively related to several pathological personality traits measured by the PID-5, such as *Psychoticism* ($TODO$), *Negative Affect* ($TODO$), and *Detachment* ($TODO$). In line with that, we also report negative relationships with schizotypical characteristics, including *Social Anxiety* ($TODO$), *Odd Speech*($TODO$), *No Close Friends* ($TODO$) and *Constricted Affect* ($TODO$); as well with autistic traits, including as *Switching* ($TODO$) and *Social Skills* ($TODO$).
 
 
 
