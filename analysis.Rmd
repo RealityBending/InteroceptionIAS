@@ -530,6 +530,8 @@ export_table(phq$print)
 ```{r, message=FALSE, warning=FALSE}
 pi <- make_correlation(df[vars], select(df, starts_with("PI_")))
 export_table(pi$print)
+lie <- make_correlation(df[vars], select(df, starts_with("LIE_")))
+export_table(lie$print)
 gcbs <- make_correlation(df[vars], select(df, starts_with("GCBS_"))) 
 export_table(gcbs$print)
 age <- make_correlation(df[vars], data.frame(Age = df$Age)) 
@@ -547,14 +549,17 @@ p_cor <- rbind(
   mutate(asq$data, Domain = "Autistic Traits"),
   mutate(spq$data, Domain = "Schizotypic Traits"),
   mutate(phq$data, Domain = "Mood"),
-  mutate(gcbs$data, Domain = "Conspiracy Beliefs")
+  mutate(bpd$data, Domain = "Mood"),
+  mutate(gcbs$data, Domain = "Conspiracy Beliefs"),
+  mutate(pi$data, Domain = "World Beliefs"),
+  mutate(lie$data, Domain = "Lying Profile")
   # mutate(age$data, Domain = "Demographic"),
   # mutate(sex$data, Domain = "Demographic")
 ) |> 
   mutate(alpha = ifelse(BF >= 10, "BF >= 10", "BF < 10"),
          Parameter1 = fct_relevel(Parameter1, "Interoception", "Muscle", "Homeostasis", "Elimination", "Skin"),
-         Domain = fct_relevel(Domain, "MAIA", "Normal Personality", "Maladaptive Personality", "Autistic Traits", "Schizotypic Traits"),
-         Parameter2 = str_remove_all(Parameter2, "MAIA_|IPIP6_|PID5_|ASQ_|SPQ_|GCBS_|PHQ4_"),
+         Domain = fct_relevel(Domain, "MAIA", "Normal Personality", "Maladaptive Personality", "Autistic Traits", "Schizotypic Traits", "Mood", "Lying Profile", "Conspiracy Beliefs", "World Beliefs"),
+         Parameter2 = str_remove_all(Parameter2, "MAIA_|IPIP6_|PID5_|ASQ_|SPQ_|GCBS_|PHQ4_|LIE_|PI_"),
          Parameter2 = str_replace(Parameter2, "Sex", "Sex (Female vs. Male)"),
          Parameter2 = str_replace(Parameter2, "HonestyHumility", "Honesty-Humility"),
          Parameter2 = str_replace(Parameter2, "AttentionRegulation", "Attention Regulation"),
@@ -586,7 +591,7 @@ p_cor <- rbind(
   geom_linerange(aes(alpha = alpha, xmin = CI_low, xmax = CI_high, color = color)) +
   geom_vline(xintercept = 0) +
   facet_grid(Domain~Parameter1, scales="free_y", switch ="y") +
-  scale_alpha_manual(values = c(0.2, 1)) +
+  scale_alpha_manual(values = c(0.3, 1)) +
   scale_fill_gradient2(low = "#2196F3", high = "#FF5722", limits = c(-0.4, 0.4)) +
   scale_colour_manual(values = c("#2196F3", "#FF5722")) +
   scale_x_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
@@ -667,6 +672,6 @@ p_efa <- rbind(
   facet_grid(Study ~ Component, switch = "y")
 
 fig <- ((wrap_elements(p_dens) + wrap_elements(p_efa)) / p_graph)
-ggsave("figures/Figure1.png", fig, width=fig.width, height=fig.width*1.3, dpi=150)
-ggsave("figures/Figure2.png", p_cor, width=21*0.35, height=29.7*0.35, dpi=150, bg="white")
+ggsave("figures/Figure1.png", fig, width=fig.width, height=fig.width*1.3, dpi=200)
+ggsave("figures/Figure2.png", p_cor, width=21*0.35, height=29.7*0.44, dpi=200, bg="white")
 ```
