@@ -88,17 +88,17 @@ cache <- TRUE
 
 # Introduction
 
-Interoception - definition - is the trending topic. 
+Interoception - definition - is a trending topic, becoming a central mechanism of embodied cognition, and showing a key contribution to higher order processes such as .... 
 Unfortunately, it is also notably hard to measure. 
 
 Scales are useful to capture metacognitive and subjective aspects and beliefs
-While the relationship between scales and tasks is a strong point of contention, it is important to continue developing sound scales from a structural (i.e., factorial) standpoint.
+While the relationship between interoceptive scales and tasks is a strong point of contention, it is important to continue developing sound scales from a structural (i.e., factorial) standpoint.
 
-One of the most recent scale is the IAS, which is interesting because... It has *n* items, such as ...
+One of the most recent scale developped is the IAS, which is interesting because... It has *n* items, such as ...
 However, the study analysis did not go in depth in the analysis of the factor structure, focusing instead on ....
 
 
-The purpose of this work is to re-analyze the factor structure of the scale using complementary statistical approaches. and propose a revised version. And to compare it with one of the most popular questionnaire of interoception, the MAIA-2 (*ref*).
+The purpose of this work is to re-analyze the factor structure of the scale using complementary statistical approaches, a further extend its validation by comparing a revised version with one of the most popular questionnaire of interoception, the MAIA-2 (*ref*), as well as other relevant indices (such as psychopathological traits).
 
 # Study 1
 
@@ -156,11 +156,13 @@ Whether this scale truly captures interoceptive accuracy is still a matter of de
 
 The fact that the *Homeostatis* dimension was the most significantly correlated with other subjective measures could be that it captures the most overt and key features of bodily signals (that relates to primal needs). As such, it might be the subscale with the most meaningful variability and accuracy. However, the relationships observed with this subscale were also consistently present for the other subscales (though typically with a lesser magnitude).
 
+One of the most intriguing new results was the reilationship between interoceptive abilities and several specific primal world beliefs.
+
 \newpage
 
 # Revised Interoceptive Accuracy Scale (IAS-R)
 
-**Scoring**. Each scale can be answered on an analog scale (Disagree - Agree). Items can be averaged per dimension, and dimensions can be averaged to get a general Interoception score. 
+**Scoring**. Each scale can be answered on an analogue scale (Disagree - Agree). Items can be averaged per dimension, and dimensions can be averaged to get a general Interoception score. 
 
 **Instructions**. "Below are several statements regarding how accurately you can perceive specific bodily sensations. Please rate on the scale on how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low. Please only rate how well you can perceive these signals without using external cues. For example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception".
 

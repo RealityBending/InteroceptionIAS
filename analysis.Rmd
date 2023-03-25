@@ -420,7 +420,7 @@ p_graph
 ## Omega
 
 ```{r, message=FALSE, warning=FALSE}
-semTools::compRelSEM(cfa4h)
+semTools::compRelSEM(cfa4h, higher="Interoception")
 ```
 
 
@@ -551,7 +551,7 @@ p_cor <- rbind(
   mutate(phq$data, Domain = "Mood"),
   mutate(bpd$data, Domain = "Mood"),
   mutate(gcbs$data, Domain = "Conspiracy Beliefs"),
-  mutate(pi$data, Domain = "World Beliefs"),
+  mutate(pi$data, Domain = "Primal World Beliefs"),
   mutate(lie$data, Domain = "Lying Profile")
   # mutate(age$data, Domain = "Demographic"),
   # mutate(sex$data, Domain = "Demographic")
