@@ -51,7 +51,7 @@ library(lavaan)
 library(ggraph)
 library(tidySEM)
 
-df <- haven::read_sav("data/Study 1.sav") |> 
+df <- haven::read_sav("../data/Study 1.sav") |> 
   mutate_all(as.numeric) |> 
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other")))) 
   
@@ -173,7 +173,7 @@ knitr::kable(check_perf(cfa5mod))
 ## New sample
 
 ```{r, message=FALSE, warning=FALSE, results='asis'}
-df2 <- haven::read_sav("data/Study 6 IAS.sav") |> 
+df2 <- haven::read_sav("../data/Study 6 IAS.sav") |> 
   mutate_all(as.numeric) |> 
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other")))) |> 
   select(-ESL)
@@ -427,7 +427,7 @@ semTools::compRelSEM(cfa4h, higher="Interoception")
 ```{r, message=FALSE, warning=FALSE}
 scores <- as.data.frame(predict(cfa4h))
 scores$Participant <- df3$Participant
-write.csv(scores, "data/IASR_scores.csv", row.names = FALSE)
+write.csv(scores, "../data/IASR_scores.csv", row.names = FALSE)
 ```
 
 
