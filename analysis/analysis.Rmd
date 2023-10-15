@@ -1,5 +1,5 @@
 ---
-title: "PHQ-4-R: Adaptation of the 4-item screening for Anxiety and Depression for a subclinical sensitivity"
+title: "Revised Interoceptive Accuracy Scale (IAS-R)"
 subtitle: "Analysis"
 author: "Dominique Makowski et al."
 output:
@@ -196,6 +196,8 @@ plot(dens2)
 
 data <- standardize(data)
 ```
+
+### CFA
 
 ```{r, message=FALSE, warning=FALSE}
 efa4b <- parameters::factor_analysis(data, n=4, rotation = "oblimin", sort = TRUE)
