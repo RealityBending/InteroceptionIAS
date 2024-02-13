@@ -6,5 +6,5 @@ A reanalysis of Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & 
 - [**Results (old)**](https://realitybending.github.io/InteroceptionIAS/analysis/old/analysis.html)
 
 
-![](figures/Figure1.png)
-![](figures/Figure2.png)
+![](analysis/old/figures/Figure1.png)
+![](analysis/old/figures/Figure2.png)
