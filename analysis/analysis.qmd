@@ -1,0 +1,924 @@
+---
+title: "Revised Interoceptive Accuracy Scale (IAS-R)"
+subtitle: "Analysis"
+editor: source
+editor_options: 
+  chunk_output_type: console
+format:
+  html:
+    code-fold: true
+    self-contained: true
+    toc: true
+    fig-dpi: 300
+    fig-width: 11.33
+execute: 
+  cache: true
+---
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(easystats)
+library(patchwork)
+library(lavaan)
+library(ggraph)
+library(tidySEM)
+library(EGAnet)
+```
+
+## Study 1 - Reanalysis of Murphy et al. (2020)
+
+Reanalyze their data to confirm the factor structure of the IAS.
+
+### Data Preparation
+
+```{r}
+# https://osf.io/3m5nh
+df1 <- haven::read_sav("../data/Murphy2020/Study 1.sav") |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other")))) 
+
+# https://osf.io/3m5nh
+df2 <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other")))) 
+
+# Campos (2022) - Study 1 (https://osf.io/j6ef3)
+df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(Sex == 1, "Male", ifelse(Sex == 0, "Female", "Other")))) |> 
+  rename(Heart=IAS1, Hungry=IAS2, Breathing=IAS3, Thirsty=IAS4,
+         Urinate=IAS5, Defecate=IAS6, Taste=IAS7, Vomit=IAS8, Sneeze=IAS9,
+         Cough=IAS10, Temp=IAS11, Sex_arousal=IAS12, Wind=IAS13, Burp=IAS14,
+         Muscles=IAS15, Bruise=IAS16, Pain=IAS17, Blood_Sugar=IAS18,
+         Affective_touch=IAS19, Tickle=IAS20, Itch=IAS21)
+
+# https://osf.io/3eztd
+df4 <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |> 
+  mutate(Gender = as.character(ifelse(sex_dummy == 1, "Male", ifelse(sex_dummy == 0, "Female", "Other")))) |> 
+  rename(Age=age, 
+         Heart=Heart, Hungry=HUNGR, Breathing=BREAT, Thirsty=Thirs,
+         Urinate=URINA, Defecate=Defec, Taste=TASTE, Vomit=VOMIT, Sneeze=Sneez,
+         Cough=COUGH, Temp=TEMPE, Sex_arousal=SEXAR, Wind=WIND, Burp=Burp,
+         Muscles=MUSCL, Bruise=Bruis, Pain=PAIN, Blood_Sugar=BloSu,
+         Affective_touch=Touch, Itch=ITCH)  # No tickle because same Chinese character
+
+# https://osf.io/3eztd
+df5 <- haven::read_sav("../data/Lin2023/Study 2.sav") |> 
+  mutate(Gender = as.character(ifelse(Sex == "男", "Male", ifelse(Sex == "女", "Female", "Other")))) |> 
+  rename(Heart=Heart, Hungry=HUNGR, Breathing=BREAT, Thirsty=Thirs,
+         Urinate=URINA, Defecate=Defec, Taste=TASTE, Vomit=VOMIT, Sneeze=Sneez,
+         Cough=COUGH, Temp=TEMPE, Sex_arousal=SEXAR, Wind=WIND, Burp=Burp,
+         Muscles=MUSCL, Bruise=Bruis, Pain=PAIN, Blood_Sugar=BloSu,
+         Affective_touch=Touch, Itch=ITCH)  # No tickle because same Chinese character
+
+df6 <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
+  rename(Heart=IAS_1, Hungry=IAS_2, Breathing=IAS_3, Thirsty=IAS_4, 
+         Urinate=IAS_5, Defecate=IAS_6, Taste=IAS_7, Vomit=IAS_8, Sneeze=IAS_9, 
+         Cough=IAS_10, Temp=IAS_11, Sex_arousal=IAS_12, Wind=IAS_13, Burp=IAS_14,
+         Muscles=IAS_15, Bruise=IAS_16, Pain=IAS_17, Blood_Sugar=IAS_18,
+         Affective_touch=IAS_19, Tickle=IAS_20, Itch=IAS_21)
+
+df7 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
+  rename(Gender=Sex, Heart=Item_IAS_Interoception_1, Hungry=Item_IAS_Interoception_2, 
+         Breathing=Item_IAS_Interoception_3, Thirsty=Item_IAS_Interoception_4, 
+         Temp=Item_IAS_Interoception_5, Sex_arousal=Item_IAS_Interoception_6,
+         Urinate=Item_IAS_Elimination_1, Defecate=Item_IAS_Elimination_2,
+         Vomit=Item_IAS_Elimination_3, Wind=Item_IAS_Expulsion_1, 
+         Burp=Item_IAS_Expulsion_2, Sneeze=Item_IAS_Expulsion_3,
+         Muscles=Item_IAS_Nociception_1, Bruise=Item_IAS_Nociception_2,
+         Pain=Item_IAS_Nociception_3, Affective_touch=Item_IAS_Skin_1, 
+         Tickle=Item_IAS_Skin_2, Itch=Item_IAS_Skin_3) |>
+  filter(!is.na(Urinate))
+```
+
+
+### Participants
+
+- **Sample 1**: Data from Murphy's (2020) [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769), downloaded from OSF, included `r report::report_participants(df1, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 2**: Data from Murphy's (2020) [study 6](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769), downloaded from OSF, included `r report::report_participants(df2, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 3**: Data from Campos' (2022) [study 1](https://osf.io/j6ef3), downloaded from OSF, included `r report::report_participants(df3, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 4**: Data from Lin's (2023) [study 1 and 3](#ttps://osf.io/3eztd), downloaded from OSF, included `r report::report_participants(df4, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 5**: Data from Lin's (2023) [study 2](#ttps://osf.io/3eztd), downloaded from OSF, included `r report::report_participants(df5, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 6**: New dataset from [Makowski (under preparation)](https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv), included `r report::report_participants(df6, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 7**: New dataset from [Makowski (under preparation)](https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv), included `r report::report_participants(df7, age = "Age", sex = NA, gender = "Gender")`.
+
+Total N = `r nrow(df1) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7)`.
+
+
+### Descriptive
+
+
+#### Distribution
+
+```{r}
+vars <- c("Heart", "Hungry", "Breathing", "Thirsty", "Urinate", "Defecate", "Taste", "Vomit", "Sneeze", "Cough", "Temp",
+          "Sex_arousal", "Wind", "Burp", "Muscles", "Bruise", "Pain", "Blood_Sugar", "Affective_touch", "Tickle", "Itch")
+  
+dens1 <- estimate_density(select(df1, all_of(vars)), method="kernSmooth") |> 
+  mutate(Sample = "Sample 1")
+dens2 <- estimate_density(select(df2, all_of(vars)), method="kernSmooth") |> 
+  mutate(Sample = "Sample 2")
+dens3 <- estimate_density(select(df3, all_of(vars)), method="kernSmooth") |> 
+  mutate(Sample = "Sample 3")
+dens4 <- estimate_density(select(df4, all_of(setdiff(vars, "Tickle"))), method="kernSmooth") |> 
+  mutate(Sample = "Sample 4")
+dens5 <- estimate_density(select(df5, all_of(setdiff(vars, "Tickle"))), method="kernSmooth") |> 
+  mutate(Sample = "Sample 5")
+dens6 <- estimate_density(select(df6, all_of(vars)), method="kernSmooth") |> 
+  mutate(Sample = "Sample 6")
+dens7 <- estimate_density(select(df7, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method="kernSmooth") |> 
+  mutate(Sample = "Sample 7")
+
+rbind(dens1, dens2, dens3, dens4, dens5, dens6, dens7) |> 
+  ggplot(aes(x = x, y = y, color = Parameter)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Distribution of Responses", x = "Response", y = "Density", color = "Item") +
+  facet_wrap(~Sample, scales = "free", nrow=4)
+```
+
+
+```{r}
+data1 <- normalize(select(df1, all_of(dens1$Parameter)), range=c(1, 5))
+data2 <- normalize(select(df2, all_of(dens2$Parameter)), range=c(1, 5))
+data3 <- normalize(select(df3, all_of(dens3$Parameter)), range=c(1, 5))
+data4 <- normalize(select(df4, all_of(dens4$Parameter)), range=c(1, 5))
+data5 <- normalize(select(df5, all_of(dens5$Parameter)), range=c(1, 5))
+data6 <- select(df6, all_of(dens6$Parameter))
+data7 <- select(df7, all_of(dens7$Parameter))
+
+data_all <- rbind(data1, data2, data3, 
+                  mutate(data4, Tickle=NA), mutate(data5, Tickle=NA), 
+                  data6, mutate(data7, Taste=NA, Cough=NA, Blood_Sugar=NA)) 
+```
+
+
+#### Correlations
+
+An overall positive intercorrelation pattern, with no clear structure emerging.
+
+::: {.panel-tabset}
+
+##### All data
+
+```{r}
+make_correlation <- function(df) {
+  correlation::correlation(df, redundant=TRUE) |> 
+    correlation::cor_sort() |> 
+    correlation::cor_lower() |> 
+    mutate(val = paste0(insight::format_value(r), format_p(p, stars_only=TRUE))) |>
+    mutate(Parameter2 = fct_rev(Parameter2)) |>
+    ggplot(aes(x=Parameter1, y=Parameter2)) +
+    geom_tile(aes(fill = r), color = "white") +
+    geom_text(aes(label = val), size = 3) +
+    labs(title = "Correlation Matrix") +
+    scale_fill_metro_c(limit = c(0, 0.75), guide = guide_colourbar(ticks=FALSE)) +
+    theme_minimal() +
+    theme(legend.title = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.x = element_text(angle = 45, hjust = 1))
+}
+
+make_correlation(data_all)
+```
+
+
+##### Sample 1
+
+```{r}
+make_correlation(data1)
+```
+
+##### Sample 2
+
+```{r}
+make_correlation(data2)
+```
+
+
+##### Sample 3
+
+```{r}
+make_correlation(data3)
+```
+
+##### Sample 4
+
+```{r}
+make_correlation(data4)
+```
+
+##### Sample 5
+
+```{r}
+make_correlation(data5)
+```
+
+##### Sample 6
+
+```{r}
+make_correlation(data6)
+```
+
+##### Sample 7
+
+```{r}
+make_correlation(data7)
+```
+
+
+
+:::
+
+### EGA
+
+
+See https://r-ega.net/articles/ega.html for details.
+
+#### Unique Variable Analysis (UVA)
+
+::: {.panel-tabset}
+
+
+##### All data
+
+```{r}
+uva <- EGAnet::UVA(data = data_all, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+
+##### Sample 1
+
+```{r}
+uva <- EGAnet::UVA(data = data1, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+##### Sample 2 
+
+```{r}
+uva <- EGAnet::UVA(data = data2, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+##### Sample 3
+
+```{r}
+uva <- EGAnet::UVA(data = data3, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+##### Sample 4
+
+```{r}
+uva <- EGAnet::UVA(data = data4, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+##### Sample 5 
+
+```{r}
+uva <- EGAnet::UVA(data = data5, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+##### Sample 6
+
+```{r}
+uva <- EGAnet::UVA(data = data6, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+##### Sample 7
+
+```{r}
+uva <- EGAnet::UVA(data = data7, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+
+:::
+
+
+#### Item Stability
+
+```{r ega1}
+#| fig-height: 20
+#| fig-width: 12
+
+plots <- list()
+for(model in c("glasso", "TMFG")) {
+  for(algo in c("walktrap", "louvain")) {
+    for(type in c("ega", "ega.fit")) {  # "hierega"
+      print(type)
+      ega <- EGAnet::bootEGA(
+        data = data_all,
+        seed=123,
+        model=model,
+        algorithm=algo,
+        EGA.type=type,
+        type="resampling",
+        plot.itemStability=FALSE,
+        verbose=FALSE)
+      plots[[length(plots) + 1]] <- plot(ega) + 
+        labs(title = paste0(model, " (", algo, ") - ", type))
+      }
+    }
+}
+
+length(plots)
+patchwork::wrap_plots(plots, nrow = 4)
+```
+
+
+<!-- ::: {.panel-tabset} -->
+
+<!-- ##### glasso model (Walktrap) -->
+
+<!-- ```{r ega1} -->
+<!-- #| fig-height: 12 -->
+
+<!-- plots <- list() -->
+<!-- for(d in list(data1, data2, data3, data4, data5, data6)) { -->
+<!--   ega <- EGAnet::bootEGA( -->
+<!--     data = d, -->
+<!--     seed=123, -->
+<!--     model="glasso", -->
+<!--     algorithm="walktrap", -->
+<!--     type="resampling", -->
+<!--     EGA.type="ega", -->
+<!--     plot.itemStability=FALSE,  -->
+<!--     verbose=FALSE) -->
+<!--   plots[[length(plots) + 1]] <- plot(ega) -->
+<!-- } -->
+
+<!-- EGAnet::dimensionStability(ega) -->
+<!-- (plots[[1]] + labs(title = "Sample 1") + -->
+<!--   plots[[2]] + labs(title = "Sample 2")) / -->
+<!--   (plots[[3]] + labs(title = "Sample 3") + -->
+<!--   plots[[4]] + labs(title = "Sample 4")) / -->
+<!--   (plots[[5]] + labs(title = "Sample 5") + -->
+<!--   plots[[6]] + labs(title = "Sample 6")) -->
+<!-- ``` -->
+
+<!-- ##### glasso model (Louvain) -->
+
+<!-- ```{r ega2} -->
+<!-- #| fig-height: 12 -->
+
+<!-- plots <- list() -->
+<!-- for(d in list(data1, data2, data3, data4, data5, data6)) { -->
+<!--   ega <- EGAnet::bootEGA( -->
+<!--     data = d, -->
+<!--     seed=123, -->
+<!--     model="glasso", -->
+<!--     algorithm="louvain", -->
+<!--     plot.itemStability=FALSE) -->
+<!--   plots[[length(plots) + 1]] <- plot(ega) -->
+<!-- } -->
+
+
+<!-- (plots[[1]] + labs(title = "Sample 1") + -->
+<!--   plots[[2]] + labs(title = "Sample 2")) / -->
+<!--   (plots[[3]] + labs(title = "Sample 3") + -->
+<!--   plots[[4]] + labs(title = "Sample 4")) / -->
+<!--   (plots[[5]] + labs(title = "Sample 5") + -->
+<!--   plots[[6]] + labs(title = "Sample 6")) -->
+<!-- ``` -->
+
+
+<!-- ##### TMFG model (Walktrap) -->
+
+<!-- ```{r ega3} -->
+<!-- #| fig-height: 12 -->
+
+<!-- plots <- list() -->
+<!-- for(d in list(data1, data2, data3, data4, data5, data6)) { -->
+<!--   ega <- EGAnet::bootEGA( -->
+<!--     data = d, -->
+<!--     seed=123, -->
+<!--     model="TMFG", -->
+<!--     algorithm="walktrap", -->
+<!--     plot.itemStability=FALSE) -->
+<!--   plots[[length(plots) + 1]] <- plot(ega) -->
+<!-- } -->
+
+
+<!-- (plots[[1]] + labs(title = "Sample 1") + -->
+<!--   plots[[2]] + labs(title = "Sample 2")) / -->
+<!--   (plots[[3]] + labs(title = "Sample 3") + -->
+<!--   plots[[4]] + labs(title = "Sample 4")) / -->
+<!--   (plots[[5]] + labs(title = "Sample 5") + -->
+<!--   plots[[6]] + labs(title = "Sample 6")) -->
+<!-- ``` -->
+
+
+<!-- ##### TMFG model (Louvain) -->
+
+<!-- ```{r ega4} -->
+<!-- #| fig-height: 12 -->
+
+<!-- plots <- list() -->
+<!-- for(d in list(data1, data2, data3, data4, data5, data6)) { -->
+<!--   ega <- EGAnet::bootEGA( -->
+<!--     data = d, -->
+<!--     seed=123, -->
+<!--     model="TMFG", -->
+<!--     algorithm="louvain", -->
+<!--     plot.itemStability=FALSE) -->
+<!--   plots[[length(plots) + 1]] <- plot(ega) -->
+<!-- } -->
+
+
+<!-- (plots[[1]] + labs(title = "Sample 1") + -->
+<!--   plots[[2]] + labs(title = "Sample 2")) / -->
+<!--   (plots[[3]] + labs(title = "Sample 3") + -->
+<!--   plots[[4]] + labs(title = "Sample 4")) / -->
+<!--   (plots[[5]] + labs(title = "Sample 5") + -->
+<!--   plots[[6]] + labs(title = "Sample 6")) -->
+<!-- ``` -->
+
+<!-- ##### All data -->
+
+<!-- ```{r ega1} -->
+<!-- #| fig-height: 12 -->
+
+
+<!-- plots <- list() -->
+<!-- for(model in c("glasso", "TMFG")) { -->
+<!--   for(algo in c("walktrap", "louvain")) { -->
+<!--     ega <- EGAnet::bootEGA( -->
+<!--       data = data_all, -->
+<!--       seed=123, -->
+<!--       model=model, -->
+<!--       algorithm=algo, -->
+<!--       plot.itemStability=FALSE) -->
+<!--     plots[[length(plots) + 1]] <- plot(ega) +  -->
+<!--       labs(title = paste0(model, " (", algo, ")")) -->
+<!--   } -->
+<!-- } -->
+
+<!-- patchwork::wrap_plots(plots) -->
+<!-- ``` -->
+
+<!-- ::: -->
+
+
+
+
+### Exploratory Factor Analysis (EFA)
+
+#### How Many Factors
+
+::: {.panel-tabset}
+
+##### All data
+
+```{r}
+n <- parameters::n_factors(data_all, n_max = 12)
+
+plot(n) 
+
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4, 5 ), ], row.names = FALSE)
+```
+
+##### Sample 1
+
+```{r}
+n <- parameters::n_factors(data1, n_max = 12)
+
+plot(n)
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
+```
+
+##### Sample 2
+
+```{r}
+n <- parameters::n_factors(data2, n_max = 12)
+
+plot(n)
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
+```
+
+##### Sample 3
+
+```{r}
+n <- parameters::n_factors(data3, n_max = 12)
+
+plot(n) 
+
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
+```
+
+##### Sample 4
+
+```{r}
+n <- parameters::n_factors(data4, n_max = 12)
+
+plot(n) 
+
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
+```
+
+
+##### Sample 5
+
+```{r}
+n <- parameters::n_factors(data5, n_max = 12)
+
+plot(n) 
+
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
+```
+
+
+##### Sample 6
+
+```{r}
+n <- parameters::n_factors(data6, n_max = 12)
+
+plot(n) 
+
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
+```
+
+##### Sample 7
+
+```{r}
+n <- parameters::n_factors(data7, n_max = 12)
+
+plot(n) 
+
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
+```
+
+:::
+
+
+
+#### EFA Models
+
+::: {.panel-tabset}
+
+##### All data
+
+```{r}
+#| fig-height: 10
+
+efa5 <- parameters::factor_analysis(data_all, n=5, rotation = "oblimin", sort = TRUE)
+plot(efa5)
+
+display(efa5)
+```
+
+
+##### Sample 1
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data2, n=4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+##### Sample 2
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data2, n=4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+##### Sample 3
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data3, n=4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+##### Sample 4
+
+```{r}
+#| fig-height: 10
+
+efa5 <- parameters::factor_analysis(data4, n=5, rotation = "oblimin", sort = TRUE)
+plot(efa5)
+
+display(efa5)
+```
+
+##### Sample 5
+
+```{r}
+#| fig-height: 10
+
+efa5 <- parameters::factor_analysis(data5, n=5, rotation = "oblimin", sort = TRUE)
+plot(efa5)
+
+display(efa5)
+```
+
+##### Sample 6
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data5, n=4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+
+:::
+
+
+### Model Construction
+
+#### Structure 
+
+```{r}
+m1 <- "
+Interoception =~ Hungry + Thirsty + Urinate + Defecate + Itch + Bruise + Muscles + Pain + Breathing + Heart + Cough + Sneeze + Wind + Burp
+"
+
+
+m7 <- "
+# ----
+Sustenance =~ Hungry + Thirsty
+Elimination =~ Urinate + Defecate
+Skin =~ Itch + Bruise
+Nociception =~ Muscles + Pain
+Affect =~ Breathing + Heart
+# ----
+Expulsion =~ Cough + Sneeze + Wind + Burp
+
+# --- 
+# Ambiguous: Temp + Vomit + Affective_touch + Sex_arousal + Taste
+# Discard: Tickle + Blood_Sugar
+" 
+
+m8 <- "
+# ----
+Sustenance =~ Hungry + Thirsty
+Elimination =~ Urinate + Defecate
+Skin =~ Itch + Bruise
+Nociception =~ Muscles + Pain
+Affect =~ Breathing + Heart
+# ----
+Expulsion_Sudden =~ Cough + Sneeze 
+Expulsion_Gastric =~ Wind + Burp
+" 
+# Ambiguous: Temp + Vomit + Affective_touch + Sex_arousal + Taste
+# Discard: Tickle + Blood_Sugar
+
+m1_all <- lavaan::cfa(m1, data = data_all)
+m7_all <- lavaan::cfa(m7, data = data_all)
+m8_all <- lavaan::cfa(m8, data = data_all)
+
+anova(m1_all, m7_all, m8_all) |> 
+  parameters::parameters() |> 
+  display()
+```
+
+#### Higher Order Factors
+
+```{r}
+m8h1 <- paste0(m8, "
+              Interoception =~ Sustenance + Elimination + Skin + Nociception + Affect + Expulsion_Sudden + Expulsion_Gastric
+              ")
+
+m8h3 <- paste0(m8, "
+              Valenced =~ Nociception + Affect + Skin
+              Expulsion =~ Expulsion_Sudden + Expulsion_Gastric 
+              Homeostasis =~ Sustenance + Elimination
+              ")
+
+m8h1_all <- lavaan::cfa(m8h1, data = data_all)
+m8h3_all <- lavaan::cfa(m8h3, data = data_all)
+anova(m8_all, m8h1_all, m8h3_all) |> 
+  parameters::parameters() |> 
+  display()
+```
+
+
+#### Model Performance
+
+```{r}
+#| warning: false
+
+rbind(
+  performance::performance(m8_all, metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |> 
+    mutate(Sample = "All"),
+  performance::performance(update(m8_all, data=data1), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |> 
+    mutate(Sample = "Sample 1"),
+  performance::performance(update(m8_all, data=data2), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 2"),
+  performance::performance(update(m8_all, data=data3), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 3"),
+  performance::performance(update(m8_all, data=data4), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 4"),
+  performance::performance(update(m8_all, data=data5), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 5"),
+  performance::performance(update(m8_all, data=data6), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 6"),
+  performance::performance(lavaan::cfa(str_remove(m8, fixed("\nExpulsion_Sudden =~ Cough + Sneeze")), data=data7), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 7")
+) |> 
+  display()
+```
+
+
+
+No evidence for higher order factors. The unidimensionality might be a byproduct of the similarities in phrasing of the items.
+
+
+## Study 2 - Correlates
+
+```{r}
+#| warning: false
+
+df1 <- cbind(df1, as.data.frame(predict(lavaan::cfa(m8, data = data1)))) |> 
+  mutate(Sample = "Sample 1")
+df2 <- cbind(df2, as.data.frame(predict(lavaan::cfa(m8, data = data2)))) |> 
+  mutate(Sample = "Sample 2")
+df3 <- cbind(df3, as.data.frame(predict(lavaan::cfa(m8, data = data3)))) |> 
+  mutate(Sample = "Sample 3")
+df4 <- cbind(df4, as.data.frame(predict(lavaan::cfa(m8, data = data4)))) |> 
+  mutate(Sample = "Sample 4")
+df5 <- cbind(df5, as.data.frame(predict(lavaan::cfa(m8, data = data5)))) |> 
+  mutate(Sample = "Sample 5")
+df6 <- cbind(df6, as.data.frame(predict(lavaan::cfa(m8, data = data6)))) |> 
+  mutate(Sample = "Sample 6")
+df7 <- cbind(df7, as.data.frame(predict(lavaan::cfa(str_remove(m8, fixed("\nExpulsion_Sudden =~ Cough + Sneeze")), data = data7)))) |> 
+  mutate(Sample = "Sample 7", Expulsion_Sudden = NA)
+
+vars <- names(as.data.frame(predict(m8_all)))
+```
+
+### Demographics
+
+```{r}
+df_demo <- rbind(
+  select(df1, Sample, Age, Gender, all_of(vars)),
+  select(df2, Sample, Age, Gender, all_of(vars)),
+  select(df3, Sample, Age, Gender, all_of(vars)),
+  select(df4, Sample, Age, Gender, all_of(vars)),
+  select(df5, Sample, Age, Gender, all_of(vars)),
+  select(df6, Sample, Age, Gender, all_of(vars)),
+  select(df7, Sample, Age, Gender, all_of(vars))
+) 
+
+make_lm_data <- function(df, vars, predictor="Age") {
+  dat <- data.frame()
+  for(resp in vars) {
+      if(length(unique(df$Sample)) == 1) {
+        m <- lm(as.formula(paste0(resp, " ~ ", predictor)), data = df)
+        param <- parameters::parameters(m)[2, ] |> 
+          mutate(Sample = unique(df$Sample)) |> 
+          select(-Parameter)
+      } else {
+        m <- lm(as.formula(paste0(resp, " ~ Sample / ", predictor)), data = df)
+        param <- parameters::parameters(m) |> 
+          filter(str_detect(Parameter, ":")) |> 
+          separate(Parameter, c("Predictor", "Sample"), sep = "Sample ") |> 
+          mutate(Sample = paste0("Sample ", str_remove(Sample, fixed(paste0(":", predictor)))))
+      }
+    
+      dat <- param |> 
+        mutate(Predictor = predictor,
+               Repsonse = resp,
+               t_low = CI_low / SE,
+               t_high = CI_high / SE) |> 
+        rbind(dat)
+  }
+  dat
+}
+
+data <- rbind(
+  make_lm_data(df_demo, vars, predictor="Age"),
+  make_lm_data(filter(df_demo, Gender %in% c("Male", "Female")), vars, predictor="Gender")
+)
+```
+
+### BPQ
+
+```{r}
+x <- intersect(names(df3)[str_detect(names(df3), "BPQ")], 
+               names(df4)[str_starts(names(df4), "BPQ")])
+
+df_bpq <- rbind(
+  select(df3, Sample, all_of(x), all_of(vars)),
+  select(df4, Sample, all_of(x), all_of(vars))
+) 
+
+# estimate_density(select(df_bpq, Sample, starts_with("BPQ")), at="Sample")  |> 
+#   plot() +
+#   facet_grid(~Sample)
+
+plot(parameters::n_components(select(df_bpq, starts_with("BPQ"))))
+df_bpq$BPQ_PCA1 <- predict(parameters::principal_components(select(df_bpq, starts_with("BPQ")), n=1))$PC1
+
+data <- rbind(data,
+              make_lm_data(df_bpq, vars, predictor="BPQ_PCA1"))
+
+# Why opposite effects?
+```
+
+
+### TAS
+
+```{r}
+x <- intersect(names(df3)[str_detect(names(df3), "TAS")], 
+               names(df5)[str_starts(names(df5), "TAS")])
+```
+
+### PHQ
+
+```{r}
+names(df5)[str_detect(names(df5), "PHQ")]
+
+data <- rbind(data,
+              make_lm_data(df5, vars, predictor="PHQ9_sum"),
+              make_lm_data(df5, vars, predictor="PHQ15_sum"))
+```
+
+### BDI
+
+```{r}
+# names(df1)
+# names(df2)
+# names(df3)  # TAS, BPQ
+# names(df4)  # BPQ
+# names(df5)  # PHQ, TAS
+# names(df6)  # BDI, STAI
+# names(df7)  # MAIA
+
+data <- rbind(data,
+              make_lm_data(df6, vars, predictor="BDI2_Total"))
+```
+
+
+
+### Summary
+
+```{r}
+#| fig-height: 20
+
+data |> 
+  mutate(sig = ifelse(p < .01, "p < .01", ifelse(p < .001, "p < .001", "N.S."))) |> 
+  ggplot(aes(x=Predictor)) +
+  geom_hline(yintercept=0, linetype="dashed") +
+  geom_pointrange(aes(y=t, ymin=t_low, ymax=t_high, color=sig), position=position_dodge2(width=0.3)) +
+  facet_grid(~Repsonse, scales = "free_y") +
+  coord_flip()
+```
+
+
+
+## Discussion
+
+
+Benefits of the IAS:
+- Straightforward and sensation-centered items
+
+Recommendations:
+- Remove Itch (redundant + issue in Chinese)
+- Use analog scales
+
+Limitations:
+- Not much clear theorethical or empirical structure (small grouping of items)
+- Limited variability (clear mode at 4/5)
+- Ambiguous items which grouping depends on the context (and its awareness)
+  - E.g., heart beating fast, vomit when nauseaous
+- Few items for some modalities (e.g., 1 for heart)
+- Positive phrasing: benefits but also might exacerbate positivity bias (and thus unidimensionality)
+
+Need for context-specific items (cross-modal when possible, i.E., cardioception, respiroception, etc.).
+
+
+New Scale: Multimodal Interoceptive Sensitivity Scale (MISS)
+
+

@@ -1,0 +1,678 @@
+---
+title: "Revised Interoceptive Accuracy Scale (IAS-R)"
+subtitle: "Analysis"
+author: "Dominique Makowski et al."
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    theme: paper
+    code_folding: hide
+date: "`r Sys.Date()`"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+options(
+  digits = 3,
+  mc.cores = 4,
+  brms.algorithm = "sampling",
+  brms.backend = "cmdstanr",
+  dplyr.summarise.inform = FALSE,
+  knitr.kable.NA = ""
+)
+
+fig.width <- see::golden_ratio(7)
+fig.height <- 7
+set.seed(333)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  dpi = 450,
+  fig.path = "./figures/",
+  fig.width = fig.width,
+  fig.height = fig.height
+)
+```
+
+
+
+# Study 1
+
+## Participants
+
+
+```{r, message=FALSE, warning=FALSE, results='asis'}
+library(tidyverse)
+library(easystats)
+library(patchwork)
+library(lavaan)
+library(ggraph)
+library(tidySEM)
+
+df <- haven::read_sav("../../data/Murphy2020/Study 1.sav") |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other")))) 
+  
+paste0(
+  "Data from the [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) (Murphy et al., 2020), downloaded from OSF, included ",
+  report::report_participants(df, age = "Age", sex = NA, gender = "Gender"),
+  "."
+)
+```
+
+## Descriptive
+
+```{r, message=FALSE, warning=FALSE}
+data <- select(df, -Age, -Gender)
+
+dens1 <- estimate_density(data, method="kernSmooth")
+
+plot(dens1) 
+
+data <- standardize(data)
+```
+
+## EFA
+
+```{r, message=FALSE, warning=FALSE}
+n <- parameters::n_factors(data, n_max = 15)
+
+n
+
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ])
+plot(n)
+```
+
+```{r, message=FALSE, warning=FALSE}
+efa1 <- parameters::factor_analysis(data, n=1, sort = TRUE)
+efa1
+
+efa4 <- parameters::factor_analysis(data, n=4, rotation = "oblimin", sort = TRUE)
+efa4
+
+plot(efa4)
+```
+
+
+## CFA
+
+```{r, message=FALSE, warning=FALSE}
+cfa1 <-  parameters::efa_to_cfa(efa1, names="IAS") |> 
+  lavaan::cfa(data=data)
+
+cfa4 <- parameters::efa_to_cfa(efa4, names=c("Skin", "Expulsion", "Interoception", "Elimination"), threshold = "max") |> 
+  lavaan::cfa(data=data)
+
+anova(cfa1, cfa4)
+```
+
+
+
+```{r, message=FALSE, warning=FALSE}
+cfa4mod <- "
+Skin =~ Affective_touch + Tickle + Itch
+Expulsion =~ Sneeze + Cough + Wind + Burp
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Temp + Sex_arousal + Muscles + Bruise + Pain
+Elimination =~ Urinate + Defecate + Vomit
+" |> 
+lavaan::cfa(data=data)
+
+cfa5 <- "
+Skin =~ Affective_touch + Tickle + Itch
+Expulsion =~ Sneeze + Cough + Wind + Burp
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Temp + Sex_arousal
+Nociception =~ Muscles + Bruise + Pain
+Elimination =~ Urinate + Defecate + Vomit
+" |> 
+lavaan::cfa(data=data)
+
+anova(cfa4mod, cfa5)
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+cfa5mod <- "
+Skin =~ Affective_touch + Tickle + Itch
+Expulsion =~ Sneeze + Wind + Burp
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Temp + Sex_arousal
+Nociception =~ Muscles + Bruise + Pain
+Elimination =~ Urinate + Defecate + Vomit
+" |> 
+lavaan::cfa(data=data)
+
+anova(cfa5, cfa5mod)
+```
+
+```{r, message=FALSE, warning=FALSE}
+cfa5h <- "
+Skin =~ Affective_touch + Tickle + Itch
+Expulsion =~ Sneeze + Wind + Burp
+Nociception =~ Muscles + Bruise + Pain
+Elimination =~ Urinate + Defecate + Vomit
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Temp + Sex_arousal + Skin + Expulsion + Nociception + Elimination
+" |> 
+lavaan::cfa(data=data)
+
+anova(cfa5mod, cfa5h)
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+check_perf <- function(mod) {
+  perf <- model_performance(mod, metrics = c("RMSEA", "CFI", "SRMR", "AGFI", "NNFI"))
+  interpret(perf) |> 
+    data_rename(pattern = c("Name", "Value"), replacement = c("Index", "Score")) |> 
+    arrange(Index)
+}
+
+knitr::kable(check_perf(cfa5mod))
+```
+
+## New sample
+
+```{r, message=FALSE, warning=FALSE, results='asis'}
+df2 <- haven::read_sav("../../data/Murphy2020/Study 6 IAS.sav") |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other")))) |> 
+  select(-ESL)
+  
+paste0(
+  "Data from the [study 6](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) (Murphy et al., 2020), downloaded from OSF, included ",
+  report::report_participants(df2, age = "Age", sex = NA, gender = "Gender"),
+  "."
+)
+```
+
+### Descriptive
+
+```{r, message=FALSE, warning=FALSE}
+data <- select(df2, -Age, -Gender)
+
+dens2 <- estimate_density(data, method="kernSmooth")
+
+plot(dens2) 
+
+data <- standardize(data)
+```
+
+### CFA
+
+```{r, message=FALSE, warning=FALSE}
+efa4b <- parameters::factor_analysis(data, n=4, rotation = "oblimin", sort = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+cfa1_refit <- "IAS =~ Pain + Sneeze + Temp + Wind + Affective_touch + Muscles + Tickle + Itch + Defecate + Vomit + Taste + Cough + Bruise + Burp + Urinate + Breathing + Thirsty + Sex_arousal + Hungry + Heart + Blood_Sugar" |> lavaan::cfa(data=data)
+cfa4mod_refit <- update(cfa4mod, data=data)
+cfa5_refit <- update(cfa5, data=data)
+cfa5mod_refit <- update(cfa5mod, data=data)
+cfa5h_refit <- update(cfa5h, data=data)
+
+table <- anova(cfa5mod_refit, cfa5h_refit, cfa5_refit, cfa4mod_refit, cfa1_refit)
+table
+```
+
+```{r, message=FALSE, warning=FALSE}
+knitr::kable(check_perf(cfa5mod_refit))
+```
+
+
+
+# Study 2
+
+## Participants
+
+```{r, message=FALSE, warning=FALSE, results='asis'}
+df3 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
+  select(Participant, Sex, Age, starts_with("Item_IAS")) |> 
+  filter(!is.na(Item_IAS_Elimination_2))
+
+names(df3) <- str_remove_all(names(df3), "Item_IAS_")
+names(df3) <- case_when(
+  names(df3) == "Interoception_1" ~ "Heart",
+  names(df3) == "Interoception_2" ~ "Hungry",
+  names(df3) == "Interoception_3" ~ "Breathing",
+  names(df3) == "Interoception_4" ~ "Thirsty",
+  names(df3) == "Interoception_5" ~ "Temp",
+  names(df3) == "Interoception_6" ~ "Sex_arousal",
+  names(df3) == "Elimination_1" ~ "Urinate",
+  names(df3) == "Elimination_2" ~ "Defecate",
+  names(df3) == "Elimination_3" ~ "Vomit",
+  names(df3) == "Expulsion_1" ~ "Wind",
+  names(df3) == "Expulsion_2" ~ "Burp",
+  names(df3) == "Expulsion_3" ~ "Sneeze",
+  names(df3) == "Nociception_1" ~ "Muscles",
+  names(df3) == "Nociception_2" ~ "Bruise",
+  names(df3) == "Nociception_3" ~ "Pain",
+  names(df3) == "Skin_1" ~ "Affective_touch",
+  names(df3) == "Skin_2" ~ "Tickle",
+  names(df3) == "Skin_3" ~ "Itch",
+  TRUE ~ names(df3)
+  )
+
+report::report_participants(df3, age = "Age", sex = "Sex")
+```
+
+## Descriptive
+
+```{r, message=FALSE, warning=FALSE}
+data <- select(df3, -Age, -Sex, -Participant)
+
+dens3 <- estimate_density(data, method="kernSmooth")
+
+plot(dens3) +
+  theme_modern()
+
+
+data[] <- standardize(data) |> 
+  sapply(as.numeric)
+```
+
+
+## EFA
+
+```{r, message=FALSE, warning=FALSE}
+n <- parameters::n_factors(data, n_max = 15)
+
+n
+plot(n)
+```
+
+```{r, message=FALSE, warning=FALSE}
+efa4c <- parameters::factor_analysis(data, n=4, rotation = "oblimin", sort = TRUE, fm="ml")
+efa4c
+
+plot(efa4c)
+```
+
+##CFA
+
+```{r, message=FALSE, warning=FALSE}
+cfa1 <- paste("Interoception =~ ", paste(names(data), collapse = " + ")) |> 
+  lavaan::cfa(data=data)
+
+cfa5 <- "
+Skin =~ Affective_touch + Tickle + Itch
+Expulsion =~ Wind + Burp + Sneeze
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Temp + Sex_arousal
+Nociception =~ Muscles + Bruise + Pain
+Elimination =~ Urinate + Defecate + Vomit
+" |> 
+  lavaan::cfa(data=data)
+
+cfa4 <- "
+Homeostasis =~ Hungry + Thirsty + Sex_arousal + Pain + Temp + Affective_touch + Urinate
+Skin =~ Affective_touch + Tickle + Itch + Bruise + Wind
+Elimination =~ Defecate + Sneeze + Vomit + Urinate + Burp
+Muscle =~ Breathing + Heart + Muscles
+" |> 
+  lavaan::cfa(data=data)
+
+anova(cfa1, cfa5, cfa4)
+
+
+cfa4mod <- "
+Homeostasis =~ Hungry + Thirsty + Sex_arousal 
+Skin =~ Tickle + Itch + Bruise 
+Elimination =~ Defecate + Sneeze + Vomit 
+Muscle =~ Breathing + Heart + Muscles
+" |> 
+  lavaan::cfa(data=data)
+
+cfa5short <- "
+Skin =~ Tickle + Itch
+Expulsion =~ Sneeze
+Interoception =~ Heart + Hungry + Breathing + Thirsty + Sex_arousal
+Nociception =~ Muscles + Bruise
+Elimination =~ Defecate + Vomit
+" 
+
+anova(cfa4mod, lavaan::cfa(cfa5short, data=data))
+
+cfa4h <- "
+Homeostasis =~ Hungry + Thirsty + Sex_arousal 
+Skin =~ Tickle + Itch + Bruise 
+Elimination =~ Defecate + Sneeze + Vomit 
+Muscle =~ Breathing + Heart + Muscles
+Interoception =~ Homeostasis + Skin + Elimination + Muscle
+" |> 
+  lavaan::cfa(data=data)
+
+anova(cfa4mod, cfa4h)
+
+check_perf(cfa4mod)
+
+check_perf(cfa4h)
+check_perf(update(cfa4h, data=standardize(df)))
+check_perf(update(cfa4h, data=standardize(df2)))
+```
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+graph_data <- tidySEM::prepare_graph(cfa4h, 
+                                     variance_diameter=NA) 
+
+nodes <- graph_data$nodes |> 
+  mutate(fill = ifelse(shape == "rect", "grey", "#F06292"),
+         textsize = ifelse(shape == "rect", rel(3.5), rel(4)),
+         fontface = ifelse(shape == "oval", "bold", "plain"),
+         hjust = ifelse(shape == "oval", 0.5, -0.3),
+         textcolor = ifelse(shape == "oval", "white", "black"),
+         label = str_replace(label, "Sex_arousal", "Arousal")) |> 
+  select(-x, -y) 
+
+edges <- graph_data$edges |>
+  mutate(est = as.numeric(est))
+
+p_graph <- tidygraph::tbl_graph(nodes = nodes, edges = edges) |> 
+  ggraph(layout = "kk") +
+  geom_edge_arc(aes(filter=lhs!="Interoception",
+                    edge_width = est,
+                    label=est_std),
+                strength = 0.15,
+                color="#2196F3",
+                angle_calc="along",
+                label_dodge=unit(-0.02, "npc"),
+                label_size = rel(4)) +
+  geom_edge_link(aes(filter=lhs=="Interoception",
+                     edge_width = est, 
+                     # color = color,
+                     label=est_std), 
+                 color="#3F51B5",
+                 angle_calc="along", 
+                 label_dodge=unit(-0.02, "npc"),
+                 label_size = rel(5)) +
+  geom_node_point(aes(shape = shape, color=name, size=shape)) +
+  geom_node_text(aes(label = label, fontface=shape),
+                 size=nodes$textsize,
+                 fontface = nodes$fontface,
+                 hjust = nodes$hjust,
+                 color = nodes$textcolor) +
+  # scale_y_continuous(expand = expansion(add=c(0.1, 0.1))) +
+  scale_x_continuous(expand = expansion(add=c(0.3, 0.4))) +
+  scale_edge_width_continuous(range=c(0.5, 2), guide="none") +
+  scale_color_manual(values=c("Interoception" = "red",
+                              "Muscles" = "#E91E63",
+                              "Heart" = "#E91E63",
+                              "Breathing" = "#E91E63",
+                              "Muscle" = "#E91E63",
+                              "Skin" = "#FF5722",
+                              "Tickle" = "#FF5722",
+                              "Itch" = "#FF5722",
+                              "Bruise" = "#FF5722",
+                              "Elimination" = "#FFC107",
+                              "Defecate" = "#FFC107",
+                              "Sneeze" = "#FFC107",
+                              "Vomit" = "#FFC107",
+                              "Homeostasis" = "#9C27B0",
+                              "Hungry" = "#9C27B0",
+                              "Thirsty" = "#9C27B0",
+                              "Sex_arousal" = "#9C27B0"), guide="none") +
+  scale_shape_manual(values=c("oval"="circle", "rect"="square"), guide="none") +
+  scale_size_manual(values = c(35, 5), guide="none") +
+  labs(title = "C. Structural Equation Model")  +
+  theme_graph() +
+  theme(plot.title = element_text(hjust=0.5))
+p_graph
+```
+
+## Omega
+
+```{r, message=FALSE, warning=FALSE}
+semTools::compRelSEM(cfa4h, higher="Interoception")
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+scores <- as.data.frame(predict(cfa4h))
+scores$Participant <- df3$Participant
+write.csv(scores, "IASR_scores.csv", row.names = FALSE)
+```
+
+
+## Comparison with MAIA
+
+```{r, message=FALSE, warning=FALSE}
+df <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |> 
+  merge(read.csv("IASR_scores.csv"), by="Participant") |> 
+  select(-ends_with("_RT"), -ends_with("_SD"))
+
+df$Average <- rowMeans(select(df, starts_with("Item_IAS")))
+
+vars <- c("Homeostasis", "Skin", "Elimination", "Muscle", "Interoception")
+
+
+make_correlation <- function(x, y) {
+  set.seed(3)
+  cor <- correlation::correlation(
+    x, y,
+    bayesian = TRUE,
+    bayesian_prior = "medium.narrow"
+  ) |>
+    datawizard::data_remove(c("ROPE_Percentage"))
+
+  cor$BF_Spearman <- format_bf(
+    correlation::correlation(
+      x, y,
+      bayesian = TRUE,
+      ranktransform = TRUE,
+      bayesian_prior = "medium.narrow"
+    )$BF,
+    name = NULL, stars = FALSE
+  )
+  
+  r <- filter(cor, BF >= 10)
+
+  if(nrow(r) == 0) return(list(data = cor, print = "No significant (BF >= 10) correlations."))
+
+  
+  to_print <- r |>
+    arrange(Parameter1, desc(BF)) |>
+    format_table() |>
+    mutate(Coefficient = paste(rho, `95% CI`)) |>
+    select(Parameter1, Parameter2, Coefficient, BF, `BF (Spearman)` = BF_Spearman)
+  
+  list(data = cor, print = to_print)
+}
+
+maia <- make_correlation(df[vars], select(df, starts_with("MAIA_"))) 
+export_table(maia$print)
+
+maia$data |> 
+  arrange(Parameter2) |> 
+  tidygraph::as_tbl_graph() |> 
+  mutate(Type = ifelse(str_detect(name, "MAIA_"), "MAIA", "IAS")) |> 
+  tidygraph::activate("edges") |> 
+  filter(BF > 10) |> 
+  ggraph(layout = 'stress', weight=rho) + 
+  # geom_edge_arc(aes(edge_width = rho),
+  #               strength=0) +
+  geom_edge_link(aes(edge_alpha = after_stat(index), edge_width = rho), 
+                 edge_colour = "black") +
+  geom_node_point(aes(color = Type)) +
+  geom_node_text(aes(label=name)) +
+  scale_edge_width_continuous(range = c(0.1, 3)) +
+  coord_fixed() +
+  theme_graph()
+```
+
+
+# Study 3
+
+
+
+## Personality
+
+```{r, message=FALSE, warning=FALSE}
+ipip <- make_correlation(df[vars], select(df, starts_with("IPIP6_"))) 
+export_table(ipip$print)
+
+pid <- make_correlation(df[vars], select(df, starts_with("PID5_"))) 
+export_table(pid$print)
+```
+
+## Psychopathology
+
+```{r, message=FALSE, warning=FALSE}
+asq <- make_correlation(df[vars], select(df, starts_with("ASQ_")))
+export_table(asq$print)
+spq <- make_correlation(df[vars], select(df, starts_with("SPQ_"))) 
+export_table(spq$print)
+bpd <- make_correlation(df[vars], select(df, starts_with("BPD"))) 
+export_table(bpd$print)
+phq <- make_correlation(df[vars], select(df, starts_with("PHQ4_"))) 
+export_table(phq$print)
+```
+
+## Other
+
+```{r, message=FALSE, warning=FALSE}
+pi <- make_correlation(df[vars], select(df, starts_with("PI_")))
+export_table(pi$print)
+lie <- make_correlation(df[vars], select(df, starts_with("LIE_")))
+export_table(lie$print)
+gcbs <- make_correlation(df[vars], select(df, starts_with("GCBS_"))) 
+export_table(gcbs$print)
+age <- make_correlation(df[vars], data.frame(Age = df$Age)) 
+export_table(age$print)
+sex <- make_correlation(df[vars], data.frame(Sex = ifelse(df$Sex == "Male", 0, 1)) )
+export_table(sex$print)
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+p_cor <- rbind(
+  mutate(maia$data, Domain = "MAIA"),
+  mutate(ipip$data, Domain = "Normal Personality"),
+  mutate(pid$data, Domain = "Maladaptive Personality"),
+  mutate(asq$data, Domain = "Autistic Traits"),
+  mutate(spq$data, Domain = "Schizotypic Traits"),
+  mutate(phq$data, Domain = "Mood"),
+  mutate(bpd$data, Domain = "Mood"),
+  mutate(gcbs$data, Domain = "Conspiracy Beliefs"),
+  mutate(pi$data, Domain = "Primal World Beliefs"),
+  mutate(lie$data, Domain = "Lying Profile")
+  # mutate(age$data, Domain = "Demographic"),
+  # mutate(sex$data, Domain = "Demographic")
+) |> 
+  mutate(alpha = ifelse(BF >= 10, "BF >= 10", "BF < 10"),
+         Parameter1 = fct_relevel(Parameter1, "Interoception", "Muscle", "Homeostasis", "Elimination", "Skin"),
+         Domain = fct_relevel(Domain, "MAIA", "Normal Personality", "Maladaptive Personality", "Autistic Traits", "Schizotypic Traits", "Mood", "Lying Profile", "Conspiracy Beliefs", "World Beliefs"),
+         Parameter2 = str_remove_all(Parameter2, "MAIA_|IPIP6_|PID5_|ASQ_|SPQ_|GCBS_|PHQ4_|LIE_|PI_"),
+         Parameter2 = str_replace(Parameter2, "Sex", "Sex (Female vs. Male)"),
+         Parameter2 = str_replace(Parameter2, "HonestyHumility", "Honesty-Humility"),
+         Parameter2 = str_replace(Parameter2, "AttentionRegulation", "Attention Regulation"),
+         Parameter2 = str_replace(Parameter2, "EmotionalAwareness", "Emotional Awareness"),
+         Parameter2 = str_replace(Parameter2, "SelfRegulation", "Self-Regulation"),
+         Parameter2 = str_replace(Parameter2, "BodyListening", "Body Listening"),
+         Parameter2 = str_replace(Parameter2, "NotWorrying", "Not Worrying"),
+         Parameter2 = str_replace(Parameter2, "NotDistracting", "Not Distracting"),
+         Parameter2 = str_replace(Parameter2, "NegativeAffect", "Negative Affect"),
+         Parameter2 = str_replace(Parameter2, "Patterns", "Patterns and Numbers"),
+         Parameter2 = str_replace(Parameter2, "Routine", "Routines"),
+         Parameter2 = str_replace(Parameter2, "LackSocialSkills", "Lack of Social Skills"),
+         Parameter2 = str_replace(Parameter2, "LowAttentionalSwitching", "Low Attentional Switching"),
+         Parameter2 = str_replace(Parameter2, "MagicalThinking", "Magical Thinking"),
+         Parameter2 = str_replace(Parameter2, "UnusualPerceptions", "Unusual Perceptions"),
+         Parameter2 = str_replace(Parameter2, "OddSpeech", "Odd Speech"),
+         Parameter2 = str_replace(Parameter2, "ConstrictedAffect", "Constricted Affect"),
+         Parameter2 = str_replace(Parameter2, "SocialAnxiety", "Social Anxiety"),
+         Parameter2 = str_replace(Parameter2, "NoCloseFriends", "No Close Friends"),
+         Parameter2 = str_replace(Parameter2, "GlobalConspiracies", "Global Conspiracies"),
+         Parameter2 = str_replace(Parameter2, "PersonalWellbeing", "Personal Wellbeing"),
+         Parameter2 = str_replace(Parameter2, "InformationControl", "Information Control"),
+         Parameter2 = str_replace(Parameter2, "GovernmentMalfeasance", "Government Malfeasance"),
+         Parameter2 = fct_reorder(Parameter2, rho),
+         color = as.character(sign(rho))) |>
+  filter(Parameter2 != "Total") |> 
+  ggplot(aes(x = rho, y = Parameter2)) +
+  geom_bar(aes(alpha = alpha, fill = rho), stat = "identity") +
+  geom_linerange(aes(alpha = alpha, xmin = CI_low, xmax = CI_high, color = color)) +
+  geom_vline(xintercept = 0) +
+  facet_grid(Domain~Parameter1, scales="free_y", switch ="y") +
+  scale_alpha_manual(values = c(0.3, 1)) +
+  scale_fill_gradient2(low = "#2196F3", high = "#FF5722", limits = c(-0.4, 0.4)) +
+  scale_colour_manual(values = c("#2196F3", "#FF5722")) +
+  scale_x_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
+  coord_cartesian(xlim = c(-0.45, 0.45)) +
+  labs(title = "Correlates of IAS-R Dimensions") +
+  guides(alpha = "none", fill = "none", color="none") +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        plot.title = element_text(face = "bold", hjust = 0.5),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        strip.placement.y = "outside",
+        strip.background.x = element_rect(fill = "#E0E0E0", color = "white"),
+        strip.text.x = element_text(face = "bold", size = rel(1.1)),
+        strip.text.y = element_text(face = "bold", size = rel(0.95)))
+p_cor
+```
+
+# Figures
+
+```{r, message=FALSE, warning=FALSE}
+p_dens <- rbind(
+  mutate(dens1, Study = "Study 1a"),
+  filter(mutate(dens2, Study = "Study 1b"), Parameter %in% dens1$Parameter),
+  filter(mutate(dens3, Study = "Study 2"), Parameter %in% dens1$Parameter)
+) |> 
+  ggplot(aes(x=x, y=y, color=Parameter)) +
+  geom_line() +
+  facet_wrap(~Study, scales = "free", ncol = 1, strip.position = "right") +
+  scale_color_metro_d() +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(y = "Density", x = "Answer", title = "A. Distribution of Answers") +
+  guides(color = guide_legend(title="Item", ncol=1, byrow=TRUE, keyheight=0)) +
+  theme_modern(axis.title.space = 5) +
+  theme(axis.text.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.title.y = element_blank(),
+        plot.title = element_text(face = "bold", hjust = 0),
+        legend.text = element_text(size = rel(0.8)),
+        legend.spacing.y = unit(0.1, 'cm'),
+        strip.background = element_rect(fill = "#E0E0E0", color = "white")) 
+
+p_efa <- rbind(
+  attributes(efa4)$dataset[names(data)] |> 
+    parameters::factor_analysis(n=4, rotation = "oblimin", sort = TRUE, fm="ml") |> 
+    data_plot() |> 
+    mutate(Study = "Study 1a"),
+  attributes(efa4b)$dataset[names(data)] |> 
+    parameters::factor_analysis(n=4, rotation = "oblimin", sort = TRUE, fm="ml") |> 
+    data_plot() |> 
+    mutate(Study = "Study 1b"),
+  efa4c |> 
+    data_plot() |> 
+    mutate(Study = "Study 2") 
+) |> 
+  mutate(Variable = fct_relevel(Variable, sort(levels(Variable), decreasing = TRUE)),
+         fill = as.factor(sign(y)),
+         x = abs(y),
+         Component = str_replace_all(Component, "ML", "Factor ")) |> 
+  ggplot(aes(x = x, y = Variable, fill = fill)) +
+  geom_bar(stat = "identity") + 
+  scale_x_continuous(expand = c(0, 0), breaks = c(0, 0.25, 0.5, 0.75), labels = c("0", ".25", ".50", ".75")) +
+  scale_fill_manual(values = c("#E91E63", "#4CAF50")) +
+  labs(x = "Loading", title = "B. Exploratory Factor Analysis") +
+  guides(fill = "none") +
+  theme_modern(axis.title.space = 5) +
+  theme(panel.grid.major.y = element_line(),
+        axis.title.y = element_blank(),
+        axis.line.x = element_blank(),
+        axis.text.y = element_text(size = rel(0.5)),
+        axis.text.x = element_text(size = rel(0.8)),
+        plot.title = element_text(face = "bold", hjust = 0),
+        strip.placement = "outside",
+        strip.background.y = element_rect(fill = "#E0E0E0", color = "white"),
+        strip.background.x = element_rect(fill = "#F8BBD0", color = "white")) +
+  facet_grid(Study ~ Component, switch = "y")
+
+fig <- ((wrap_elements(p_dens) + wrap_elements(p_efa)) / p_graph)
+ggsave("figures/Figure1.png", fig, width=fig.width, height=fig.width*1.3, dpi=200)
+ggsave("figures/Figure2.png", p_cor, width=21*0.35, height=29.7*0.44, dpi=200, bg="white")
+```

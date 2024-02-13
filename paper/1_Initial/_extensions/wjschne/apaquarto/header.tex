@@ -1,0 +1,41 @@
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+\usepackage{amsmath}
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, tcolorbox}
+
+
+% $if(journalmode1)$
+% 
+% \usepackage{supertabular}
+% 
+% \renewenvironment{longtable}{\begin{supertabular}}{\end{supertabular}}
+% \renewcommand{\endhead}{}
+% \renewcommand{\endfirsthead}{}
+% \renewcommand{\endlastfoot}{}
+% \renewcommand{\toprule}[2]{\hline}
+% \renewcommand{\midrule}[2]{\hline}
+% \renewcommand{\bottomrule}[2]{\hline}
+% 
+% $endif$
+
+
+\newlength\Oldarrayrulewidth
+\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+\usepackage{float}
+
+
