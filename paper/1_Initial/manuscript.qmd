@@ -1,0 +1,78 @@
+---
+title: "The Revised Interoceptive Accuracy Scale (IAS-R) Confirms Links between Interoception and Mental Health"
+blank-lines-above-title: 2  # Lines above title in .docx format
+shorttitle: "Revised Interoceptive Accuracy Scale (IAS-R)"
+author:
+  - name: Dominique Makowski
+    corresponding: true
+    orcid: "0000-0001-5375-9967"
+    email: D.Makowski@sussex.ac.uk
+    url: https://realitybending.github.io/
+    # Roles are optional (note: The two writing roles have en dashes, not hyphens. You can use their aliases, w)
+    # Select from the CRediT: Contributor Roles Taxonomy https://credit.niso.org/
+    # Conceptualization, Data curation, Formal Analysis, Funding acquisition, Investigation, 
+    # Methodology, Project administration, Resources, Software, Supervision, Validation, 
+    # Visualization, Writing – original draft, Writing – review & editing
+    roles:
+      - conceptualization: lead
+      - Writing - original draft
+    affiliations:
+      - id: id1
+        name: "University of Sussex"
+        group: Reality Bending Lab
+        department: School of Psychology
+        city: Brighton
+        region: UK
+        postal-code: "BN1 9RH"
+  - name: X. Y
+    # roles:
+    #   - Project administration
+    #   - Formal Analysis
+    affiliations: 
+      - ref: id1
+  - name: Annabel Chen
+    orcid: "0000-0002-1540-5516"
+    # roles:
+    #   - Resources
+    #   - Project administration
+    affiliations:
+      - name: "School of Social Sciences, Nanyang Technological University, Singapore"
+author-note:
+  blank-lines-above-author-note: 1
+abstract: "This document is a template demonstrating the apaquarto format."
+keywords: [Interoception, Accuracy, Scale, Questionnaire, Personality, Psychopathology, Validation]
+floatsintext: true
+bibliography: "bibliography.bib"
+format:
+  apaquarto-docx:
+    numbered-lines: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(conflicted)
+library(tidyverse)
+```
+
+
+intro
+
+# Methods
+
+blabla
+
+
+# Results
+
+blabla
+
+# Discussion
+
+blabla
+
+# References
+
+
+::: {#refs}
+:::
