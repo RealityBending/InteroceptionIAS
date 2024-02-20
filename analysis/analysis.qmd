@@ -36,61 +36,73 @@ Reanalyze their data to confirm the factor structure of the IAS.
 
 ```{r}
 # https://osf.io/3m5nh
-df1 <- haven::read_sav("../data/Murphy2020/Study 1.sav") |> 
-  mutate_all(as.numeric) |> 
-  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other")))) 
+df1 <- haven::read_sav("../data/Murphy2020/Study 1.sav") |>
+  mutate_all(as.numeric) |>
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
 
 # https://osf.io/3m5nh
-df2 <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |> 
-  mutate_all(as.numeric) |> 
-  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other")))) 
+df2 <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
+  mutate_all(as.numeric) |>
+  mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
 
 # Campos (2022) - Study 1 (https://osf.io/j6ef3)
-df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |> 
-  mutate_all(as.numeric) |> 
-  mutate(Gender = as.character(ifelse(Sex == 1, "Male", ifelse(Sex == 0, "Female", "Other")))) |> 
-  rename(Heart=IAS1, Hungry=IAS2, Breathing=IAS3, Thirsty=IAS4,
-         Urinate=IAS5, Defecate=IAS6, Taste=IAS7, Vomit=IAS8, Sneeze=IAS9,
-         Cough=IAS10, Temp=IAS11, Sex_arousal=IAS12, Wind=IAS13, Burp=IAS14,
-         Muscles=IAS15, Bruise=IAS16, Pain=IAS17, Blood_Sugar=IAS18,
-         Affective_touch=IAS19, Tickle=IAS20, Itch=IAS21)
+df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
+  mutate_all(as.numeric) |>
+  mutate(Gender = as.character(ifelse(Sex == 1, "Male", ifelse(Sex == 0, "Female", "Other")))) |>
+  rename(
+    Heart = IAS1, Hungry = IAS2, Breathing = IAS3, Thirsty = IAS4,
+    Urinate = IAS5, Defecate = IAS6, Taste = IAS7, Vomit = IAS8, Sneeze = IAS9,
+    Cough = IAS10, Temp = IAS11, Sex_arousal = IAS12, Wind = IAS13, Burp = IAS14,
+    Muscles = IAS15, Bruise = IAS16, Pain = IAS17, Blood_Sugar = IAS18,
+    Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21
+  )
 
 # https://osf.io/3eztd
-df4 <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |> 
-  mutate(Gender = as.character(ifelse(sex_dummy == 1, "Male", ifelse(sex_dummy == 0, "Female", "Other")))) |> 
-  rename(Age=age, 
-         Heart=Heart, Hungry=HUNGR, Breathing=BREAT, Thirsty=Thirs,
-         Urinate=URINA, Defecate=Defec, Taste=TASTE, Vomit=VOMIT, Sneeze=Sneez,
-         Cough=COUGH, Temp=TEMPE, Sex_arousal=SEXAR, Wind=WIND, Burp=Burp,
-         Muscles=MUSCL, Bruise=Bruis, Pain=PAIN, Blood_Sugar=BloSu,
-         Affective_touch=Touch, Itch=ITCH)  # No tickle because same Chinese character
+df4 <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
+  select(-sex) |> 
+  mutate_all(as.numeric) |>
+  mutate(Gender = as.character(ifelse(sex_dummy == 1, "Male", ifelse(sex_dummy == 0, "Female", "Other")))) |>
+  rename(
+    Age = age,
+    Heart = Heart, Hungry = HUNGR, Breathing = BREAT, Thirsty = Thirs,
+    Urinate = URINA, Defecate = Defec, Taste = TASTE, Vomit = VOMIT, Sneeze = Sneez,
+    Cough = COUGH, Temp = TEMPE, Sex_arousal = SEXAR, Wind = WIND, Burp = Burp,
+    Muscles = MUSCL, Bruise = Bruis, Pain = PAIN, Blood_Sugar = BloSu,
+    Affective_touch = Touch, Itch = ITCH
+  ) # No tickle because same Chinese character
 
 # https://osf.io/3eztd
-df5 <- haven::read_sav("../data/Lin2023/Study 2.sav") |> 
-  mutate(Gender = as.character(ifelse(Sex == "男", "Male", ifelse(Sex == "女", "Female", "Other")))) |> 
-  rename(Heart=Heart, Hungry=HUNGR, Breathing=BREAT, Thirsty=Thirs,
-         Urinate=URINA, Defecate=Defec, Taste=TASTE, Vomit=VOMIT, Sneeze=Sneez,
-         Cough=COUGH, Temp=TEMPE, Sex_arousal=SEXAR, Wind=WIND, Burp=Burp,
-         Muscles=MUSCL, Bruise=Bruis, Pain=PAIN, Blood_Sugar=BloSu,
-         Affective_touch=Touch, Itch=ITCH)  # No tickle because same Chinese character
+df5 <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
+  mutate(Gender = as.character(ifelse(Sex == "男", "Male", ifelse(Sex == "女", "Female", "Other")))) |>
+  rename(
+    Heart = Heart, Hungry = HUNGR, Breathing = BREAT, Thirsty = Thirs,
+    Urinate = URINA, Defecate = Defec, Taste = TASTE, Vomit = VOMIT, Sneeze = Sneez,
+    Cough = COUGH, Temp = TEMPE, Sex_arousal = SEXAR, Wind = WIND, Burp = Burp,
+    Muscles = MUSCL, Bruise = Bruis, Pain = PAIN, Blood_Sugar = BloSu,
+    Affective_touch = Touch, Itch = ITCH
+  ) # No tickle because same Chinese character
 
 df6 <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
-  rename(Heart=IAS_1, Hungry=IAS_2, Breathing=IAS_3, Thirsty=IAS_4, 
-         Urinate=IAS_5, Defecate=IAS_6, Taste=IAS_7, Vomit=IAS_8, Sneeze=IAS_9, 
-         Cough=IAS_10, Temp=IAS_11, Sex_arousal=IAS_12, Wind=IAS_13, Burp=IAS_14,
-         Muscles=IAS_15, Bruise=IAS_16, Pain=IAS_17, Blood_Sugar=IAS_18,
-         Affective_touch=IAS_19, Tickle=IAS_20, Itch=IAS_21)
+  rename(
+    Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
+    Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
+    Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
+    Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+  )
 
 df7 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
-  rename(Gender=Sex, Heart=Item_IAS_Interoception_1, Hungry=Item_IAS_Interoception_2, 
-         Breathing=Item_IAS_Interoception_3, Thirsty=Item_IAS_Interoception_4, 
-         Temp=Item_IAS_Interoception_5, Sex_arousal=Item_IAS_Interoception_6,
-         Urinate=Item_IAS_Elimination_1, Defecate=Item_IAS_Elimination_2,
-         Vomit=Item_IAS_Elimination_3, Wind=Item_IAS_Expulsion_1, 
-         Burp=Item_IAS_Expulsion_2, Sneeze=Item_IAS_Expulsion_3,
-         Muscles=Item_IAS_Nociception_1, Bruise=Item_IAS_Nociception_2,
-         Pain=Item_IAS_Nociception_3, Affective_touch=Item_IAS_Skin_1, 
-         Tickle=Item_IAS_Skin_2, Itch=Item_IAS_Skin_3) |>
+  rename(
+    Gender = Sex, Heart = Item_IAS_Interoception_1, Hungry = Item_IAS_Interoception_2,
+    Breathing = Item_IAS_Interoception_3, Thirsty = Item_IAS_Interoception_4,
+    Temp = Item_IAS_Interoception_5, Sex_arousal = Item_IAS_Interoception_6,
+    Urinate = Item_IAS_Elimination_1, Defecate = Item_IAS_Elimination_2,
+    Vomit = Item_IAS_Elimination_3, Wind = Item_IAS_Expulsion_1,
+    Burp = Item_IAS_Expulsion_2, Sneeze = Item_IAS_Expulsion_3,
+    Muscles = Item_IAS_Nociception_1, Bruise = Item_IAS_Nociception_2,
+    Pain = Item_IAS_Nociception_3, Affective_touch = Item_IAS_Skin_1,
+    Tickle = Item_IAS_Skin_2, Itch = Item_IAS_Skin_3
+  ) |>
   filter(!is.na(Urinate))
 ```
 
@@ -114,45 +126,49 @@ Total N = `r nrow(df1) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df
 #### Distribution
 
 ```{r}
-vars <- c("Heart", "Hungry", "Breathing", "Thirsty", "Urinate", "Defecate", "Taste", "Vomit", "Sneeze", "Cough", "Temp",
-          "Sex_arousal", "Wind", "Burp", "Muscles", "Bruise", "Pain", "Blood_Sugar", "Affective_touch", "Tickle", "Itch")
-  
-dens1 <- estimate_density(select(df1, all_of(vars)), method="kernSmooth") |> 
+vars <- c(
+  "Heart", "Hungry", "Breathing", "Thirsty", "Urinate", "Defecate", "Taste", "Vomit", "Sneeze", "Cough", "Temp",
+  "Sex_arousal", "Wind", "Burp", "Muscles", "Bruise", "Pain", "Blood_Sugar", "Affective_touch", "Tickle", "Itch"
+)
+
+dens1 <- estimate_density(select(df1, all_of(vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 1")
-dens2 <- estimate_density(select(df2, all_of(vars)), method="kernSmooth") |> 
+dens2 <- estimate_density(select(df2, all_of(vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 2")
-dens3 <- estimate_density(select(df3, all_of(vars)), method="kernSmooth") |> 
+dens3 <- estimate_density(select(df3, all_of(vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 3")
-dens4 <- estimate_density(select(df4, all_of(setdiff(vars, "Tickle"))), method="kernSmooth") |> 
+dens4 <- estimate_density(select(df4, all_of(setdiff(vars, "Tickle"))), method = "kernSmooth") |>
   mutate(Sample = "Sample 4")
-dens5 <- estimate_density(select(df5, all_of(setdiff(vars, "Tickle"))), method="kernSmooth") |> 
+dens5 <- estimate_density(select(df5, all_of(setdiff(vars, "Tickle"))), method = "kernSmooth") |>
   mutate(Sample = "Sample 5")
-dens6 <- estimate_density(select(df6, all_of(vars)), method="kernSmooth") |> 
+dens6 <- estimate_density(select(df6, all_of(vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 6")
-dens7 <- estimate_density(select(df7, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method="kernSmooth") |> 
+dens7 <- estimate_density(select(df7, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method = "kernSmooth") |>
   mutate(Sample = "Sample 7")
 
-rbind(dens1, dens2, dens3, dens4, dens5, dens6, dens7) |> 
+rbind(dens1, dens2, dens3, dens4, dens5, dens6, dens7) |>
   ggplot(aes(x = x, y = y, color = Parameter)) +
   geom_line() +
   theme_minimal() +
   labs(title = "Distribution of Responses", x = "Response", y = "Density", color = "Item") +
-  facet_wrap(~Sample, scales = "free", nrow=4)
+  facet_wrap(~Sample, scales = "free", nrow = 4)
 ```
 
 
 ```{r}
-data1 <- normalize(select(df1, all_of(dens1$Parameter)), range=c(1, 5))
-data2 <- normalize(select(df2, all_of(dens2$Parameter)), range=c(1, 5))
-data3 <- normalize(select(df3, all_of(dens3$Parameter)), range=c(1, 5))
-data4 <- normalize(select(df4, all_of(dens4$Parameter)), range=c(1, 5))
-data5 <- normalize(select(df5, all_of(dens5$Parameter)), range=c(1, 5))
+data1 <- normalize(select(df1, all_of(dens1$Parameter)), range = c(1, 5))
+data2 <- normalize(select(df2, all_of(dens2$Parameter)), range = c(1, 5))
+data3 <- normalize(select(df3, all_of(dens3$Parameter)), range = c(1, 5))
+data4 <- normalize(select(df4, all_of(dens4$Parameter)), range = c(1, 5))
+data5 <- normalize(select(df5, all_of(dens5$Parameter)), range = c(1, 5))
 data6 <- select(df6, all_of(dens6$Parameter))
 data7 <- select(df7, all_of(dens7$Parameter))
 
-data_all <- rbind(data1, data2, data3, 
-                  mutate(data4, Tickle=NA), mutate(data5, Tickle=NA), 
-                  data6, mutate(data7, Taste=NA, Cough=NA, Blood_Sugar=NA)) 
+data_all <- rbind(
+  data1, data2, data3,
+  mutate(data4, Tickle = NA), mutate(data5, Tickle = NA),
+  data6, mutate(data7, Taste = NA, Cough = NA, Blood_Sugar = NA)
+)
 ```
 
 
@@ -166,21 +182,23 @@ An overall positive intercorrelation pattern, with no clear structure emerging.
 
 ```{r}
 make_correlation <- function(df) {
-  correlation::correlation(df, redundant=TRUE) |> 
-    correlation::cor_sort() |> 
-    correlation::cor_lower() |> 
-    mutate(val = paste0(insight::format_value(r), format_p(p, stars_only=TRUE))) |>
+  correlation::correlation(df, redundant = TRUE) |>
+    correlation::cor_sort() |>
+    correlation::cor_lower() |>
+    mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE))) |>
     mutate(Parameter2 = fct_rev(Parameter2)) |>
-    ggplot(aes(x=Parameter1, y=Parameter2)) +
+    ggplot(aes(x = Parameter1, y = Parameter2)) +
     geom_tile(aes(fill = r), color = "white") +
     geom_text(aes(label = val), size = 3) +
     labs(title = "Correlation Matrix") +
-    scale_fill_metro_c(limit = c(0, 0.75), guide = guide_colourbar(ticks=FALSE)) +
+    scale_fill_metro_c(limit = c(0, 0.75), guide = guide_colourbar(ticks = FALSE)) +
     theme_minimal() +
-    theme(legend.title = element_blank(),
-          axis.title.x = element_blank(),
-          axis.title.y = element_blank(),
-          axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(
+      legend.title = element_blank(),
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      axis.text.x = element_text(angle = 45, hjust = 1)
+    )
 }
 
 make_correlation(data_all)
@@ -234,15 +252,17 @@ make_correlation(data7)
 
 :::
 
-### EGA
 
+### Graph Analysis
 
+Exploratory Graph Analysis (EGA) is a recently developed framework for psychometric assessment, that can be used to estimate the number of dimensions in questionnaire data using network estimation methods and community detection algorithms, and assess the stability of dimensions and items using bootstrapping.
 See https://r-ega.net/articles/ega.html for details.
 
 #### Unique Variable Analysis (UVA)
 
-::: {.panel-tabset}
+Unique Variable Analysis (Christensen, Garrido, & Golino, 2023) uses the weighted topological overlap measure (Nowick et al., 2009) on an estimated network. Values greater than 0.25 are determined to have considerable local dependence (i.e., redundancy) that should be handled (variables with the highest maximum weighted topological overlap to all other variables (other than the one it is redundant with) should be removed).
 
+::: {.panel-tabset}
 
 ##### All data
 
@@ -312,174 +332,160 @@ uva$keep_remove
 
 :::
 
+#### Networks
 
-#### Item Stability
+::: {.panel-tabset}
+
+##### All data
+
 
 ```{r ega1}
 #| fig-height: 20
 #| fig-width: 12
 
-plots <- list()
-for(model in c("glasso", "TMFG")) {
-  for(algo in c("walktrap", "louvain")) {
-    for(type in c("ega", "ega.fit")) {  # "hierega"
-      print(type)
-      ega <- EGAnet::bootEGA(
-        data = data_all,
-        seed=123,
-        model=model,
-        algorithm=algo,
-        EGA.type=type,
-        type="resampling",
-        plot.itemStability=FALSE,
-        verbose=FALSE)
-      plots[[length(plots) + 1]] <- plot(ega) + 
-        labs(title = paste0(model, " (", algo, ") - ", type))
+make_egas <- function(data) {
+  egas <- list()
+  for (model in c("glasso", "TMFG")) {
+    for (algo in c("walktrap", "louvain")) {
+      for (type in c("ega", "ega.fit")) { # "hierega"
+        if (type == "ega.fit" & algo == "louvain") next # Too slow
+        egas[[paste0(model, "_", algo, "_", type)]] <- EGAnet::bootEGA(
+          data = data,
+          seed = 123,
+          model = model,
+          algorithm = algo,
+          EGA.type = type,
+          type = "resampling",
+          plot.itemStability = FALSE,
+          verbose = FALSE
+        )
       }
     }
+  }
+
+  p <- EGAnet::compare.EGA.plots(
+    egas$glasso_walktrap_ega, egas$glasso_walktrap_ega.fit,
+    egas$glasso_louvain_ega, egas$TMFG_louvain_ega,
+    egas$TMFG_walktrap_ega, egas$TMFG_walktrap_ega.fit,
+    labels = c(
+      "glasso_walktrap_ega", "glasso_walktrap_ega.fit",
+      "glasso_louvain_ega", "TMFG_louvain_ega",
+      "TMFG_walktrap_ega", "TMFG_walktrap_ega.fit"
+    ),
+    rows = 3,
+    plot.all = FALSE
+  )$all
+  list(egas = egas, p = p)
 }
 
-length(plots)
-patchwork::wrap_plots(plots, nrow = 4)
+
+egas_all <- make_egas(data_all)
+egas_all$p
+```
+
+##### Sample 1
+
+```{r}
+egas1 <- make_egas(data1)
+egas1$p
+```
+
+##### Sample 2
+
+```{r}
+egas2 <- make_egas(data2)
+egas2$p
+```
+
+##### Sample 3
+
+```{r}
+egas3 <- make_egas(data3)
+egas3$p
+```
+
+##### Sample 4
+
+```{r}
+egas4 <- make_egas(data4)
+egas4$p
+```
+
+##### Sample 5
+
+```{r}
+egas5 <- make_egas(data5)
+egas5$p
+```
+
+##### Sample 6
+
+```{r}
+egas6 <- make_egas(data6)
+egas6$p
+```
+
+##### Sample 7
+
+```{r}
+egas7 <- make_egas(data7)
+egas7$p
 ```
 
 
-<!-- ::: {.panel-tabset} -->
-
-<!-- ##### glasso model (Walktrap) -->
-
-<!-- ```{r ega1} -->
-<!-- #| fig-height: 12 -->
-
-<!-- plots <- list() -->
-<!-- for(d in list(data1, data2, data3, data4, data5, data6)) { -->
-<!--   ega <- EGAnet::bootEGA( -->
-<!--     data = d, -->
-<!--     seed=123, -->
-<!--     model="glasso", -->
-<!--     algorithm="walktrap", -->
-<!--     type="resampling", -->
-<!--     EGA.type="ega", -->
-<!--     plot.itemStability=FALSE,  -->
-<!--     verbose=FALSE) -->
-<!--   plots[[length(plots) + 1]] <- plot(ega) -->
-<!-- } -->
-
-<!-- EGAnet::dimensionStability(ega) -->
-<!-- (plots[[1]] + labs(title = "Sample 1") + -->
-<!--   plots[[2]] + labs(title = "Sample 2")) / -->
-<!--   (plots[[3]] + labs(title = "Sample 3") + -->
-<!--   plots[[4]] + labs(title = "Sample 4")) / -->
-<!--   (plots[[5]] + labs(title = "Sample 5") + -->
-<!--   plots[[6]] + labs(title = "Sample 6")) -->
-<!-- ``` -->
-
-<!-- ##### glasso model (Louvain) -->
-
-<!-- ```{r ega2} -->
-<!-- #| fig-height: 12 -->
-
-<!-- plots <- list() -->
-<!-- for(d in list(data1, data2, data3, data4, data5, data6)) { -->
-<!--   ega <- EGAnet::bootEGA( -->
-<!--     data = d, -->
-<!--     seed=123, -->
-<!--     model="glasso", -->
-<!--     algorithm="louvain", -->
-<!--     plot.itemStability=FALSE) -->
-<!--   plots[[length(plots) + 1]] <- plot(ega) -->
-<!-- } -->
+:::
 
 
-<!-- (plots[[1]] + labs(title = "Sample 1") + -->
-<!--   plots[[2]] + labs(title = "Sample 2")) / -->
-<!--   (plots[[3]] + labs(title = "Sample 3") + -->
-<!--   plots[[4]] + labs(title = "Sample 4")) / -->
-<!--   (plots[[5]] + labs(title = "Sample 5") + -->
-<!--   plots[[6]] + labs(title = "Sample 6")) -->
-<!-- ``` -->
+#### Structure Stability
+
+::: {.panel-tabset}
+
+```{r}
+#| fig-height: 20
+#| fig-width: 12
+
+patchwork::wrap_plots(lapply(egas_all$egas, plot), nrow = 3)
+```
+
+:::
+
+#### Scores
+
+```{r}
+ega <- egas_all$egas$glasso_louvain_ega$EGA
+plot(ega)
+
+ega_scores_1 <- EGAnet::net.scores(data1, ega)$scores$std.scores |>
+  as.data.frame() |>
+  setNames(c("EGA1", "EGA2", "EGA3", "EGA4"))
+
+ega_scores_2 <- EGAnet::net.scores(data2, ega)$scores$std.scores |>
+  as.data.frame() |>
+  setNames(c("EGA1", "EGA2", "EGA3", "EGA4"))
+
+ega_scores_3 <- EGAnet::net.scores(data3, ega)$scores$std.scores |>
+  as.data.frame() |>
+  setNames(c("EGA1", "EGA2", "EGA3", "EGA4"))
+
+ega_scores_4 <- EGAnet::net.scores(data4, ega)$scores$std.scores |>
+  as.data.frame() |>
+  setNames(c("EGA1", "EGA2", "EGA3", "EGA4"))
+
+ega_scores_5 <- EGAnet::net.scores(data5, ega)$scores$std.scores |>
+  as.data.frame() |>
+  setNames(c("EGA1", "EGA2", "EGA3", "EGA4"))
+
+ega_scores_6 <- EGAnet::net.scores(data6, ega)$scores$std.scores |>
+  as.data.frame() |>
+  setNames(c("EGA1", "EGA2", "EGA3", "EGA4"))
+
+ega_scores_7 <- EGAnet::net.scores(data7, ega)$scores$std.scores |>
+  as.data.frame() |>
+  setNames(c("EGA1", "EGA2", "EGA3", "EGA4"))
+```
 
 
-<!-- ##### TMFG model (Walktrap) -->
-
-<!-- ```{r ega3} -->
-<!-- #| fig-height: 12 -->
-
-<!-- plots <- list() -->
-<!-- for(d in list(data1, data2, data3, data4, data5, data6)) { -->
-<!--   ega <- EGAnet::bootEGA( -->
-<!--     data = d, -->
-<!--     seed=123, -->
-<!--     model="TMFG", -->
-<!--     algorithm="walktrap", -->
-<!--     plot.itemStability=FALSE) -->
-<!--   plots[[length(plots) + 1]] <- plot(ega) -->
-<!-- } -->
-
-
-<!-- (plots[[1]] + labs(title = "Sample 1") + -->
-<!--   plots[[2]] + labs(title = "Sample 2")) / -->
-<!--   (plots[[3]] + labs(title = "Sample 3") + -->
-<!--   plots[[4]] + labs(title = "Sample 4")) / -->
-<!--   (plots[[5]] + labs(title = "Sample 5") + -->
-<!--   plots[[6]] + labs(title = "Sample 6")) -->
-<!-- ``` -->
-
-
-<!-- ##### TMFG model (Louvain) -->
-
-<!-- ```{r ega4} -->
-<!-- #| fig-height: 12 -->
-
-<!-- plots <- list() -->
-<!-- for(d in list(data1, data2, data3, data4, data5, data6)) { -->
-<!--   ega <- EGAnet::bootEGA( -->
-<!--     data = d, -->
-<!--     seed=123, -->
-<!--     model="TMFG", -->
-<!--     algorithm="louvain", -->
-<!--     plot.itemStability=FALSE) -->
-<!--   plots[[length(plots) + 1]] <- plot(ega) -->
-<!-- } -->
-
-
-<!-- (plots[[1]] + labs(title = "Sample 1") + -->
-<!--   plots[[2]] + labs(title = "Sample 2")) / -->
-<!--   (plots[[3]] + labs(title = "Sample 3") + -->
-<!--   plots[[4]] + labs(title = "Sample 4")) / -->
-<!--   (plots[[5]] + labs(title = "Sample 5") + -->
-<!--   plots[[6]] + labs(title = "Sample 6")) -->
-<!-- ``` -->
-
-<!-- ##### All data -->
-
-<!-- ```{r ega1} -->
-<!-- #| fig-height: 12 -->
-
-
-<!-- plots <- list() -->
-<!-- for(model in c("glasso", "TMFG")) { -->
-<!--   for(algo in c("walktrap", "louvain")) { -->
-<!--     ega <- EGAnet::bootEGA( -->
-<!--       data = data_all, -->
-<!--       seed=123, -->
-<!--       model=model, -->
-<!--       algorithm=algo, -->
-<!--       plot.itemStability=FALSE) -->
-<!--     plots[[length(plots) + 1]] <- plot(ega) +  -->
-<!--       labs(title = paste0(model, " (", algo, ")")) -->
-<!--   } -->
-<!-- } -->
-
-<!-- patchwork::wrap_plots(plots) -->
-<!-- ``` -->
-
-<!-- ::: -->
-
-
-
-
-### Exploratory Factor Analysis (EFA)
+### Factor Analysis 
 
 #### How Many Factors
 
@@ -490,9 +496,9 @@ patchwork::wrap_plots(plots, nrow = 4)
 ```{r}
 n <- parameters::n_factors(data_all, n_max = 12)
 
-plot(n) 
+plot(n)
 
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4, 5 ), ], row.names = FALSE)
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4, 5), ], row.names = FALSE)
 ```
 
 ##### Sample 1
@@ -518,7 +524,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```{r}
 n <- parameters::n_factors(data3, n_max = 12)
 
-plot(n) 
+plot(n)
 
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```
@@ -528,7 +534,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```{r}
 n <- parameters::n_factors(data4, n_max = 12)
 
-plot(n) 
+plot(n)
 
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```
@@ -539,7 +545,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```{r}
 n <- parameters::n_factors(data5, n_max = 12)
 
-plot(n) 
+plot(n)
 
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```
@@ -550,7 +556,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```{r}
 n <- parameters::n_factors(data6, n_max = 12)
 
-plot(n) 
+plot(n)
 
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```
@@ -560,7 +566,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```{r}
 n <- parameters::n_factors(data7, n_max = 12)
 
-plot(n) 
+plot(n)
 
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```
@@ -569,7 +575,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 
 
 
-#### EFA Models
+#### EFA
 
 ::: {.panel-tabset}
 
@@ -578,7 +584,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 4), ], row.names = FALSE)
 ```{r}
 #| fig-height: 10
 
-efa5 <- parameters::factor_analysis(data_all, n=5, rotation = "oblimin", sort = TRUE)
+efa5 <- parameters::factor_analysis(data_all, n = 5, rotation = "oblimin", sort = TRUE)
 plot(efa5)
 
 display(efa5)
@@ -590,7 +596,7 @@ display(efa5)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data2, n=4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data2, n = 4, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -601,7 +607,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data2, n=4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data2, n = 4, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -612,7 +618,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data3, n=4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data3, n = 4, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -623,7 +629,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa5 <- parameters::factor_analysis(data4, n=5, rotation = "oblimin", sort = TRUE)
+efa5 <- parameters::factor_analysis(data4, n = 5, rotation = "oblimin", sort = TRUE)
 plot(efa5)
 
 display(efa5)
@@ -634,7 +640,7 @@ display(efa5)
 ```{r}
 #| fig-height: 10
 
-efa5 <- parameters::factor_analysis(data5, n=5, rotation = "oblimin", sort = TRUE)
+efa5 <- parameters::factor_analysis(data5, n = 5, rotation = "oblimin", sort = TRUE)
 plot(efa5)
 
 display(efa5)
@@ -645,84 +651,308 @@ display(efa5)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data5, n=4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data6, n = 4, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
 ```
 
+##### Sample 7
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data7, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
 
 :::
 
 
-### Model Construction
+### CFA
 
 #### Structure 
 
+
+::: {.panel-tabset}
+
+##### All data
+
 ```{r}
+# Ambiguous: Temp + Vomit + Affective_touch + Sex_arousal + Taste
+# Discard: Tickle + Blood_Sugar
+
 m1 <- "
 Interoception =~ Hungry + Thirsty + Urinate + Defecate + Itch + Bruise + Muscles + Pain + Breathing + Heart + Cough + Sneeze + Wind + Burp
 "
 
+m4 <- "
+Sustenance =~ Hungry + Thirsty + Urinate + Defecate + Muscles + Pain
+Skin =~ Itch + Bruise
+HeartBreathing =~ Breathing + Heart
+Expulsion =~ Cough + Sneeze + Wind + Burp
+"
+
+
+m5 <- "
+Sustenance =~ Hungry + Thirsty + Pain
+UrinateDefecate =~ Urinate + Defecate
+Skin =~ Itch + Bruise + Muscles
+HeartBreathing =~ Breathing + Heart
+Expulsion =~ Cough + Sneeze + Wind + Burp
+"
+
+
+m6 <- "
+HungryThirsty =~ Hungry + Thirsty
+UrinateDefecate =~ Urinate + Defecate
+ItchBruise =~ Itch + Bruise
+MusclesPain =~ Muscles + Pain
+HeartBreathing =~ Breathing + Heart
+Expulsion =~ Cough + Sneeze + Wind + Burp
+"
 
 m7 <- "
-# ----
-Sustenance =~ Hungry + Thirsty
-Elimination =~ Urinate + Defecate
-Skin =~ Itch + Bruise
-Nociception =~ Muscles + Pain
-Affect =~ Breathing + Heart
-# ----
-Expulsion =~ Cough + Sneeze + Wind + Burp
-
-# --- 
-# Ambiguous: Temp + Vomit + Affective_touch + Sex_arousal + Taste
-# Discard: Tickle + Blood_Sugar
-" 
-
-m8 <- "
-# ----
-Sustenance =~ Hungry + Thirsty
-Elimination =~ Urinate + Defecate
-Skin =~ Itch + Bruise
-Nociception =~ Muscles + Pain
-Affect =~ Breathing + Heart
-# ----
-Expulsion_Sudden =~ Cough + Sneeze 
-Expulsion_Gastric =~ Wind + Burp
-" 
-# Ambiguous: Temp + Vomit + Affective_touch + Sex_arousal + Taste
-# Discard: Tickle + Blood_Sugar
+HungryThirsty =~ Hungry + Thirsty
+UrinateDefecate =~ Urinate + Defecate
+ItchBruise =~ Itch + Bruise
+MusclesPain =~ Muscles + Pain
+HeartBreathing =~ Breathing + Heart
+CoughSneeze =~ Cough + Sneeze
+WindBurp =~ Wind + Burp
+"
 
 m1_all <- lavaan::cfa(m1, data = data_all)
+m4_all <- lavaan::cfa(m4, data = data_all)
+m5_all <- lavaan::cfa(m5, data = data_all)
+m6_all <- lavaan::cfa(m6, data = data_all)
 m7_all <- lavaan::cfa(m7, data = data_all)
-m8_all <- lavaan::cfa(m8, data = data_all)
 
-anova(m1_all, m7_all, m8_all) |> 
-  parameters::parameters() |> 
+anova(m1_all, m4_all, m5_all, m6_all, m7_all) |>
+  parameters::parameters() |>
+  display()
+
+parameters::parameters(m7_all, standardize=TRUE) |>
   display()
 ```
+
+##### Sample 1
+
+```{r}
+anova(
+  lavaan::cfa(m1, data = data1),
+  lavaan::cfa(m4, data = data1),
+  lavaan::cfa(m5, data = data1),
+  lavaan::cfa(m6, data = data1),
+  lavaan::cfa(m7, data = data1)
+  ) |>
+  parameters::parameters() |>
+  display()
+```
+
+##### Sample 2
+
+```{r}
+anova(
+  lavaan::cfa(m1, data = data2),
+  lavaan::cfa(m4, data = data2),
+  lavaan::cfa(m5, data = data2),
+  lavaan::cfa(m6, data = data2),
+  lavaan::cfa(m7, data = data2)
+  ) |>
+  parameters::parameters() |>
+  display()
+```
+
+
+##### Sample 3
+
+```{r}
+anova(
+  lavaan::cfa(m1, data = data3),
+  lavaan::cfa(m4, data = data3),
+  lavaan::cfa(m5, data = data3),
+  lavaan::cfa(m6, data = data3),
+  lavaan::cfa(m7, data = data3)
+  ) |>
+  parameters::parameters() |>
+  display()
+```
+
+
+##### Sample 4
+
+```{r}
+anova(
+  lavaan::cfa(m1, data = data4),
+  lavaan::cfa(m4, data = data4),
+  lavaan::cfa(m5, data = data4),
+  lavaan::cfa(m6, data = data4),
+  lavaan::cfa(m7, data = data4)
+  ) |>
+  parameters::parameters() |>
+  display()
+```
+
+
+##### Sample 5
+
+```{r}
+anova(
+  lavaan::cfa(m1, data = data5),
+  lavaan::cfa(m4, data = data5),
+  lavaan::cfa(m5, data = data5),
+  lavaan::cfa(m6, data = data5),
+  lavaan::cfa(m7, data = data5)
+  ) |>
+  parameters::parameters() |>
+  display()
+```
+
+
+##### Sample 6
+
+```{r}
+anova(
+  lavaan::cfa(m1, data = data6),
+  lavaan::cfa(m4, data = data6),
+  lavaan::cfa(m5, data = data6),
+  lavaan::cfa(m6, data = data6),
+  lavaan::cfa(m7, data = data6)
+  ) |>
+  parameters::parameters() |>
+  display()
+```
+
+##### Sample 7
+
+```{r}
+anova(
+  lavaan::cfa(str_remove(m5, fixed("Cough + ")), data = data7),
+  lavaan::cfa(str_remove(m1, fixed("Cough + ")), data = data7),
+  lavaan::cfa(str_remove(m4, fixed("Cough + ")), data = data7),
+  lavaan::cfa(str_remove(m6, fixed("Cough + ")), data = data7),
+  lavaan::cfa(str_remove(m7, fixed("\nCoughSneeze =~ Cough + Sneeze")), data = data7)
+  ) |>
+  parameters::parameters() |>
+  display()
+```
+
+
+:::
 
 #### Higher Order Factors
 
+
+::: {.panel-tabset}
+
+##### All data
+
 ```{r}
-m8h1 <- paste0(m8, "
-              Interoception =~ Sustenance + Elimination + Skin + Nociception + Affect + Expulsion_Sudden + Expulsion_Gastric
+m7h1 <- paste0(m7, "
+              Interoception =~ HungryThirsty + UrinateDefecate + ItchBruise + MusclesPain + HeartBreathing + CoughSneeze + WindBurp
               ")
 
-m8h3 <- paste0(m8, "
-              Valenced =~ Nociception + Affect + Skin
-              Expulsion =~ Expulsion_Sudden + Expulsion_Gastric 
-              Homeostasis =~ Sustenance + Elimination
+m7h3 <- paste0(m7, "
+              Valenced =~ MusclesPain + HeartBreathing + ItchBruise
+              Expulsion =~ CoughSneeze + WindBurp
+              Homeostasis =~ HungryThirsty + UrinateDefecate
               ")
 
-m8h1_all <- lavaan::cfa(m8h1, data = data_all)
-m8h3_all <- lavaan::cfa(m8h3, data = data_all)
-anova(m8_all, m8h1_all, m8h3_all) |> 
-  parameters::parameters() |> 
+m7h1_all <- lavaan::cfa(m7h1, data = data_all)
+m7h3_all <- lavaan::cfa(m7h3, data = data_all)
+anova(m7_all, m7h1_all, m7h3_all) |>
+  parameters::parameters() |>
   display()
 ```
 
+##### Sample 1
+
+```{r}
+anova(
+  lavaan::cfa(m7, data = data1), 
+  lavaan::cfa(m7h1, data = data1), 
+  lavaan::cfa(m7h3, data = data1)) |>
+  parameters::parameters() |>
+  display()
+```
+
+##### Sample 2
+
+```{r}
+anova(
+  lavaan::cfa(m7, data = data2), 
+  lavaan::cfa(m7h1, data = data2), 
+  lavaan::cfa(m7h3, data = data2)) |>
+  parameters::parameters() |>
+  display()
+```
+
+##### Sample 3
+
+```{r}
+anova(
+  lavaan::cfa(m7, data = data3), 
+  lavaan::cfa(m7h1, data = data3), 
+  lavaan::cfa(m7h3, data = data3)) |>
+  parameters::parameters() |>
+  display()
+```
+
+##### Sample 4
+
+```{r}
+anova(
+  lavaan::cfa(m7, data = data4), 
+  lavaan::cfa(m7h1, data = data4), 
+  lavaan::cfa(m7h3, data = data4)) |>
+  parameters::parameters() |>
+  display()
+```
+
+
+##### Sample 5
+
+```{r}
+anova(
+  lavaan::cfa(m7, data = data5), 
+  lavaan::cfa(m7h1, data = data5), 
+  lavaan::cfa(m7h3, data = data5)) |>
+  parameters::parameters() |>
+  display()
+```
+
+
+##### Sample 6
+
+```{r}
+anova(
+  lavaan::cfa(m7, data = data6), 
+  lavaan::cfa(m7h1, data = data6), 
+  lavaan::cfa(m7h3, data = data6)) |>
+  parameters::parameters() |>
+  display()
+```
+
+
+##### Sample 7
+
+None of the model can be properly estimated (variances are negative).
+
+```{r}
+NA
+# anova(
+#   lavaan::cfa(str_remove(m7, fixed("\nCoughSneeze =~ Cough + Sneeze")), data = data7), 
+#   lavaan::cfa(str_remove(str_remove(m7h1, fixed("\nCoughSneeze =~ Cough + Sneeze")), fixed("CoughSneeze +")), data = data7), 
+#   lavaan::cfa(str_remove(str_remove(m7h3, fixed("\nCoughSneeze =~ Cough + Sneeze")), fixed("CoughSneeze +")), data = data7)) |>
+#   parameters::parameters() |>
+#   display()
+```
+
+
+:::
 
 #### Model Performance
 
@@ -730,29 +960,58 @@ anova(m8_all, m8h1_all, m8h3_all) |>
 #| warning: false
 
 rbind(
-  performance::performance(m8_all, metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |> 
+  performance::performance(m7_all, metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "All"),
-  performance::performance(update(m8_all, data=data1), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |> 
+  performance::performance(update(m7_all, data = data1), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "Sample 1"),
-  performance::performance(update(m8_all, data=data2), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+  performance::performance(update(m7_all, data = data2), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "Sample 2"),
-  performance::performance(update(m8_all, data=data3), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+  performance::performance(update(m7_all, data = data3), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "Sample 3"),
-  performance::performance(update(m8_all, data=data4), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+  performance::performance(update(m7_all, data = data4), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "Sample 4"),
-  performance::performance(update(m8_all, data=data5), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+  performance::performance(update(m7_all, data = data5), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "Sample 5"),
-  performance::performance(update(m8_all, data=data6), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+  performance::performance(update(m7_all, data = data6), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "Sample 6"),
-  performance::performance(lavaan::cfa(str_remove(m8, fixed("\nExpulsion_Sudden =~ Cough + Sneeze")), data=data7), metrics=c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+  performance::performance(lavaan::cfa(str_remove(m7, fixed("\nCoughSneeze =~ Cough + Sneeze")), data = data7), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "Sample 7")
-) |> 
+) |>
   display()
 ```
 
 
 
-No evidence for higher order factors. The unidimensionality might be a byproduct of the similarities in phrasing of the items.
+No evidence for higher order factors.
+
+
+### Scores
+
+Note the usage of descriptive factor names relating directly to the items to avoid abstraction.
+
+```{r}
+#| warning: false
+
+scores <- list(
+  sample1 = cbind(ega_scores_1, as.data.frame(predict(lavaan::cfa(m7, data = data1)))) |>
+    mutate(Sample = "Sample 1"),
+  sample2 = cbind(ega_scores_2, as.data.frame(predict(lavaan::cfa(m7, data = data2)))) |>
+    mutate(Sample = "Sample 2"),
+  sample3 = cbind(ega_scores_3, as.data.frame(predict(lavaan::cfa(m7, data = data3)))) |>
+    mutate(Sample = "Sample 3"),
+  sample4 = cbind(ega_scores_4, as.data.frame(predict(lavaan::cfa(m7, data = data4)))) |>
+    mutate(Sample = "Sample 4"),
+  sample5 = cbind(ega_scores_5, as.data.frame(predict(lavaan::cfa(m7, data = data5)))) |>
+    mutate(Sample = "Sample 5"),
+  sample6 = cbind(ega_scores_6, as.data.frame(predict(lavaan::cfa(m7, data = data6)))) |>
+    mutate(Sample = "Sample 6"),
+  sample7 = cbind(ega_scores_7, as.data.frame(predict(lavaan::cfa(str_remove(m7, fixed("\nCoughSneeze =~ Cough + Sneeze")), data = data7)))) |>
+    mutate(Sample = "Sample 7", CoughSneeze = NA)
+)
+  
+save(scores, file = "../data/scores.RData")
+```
+
 
 
 ## Study 2 - Correlates
@@ -760,140 +1019,406 @@ No evidence for higher order factors. The unidimensionality might be a byproduct
 ```{r}
 #| warning: false
 
-df1 <- cbind(df1, as.data.frame(predict(lavaan::cfa(m8, data = data1)))) |> 
-  mutate(Sample = "Sample 1")
-df2 <- cbind(df2, as.data.frame(predict(lavaan::cfa(m8, data = data2)))) |> 
-  mutate(Sample = "Sample 2")
-df3 <- cbind(df3, as.data.frame(predict(lavaan::cfa(m8, data = data3)))) |> 
-  mutate(Sample = "Sample 3")
-df4 <- cbind(df4, as.data.frame(predict(lavaan::cfa(m8, data = data4)))) |> 
-  mutate(Sample = "Sample 4")
-df5 <- cbind(df5, as.data.frame(predict(lavaan::cfa(m8, data = data5)))) |> 
-  mutate(Sample = "Sample 5")
-df6 <- cbind(df6, as.data.frame(predict(lavaan::cfa(m8, data = data6)))) |> 
-  mutate(Sample = "Sample 6")
-df7 <- cbind(df7, as.data.frame(predict(lavaan::cfa(str_remove(m8, fixed("\nExpulsion_Sudden =~ Cough + Sneeze")), data = data7)))) |> 
-  mutate(Sample = "Sample 7", Expulsion_Sudden = NA)
+load("../data/scores.RData")
 
-vars <- names(as.data.frame(predict(m8_all)))
-```
+df1 <- cbind(df1, scores$sample1)
+df2 <- cbind(df2, scores$sample2)
+df3 <- cbind(df3, scores$sample3)
+df4 <- cbind(df4, scores$sample4)
+df5 <- cbind(df5, scores$sample5)
+df6 <- cbind(df6, scores$sample6)
+df7 <- cbind(df7, scores$sample7)
 
-### Demographics
+vars_intero <- names(select(scores$sample1, -Sample))
+vars_cfa <- names(select(scores$sample1, -Sample, -starts_with("EGA")))
+vars_cfa7 <- vars_cfa[vars_cfa != "CoughSneeze"]
 
-```{r}
-df_demo <- rbind(
-  select(df1, Sample, Age, Gender, all_of(vars)),
-  select(df2, Sample, Age, Gender, all_of(vars)),
-  select(df3, Sample, Age, Gender, all_of(vars)),
-  select(df4, Sample, Age, Gender, all_of(vars)),
-  select(df5, Sample, Age, Gender, all_of(vars)),
-  select(df6, Sample, Age, Gender, all_of(vars)),
-  select(df7, Sample, Age, Gender, all_of(vars))
-) 
-
-make_lm_data <- function(df, vars, predictor="Age") {
-  dat <- data.frame()
-  for(resp in vars) {
-      if(length(unique(df$Sample)) == 1) {
-        m <- lm(as.formula(paste0(resp, " ~ ", predictor)), data = df)
-        param <- parameters::parameters(m)[2, ] |> 
-          mutate(Sample = unique(df$Sample)) |> 
-          select(-Parameter)
-      } else {
-        m <- lm(as.formula(paste0(resp, " ~ Sample / ", predictor)), data = df)
-        param <- parameters::parameters(m) |> 
-          filter(str_detect(Parameter, ":")) |> 
-          separate(Parameter, c("Predictor", "Sample"), sep = "Sample ") |> 
-          mutate(Sample = paste0("Sample ", str_remove(Sample, fixed(paste0(":", predictor)))))
-      }
-    
-      dat <- param |> 
-        mutate(Predictor = predictor,
-               Repsonse = resp,
-               t_low = CI_low / SE,
-               t_high = CI_high / SE) |> 
-        rbind(dat)
-  }
-  dat
-}
-
-data <- rbind(
-  make_lm_data(df_demo, vars, predictor="Age"),
-  make_lm_data(filter(df_demo, Gender %in% c("Male", "Female")), vars, predictor="Gender")
-)
-```
-
-### BPQ
-
-```{r}
-x <- intersect(names(df3)[str_detect(names(df3), "BPQ")], 
-               names(df4)[str_starts(names(df4), "BPQ")])
-
-df_bpq <- rbind(
-  select(df3, Sample, all_of(x), all_of(vars)),
-  select(df4, Sample, all_of(x), all_of(vars))
-) 
-
-# estimate_density(select(df_bpq, Sample, starts_with("BPQ")), at="Sample")  |> 
-#   plot() +
-#   facet_grid(~Sample)
-
-plot(parameters::n_components(select(df_bpq, starts_with("BPQ"))))
-df_bpq$BPQ_PCA1 <- predict(parameters::principal_components(select(df_bpq, starts_with("BPQ")), n=1))$PC1
-
-data <- rbind(data,
-              make_lm_data(df_bpq, vars, predictor="BPQ_PCA1"))
-
-# Why opposite effects?
-```
-
-
-### TAS
-
-```{r}
-x <- intersect(names(df3)[str_detect(names(df3), "TAS")], 
-               names(df5)[str_starts(names(df5), "TAS")])
-```
-
-### PHQ
-
-```{r}
-names(df5)[str_detect(names(df5), "PHQ")]
-
-data <- rbind(data,
-              make_lm_data(df5, vars, predictor="PHQ9_sum"),
-              make_lm_data(df5, vars, predictor="PHQ15_sum"))
-```
-
-### BDI
-
-```{r}
 # names(df1)
 # names(df2)
 # names(df3)  # TAS, BPQ
 # names(df4)  # BPQ
 # names(df5)  # PHQ, TAS
 # names(df6)  # BDI, STAI
-# names(df7)  # MAIA
+# names(df7)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
+```
 
-data <- rbind(data,
-              make_lm_data(df6, vars, predictor="BDI2_Total"))
+### EGA and CFA
+
+```{r}
+#| warning: false
+
+df_scores <- rbind(
+  select(df1, all_of(vars_intero)),
+  select(df2, all_of(vars_intero)),
+  select(df3, all_of(vars_intero)),
+  select(df4, all_of(vars_intero)),
+  select(df5, all_of(vars_intero)),
+  select(df6, all_of(vars_intero)),
+  select(df7, all_of(vars_intero))
+)
+
+correlation::correlation(df_scores, redundant = TRUE) |>
+    correlation::cor_sort() |>
+    correlation::cor_lower() |>
+    mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE))) |>
+    mutate(Parameter2 = fct_rev(Parameter2)) |>
+    ggplot(aes(x = Parameter1, y = Parameter2)) +
+    geom_tile(aes(fill = r), color = "white") +
+    geom_text(aes(label = val), size = 3) +
+    labs(title = "Correlation Matrix") +
+    scale_fill_metro_c(limit = c(0, 1), guide = guide_colourbar(ticks = FALSE)) +
+    theme_minimal() +
+    theme(
+      legend.title = element_blank(),
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      axis.text.x = element_text(angle = 45, hjust = 1)
+    )
 ```
 
 
+### Demographics
+
+```{r}
+make_diff <- function(df, vars, component=NA) {
+  dat <- data.frame()
+  for (resp in vars) {
+    f <- as.formula(paste0(resp, "~ Gender"))
+    d <- filter(df, Gender %in% c("Male", "Female")) |> 
+      mutate(Gender = fct_relevel(Gender, "Male", "Female"))
+    dat <- effectsize::cohens_d(f, data=d) |> 
+      mutate(var_Correlate = "Gender", var_Interoception = resp, 
+             p=t.test(f, data=d)$p.val) |> 
+      as.data.frame() |> 
+      rbind(dat)
+  }
+    
+  dat$r <- effectsize::d_to_r(dat$Cohens_d, n1=sum(df$Gender=="Male"), n2=sum(df$Gender=="Female"))
+  dat$CI_low <- effectsize::d_to_r(dat$CI_low, n1=sum(df$Gender=="Male"), n2=sum(df$Gender=="Female"))
+  dat$CI_high <- effectsize::d_to_r(dat$CI_high, n1=sum(df$Gender=="Male"), n2=sum(df$Gender=="Female"))
+  dat$Sample <- unique(df$Sample)
+  dat$Component <- component
+  select(dat, -Cohens_d)
+}
+
+data <- rbind(
+  make_diff(df1, vars_cfa, component="Demographic"),
+  make_diff(df2, vars_cfa, component="Demographic"),
+  make_diff(df3, vars_cfa, component="Demographic"),
+  make_diff(df4, vars_cfa, component="Demographic"),
+  make_diff(df5, vars_cfa, component="Demographic"),
+  make_diff(df6, vars_cfa, component="Demographic"),
+  make_diff(df7, vars_cfa7, component="Demographic")
+) |> 
+  mutate(var_Correlate = "Gender (Male vs. Female)")
+```
+
+
+```{r}
+make_cor <- function(df, vars, with = "Age", component=NA) {
+  dat <- data.frame() 
+  for (v in vars) {
+    dat <- correlation::cor_test(df, v, with) |> 
+      rename(var_Interoception = Parameter1, var_Correlate = Parameter2) |> 
+      as.data.frame() |> 
+      rbind(dat)
+  }
+    
+  dat$Sample <- unique(df$Sample)
+  dat$Component <- component
+  select(dat, -df_error, -t, -Method, -n_Obs)
+}
+
+data <- rbind(
+  data,
+  make_cor(df1, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df2, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df3, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df4, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df5, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df6, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df7, vars_cfa7, with = "Age", component="Demographic")
+) 
+```
+
+
+
+### Body
+
+```{r}
+# Reverse (TODO: Ana confirm why)
+df3$BPQ_BodyAwareness <- -1*normalize(df3$BPQ_BodyAwareness)
+df3$BPQ_AutonomicReactivity <- -1*normalize(df3$BPQ_AutonomicReactivity)
+
+data <- rbind(
+  data,
+  make_cor(df3, vars_cfa, with = "BPQ_BodyAwareness", component="Body") |> 
+    mutate(var_Correlate = "Body Awareness"),
+  make_cor(df3, vars_cfa, with = "BPQ_AutonomicReactivity", component="Body") |> 
+    mutate(var_Correlate = "Autonomic Reactivity"),
+  make_cor(df4, vars_cfa, with = "BPQ_A", component="Body") |> 
+    mutate(var_Correlate = "Body Awareness")
+)
+```
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "MAIA_AttentionRegulation", component="MAIA")  |> 
+    mutate(var_Correlate = "Attention Regulation"),
+  make_cor(df7, vars_cfa7, with = "MAIA_BodyListening", component="MAIA") |> 
+    mutate(var_Correlate = "Body Listening"),
+  make_cor(df7, vars_cfa7, with = "MAIA_EmotionalAwareness", component="MAIA") |> 
+    mutate(var_Correlate = "Emotional Awareness"),
+  make_cor(df7, vars_cfa7, with = "MAIA_NotDistracting", component="MAIA") |> 
+    mutate(var_Correlate = "Not Distracting"),
+  make_cor(df7, vars_cfa7, with = "MAIA_Noticing", component="MAIA") |> 
+    mutate(var_Correlate = "Noticing"),
+  make_cor(df7, vars_cfa7, with = "MAIA_NotWorrying", component="MAIA") |> 
+    mutate(var_Correlate = "Not Worrying"),
+  make_cor(df7, vars_cfa7, with = "MAIA_SelfRegulation", component="MAIA") |> 
+    mutate(var_Correlate = "Self Regulation"),
+  make_cor(df7, vars_cfa7, with = "MAIA_Trusting", component="MAIA") |> 
+    mutate(var_Correlate = "Trusting")
+)
+```
+
+
+```{r}
+# names(df3)[str_detect(names(df3), "TAS")]
+# names(df5)[str_starts(names(df5), "TAS")]
+
+data <- rbind(
+  data,
+  make_cor(df3, vars_cfa, with = "TAS_IdentifyingFeelings", component="Body") |> 
+    mutate(var_Correlate = "Difficulties Identifying Feelings"),
+  make_cor(df3, vars_cfa, with = "TAS_DescribingFeelings", component="Body") |> 
+    mutate(var_Correlate = "Difficulties Describing Feelings"),
+  make_cor(df3, vars_cfa, with = "TAS_ExternallyOrientedThinking", component="Body") |> 
+    mutate(var_Correlate = "External Thinking"),
+  make_cor(df5, vars_cfa, with = "TAS_DIF", component="Body") |> 
+    mutate(var_Correlate = "Difficulties Identifying Feelings"),
+  make_cor(df5, vars_cfa, with = "TAS_DDF", component="Body") |> 
+    mutate(var_Correlate = "Difficulties Describing Feelings")
+)
+```
+
+### Mood
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df5, vars_cfa, with = "PHQ15_sum", component="Mood") |> 
+    mutate(var_Correlate = "Somatic Concerns (PHQ-15)"),
+  make_cor(df5, vars_cfa, with = "PHQ9_sum", component="Mood")|> 
+    mutate(var_Correlate = "Depression (PHQ-9)"),
+  make_cor(df7, vars_cfa7, with = "PHQ4_Depression", component="Mood") |> 
+    mutate(var_Correlate = "Depression (PHQ-4)"),
+  make_cor(df7, vars_cfa7, with = "PHQ4_Anxiety", component="Mood") |> 
+    mutate(var_Correlate = "Anxiety (PHQ-4)")
+)
+```
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df6, vars_cfa, with = "BDI2_Total", component="Mood") |> 
+    mutate(var_Correlate = "Depression (BDI-II)")
+)
+```
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df6, vars_cfa, with = "STAI5_General", component="Mood") |> 
+    mutate(var_Correlate = "Anxiety (STAI-5)")
+)
+```
+
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "BPD", component="Mood") |> 
+    mutate(var_Correlate = "Boderline Personality")
+)
+```
+
+
+### Psychopathology
+
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "PID5_Antagonism", component="Maladaptive") |> 
+    mutate(var_Correlate = "Antagonism"),
+  make_cor(df7, vars_cfa7, with = "PID5_Detachment", component="Maladaptive") |> 
+    mutate(var_Correlate = "Detachment"),
+  make_cor(df7, vars_cfa7, with = "PID5_Disinhibition", component="Maladaptive") |> 
+    mutate(var_Correlate = "Disinhibition"),
+  make_cor(df7, vars_cfa7, with = "PID5_NegativeAffect", component="Maladaptive") |> 
+    mutate(var_Correlate = "Negative Affect"),
+  make_cor(df7, vars_cfa7, with = "PID5_Psychoticism", component="Maladaptive") |> 
+    mutate(var_Correlate = "Psychoticism")
+)
+```
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "SPQ_ConstrictedAffect", component="Schizotypic") |> 
+    mutate(var_Correlate = "Constricted Affect"),
+  make_cor(df7, vars_cfa7, with = "SPQ_Eccentric", component="Schizotypic") |> 
+    mutate(var_Correlate = "Eccentric"),
+  make_cor(df7, vars_cfa7, with = "SPQ_MagicalThinking", component="Schizotypic") |> 
+    mutate(var_Correlate = "Magical Thinking"),
+  make_cor(df7, vars_cfa7, with = "SPQ_NoCloseFriends", component="Schizotypic") |> 
+    mutate(var_Correlate = "No Close Friends"),
+  make_cor(df7, vars_cfa7, with = "SPQ_OddSpeech", component="Schizotypic") |> 
+    mutate(var_Correlate = "Odd Speech"),
+  make_cor(df7, vars_cfa7, with = "SPQ_Reference", component="Schizotypic") |> 
+    mutate(var_Correlate = "Reference"),
+  make_cor(df7, vars_cfa7, with = "SPQ_SocialAnxiety", component="Schizotypic") |> 
+    mutate(var_Correlate = "Social Anxiety"),
+  make_cor(df7, vars_cfa7, with = "SPQ_Suspiciousness", component="Schizotypic") |> 
+    mutate(var_Correlate = "Suspiciousness"),
+  make_cor(df7, vars_cfa7, with = "SPQ_UnusualPerceptions", component="Schizotypic") |> 
+    mutate(var_Correlate = "Unusual Perceptions")
+)
+```
+
+
+```{r}
+#  names(select(df7, starts_with("ASQ")))
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "ASQ_Imagination", component="Autistic") |> 
+    mutate(var_Correlate = "Imagination"),
+  make_cor(df7, vars_cfa7, with = "ASQ_LackSocialSkills", component="Autistic") |>
+    mutate(var_Correlate = "Lack of Social Skills"),
+  make_cor(df7, vars_cfa7, with = "ASQ_LowAttentionalSwitching", component="Autistic") |>
+    mutate(var_Correlate = "Low Attentional Switching"),
+  make_cor(df7, vars_cfa7, with = "ASQ_Patterns", component="Autistic") |>
+    mutate(var_Correlate = "Patterns and Numbers"),
+  make_cor(df7, vars_cfa7, with = "ASQ_Routine", component="Autistic") |>
+    mutate(var_Correlate = "Routines")
+)
+```
+
+
+### Personality
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "IPIP6_Agreeableness", component="Personality") |> 
+    mutate(var_Correlate = "Agreeableness"),
+  make_cor(df7, vars_cfa7, with = "IPIP6_Conscientiousness", component="Personality") |>
+    mutate(var_Correlate = "Conscientiousness"),
+  make_cor(df7, vars_cfa7, with = "IPIP6_Neuroticism", component="Personality") |>
+    mutate(var_Correlate = "Neuroticism"),
+  make_cor(df7, vars_cfa7, with = "IPIP6_Openness", component="Personality") |>
+    mutate(var_Correlate = "Openness"),
+  make_cor(df7, vars_cfa7, with = "IPIP6_Extraversion", component="Personality") |>
+    mutate(var_Correlate = "Extraversion"),
+  make_cor(df7, vars_cfa7, with = "IPIP6_HonestyHumility", component="Personality") |>
+    mutate(var_Correlate = "Honesty-Humility")
+)
+```
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "PI_Alive", component="World Beliefs") |> 
+    mutate(var_Correlate = "Alive"),
+  make_cor(df7, vars_cfa7, with = "PI_Changing", component="World Beliefs") |>
+    mutate(var_Correlate = "Changing"),
+  make_cor(df7, vars_cfa7, with = "PI_Enticing", component="World Beliefs") |>
+    mutate(var_Correlate = "Enticing"),
+  make_cor(df7, vars_cfa7, with = "PI_Good", component="World Beliefs") |>
+    mutate(var_Correlate = "Good"),
+  make_cor(df7, vars_cfa7, with = "PI_Hierarchical", component="World Beliefs") |>
+    mutate(var_Correlate = "Hierarchical"),
+  make_cor(df7, vars_cfa7, with = "PI_Safe", component="World Beliefs") |>
+    mutate(var_Correlate = "Safe")
+)
+```
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs") |> 
+    mutate(var_Correlate = "Extraterrestrial"),
+  make_cor(df7, vars_cfa7, with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs") |>
+    mutate(var_Correlate = "Global Conspiracies"),
+  make_cor(df7, vars_cfa7, with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs") |>
+    mutate(var_Correlate = "Government Malfeasance"),
+  make_cor(df7, vars_cfa7, with = "GCBS_InformationControl", component="Conspiracy Beliefs") |>
+    mutate(var_Correlate = "Information Control"),
+  make_cor(df7, vars_cfa7, with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs") |>
+    mutate(var_Correlate = "Personal Wellbeing")
+)
+```
+
+```{r}
+data <- rbind(
+  data,
+  make_cor(df7, vars_cfa7, with = "LIE_Ability", component="Lying Profile") |> 
+    mutate(var_Correlate = "Ability"),
+  make_cor(df7, vars_cfa7, with = "LIE_Frequency", component="Lying Profile") |>
+    mutate(var_Correlate = "Frequency"),
+  make_cor(df7, vars_cfa7, with = "LIE_Contextuality", component="Lying Profile") |>
+    mutate(var_Correlate = "Contextuality"),
+  make_cor(df7, vars_cfa7, with = "LIE_Negativity", component="Lying Profile") |>
+    mutate(var_Correlate = "Negativity")
+)
+```
 
 ### Summary
 
 ```{r}
 #| fig-height: 20
+#| fig-width: 15
 
-data |> 
-  mutate(sig = ifelse(p < .01, "p < .01", ifelse(p < .001, "p < .001", "N.S."))) |> 
-  ggplot(aes(x=Predictor)) +
-  geom_hline(yintercept=0, linetype="dashed") +
-  geom_pointrange(aes(y=t, ymin=t_low, ymax=t_high, color=sig), position=position_dodge2(width=0.3)) +
-  facet_grid(~Repsonse, scales = "free_y") +
-  coord_flip()
+p <- data |>
+  mutate(sig = ifelse(p < .01, "p < .01", ifelse(p < .001, "p < .001", "N.S.")),
+         dir = sign(r),
+         var_Interoception = str_replace(var_Interoception, "CoughSneeze", "Cough/Sneeze"),
+         var_Interoception = str_replace(var_Interoception, "HeartBreathing", "Heart/Breathing"),
+         var_Interoception = str_replace(var_Interoception, "HungryThirsty", "Hungry/Thirsty"),
+         var_Interoception = str_replace(var_Interoception, "ItchBruise", "Itch/Bruise"),
+         var_Interoception = str_replace(var_Interoception, "MusclesPain", "Muscles/Pain"),
+         var_Interoception = str_replace(var_Interoception, "UrinateDefecate", "Urinate/Defecate"),
+         var_Interoception = str_replace(var_Interoception, "WindBurp", "Wind/Burp"),
+         var_Interoception = str_replace(var_Interoception, "Expulsion_Sudden", "Expulsion - Sudden"),
+         var_Interoception = fct_relevel(var_Interoception, "Heart/Breathing", "Muscles/Pain", "Itch/Bruise", "Hungry/Thirsty", "Urinate/Defecate", "Wind/Burp", "Cough/Sneeze"),
+         Component = fct_relevel(
+           Component, "Demographic", "MAIA", "Body", "Mood", "Maladaptive",
+           "Schizotypic", "Autistic", "Personality", "Conspiracy Beliefs", "World Beliefs", "Lying Profile")) |>
+  ggplot(aes(x = var_Correlate)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  # geom_bar(aes(fill=Sample, alpha=sig, y=r, group=Sample), stat="identity", position = position_dodge2(width = 0.8)) +
+  geom_linerange(aes(color=dir, alpha=sig, ymin=0, ymax=r, group=Sample), position = position_dodge2(width = 0.7), linewidth=2.5) +
+  geom_linerange(aes(ymin = CI_low, ymax = CI_high, color = dir, alpha=sig, group=Sample), position = position_dodge2(width = 0.7)) +
+  scale_fill_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
+  scale_color_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
+  scale_alpha_discrete(range = c(0.2, 0.7), guide = "none") +
+  scale_y_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
+  facet_grid(Component ~ var_Interoception, scales = "free_y", switch = "y") +
+  coord_flip(ylim = c(-0.45, 0.45)) +
+  theme_modern(axis.title.space = 5) +
+  theme(panel.grid.major.y = element_line(),
+        axis.title.y = element_blank(),
+        axis.line.x = element_blank(),
+        axis.text.y = element_text(size = rel(0.5)),
+        axis.text.x = element_text(size = rel(0.8)),
+        plot.title = element_text(face = "bold", hjust = 0),
+        strip.placement = "outside",
+        strip.background.y = element_rect(fill = "#E0E0E0", color = "white"),
+        strip.background.x = element_rect(fill = "#F8BBD0", color = "white")) 
+ggsave("figures/Figure2.png", p, width=21*0.6, height=29.7*0.45, dpi=200, bg="white")
+p
 ```
 
 
@@ -920,5 +1445,3 @@ Need for context-specific items (cross-modal when possible, i.E., cardioception,
 
 
 New Scale: Multimodal Interoceptive Sensitivity Scale (MISS)
-
-
