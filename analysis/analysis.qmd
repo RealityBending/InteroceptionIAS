@@ -125,6 +125,8 @@ Total N = `r nrow(df1) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df
 
 #### Distribution
 
+The items with the differing distribution pattern (with a lower mode around 2/5) are "Affective Touch", "Blood Sugar" and "Bruise".
+
 ```{r}
 vars <- c(
   "Heart", "Hungry", "Breathing", "Thirsty", "Urinate", "Defecate", "Taste", "Vomit", "Sneeze", "Cough", "Temp",
@@ -146,12 +148,20 @@ dens6 <- estimate_density(select(df6, all_of(vars)), method = "kernSmooth") |>
 dens7 <- estimate_density(select(df7, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method = "kernSmooth") |>
   mutate(Sample = "Sample 7")
 
-rbind(dens1, dens2, dens3, dens4, dens5, dens6, dens7) |>
+p1 <- rbind(dens1, dens2, dens3, dens4, dens5, dens6, dens7) |>
+  # mutate(Dashed = ifelse(Parameter %in% c("Affective_touch", "Blood_Sugar", "Bruise"), TRUE, FALSE)) |> 
   ggplot(aes(x = x, y = y, color = Parameter)) +
   geom_line() +
+  scale_color_material_d() +
+  scale_linetype_manual(values = c("solid", "dashed"), guide="none") +
   theme_minimal() +
-  labs(title = "Distribution of Responses", x = "Response", y = "Density", color = "Item") +
+  theme(axis.text.y = element_blank(),
+        plot.title = element_text(face="bold", hjust=0.5)) +
+  labs(title = "Distribution of responses for all items across various datasets", x = "Response", y = "Density", color = "Item") +
   facet_wrap(~Sample, scales = "free", nrow = 4)
+
+ggsave("figures/Figure1.png", p1, width=10, height=10, dpi=200, bg="white")
+p1
 ```
 
 
@@ -1435,7 +1445,7 @@ Recommendations:
 
 Limitations:
 - Not much clear theorethical or empirical structure (small grouping of items)
-- Limited variability (clear mode at 4/5)
+- Limited variability (clear mode at 4/5), very low prevalence of 5/5 responses.
 - Ambiguous items which grouping depends on the context (and its awareness)
   - E.g., heart beating fast, vomit when nauseaous
 - Few items for some modalities (e.g., 1 for heart)

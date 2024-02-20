@@ -4,7 +4,8 @@ A reanalysis of Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & 
 
 
 - [**Results (old)**](https://realitybending.github.io/InteroceptionIAS/analysis/old/analysis.html)
+- [**Results**](https://realitybending.github.io/InteroceptionIAS/analysis/analysis.html)
 
 
-![](analysis/old/figures/Figure1.png)
-![](analysis/old/figures/Figure2.png)
+
+![](analysis/figures/Figure2.png)
