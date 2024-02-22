@@ -35,15 +35,25 @@ Reanalyze their data to confirm the factor structure of the IAS.
 ### Data Preparation
 
 ```{r}
-# https://osf.io/3m5nh
-df1 <- haven::read_sav("../data/Murphy2020/Study 1.sav") |>
+# Murphy (https://osf.io/3m5nh)
+df1a <- haven::read_sav("../data/Murphy2020/Study 1.sav") |>
   mutate_all(as.numeric) |>
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
 
-# https://osf.io/3m5nh
-df2 <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
+df1b <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
   mutate_all(as.numeric) |>
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
+
+# Gaggero (2021) (https://osf.io/5x9sg)
+load("../data/Gaggero2021/data.rda")
+df2 <- data |> 
+  mutate_all(as.numeric) |>
+  rename(
+    Gender=gender, Age=age, Heart = `IAS 1`, Hungry = `IAS 2`, Breathing = `IAS 3`, Thirsty = `IAS 4`,
+    Urinate = `IAS 5`, Defecate = `IAS 6`, Taste = `IAS 7`, Vomit = `IAS 8`, Sneeze = `IAS 9`,
+    Cough = `IAS 10`, Temp = `IAS 11`, Sex_arousal = `IAS 12`, Wind = `IAS 13`, Burp = `IAS 14`,
+    Muscles = `IAS 15`, Bruise = `IAS 16`, Pain = `IAS 17`, Blood_Sugar = `IAS 18`,
+    Affective_touch = `IAS 19`, Tickle = `IAS 20`, Itch = `IAS 21`)
 
 # Campos (2022) - Study 1 (https://osf.io/j6ef3)
 df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
@@ -57,8 +67,46 @@ df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
     Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21
   )
 
+# Brand (2023) - Study 1 (https://osf.io/3f2h6/)
+df4a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |> 
+  select(-COUNTRY_OTHER) |> 
+  mutate_all(as.numeric) |>
+  mutate(Gender = as.character(ifelse(SEX == 1, "Male", ifelse(SEX == 2, "Female", "Other")))) |> 
+  rename(
+    Age=AGE, Heart = IAS_01, Hungry = IAS_02, Breathing = IAS_03, Thirsty = IAS_04,
+    Urinate = IAS_05, Defecate = IAS_06, Taste = IAS_07, Vomit = IAS_08, Sneeze = IAS_09,
+    Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
+    Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+  )
+
+df4b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |> 
+  select(-COUNTRY_OTHER, -EDUCATION_OTHER) |> 
+  mutate_all(as.numeric) |> 
+  mutate(Gender = as.character(ifelse(GENDER == 2, "Male", ifelse(GENDER == 1, "Female", "Other")))) |> 
+  rename(
+    Age=AGE, Heart = IAS_01, Hungry = IAS_02, Breathing = IAS_03, Thirsty = IAS_04,
+    Urinate = IAS_05, Defecate = IAS_06, Taste = IAS_07, Vomit = IAS_08, Sneeze = IAS_09,
+    Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
+    Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+  )
+  
+  
+df4c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |> 
+  select(-ID) |> 
+  mutate_all(as.numeric) |>
+  mutate(Gender = as.character(ifelse(GENDER == 2, "Male", ifelse(GENDER == 1, "Female", "Other")))) |> 
+  rename(
+    Age=AGE, Heart = IA02_01, Hungry = IA02_02, Breathing = IA02_03, Thirsty = IA02_04,
+    Urinate = IA02_05, Defecate = IA02_06, Taste = IA02_07, Vomit = IA02_08, Sneeze = IA02_09,
+    Cough = IA02_10, Temp = IA02_11, Sex_arousal = IA02_12, Wind = IA02_13, Burp = IA02_14,
+    Muscles = IA02_15, Bruise = IA02_16, Pain = IA02_17, Blood_Sugar = IA02_18,
+    Affective_touch = IA02_19, Tickle = IA02_20, Itch = IA02_21
+  )
+
 # https://osf.io/3eztd
-df4 <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
+df5a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
   select(-sex) |> 
   mutate_all(as.numeric) |>
   mutate(Gender = as.character(ifelse(sex_dummy == 1, "Male", ifelse(sex_dummy == 0, "Female", "Other")))) |>
@@ -72,7 +120,7 @@ df4 <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
   ) # No tickle because same Chinese character
 
 # https://osf.io/3eztd
-df5 <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
+df5b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
   mutate(Gender = as.character(ifelse(Sex == "男", "Male", ifelse(Sex == "女", "Female", "Other")))) |>
   rename(
     Heart = Heart, Hungry = HUNGR, Breathing = BREAT, Thirsty = Thirs,
@@ -82,16 +130,7 @@ df5 <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
     Affective_touch = Touch, Itch = ITCH
   ) # No tickle because same Chinese character
 
-df6 <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
-  rename(
-    Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
-    Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
-    Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
-    Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
-    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
-  )
-
-df7 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
+df6a <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
   rename(
     Gender = Sex, Heart = Item_IAS_Interoception_1, Hungry = Item_IAS_Interoception_2,
     Breathing = Item_IAS_Interoception_3, Thirsty = Item_IAS_Interoception_4,
@@ -104,24 +143,33 @@ df7 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameRe
     Tickle = Item_IAS_Skin_2, Itch = Item_IAS_Skin_3
   ) |>
   filter(!is.na(Urinate))
+
+df6b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
+  rename(
+    Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
+    Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
+    Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
+    Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+  )
 ```
 
 
 ### Participants
 
-- **Sample 1**: Data from Murphy's (2020) [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769), downloaded from OSF, included `r report::report_participants(df1, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 2**: Data from Murphy's (2020) [study 6](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769), downloaded from OSF, included `r report::report_participants(df2, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 3**: Data from Campos' (2022) [study 1](https://osf.io/j6ef3), downloaded from OSF, included `r report::report_participants(df3, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 4**: Data from Lin's (2023) [study 1 and 3](#ttps://osf.io/3eztd), downloaded from OSF, included `r report::report_participants(df4, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 5**: Data from Lin's (2023) [study 2](#ttps://osf.io/3eztd), downloaded from OSF, included `r report::report_participants(df5, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 6**: New dataset from [Makowski (under preparation)](https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv), included `r report::report_participants(df6, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 7**: New dataset from [Makowski (under preparation)](https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv), included `r report::report_participants(df7, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 1a**: Data from Murphy's (2020) [study 1](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769), downloaded from OSF, included `r report::report_participants(df1a, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 1b**: Data from Murphy's (2020) [study 6](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769), downloaded from OSF, included `r report::report_participants(df1b, age = "Age", sex = NA, gender = "Gender")`.
+<!-- - **Sample 2**: Data from Campos' (2022) [study 1](https://osf.io/j6ef3), downloaded from OSF, included `r report::report_participants(df2, age = "Age", sex = NA, gender = "Gender")`. -->
+<!-- - Sample 3: TODO -->
+<!-- - **Sample 4a**: Data from Lin's (2023) [study 1 and 3](#ttps://osf.io/3eztd), downloaded from OSF, included `r report::report_participants(df4a, age = "Age", sex = NA, gender = "Gender")`. -->
+<!-- - **Sample 4b**: Data from Lin's (2023) [study 2](#ttps://osf.io/3eztd), downloaded from OSF, included `r report::report_participants(df4b, age = "Age", sex = NA, gender = "Gender")`. -->
+<!-- - **Sample 5a**: New dataset from [Makowski (under preparation)](https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv), included `r report::report_participants(df5a, age = "Age", sex = NA, gender = "Gender")`. -->
+<!-- - **Sample 5b**: New dataset from [Makowski (under preparation)](https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv), included `r report::report_participants(df5b, age = "Age", sex = NA, gender = "Gender")`. -->
 
-Total N = `r nrow(df1) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7)`.
+Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4a) + nrow(df4b) + nrow(df4c) + nrow(df5a) + nrow(df5b) + nrow(df6a) + nrow(df6b)`.
 
 
 ### Descriptive
-
 
 #### Distribution
 
@@ -133,22 +181,31 @@ vars <- c(
   "Sex_arousal", "Wind", "Burp", "Muscles", "Bruise", "Pain", "Blood_Sugar", "Affective_touch", "Tickle", "Itch"
 )
 
-dens1 <- estimate_density(select(df1, all_of(vars)), method = "kernSmooth") |>
-  mutate(Sample = "Sample 1")
+dens1a <- estimate_density(select(df1a, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 1a")
+dens1b <- estimate_density(select(df1b, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 1b")
 dens2 <- estimate_density(select(df2, all_of(vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 2")
 dens3 <- estimate_density(select(df3, all_of(vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 3")
-dens4 <- estimate_density(select(df4, all_of(setdiff(vars, "Tickle"))), method = "kernSmooth") |>
-  mutate(Sample = "Sample 4")
-dens5 <- estimate_density(select(df5, all_of(setdiff(vars, "Tickle"))), method = "kernSmooth") |>
-  mutate(Sample = "Sample 5")
-dens6 <- estimate_density(select(df6, all_of(vars)), method = "kernSmooth") |>
-  mutate(Sample = "Sample 6")
-dens7 <- estimate_density(select(df7, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method = "kernSmooth") |>
-  mutate(Sample = "Sample 7")
+dens4a <- estimate_density(select(df4a, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 4a")
+dens4b <- estimate_density(select(df4b, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 4b")
+dens4c <- estimate_density(select(df4c, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 4c")
+dens5a <- estimate_density(select(df5a, all_of(setdiff(vars, "Tickle"))), method = "kernSmooth") |>
+  mutate(Sample = "Sample 5a")
+dens5b <- estimate_density(select(df5b, all_of(setdiff(vars, "Tickle"))), method = "kernSmooth") |>
+  mutate(Sample = "Sample 5b")
+dens6a <- estimate_density(select(df6a, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method = "kernSmooth") |>
+  mutate(Sample = "Sample 6a")
+dens6b <- estimate_density(select(df6b, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 6b")
 
-p1 <- rbind(dens1, dens2, dens3, dens4, dens5, dens6, dens7) |>
+
+p1 <- rbind(dens1a, dens1b, dens2, dens3, dens4a, dens4b, dens4c, dens5a, dens5b, dens6a, dens6b) |>
   # mutate(Dashed = ifelse(Parameter %in% c("Affective_touch", "Blood_Sugar", "Bruise"), TRUE, FALSE)) |> 
   ggplot(aes(x = x, y = y, color = Parameter)) +
   geom_line() +
@@ -156,7 +213,7 @@ p1 <- rbind(dens1, dens2, dens3, dens4, dens5, dens6, dens7) |>
   scale_linetype_manual(values = c("solid", "dashed"), guide="none") +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
-        plot.title = element_text(face="bold", hjust=0.5)) +
+        plot.title = element_text(face="bold")) +
   labs(title = "Distribution of responses for all items across various datasets", x = "Response", y = "Density", color = "Item") +
   facet_wrap(~Sample, scales = "free", nrow = 4)
 
@@ -166,18 +223,22 @@ p1
 
 
 ```{r}
-data1 <- normalize(select(df1, all_of(dens1$Parameter)), range = c(1, 5))
+data1a <- normalize(select(df1a, all_of(dens1a$Parameter)), range = c(1, 5))
+data1b <- normalize(select(df1b, all_of(dens1b$Parameter)), range = c(1, 5))
 data2 <- normalize(select(df2, all_of(dens2$Parameter)), range = c(1, 5))
 data3 <- normalize(select(df3, all_of(dens3$Parameter)), range = c(1, 5))
-data4 <- normalize(select(df4, all_of(dens4$Parameter)), range = c(1, 5))
-data5 <- normalize(select(df5, all_of(dens5$Parameter)), range = c(1, 5))
-data6 <- select(df6, all_of(dens6$Parameter))
-data7 <- select(df7, all_of(dens7$Parameter))
+data4a <- normalize(select(df4a, all_of(dens4a$Parameter)), range = c(1, 5))
+data4b <- normalize(select(df4b, all_of(dens4b$Parameter)), range = c(1, 5))
+data4c <- normalize(select(df4c, all_of(dens4c$Parameter)), range = c(1, 5))
+data5a <- normalize(select(df5a, all_of(dens5a$Parameter)), range = c(1, 5))
+data5b <- normalize(select(df5b, all_of(dens5b$Parameter)), range = c(1, 5))
+data6a <- select(df6a, all_of(dens6a$Parameter))
+data6b <- select(df6b, all_of(dens6b$Parameter))
 
 data_all <- rbind(
-  data1, data2, data3,
-  mutate(data4, Tickle = NA), mutate(data5, Tickle = NA),
-  data6, mutate(data7, Taste = NA, Cough = NA, Blood_Sugar = NA)
+  data1a, data1b, data2, data3, data4a, data4b, data4c,
+  mutate(data5a, Tickle = NA), mutate(data5b, Tickle = NA),
+  mutate(data6a, Taste = NA, Cough = NA, Blood_Sugar = NA), data6b
 )
 ```
 
@@ -215,11 +276,18 @@ make_correlation(data_all)
 ```
 
 
-##### Sample 1
+##### Sample 1a
 
 ```{r}
-make_correlation(data1)
+make_correlation(data1a)
 ```
+
+##### Sample 1b
+
+```{r}
+make_correlation(data1b)
+```
+
 
 ##### Sample 2
 
@@ -234,30 +302,48 @@ make_correlation(data2)
 make_correlation(data3)
 ```
 
-##### Sample 4
+##### Sample 4a
 
 ```{r}
-make_correlation(data4)
+make_correlation(data4a)
 ```
 
-##### Sample 5
+##### Sample 4b
 
 ```{r}
-make_correlation(data5)
+make_correlation(data4b)
 ```
 
-##### Sample 6
+##### Sample 4c
 
 ```{r}
-make_correlation(data6)
+make_correlation(data4c)
 ```
 
-##### Sample 7
+##### Sample 5a
 
 ```{r}
-make_correlation(data7)
+make_correlation(data5a)
 ```
 
+##### Sample 5b
+
+```{r}
+make_correlation(data5b)
+```
+
+
+##### Sample 6a
+
+```{r}
+make_correlation(data6a)
+```
+
+##### Sample 6b
+
+```{r}
+make_correlation(data6b)
+```
 
 
 :::
@@ -393,17 +479,17 @@ egas_all <- make_egas(data_all)
 egas_all$p
 ```
 
-##### Sample 1
+##### Sample 1a
 
 ```{r}
-egas1 <- make_egas(data1)
+egas1 <- make_egas(data1a)
 egas1$p
 ```
 
-##### Sample 2
+##### Sample 1b
 
 ```{r}
-egas2 <- make_egas(data2)
+egas2 <- make_egas(data1b)
 egas2$p
 ```
 
@@ -1031,25 +1117,25 @@ save(scores, file = "../data/scores.RData")
 
 load("../data/scores.RData")
 
-df1 <- cbind(df1, scores$sample1)
-df2 <- cbind(df2, scores$sample2)
+df1a <- cbind(df1a, scores$sample1)
+df1b <- cbind(df1b, scores$sample2)
 df3 <- cbind(df3, scores$sample3)
-df4 <- cbind(df4, scores$sample4)
-df5 <- cbind(df5, scores$sample5)
-df6 <- cbind(df6, scores$sample6)
-df7 <- cbind(df7, scores$sample7)
+df4a <- cbind(df4a, scores$sample4)
+df4b <- cbind(df4b, scores$sample5)
+df5b <- cbind(df5b, scores$sample6)
+df5a <- cbind(df5a, scores$sample7)
 
 vars_intero <- names(select(scores$sample1, -Sample))
 vars_cfa <- names(select(scores$sample1, -Sample, -starts_with("EGA")))
 vars_cfa7 <- vars_cfa[vars_cfa != "CoughSneeze"]
 
-# names(df1)
-# names(df2)
+# names(df1a)
+# names(df1b)
 # names(df3)  # TAS, BPQ
-# names(df4)  # BPQ
-# names(df5)  # PHQ, TAS
-# names(df6)  # BDI, STAI
-# names(df7)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
+# names(df4a)  # BPQ
+# names(df4b)  # PHQ, TAS
+# names(df5b)  # BDI, STAI
+# names(df5a)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
 ```
 
 ### EGA and CFA
@@ -1058,13 +1144,13 @@ vars_cfa7 <- vars_cfa[vars_cfa != "CoughSneeze"]
 #| warning: false
 
 df_scores <- rbind(
-  select(df1, all_of(vars_intero)),
-  select(df2, all_of(vars_intero)),
+  select(df1a, all_of(vars_intero)),
+  select(df1b, all_of(vars_intero)),
   select(df3, all_of(vars_intero)),
-  select(df4, all_of(vars_intero)),
-  select(df5, all_of(vars_intero)),
-  select(df6, all_of(vars_intero)),
-  select(df7, all_of(vars_intero))
+  select(df4a, all_of(vars_intero)),
+  select(df4b, all_of(vars_intero)),
+  select(df5b, all_of(vars_intero)),
+  select(df5a, all_of(vars_intero))
 )
 
 correlation::correlation(df_scores, redundant = TRUE) |>
@@ -1112,13 +1198,13 @@ make_diff <- function(df, vars, component=NA) {
 }
 
 data <- rbind(
-  make_diff(df1, vars_cfa, component="Demographic"),
-  make_diff(df2, vars_cfa, component="Demographic"),
+  make_diff(df1a, vars_cfa, component="Demographic"),
+  make_diff(df1b, vars_cfa, component="Demographic"),
   make_diff(df3, vars_cfa, component="Demographic"),
-  make_diff(df4, vars_cfa, component="Demographic"),
-  make_diff(df5, vars_cfa, component="Demographic"),
-  make_diff(df6, vars_cfa, component="Demographic"),
-  make_diff(df7, vars_cfa7, component="Demographic")
+  make_diff(df4a, vars_cfa, component="Demographic"),
+  make_diff(df4b, vars_cfa, component="Demographic"),
+  make_diff(df5b, vars_cfa, component="Demographic"),
+  make_diff(df5a, vars_cfa7, component="Demographic")
 ) |> 
   mutate(var_Correlate = "Gender (Male vs. Female)")
 ```
@@ -1141,13 +1227,13 @@ make_cor <- function(df, vars, with = "Age", component=NA) {
 
 data <- rbind(
   data,
-  make_cor(df1, vars_cfa, with = "Age", component="Demographic"),
-  make_cor(df2, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df1a, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df1b, vars_cfa, with = "Age", component="Demographic"),
   make_cor(df3, vars_cfa, with = "Age", component="Demographic"),
-  make_cor(df4, vars_cfa, with = "Age", component="Demographic"),
-  make_cor(df5, vars_cfa, with = "Age", component="Demographic"),
-  make_cor(df6, vars_cfa, with = "Age", component="Demographic"),
-  make_cor(df7, vars_cfa7, with = "Age", component="Demographic")
+  make_cor(df4a, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df4b, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df5b, vars_cfa, with = "Age", component="Demographic"),
+  make_cor(df5a, vars_cfa7, with = "Age", component="Demographic")
 ) 
 ```
 
@@ -1166,7 +1252,7 @@ data <- rbind(
     mutate(var_Correlate = "Body Awareness"),
   make_cor(df3, vars_cfa, with = "BPQ_AutonomicReactivity", component="Body") |> 
     mutate(var_Correlate = "Autonomic Reactivity"),
-  make_cor(df4, vars_cfa, with = "BPQ_A", component="Body") |> 
+  make_cor(df4a, vars_cfa, with = "BPQ_A", component="Body") |> 
     mutate(var_Correlate = "Body Awareness")
 )
 ```
@@ -1174,21 +1260,21 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "MAIA_AttentionRegulation", component="MAIA")  |> 
+  make_cor(df5a, vars_cfa7, with = "MAIA_AttentionRegulation", component="MAIA")  |> 
     mutate(var_Correlate = "Attention Regulation"),
-  make_cor(df7, vars_cfa7, with = "MAIA_BodyListening", component="MAIA") |> 
+  make_cor(df5a, vars_cfa7, with = "MAIA_BodyListening", component="MAIA") |> 
     mutate(var_Correlate = "Body Listening"),
-  make_cor(df7, vars_cfa7, with = "MAIA_EmotionalAwareness", component="MAIA") |> 
+  make_cor(df5a, vars_cfa7, with = "MAIA_EmotionalAwareness", component="MAIA") |> 
     mutate(var_Correlate = "Emotional Awareness"),
-  make_cor(df7, vars_cfa7, with = "MAIA_NotDistracting", component="MAIA") |> 
+  make_cor(df5a, vars_cfa7, with = "MAIA_NotDistracting", component="MAIA") |> 
     mutate(var_Correlate = "Not Distracting"),
-  make_cor(df7, vars_cfa7, with = "MAIA_Noticing", component="MAIA") |> 
+  make_cor(df5a, vars_cfa7, with = "MAIA_Noticing", component="MAIA") |> 
     mutate(var_Correlate = "Noticing"),
-  make_cor(df7, vars_cfa7, with = "MAIA_NotWorrying", component="MAIA") |> 
+  make_cor(df5a, vars_cfa7, with = "MAIA_NotWorrying", component="MAIA") |> 
     mutate(var_Correlate = "Not Worrying"),
-  make_cor(df7, vars_cfa7, with = "MAIA_SelfRegulation", component="MAIA") |> 
+  make_cor(df5a, vars_cfa7, with = "MAIA_SelfRegulation", component="MAIA") |> 
     mutate(var_Correlate = "Self Regulation"),
-  make_cor(df7, vars_cfa7, with = "MAIA_Trusting", component="MAIA") |> 
+  make_cor(df5a, vars_cfa7, with = "MAIA_Trusting", component="MAIA") |> 
     mutate(var_Correlate = "Trusting")
 )
 ```
@@ -1196,7 +1282,7 @@ data <- rbind(
 
 ```{r}
 # names(df3)[str_detect(names(df3), "TAS")]
-# names(df5)[str_starts(names(df5), "TAS")]
+# names(df4b)[str_starts(names(df4b), "TAS")]
 
 data <- rbind(
   data,
@@ -1206,9 +1292,9 @@ data <- rbind(
     mutate(var_Correlate = "Difficulties Describing Feelings"),
   make_cor(df3, vars_cfa, with = "TAS_ExternallyOrientedThinking", component="Body") |> 
     mutate(var_Correlate = "External Thinking"),
-  make_cor(df5, vars_cfa, with = "TAS_DIF", component="Body") |> 
+  make_cor(df4b, vars_cfa, with = "TAS_DIF", component="Body") |> 
     mutate(var_Correlate = "Difficulties Identifying Feelings"),
-  make_cor(df5, vars_cfa, with = "TAS_DDF", component="Body") |> 
+  make_cor(df4b, vars_cfa, with = "TAS_DDF", component="Body") |> 
     mutate(var_Correlate = "Difficulties Describing Feelings")
 )
 ```
@@ -1218,13 +1304,13 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df5, vars_cfa, with = "PHQ15_sum", component="Mood") |> 
+  make_cor(df4b, vars_cfa, with = "PHQ15_sum", component="Mood") |> 
     mutate(var_Correlate = "Somatic Concerns (PHQ-15)"),
-  make_cor(df5, vars_cfa, with = "PHQ9_sum", component="Mood")|> 
+  make_cor(df4b, vars_cfa, with = "PHQ9_sum", component="Mood")|> 
     mutate(var_Correlate = "Depression (PHQ-9)"),
-  make_cor(df7, vars_cfa7, with = "PHQ4_Depression", component="Mood") |> 
+  make_cor(df5a, vars_cfa7, with = "PHQ4_Depression", component="Mood") |> 
     mutate(var_Correlate = "Depression (PHQ-4)"),
-  make_cor(df7, vars_cfa7, with = "PHQ4_Anxiety", component="Mood") |> 
+  make_cor(df5a, vars_cfa7, with = "PHQ4_Anxiety", component="Mood") |> 
     mutate(var_Correlate = "Anxiety (PHQ-4)")
 )
 ```
@@ -1232,7 +1318,7 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df6, vars_cfa, with = "BDI2_Total", component="Mood") |> 
+  make_cor(df5b, vars_cfa, with = "BDI2_Total", component="Mood") |> 
     mutate(var_Correlate = "Depression (BDI-II)")
 )
 ```
@@ -1240,7 +1326,7 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df6, vars_cfa, with = "STAI5_General", component="Mood") |> 
+  make_cor(df5b, vars_cfa, with = "STAI5_General", component="Mood") |> 
     mutate(var_Correlate = "Anxiety (STAI-5)")
 )
 ```
@@ -1249,7 +1335,7 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "BPD", component="Mood") |> 
+  make_cor(df5a, vars_cfa7, with = "BPD", component="Mood") |> 
     mutate(var_Correlate = "Boderline Personality")
 )
 ```
@@ -1261,15 +1347,15 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "PID5_Antagonism", component="Maladaptive") |> 
+  make_cor(df5a, vars_cfa7, with = "PID5_Antagonism", component="Maladaptive") |> 
     mutate(var_Correlate = "Antagonism"),
-  make_cor(df7, vars_cfa7, with = "PID5_Detachment", component="Maladaptive") |> 
+  make_cor(df5a, vars_cfa7, with = "PID5_Detachment", component="Maladaptive") |> 
     mutate(var_Correlate = "Detachment"),
-  make_cor(df7, vars_cfa7, with = "PID5_Disinhibition", component="Maladaptive") |> 
+  make_cor(df5a, vars_cfa7, with = "PID5_Disinhibition", component="Maladaptive") |> 
     mutate(var_Correlate = "Disinhibition"),
-  make_cor(df7, vars_cfa7, with = "PID5_NegativeAffect", component="Maladaptive") |> 
+  make_cor(df5a, vars_cfa7, with = "PID5_NegativeAffect", component="Maladaptive") |> 
     mutate(var_Correlate = "Negative Affect"),
-  make_cor(df7, vars_cfa7, with = "PID5_Psychoticism", component="Maladaptive") |> 
+  make_cor(df5a, vars_cfa7, with = "PID5_Psychoticism", component="Maladaptive") |> 
     mutate(var_Correlate = "Psychoticism")
 )
 ```
@@ -1277,41 +1363,41 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "SPQ_ConstrictedAffect", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_ConstrictedAffect", component="Schizotypic") |> 
     mutate(var_Correlate = "Constricted Affect"),
-  make_cor(df7, vars_cfa7, with = "SPQ_Eccentric", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_Eccentric", component="Schizotypic") |> 
     mutate(var_Correlate = "Eccentric"),
-  make_cor(df7, vars_cfa7, with = "SPQ_MagicalThinking", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_MagicalThinking", component="Schizotypic") |> 
     mutate(var_Correlate = "Magical Thinking"),
-  make_cor(df7, vars_cfa7, with = "SPQ_NoCloseFriends", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_NoCloseFriends", component="Schizotypic") |> 
     mutate(var_Correlate = "No Close Friends"),
-  make_cor(df7, vars_cfa7, with = "SPQ_OddSpeech", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_OddSpeech", component="Schizotypic") |> 
     mutate(var_Correlate = "Odd Speech"),
-  make_cor(df7, vars_cfa7, with = "SPQ_Reference", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_Reference", component="Schizotypic") |> 
     mutate(var_Correlate = "Reference"),
-  make_cor(df7, vars_cfa7, with = "SPQ_SocialAnxiety", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_SocialAnxiety", component="Schizotypic") |> 
     mutate(var_Correlate = "Social Anxiety"),
-  make_cor(df7, vars_cfa7, with = "SPQ_Suspiciousness", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_Suspiciousness", component="Schizotypic") |> 
     mutate(var_Correlate = "Suspiciousness"),
-  make_cor(df7, vars_cfa7, with = "SPQ_UnusualPerceptions", component="Schizotypic") |> 
+  make_cor(df5a, vars_cfa7, with = "SPQ_UnusualPerceptions", component="Schizotypic") |> 
     mutate(var_Correlate = "Unusual Perceptions")
 )
 ```
 
 
 ```{r}
-#  names(select(df7, starts_with("ASQ")))
+#  names(select(df5a, starts_with("ASQ")))
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "ASQ_Imagination", component="Autistic") |> 
+  make_cor(df5a, vars_cfa7, with = "ASQ_Imagination", component="Autistic") |> 
     mutate(var_Correlate = "Imagination"),
-  make_cor(df7, vars_cfa7, with = "ASQ_LackSocialSkills", component="Autistic") |>
+  make_cor(df5a, vars_cfa7, with = "ASQ_LackSocialSkills", component="Autistic") |>
     mutate(var_Correlate = "Lack of Social Skills"),
-  make_cor(df7, vars_cfa7, with = "ASQ_LowAttentionalSwitching", component="Autistic") |>
+  make_cor(df5a, vars_cfa7, with = "ASQ_LowAttentionalSwitching", component="Autistic") |>
     mutate(var_Correlate = "Low Attentional Switching"),
-  make_cor(df7, vars_cfa7, with = "ASQ_Patterns", component="Autistic") |>
+  make_cor(df5a, vars_cfa7, with = "ASQ_Patterns", component="Autistic") |>
     mutate(var_Correlate = "Patterns and Numbers"),
-  make_cor(df7, vars_cfa7, with = "ASQ_Routine", component="Autistic") |>
+  make_cor(df5a, vars_cfa7, with = "ASQ_Routine", component="Autistic") |>
     mutate(var_Correlate = "Routines")
 )
 ```
@@ -1322,17 +1408,17 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "IPIP6_Agreeableness", component="Personality") |> 
+  make_cor(df5a, vars_cfa7, with = "IPIP6_Agreeableness", component="Personality") |> 
     mutate(var_Correlate = "Agreeableness"),
-  make_cor(df7, vars_cfa7, with = "IPIP6_Conscientiousness", component="Personality") |>
+  make_cor(df5a, vars_cfa7, with = "IPIP6_Conscientiousness", component="Personality") |>
     mutate(var_Correlate = "Conscientiousness"),
-  make_cor(df7, vars_cfa7, with = "IPIP6_Neuroticism", component="Personality") |>
+  make_cor(df5a, vars_cfa7, with = "IPIP6_Neuroticism", component="Personality") |>
     mutate(var_Correlate = "Neuroticism"),
-  make_cor(df7, vars_cfa7, with = "IPIP6_Openness", component="Personality") |>
+  make_cor(df5a, vars_cfa7, with = "IPIP6_Openness", component="Personality") |>
     mutate(var_Correlate = "Openness"),
-  make_cor(df7, vars_cfa7, with = "IPIP6_Extraversion", component="Personality") |>
+  make_cor(df5a, vars_cfa7, with = "IPIP6_Extraversion", component="Personality") |>
     mutate(var_Correlate = "Extraversion"),
-  make_cor(df7, vars_cfa7, with = "IPIP6_HonestyHumility", component="Personality") |>
+  make_cor(df5a, vars_cfa7, with = "IPIP6_HonestyHumility", component="Personality") |>
     mutate(var_Correlate = "Honesty-Humility")
 )
 ```
@@ -1340,33 +1426,34 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "PI_Alive", component="World Beliefs") |> 
+  make_cor(df5a, vars_cfa7, with = "PI_Alive", component="World Beliefs") |> 
     mutate(var_Correlate = "Alive"),
-  make_cor(df7, vars_cfa7, with = "PI_Changing", component="World Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "PI_Changing", component="World Beliefs") |>
     mutate(var_Correlate = "Changing"),
-  make_cor(df7, vars_cfa7, with = "PI_Enticing", component="World Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "PI_Enticing", component="World Beliefs") |>
     mutate(var_Correlate = "Enticing"),
-  make_cor(df7, vars_cfa7, with = "PI_Good", component="World Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "PI_Good", component="World Beliefs") |>
     mutate(var_Correlate = "Good"),
-  make_cor(df7, vars_cfa7, with = "PI_Hierarchical", component="World Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "PI_Hierarchical", component="World Beliefs") |>
     mutate(var_Correlate = "Hierarchical"),
-  make_cor(df7, vars_cfa7, with = "PI_Safe", component="World Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "PI_Safe", component="World Beliefs") |>
     mutate(var_Correlate = "Safe")
+  # TODO: Add understanble
 )
 ```
 
 ```{r}
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs") |> 
+  make_cor(df5a, vars_cfa7, with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs") |> 
     mutate(var_Correlate = "Extraterrestrial"),
-  make_cor(df7, vars_cfa7, with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs") |>
     mutate(var_Correlate = "Global Conspiracies"),
-  make_cor(df7, vars_cfa7, with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs") |>
     mutate(var_Correlate = "Government Malfeasance"),
-  make_cor(df7, vars_cfa7, with = "GCBS_InformationControl", component="Conspiracy Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "GCBS_InformationControl", component="Conspiracy Beliefs") |>
     mutate(var_Correlate = "Information Control"),
-  make_cor(df7, vars_cfa7, with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs") |>
+  make_cor(df5a, vars_cfa7, with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs") |>
     mutate(var_Correlate = "Personal Wellbeing")
 )
 ```
@@ -1374,13 +1461,13 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df7, vars_cfa7, with = "LIE_Ability", component="Lying Profile") |> 
+  make_cor(df5a, vars_cfa7, with = "LIE_Ability", component="Lying Profile") |> 
     mutate(var_Correlate = "Ability"),
-  make_cor(df7, vars_cfa7, with = "LIE_Frequency", component="Lying Profile") |>
+  make_cor(df5a, vars_cfa7, with = "LIE_Frequency", component="Lying Profile") |>
     mutate(var_Correlate = "Frequency"),
-  make_cor(df7, vars_cfa7, with = "LIE_Contextuality", component="Lying Profile") |>
+  make_cor(df5a, vars_cfa7, with = "LIE_Contextuality", component="Lying Profile") |>
     mutate(var_Correlate = "Contextuality"),
-  make_cor(df7, vars_cfa7, with = "LIE_Negativity", component="Lying Profile") |>
+  make_cor(df5a, vars_cfa7, with = "LIE_Negativity", component="Lying Profile") |>
     mutate(var_Correlate = "Negativity")
 )
 ```
