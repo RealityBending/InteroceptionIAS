@@ -1,0 +1,2417 @@
+---
+title: "Seeing through each other’s hearts: Inferring others' heart rate as a function of own heart rate perception and perceived social intelligence"
+author: "Irena Arslanova"
+date: "27/05/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# This markdown is an analysis pipeline for Actor HR & Schandry online replication study. 
+Main excel files should be downloaded along this file from OSF and put into the same folder.
+The excel files are already pre-organised, meaning that each set of participants was loaded from Gorilla and put together into a single sheet with only relevant columns selected
+## Load packages and functions:
+```{r, message = FALSE}
+library(openxlsx)
+library(tidyverse)
+library(Hmisc)
+library(corrplot)
+library(ggpubr)
+library(nlme)
+library(lme4)
+library(ggplot2)
+library(mediation)
+library(rsq)
+library(ggpubr)
+library(cowplot)
+library(plyr)
+library(plotrix)
+library(cowplot)
+library(rstatix)
+library(BayesFactor)
+library(bayestestR)
+library(ez)
+library(psychReport)
+library(metaSDT)
+library(data.table)
+library(wesanderson)
+library(performance)
+library(car)
+library(BayesFactor)
+library(bayestestR)
+library(interactions)
+library(viridis)
+library(ggstance)
+library(broom.mixed)
+library(scales)
+library(psych)
+
+
+# The source for the violin distribution plot:
+source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
+
+lb <- function(x) mean(x) - std.error(x)
+ub <- function(x) mean(x) + std.error(x)
+
+knitr::opts_chunk$set(message = FALSE)
+
+# I want to set the working directory based on the computer I am using
+# first, I will try to find where this markdown is located on the system:
+work_dir <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(work_dir)
+getwd()
+knitr::opts_knit$set(root.dir = work_dir)
+
+```
+
+## Load and organise all the data: Schandry, Questionnaires (IAS, SI), ActorHR task
+
+
+### SCANDRY
+
+#### Load pre-existing Schandry dataset:
+```{r}
+exel_file <- paste(work_dir, "Schandry_Irena.xlsx", sep="/")
+Schandry <- read.xlsx(xlsxFile= exel_file, sheet = "Sheet 1")
+
+```
+
+#### Remove excluded participants:
+for Schandry we only look at the reduced sample
+```{r}
+removep <- c("5b82d4fda284bc000193094c", "5bdb50e3ee652a0001efa0e0", "5db43b6a2f45e7000bb7ab5c", "5dc1e711900e3e15813f7c38", "5de7ccc24b7cf973d7b05bfb", "5e03fdb2ac9e16edc91d0108", "5e4314ad234956000a8a91f3", "5f573b18a6a8b51a94fdbd08", "5f75cd50d19e2a28374120ff", "5f78879e60d68143137b5931", "5fae5291ec402509e2885604", "6002e90144049f32edaf9ccf", "60087da4a426a14ac248b803", "601c84e07ab4907ded068d0d", "6032af5b3a3b7a2f5570fbdf", "603d301c7ebc27be3c7b5ea4", "604e1a9533738c74ad5879d2", "605996d037bce4fb5488a375", "606168c7da6829aa69acf033", "60719da557d8241609b26e83", "607f0ad32fd52dbc961cefc0", "60a183e7a5e5e6991afd6796", "60a7c099a678670592ba187a", "60af52990d170be944d0df18", "60b68fc2c92926cd9af2733b", "60b713c5f76777e302824caf", "60b87b074ce3cf9de9d47962", "60b895235deea4c7bf48b85a", "60e7360a87d1675a8574cd30", "60eb105221914f6f26a89908")
+
+Schandry_onlyaccepted <- Schandry[ !(Schandry$Subj.ID %in% removep), ] # ActorHR exclusion
+
+removep2 <- c("575b2b408b705300078ae5e6", "588093c6704f1100014a3d01", "5a9b20c535237b0001129820", "5aeb063b2f05b500013028a0", "5bf1ecfcaf38d100016c1171", "5d07fc124e753800168ccafe", "5d68c8aa40524c00189e8ac2", "5d88b1c27250e90001c40cfc", "5d8cef3c28e183001a335ab0", "5e15e7a61d4607bd245169d9", "5e28e735ea776009d4d15c34", "5e3e11a36a0b8a000c609d5e", "5e4bc6e3a767d8018bd8e2be", "5e7d09e7f0a5a00c4a1ccf96", "5e92f26b444572122fdfe44d", "5ea976c0ae936906ffed032e", "5eaaec78a563dc0724c63b98", "5ebc2b0a9b711a04722d7382", "5ec4e3db7e31c83dfc851b83", "5ef1bb10c673fd7d2d14e439", "5f50191209e6d018aeb925f5", "5f600669b846780f0fe45709", "5f6ea775bc475b407020431f", "5f8cbc5c355ea745e6cef2ca", "5fa949031fdafd084c4d0812", "5fbb7aae04da87a3fe5f129c", "5fc92eb719e43600082952d9", "601129f77e0c21000b0c408a", "601952130cd928000a796a8b", "6022dfbafb748f0ca0385db9", "602d965dc8c74282fc222c7e", "60338f35010951035cca4a91", "603862f99e00971c55fe0874", "603ecc7968ff0bf9b25e4bf1", "603ffa13fa433c1989bff9e3", "60445f787075a64dbae085c5", "60527c19066274811cb7ca77", "607071077825ce1b96d83505", "6074b929f753216d88c77e88", "60850f02822cdda28b5ecfcb", "609478fa9e5b4d075246cfaf", "609d2b711c0593de2807d045", "60a2dffd4d05d87faf96873b", "60b405631fbdf499c48838ca", "60b60d67bbc65b38b155536e", "60c07a36ba668880b8010450", "60eb841bc608d3c01a7c5582")
+
+Schandry_onlyaccepted <- Schandry_onlyaccepted[ !(Schandry_onlyaccepted$Subj.ID %in% removep2), ] # Schandry exclusion
+
+```
+
+#### Plot HR across the 3 intervals for each participant:
+```{r}
+# for each participant: interval - HR - counted - difference (Iacc)
+Schandry_onlyaccepted$diff <- 1 - abs(Schandry_onlyaccepted$HR - Schandry_onlyaccepted$HR_counted) / Schandry_onlyaccepted$HR
+
+x <- dplyr::select(Schandry_onlyaccepted, Subj.ID, smoothy, interval, diff)
+
+# plot smoothy
+p_HR <- ggplot(x, aes(x = interval, y=smoothy)) +
+  #geom_point(size= 2, shape = 21, colour = "black", fill =  "black", position=position_jitter(width = 0.4, height = 0)) +
+  geom_line(aes(x = interval, y=smoothy, group = Subj.ID), colour = "black", alpha = 0.5) +
+  scale_y_continuous(limits= c(50,106), breaks = c(50, 60, 70, 80, 90, 100), labels = c("50","60", "70", "80","90","100")) +
+  scale_x_continuous(limits= c(24.5,45.5), breaks = c(25,35,45), labels = c("25", "35", "45"))
+  #scale_fill_manual(values = colors_9)
+
+p_HR <- p_HR + theme_classic() +
+  theme(text = element_text(size = 10),
+        legend.position = "none") +
+  labs(y="heart rate (bpm)", x = "interval")
+
+# plot IAcc
+p_Iacc <- ggplot(x, aes(x = interval, y=diff)) +
+  #geom_point(size= 2, shape = 21, colour = "black", fill =  "black", position=position_jitter(width = 0.4, height = 0)) +
+  geom_line(aes(x = interval, y=diff, group = Subj.ID), colour = "black", alpha = 0.5) +
+  scale_y_continuous(limits= c(0,1), breaks = c(0, 0.25, 0.5, 0.75, 1), labels = c("0","0.25", "0.5", "0.75","1")) +
+  scale_x_continuous(limits= c(24.5,45.5), breaks = c(25,35,45), labels = c("25", "35", "45"))
+  #scale_fill_manual(values = colors_9)
+
+p_Iacc <- p_Iacc + theme_classic() +
+  theme(text = element_text(size = 10),
+        legend.position = "none") +
+  labs(y="I_Acc", x = "interval")
+
+g <- ggarrange(p_HR, p_Iacc,
+          labels = c("A", "B"),
+          ncol = 2, nrow = 1)
+suppressWarnings(print(g))
+
+ggsave("prem.pdf", g, width = 6, height = 3, dpi= 300)
+
+```
+
+#### Difference in IAcc and HR across the three trials with ICC
+```{r}
+# HR:
+x <- dplyr::select(Schandry_onlyaccepted, Subj.ID, smoothy, interval)
+
+wide <- dcast(setDT(x), Subj.ID ~ paste0("interval", interval), value.var = "smoothy", sep = "_")
+wide <- dplyr::select(wide, -Subj.ID)
+
+i <- ICC(as.matrix(wide))
+i
+
+# IAcc
+x <- dplyr::select(Schandry_onlyaccepted, Subj.ID, diff, interval)
+
+wide <- dcast(setDT(x), Subj.ID ~ paste0("interval", interval), value.var = "diff", sep = "_")
+wide <- dplyr::select(wide, -Subj.ID)
+
+i <- ICC(as.matrix(wide))
+i
+
+```
+
+#### Check stability of the HR power across the intervals:
+```{r}
+subs <- unique(Schandry_onlyaccepted$Subj.ID)
+subs_num <- length(subs)
+
+# check order:
+# ABC -> diff 25-35 & 35-45
+# BCA -> diff 35-45 & 45-25
+# CAB -> diff 45-25 & 25-35
+HRraw_check <- matrix(NA, nrow = subs_num, ncol = 3)
+
+for(r in 1:subs_num){
+  x <- subset(Schandry_onlyaccepted, Subj.ID == subs[r])
+  HRraw_check[r, 1] <- subs[r]
+  
+  num_available_intervals <- nrow(x)
+  available_intervals <- unique(x$interval)
+  
+  if(x$order[1] == "ABC"){
+    HRraw_check[r, 2] <-  abs(round(x$smoothy[x$interval==25] - x$smoothy[x$interval==35], digits = 1))
+    HRraw_check[r, 3] <-  abs(round(x$smoothy[x$interval==35] - x$smoothy[x$interval==45], digits = 1))
+  }
+  else if(x$order[1] == "BCA"){
+    HRraw_check[r, 2] <-  abs(round(x$smoothy[x$interval==35] - x$smoothy[x$interval==45], digits = 1))
+    HRraw_check[r, 3] <-  abs(round(x$smoothy[x$interval==45] - x$smoothy[x$interval==25], digits = 1))
+  }
+  else if(x$order[1] == "CAB"){
+    HRraw_check[r, 2] <-  abs(round(x$smoothy[x$interval==45] - x$smoothy[x$interval==25], digits = 1))
+    HRraw_check[r, 3] <-  abs(round(x$smoothy[x$interval==25] - x$smoothy[x$interval==35], digits = 1))
+  }
+  
+}
+
+HRraw_check <- as.data.frame(HRraw_check)
+names(HRraw_check) = c("Subj", "Smoothy_diff1", "Smoothy_diff2")
+
+# add a variable that shows maximum in each measure:
+for(r in 1:nrow(HRraw_check)){
+  row <- as.matrix(HRraw_check[r, 2:3])
+  HRraw_check$Smoothy_max[r] <- max(as.numeric(row))
+}
+
+HRraw_check$Smoothy_max <- as.numeric(HRraw_check$Smoothy_max)
+
+```
+
+#### Plot the degree of difference:
+```{r fig.width = 5, fig.height= 3}
+
+HRraw_check2 <- gather(HRraw_check, Factor, Difference, HR_power_25vs35:Smoothy_max, factor_key=FALSE)
+HRraw_check2 <- filter(HRraw_check2, Factor == "HR_power_max" | Factor == "Smoothy_max")
+HRraw_check2$Factor <- as.factor(HRraw_check2$Factor)
+HRraw_check2$Subj <- as.factor(HRraw_check2$Subj)
+HRraw_check2$Difference <- as.numeric(HRraw_check2$Difference)
+
+p <- ggplot(HRraw_check2, aes(x = reorder(Subj, Difference), y = Difference, fill = Factor)) + 
+  geom_bar(stat="identity", position=position_dodge()) +
+  scale_y_continuous(limits= c(0,74), breaks = c(7, 20, 40, 60), labels = c("7", "20","40","60")) +
+  geom_abline(intercept = 7, slope = 0, color="#899DA4", linetype="dashed") +
+  geom_abline(intercept = 20, slope = 0, color="#C93312", linetype="dashed") +
+  scale_fill_manual(values = c("#899DA4", "#C93312"))
+  
+p <- p + theme_classic() +
+  theme(text = element_text(size = 12), 
+        axis.text.x=element_blank(),
+        plot.title = element_text(vjust = -6, hjust = 0.1),
+        legend.position = c(0.2, 0.5)) +
+  labs(x="Subject", y = "Max difference across intervals", title = "Maximum difference between intervals")
+  
+p
+ggsave("HR_interval_maxdiff.png", width = 5, height = 3, dpi= 300)
+
+```
+
+#### Calculate Iacc and Iawareness for each participant (make sure you account that some participants might be missing an interval)
+```{r}
+subs <- unique(Schandry_onlyaccepted$Subj.ID)
+subs_num <- length(subs)
+Intero_perf <- matrix(NA, nrow = subs_num, ncol = 4)
+
+for(r in 1:subs_num){
+  x <- subset(Schandry_onlyaccepted, Subj.ID == subs[r])
+  num_available_intervals <- nrow(x)
+  available_intervals <- unique(x$interval)
+  interval_vec <- matrix(NA, nrow = 1, ncol = num_available_intervals)
+  
+  for(i in 1:num_available_intervals){
+    x2 <- subset(x, interval==available_intervals[i])
+    interval_vec[i] <- 1- abs(x2$HR - x2$HR_counted) / x2$HR # acc for each available interval
+  }
+  
+  Intero_perf[r, 1] <- x2$Subj.ID
+  Intero_perf[r, 2] <- sum(interval_vec) / num_available_intervals
+  
+  x$Confidence <- x$Confidence / 10 # to put the confidence on a scale from 0 to 1
+  
+  interval_conf <- matrix(NA, nrow = 1, ncol = num_available_intervals)
+  interval_meanconf <- matrix(NA, nrow = 1, ncol = num_available_intervals)
+  
+  for(i in 1:num_available_intervals){
+    x2 <- subset(x, interval==available_intervals[i])
+    interval_conf[i] <- interval_vec[i] - x2$Confidence # conf for each available interval
+    interval_meanconf[i] <- x2$Confidence
+  }
+  
+  # positive values on Iawareness reflect underestimation of Iacc
+  # negative values reflect overestimation of Iacc
+  
+  Intero_perf[r, 3] <- sum(interval_conf) / num_available_intervals
+  Intero_perf[r, 4] <- mean(interval_meanconf)
+}
+
+Intero_perf <- as.data.frame(Intero_perf)
+names(Intero_perf) = c("Subj", "IAcc", "Iawareness", "meanConfidence")
+Intero_perf$Subj <- as.factor(Intero_perf$Subj)
+Intero_perf$IAcc <- as.numeric(Intero_perf$IAcc)
+Intero_perf$Iawareness <- as.numeric(Intero_perf$Iawareness)
+Intero_perf$meanConfidence <- as.numeric(Intero_perf$meanConfidence)
+```
+
+### IAS SCALE
+
+#### Load the preorgnised data:
+```{r}
+exel_file <- paste(work_dir, "Murphy_Iacc_scale.xlsx", sep="/")
+Murphy_Iacc_scale <- read.xlsx(xlsxFile= exel_file, sheet = "Sheet 1")
+
+```
+
+##### Attention check:
+```{r}
+Murphy_Iacc_scale <- filter(Murphy_Iacc_scale, Question.Key != "NA")
+subs <- unique(Murphy_Iacc_scale$Participant.Public.ID)
+subs_num <- length(subs)
+
+IAC_check <- matrix(NA, nrow = subs_num, ncol = 3)
+
+for(r in 1:subs_num){
+  IAC_check[r, 1] <- subs[r]
+  IAC_check[r, 2] <- Murphy_Iacc_scale$Response[Murphy_Iacc_scale$Participant.Public.ID==subs[r] & Murphy_Iacc_scale$Question.Key=="response-catch-2-quantised"] == 2 # attention check
+  IAC_check[r, 3] <- Murphy_Iacc_scale$Response[Murphy_Iacc_scale$Participant.Public.ID==subs[r] & Murphy_Iacc_scale$Question.Key=="IACC-Interpretation-quantised"] == 2 # interpretation check
+}
+
+```
+
+#### Remove excluded:
+```{r}
+# if you are running the initial analysis
+removep <- c("5b82d4fda284bc000193094c", "5bdb50e3ee652a0001efa0e0", "5db43b6a2f45e7000bb7ab5c", "5dc1e711900e3e15813f7c38", "5de7ccc24b7cf973d7b05bfb", "5e03fdb2ac9e16edc91d0108", "5e4314ad234956000a8a91f3", "5f573b18a6a8b51a94fdbd08", "5f75cd50d19e2a28374120ff", "5f78879e60d68143137b5931", "5fae5291ec402509e2885604", "6002e90144049f32edaf9ccf", "60087da4a426a14ac248b803", "601c84e07ab4907ded068d0d", "6032af5b3a3b7a2f5570fbdf", "603d301c7ebc27be3c7b5ea4", "604e1a9533738c74ad5879d2", "605996d037bce4fb5488a375", "606168c7da6829aa69acf033", "60719da557d8241609b26e83", "607f0ad32fd52dbc961cefc0", "60a183e7a5e5e6991afd6796", "60a7c099a678670592ba187a", "60af52990d170be944d0df18", "60b68fc2c92926cd9af2733b", "60b713c5f76777e302824caf", "60b87b074ce3cf9de9d47962", "60b895235deea4c7bf48b85a", "60e7360a87d1675a8574cd30", "60eb105221914f6f26a89908")
+
+Murphy_Iacc_scale <- Murphy_Iacc_scale[ !(Murphy_Iacc_scale$Participant.Public.ID %in% removep), ]
+
+# add if you are running the reduced sample for Schandry
+removep2 <- c("575b2b408b705300078ae5e6", "588093c6704f1100014a3d01", "5a9b20c535237b0001129820", "5aeb063b2f05b500013028a0", "5bf1ecfcaf38d100016c1171", "5d07fc124e753800168ccafe", "5d68c8aa40524c00189e8ac2", "5d88b1c27250e90001c40cfc", "5d8cef3c28e183001a335ab0", "5e15e7a61d4607bd245169d9", "5e28e735ea776009d4d15c34", "5e3e11a36a0b8a000c609d5e", "5e4bc6e3a767d8018bd8e2be", "5e7d09e7f0a5a00c4a1ccf96", "5e92f26b444572122fdfe44d", "5ea976c0ae936906ffed032e", "5eaaec78a563dc0724c63b98", "5ebc2b0a9b711a04722d7382", "5ec4e3db7e31c83dfc851b83", "5ef1bb10c673fd7d2d14e439", "5f50191209e6d018aeb925f5", "5f600669b846780f0fe45709", "5f6ea775bc475b407020431f", "5f8cbc5c355ea745e6cef2ca", "5fa949031fdafd084c4d0812", "5fbb7aae04da87a3fe5f129c", "5fc92eb719e43600082952d9", "601129f77e0c21000b0c408a", "601952130cd928000a796a8b", "6022dfbafb748f0ca0385db9", "602d965dc8c74282fc222c7e", "60338f35010951035cca4a91", "603862f99e00971c55fe0874", "603ecc7968ff0bf9b25e4bf1", "603ffa13fa433c1989bff9e3", "60445f787075a64dbae085c5", "60527c19066274811cb7ca77", "607071077825ce1b96d83505", "6074b929f753216d88c77e88", "60850f02822cdda28b5ecfcb", "609478fa9e5b4d075246cfaf", "609d2b711c0593de2807d045", "60a2dffd4d05d87faf96873b", "60b405631fbdf499c48838ca", "60b60d67bbc65b38b155536e", "60c07a36ba668880b8010450", "60eb841bc608d3c01a7c5582")
+
+Murphy_Iacc_scale <- Murphy_Iacc_scale[ !(Murphy_Iacc_scale$Participant.Public.ID %in% removep2), ]
+```
+
+#### Calculate the IAC score:
+```{r}
+# filter data to get only the responses:
+Murphy_Iacc_scale <- filter(Murphy_Iacc_scale, Question.Key== "IAC_Itchy-quantised" | Question.Key== "IAC_BreatheFast-quantised" | Question.Key== "IAC_PleasantAffectionate-quantised" | Question.Key== "IAC_Ticklish-quantised" |
+                             Question.Key== "IAC_Cough-quantised" | Question.Key== "IAC_Vomit-quantised" | Question.Key== "IAC_TiredMuscles-quantised" | Question.Key== "IAC_Thirsty-quantised" |
+                             Question.Key== "IAC_Bruise-quantised" | Question.Key== "IAC_Pain-quantised" | Question.Key== "IAC_Wind-quantised" | Question.Key== "IAC_HotCold-quantised" |
+                             Question.Key== "IAC_Urinate-quantised" | Question.Key== "IAC_SexuallyAroused-quantised" | Question.Key== "IAC_Sneeze-quantised" | Question.Key== "IAC_Defecate-quantised" |
+                             Question.Key== "IAC_BloodSugar-quantised" | Question.Key== "IAC_Hungry-quantised" | Question.Key== "IAC_Tastes-quantised" | Question.Key == "IAC_FastHeart-quantised" | Question.Key== "IAC_Burp-quantised")
+
+data2 <- dplyr::select(Murphy_Iacc_scale, Participant.Public.ID, Question.Key, Response)
+data2$Response <- as.numeric(data2$Response)
+
+Murphy_Iacc_data_wide <- spread(data2, Question.Key, Response)
+Murphy_scores <- dplyr::mutate(Murphy_Iacc_data_wide,"total" = rowSums(Murphy_Iacc_data_wide[,2:ncol(Murphy_Iacc_data_wide)]))
+
+Murphy_scores2 <- gather(Murphy_scores, Question.Key, Response, "IAC_BloodSugar-quantised":"total", factor_key=FALSE)
+
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_BloodSugar-quantised"] <- "BloodSugar"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_BreatheFast-quantised"] <- "BreatheFast"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Bruise-quantised"] <- "Bruise"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Burp-quantised"] <- "Burp"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Cough-quantised"] <- "Cough"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Defecate-quantised"] <- "Defecate"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_FastHeart-quantised"] <- "FastHeart"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_HotCold-quantised"] <- "HotCold"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Hungry-quantised"] <- "Hungry"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Itchy-quantised"] <- "Itchy"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Pain-quantised"] <- "Pain"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_PleasantAffectionate-quantised"] <- "Affectionate"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_SexuallyAroused-quantised"] <- "Aroused"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Sneeze-quantised"] <- "Sneeze"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Tastes-quantised"] <- "Taste"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Thirsty-quantised"] <- "Thirsty"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Ticklish-quantised"] <- "Ticklish"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_TiredMuscles-quantised"] <- "Muscles"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Urinate-quantised"] <- "Urinate"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Vomit-quantised"] <- "Vomit"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="IAC_Wind-quantised"] <- "Wind"
+Murphy_scores2$Question.Key[Murphy_scores2$Question.Key=="total"] <- "Total"
+
+Murphy_scores2$Participant.Public.ID <- as.factor(Murphy_scores2$Participant.Public.ID)
+Murphy_scores2$Question.Key <- as.factor(Murphy_scores2$Question.Key)
+Murphy_scores2$Response <- as.numeric(Murphy_scores2$Response)
+```
+
+#### Plot the scores:
+```{r fig.width = 7, fig.height= 5}
+sumld <- ddply(subset(Murphy_scores2, Question.Key != "Total"), .(Question.Key), summarise, mean = mean(Response), lb = lb(Response), ub = ub(Response))
+sumld_total <- ddply(subset(Murphy_scores2, Question.Key == "Total"), .(), summarise, mean = mean(Response), lb = lb(Response), ub = ub(Response))
+
+ddply(subset(Murphy_scores2, Question.Key == "Total"), .(), summarise, mean = mean(Response), sd = sd(Response), min = min(Response), max = max(Response))
+
+# item-wise
+p <- ggplot(sumld, aes(x = Question.Key, y = mean)) + 
+  geom_point(data= subset(Murphy_scores2, Question.Key != "Total"), aes(x = Question.Key, y = Response), size= 1, color = "#899DA4", alpha = 0.1, position = position_jitter(width = 0.2, height = 0.2)) +
+  geom_flat_violin(data= subset(Murphy_scores2, Question.Key != "Total"), aes(x = Question.Key, y = Response), position = position_nudge(x = 0, y = 0), alpha = 0.3, color = NA, fill = "#899DA4") +
+  geom_point(aes(y = mean), size= 2, color = "#C93312") +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, color = "#C93312") +
+  geom_line(aes(y = mean, group=1), alpha= .1, color = "#C93312") +
+  scale_y_continuous(limits= c(0.5,5.5), breaks = c(1:5), labels = c("1", "2", "3", "4", "5"))
+
+p <- p + theme_classic() +
+  theme(legend.position="top", 
+        legend.title = element_blank(),
+        text = element_text(size = 14),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        plot.title = element_text(size = 14, vjust = -2, hjust = 0.5)) +
+  labs(y = "Score", title = "Interoceptive accuracy scale")
+
+
+# total
+t <- ggplot(sumld_total, aes(x = 1, y = mean)) + 
+  geom_point(data= subset(Murphy_scores2, Question.Key == "Total"), aes(x = Question.Key, y = Response), size= 1, color = "#899DA4", alpha = 0.1, position = position_jitter(width = 0.1, height = 0)) +
+  geom_flat_violin(data= subset(Murphy_scores2, Question.Key == "Total"), aes(x = Question.Key, y = Response), position = position_nudge(x = 0, y = 0), alpha = 0.3, color = NA, fill = "#899DA4") +
+  geom_point(aes(y = mean), size= 2, color = "#C93312") +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, color = "#C93312") +
+  scale_y_continuous(limits= c(21,105), breaks = c(25,50,75,100), labels = c("25", "50", "75", "100"))
+
+t <- t + theme_classic() +
+  theme(legend.position="top", 
+        legend.title = element_blank(),
+        text = element_text(size = 14),
+        axis.text.x = element_blank()) +
+  labs(y = "Total score", x = "")
+
+ggdraw() +
+  draw_plot(p, x = 0, y = .3, width = .6, height = .6) +
+  draw_plot(t, x = .6, y = .45, width = .2, height = .5) +
+  draw_plot_label(label = c("A", "B"), size = 15,
+                  x = c(0.01, 0.6), y = c(0.88, 0.95))
+
+ggsave("IAS_scores.png", width = 7, height = 5, dpi= 300)
+
+
+```
+
+### SI SCALE
+
+#### Load the preorganised ata :
+```{r}
+exel_file <- paste(work_dir, "Social_scale.xlsx", sep="/")
+Social_scale <- read.xlsx(xlsxFile= exel_file, sheet = "Sheet 1")
+
+```
+
+##### Attention check:
+```{r}
+Social_scale <- filter(Social_scale, Question.Key != "NA")
+subs <- unique(Social_scale$Participant.Public.ID)
+subs_num <- length(subs)
+
+SI_check <- matrix(NA, nrow = subs_num, ncol = 2)
+
+for(r in 1:subs_num){
+  SI_check[r, 1] <- subs[r]
+  SI_check[r, 2] <- Social_scale$Response[Social_scale$Participant.Public.ID==subs[r] & Social_scale$Question.Key=="catch-4-quantised"] == 4 # attention check
+}
+
+
+```
+
+#### Remove excluded:
+```{r}
+# if you are running the initial analysis
+removep <- c("5b82d4fda284bc000193094c", "5bdb50e3ee652a0001efa0e0", "5db43b6a2f45e7000bb7ab5c", "5dc1e711900e3e15813f7c38", "5de7ccc24b7cf973d7b05bfb", "5e03fdb2ac9e16edc91d0108", "5e4314ad234956000a8a91f3", "5f573b18a6a8b51a94fdbd08", "5f75cd50d19e2a28374120ff", "5f78879e60d68143137b5931", "5fae5291ec402509e2885604", "6002e90144049f32edaf9ccf", "60087da4a426a14ac248b803", "601c84e07ab4907ded068d0d", "6032af5b3a3b7a2f5570fbdf", "603d301c7ebc27be3c7b5ea4", "604e1a9533738c74ad5879d2", "605996d037bce4fb5488a375", "606168c7da6829aa69acf033", "60719da557d8241609b26e83", "607f0ad32fd52dbc961cefc0", "60a183e7a5e5e6991afd6796", "60a7c099a678670592ba187a", "60af52990d170be944d0df18", "60b68fc2c92926cd9af2733b", "60b713c5f76777e302824caf", "60b87b074ce3cf9de9d47962", "60b895235deea4c7bf48b85a", "60e7360a87d1675a8574cd30", "60eb105221914f6f26a89908")
+
+Social_scale <- Social_scale[ !(Social_scale$Participant.Public.ID %in% removep), ]
+
+# add if you are running the reduced sample for Schandry
+removep2 <- c("575b2b408b705300078ae5e6", "588093c6704f1100014a3d01", "5a9b20c535237b0001129820", "5aeb063b2f05b500013028a0", "5bf1ecfcaf38d100016c1171", "5d07fc124e753800168ccafe", "5d68c8aa40524c00189e8ac2", "5d88b1c27250e90001c40cfc", "5d8cef3c28e183001a335ab0", "5e15e7a61d4607bd245169d9", "5e28e735ea776009d4d15c34", "5e3e11a36a0b8a000c609d5e", "5e4bc6e3a767d8018bd8e2be", "5e7d09e7f0a5a00c4a1ccf96", "5e92f26b444572122fdfe44d", "5ea976c0ae936906ffed032e", "5eaaec78a563dc0724c63b98", "5ebc2b0a9b711a04722d7382", "5ec4e3db7e31c83dfc851b83", "5ef1bb10c673fd7d2d14e439", "5f50191209e6d018aeb925f5", "5f600669b846780f0fe45709", "5f6ea775bc475b407020431f", "5f8cbc5c355ea745e6cef2ca", "5fa949031fdafd084c4d0812", "5fbb7aae04da87a3fe5f129c", "5fc92eb719e43600082952d9", "601129f77e0c21000b0c408a", "601952130cd928000a796a8b", "6022dfbafb748f0ca0385db9", "602d965dc8c74282fc222c7e", "60338f35010951035cca4a91", "603862f99e00971c55fe0874", "603ecc7968ff0bf9b25e4bf1", "603ffa13fa433c1989bff9e3", "60445f787075a64dbae085c5", "60527c19066274811cb7ca77", "607071077825ce1b96d83505", "6074b929f753216d88c77e88", "60850f02822cdda28b5ecfcb", "609478fa9e5b4d075246cfaf", "609d2b711c0593de2807d045", "60a2dffd4d05d87faf96873b", "60b405631fbdf499c48838ca", "60b60d67bbc65b38b155536e", "60c07a36ba668880b8010450", "60eb841bc608d3c01a7c5582")
+
+Social_scale <- Social_scale[ !(Social_scale$Participant.Public.ID %in% removep2), ]
+```
+
+#### Calculate the SI score:
+```{r}
+# filter data to get only the responses:
+Social_data <- filter(Social_scale, Question.Key== "SI-socialproc-1-quantised" | Question.Key== "SI-socialproc-2-quantised" | Question.Key== "SI-socialproc-3-quantised" | Question.Key== "SI-socialproc-4-quantised" | 
+                        Question.Key== "SI-socialproc-5-quantised" | Question.Key== "SI-socialproc-6-quantised" | Question.Key== "SI-socialproc-7-quantised" | Question.Key== "SI-socialawareness-1-quantised" | 
+                        Question.Key== "SI-socialawareness-2-quantised" | Question.Key== "SI-socialawareness-3-quantised" | Question.Key== "SI-socialawareness-4-quantised" | Question.Key== "SI-socialawareness-5-quantised" | 
+                        Question.Key== "SI-socialawareness-6-quantised" | Question.Key== "SI-socialawareness-7-quantised"| Question.Key== "SI-socialskills-1-quantised" | Question.Key== "SI-socialskills-2-quantised" |
+                        Question.Key== "SI-socialskills-3-quantised" | Question.Key== "SI-socialskills-4-quantised" | Question.Key== "SI-socialskills-5-quantised" | Question.Key== "SI-socialskills-6-quantised" |
+                        Question.Key== "SI-socialskills-7-quantised")
+data2 <- dplyr::select(Social_data, Participant.Public.ID, Question.Key, Response) # add ID in real experiment
+
+# reverse code necessary items:
+data2$Response[(data2$Question.Key=="SI-socialawareness-1-quantised" |  data2$Question.Key=="SI-socialawareness-2-quantised" | data2$Question.Key=="SI-socialawareness-3-quantised" |
+                  data2$Question.Key=="SI-socialawareness-4-quantised" | data2$Question.Key=="SI-socialawareness-5-quantised" | data2$Question.Key=="SI-socialawareness-6-quantised" |
+                  data2$Question.Key=="SI-socialawareness-7-quantised" | data2$Question.Key=="SI-socialskills-1-quantised" | data2$Question.Key=="SI-socialskills-4-quantised" |
+                  data2$Question.Key=="SI-socialskills-5-quantised" | data2$Question.Key=="SI-socialskills-7-quantised") & data2$Response == "1"] <- 5
+data2$Response[(data2$Question.Key=="SI-socialawareness-1-quantised" |  data2$Question.Key=="SI-socialawareness-2-quantised" | data2$Question.Key=="SI-socialawareness-3-quantised" |
+                  data2$Question.Key=="SI-socialawareness-4-quantised" | data2$Question.Key=="SI-socialawareness-5-quantised" | data2$Question.Key=="SI-socialawareness-6-quantised" |
+                  data2$Question.Key=="SI-socialawareness-7-quantised" | data2$Question.Key=="SI-socialskills-1-quantised" | data2$Question.Key=="SI-socialskills-4-quantised" |
+                  data2$Question.Key=="SI-socialskills-5-quantised" | data2$Question.Key=="SI-socialskills-7-quantised") & data2$Response == "2"] <- 4
+data2$Response[(data2$Question.Key=="SI-socialawareness-1-quantised" |  data2$Question.Key=="SI-socialawareness-2-quantised" | data2$Question.Key=="SI-socialawareness-3-quantised" |
+                  data2$Question.Key=="SI-socialawareness-4-quantised" | data2$Question.Key=="SI-socialawareness-5-quantised" | data2$Question.Key=="SI-socialawareness-6-quantised" |
+                  data2$Question.Key=="SI-socialawareness-7-quantised" | data2$Question.Key=="SI-socialskills-1-quantised" | data2$Question.Key=="SI-socialskills-4-quantised" |
+                  data2$Question.Key=="SI-socialskills-5-quantised" | data2$Question.Key=="SI-socialskills-7-quantised") & data2$Response == "4"] <- 2
+data2$Response[(data2$Question.Key=="SI-socialawareness-1-quantised" |  data2$Question.Key=="SI-socialawareness-2-quantised" | data2$Question.Key=="SI-socialawareness-3-quantised" |
+                  data2$Question.Key=="SI-socialawareness-4-quantised" | data2$Question.Key=="SI-socialawareness-5-quantised" | data2$Question.Key=="SI-socialawareness-6-quantised" |
+                  data2$Question.Key=="SI-socialawareness-7-quantised" | data2$Question.Key=="SI-socialskills-1-quantised" | data2$Question.Key=="SI-socialskills-4-quantised" |
+                  data2$Question.Key=="SI-socialskills-5-quantised" | data2$Question.Key=="SI-socialskills-7-quantised") & data2$Response == "5"] <- 1
+
+data2$Response <- as.numeric(data2$Response)
+
+# put scores together
+Social_data_wide <- spread(data2, Question.Key, Response)
+Social_data_wide$SP_total <- rowSums(Social_data_wide[ ,c("SI-socialproc-1-quantised", "SI-socialproc-2-quantised", "SI-socialproc-3-quantised", "SI-socialproc-4-quantised", 
+                                                         "SI-socialproc-5-quantised", "SI-socialproc-6-quantised", "SI-socialproc-7-quantised")])
+Social_data_wide$SA_total <- rowSums(Social_data_wide[ ,c("SI-socialawareness-1-quantised", "SI-socialawareness-2-quantised", "SI-socialawareness-3-quantised", "SI-socialawareness-4-quantised",
+                                                          "SI-socialawareness-5-quantised", "SI-socialawareness-6-quantised", "SI-socialawareness-7-quantised")])
+Social_data_wide$SS_total <- rowSums(Social_data_wide[ ,c("SI-socialskills-1-quantised", "SI-socialskills-2-quantised", "SI-socialskills-3-quantised", "SI-socialskills-4-quantised", 
+                                                          "SI-socialskills-5-quantised", "SI-socialskills-6-quantised", "SI-socialskills-7-quantised")])
+Social_data_wide$total <- rowSums(Social_data_wide[ ,c("SP_total", "SA_total", "SS_total")])
+Social_data_wide <- dplyr::select(Social_data_wide, Participant.Public.ID, SP_total, SA_total, SS_total, total) 
+
+SI_scores <- gather(Social_data_wide, Question.Key, Response, SP_total:total, factor_key=FALSE)
+
+SI_scores$Participant.Public.ID <- as.factor(SI_scores$Participant.Public.ID)
+SI_scores$Question.Key <- as.factor(SI_scores$Question.Key)
+SI_scores$Response <- as.numeric(SI_scores$Response)
+
+
+```
+
+#### Plot the scores:
+```{r fig.width = 6, fig.height= 4}
+sumld <- ddply(subset(SI_scores, Question.Key != "total"), .(Question.Key), summarise, mean = mean(Response), lb = lb(Response), ub = ub(Response))
+sumld_total <- ddply(subset(SI_scores, Question.Key == "total"), .(), summarise, mean = mean(Response), lb = lb(Response), ub = ub(Response))
+
+ddply(subset(SI_scores, Question.Key == "total"), .(), summarise, mean = mean(Response), sd = sd(Response), min = min(Response), max = max(Response))
+
+# item-wise
+p <- ggplot(sumld, aes(x = Question.Key, y = mean)) + 
+  geom_point(data= subset(SI_scores, Question.Key != "total"), aes(x = Question.Key, y = Response), size= 1, color = "#899DA4", alpha = 0.1, position = position_jitter(width = 0.1, height = 0)) +
+  geom_flat_violin(data= subset(SI_scores, Question.Key != "total"), aes(x = Question.Key, y = Response), position = position_nudge(x = 0, y = 0), alpha = 0.3, color = NA, fill = "#899DA4") +
+  geom_point(aes(y = mean), size= 2, color = "#C93312") +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, color = "#C93312") +
+  geom_line(aes(y = mean, group=1), alpha= .1, color = "#C93312") +
+  scale_y_continuous(limits= c(6,35), breaks = c(10,20,30), labels = c("10", "20", "30")) +
+  scale_x_discrete(labels = c("Awareness", "Processing", "Skill"))
+
+p <- p + theme_classic() +
+  theme(legend.position="top", 
+        legend.title = element_blank(),
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14, vjust = -2, hjust = 0.5)) +
+  labs(y = "Score", x ="" ,title = "Tromo's social intelligence scale")
+
+# total
+t <- ggplot(sumld_total, aes(x = 1, y = mean)) + 
+  geom_point(data= subset(SI_scores, Question.Key == "total"), aes(x = Question.Key, y = Response), size= 1, color = "#899DA4", alpha = 0.1, position = position_jitter(width = 0.1, height = 0)) +
+  geom_flat_violin(data= subset(SI_scores, Question.Key == "total"), aes(x = Question.Key, y = Response), position = position_nudge(x = 0, y = 0), alpha = 0.3, color = NA, fill = "#899DA4") +
+  geom_point(aes(y = mean), size= 2, color = "#C93312") +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, color = "#C93312") +
+  scale_y_continuous(limits= c(21,105), breaks = c(25,50,75,100), labels = c("25", "50", "75", "100"))
+
+t <- t + theme_classic() +
+  theme(legend.position="top", 
+        legend.title = element_blank(),
+        text = element_text(size = 14),
+        axis.text.x = element_blank()) +
+  labs(y = "Total score", x = "")
+
+ggdraw() +
+  draw_plot(p, x = 0, y = .3, width = .6, height = .6) +
+  draw_plot(t, x = .6, y = .35, width = .2, height = .5) +
+  draw_plot_label(label = c("A", "B"), size = 15,
+                  x = c(0.01, 0.6), y = c(0.87, 0.87))
+
+ggsave("SI_scores.pdf", width = 6, height = 4, dpi= 300)
+
+```
+
+#### Correlate the sub scores:
+```{r fig.width = 2.5, fig.height= 2.5}
+# needs to be in long format -> each column a variable -> so I will use Social_data_wide
+names(Social_data_wide) <- c("Participant", "Processing", "Awareness", "Skill", "total")
+
+res <- rcorr(as.matrix(Social_data_wide[ ,2:5])) # this gives both: r and p values
+round(res$P, 3)
+
+# produce and save the plot (saving [png and dev.off] is commented to not overwrite existing save)
+
+# pdf(file="SI_corrs.pdf", width = 3, height = 3)
+    
+cor <- corrplot(res$r, type="upper", 
+         p.mat = res$P, sig.level = 0.05, 
+         tl.col = "black", tl.srt = 45, tl.cex = .8, cl.align = "l")
+
+# dev.off() # onlt works when chunks are displayed in console and not inline!!
+
+```
+
+### I will add some values from IAS (diff between objctive-subjective) to interoceptive measure dataframe
+```{r}
+Murphy <- subset(Murphy_scores2, Question.Key == "Total")
+Murphy$Participant.Public.ID <- as.character(Murphy$Participant.Public.ID)
+
+# transform Murphy's scores to 0 and 1:
+# (1) subtract 21: so min score is 0:
+Murphy$score_standard <- Murphy$Response - 21
+# (2) 84 = 1, so x = Resp / 84
+Murphy$score_standard <- Murphy$score_standard/84
+
+#Murphy['score_standard'] <- as.data.frame(scale(Murphy$Response, center = FALSE, scale = TRUE)) # z transform - need to do this way otherwise saves it in a weird format
+#Intero_perf['IAcc_standard'] <- as.data.frame(scale(Intero_perf$IAcc, center = FALSE, scale = TRUE)) # z transform - need to do this way otherwise saves it in a weird format
+
+# Calculate the difference:
+subs <- unique(Schandry_onlyaccepted$Subj.ID)
+subs_num <- length(subs)
+
+for(s in 1:subs_num) {
+  
+Intero_perf$SubjvsObj[Intero_perf$Subj==subs[s]] <- Intero_perf$IAcc[Intero_perf$Subj==subs[s]] - Murphy$score_standard[Murphy$Participant.Public.ID==subs[s]]
+Intero_perf$IAS[Intero_perf$Subj==subs[s]] <- Murphy$Response[Murphy$Participant.Public.ID==subs[s]]
+}
+
+# positive values on SubjvsObj mean underestimation (IAcc is gearter than IAS)
+# negative values mean overestimation (IAcc is smaller than IAS)
+
+```
+
+#### Plot the interoceptive measures:
+```{r}
+## IAcc
+# check if above chance:
+x <- dplyr::select(Intero_perf, IAcc)
+shapiro.test(x$IAcc) # p-value = 0.22 so normal distribution
+res <- t.test(x$IAcc, mu = 0)
+format(res$p.value, scientific = FALSE)
+
+if (res$p.value < .001){p_string = "p < .001"} else {p_string = paste("p =", round(res$p.value, digits=3), sep = " ")}
+
+coh <- cohens_d(data= x, IAcc ~ 1, mu= 0)
+p_string2 <- paste(p_string, ", d =", round(coh$effsize, digits = 2), sep = " ")
+
+ddply(x, .(), summarise, mean = mean(IAcc), min = min(IAcc), max = max(IAcc), sd = sd(IAcc))
+
+# plot
+sumld <- ddply(x, .(), summarise, mean = mean(IAcc), lb = lb(IAcc), ub = ub(IAcc))
+
+p <- ggplot(sumld, aes(x = 1, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, size= 2, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = 1, y=IAcc), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  geom_abline(intercept = 0, slope = 0, color="#899DA4", linetype="dashed") +
+  scale_y_continuous(limits= c(0,1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1")) +
+  scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c("")) +
+  annotate("text", x = 1, y = 1, label = p_string2)
+  
+p <- p + theme_classic() +
+  theme(text = element_text(size = 12),
+        legend.position = "none") +
+  labs(x="", y = "Accuracy")
+
+## meanConfidence
+x <- dplyr::select(Intero_perf, meanConfidence)
+ddply(x, .(), summarise, mean = mean(meanConfidence), min = min(meanConfidence), max = max(meanConfidence), sd = sd(meanConfidence))
+
+# plot
+sumld <- ddply(x, .(), summarise, mean = mean(meanConfidence), lb = lb(meanConfidence), ub = ub(meanConfidence))
+
+c <- ggplot(sumld, aes(x = 1, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, size= 2, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = 1, y=meanConfidence), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  #geom_abline(intercept = 0.5, slope = 0, color="#899DA4", linetype="dashed") +
+  scale_y_continuous(limits= c(0,1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1")) +
+  scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c(""))
+  
+c <- c + theme_classic() +
+  theme(text = element_text(size = 12),
+        legend.position = "none") +
+  labs(x="", y = "Mean confidence")
+
+## IAwareness
+# check if above chance:
+x <- dplyr::select(Intero_perf, Iawareness)
+shapiro.test(x$Iawareness) # p-value = 0.22 so normal distribution
+res <- t.test(x$Iawareness, mu = 0)
+format(res$p.value, scientific = FALSE)
+
+if (res$p.value < .001){p_string = "p < .001"} else {p_string = paste("p =", round(res$p.value, digits=3), sep = " ")}
+
+coh <- cohens_d(data= x, Iawareness ~ 1, mu= 0)
+p_string2 <- paste(p_string, ", d =", round(coh$effsize, digits = 2), sep = " ")
+
+ddply(x, .(), summarise, mean = mean(Iawareness), min = min(Iawareness), max = max(Iawareness), sd = sd(Iawareness))
+
+# plot
+sumld <- ddply(x, .(), summarise, mean = mean(Iawareness), lb = lb(Iawareness), ub = ub(Iawareness))
+
+i <- ggplot(sumld, aes(x = 1, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, size= 2, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = 1, y=Iawareness), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  geom_abline(intercept = 0, slope = 0, color="#899DA4", linetype="dashed") +
+  #scale_y_continuous(limits= c(0,1.1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1")) +
+  scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c("")) +
+  annotate("text", x = 1, y = 1.1, label = p_string2)
+  
+i <- i + theme_classic() +
+  theme(text = element_text(size = 12),
+        legend.position = "none") +
+  labs(x="", y = "Congruence: acc & conf")
+
+## Conguency between subjective accuracy and objective accuracy
+# check if above chance:
+x <- dplyr::select(Intero_perf, SubjvsObj)
+shapiro.test(x$SubjvsObj) # p-value = 0.22 so normal distribution
+res <- t.test(x$SubjvsObj, mu = 0)
+format(res$p.value, scientific = FALSE)
+
+if (res$p.value < .001){p_string = "p < .001"} else {p_string = paste("p =", round(res$p.value, digits=3), sep = " ")}
+
+coh <- cohens_d(data= x, SubjvsObj ~ 1, mu= 0)
+p_string2 <- paste(p_string, ", d =", round(coh$effsize, digits = 2), sep = " ")
+
+ddply(x, .(), summarise, mean = mean(SubjvsObj), min = min(SubjvsObj), max = max(SubjvsObj), sd = sd(SubjvsObj))
+
+# plot
+sumld <- ddply(x, .(), summarise, mean = mean(SubjvsObj), lb = lb(SubjvsObj), ub = ub(SubjvsObj))
+
+sub <- ggplot(sumld, aes(x = 1, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, size= 2, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = 1, y=SubjvsObj), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  geom_abline(intercept = 0, slope = 0, color="#899DA4", linetype="dashed") +
+  #scale_y_continuous(limits= c(0,1.1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1")) +
+  scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c("")) +
+  annotate("text", x = 1, y = 1.1, label = p_string2)
+  
+sub <- sub + theme_classic() +
+  theme(text = element_text(size = 12),
+        legend.position = "none") +
+  labs(x="", y = "Congruence: Acc & IAS")
+
+```
+
+#### Plot all together:
+```{r fig.width = 5, fig.height= 5}
+g <- ggarrange(p, c, i, sub,
+          labels = c("A", "B", "C", "D"),
+          ncol = 2, nrow = 2)
+suppressWarnings(print(g))
+
+ggsave("Intero_measures.png", g, width = 5, height = 5, dpi= 300)
+
+```
+
+#### Correlation between interoceptive measures:
+```{r}
+res <- rcorr(as.matrix(Intero_perf[ ,2:6])) # this gives both: r and p values
+round(res$P, 3)
+
+# produce and save the plot (saving [png and dev.off] is commented to not overwrite existing save)
+
+# pdf(file="Intero_corrs.pdf", width = 4, height = 4)
+    
+cor <- corrplot(res$r, type="upper", 
+         p.mat = res$P, sig.level = 0.05, 
+         tl.col = "black", tl.srt = 45, tl.cex = .8, cl.align = "l")
+
+# dev.off() # onlt works when chunks are displayed in console and not inline!!
+
+# explore the correlations
+ggscatter(Intero_perf, x = "IAcc", y = "Iawareness", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "I_Acc", ylab = "SubjvsObj")
+
+# ggsave("fig.pdf", width = 3, height = 3, dpi= 300)
+
+ggscatter(Intero_perf, x = "Iawareness", y = "meanConfidence", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Iawareness", ylab = "meanConfidence")
+
+```
+
+### ACTOR HR TASK
+#### Load the data:
+```{r}
+exel_file <- paste(work_dir, "ActorHR_data.xlsx", sep="/")
+ActorHR_data <- read.xlsx(xlsxFile= exel_file, sheet = "Sheet 1")
+
+```
+
+##### Checks:
+(1) device needs to be computer, (2) the window size needs to stay the same, 
+(3) owl attention checks correct
+
+```{r}
+ActorHR_data <- filter(ActorHR_data, Participant.Device.Type != "NA" & Spreadsheet.Row != "NA")
+subs <- unique(ActorHR_data$Participant.Public.ID)
+subs_num <- length(subs)
+
+ActorHR_check <- matrix(NA, nrow = subs_num, ncol = 6)
+
+for(r in 1:subs_num){
+  ActorHR_check[r, 1] <- subs[r]
+  ActorHR_check[r, 2] <- ActorHR_data$Participant.Device.Type[ActorHR_data$Participant.Public.ID==subs[r]][1] # should be always "computer"
+  ActorHR_check[r, 3] <- length(unique(ActorHR_data$Participant.Viewport.Size[ActorHR_data$Participant.Public.ID==subs[r]])) # should be always 1
+  ActorHR_check[r, 4] <- sum(as.numeric(na.omit(ActorHR_data$Response[ActorHR_data$Participant.Public.ID==subs[r] & ActorHR_data$Zone.Type == "response_text_entry"])[1:2])) == 12 # owl responses must equal 12 [5 + 7]
+  ActorHR_check[r, 5:6] <- ActorHR_data$Response[ActorHR_data$Participant.Public.ID==subs[r] & ActorHR_data$Zone.Type == "response_text_area"]
+}
+
+
+```
+
+#### Organise into workabale sheet:
+```{r}
+data <- filter(ActorHR_data, Screen.Name == "Response" | (Screen.Name == "Confidence rating" & Zone.Type == "response_slider_endValue"))
+data2 <- dplyr::select(data, Participant.Public.ID, Trial.Number, Spreadsheet.Row, Screen.Name, Response)
+data_wide <- tidyr::spread(data2, Screen.Name, Response)
+
+```
+
+#### Get the spreadsheet and define the specific videos used:
+```{r}
+exel_file <- paste(work_dir, "spreadsheet.xlsx", sep="/")
+spreadsheet <- read.xlsx(xlsxFile= exel_file, sheet = "task")
+
+# loop through each row of data_wide and get the Spreadsheet.Row
+# depending on that take the video combination, left_screen, right_screen, correct
+stim <- matrix(, nrow = nrow(data_wide), ncol = 4)
+
+for(r in 1:nrow(data_wide)) {
+  sheet_row <- data_wide$Spreadsheet.Row[r]
+  stim[r, 1] <- spreadsheet$video.combination[sheet_row]
+  stim[r, 2] <- spreadsheet$left_screen[sheet_row]
+  stim[r, 3] <- spreadsheet$right_screen[sheet_row]
+  stim[r, 4] <- spreadsheet$correct[sheet_row]
+}
+colnames(stim) <- c("video_comb", "left_actor", "right_actor", "correct")
+stim2 <- as.data.frame(stim)
+
+data_wide <- cbind(data_wide, stim2)
+
+data_wide$resp[data_wide$Response=="a"] <- "left"
+data_wide$resp[data_wide$Response=="k"] <- "right"
+
+data_wide$Trial.Number <- as.numeric(data_wide$Trial.Number)
+data_wide$`Confidence rating` <- as.numeric(data_wide$`Confidence rating`)
+
+names(data_wide)[names(data_wide) == "Confidence rating"] <- "Confidence.Rating"
+
+```
+#### Add the values required for d prime:
+H <- response == L & HB == L
+F <- response == L & HB == R
+```{r}
+for(r in 1:nrow(data_wide)) {
+  
+  if(data_wide$resp[r]== "left" & data_wide$correct[r]== "left"){
+    data_wide$H[r] <- 1
+    data_wide$acc[r] <- 1
+    data_wide$F[r] <- 0}
+  else if(data_wide$resp[r]== "left" & data_wide$correct[r]== "right"){
+    data_wide$H[r] <- 0
+    data_wide$acc[r] <- 0
+    data_wide$F[r] <- 1}
+  else if(data_wide$resp[r]== "right" & data_wide$correct[r]== "right"){
+    data_wide$H[r] <- 0
+    data_wide$acc[r] <- 1
+    data_wide$F[r] <- 0}
+  else if(data_wide$resp[r]== "right" & data_wide$correct[r]== "left"){
+    data_wide$H[r] <- 0
+    data_wide$acc[r] <- 0
+    data_wide$F[r] <- 0}
+}
+
+data_wide$acc_factor[data_wide$acc==0] <- 1
+data_wide$acc_factor[data_wide$acc==1] <- 2
+data_wide$acc_factor <- factor(data_wide$acc_factor, levels=c(1,2), labels=c("incorrect", "correct"))
+
+```
+
+#### Get the mean measures for each participant:
+```{r}
+subs <- unique(data_wide$Participant.Public.ID)
+subs_num <- length(subs)
+ActorHR_measures <- matrix(NA, nrow = subs_num, ncol = 5)
+
+for(r in 1:subs_num){
+  x <- subset(data_wide, Participant.Public.ID==subs[r])
+  
+  pH <- sum(x$H)/42 # 42 because it is half of all trials (84)
+  pF <- sum(x$F)/42
+  
+  ActorHR_measures[r, 1] <- subs[r]
+  ActorHR_measures[r, 2] <- round(sum(x$acc)/84, digits = 2) # accuray - proportion correct
+  ActorHR_measures[r, 3] <- round(qnorm(pH)-qnorm(pF), digits = 2) # d prime
+  ActorHR_measures[r, 4] <- round((-0.5)*(qnorm(pH)+qnorm(pF)), digits = 2) # neg values -> bias towards HIT -> in our case left
+  ActorHR_measures[r, 5] <- round(mean(x$Confidence.Rating), digits = 2)
+}
+
+# make into a dataframe:
+ActorHR_measures <- as.data.frame(ActorHR_measures)
+names(ActorHR_measures) <- c("Participant", "pAcc", "dprime", "bias", "mConfidence")
+ActorHR_measures$pAcc <- as.numeric(ActorHR_measures$pAcc)
+ActorHR_measures$dprime <- as.numeric(ActorHR_measures$dprime)
+ActorHR_measures$bias <- as.numeric(ActorHR_measures$bias)
+ActorHR_measures$mConfidence <- as.numeric(ActorHR_measures$mConfidence)
+
+```
+
+#### Remove participants:
+```{r}
+# if you are running the initial analysis
+removep <- c("5b82d4fda284bc000193094c", "5bdb50e3ee652a0001efa0e0", "5db43b6a2f45e7000bb7ab5c", "5dc1e711900e3e15813f7c38", "5de7ccc24b7cf973d7b05bfb", "5e03fdb2ac9e16edc91d0108", "5e4314ad234956000a8a91f3", "5f573b18a6a8b51a94fdbd08", "5f75cd50d19e2a28374120ff", "5f78879e60d68143137b5931", "5fae5291ec402509e2885604", "6002e90144049f32edaf9ccf", "60087da4a426a14ac248b803", "601c84e07ab4907ded068d0d", "6032af5b3a3b7a2f5570fbdf", "603d301c7ebc27be3c7b5ea4", "604e1a9533738c74ad5879d2", "605996d037bce4fb5488a375", "606168c7da6829aa69acf033", "60719da557d8241609b26e83", "607f0ad32fd52dbc961cefc0", "60a183e7a5e5e6991afd6796", "60a7c099a678670592ba187a", "60af52990d170be944d0df18", "60b68fc2c92926cd9af2733b", "60b713c5f76777e302824caf", "60b87b074ce3cf9de9d47962", "60b895235deea4c7bf48b85a", "60e7360a87d1675a8574cd30", "60eb105221914f6f26a89908")
+
+ActorHR_measures_onlyAccepted <- ActorHR_measures[ !(ActorHR_measures$Participant %in% removep), ]
+data_wide_onlyAccepted <- data_wide[ !(data_wide$Participant.Public.ID %in% removep), ]
+
+# add if you are running the reduced sample for Schandry
+removep2 <- c("575b2b408b705300078ae5e6", "588093c6704f1100014a3d01", "5a9b20c535237b0001129820", "5aeb063b2f05b500013028a0", "5bf1ecfcaf38d100016c1171", "5d07fc124e753800168ccafe", "5d68c8aa40524c00189e8ac2", "5d88b1c27250e90001c40cfc", "5d8cef3c28e183001a335ab0", "5e15e7a61d4607bd245169d9", "5e28e735ea776009d4d15c34", "5e3e11a36a0b8a000c609d5e", "5e4bc6e3a767d8018bd8e2be", "5e7d09e7f0a5a00c4a1ccf96", "5e92f26b444572122fdfe44d", "5ea976c0ae936906ffed032e", "5eaaec78a563dc0724c63b98", "5ebc2b0a9b711a04722d7382", "5ec4e3db7e31c83dfc851b83", "5ef1bb10c673fd7d2d14e439", "5f50191209e6d018aeb925f5", "5f600669b846780f0fe45709", "5f6ea775bc475b407020431f", "5f8cbc5c355ea745e6cef2ca", "5fa949031fdafd084c4d0812", "5fbb7aae04da87a3fe5f129c", "5fc92eb719e43600082952d9", "601129f77e0c21000b0c408a", "601952130cd928000a796a8b", "6022dfbafb748f0ca0385db9", "602d965dc8c74282fc222c7e", "60338f35010951035cca4a91", "603862f99e00971c55fe0874", "603ecc7968ff0bf9b25e4bf1", "603ffa13fa433c1989bff9e3", "60445f787075a64dbae085c5", "60527c19066274811cb7ca77", "607071077825ce1b96d83505", "6074b929f753216d88c77e88", "60850f02822cdda28b5ecfcb", "609478fa9e5b4d075246cfaf", "609d2b711c0593de2807d045", "60a2dffd4d05d87faf96873b", "60b405631fbdf499c48838ca", "60b60d67bbc65b38b155536e", "60c07a36ba668880b8010450", "60eb841bc608d3c01a7c5582")
+
+ActorHR_measures_onlyAccepted <- ActorHR_measures_onlyAccepted[ !(ActorHR_measures_onlyAccepted$Participant %in% removep2), ]
+data_wide_onlyAccepted <- data_wide_onlyAccepted[ !(data_wide_onlyAccepted$Participant.Public.ID %in% removep2), ]
+
+# or use ALL:
+#ActorHR_measures_onlyAccepted <- ActorHR_measures
+#data_wide_onlyAccepted <- data_wide
+
+```
+
+#### Create plot for the measures and perform one-sample t-test analysis:
+```{r}
+## pAcc
+# check if above chance:
+x <- dplyr::select(ActorHR_measures_onlyAccepted, pAcc)
+shapiro.test(x$pAcc) # p-value = 0.22 so normal distribution
+res <- t.test(x$pAcc, mu = 0.5)
+format(res$p.value, scientific = FALSE)
+
+if (res$p.value < .001){p_string = "p < .001"} else {p_string = paste("p =", round(res$p.value, digits=3), sep = " ")}
+
+coh <- cohens_d(data= x, pAcc ~ 1, mu= 0.5)
+p_string2 <- paste(p_string, ", d =", round(coh$effsize, digits = 3), sep = " ")
+
+ddply(x, .(), summarise, mean = mean(pAcc), min = min(pAcc), max = max(pAcc), sd = sd(pAcc))
+
+# plot
+sumld <- ddply(x, .(), summarise, mean = mean(pAcc), lb = lb(pAcc), ub = ub(pAcc))
+
+p <- ggplot(sumld, aes(x = 1, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, size= 2, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = 1, y=pAcc), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  geom_abline(intercept = 0.5, slope = 0, color="#899DA4", linetype="dashed") +
+  scale_y_continuous(limits= c(0,1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1")) +
+  scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c("")) +
+  annotate("text", x = 1, y = 1, label = p_string2)
+  
+p <- p + theme_classic() +
+  theme(text = element_text(size = 14),
+        legend.position = "none") +
+  labs(x="", y = "Accuracy")
+
+## dprime
+# check if above chance:
+x <- dplyr::select(ActorHR_measures_onlyAccepted, dprime)
+shapiro.test(x$dprime) # p-value = 0.16 so normal distribution
+res <- t.test(x$dprime, mu = 0)
+format(res$p.value, scientific = FALSE)
+
+if (res$p.value < .001){p_string = "p < .001"} else {p_string = paste("p =", round(res$p.value, digits=3), sep = " ")}
+
+coh <- cohens_d(data= x, dprime ~ 1, mu= 0)
+p_string2 <- paste(p_string, ", d =", round(coh$effsize, digits = 3), sep = " ")
+
+# plot
+sumld <- ddply(x, .(), summarise, mean = mean(dprime), lb = lb(dprime), ub = ub(dprime))
+
+d <- ggplot(sumld, aes(x = 1, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, size= 2, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = 1, y=dprime), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  geom_abline(intercept = 0, slope = 0, color="#899DA4", linetype="dashed") +
+  #scale_y_continuous(limits= c(0,1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1")) +
+  scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c("")) +
+  annotate("text", x = 1, y = 1.5, label = p_string2)
+  
+d <- d + theme_classic() +
+  theme(text = element_text(size = 14),
+        legend.position = "none") +
+  labs(x="", y = "D Prime")
+
+## bias
+# check if above chance:
+x <- dplyr::select(ActorHR_measures_onlyAccepted, bias)
+shapiro.test(x$bias) # p-value = 0.005 -> normality violated
+res <- t.test(x$bias, mu = 0)
+format(res$p.value, scientific = FALSE)
+
+if (res$p.value < .001){p_string = "p < .001"} else {p_string = paste("p =", round(res$p.value, digits=3), sep = " ")}
+
+coh <- cohens_d(data= x, bias ~ 1, mu= 0)
+p_string2 <- paste(p_string, ", d =", round(coh$effsize, digits = 3), sep = " ")
+
+# plot
+sumld <- ddply(x, .(), summarise, mean = mean(bias), lb = lb(bias), ub = ub(bias))
+
+b <- ggplot(sumld, aes(x = 1, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, size= 2, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = 1, y=bias), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  geom_abline(intercept = 0, slope = 0, color="#899DA4", linetype="dashed") +
+  #scale_y_continuous(limits= c(0,1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1")) +
+  scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c("")) +
+  annotate("text", x = 1, y = 1, label = p_string2)
+  
+b <- b + theme_classic() +
+  theme(text = element_text(size = 14),
+        legend.position = "none") +
+  labs(x="", y = "Bias")
+
+## plot mean confidence
+x <- dplyr::select(ActorHR_measures_onlyAccepted, mConfidence)
+ddply(x, .(), summarise, mean = mean(mConfidence), min = min(mConfidence), max = max(mConfidence), sd = sd(mConfidence))
+
+sumld <- ddply(x, .(), summarise, mean = mean(mConfidence), lb = lb(mConfidence), ub = ub(mConfidence))
+
+con <- ggplot(sumld, aes(x = 1, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, size= 2, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = 1, y=mConfidence), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  geom_abline(intercept = 0, slope = 0, color="#899DA4", linetype="dashed") +
+  scale_y_continuous(limits= c(0,10), breaks = c(0, 5, 10), labels = c("0", "5", "10")) +
+  scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c(""))
+  #annotate("text", x = 1, y = 1, label = p_string2)
+  
+con <- con + theme_classic() +
+  theme(text = element_text(size = 14),
+        legend.position = "none") +
+  labs(x="", y = "Mean Confidence")
+
+
+## correlation between dprime and accuracy:
+c <- ggscatter(ActorHR_measures_onlyAccepted, x = "pAcc", y = "dprime", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Accuracy", ylab = "D Prime")
+
+## confidence between accuracte and inaccurate:
+
+# Paired sample between incorrect and correct
+confdata_P <- aggregate(Confidence.Rating ~ Participant.Public.ID + acc_factor, data= data_wide_onlyAccepted, mean)
+confdata <- ddply(confdata_P, c("acc_factor"), summarise, mean = mean(Confidence.Rating), lb = lb(Confidence.Rating), ub = ub(Confidence.Rating))
+
+var.test(Confidence.Rating ~ acc_factor, data = confdata_P) # p=0.98 -> no difference in variance
+wide <- spread(confdata_P, acc_factor, Confidence.Rating)
+wide <- wide %>% mutate(differences = correct - incorrect)
+shapiro_test(wide$differences) 
+
+res <- t.test(Confidence.Rating ~ acc_factor, data= confdata_P, paired = TRUE, var.equal = TRUE)
+coh <- cohens_d(confdata_P, Confidence.Rating ~ acc_factor, paired= TRUE, var.equal= TRUE)
+
+if (res$p.value < .001){p_string = "p < .001"} else {p_string = paste("p =", round(res$p.value, digits=3), sep = " ")}
+p_string2 <- paste(p_string, ", d =", round(coh$effsize, digits = 3), sep = " ")
+
+# plot:
+con_levels <- ggplot(confdata, aes(x=acc_factor, y=mean)) +
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, position=position_dodge(.9)) +
+  geom_point(data= confdata_P, aes(x = acc_factor, y=Confidence.Rating), position=position_dodge(.9)) +
+  geom_line(data= confdata_P, aes(x = acc_factor, y=Confidence.Rating, group = Participant.Public.ID), color="#899DA4", alpha = 0.5) +
+  scale_y_continuous(limits= c(0,10.5), breaks = c(0, 5, 10), labels = c("0", "5", "10")) +
+  annotate("text", x = 1.5, y = 10.5, label = p_string2)
+  
+con_levels <- con_levels + theme_classic() +
+  theme(text = element_text(size = 14)) +
+  labs(x="Accuracy", y = "Mean confidence")
+con_levels
+
+# correlation between accuracy and confidence
+ggscatter(ActorHR_measures_onlyAccepted, x = "pAcc", y = "mConfidence", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Accuracy", ylab = "Confidence")
+
+
+```
+
+#### Plot all together:
+```{r fig.width = 7, fig.height= 6}
+g <- ggarrange(p, d, c, b, con, con_levels,
+          labels = c("A", "B", "C", "D", "E", "F"),
+          ncol = 3, nrow = 2)
+suppressWarnings(print(g))
+
+ggsave("ActorHR.png", g, width = 7, height = 6, dpi= 300)
+
+
+```
+
+#### Put conf difference into the main measures dataset:
+```{r}
+# this is in dataframe: wide, which was used above for Shaphiro
+
+subs <- unique(ActorHR_measures_onlyAccepted$Participant)
+subs_num <- length(subs)
+
+for(r in 1:subs_num){
+  ActorHR_measures_onlyAccepted$ConfDiff[ActorHR_measures_onlyAccepted$Participant == subs[r]] <- wide$differences[wide$Participant.Public.ID == subs[r]] # better participants -> more positive
+}
+
+```
+
+##### Responses at each confidence level:
+```{r fig.width = 4, fig.height= 2}
+confdata_P <- ddply(data_wide_onlyAccepted, c("Participant.Public.ID","Confidence.Rating" ,"acc_factor"), summarise, n = length(acc_factor))
+confdata_P$Confidence.Rating <- as.factor(confdata_P$Confidence.Rating)
+confdata <- aggregate(n ~ Confidence.Rating + acc_factor, data= confdata_P, mean)
+
+p <- ggplot(confdata, aes(x=Confidence.Rating, y=n, fill= acc_factor)) +
+  geom_bar(stat="identity", color="black", position=position_dodge()) +
+  scale_fill_manual(values = c("#899DA4", "#C93312"))
+  #scale_y_continuous(limits= c(0,10), breaks = c(0, 5, 10), labels = c("0", "5", "10"))
+  
+p <- p + theme_classic() +
+  theme(legend.position="top", 
+        legend.title = element_blank(),
+        text = element_text(size = 14)) +
+  labs(x="Confidence", y = "Nr. of responses")
+p
+
+```
+
+##### Add prompt as a factor:
+
+```{r}
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="55fb380977f33b0012cb1fc2"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5c629b836e03a00001d47bdd"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5cf9179b8c98dc0001d5a431"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d0f89123382180001624f48"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d7f460632ee8a0018dc7502"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d8cef3c28e183001a335ab0"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e4bc6e3a767d8018bd8e2be"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e5e3f5c9dad80156c98b89c"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e7d09e7f0a5a00c4a1ccf96"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ebc2b0a9b711a04722d7382"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ebfa146d86a5137c31b105d"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ef1bb10c673fd7d2d14e439"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f3013e31c8a690aacb02c31"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f8cbc5c355ea745e6cef2ca"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5faff8d93849f12f7e013042"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fbb7aae04da87a3fe5f129c"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60021cc6d5be39201d34f6bf"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="601952130cd928000a796a8b"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="6023f94d1951e70ae21770ec"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60445f787075a64dbae085c5"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="6086a082cfd8e051845166e0"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="609592f5c75f5c00c1fcc87e"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="609720f77227ed736f8426cf"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="609d2b711c0593de2807d045"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60b535024ca96f70d41dc881"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60b553c5d946760d7983c009"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60eb841bc608d3c01a7c5582"] <- "breathing"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5c81b804b5bfcb00015aee82"] <- "breathing"
+
+
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5dd1919051c6d2208e27fbc1"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5dd72d2883e3096d755c0f14"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ee232f2b970662cfa352567"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ef39ea1e9a3511219951cc6"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f50191209e6d018aeb925f5"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f56506b2a8fb805ac024015"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f600669b846780f0fe45709"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f60ec315bd9c0011edd8b8f"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fa458b62713510a43fa06a6"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fa949031fdafd084c4d0812"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fad8f592f488e1271524b06"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fb53bab484613000a4fa361"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fc951a3fa107d0fcee036e9"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="6076ddaec7fce6e8befa9ace"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60e3fa63e9b13df2a6cef41c"] <- "eye movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60e3fa63e9b13df2a6cef41c"] <- "eye movements"
+
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="575b2b408b705300078ae5e6"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ae203d63cb5b0000185ccc7"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5aeb063b2f05b500013028a0"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d35989e71b4880017d5cc81"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d3e3541fd9694001a2d1789"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ebaf261b69880094c6363ac"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f18739d7dae940372d3e1d2"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f244e0d0d7f44018faa3938"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f32c91f649a5d04b32ff063"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fe8c20bad8fba7bebe85d0e"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ff458933803bbb00107e417"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="601f00e7c33dab4182151cc5"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="602bbb43cfca8a33d87378c7"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="603d0e0e5b0386b034e93bf5"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="607071077825ce1b96d83505"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60850f02822cdda28b5ecfcb"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60a37b4e514b606e0a822a0c"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60a90be1be2d42fba2368523"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60abef0280e8ef0e8a28497c"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60b4d4a21330fa73d200fa22"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60b60d67bbc65b38b155536e"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60b80ef4dcda79b9665c8c79"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60c67f7c98690351d580de6c"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60dafc1958e64bd5621cbef7"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60dcb2b6886dab98e5b8249a"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60e3029ab54bc58254e23a34"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60e49c6274c1be146fa85140"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60eb0d38fbe20e4ffe7505d6"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="qx6r0c7g"] <- "general movements"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="zzpkfztt"] <- "general movements"
+
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5a9b20c535237b0001129820"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5eaaec78a563dc0724c63b98"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f2d14d99d93bf265393b8ac"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60180a6c16d7314fec02e99f"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="6022dfbafb748f0ca0385db9"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="602d965dc8c74282fc222c7e"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60368b837f900be76ef6c9db"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="603f6e643234e512fc197ae1"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="604b169fe4b7991ec08da3a6"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60ab235a8a3d9b42f0817c27"] <- "skin color"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60ab235a8a3d9b42f0817c27"] <- "skin color"
+
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="568d0641b5a2c2000cb657d0"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="588093c6704f1100014a3d01"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5bf1ecfcaf38d100016c1171"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d07fc124e753800168ccafe"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5dbc435b78b8d81ec088fb40"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e0d4d2d7605fe4d7fba6f5e"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5eb4909c2f46f82f9280a49b"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f00fa2353b5c10c934298fa"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f6ea775bc475b407020431f"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fd9e1d7f35a0e508fd433d1"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="601129f77e0c21000b0c408a"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60338f35010951035cca4a91"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="603862f99e00971c55fe0874"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="603c124974df2e8f9f375fa8"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="603ffa13fa433c1989bff9e3"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60432be2ffdadc2d2b9a90e4"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60527c19066274811cb7ca77"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="6086a11397234e7f83e4e793"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="609478fa9e5b4d075246cfaf"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60a272d70db564387c61ede5"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60a2dffd4d05d87faf96873b"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60b9b93577a388a2ed3ac8ae"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60c07a36ba668880b8010450"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60dc9d77f88945d66d46966c"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60dc9d77f88945d66d46966c"] <- "person's state"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60a0dfc6f9936b0d30dfea15"] <- "person's state"
+
+
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d3587a13e11900001093ae8"] <- "pulse at neck"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d88b1c27250e90001c40cfc"] <- "pulse at neck"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e81c7b87412d48be61aaaab"] <- "pulse at neck"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e92f26b444572122fdfe44d"] <- "pulse at neck"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5f9dbe7b71894b333e8722f7"] <- "pulse at neck"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5fc92eb719e43600082952d9"] <- "pulse at neck"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="605d90aeb58f606babd7a55b"] <- "pulse at neck"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60f9b14b819ae6fbff693bb2"] <- "pulse at neck"
+
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d5ee4b5b3e1bf0001a46a7d"] <- "physique"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e28e735ea776009d4d15c34"] <- "physique"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e3e11a36a0b8a000c609d5e"] <- "physique"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="604c9833900727300680726b"] <- "physique"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="6074b929f753216d88c77e88"] <- "physique"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="6074b929f753216d88c77e88"] <- "physique"
+
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5d68c8aa40524c00189e8ac2"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e15e7a61d4607bd245169d9"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5e4a1730c94447480594cea4"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ea9916c3b32cf0dda50f621"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ec4e3db7e31c83dfc851b83"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="603ecc7968ff0bf9b25e4bf1"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="6054effde12cd6b1052a4f1c"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60b405631fbdf499c48838ca"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60dc758b1fb5b747a605e4f4"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="5ee93ab8a93d8b15baf72fc5"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="60b769d44a48c12976a5f699"] <- "association"
+ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant =="kiqaak2s"] <- "association"
+
+# replace NA values in promnt with none
+ActorHR_measures_onlyAccepted$prompt[is.na(ActorHR_measures_onlyAccepted$prompt)] <- "none"
+
+# make promt factor and change order, so none is last:
+ActorHR_measures_onlyAccepted$prompt <- factor(ActorHR_measures_onlyAccepted$prompt, levels = c("general movements", "breathing", "person's state", "eye movements", "association", "skin color",  "pulse at neck", "physique",  "none"))
+
+# set the color scheme, we need 9 colors
+colors_9 <- c("#FF0000", "#00A08A", "#F98400", "#5BBCD6", "#046C9A", "#F2AD00","#ABDDDE", "#D69C4E", "#000000")
+
+# plot
+## pAcc
+# check if above chance:
+x <- dplyr::select(ActorHR_measures_onlyAccepted, pAcc, prompt)
+
+# plot
+p <- ggplot(x, aes(x = prompt, y=pAcc, fill = prompt)) +
+  geom_point(size= 2, shape = 21, colour = "black", alpha = 0.8, position=position_jitter(width = 0.4, height = 0)) +
+  #geom_flat_violin(data= x, aes(x = prompt, y = pAcc, fill = prompt), position = position_nudge(x = 0, y = 0), alpha = 0.3, color = NA) +
+  geom_abline(intercept = 0.4, slope = 0, color="#899DA4", linetype="dashed") +
+  geom_abline(intercept = 0.5, slope = 0, color="#899DA4", linetype="dashed") +
+  geom_abline(intercept = 0.6, slope = 0, color="#899DA4", linetype="dashed") +
+  geom_abline(intercept = 0.7, slope = 0, color="#899DA4", linetype="dashed") +
+  scale_y_continuous(limits= c(0.3,0.82), breaks = c(0.3, 0.4, 0.5, 0.6, 0.7, 1), labels = c("0.3","0.4", "0.5", "0.6","0.7","0.8")) +
+  #scale_x_continuous(limits= c(0,2), breaks = c(1), labels = c("")) +
+  scale_fill_manual(values = colors_9)
+
+p <- p + theme_classic() +
+  theme(text = element_text(size = 12),
+        axis.text.x = element_blank()) +
+  labs(x="", y = "Accuracy")
+
+p
+
+ggsave("ActorHR_prompt.png", p, width = 6, height = 3, dpi= 300)
+
+# analysis
+res.aov <- aov(pAcc ~ prompt, data = ActorHR_measures_onlyAccepted)
+summary(res.aov)
+
+check_model(res.aov)
+
+oneway.test(pAcc ~ prompt, data = ActorHR_measures_onlyAccepted)
+
+
+```
+
+
+#### Actor-specific analysis:
+
+___________
+(1) Add a small adjustment factor, e.g. adj_f = 1/(length(nR_S1), to each 
+% input vector:
+% 
+% adj_f = 1/length(nR_S1);
+% nR_S1_adj = nR_S1 + adj_f;
+% nR_S2_adj = nR_S2 + adj_f;
+% 
+% This is a generalization of the correction for similar estimation issues of
+% type 1 d' as recommended in
+% 
+% Hautus, M. J. (1995). Corrections for extreme proportions and their biasing 
+%     effects on estimated values of d'. Behavior Research Methods, Instruments, 
+%     & Computers, 27, 46-51.
+____________
+
+```{r}
+subs <- unique(data_wide_onlyAccepted$Participant.Public.ID)
+subs_num <- length(subs)
+
+# Actor A:
+target_actor <- "A"
+x <- subset(data_wide_onlyAccepted, left_actor==target_actor | right_actor==target_actor, -c(H,F,acc,acc_factor))
+
+actor_data <- matrix(, nrow = subs_num, ncol = 6)
+actor_data[,1] <- target_actor
+
+# recode the resp and correct in terms of the actor rather than the side of HB
+  x$Actor.Resp[x$left_actor == target_actor & x$resp== "left"] <- "targetActor"  # did the subject pick the target actor and the other actor
+  x$Actor.Resp[x$left_actor == target_actor & x$resp== "right"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "left"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "right"] <- "targetActor"
+  
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "left"] <- "targetActor" # did the HB belong to the target actor and the other actor
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "right"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "left"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "right"] <- "targetActor"
+
+# Now hit rate is calculated in terms of target actor
+# H <- response == target & HB == target
+# F <- response == target & HB == other
+for(r in 1:nrow(x)) {
+  
+  if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 1
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 1}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 0}
+}
+
+x$H <- as.numeric(x$H) # just in case, make sure variables are numeric
+x$F <- as.numeric(x$F)
+
+x$acc_factor[x$acc==0] <- 1
+x$acc_factor[x$acc==1] <- 2
+x$acc_factor <- factor(x$acc_factor, levels=c(1,2), labels=c("incorrect", "correct"))
+
+x$Actor.Cor[x$Actor.Cor=="targetActor"] <- 1
+x$Actor.Cor[x$Actor.Cor=="otherActor"] <- 2
+x$Actor.Resp[x$Actor.Resp=="targetActor"] <- 1
+x$Actor.Resp[x$Actor.Resp=="otherActor"] <- 2
+
+x$Actor.Cor <- as.numeric(x$Actor.Cor)
+x$Actor.Resp <- as.numeric(x$Actor.Resp)
+
+
+for(subj in 1:subs_num) {
+  
+  work <- subset(x, Participant.Public.ID==subs[subj])
+  
+  df <- sdt_counts(work, stimulus = Actor.Cor, response = Actor.Resp, split_resp = FALSE)
+
+  SDT_1 <- type_1_sdt(df, stimulus = Actor.Cor, response = Actor.Resp, counts = total, s = 1, add_constant = TRUE)
+  
+  actor_data[subj, 2] <- sum(work$acc)/24
+  actor_data[subj, 3] <- mean(work$Confidence)
+  actor_data[subj, 4] <- SDT_1$d_prime
+  actor_data[subj, 5] <- SDT_1$c_raw
+  actor_data[subj, 6] <- work$Participant.Public.ID[1]
+}
+
+# Actor B:
+target_actor <- "B"
+x <- subset(data_wide_onlyAccepted, left_actor==target_actor | right_actor==target_actor, -c(H,F,acc,acc_factor))
+
+actor_data2 <- matrix(, nrow = subs_num, ncol = 6)
+actor_data2[,1] <- target_actor
+
+# recode the resp and correct in terms of the actor rather than the side of HB
+x$Actor.Resp[x$left_actor == target_actor & x$resp== "left"] <- "targetActor"  # did the subject pick the target actor and the other actor
+  x$Actor.Resp[x$left_actor == target_actor & x$resp== "right"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "left"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "right"] <- "targetActor"
+  
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "left"] <- "targetActor" # did the HB belong to the target actor and the other actor
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "right"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "left"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "right"] <- "targetActor"
+
+# Now hit rate is calculated in terms of target actor
+# H <- response == target & HB == target
+# F <- response == target & HB == other
+for(r in 1:nrow(x)) {
+  
+  if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 1
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 1}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 0}
+}
+
+x$H <- as.numeric(x$H) # just in case, make sure variables are numeric
+x$F <- as.numeric(x$F)
+
+x$acc_factor[x$acc==0] <- 1
+x$acc_factor[x$acc==1] <- 2
+x$acc_factor <- factor(x$acc_factor, levels=c(1,2), labels=c("incorrect", "correct"))
+
+x$Actor.Cor[x$Actor.Cor=="targetActor"] <- 1
+x$Actor.Cor[x$Actor.Cor=="otherActor"] <- 2
+x$Actor.Resp[x$Actor.Resp=="targetActor"] <- 1
+x$Actor.Resp[x$Actor.Resp=="otherActor"] <- 2
+
+x$Actor.Cor <- as.numeric(x$Actor.Cor)
+x$Actor.Resp <- as.numeric(x$Actor.Resp)
+
+for(subj in 1:subs_num) {
+  
+  work <- subset(x, Participant.Public.ID==subs[subj])
+  
+  df <- sdt_counts(work, stimulus = Actor.Cor, response = Actor.Resp, split_resp = FALSE)
+
+  SDT_1 <- type_1_sdt(df, stimulus = Actor.Cor, response = Actor.Resp, counts = total, s = 1, add_constant = TRUE)
+  
+  actor_data2[subj, 2] <- sum(work$acc)/24
+  actor_data2[subj, 3] <- mean(work$Confidence)
+  actor_data2[subj, 4] <- SDT_1$d_prime
+  actor_data2[subj, 5] <- SDT_1$c_raw
+  actor_data2[subj, 6] <- work$Participant.Public.ID[1]
+}
+
+actor_data <- rbind(actor_data, actor_data2)
+
+# Actor C:
+target_actor <- "C"
+x <- subset(data_wide_onlyAccepted, left_actor==target_actor | right_actor==target_actor, -c(H,F,acc,acc_factor))
+
+actor_data2 <- matrix(, nrow = subs_num, ncol = 6)
+actor_data2[,1] <- target_actor
+
+# recode the resp and correct in terms of the actor rather than the side of HB
+x$Actor.Resp[x$left_actor == target_actor & x$resp== "left"] <- "targetActor"  # did the subject pick the target actor and the other actor
+  x$Actor.Resp[x$left_actor == target_actor & x$resp== "right"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "left"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "right"] <- "targetActor"
+  
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "left"] <- "targetActor" # did the HB belong to the target actor and the other actor
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "right"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "left"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "right"] <- "targetActor"
+
+# Now hit rate is calculated in terms of target actor
+# H <- response == target & HB == target
+# F <- response == target & HB == other
+for(r in 1:nrow(x)) {
+  
+  if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 1
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 1}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 0}
+}
+
+x$H <- as.numeric(x$H) # just in case, make sure variables are numeric
+x$F <- as.numeric(x$F)
+
+x$acc_factor[x$acc==0] <- 1
+x$acc_factor[x$acc==1] <- 2
+x$acc_factor <- factor(x$acc_factor, levels=c(1,2), labels=c("incorrect", "correct"))
+
+x$Actor.Cor[x$Actor.Cor=="targetActor"] <- 1
+x$Actor.Cor[x$Actor.Cor=="otherActor"] <- 2
+x$Actor.Resp[x$Actor.Resp=="targetActor"] <- 1
+x$Actor.Resp[x$Actor.Resp=="otherActor"] <- 2
+
+x$Actor.Cor <- as.numeric(x$Actor.Cor)
+x$Actor.Resp <- as.numeric(x$Actor.Resp)
+
+
+for(subj in 1:subs_num) {
+  
+  work <- subset(x, Participant.Public.ID==subs[subj])
+  
+  df <- sdt_counts(work, stimulus = Actor.Cor, response = Actor.Resp, split_resp = FALSE)
+
+  SDT_1 <- type_1_sdt(df, stimulus = Actor.Cor, response = Actor.Resp, counts = total, s = 1, add_constant = TRUE)
+  
+  actor_data2[subj, 2] <- sum(work$acc)/24
+  actor_data2[subj, 3] <- mean(work$Confidence)
+  actor_data2[subj, 4] <- SDT_1$d_prime
+  actor_data2[subj, 5] <- SDT_1$c_raw
+  actor_data2[subj, 6] <- work$Participant.Public.ID[1]
+}
+
+actor_data <- rbind(actor_data, actor_data2)
+
+# Actor D:
+target_actor <- "D"
+x <- subset(data_wide_onlyAccepted, left_actor==target_actor | right_actor==target_actor, -c(H,F,acc,acc_factor))
+
+actor_data2 <- matrix(, nrow = subs_num, ncol = 6)
+actor_data2[,1] <- target_actor
+
+# recode the resp and correct in terms of the actor rather than the side of HB
+x$Actor.Resp[x$left_actor == target_actor & x$resp== "left"] <- "targetActor"  # did the subject pick the target actor and the other actor
+  x$Actor.Resp[x$left_actor == target_actor & x$resp== "right"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "left"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "right"] <- "targetActor"
+  
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "left"] <- "targetActor" # did the HB belong to the target actor and the other actor
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "right"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "left"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "right"] <- "targetActor"
+
+# Now hit rate is calculated in terms of target actor
+# H <- response == target & HB == target
+# F <- response == target & HB == other
+for(r in 1:nrow(x)) {
+  
+  if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 1
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 1}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 0}
+}
+
+x$H <- as.numeric(x$H) # just in case, make sure variables are numeric
+x$F <- as.numeric(x$F)
+
+x$acc_factor[x$acc==0] <- 1
+x$acc_factor[x$acc==1] <- 2
+x$acc_factor <- factor(x$acc_factor, levels=c(1,2), labels=c("incorrect", "correct"))
+
+x$Actor.Cor[x$Actor.Cor=="targetActor"] <- 1
+x$Actor.Cor[x$Actor.Cor=="otherActor"] <- 2
+x$Actor.Resp[x$Actor.Resp=="targetActor"] <- 1
+x$Actor.Resp[x$Actor.Resp=="otherActor"] <- 2
+
+x$Actor.Cor <- as.numeric(x$Actor.Cor)
+x$Actor.Resp <- as.numeric(x$Actor.Resp)
+
+
+for(subj in 1:subs_num) {
+  
+  work <- subset(x, Participant.Public.ID==subs[subj])
+  
+  df <- sdt_counts(work, stimulus = Actor.Cor, response = Actor.Resp, split_resp = FALSE)
+
+  SDT_1 <- type_1_sdt(df, stimulus = Actor.Cor, response = Actor.Resp, counts = total, s = 1, add_constant = TRUE)
+  
+  actor_data2[subj, 2] <- sum(work$acc)/24
+  actor_data2[subj, 3] <- mean(work$Confidence)
+  actor_data2[subj, 4] <- SDT_1$d_prime
+  actor_data2[subj, 5] <- SDT_1$c_raw
+  actor_data2[subj, 6] <- work$Participant.Public.ID[1]
+}
+
+actor_data <- rbind(actor_data, actor_data2)
+
+# Actor E:
+target_actor <- "E"
+x <- subset(data_wide_onlyAccepted, left_actor==target_actor | right_actor==target_actor, -c(H,F,acc,acc_factor))
+
+actor_data2 <- matrix(, nrow = subs_num, ncol = 6)
+actor_data2[,1] <- target_actor
+
+# recode the resp and correct in terms of the actor rather than the side of HB
+x$Actor.Resp[x$left_actor == target_actor & x$resp== "left"] <- "targetActor"  # did the subject pick the target actor and the other actor
+  x$Actor.Resp[x$left_actor == target_actor & x$resp== "right"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "left"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "right"] <- "targetActor"
+  
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "left"] <- "targetActor" # did the HB belong to the target actor and the other actor
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "right"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "left"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "right"] <- "targetActor"
+
+# Now hit rate is calculated in terms of target actor
+# H <- response == target & HB == target
+# F <- response == target & HB == other
+for(r in 1:nrow(x)) {
+  
+  if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 1
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 1}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 0}
+}
+
+x$H <- as.numeric(x$H) # just in case, make sure variables are numeric
+x$F <- as.numeric(x$F)
+
+x$acc_factor[x$acc==0] <- 1
+x$acc_factor[x$acc==1] <- 2
+x$acc_factor <- factor(x$acc_factor, levels=c(1,2), labels=c("incorrect", "correct"))
+
+x$Actor.Cor[x$Actor.Cor=="targetActor"] <- 1
+x$Actor.Cor[x$Actor.Cor=="otherActor"] <- 2
+x$Actor.Resp[x$Actor.Resp=="targetActor"] <- 1
+x$Actor.Resp[x$Actor.Resp=="otherActor"] <- 2
+
+x$Actor.Cor <- as.numeric(x$Actor.Cor)
+x$Actor.Resp <- as.numeric(x$Actor.Resp)
+
+
+for(subj in 1:subs_num) {
+  
+  work <- subset(x, Participant.Public.ID==subs[subj])
+  
+  df <- sdt_counts(work, stimulus = Actor.Cor, response = Actor.Resp, split_resp = FALSE)
+
+  SDT_1 <- type_1_sdt(df, stimulus = Actor.Cor, response = Actor.Resp, counts = total, s = 1, add_constant = TRUE)
+  
+  actor_data2[subj, 2] <- sum(work$acc)/24
+  actor_data2[subj, 3] <- mean(work$Confidence)
+  actor_data2[subj, 4] <- SDT_1$d_prime
+  actor_data2[subj, 5] <- SDT_1$c_raw
+  actor_data2[subj, 6] <- work$Participant.Public.ID[1]
+}
+
+actor_data <- rbind(actor_data, actor_data2)
+
+# Actor G:
+target_actor <- "G"
+x <- subset(data_wide_onlyAccepted, left_actor==target_actor | right_actor==target_actor, -c(H,F,acc,acc_factor))
+
+actor_data2 <- matrix(, nrow = subs_num, ncol = 6)
+actor_data2[,1] <- target_actor
+
+# recode the resp and correct in terms of the actor rather than the side of HB
+x$Actor.Resp[x$left_actor == target_actor & x$resp== "left"] <- "targetActor"  # did the subject pick the target actor and the other actor
+  x$Actor.Resp[x$left_actor == target_actor & x$resp== "right"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "left"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "right"] <- "targetActor"
+  
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "left"] <- "targetActor" # did the HB belong to the target actor and the other actor
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "right"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "left"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "right"] <- "targetActor"
+
+# Now hit rate is calculated in terms of target actor
+# H <- response == target & HB == target
+# F <- response == target & HB == other
+for(r in 1:nrow(x)) {
+  
+  if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 1
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 1}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 0}
+}
+
+x$H <- as.numeric(x$H) # just in case, make sure variables are numeric
+x$F <- as.numeric(x$F)
+
+x$acc_factor[x$acc==0] <- 1
+x$acc_factor[x$acc==1] <- 2
+x$acc_factor <- factor(x$acc_factor, levels=c(1,2), labels=c("incorrect", "correct"))
+
+x$Actor.Cor[x$Actor.Cor=="targetActor"] <- 1
+x$Actor.Cor[x$Actor.Cor=="otherActor"] <- 2
+x$Actor.Resp[x$Actor.Resp=="targetActor"] <- 1
+x$Actor.Resp[x$Actor.Resp=="otherActor"] <- 2
+
+x$Actor.Cor <- as.numeric(x$Actor.Cor)
+x$Actor.Resp <- as.numeric(x$Actor.Resp)
+
+
+for(subj in 1:subs_num) {
+  
+  work <- subset(x, Participant.Public.ID==subs[subj])
+  
+  df <- sdt_counts(work, stimulus = Actor.Cor, response = Actor.Resp, split_resp = FALSE)
+
+  SDT_1 <- type_1_sdt(df, stimulus = Actor.Cor, response = Actor.Resp, counts = total, s = 1, add_constant = TRUE)
+  
+  actor_data2[subj, 2] <- sum(work$acc)/24
+  actor_data2[subj, 3] <- mean(work$Confidence)
+  actor_data2[subj, 4] <- SDT_1$d_prime
+  actor_data2[subj, 5] <- SDT_1$c_raw
+  actor_data2[subj, 6] <- work$Participant.Public.ID[1]
+}
+
+actor_data <- rbind(actor_data, actor_data2)
+
+# Actor H:
+target_actor <- "H"
+x <- subset(data_wide_onlyAccepted, left_actor==target_actor | right_actor==target_actor, -c(H,F,acc,acc_factor))
+
+actor_data2 <- matrix(, nrow = subs_num, ncol = 6)
+actor_data2[,1] <- target_actor
+
+# recode the resp and correct in terms of the actor rather than the side of HB
+x$Actor.Resp[x$left_actor == target_actor & x$resp== "left"] <- "targetActor"  # did the subject pick the target actor and the other actor
+  x$Actor.Resp[x$left_actor == target_actor & x$resp== "right"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "left"] <- "otherActor"
+  x$Actor.Resp[x$left_actor != target_actor & x$resp== "right"] <- "targetActor"
+  
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "left"] <- "targetActor" # did the HB belong to the target actor and the other actor
+  x$Actor.Cor[x$left_actor == target_actor & x$correct== "right"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "left"] <- "otherActor"
+  x$Actor.Cor[x$left_actor != target_actor & x$correct== "right"] <- "targetActor"
+
+# Now hit rate is calculated in terms of target actor
+# H <- response == target & HB == target
+# F <- response == target & HB == other
+for(r in 1:nrow(x)) {
+  
+  if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 1
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "targetActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 1}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "otherActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 1
+    x$F[r] <- 0}
+  else if(x$Actor.Resp[r]== "otherActor" & x$Actor.Cor[r]== "targetActor"){
+    x$H[r] <- 0
+    x$acc[r] <- 0
+    x$F[r] <- 0}
+}
+
+x$H <- as.numeric(x$H) # just in case, make sure variables are numeric
+x$F <- as.numeric(x$F)
+
+x$acc_factor[x$acc==0] <- 1
+x$acc_factor[x$acc==1] <- 2
+x$acc_factor <- factor(x$acc_factor, levels=c(1,2), labels=c("incorrect", "correct"))
+
+x$Actor.Cor[x$Actor.Cor=="targetActor"] <- 1
+x$Actor.Cor[x$Actor.Cor=="otherActor"] <- 2
+x$Actor.Resp[x$Actor.Resp=="targetActor"] <- 1
+x$Actor.Resp[x$Actor.Resp=="otherActor"] <- 2
+
+x$Actor.Cor <- as.numeric(x$Actor.Cor)
+x$Actor.Resp <- as.numeric(x$Actor.Resp)
+
+
+for(subj in 1:subs_num) {
+  
+  work <- subset(x, Participant.Public.ID==subs[subj])
+  
+  df <- sdt_counts(work, stimulus = Actor.Cor, response = Actor.Resp, split_resp = FALSE)
+
+  SDT_1 <- type_1_sdt(df, stimulus = Actor.Cor, response = Actor.Resp, counts = total, s = 1, add_constant = TRUE)
+  
+  actor_data2[subj, 2] <- sum(work$acc)/24
+  actor_data2[subj, 3] <- mean(work$Confidence)
+  actor_data2[subj, 4] <- SDT_1$d_prime
+  actor_data2[subj, 5] <- SDT_1$c_raw
+  actor_data2[subj, 6] <- work$Participant.Public.ID[1]
+}
+
+actor_data <- rbind(actor_data, actor_data2)
+
+```
+
+##### Put into a dataframe:
+```{r}
+actor_data <- as.data.frame(actor_data)
+names(actor_data) <- c("Target.Actor","pAcc", "Confidence", "DPrime", "Bias", "Participant")
+actor_data$Target.Actor <- as.factor(actor_data$Target.Actor)
+actor_data$pAcc <- as.numeric(actor_data$pAcc)
+actor_data$Confidence <- as.numeric(actor_data$Confidence)
+actor_data$DPrime <- as.numeric(actor_data$DPrime)
+actor_data$Bias <- as.numeric(actor_data$Bias)
+actor_data$Participant <- as.factor(actor_data$Participant)
+
+```
+
+##### Plot measures for each actor and run a one-way Anova:
+```{r}
+# Accuracy:
+x <- dplyr::select(actor_data, pAcc, Target.Actor, Participant)
+
+# one-way ANOVA to see if there is an effect of actor:
+result <- ezANOVA(data = x, dv = . (pAcc), wid = . (Participant), 
+                within = . (Target.Actor), detailed = TRUE, type = 3) 
+result # no need for correction
+result <- aovEffectSize(result, "pes")
+aovDispTable(result)
+
+if (result[["ANOVA"]][["p"]][2] < .001){pvalue = "p< .001"} else {pvalue = paste("p=", round(res$p.value, digits=3), sep = " ")}
+
+df1 = result[["ANOVA"]][["DFn"]][2]
+df2 = result[["ANOVA"]][["DFd"]][2]
+Fvalue= round(result[["ANOVA"]][["F"]][2], digits = 2)
+nvalue= round(result[["ANOVA"]][["pes"]][2], digits = 2)
+
+stringF = paste("F(", df1, ",", df2, ")= ", Fvalue, ", ", pvalue, ", n= ", nvalue, sep="")
+
+# pair-wise tests to follow-up the effect:
+pairwise.t.test(x$pAcc, x$Target.Actor,
+                paired= TRUE, p.adjust.method = "bonferroni")
+# C vs A: p < .001
+# C vs B: p < .001
+# C vs D: p = .005
+# C vs G: p = .04
+# C vs H: p = .001
+string_pairwise <- "B-corrected tests: actor C vs. others"
+
+# plot:
+sumld <- ddply(x, c("Target.Actor"), summarise, mean = mean(pAcc), lb = lb(pAcc), ub = ub(pAcc))
+
+a <- ggplot(sumld, aes(x = Target.Actor, y = mean)) + 
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = Target.Actor, y=pAcc), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  #geom_line(data= x, aes(x = Target.Actor, y=pAcc, group = Participant), color="#899DA4", alpha = 0.5) +
+  geom_abline(intercept = 0.5, slope = 0, color="#899DA4", linetype="dashed") +
+  scale_y_continuous(limits= c(0,1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1")) +
+  annotate("text", x = 2.6, y = 1, label = stringF, size = 3) +
+  annotate("text", x = 2.8, y = 0.92, label = string_pairwise, size = 3)
+
+a <- a + theme_classic() +
+  theme(text = element_text(size = 12)) +
+  labs(x="Actor", y = "Accuracy")
+
+# DPrime
+x <- dplyr::select(actor_data, DPrime, Target.Actor, Participant)
+
+# one-way ANOVA to see if there is an effect of actor:
+result <- ezANOVA(data = x, dv = . (DPrime), wid = . (Participant), 
+                within = . (Target.Actor), detailed = TRUE, type = 3) 
+#result
+result <- aovEffectSize(result, "pes")
+#aovDispTable(result)
+
+if (result[["ANOVA"]][["p"]][2] < .001){pvalue = "p< .001"} else {pvalue = paste("p=", round(res$p.value, digits=3), sep = " ")}
+
+df1 = result[["ANOVA"]][["DFn"]][2]
+df2 = result[["ANOVA"]][["DFd"]][2]
+Fvalue= round(result[["ANOVA"]][["F"]][2], digits = 2)
+nvalue= round(result[["ANOVA"]][["pes"]][2], digits = 2)
+
+stringF = paste("F(", df1, ",", df2, ")= ", Fvalue, ", ", pvalue, ", n= ", nvalue, sep="")
+
+# pair-wise tests to follow-up the effect:
+pairwise.t.test(x$DPrime, x$Target.Actor,
+                paired= TRUE, p.adjust.method = "bonferroni")
+# C vs A: p = .001
+# C vs B: p = .002
+# C vs D: p = .002
+# C vs G: p = .04
+# C vs H: p = .001
+string_pairwise <- "B-corrected tests: actor C vs. others"
+
+# plot:
+sumld <- ddply(x, c("Target.Actor"), summarise, mean = mean(DPrime), lb = lb(DPrime), ub = ub(DPrime))
+
+d <- ggplot(sumld, aes(x = Target.Actor, y = mean)) + 
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = Target.Actor, y=DPrime), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  #geom_line(data= x, aes(x = Target.Actor, y=DPrime, group = Participant), color="#899DA4", alpha = 0.5) +
+  geom_abline(intercept = 0, slope = 0, color="#899DA4", linetype="dashed") +
+  #scale_y_continuous(limits= c(0,1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1"))
+  annotate("text", x = 2.6, y = 4, label = stringF, size = 3) +
+  annotate("text", x = 2.8, y = 3.55, label = string_pairwise, size = 3)
+
+d <- d + theme_classic() +
+  theme(text = element_text(size = 12)) +
+  labs(x="Actor", y = "D Prime")
+
+# Bias
+x <- dplyr::select(actor_data, Bias, Target.Actor, Participant)
+
+# one-way ANOVA to see if there is an effect of actor:
+result <- ezANOVA(data = x, dv = . (Bias), wid = . (Participant), 
+                within = . (Target.Actor), detailed = TRUE, type = 3) 
+#result
+result <- aovEffectSize(result, "pes")
+#aovDispTable(result)
+
+if (result[["ANOVA"]][["p"]][2] < .001){pvalue = "p< .001"} else {pvalue = paste("p=", round(res$p.value, digits=3), sep = " ")}
+
+df1 = result[["ANOVA"]][["DFn"]][2]
+df2 = result[["ANOVA"]][["DFd"]][2]
+Fvalue= round(result[["ANOVA"]][["F"]][2], digits = 2)
+nvalue= round(result[["ANOVA"]][["pes"]][2], digits = 2)
+
+stringF = paste("F(", df1, ",", df2, ")= ", Fvalue, ", ", pvalue, ", n= ", nvalue, sep="")
+
+# pair-wise tests to follow-up the effect:
+pairwise.t.test(x$Bias, x$Target.Actor,
+                paired= TRUE, p.adjust.method = "bonferroni")
+# D vs B: p = .001
+# D vs G: p = .002
+
+string_pairwise <- "B-corrected tests: actor D vs. others"
+
+## t-tests against 0:
+# A:
+y <- filter(x, Target.Actor=="A")
+y <- dplyr::select(y, -Target.Actor)
+t.test(y$Bias, mu = 0) # p = .97
+
+# B:
+y <- filter(x, Target.Actor=="B")
+y <- dplyr::select(y, -Target.Actor)
+t.test(y$Bias, mu = 0) # p = .22
+
+# C: 
+y <- filter(x, Target.Actor=="C")
+y <- dplyr::select(y, -Target.Actor)
+t.test(y$Bias, mu = 0) # p = .32
+
+# D:
+y <- filter(x, Target.Actor=="D")
+y <- dplyr::select(y, -Target.Actor)
+t.test(y$Bias, mu = 0) # p < .001
+
+# E:
+y <- filter(x, Target.Actor=="E")
+y <- dplyr::select(y, -Target.Actor)
+t.test(y$Bias, mu = 0) # p = .23
+
+# G:
+y <- filter(x, Target.Actor=="G")
+y <- dplyr::select(y, -Target.Actor)
+t.test(y$Bias, mu = 0) # p = .001
+
+# H:
+y <- filter(x, Target.Actor=="H")
+y <- dplyr::select(y, -Target.Actor)
+t.test(y$Bias, mu = 0) # p = .06
+
+# plot:
+sumld <- ddply(x, c("Target.Actor"), summarise, mean = mean(Bias), lb = lb(Bias), ub = ub(Bias))
+
+b <- ggplot(sumld, aes(x = Target.Actor, y = mean)) + 
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = Target.Actor, y=Bias), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  #geom_line(data= x, aes(x = Target.Actor, y=Bias, group = Participant), color="#899DA4", alpha = 0.5) +
+  geom_abline(intercept = 0, slope = 0, color="#899DA4", linetype="dashed") +
+  #scale_y_continuous(limits= c(0,1), breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1"))
+  annotate("text", x = 2.6, y = 3, label = stringF, size = 3) +
+  annotate("text", x = 2.8, y = 2.60, label = string_pairwise, size = 3) + 
+  annotate("text", x = 4, y = 1.7, label = "**", fontface = 'bold', size = 5) +
+  annotate("text", x = 6, y = 1.7, label = "*", fontface = 'bold', size = 5) +
+  annotate("text", x = 1.7, y = 1.7, label = "t-tests against 0:", size = 3)
+
+b <- b + theme_classic() +
+  theme(text = element_text(size = 12)) +
+  labs(x="Actor", y = "Bias")
+
+# Confidence
+x <- dplyr::select(actor_data, Confidence, Target.Actor, Participant)
+
+# one-way ANOVA to see if there is an effect of actor:
+result <- ezANOVA(data = x, dv = . (Confidence), wid = . (Participant), 
+                within = . (Target.Actor), detailed = TRUE, type = 3) 
+#result # no need for correction
+result <- aovEffectSize(result, "pes")
+#aovDispTable(result)
+
+if (result[["ANOVA"]][["p"]][2] < .001){pvalue = "p< .001"} else {pvalue = paste("p=", round(res$p.value, digits=3), sep = " ")}
+
+df1 = result[["ANOVA"]][["DFn"]][2]
+df2 = result[["ANOVA"]][["DFd"]][2]
+Fvalue= round(result[["ANOVA"]][["F"]][2], digits = 2)
+nvalue= round(result[["ANOVA"]][["pes"]][2], digits = 2)
+
+stringF = paste("F(", df1, ",", df2, ")= ", Fvalue, ", ", pvalue, ", n= ", nvalue, sep="")
+
+# pair-wise tests to follow-up the effect:
+pairwise.t.test(x$Confidence, x$Target.Actor,
+                paired= TRUE, p.adjust.method = "bonferroni")
+# B vs G: p = .04
+# C vs H: p = .01
+
+
+# plot:
+sumld <- ddply(x, c("Target.Actor"), summarise, mean = mean(Confidence), lb = lb(Confidence), ub = ub(Confidence))
+
+c <- ggplot(sumld, aes(x = Target.Actor, y = mean)) + 
+  geom_bar(stat="identity", color="black", fill= "#C93312", position=position_dodge()) +
+  geom_errorbar(aes(ymin=lb, ymax=ub), width=0, position=position_dodge(.9)) +
+  geom_point(data= x, aes(x = Target.Actor, y=Confidence), alpha= 0.2, position=position_jitter(width = 0.1, height = 0)) +
+  #geom_line(data= x, aes(x = Target.Actor, y=pAcc, group = Participant), color="#899DA4", alpha = 0.5) +
+  geom_abline(intercept = 5, slope = 0, color="#899DA4", linetype="dashed") +
+  scale_y_continuous(limits= c(0,10), breaks = c(0, 5, 10), labels = c("0", "5", "10")) +
+  annotate("text", x = 2.6, y = 10, label = stringF, size = 3)
+
+c <- c + theme_classic() +
+  theme(text = element_text(size = 12)) +
+  labs(x="Actor", y = "Confidence")
+
+```
+
+##### Put the plots together:
+```{r fig.width = 7, fig.height= 5}
+g <- ggarrange(a, d, b, c,
+          labels = c("A", "B", "C", "D"),
+          ncol = 2, nrow = 2)
+suppressWarnings(print(g))
+
+ggsave("Actor-specific.png", g, width = 7, height = 5, dpi= 300)
+
+```
+
+## Analysis: IAS, SI and ActorHR
+
+### Add the scores to the ActorHR main measures:
+```{r}
+subs <- unique(ActorHR_measures_onlyAccepted$Participant)
+subs_num <- length(subs)
+
+for(r in 1:subs_num){
+  # IAS total
+  ActorHR_measures_onlyAccepted$IAS_score[ActorHR_measures_onlyAccepted$Participant == subs[r]] <- Murphy_scores2$Response[Murphy_scores2$Participant.Public.ID == subs[r] & Murphy_scores2$Question.Key == "Total"]
+  ActorHR_measures_onlyAccepted$Processing[ActorHR_measures_onlyAccepted$Participant == subs[r]] <- SI_scores$Response[SI_scores$Participant.Public.ID == subs[r] & SI_scores$Question.Key == "SP_total"]
+  ActorHR_measures_onlyAccepted$Awareness[ActorHR_measures_onlyAccepted$Participant == subs[r]] <- SI_scores$Response[SI_scores$Participant.Public.ID == subs[r] & SI_scores$Question.Key == "SA_total"]
+  ActorHR_measures_onlyAccepted$Skill[ActorHR_measures_onlyAccepted$Participant == subs[r]] <- SI_scores$Response[SI_scores$Participant.Public.ID == subs[r] & SI_scores$Question.Key == "SS_total"]
+  ActorHR_measures_onlyAccepted$SI_score[ActorHR_measures_onlyAccepted$Participant == subs[r]] <- SI_scores$Response[SI_scores$Participant.Public.ID == subs[r] & SI_scores$Question.Key == "total"]
+   ActorHR_measures_onlyAccepted$IAS_Heart_score[ActorHR_measures_onlyAccepted$Participant == subs[r]] <- Murphy_scores2$Response[Murphy_scores2$Participant.Public.ID == subs[r] & Murphy_scores2$Question.Key == "FastHeart"]
+}
+
+```
+
+### Correlation between ActorHR task performance and questionnaire scores:
+```{r}
+# needs to be in long format -> each column a variable
+
+acc <- dplyr::select(ActorHR_measures_onlyAccepted, pAcc, mConfidence, ConfDiff, IAS_score, Processing, Awareness, Skill)
+
+res <- rcorr(as.matrix(acc)) # this gives both: r and p values
+round(res$P, 3)
+
+# produce and save the plot (saving [png and dev.off] is commented to not overwrite existing save)
+
+pdf(file="ActorHR_conf_corrs.pdf", width = 4, height = 4)
+    
+corrplot(res$r, type="upper", 
+         p.mat = res$P, sig.level = 0.05, 
+         tl.col = "black", tl.srt = 45, tl.cex = .8, cl.align = "l")
+
+dev.off() # only works when chunks are displayed in console and not inline!!
+
+# explore the correlations
+ggscatter(ActorHR_measures_onlyAccepted, x = "pAcc", y = "IAS_Heart_score", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "pAcc", ylab = "IAS_Heart")
+
+ggsave("fig.pdf", width = 3, height = 3, dpi= 300)
+
+```
+
+## Analysis on reduced sample: IAcc, IAS, SI on ActorHR
+
+### Get the scores form Actor-measures and put into Intero:
+```{r}
+subs <- unique(Schandry_onlyaccepted$Subj.ID)
+subs_num <- length(subs)
+
+for(s in 1:subs_num) {
+  
+Intero_perf$SI_score[Intero_perf$Subj== subs[s]] <- SI_scores$Response[SI_scores$Participant.Public.ID == subs[s] & SI_scores$Question.Key == "total"]
+Intero_perf$Actor_Acc[Intero_perf$Subj==subs[s]] <- ActorHR_measures_onlyAccepted$pAcc[ActorHR_measures_onlyAccepted$Participant==subs[s]]
+Intero_perf$Actor_ConfDiff[Intero_perf$Subj==subs[s]] <- ActorHR_measures_onlyAccepted$ConfDiff[ActorHR_measures_onlyAccepted$Participant==subs[s]]
+}
+
+```
+
+### Big correlation matrix:
+```{r}
+res <- rcorr(as.matrix(Intero_perf[ ,2:9])) # this gives both: r and p values
+round(res$P, 3)
+
+# produce and save the plot (saving [png and dev.off] is commented to not overwrite existing save)
+
+pdf(file="Big_corr.pdf", width = 4, height = 4)
+    
+corrplot(res$r, type="upper", 
+         p.mat = res$P, sig.level = 0.05, 
+         tl.col = "black", tl.srt = 45, tl.cex = .8, cl.align = "l")
+
+dev.off() # only works when chunks are displayed in console and not inline!!
+
+# explore the correlations
+ggscatter(Intero_perf, x = "IAcc", y = "Actor_ConfDiff", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "I_Acc", ylab = "Actor_ConfDiff")
+
+# ggsave("fig.png", width = 3, height = 3, units = "in" , dpi= 300)
+ggscatter(Intero_perf, x = "Iawareness", y = "Actor_ConfDiff", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Iawareness", ylab = "Actor_ConfDiff")
+
+
+```
+
+### Get the average heartrate and estimated heartrate
+```{r}
+subs <- unique(Schandry_onlyaccepted$Subj.ID)
+subs_num <- length(subs)
+HR <- matrix(NA, nrow = subs_num, ncol = 3)
+
+for(r in 1:subs_num){
+  x <- subset(Schandry_onlyaccepted, Subj.ID == subs[r])
+  HR[r, 1] <- x$Subj.ID[1]
+  HR[r, 2] <- mean(x$smoothy)
+  HR[r, 3] <- x$estimated_HR[1]
+}
+
+HR <- as.data.frame(HR)
+names(HR) = c("Subj", "meanHR", "estimatedHR")
+HR$Subj <- as.factor(HR$Subj)
+HR$meanHR <- as.numeric(HR$meanHR)
+
+```
+
+### Add the control variables:
+```{r}
+exel_file <- paste(work_dir, "Participants2.xlsx", sep="/")
+demo <- read.xlsx(xlsxFile= exel_file, sheet = "Schandry_included")
+
+subs <- unique(Intero_perf$Subj)
+subs_num <- length(subs)
+
+for(s in 1:subs_num) {
+  
+Intero_perf$Gender[Intero_perf$Subj==subs[s]] <- demo$Gender[demo$Subj.ID==subs[s]]
+Intero_perf$BMI[Intero_perf$Subj==subs[s]] <- demo$BMI[demo$Subj.ID==subs[s]]
+Intero_perf$promt[Intero_perf$Subj==subs[s]] <- ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant==subs[s]]
+Intero_perf$meanHR[Intero_perf$Subj==subs[s]] <- HR$meanHR[HR$Subj==subs[s]]
+Intero_perf$estimatedHR[Intero_perf$Subj==subs[s]] <- demo$estimatedHR[demo$Subj.ID==subs[s]]
+
+}
+
+Intero_perf$estimated_true <- abs(Intero_perf$estimatedHR - Intero_perf$meanHR)
+
+#ggscatter(Intero_perf, x = "IAcc", y = "estimated_true", 
+#          add = "reg.line", conf.int = TRUE, 
+#          cor.coef = TRUE, cor.method = "pearson",
+#          xlab = "I_Acc", ylab = "estimated_true")
+
+
+```
+
+### Multiple regression ActorHR_Acc = IAS + I_Acc
+```{r}
+x <- Intero_perf
+
+# mean-center all variables
+x['IAcc'] <- as.data.frame(scale(x$IAcc, center = TRUE, scale = TRUE)) # mean center and z transform - need to do this way otherwise saves it in a weird format
+x['Iawareness'] <- as.data.frame(scale(x$Iawareness, center = TRUE, scale = TRUE)) 
+x['SubjvsObj'] <- as.data.frame(scale(x$SubjvsObj, center = TRUE, scale = TRUE)) 
+x['IAS'] <- as.data.frame(scale(x$IAS, center = TRUE, scale = TRUE)) 
+x['SI_score'] <- as.data.frame(scale(x$SI_score, center = TRUE, scale = TRUE)) 
+x['Actor_Acc'] <- as.data.frame(scale(x$Actor_Acc, center = TRUE, scale = TRUE)) 
+x['Actor_ConfDiff'] <- as.data.frame(scale(x$Actor_ConfDiff, center = TRUE, scale = TRUE)) 
+x['BMI'] <- as.data.frame(scale(x$BMI, center = TRUE, scale = TRUE)) 
+x['meanHR'] <- as.data.frame(scale(x$meanHR, center = TRUE, scale = TRUE)) 
+x['estimated_true'] <- as.data.frame(scale(x$estimated_true, center = TRUE, scale = TRUE)) 
+x$Gender <- factor(x$Gender, levels=c(0,1), labels=c("male", "female"))
+
+# 
+model <- lm(Actor_Acc ~ IAcc*IAS*SI_score + Gender + BMI + meanHR + estimated_true, data = x)
+# model <- lm(Actor_Acc ~ SubjvsObj*SI_score + Gender + BMI + meanHR + estimated_true, data = x)
+
+Anova(model)
+summary(model) 
+
+check_model(model)
+
+coffs <- confint(model_soc, level = 0.95)
+coffs <- as.matrix(coffs)
+mean_coffs <- model_soc$coefficients
+mean_coffs <- as.vector(mean_coffs)
+
+
+# plot the coefficients for each model:
+coeffs <- data.frame("predictor"= c("I_Acc", "IAS", "SI_Processing", "SI_Awareness", "SI_Skill", "Gender", "BMI", "restingHR", "HR_knowledge"), "value"= mean_coffs[2:10], "lb"= coffs[2:10,1], "ub"= coffs[2:10,2])
+coeffs$predictor <- factor(coeffs$predictor, levels = c("HR_knowledge", "restingHR", "BMI", "Gender", "SI_Skill", "SI_Awareness", "SI_Processing",  "IAS", "I_Acc"))
+
+
+p <- ggplot(coeffs, aes(x=predictor, y=value, ymin=lb, ymax=ub)) +
+        geom_pointrange(fatten = 3, size = 0.3) + 
+        geom_hline(yintercept=0, lty=2) +
+        coord_flip() +  # flip coordinates (puts labels on y axis)
+        xlab("Predictors") + ylab("Beta (95% CI)")
+
+p <- p + theme_bw() +
+  theme(text = element_text(size = 10))
+
+p
+ggsave("reg.pdf", p, width = 2.5, height = 3.5, dpi= 300)
+
+
+
+```
+
+### Follow-up of the interaction
+```{r}
+int <- sim_slopes(model, pred = IAS, modx = IAcc, johnson_neyman = FALSE, jnplot = TRUE)
+plot(int)
+
+i <- interact_plot(model, pred = IAS, modx = IAcc, centered = "all", plot.points = TRUE, colors = c("#fde725", "#21918c", "#440154"),
+              y.label = "accuracy on other-HR task", x.label = "total mean IAS score", legend.main = "level of IAcc")
+# ggsave("simple_slopes.pdf", i, width = 2.5, height = 2.5, dpi= 300)
+
+# ggplot(Intero_perf, aes(IAS, Actor_Acc, colour = IAcc, fill = IAcc)) + 
+#    geom_point(shape=21, size = 2) +
+#   scale_color_viridis(discrete=FALSE, option="magma") +
+#   scale_fill_viridis(discrete=FALSE, option="magma")
+
+
+```
+
+### Median-split analysis according to IAcc
+```{r}
+ddply(x, .(group), summarise, mean = mean(Actor_Acc), median = median(Actor_Acc), min = min(Actor_Acc), max = max(Actor_Acc), sd = sd(Actor_Acc))
+
+x <- Intero_perf
+
+x$group[x$IAcc > 0.80] <- 1
+x$group[x$IAcc < 0.80] <- 2
+
+# remove NA values
+x <- filter(x, group != "NA")
+
+x$group <- factor(x$group, levels = c(1,2), labels = c("better","worse"))
+
+var.test(Actor_Acc ~ group, data = x) # p=0.9 so no differene in variance
+t.test(Actor_Acc ~ group, data= x, var.equal = TRUE)
+cohens_d(x, Actor_Acc ~ group, var.equal= TRUE)
+
+
+```
+
+# What if you exclude the biasing actors: D G C
+```{r}
+# filter out the corresponding actors
+data_wide_noActor <- filter(data_wide_onlyAccepted, left_actor != "D" & left_actor != "G" & left_actor != "C"
+                            & right_actor != "D" & right_actor != "G" & right_actor != "C")
+
+# get the mean measures
+subs <- unique(data_wide_noActor$Participant.Public.ID)
+subs_num <- length(subs)
+ActorHR_measures <- matrix(NA, nrow = subs_num, ncol = 3)
+
+for(r in 1:subs_num){
+  x <- subset(data_wide_noActor, Participant.Public.ID==subs[r]) # we now have 24 trials per participant, instead of 84
+  
+  ActorHR_measures[r, 1] <- subs[r]
+  ActorHR_measures[r, 2] <- round(sum(x$acc)/24, digits = 2) # accuray - proportion correct
+  ActorHR_measures[r, 3] <- round(mean(x$Confidence.Rating), digits = 2)
+}
+
+# make into a dataframe:
+ActorHR_measures <- as.data.frame(ActorHR_measures)
+names(ActorHR_measures) <- c("Participant", "pAcc", "mConfidence")
+ActorHR_measures$pAcc <- as.numeric(ActorHR_measures$pAcc)
+ActorHR_measures$mConfidence <- as.numeric(ActorHR_measures$mConfidence)
+
+
+# put eveyrthing into a single dataframe
+subs <- unique(Schandry_onlyaccepted$Subj.ID)
+subs_num <- length(subs)
+
+for(s in 1:subs_num) {
+  
+Intero_perf$SI_score[Intero_perf$Subj== subs[s]] <- SI_scores$Response[SI_scores$Participant.Public.ID == subs[s] & SI_scores$Question.Key == "total"]
+Intero_perf$Actor_Acc[Intero_perf$Subj==subs[s]] <- ActorHR_measures_onlyAccepted$pAcc[ActorHR_measures_onlyAccepted$Participant==subs[s]]
+}
+
+# Get the average HR and estimated HR
+subs <- unique(Schandry_onlyaccepted$Subj.ID)
+subs_num <- length(subs)
+HR <- matrix(NA, nrow = subs_num, ncol = 3)
+
+for(r in 1:subs_num){
+  x <- subset(Schandry_onlyaccepted, Subj.ID == subs[r])
+  HR[r, 1] <- x$Subj.ID[1]
+  HR[r, 2] <- mean(x$smoothy)
+  HR[r, 3] <- x$estimated_HR[1]
+}
+
+HR <- as.data.frame(HR)
+names(HR) = c("Subj", "meanHR", "estimatedHR")
+HR$Subj <- as.factor(HR$Subj)
+HR$meanHR <- as.numeric(HR$meanHR)
+
+# Add the control variables
+exel_file <- paste(work_dir, "Participants2.xlsx", sep="/")
+demo <- read.xlsx(xlsxFile= exel_file, sheet = "Schandry_included")
+
+subs <- unique(Intero_perf$Subj)
+subs_num <- length(subs)
+
+for(s in 1:subs_num) {
+  
+Intero_perf$Gender[Intero_perf$Subj==subs[s]] <- demo$Gender[demo$Subj.ID==subs[s]]
+Intero_perf$BMI[Intero_perf$Subj==subs[s]] <- demo$BMI[demo$Subj.ID==subs[s]]
+Intero_perf$promt[Intero_perf$Subj==subs[s]] <- ActorHR_measures_onlyAccepted$prompt[ActorHR_measures_onlyAccepted$Participant==subs[s]]
+Intero_perf$meanHR[Intero_perf$Subj==subs[s]] <- HR$meanHR[HR$Subj==subs[s]]
+Intero_perf$estimatedHR[Intero_perf$Subj==subs[s]] <- demo$estimatedHR[demo$Subj.ID==subs[s]]
+
+}
+
+Intero_perf$estimated_true <- abs(Intero_perf$estimatedHR - Intero_perf$meanHR)
+
+# Run the main regression:
+x <- Intero_perf
+
+# mean-center all variables
+x['IAcc'] <- as.data.frame(scale(x$IAcc, center = TRUE, scale = TRUE)) # mean center and z transform - need to do this way otherwise saves it in a weird format
+x['Iawareness'] <- as.data.frame(scale(x$Iawareness, center = TRUE, scale = TRUE)) 
+x['SubjvsObj'] <- as.data.frame(scale(x$SubjvsObj, center = TRUE, scale = TRUE)) 
+x['IAS'] <- as.data.frame(scale(x$IAS, center = TRUE, scale = TRUE)) 
+x['SI_score'] <- as.data.frame(scale(x$SI_score, center = TRUE, scale = TRUE)) 
+x['Actor_Acc'] <- as.data.frame(scale(x$Actor_Acc, center = TRUE, scale = TRUE)) 
+x['BMI'] <- as.data.frame(scale(x$BMI, center = TRUE, scale = TRUE)) 
+x['meanHR'] <- as.data.frame(scale(x$meanHR, center = TRUE, scale = TRUE)) 
+x['estimated_true'] <- as.data.frame(scale(x$estimated_true, center = TRUE, scale = TRUE)) 
+x$Gender <- factor(x$Gender, levels=c(0,1), labels=c("male", "female"))
+
+# 
+model <- lm(Actor_Acc ~ IAcc*IAS*SI_score + Gender + BMI + meanHR + estimated_true, data = x)
+# model <- lm(Actor_Acc ~ SubjvsObj*SI_score + Gender + BMI + meanHR + estimated_true, data = x)
+
+Anova(model)
+summary(model) 
+
+
+```
+ 
+
+
