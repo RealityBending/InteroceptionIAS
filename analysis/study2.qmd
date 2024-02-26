@@ -60,17 +60,17 @@ vars_intero <- names(select(scores$sample1a, -Sample, -starts_with("CFA_"), -sta
 
 # names(df1a)
 # names(df1b)
-# names(df2)  # BPQ, BVAQ, MAIA, ICQ (?), TAS
+# names(df2)  # BPQ, BVAQ, MAIA, ICQ, TAS
 # names(df3)  # TAS, BPQ
-# names(df4)  # BAQ (?), BPQ, MAIA, BRS (resilience?), PBCS (private bodily consciousness?)
+# names(df4)  # BAQ, BPQ, MAIA, BRS, PBCS
 # names(df5)  
 # names(df6)  # IATS, SSS, GAD, PHQ2
-# names(df7a)  # MAIA, STAI, FFMQ, NEOFFI, CES
+# names(df7a)  # MAIA, STAI, FFMQ, NEOFFI, CES (?)
 # names(df7b)  # MAIA, STAI, BPQ, PHQ15, PHQ9
-# names(df7c)  # TAS, BPQ, TAS, ASI, BDI, IASV
-# names(df8a)  # EDI, BPQ
+# names(df7c)  # TAS, BPQ, ASI, BDI, CI (?), IASV (?), IASP (?)
+# names(df8a)  # EDI (eating disorder inventory?), BPQ
 # names(df8b)  # TAS, PHQ15, PHQ9
-# names(df9)  # BFI, STQ, EQ, ECR, 
+# names(df9)  # BFI, STQ (?), EQ (?), ECR (?), TEAQ (?), UCLA (?), TACSEN (?)
 # names(df10a)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
 # names(df10b)  # BDI, STAI, PHQ4
 ```
@@ -151,7 +151,9 @@ make_diff <- function(df, vars, component=NA) {
   select(dat, -Cohens_d)
 }
 
-data <- rbind(
+
+
+rez_gender <- rbind(
   make_diff(df1a, vars_intero, component="Demographic"),
   make_diff(df1b, vars_intero, component="Demographic"),
   make_diff(df2, vars_intero, component="Demographic"),
@@ -169,6 +171,27 @@ data <- rbind(
   make_diff(df10b, vars_intero, component="Demographic")
 ) |>
   mutate(var_Correlate = "Gender (Male vs. Female)")
+
+
+
+display_sig <- function(rez) {
+  rez |> 
+    arrange(var_Interoception, var_Correlate, desc(abs(r))) |> 
+    mutate(CI = insight::format_ci(CI_low, CI_high, ci=CI)) |>
+    select(Sample, var_Correlate, var_Interoception, r, CI, p) |>
+    gt::gt() |> 
+    gt::data_color(
+      columns = r,
+      rows = p < 0.5,
+      method = "numeric",
+      palette = c("blue", "red")
+    ) |> 
+    gt::fmt_number(decimals=3) |> 
+    gt::opt_stylize() |> 
+    gt::opt_interactive(use_compact_mode = TRUE) 
+}
+
+display_sig(rez_gender)
 ```
 
 ### Age
@@ -191,8 +214,7 @@ make_cor <- function(df, vars, with = "Age", component=NA) {
   select(dat, -df_error, -t, -Method, -n_Obs)
 }
 
-data <- rbind(
-  data,
+rez_age <- rbind(
   make_cor(df1a, vars_intero, with = "Age", component="Demographic"),
   make_cor(df1b, vars_intero, with = "Age", component="Demographic"),
   make_cor(df2, vars_intero, with = "Age", component="Demographic"),
@@ -209,6 +231,9 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "Age", component="Demographic"),
   make_cor(df10b, vars_intero, with = "Age", component="Demographic")
 )
+
+
+display_sig(rez_age)
 ```
 
 
@@ -218,14 +243,22 @@ data <- rbind(
 ### MAIA
 
 ```{r}
-names(df2)[str_detect(names(df2), "MAIA")]  
-names(df4)[str_detect(names(df4), "MAIA")]  # ?
-names(df7a)[str_detect(names(df7a), "MAIA")]  
-names(df7b)[str_detect(names(df7b), "maia")] 
-names(df10a)[str_detect(names(df10b), "MAIA")]
+# names(df2)[str_detect(names(df2), "MAIA")]  
+# names(df4)[str_detect(names(df4), "MAIA")] 
+# names(df7a)[str_detect(names(df7a), "MAIA")]  
+# names(df7b)[str_detect(names(df7b), "maia")] 
+# names(df10a)[str_detect(names(df10b), "MAIA")]
 
-data <- rbind(
-  data,
+
+df4$MAIA_BL <- rowMeans(df4[grep("MAIA_BL", names(df4))])
+df4$MAIA_TR <- rowMeans(df4[grep("MAIA_TR", names(df4))])
+df4$MAIA_AR <- rowMeans(df4[grep("MAIA_AR", names(df4))])
+df4$MAIA_SR <- rowMeans(df4[grep("MAIA_SR", names(df4))])
+df4$MAIA_EA <- rowMeans(df4[grep("MAIA_EA", names(df4))])
+df4$MAIA_NT <- rowMeans(df4[grep("MAIA_NT", names(df4))])
+
+
+rez_maia <- rbind(
   make_cor(df2, vars_intero, with = "MAIA_AttentionReg", component="MAIA")  |>
     mutate(var_Correlate = "Attention Regulation"),
   make_cor(df2, vars_intero, with = "MAIA_BodyListening", component="MAIA") |>
@@ -243,6 +276,18 @@ data <- rbind(
   make_cor(df2, vars_intero, with = "MAIA_SelfReg", component="MAIA") |>
     mutate(var_Correlate = "Self Regulation"),
   # df4
+  make_cor(df4, vars_intero, with = "MAIA_BL", component="MAIA") |>
+    mutate(var_Correlate = "Listening"),
+  make_cor(df4, vars_intero, with = "MAIA_TR", component="MAIA") |>
+    mutate(var_Correlate = "Trusting"),
+  make_cor(df4, vars_intero, with = "MAIA_AR", component="MAIA") |>
+    mutate(var_Correlate = "Attention Regulation"),
+  make_cor(df4, vars_intero, with = "MAIA_SR", component="MAIA") |>
+    mutate(var_Correlate = "Self Regulation"),
+  make_cor(df4, vars_intero, with = "MAIA_EA", component="MAIA") |>
+    mutate(var_Correlate = "Emotional Awareness"),
+  make_cor(df4, vars_intero, with = "MAIA_NT", component="MAIA") |>
+    mutate(var_Correlate = "Noticing"),
   # df7a
   make_cor(df7a, vars_intero, with = "mAIA_ATTENTION_REGULATION", component="MAIA") |>
     mutate(var_Correlate = "Attention Regulation"),
@@ -299,44 +344,82 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "MAIA_Trusting", component="MAIA") |>
     mutate(var_Correlate = "Trusting")
 )
+
+display_sig(rez_maia)
 ```
 
 
-### BPQ
+### Body
 
 ```{r}
 # df3$BPQ_BodyAwareness <- -1*normalize(df3$BPQ_BodyAwareness)
 # df3$BPQ_AutonomicReactivity <- -1*normalize(df3$BPQ_AutonomicReactivity)
-names(df2)[str_detect(names(df2), "BPQ")]  # BPQ_R_Supra and _Sub?
-names(df3)[str_detect(names(df3), "BPQ")]  
-names(df4)[str_detect(names(df4), "BPQ")]   # individual items 1-26
-names(df7b)[str_detect(names(df7b), "BPQ")]  # BPQ sum
-names(df8a)[str_detect(names(df8a), "BPQ")]  # individual items
+# names(df2)[str_detect(names(df2), "BPQ")]  # BPQ_R_Supra and _Sub?
+# names(df3)[str_detect(names(df3), "BPQ")]  
+# names(df4)[str_detect(names(df4), "BPQ")]   # individual items 1-26
+# names(df7b)[str_detect(names(df7b), "BPQ")]  # BPQ sum
+# names(df8a)[str_detect(names(df8a), "BPQ")]  # individual items
 
+df4$BPQ_A <- rowMeans(df4[str_detect(names(df4), "BPQ_")])
+df4$BAQ <- rowMeans(df4[,str_detect(names(df4), "BAQ")], na.rm = TRUE)
+df4$PBCS <- rowMeans(df4[,str_detect(names(df4), "PBCS")], na.rm = TRUE)
+df4$BRS <- rowMeans(df4[,str_detect(names(df4), "BRS")], na.rm = TRUE)
+df8a$BPQ_A <- -1*normalize(df8a$BPQ_A)
 
-data <- rbind(
-  data,
-  make_cor(df2, vars_intero, with = "BPQ_A", component="BPQ") |>
+rez_bpq <- rbind(
+  # df2
+  make_cor(df2, vars_intero, with = "BPQ_A", component="Body") |>
     mutate(var_Correlate = "Body Awareness (BPQ)"),
-  make_cor(df2, vars_intero, with = "BPQ_R", component="BPQ") |>
+  make_cor(df2, vars_intero, with = "BPQ_R", component="Body") |>
     mutate(var_Correlate = "Autonomic Reactivity (BPQ)"),
-  make_cor(df3, vars_intero, with = "BPQ_BodyAwareness", component="BPQ") |>
+  make_cor(df2, vars_intero, with = "ICQ", component="Body") |>
+    mutate(var_Correlate = "Interoceptive Confusion (ICQ)"),
+  # df3
+  make_cor(df3, vars_intero, with = "BPQ_BodyAwareness", component="Body") |>
     mutate(var_Correlate = "Body Awareness (BPQ)"),
-  make_cor(df3, vars_intero, with = "BPQ_AutonomicReactivity", component="BPQ") |>
-    mutate(var_Correlate = "Autonomic Reactivity (BPQ)")
+  make_cor(df3, vars_intero, with = "BPQ_AutonomicReactivity", component="Body") |>
+    mutate(var_Correlate = "Autonomic Reactivity (BPQ)"),
+  # df4
+  make_cor(df4, vars_intero, with = "BPQ_A", component="Body") |>
+    mutate(var_Correlate = "Body Awareness (BPQ)"),
+  make_cor(df4, vars_intero, with = "BAQ", component="Body") |>
+    mutate(var_Correlate = "Body Awareness (BAQ)"),
+  make_cor(df4, vars_intero, with = "PBCS", component="Body") |>
+    mutate(var_Correlate = "Body Consciousness (PBCS)"),
+  make_cor(df4, vars_intero, with = "BRS", component="Body") |>
+    mutate(var_Correlate = "Body Responsiveness (BRS)"),
+  # df 6
+  make_cor(df6, vars_intero, with = "IATS_sum", component="Body") |>
+    mutate(var_Correlate = "Interoceptive Attention (IATS)"),
+  make_cor(df6, vars_intero, with = "SSS8_sum", component="Body") |>
+    mutate(var_Correlate = "Somatic Burden (SSS-8)"),
+  # df 7b
+  make_cor(df7b, vars_intero, with = "BPQ_Sum", component="Body") |>
+    mutate(var_Correlate = "Body Awareness (BPQ)"),
+  make_cor(df7b, vars_intero, with = "PHQ15_Sum", component="Mood") |>
+    mutate(var_Correlate = "Somatic Concerns (PHQ-15)"),
+  # df 7c
+  make_cor(df7c, vars_intero, with = "BPQ_sum", component="Body") |>
+    mutate(var_Correlate = "Body Awareness (BPQ)"),
+  make_cor(df7c, vars_intero, with = "ICQ_sum", component="Body") |>
+    mutate(var_Correlate = "Interoceptive Confusion (ICQ)"),
+  # df8a
+  make_cor(df8a, vars_intero, with = "BPQ_A", component="Body") |>
+    mutate(var_Correlate = "Body Awareness (BPQ)")
 )
+
+display_sig(rez_bpq)
 ```
 
 ### Alexithymia
 
 ```{r}
-names(df2)[str_detect(names(df2), "TAS")]
-names(df3)[str_starts(names(df3), "TAS")]
-names(df7c)[str_starts(names(df7c), "TAS")]
-names(df8b)[str_starts(names(df8b), "TAS")]
+# names(df2)[str_detect(names(df2), "TAS")]
+# names(df3)[str_starts(names(df3), "TAS")]
+# names(df7c)[str_starts(names(df7c), "TAS")]
+# names(df8b)[str_starts(names(df8b), "TAS")]
 
-data <- rbind(
-  data,
+rez_alexi <- rbind(
   make_cor(df2, vars_intero, with = "TAS_DIF", component="Alexithymia") |>
     mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
   make_cor(df2, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
@@ -365,6 +448,8 @@ data <- rbind(
   make_cor(df2, vars_intero, with = "BVAQ_Cognitive", component="Alexithymia") |>
     mutate(var_Correlate = "Cognitive (BVAQ)")
 )
+
+display_sig(rez_bpq)
 ```
 
 
@@ -377,18 +462,15 @@ data <- rbind(
 ### Depression
 
 ```{r}
-names(df6)[str_detect(names(df6), "PHQ")] 
-names(df7b)[str_detect(names(df7b), "PHQ")]
-names(df7c)[str_detect(names(df7c), "BDI")]
-names(df8b)[str_detect(names(df8b), "PHQ")]
-names(df9)
+# names(df6)[str_detect(names(df6), "PHQ")] 
+# names(df7b)[str_detect(names(df7b), "PHQ")]
+# names(df7c)[str_detect(names(df7c), "BDI")]
+# names(df8b)[str_detect(names(df8b), "PHQ")]
+# names(df9)
 
-data <- rbind(
-  data,
+rez_dep <- rbind(
   make_cor(df6, vars_intero, with = "PHQ2_sum", component="Mood") |>
     mutate(var_Correlate = "Depression (PHQ-2)"),
-  make_cor(df7b, vars_intero, with = "PHQ15_Sum", component="Mood") |>
-    mutate(var_Correlate = "Somatic Concerns (PHQ-15)"),
   make_cor(df7b, vars_intero, with = "PHQ9_Sum", component="Mood")|>
     mutate(var_Correlate = "Depression (PHQ-9)"),
   make_cor(df7c, vars_intero, with = "BDI_sum", component="Mood") |>
@@ -402,18 +484,19 @@ data <- rbind(
   make_cor(df10b, vars_intero, with = "BDI2_Total", component="Mood") |>
     mutate(var_Correlate = "Depression (BDI)")
 )
+
+display_sig(rez_dep)
 ```
 
 ### Anxiety
 
 ```{r}
-names(df6)[str_detect(names(df6), "GAD")] 
-names(df7a)[str_detect(names(df7a), "STAI")] 
-names(df7b)[str_detect(names(df7b), "STAI")] 
-names(df7c)[str_detect(names(df7c), "STAI")]
+# names(df6)[str_detect(names(df6), "GAD")] 
+# names(df7a)[str_detect(names(df7a), "STAI")] 
+# names(df7b)[str_detect(names(df7b), "STAI")] 
+# names(df7c)[str_detect(names(df7c), "STAI")]
 
-data <- rbind(
-  data,
+rez_anx <- rbind(
   make_cor(df6, vars_intero, with = "GAD2_sum", component="Mood") |>
     mutate(var_Correlate = "Anxiety (GAD-2)"),
   make_cor(df7a, vars_intero, with = "STAI_T_Sumscore", component="Mood") |>
@@ -429,6 +512,8 @@ data <- rbind(
   make_cor(df10b, vars_intero, with = "STAI5_General", component="Mood") |>
     mutate(var_Correlate = "Anxiety (STAI)")
 )
+
+display_sig(rez_anx)
 ```
 
 
@@ -437,17 +522,17 @@ data <- rbind(
 
 
 ```{r}
-data <- rbind(
-  data,
+rez_bpd <- rbind(
   make_cor(df10a, vars_intero, with = "BPD", component="Mood") |>
     mutate(var_Correlate = "Boderline Personality")
 )
+
+display_sig(rez_bpd)
 ```
 
 
 ```{r}
-data <- rbind(
-  data,
+rez_pid <- rbind(
   make_cor(df10a, vars_intero, with = "PID5_Antagonism", component="Maladaptive") |>
     mutate(var_Correlate = "Antagonism"),
   make_cor(df10a, vars_intero, with = "PID5_Detachment", component="Maladaptive") |>
@@ -459,11 +544,12 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "PID5_Psychoticism", component="Maladaptive") |>
     mutate(var_Correlate = "Psychoticism")
 )
+
+display_sig(rez_pid)
 ```
 
 ```{r}
-data <- rbind(
-  data,
+rez_spq <- rbind(
   make_cor(df10a, vars_intero, with = "SPQ_ConstrictedAffect", component="Schizotypic") |>
     mutate(var_Correlate = "Constricted Affect"),
   make_cor(df10a, vars_intero, with = "SPQ_Eccentric", component="Schizotypic") |>
@@ -483,13 +569,14 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "SPQ_UnusualPerceptions", component="Schizotypic") |>
     mutate(var_Correlate = "Unusual Perceptions")
 )
+
+display_sig(rez_spq)
 ```
 
 
 ```{r}
 #  names(select(df10a, starts_with("ASQ")))
-data <- rbind(
-  data,
+rez_asq <- rbind(
   make_cor(df10a, vars_intero, with = "ASQ_Imagination", component="Autistic") |>
     mutate(var_Correlate = "Imagination"),
   make_cor(df10a, vars_intero, with = "ASQ_LackSocialSkills", component="Autistic") |>
@@ -501,17 +588,20 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "ASQ_Routine", component="Autistic") |>
     mutate(var_Correlate = "Routines")
 )
+
+display_sig(rez_asq)
 ```
 
 
 ## Personality
 
 ```{r}
-names(df7a)[str_detect(names(df7a), "NEO")]
-names(df9)[str_detect(names(df9), "BFI_")]
+# names(df7a)[str_detect(names(df7a), "NEO")]
+# names(df9)[str_detect(names(df9), "BFI_")]
 
-data <- rbind(
-  data,
+rez_pers <- rbind(
+  make_cor(df7a, vars_intero, with = "NEO_FFI_SUMSCORE", component="Personality") |>
+    mutate(var_Correlate = "Neuroticism"),
   make_cor(df9, vars_intero, with = "BFI_AGREEABLENESS", component="Personality") |>
     mutate(var_Correlate = "Agreeableness"),
   make_cor(df9, vars_intero, with = "BFI_CONSCIENTIOUSNESS", component="Personality") |>
@@ -535,14 +625,27 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "IPIP6_HonestyHumility", component="Personality") |>
     mutate(var_Correlate = "Honesty-Humility")
 )
+
+display_sig(rez_pers)
 ```
 
 ## Others
 
+```{r}
+# names(df7a)[str_detect(names(df7a), "FFMQ")]
+
+rez_ffmq <- rbind(
+  make_cor(df7a, vars_intero, with = "FFMQ_OBSERVATION", component="Mindfulness") |>
+    mutate(var_Correlate = "Observation (FFMQ)"),
+  make_cor(df7a, vars_intero, with = "FFMQ_DESCRIPTION", component="Mindfulness") |>
+    mutate(var_Correlate = "Description (FFMQ)")
+)
+
+display_sig(rez_ffmq)
+```
 
 ```{r}
-data <- rbind(
-  data,
+rez_pi <- rbind(
   make_cor(df10a, vars_intero, with = "PI_Alive", component="World Beliefs") |>
     mutate(var_Correlate = "Alive"),
   make_cor(df10a, vars_intero, with = "PI_Changing", component="World Beliefs") |>
@@ -558,11 +661,12 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "PI_Understandable", component="World Beliefs") |>
     mutate(var_Correlate = "Understandable")
 )
+
+display_sig(rez_pi)
 ```
 
 ```{r}
-data <- rbind(
-  data,
+rez_gcbs <- rbind(
   make_cor(df10a, vars_intero, with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs") |>
     mutate(var_Correlate = "Extraterrestrial"),
   make_cor(df10a, vars_intero, with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs") |>
@@ -574,11 +678,12 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs") |>
     mutate(var_Correlate = "Personal Wellbeing")
 )
+
+display_sig(rez_gcbs)
 ```
 
 ```{r}
-data <- rbind(
-  data,
+rez_lie <- rbind(
   make_cor(df10a, vars_intero, with = "LIE_Ability", component="Lying Profile") |>
     mutate(var_Correlate = "Ability"),
   make_cor(df10a, vars_intero, with = "LIE_Frequency", component="Lying Profile") |>
@@ -588,6 +693,19 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "LIE_Negativity", component="Lying Profile") |>
     mutate(var_Correlate = "Negativity")
 )
+
+display_sig(rez_lie)
+```
+
+```{r}
+# names(df4)
+
+# rez_others <- rbind(
+#   make_cor(df2, vars_intero, with = "ICQ", component="Other") |>
+#     mutate(var_Correlate = "Interoceptive Confusion (ICQ)")
+# )
+# 
+# display_sig(rez_others)
 ```
 
 ## Summary
@@ -595,6 +713,25 @@ data <- rbind(
 ```{r}
 #| fig-height: 20
 #| fig-width: 15
+
+data <- rbind(
+  rez_gender,
+  rez_age,
+  rez_maia,
+  rez_bpq,
+  rez_alexi,
+  rez_dep,
+  rez_anx,
+  rez_bpd,
+  rez_spq,
+  rez_asq,
+  rez_pers,
+  rez_ffmq,
+  rez_pi,
+  rez_gcbs,
+  rez_lie
+)
+
 
 p <- data |>
   mutate(sig = ifelse(p < .01, "p < .01", ifelse(p < .001, "p < .001", "N.S.")),
@@ -611,20 +748,22 @@ p <- data |>
          # Component = fct_relevel(
          #   Component, "Demographic", "MAIA", "Body", "Mood", "Maladaptive",
          #   "Schizotypic", "Autistic", "Personality", "Conspiracy Beliefs", "World Beliefs", "Lying Profile")) |>
-  ggplot(aes(x = var_Correlate)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
+  ggplot(aes(y = var_Correlate)) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
   # geom_bar(aes(fill=Sample, alpha=sig, y=r, group=Sample), stat="identity", position = position_dodge2(width = 0.8)) +
-  geom_linerange(aes(color=dir, alpha=sig, ymin=0, ymax=r, group=Sample), position = position_dodge2(width = 0.7), linewidth=2.5) +
-  geom_linerange(aes(ymin = CI_low, ymax = CI_high, color = dir, alpha=sig, group=Sample), position = position_dodge2(width = 0.7)) +
+  geom_linerange(aes(color=dir, alpha=sig, xmin=0, xmax=r, group=Sample), position = position_dodge2(width = 0.7), linewidth=2.5) +
+  geom_linerange(aes(xmin = CI_low, xmax = CI_high, color = dir, alpha=sig, group=Sample), position = position_dodge2(width = 0.7)) +
   scale_fill_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
   scale_color_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
   scale_alpha_discrete(range = c(0.2, 0.7), guide = "none") +
-  scale_y_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
+  scale_x_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
   facet_grid(Component ~ var_Interoception, scales = "free_y", switch = "y") +
-  coord_flip(ylim = c(-0.45, 0.45)) +
+  coord_cartesian(xlim = c(-0.45, 0.45)) +
   theme_modern(axis.title.space = 5) +
+  # labs(x = "Correlation", title="Correlates of the Interoceptive Accuracy Scale (IAS)") +
   theme(panel.grid.major.y = element_line(),
         axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
         axis.line.x = element_blank(),
         axis.text.y = element_text(size = rel(0.5)),
         axis.text.x = element_text(size = rel(0.8)),
