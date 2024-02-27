@@ -65,12 +65,12 @@ vars_intero <- names(select(scores$sample1a, -Sample, -starts_with("CFA_"), -sta
 # names(df4)  # BAQ, BPQ, MAIA, BRS, PBCS
 # names(df5)  
 # names(df6)  # IATS, SSS, GAD, PHQ2
-# names(df7a)  # MAIA, STAI, FFMQ, NEOFFI, CES (?)
+# names(df7a)  # MAIA, STAI, FFMQ, NEOFFI, CES
 # names(df7b)  # MAIA, STAI, BPQ, PHQ15, PHQ9
 # names(df7c)  # TAS, BPQ, ASI, BDI, CI (?), IASV (?), IASP (?)
 # names(df8a)  # EDI (eating disorder inventory?), BPQ
 # names(df8b)  # TAS, PHQ15, PHQ9
-# names(df9)  # BFI, STQ (?), EQ (?), ECR (?), TEAQ (?), UCLA (?), TACSEN (?)
+# names(df9)  # BFI, STQ (?), EQ, ECR, TEAQ, UCLA, TACSEN
 # names(df10a)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
 # names(df10b)  # BDI, STAI, PHQ4
 ```
@@ -120,7 +120,7 @@ correlation::correlation(select(df_scores, -all_of(vars_intero)),
     )
 ```
 
-Even EGA components capture pairs or groupings of pairs of items.
+Very strong correlations between empirical scores (i.e., average of pairs of items) and dimensions derived from models. Even EGA components capture pairs or groupings of pairs of items.
 
 ## Demographics
 
@@ -238,7 +238,7 @@ display_sig(rez_age)
 
 
 
-## Body
+## Interoception
 
 ### MAIA
 
@@ -247,6 +247,7 @@ display_sig(rez_age)
 # names(df4)[str_detect(names(df4), "MAIA")] 
 # names(df7a)[str_detect(names(df7a), "MAIA")]  
 # names(df7b)[str_detect(names(df7b), "maia")] 
+# names(df8a)[str_detect(names(df8a), "EDI")] 
 # names(df10a)[str_detect(names(df10b), "MAIA")]
 
 
@@ -349,7 +350,7 @@ display_sig(rez_maia)
 ```
 
 
-### Body
+### Body Awareness
 
 ```{r}
 # df3$BPQ_BodyAwareness <- -1*normalize(df3$BPQ_BodyAwareness)
@@ -366,7 +367,7 @@ df4$PBCS <- rowMeans(df4[,str_detect(names(df4), "PBCS")], na.rm = TRUE)
 df4$BRS <- rowMeans(df4[,str_detect(names(df4), "BRS")], na.rm = TRUE)
 df8a$BPQ_A <- -1*normalize(df8a$BPQ_A)
 
-rez_bpq <- rbind(
+rez_body <- rbind(
   # df2
   make_cor(df2, vars_intero, with = "BPQ_A", component="Body") |>
     mutate(var_Correlate = "Body Awareness (BPQ)"),
@@ -405,10 +406,12 @@ rez_bpq <- rbind(
     mutate(var_Correlate = "Interoceptive Confusion (ICQ)"),
   # df8a
   make_cor(df8a, vars_intero, with = "BPQ_A", component="Body") |>
-    mutate(var_Correlate = "Body Awareness (BPQ)")
+    mutate(var_Correlate = "Body Awareness (BPQ)"),
+  make_cor(df8a, vars_intero, with = "EDI_IA", component="Body") |>
+    mutate(var_Correlate = "Interoceptive Awareness (EDI)")
 )
 
-display_sig(rez_bpq)
+display_sig(rez_body)
 ```
 
 ### Alexithymia
@@ -421,27 +424,27 @@ display_sig(rez_bpq)
 
 rez_alexi <- rbind(
   make_cor(df2, vars_intero, with = "TAS_DIF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
+    mutate(var_Correlate = "Diff. Identifying Feelings (TAS)"),
   make_cor(df2, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
+    mutate(var_Correlate = "Diff. Describing Feelings (TAS)"),
   make_cor(df2, vars_intero, with = "TAS_EOT", component="Alexithymia") |>
     mutate(var_Correlate = "External Thinking (TAS)"),
   make_cor(df3, vars_intero, with = "TAS_DescribingFeelings", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
+    mutate(var_Correlate = "Diff. Describing Feelings (TAS)"),
   make_cor(df3, vars_intero, with = "TAS_IdentifyingFeelings", component="Alexithymia") |> 
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
+    mutate(var_Correlate = "Diff. Identifying Feelings (TAS)"),
   make_cor(df3, vars_intero, with = "TAS_ExternallyOrientedThinking", component="Alexithymia") |>
     mutate(var_Correlate = "External Thinking (TAS)"),
   make_cor(df7c, vars_intero, with = "TAS_des", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
+    mutate(var_Correlate = "Diff. Describing Feelings (TAS)"),
   make_cor(df7c, vars_intero, with = "TAS_ident", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
+    mutate(var_Correlate = "Diff. Identifying Feelings (TAS)"),
   make_cor(df7c, vars_intero, with = "TAS_ext", component="Alexithymia") |>
     mutate(var_Correlate = "External Thinking (TAS)"),
   make_cor(df8b, vars_intero, with = "TAS_DIF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
+    mutate(var_Correlate = "Diff. Identifying Feelings (TAS)"),
   make_cor(df8b, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
+    mutate(var_Correlate = "Diff. Describing Feelings (TAS)"),
   # BVAQ
   make_cor(df2, vars_intero, with = "BVAQ_Affective", component="Alexithymia") |>
     mutate(var_Correlate = "Affective (BVAQ)"),
@@ -449,7 +452,7 @@ rez_alexi <- rbind(
     mutate(var_Correlate = "Cognitive (BVAQ)")
 )
 
-display_sig(rez_bpq)
+display_sig(rez_alexi)
 ```
 
 
@@ -463,6 +466,7 @@ display_sig(rez_bpq)
 
 ```{r}
 # names(df6)[str_detect(names(df6), "PHQ")] 
+# names(df7a)[str_detect(names(df7aa), "PHQ")]
 # names(df7b)[str_detect(names(df7b), "PHQ")]
 # names(df7c)[str_detect(names(df7c), "BDI")]
 # names(df8b)[str_detect(names(df8b), "PHQ")]
@@ -471,6 +475,8 @@ display_sig(rez_bpq)
 rez_dep <- rbind(
   make_cor(df6, vars_intero, with = "PHQ2_sum", component="Mood") |>
     mutate(var_Correlate = "Depression (PHQ-2)"),
+  make_cor(df7a, vars_intero, with = "CES_SUM", component="Mood")|>
+    mutate(var_Correlate = "Depression (CES)"),
   make_cor(df7b, vars_intero, with = "PHQ9_Sum", component="Mood")|>
     mutate(var_Correlate = "Depression (PHQ-9)"),
   make_cor(df7c, vars_intero, with = "BDI_sum", component="Mood") |>
@@ -519,16 +525,6 @@ display_sig(rez_anx)
 
 
 ## Psychopathology
-
-
-```{r}
-rez_bpd <- rbind(
-  make_cor(df10a, vars_intero, with = "BPD", component="Mood") |>
-    mutate(var_Correlate = "Boderline Personality")
-)
-
-display_sig(rez_bpd)
-```
 
 
 ```{r}
@@ -644,6 +640,28 @@ rez_ffmq <- rbind(
 display_sig(rez_ffmq)
 ```
 
+
+```{r}
+# names(df9)[str_detect(names(df9), "UCLA")]
+# names(df9)[str_detect(names(df9), "EQ")]
+df9$EQ <- rowMeans(select(df9, starts_with("EQ")))
+
+rez_social <- rbind(
+  make_cor(df9, vars_intero, with = "UCLA_TOTAL", component="Interpersonal") |>
+    mutate(var_Correlate = "Loneliness (UCLA)"),
+  make_cor(df9, vars_intero, with = "EQ", component="Interpersonal") |>
+    mutate(var_Correlate = "Empathy (EQ)"),
+  make_cor(df9, vars_intero, with = "ECR_ANXIETY", component="Interpersonal") |>
+    mutate(var_Correlate = "Relationship Anxiety (ECR)"),
+  make_cor(df9, vars_intero, with = "ECR_AVOIDANCE", component="Interpersonal") |>
+    mutate(var_Correlate = "Relationship Avoidance (ECR)"),
+  make_cor(df10a, vars_intero, with = "BPD", component="Interpersonal") |>
+    mutate(var_Correlate = "Boderline Personality")
+)
+
+display_sig(rez_social)
+```
+
 ```{r}
 rez_pi <- rbind(
   make_cor(df10a, vars_intero, with = "PI_Alive", component="World Beliefs") |>
@@ -667,15 +685,15 @@ display_sig(rez_pi)
 
 ```{r}
 rez_gcbs <- rbind(
-  make_cor(df10a, vars_intero, with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs") |>
+  make_cor(df10a, vars_intero, with = "GCBS_Extraterrestrial", component="Conspiracy") |>
     mutate(var_Correlate = "Extraterrestrial"),
-  make_cor(df10a, vars_intero, with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs") |>
+  make_cor(df10a, vars_intero, with = "GCBS_GlobalConspiracies", component="Conspiracy") |>
     mutate(var_Correlate = "Global Conspiracies"),
-  make_cor(df10a, vars_intero, with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs") |>
+  make_cor(df10a, vars_intero, with = "GCBS_GovernmentMalfeasance", component="Conspiracy") |>
     mutate(var_Correlate = "Government Malfeasance"),
-  make_cor(df10a, vars_intero, with = "GCBS_InformationControl", component="Conspiracy Beliefs") |>
+  make_cor(df10a, vars_intero, with = "GCBS_InformationControl", component="Conspiracy") |>
     mutate(var_Correlate = "Information Control"),
-  make_cor(df10a, vars_intero, with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs") |>
+  make_cor(df10a, vars_intero, with = "GCBS_PersonalWellbeing", component="Conspiracy") |>
     mutate(var_Correlate = "Personal Wellbeing")
 )
 
@@ -697,34 +715,26 @@ rez_lie <- rbind(
 display_sig(rez_lie)
 ```
 
-```{r}
-# names(df4)
-
-# rez_others <- rbind(
-#   make_cor(df2, vars_intero, with = "ICQ", component="Other") |>
-#     mutate(var_Correlate = "Interoceptive Confusion (ICQ)")
-# )
-# 
-# display_sig(rez_others)
-```
 
 ## Summary
 
 ```{r}
-#| fig-height: 20
-#| fig-width: 15
+#| fig-height: 13.365
+#| fig-width: 9.45
+#| fig-cap: "Subjective Correlates of the Interoceptive Accuracy Scale (IAS). Each bar represents one sample (total N = **TODO**), and different samples using the same measures are grouped together, providing an intuition of the general trend. Blue and red bars represent positive and negative correlations, respectively, with their 95% CI. Transparent bars indicate non-significant correlations (p > .05)."
 
 data <- rbind(
   rez_gender,
   rez_age,
   rez_maia,
-  rez_bpq,
+  rez_body,
   rez_alexi,
   rez_dep,
   rez_anx,
-  rez_bpd,
   rez_spq,
   rez_asq,
+  rez_pid,
+  rez_social,
   rez_pers,
   rez_ffmq,
   rez_pi,
@@ -744,14 +754,14 @@ p <- data |>
          var_Interoception = str_replace(var_Interoception, "UrinateDefecate", "Urinate/Defecate"),
          var_Interoception = str_replace(var_Interoception, "WindBurp", "Wind/Burp"),
          var_Interoception = str_replace(var_Interoception, "Expulsion_Sudden", "Expulsion - Sudden"),
-         var_Interoception = fct_relevel(var_Interoception, "Heart/Breathing", "Muscles/Pain", "Itch/Bruise", "Hungry/Thirsty", "Urinate/Defecate", "Wind/Burp", "Cough/Sneeze")) |>
-         # Component = fct_relevel(
-         #   Component, "Demographic", "MAIA", "Body", "Mood", "Maladaptive",
-         #   "Schizotypic", "Autistic", "Personality", "Conspiracy Beliefs", "World Beliefs", "Lying Profile")) |>
+         var_Interoception = fct_relevel(var_Interoception, "Heart/Breathing", "Muscles/Pain", "Itch/Bruise", "Hungry/Thirsty", "Urinate/Defecate", "Wind/Burp", "Cough/Sneeze"),
+         Component = fct_relevel(
+           Component, "Demographic", "MAIA", "Body", "Alexithymia", "Mood", "Maladaptive",
+           "Schizotypic", "Autistic", "Interpersonal", "Personality", "Conspiracy", "World Beliefs", "Lying Profile", "Mindfulness")) |>
   ggplot(aes(y = var_Correlate)) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   # geom_bar(aes(fill=Sample, alpha=sig, y=r, group=Sample), stat="identity", position = position_dodge2(width = 0.8)) +
-  geom_linerange(aes(color=dir, alpha=sig, xmin=0, xmax=r, group=Sample), position = position_dodge2(width = 0.7), linewidth=2.5) +
+  geom_linerange(aes(color=dir, alpha=sig, xmin=0, xmax=r, group=Sample), position = position_dodge2(width = 0.7), linewidth=2) +
   geom_linerange(aes(xmin = CI_low, xmax = CI_high, color = dir, alpha=sig, group=Sample), position = position_dodge2(width = 0.7)) +
   scale_fill_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
   scale_color_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
@@ -772,30 +782,9 @@ p <- data |>
         strip.background.y = element_rect(fill = "#E0E0E0", color = "white"),
         strip.background.x = element_rect(fill = "#F8BBD0", color = "white"))
 p
-ggsave("figures/Figure2.png", p, width=21*0.6, height=29.7*0.45, dpi=200, bg="white")
+ggsave("figures/Figure2.png", p, width=21*0.45, height=29.7*0.45, dpi=200, bg="white")
 ```
 
 
 
-## Discussion
 
-
-Benefits of the IAS:
-- Straightforward and sensation-centered items
-
-Recommendations:
-- Remove Itch (redundant + issue in Chinese)
-- Use analog scales
-
-Limitations:
-- Not much clear theorethical or empirical structure (small grouping of items)
-- Limited variability (clear mode at 4/5), very low prevalence of 5/5 responses.
-- Ambiguous items which grouping depends on the context (and its awareness)
-  - E.g., heart beating fast, vomit when nauseaous
-- Few items for some modalities (e.g., 1 for heart)
-- Positive phrasing: benefits but also might exacerbate positivity bias (and thus unidimensionality)
-
-Need for context-specific items (cross-modal when possible, i.E., cardioception, respiroception, etc.).
-
-
-New Scale: Multimodal Interoceptive Sensitivity Scale (MISS)

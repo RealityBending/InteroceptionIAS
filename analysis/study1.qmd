@@ -354,7 +354,9 @@ p1 <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, d
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         plot.title = element_text(face="bold")) +
-  labs(title = "Distribution of responses for all items across various datasets", x = "Response", y = "Density", color = "Item") +
+  labs(x = "Response", y = "Density",
+       # title = "Distribution of responses for all items across various datasets", 
+       color = "Item") +
   facet_wrap(~Sample, scales = "free_y", nrow = 5)
 
 ggsave("figures/Figure1.png", p1, width=10, height=10, dpi=200, bg="white")
