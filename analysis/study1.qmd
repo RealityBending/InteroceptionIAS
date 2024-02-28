@@ -1275,16 +1275,6 @@ plot(efa4)
 display(efa4)
 ```
 
-#### Sample 5
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data5, n = 4, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
 
 #### Sample 5
 
