@@ -1241,6 +1241,160 @@ plot(efa4)
 display(efa4)
 ```
 
+#### Sample 2
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data2, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+
+```
+
+#### Sample 3
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data3, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### sample 4
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data4, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 5
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data5, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 5
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data5, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 6
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data6, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 7a
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data7a, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 7b
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data7b, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 7c
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data7c, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 8a
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data8a, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 8b
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data8b, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 9
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data9, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 10a
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data10a, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 10b
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data10b, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
 
 :::
 
@@ -1346,6 +1500,142 @@ parameters::parameters(m7_all, standardize=TRUE) |>
 display(compare_mods(data1a))
 ```
 
+#### Sample 1b
+
+```{r}
+#| warning: false
+
+display(compare_mods(data1b))
+
+```
+
+
+#### Sample 2
+
+```{r}
+#| warning: false
+
+display(compare_mods(data2))
+
+```
+
+
+#### Sample 3
+
+```{r}
+#| warning: false
+
+display(compare_mods(data3))
+
+```
+
+
+#### Sample 4
+
+```{r}
+#| warning: false
+
+display(compare_mods(data4))
+
+```
+
+
+#### Sample 5
+
+```{r}
+#| warning: false
+
+display(compare_mods(data5))
+
+```
+
+
+#### Sample 6
+
+```{r}
+#| warning: false
+
+display(compare_mods(data6))
+```
+
+
+#### Sample 7a
+
+```{r}
+#| warning: false
+
+display(compare_mods(data7a))
+```
+
+
+#### Sample 7b
+
+```{r}
+#| warning: false
+
+display(compare_mods(data7b))
+
+```
+
+
+#### Sample 7c
+
+```{r}
+#| warning: false
+
+display(compare_mods(data7c))
+
+```
+
+
+#### Sample 8a
+
+```{r}
+#| warning: false
+
+display(compare_mods(data8a))
+```
+
+
+#### Sample 8b
+
+```{r}
+#| warning: false
+
+display(compare_mods(data8b))
+```
+
+
+#### Sample 9
+
+```{r}
+#| warning: false
+
+display(compare_mods(data9))
+
+```
+
+
+#### Sample 10a
+
+```{r}
+#| warning: false
+
+display(compare_mods(data10a))
+
+```
+
+
+#### Sample 10b 
+
+```{r}
+#| warning: false
+
+display(compare_mods(data10b))
+
+```
+
+
 :::
 
 Conclusion: The 7th factor solution was preferred in most datasets, including by indices that penalize increased number of parameters (such as BIC). 
@@ -1399,6 +1689,103 @@ No evidence for higher order factors.
 
 ```{r}
 display(compare_mods_h(data1a))
+```
+
+#### Sample 1b
+
+```{r}
+display(compare_mods_h(data1b))
+```
+
+
+#### Sample 2
+
+```{r}
+display(compare_mods_h(data2))
+```
+
+
+#### Sample 3
+
+```{r}
+display(compare_mods_h(data3))
+```
+
+
+#### Sample 4
+
+```{r}
+display(compare_mods_h(data4))
+```
+
+
+#### Sample 5
+
+```{r}
+display(compare_mods_h(data5))
+```
+
+
+#### Sample 6
+
+```{r}
+display(compare_mods_h(data6))
+```
+
+
+#### Sample 7a
+
+```{r}
+display(compare_mods_h(data7a))
+```
+
+
+#### Sample 7b
+
+```{r}
+display(compare_mods_h(data7b))
+```
+
+
+#### Sample 7c
+
+```{r}
+display(compare_mods_h(data7c))
+```
+
+
+#### Sample 8a
+
+```{r}
+display(compare_mods_h(data8a))
+```
+
+
+#### Sample 8b
+
+```{r}
+display(compare_mods_h(data8b))
+```
+
+
+#### Sample 9
+
+```{r}
+display(compare_mods_h(data9))
+```
+
+
+#### Sample 10a
+
+```{r}
+display(compare_mods_h(data10a))
+```
+
+
+#### Sample 10b 
+
+```{r}
+display(compare_mods_h(data10b))
 ```
 
 
