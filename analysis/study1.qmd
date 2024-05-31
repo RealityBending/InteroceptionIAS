@@ -293,7 +293,7 @@ save(data, file = "../data/data.RData")
 
 - **Sample 1a**: Data from [Murphy's (2020)](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) study 1, downloaded from OSF, included `r report::report_participants(df1a, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 1b**: Data from [Murphy's (2020)](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) study 6, downloaded from OSF, included `r report::report_participants(df1b, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 2**: Data from [Gaggero's(2020)](https://osf.io/5x9sg/) study, downloaded from OSF, included `r report::report_participants(df2, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 2**: Data from [Gaggero's(2020)](https://osf.io/5x9sg/) study, downloaded from OSF, included `r report::report_participants(df2[c("Age", "Gender")], age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 3**: Data from [Campos's(2022)](https://osf.io/j6ef3) study, downloaded from OSF, included `r report::report_participants(df3, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 4**: Data from [Todd's(2022)]( https://osf.io/ms354/) study, downloaded from OSF, included `r report::report_participants(df4, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 5**: Data from [Arslanova (2022)](https://osf.io/mp3cy/) study, downloaded from OSF, included `r report::report_participants(df5, age = "Age", sex = NA, gender = "Gender")`.
