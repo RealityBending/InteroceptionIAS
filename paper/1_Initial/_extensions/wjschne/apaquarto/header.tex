@@ -10,32 +10,40 @@
 	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
 \makeatother
 
-\usepackage{amsmath}
 
 
-\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, tcolorbox}
 
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
 
-% $if(journalmode1)$
-% 
-% \usepackage{supertabular}
-% 
-% \renewenvironment{longtable}{\begin{supertabular}}{\end{supertabular}}
-% \renewcommand{\endhead}{}
-% \renewcommand{\endfirsthead}{}
-% \renewcommand{\endlastfoot}{}
-% \renewcommand{\toprule}[2]{\hline}
-% \renewcommand{\midrule}[2]{\hline}
-% \renewcommand{\bottomrule}[2]{\hline}
-% 
-% $endif$
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
 
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
 
 \newlength\Oldarrayrulewidth
 \newlength\Oldtabcolsep
 
 
 \usepackage{hyperref}
-\usepackage{float}
+
 
 

@@ -1,7 +1,5 @@
 -- Finds divs that are Tables and Figures.
 -- Adds FigureWithNote or FigureWithoutNote class to the Div
--- If docx, strips enclosing table and raw code
-
 function Pandoc (doc)
   local isfigure = false
   local istable = false
@@ -39,8 +37,7 @@ function Pandoc (doc)
         }
     end
     if isfigure or istable then
-      --print(doc.blocks[i])
-      if istable and FORMAT == "docx" then
+       if istable and FORMAT == "docx" then
         doc.blocks[i].content = doc.blocks[i].content:walk {
         Table = function(tb) 
              
@@ -53,22 +50,10 @@ function Pandoc (doc)
                 
         end
             }
-            
---          local newdiv = pandoc.Div(doc.blocks[i])
---          newdiv.classes:insert("cell")
---          newdiv.attributes = doc.blocks[i].attributes
---          if doc.blocks[i].attributes["apa-note"] then
---            newdiv.classes:insert("FigureWithNote")
---            newdiv.attributes["custom-style"] = "FigureWithNote"
---          else
---            newdiv.classes:insert("FigureWithoutNote")
---            newdiv.attributes["custom-style"] = "FigureWithoutNote"
---          end 
---          
---          doc.blocks[i] = newdiv
+
       end
       
-      
+
         if doc.blocks[i].attributes["apa-note"] then
           doc.blocks[i].classes:insert("FigureWithNote")
           doc.blocks[i].attributes["custom-style"] = "FigureWithNote"

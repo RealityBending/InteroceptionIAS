@@ -6,25 +6,16 @@ $if(floatsintext)$
   floatsintext,
 $endif$
   longtable,
-$if(mask)$
-  mask,
-$endif$
 $if(a4paper)$
   a4paper,
 $endif$
-$if(nolmodern)$
   nolmodern,
-$endif$
-$if(notxfonts)$
   notxfonts,
-$endif$
-$if(notimes)$
   notimes,
-$endif$
 $if(nofontenc)$
   nofontenc,
 $endif$
-$if(donotrepeattitle)$
+$if(suppress-title-introduction)$
   donotrepeattitle,
 $endif$
 $if(biblatex)$
@@ -47,6 +38,9 @@ $if(draftfirst)$
 $endif$
 $if(draftall)$
   draftall,
+$endif$
+$if(mask)$
+  mask,
 $endif$
 $for(classoption)$
   $classoption$$sep$,
