@@ -14,7 +14,6 @@ format:
 execute: 
   cache: true
 ---
-
 ```{r}
 #| message: false
 #| warning: false
@@ -27,7 +26,6 @@ library(ggraph)
 library(tidySEM)
 library(EGAnet)
 ```
-
 
 ## Data Preparation
 
@@ -47,7 +45,6 @@ df1b <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
 ```
 
-
 ### Sample 2
 
 Gaggero (2021) (https://osf.io/5x9sg)
@@ -56,6 +53,7 @@ Gaggero (2021) (https://osf.io/5x9sg)
 load("../data/Gaggero2021/data.rda")
 df2 <- data |> 
   mutate(Gender = as.character(gender)) |> 
+  mutate(across(starts_with("IAS "), as.numeric)) |>
   rename(
     Age=age, Heart = `IAS 1`, Hungry = `IAS 2`, Breathing = `IAS 3`, Thirsty = `IAS 4`,
     Urinate = `IAS 5`, Defecate = `IAS 6`, Taste = `IAS 7`, Vomit = `IAS 8`, Sneeze = `IAS 9`,
@@ -228,25 +226,6 @@ df9 <- df9 |>
   )
 ```
 
-<!-- ##### Sample 10 -->
-
-<!-- Bowling (2024) - https://osf.io/tx8h9/ -->
-
-<!-- ```{r} -->
-<!-- df10 <- haven::read_sav("../data/Bowling2024/TouchAttitudesData.sav") |> -->
-<!--   mutate_all(as.numeric) |> -->
-<!--   mutate(Gender = as.character(ifelse(Gender_coded == 1, "Male", ifelse(Gender_coded == 2, "Female", "Other")))) |> -->
-<!--   rename( -->
-<!--     Heart = IAS1, Hungry = IAS2, Breathing = IAS3, Thirsty = IAS4, -->
-<!--     Urinate = IAS5, Defecate = IAS6, Taste = IAS7, Vomit = IAS8, Sneeze = IAS9, -->
-<!--     Cough = IAS10, Temp = IAS11, Sex_arousal = IAS12, Wind = IAS13, Burp = IAS14, -->
-<!--     Muscles = IAS15, Bruise = IAS16, Pain = IAS17, Blood_Sugar = IAS18, -->
-<!--     Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21 -->
-<!--   )  -->
-
-<!-- ``` -->
-
-
 ### Sample 10
 
 Makowski
@@ -283,7 +262,6 @@ data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, 
 save(data, file = "../data/data.RData")
 ```
 
-
 :::
 
 
@@ -309,7 +287,6 @@ save(data, file = "../data/data.RData")
 
 
 Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10a) + nrow(df10b)`.
-
 
 ## Descriptive
 
@@ -398,7 +375,6 @@ data_all <- rbind(
   mutate(data10a, Taste = NA, Cough = NA, Blood_Sugar = NA), data10b
 ) 
 ```
-
 
 ### Correlations
 
@@ -528,8 +504,6 @@ make_correlation(data10b)
 
 
 :::
-
-
 ## Graph Analysis
 
 Exploratory Graph Analysis (EGA) is a recently developed framework for psychometric assessment, that can be used to estimate the number of dimensions in questionnaire data using network estimation methods and community detection algorithms, and assess the stability of dimensions and items using bootstrapping.
@@ -661,8 +635,6 @@ uva <- EGAnet::UVA(data = data10b, cut.off = 0.3)
 uva
 uva$keep_remove
 ```
-
-
 
 :::
 
@@ -877,7 +849,6 @@ egas10b$p
 
 :::
 
-
 ### Structure Stability
 
 ::: {.panel-tabset}
@@ -1026,7 +997,6 @@ patchwork::wrap_plots(lapply(egas10a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas10b$egas, plot), nrow = 3)
 ```
 
-
 :::
 
 ### Scores
@@ -1057,7 +1027,6 @@ ega_scores_9 <- get_scores(data9, ega)
 ega_scores_10a <- get_scores(data10a, ega)
 ega_scores_10b <- get_scores(data10b, ega)
 ```
-
 
 ## Factor Analysis
 
@@ -1213,7 +1182,6 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 
 
 :::
-
 
 
 ### EFA
@@ -1474,18 +1442,27 @@ is_converged <- function(m) {
 }
 
 compare_mods <- function(data) {
-  m1 <- lavaan::cfa(m1, data = data)
-  m4 <- lavaan::cfa(m4, data = data)
-  m5 <- lavaan::cfa(m5, data = data)
-  m6 <- lavaan::cfa(m6, data = data)
-  m7 <- lavaan::cfa(m7, data = data)
   
-  anova(m1, m4, m5, m6, m7) |>
+  fit_model <- function(f, data) {
+    if(!"Cough" %in% names(data)) {
+      f <- str_remove(f, fixed("Cough +"))
+    }
+    lavaan::cfa(f, data = data)
+  }
+  
+  
+  cfa1 <- fit_model(m1, data = data)
+  cfa4 <- fit_model(m4, data = data)
+  cfa5 <- fit_model(m5, data = data)
+  cfa6 <- fit_model(m6, data = data)
+  cfa7 <- fit_model(m7, data = data)
+  
+  anova(cfa1, cfa4, cfa5, cfa6, cfa7) |> 
     parameters::parameters() |>
     mutate(AIC = format(round(AIC, 0), nsmall = 0),
            BIC = format(round(BIC, 0), nsmall = 0),
            Chi2 = format(round(Chi2, 2), nsmall = 2),
-           Converged = sapply(list(m1, m4, m5, m6, m7), is_converged))
+           Converged = sapply(list(cfa1, cfa4, cfa5, cfa6, cfa7), is_converged))
 }
 
 display(compare_mods(data_all))
@@ -1640,6 +1617,7 @@ display(compare_mods(data10b))
 
 
 :::
+
 
 Conclusion: The 7th factor solution was preferred in most datasets, including by indices that penalize increased number of parameters (such as BIC). 
 
