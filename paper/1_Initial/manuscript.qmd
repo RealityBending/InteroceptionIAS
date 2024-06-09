@@ -117,7 +117,7 @@ For instance, while the use of self-reports questionnaires might seem at odds wi
 However, understanding the exact nature of what is being measured with different questionnaires is crucial, as self-reports might not reflect the same processes as other measures, seemingly contributing to an apparent lack of convergence in the field.
 
 ![Figure 1. Different ways in which interoception can be measured.](figures/measuring_interoception.png)
-<!-- TODO: replace with include_ _figure that allows for legend -->
+<!-- TODO: replace with a code chunk that allows for legend -->
 
 <!-- Introducing the IAS -->
 A recently developed scale with a rapidly growing popularity is the Interoceptive Accuracy Scale [IAS; @murphy2019]. The IAS consists of 21 Likert-scale items that query how accurately one can perceive different bodily signals, with one item per physiological mechanism such as respiration (*"I can always accurately perceive when I am breathing fast"*), heart (e.g *"I can always accurately perceive when my heart is beating fast"*), skin (e.g *"I can always accurately perceive when something is going to be ticklish"*), arousal or bodily functions like coughing (e.g *"I can always accurately perceive when I am going to cough"*), urinating (e.g. *"I can always accurately perceive when I need to urinate"*). 
@@ -129,12 +129,14 @@ Most follow-up studies, using a confirmatory factor analysis approach (CFA) **(i
 For instance, @murphy2019 does mention that some items might be measuring direct interoceptive signals such as cardioception, while others, for instance "bruising", might capture phenomena that cannot be perceived through interoceptive signals alone (**Can you double check that this paper said this**). @lin2023 also highlights their correlation analysis showing five locally dependent pairs in three items with exceptionally high difficulty and low discrimination, and @campos2021 suggests that the "tickle" item is representing a more specific factor. 
 Recently, **@blabla** used a new approach, namely Exploratory Graph Analysis (EGA), and found that **TODO**.
 
-
 <!-- Convergent validity (correlates)  -->
-Several measures have been used to assess convergent validity for the the IAS, including alexithymia, or neuroticism, or other interoception scales, such as the MAIA, which have previously correlated and used to validate each other [@brand2023]. Recent findings by @campos2021 suggest a significant positive correlation between the BPQ Body Awareness (BPQ-BA) and the IAS, which contradict @murphy2019 findings of the 2x2 factorial model of interoception, in which attention and accuracy are conceptualized as dissociable interoceptive dimensions. 
+While the assessment of the validity of an interoception scale can be conceived as theoretically challenging, several traits have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@REF], and positive with neuroticism [@ref]. **anything else?**. 
+The IAS has also been compared to other interoception scales, yielding a positive correlation with most facets of the MAIA, with the notable exception of **TODO** [@brand2023], and the **TODO** dimension of the Body Perception Questionnaire [BPQ; @campos2021].
 <!-- Moreover, the current subjective measures do not correlate well with the objective measures [@murphy2019]. -->
 
-As recent findings report the IAS structure controversially, it becomes evident that further analysis into the structure of the IAS is needed. Additionally, the IAS could be developed further from a structural standpoint to be able to capture interoceptive accuracy and abilities accurately (e.g., Brand, et al., 2023). The present paper is divided into two parts. Firstly, it is trying to leverage existing datasets to do a meta-analysis contrasting the traditional structure analysis approach (CFA/SEM) with new approaches Exploratory Graph Analysis (EGA). Secondly, the present study provides an overview of the correlates of the IAS.
+The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrasts the traditional CFA/SEM factor-based analyses with graph-based ones such as EGA. 
+2) The second part will provide an overview of the dispositional correlates of the IAS, sketching a pattern of associations that is key to better understand the nature, place and role of interoception questionnaires within a larger context.
+
 
 ## Study 1
 
