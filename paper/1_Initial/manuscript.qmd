@@ -140,15 +140,21 @@ The current study aims at 1) clarifying the structure of the IAS with a meta-ana
 
 ## Study 1
 
-The goal of study 1 is to re-analyse the factor structure of the IAS, using multiple data sets (Brand, et al., 2023; Campos, et al., 2021; Lin, et al., 2023; Murphy, et al., 2020). Getting a factor structure from these samples will help understand the IAS and the results this survey provides further, so that results will be more interpretable. Furthermore, it gives the chance to critically examine the IAS. The re-analysis is done using distribution, correlation and graph analyses.
+The goal of study 1 is to re-analyse and assess the factor structure of the IAS by taking advantage of the large number of open-access datasets **(Brand, et al., 2023; Campos, et al., 2021; Lin, et al., 2023; Murphy, et al., 2020)** **[REDO REFS]**. While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, it is important to note that the studies differ in their sample sizes, demographics, language, and the way they collected the data. Thus, providing additionally a individual analysis (i.e., on all samples individually) will help adding nuance to the general picture.
 
-# Method
 
-Data collection utilized Google Scholar's cited-by feature, identifying 136 papers. To qualify for inclusion, papers needed to (1) provide accessible data, (2) employ the IAS as a measure, and (3) report individual IAS scores. A total of 15 samples were obtained.
+### Method
 
-## Participants
+#### Datasets
 
-The analysed sample contains 31317 participants, of which xxx are females.
+
+Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of **XX/XX/2024**). 
+To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores. 
+A total of 9 studies was included. 
+Additionally, we added datasets of two unpublished (but already open-access) studies from our lab.
+**See Table 1 (add crossref link)** for a summary of the samples demographics.
+
+
 
 **Table 1.** Samples demographics
 
@@ -170,8 +176,15 @@ The analysed sample contains 31317 participants, of which xxx are females.
 |                          | Sample 1 | 1166        | 32.5     | 8.4     | 16-60   | 57.0%    |                        |
 |                          | Sample 2 | 500         | 37.4     | 7.4     | 20-60   | 56.2%    | <https://osf.io/3eztd> |
 | VonMohr et al., (2023)   |          | 21843       | 56.5     | 14.4    | 18-93   | 73.2%    | <https://osf.io/7p9u5> |
-| Makowski et al., (2023a) |          | 485         | 30.1     | 10.1    | 18-73   | 50.3%    | To be published\*\*    |
-| Makowski et al., (2023b) |          | 251         | 37.5     | 13.2    | 17-76   | 53.0%    | To be published\*\*    |
+| Makowski et al., (2023a) |          | 485         | 30.1     | 10.1    | 18-73   | 50.3%    | In preparation\*\*    |
+| Makowski et al., (2023b) |          | 251         | 37.5     | 13.2    | 17-76   | 53.0%    | In preparation\*\*    |
+
+**TODO: add row for Total N, average age etc.**
+**TODO: add language also, as well as maybe something like "difference" from the original validation (which could acctually be language, and for our the type of scale / less items)**
+**TODO: add links to GH for our studies**
+
+The analysed sample contains 31,317 participants, of which xxx are females.
+
 
 ## Statistical Analysis
 
