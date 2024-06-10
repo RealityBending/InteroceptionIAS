@@ -263,7 +263,6 @@ save(data, file = "../data/data.RData")
 :::
 
 
-
 ## Participants
 
 - **Sample 1a**: Data from [Murphy's (2020)](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) study 1, downloaded from OSF, included `r report::report_participants(df1a, age = "Age", sex = NA, gender = "Gender")`.
@@ -284,6 +283,46 @@ save(data, file = "../data/data.RData")
 
 
 Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10a) + nrow(df10b)`.
+
+```{r}
+
+desc <- function(df){
+  summary <- df |> summarise(
+      n = n(),
+      mean = mean(Age, na.rm = TRUE),
+      sd = sd(Age, na.rm = TRUE),
+      min = min(Age, na.rm = TRUE),
+      max = max(Age, na.rm = TRUE),
+      female = sum(Gender == "Female", na.rm = TRUE)
+    )
+    return(summary)
+}
+
+desc_df1a <- desc(df1a)
+desc_df1b <- desc(df1b)
+desc_df2 <- desc(df2)
+desc_df3 <- desc(df3)
+#desc_df4 <- desc(df4)
+#desc_df5 <- desc(df5)
+desc_df6 <- desc(df6)
+desc_df7a <- desc(df7a)
+desc_df7b <- desc(df7b)
+desc_df7c <- desc(df7c)
+desc_df8a <- desc(df8a)
+desc_df8b <- desc(df8b)
+desc_df9 <- desc(df9)
+desc_df10a <- desc(df10a)
+desc_df10b <- desc(df10b)
+
+desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df6, desc_df7a, desc_df7b, desc_df7c, desc_df8a, desc_df8b, desc_df9, desc_df10a, desc_df10b)
+
+## calculate weighted mean
+
+total_mean = sum(desc_total$mean * desc_total$n) / sum(desc_total$n)
+total_sd = sum(desc_total$sd * desc_total$n) / sum(desc_total$n)
+perce_female = sum(desc_total$female)/sum(desc_total$n) *100
+
+``` 
 
 ## Descriptive
 
@@ -346,6 +385,7 @@ p1 <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, d
 
 ggsave("figures/Figure1.png", p1, width=10, height=10, dpi=200, bg="white")
 p1
+
 ```
 
 

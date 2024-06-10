@@ -116,6 +116,7 @@ While there is no consensus as to which particular approach provides the most ac
 For instance, while the use of self-reports questionnaires might seem at odds with the concept of interoception (appearing at first as a deeply embodied - almost non-cognitive - sensory function), recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019]. 
 However, understanding the exact nature of what is being measured with different questionnaires is crucial, as self-reports might not reflect the same processes as other measures, seemingly contributing to an apparent lack of convergence in the field.
 
+
 ![Figure 1. Different ways in which interoception can be measured.](figures/measuring_interoception.png)
 <!-- TODO: replace with a code chunk that allows for legend -->
 
@@ -158,32 +159,33 @@ Additionally, we added datasets of two unpublished (but already open-access) stu
 
 **Table 1.** Samples demographics
 
-| Samples                  |          | Sample Size | Mean age | SD      | Range   | Female % | Available at           |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+| Samples                  |          | Language of Items|  Sample Size | Mean age | SD      | Range   | Female % | Available at           |
+|---------|---------|---------|---------|---------|---------|---------|---------|---------|
 | Murphy et al., (2020)    |          |             |          |         |         |          |                        |
-|                          | Sample 1 | 451         | 25.8     | 8.4     | 18-69   | 69.4%    |                        |
-|                          | Sample 2 | 375         | 35.3     | 16.9    | 18-91   | 70.1%    | <https://osf.io/3m5nh> |
-| Gaggero et al., (2021)   |          | 814         | 24.9     | 5.3     | 18-58   | 60.3%    | <https://osf.io/5x9sg> |
-| Campos et al., (2022)    |          | 515         | 30.7     | 10.5    | 18-72   | 59.6%    | <https://osf.io/j6ef3> |
-| Todd et al., (2022)      |          | 802         | 36.58\*  | 12.41\* | 18-92\* | NA       | <https://osf.io/ms354> |
-| Arslanova et al., (2022) |          | 96          | 28.78    | 27.5    | 18-73   | 46.8%    | <https://osf.io/mp3cy> |
-| Brand et al., (2022)     |          | 619         | 43.9     | 14.5    | 18-78   | 78.7%    | <https://osf.io/xwz6g> |
-| Brand et al., (2023)     |          |             |          |         |         |          |                        |
-|                          | Sample 1 | 522         | 23.4     | 6.7     | 18-79   | 79.5%    |                        |
-|                          | Sample 2 | 1993        | 32.0     | 12.6    | 16-81   | 77.7%    | <https://osf.io/3f2h6> |
-|                          | Sample 3 | 802         | 27.3     | 9.3     | 18-72   | 68.9%    |                        |
-| Lin et al., (2023)       |          |             |          |         |         |          |                        |
-|                          | Sample 1 | 1166        | 32.5     | 8.4     | 16-60   | 57.0%    |                        |
-|                          | Sample 2 | 500         | 37.4     | 7.4     | 20-60   | 56.2%    | <https://osf.io/3eztd> |
-| VonMohr et al., (2023)   |          | 21843       | 56.5     | 14.4    | 18-93   | 73.2%    | <https://osf.io/7p9u5> |
-| Makowski et al., (2023a) |          | 485         | 30.1     | 10.1    | 18-73   | 50.3%    | In preparation\*\*    |
-| Makowski et al., (2023b) |          | 251         | 37.5     | 13.2    | 17-76   | 53.0%    | In preparation\*\*    |
-
-**TODO: add row for Total N, average age etc.**
-**TODO: add language also, as well as maybe something like "difference" from the original validation (which could acctually be language, and for our the type of scale / less items)**
+|                          | Sample 1 | English     |451         | 25.8     | 8.4     | 18-69   | 69.4%    |                        |
+|                          | Sample 2 | English     | 375         | 35.3     | 16.9    | 18-91   | 70.1%    | <https://osf.io/3m5nh> |
+| Gaggero et al., (2021)   |          | English and Italian   | 814         | 24.9     | 5.3     | 18-58   | 60.3%    | <https://osf.io/5x9sg> |
+| Campos et al., (2022)    |          | Portuguese  | 515         | 30.7     | 10.5    | 18-72   | 59.6%    | <https://osf.io/j6ef3> |
+| Todd et al., (2022)      |          | English     | 802         | 36.58\*  | 12.41\* | 18-92\* | NA       | <https://osf.io/ms354> |
+| Arslanova et al., (2022) |          | English     | 96          | 28.78    | 27.5    | 18-73   | 46.8%    | <https://osf.io/mp3cy> |
+| Brand et al., (2022)     |          | German      | 619         | 43.9     | 14.5    | 18-78   | 78.7%    | <https://osf.io/xwz6g> |
+| Brand et al., (2023)     |          |             |             |          |         |         |          |                        |
+|                          | Sample 1 | German      | 522         | 23.4     | 6.7     | 18-79   | 79.5%    |                        |
+|                          | Sample 2 | German      |1993        | 32.0     | 12.6    | 16-81   | 77.7%    | <https://osf.io/3f2h6> |
+|                          | Sample 3 | German      | 802         | 27.3     | 9.3     | 18-72   | 68.9%    |                        |
+| Lin et al., (2023)       |          |             |             |          |         |         |          |                        |
+|                          | Sample 1 | Chinese     | 1166        | 32.5     | 8.4     | 16-60   | 57.0%    |                        |
+|                          | Sample 2 | Chinese     | 500         | 37.4     | 7.4     | 20-60   | 56.2%    | <https://osf.io/3eztd> |
+| VonMohr et al., (2023)   |          | English     | 21843       | 56.5     | 14.4    | 18-93   | 73.2%    | <https://osf.io/7p9u5> |
+| Makowski et al., (2023a) |          | English     | 485         | 30.1     | 10.1    | 18-73   | 50.3%    | In preparation \*\*    |
+| Makowski et al., (2023b) |          | English     |251         | 37.5     | 13.2    | 17-76   | 53.0%    | In preparation \*\*    |
+| Total                    |          |             |31317       | 49.5     | 13.2    | 17 - 93 | 71.5%    | |
+**Note**. \* Numbers were sourced from the original paper rather than independently calculated. \*\* Data for Makowski et al., 2023a: <https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv> and Makowski et al., 2013b: <https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv>
+<!-- **TODO: add row for Total N, average age etc.** -->
+**TODO: add language also, as well as maybe something like "difference" from the original validation (which could actually be language, and for our the type of scale / less items)**
 **TODO: add links to GH for our studies**
 
-The analysed sample contains 31,317 participants, of which xxx are females.
+The analysed sample contains 31,317 participants, of which 71.5% are females.
 
 
 ## Statistical Analysis
