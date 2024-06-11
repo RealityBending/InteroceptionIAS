@@ -329,8 +329,6 @@ perce_female = sum(desc_total$female)/sum(desc_total$n) *100
 #| warning: false
 
 library(gt)
-library(tidyverse)
-
 
 # APA style ####
 apa_style <- function(data) {
@@ -378,9 +376,7 @@ table_apa <- table |> gt() |>
   
 
 table_apa <- apa_style(table_apa) 
-
-# Save as image for IPPE google docs workflow
-gtsave(data = table_apa, path = "../paper/1_Initial/figures", filename = "table1.png")
+table_apa
 ```
 
 

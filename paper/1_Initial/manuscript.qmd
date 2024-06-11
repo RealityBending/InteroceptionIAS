@@ -99,6 +99,8 @@ format:
 editor: 
   markdown: 
     wrap: sentence
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- Interoception definition -->
@@ -120,13 +122,14 @@ However, understanding the exact nature of what is being measured with different
 
 Different ways in which interoception can be measured.
 
-![Figure 1. Different ways in which interoception can be measured.](figures/measuring_interoception.png) <!-- TODO: replace with a code chunk that allows for legend -->
+![Figure 1. Different ways in which interoception can be measured.](figures/measuring_interoception.png) 
+<!-- TODO: replace with a code chunk that allows for legend -->
 
 <!-- Introducing the IAS -->
 
 A recently developed scale with a rapidly growing popularity is the Interoceptive Accuracy Scale [IAS; @murphy2019].
 The IAS consists of 21 Likert-scale items that query how accurately one can perceive different bodily signals, with one item per physiological mechanism such as respiration (*"I can always accurately perceive when I am breathing fast"*), heart (e.g *"I can always accurately perceive when my heart is beating fast"*), skin (e.g *"I can always accurately perceive when something is going to be ticklish"*), arousal or bodily functions like coughing (e.g *"I can always accurately perceive when I am going to cough"*), urinating (e.g. *"I can always accurately perceive when I need to urinate"*).
-Interestingly, the IAS' statements are about specific interoceptive behaviours, which is notable difference with other popular interoception questionnaires, such as the Multidimensional Assessment of Interoceptive Awareness scale [MAIA, @mehling2012], which items are more general and metacognitive (e.g., ***"I trust my body sensations"***, ***"I can notice an unpleasant body sensation without worrying about it"***).
+Interestingly, the IAS' statements are about specific interoceptive behaviours, which is notable difference with other popular interoception questionnaires, such as the Multidimensional Assessment of Interoceptive Awareness scale [MAIA, @mehling2012], which items are more general and metacognitive (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*).
 
 <!-- IAS structure  -->
 
@@ -165,16 +168,36 @@ Thus, providing additionally a individual analysis (i.e., on all samples individ
 
 #### Datasets
 
+```{r}
+#| warning: false
+#| label: tbl-samples
+#| tbl-cap: "Blabla caption fds Samples demographics"
+# #| apa-note: "Some note bedlow the table"
+
+table <- data.frame(
+  Studies = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', '***Total***'),
+  Samples = c('', 'Sample 1', 'Sample 2', '', '', '', '', '', '', 'Sample 1', 'Sample 2', 'Sample 3', '', 'Sample 1', 'Sample 2', '', '', '', ''),   
+  Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', ''),
+  N = c('', 451, 375, 814, 515, 802, 96, 619,'', 522, 1993, 802,'', 1166, 500, 21843, 485, 251, "\\textbf{31317}"),
+  Age = c('', "25.8 ± 8.4 [18-69]", 35.3, 24.9, 30.7, 36.58, 28.78, 43.9,'', 23.4, 32.0, 27.3,'', 32.5, 37.4, 56.5, 30.1, 37.5, 49.5),
+  SD = c('', 8.4, 16.9, 5.3, 10.5, 12.41, 27.5, 14.5,'',  6.7, 12.6, 9.3, '', 8.4, 7.4, 14.4, 10.1, 13.2, 13.2),
+  Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76', '17 - 93'),
+  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', NA, '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '71.5%'),
+  Link= c('', '', 'https://osf.io/3m5nh', 'https://osf.io/5x9sg', 'https://osf.io/j6ef3', 'https://osf.io/ms354', 'https://osf.io/mp3cy', 'https://osf.io/xwz6g', '', '', 'https://osf.io/3f2h6', '','','', 'https://osf.io/3eztd', 'https://osf.io/7p9u5', 'In preparation **', 'In preparation **', '')
+) 
+
+knitr::kable(table, format = "latex", booktabs = TRUE, longtable = TRUE, col.names = stringr::str_replace(names(table), "Female_Percentage", "Female %")) |> 
+  kableExtra::kable_styling(font_size = 7)
+```
+
+
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of **XX/XX/2024**).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
 A total of 9 studies was included.
 Additionally, we added datasets of two unpublished (but already open-access) studies from our lab.
-**See Table 1 (add crossref link)** for a summary of the samples demographics.
+**See @tbl-samples** for a summary of the samples demographics.
 
-**Table 1**
 
-Samples demographics.
-![Figure 1. Different ways in which interoception can be measured.](figures/table1.png){width="580"}
 
 <!-- **Table 1.** Samples demographics -->
 
