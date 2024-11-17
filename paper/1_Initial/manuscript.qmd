@@ -106,23 +106,28 @@ editor_options:
 <!-- Interoception definition -->
 
 Interoception is referred to the process of sensing, interpreting and integrating information pertaining to internal organs, such as the heart, the lungs or the gut [@khalsa2018].
-While recent research emphasizes a key role of interoception in a variety of processes (e.g., emotion regulation, decision making) and of outcomes (physical and psychological well being), the field remains clouded by concerns pertaining to how interoception is assessed.
+While recent research emphasizes a key role of interoception in a variety of processes (e.g., emotion regulation, decision making) and of outcomes (physical and psychological well being), the field remains clouded by concerns about how interoception is assessed.
 
 <!-- Interoception measure -->
 
-Various measures of interoception have been developed (see **figure 1** \[**TODO: add crossref**\]), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking vs. questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes vs. measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., sensitivity, awareness, accuracy).
+Various measures of interoception have been developed (see **@fig-measures**), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking vs. questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes *vs.* measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., accuracy, sensitivity, awareness).
 While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014].
 
 <!-- self-reports -->
 
-For instance, while the use of self-reports questionnaires might seem at odds with the concept of interoception (appearing at first as a deeply embodied - almost non-cognitive - sensory function), recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019].
-However, understanding the exact nature of what is being measured with different questionnaires is crucial, as self-reports might not reflect the same processes as other measures, seemingly contributing to an apparent lack of convergence in the field.
+For instance, while the use of self-reports questionnaires to measure an embodied function might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019] [**TODO: also cite the most recent paper**]. 
+The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field **(REF)**. 
+Still, a better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness) is needed to clarify the role of self-reports in the assessment of interoception.
 
-**Figure 1**
 
-Different ways in which interoception can be measured.
+```{r}
+#| label: "fig-measures"
+#| fig-cap: "Different ways in which interoception can be measured."
 
-![Figure 1. Different ways in which interoception can be measured.](figures/measuring_interoception.png) 
+knitr::include_graphics("figures/measuring_interoception.png")
+```
+
+
 <!-- TODO: replace with a code chunk that allows for legend -->
 
 <!-- Introducing the IAS -->
