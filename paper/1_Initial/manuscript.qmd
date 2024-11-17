@@ -172,8 +172,9 @@ Thus, providing additionally a individual analysis (i.e., on all samples individ
 
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of **XX/XX/2024**).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
-A total of 9 studies was included.
-Additionally, we added datasets of two unpublished (but already open-access) studies from our lab.
+A total of **XX** studies was included.
+We also included the data of two unpublished (but already open-access) studies from the authors.
+The total N participants was 31,317 participants (Mean SD, 71.5% Female).
 See @tbl-samples for a summary of the samples demographics.
 
 ```{r}
@@ -188,14 +189,8 @@ See @tbl-samples for a summary of the samples demographics.
 \input{../../analysis/figures/table1.tex}
 \normalsize
 
-**Note**.
-\* Numbers were sourced from the original paper rather than independently calculated.
-\*\* Data for Makowski et al., 2023a: <https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv> and Makowski et al., 2013b: <https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv>
-
-
 **TODO: add language also, as well as maybe something like "difference" from the original validation (which could actually be language, and for our the type of scale / less items)** <!-- **TODO: add links to GH for our studies** -->
 
-The analysed sample contains 31,317 participants, of which 71.5% are females.
 
 ## Statistical Analysis
 
