@@ -1,5 +1,5 @@
 ---
-title: "Meta-analysis of the Interoceptive Accuracy Scale"
+title: "Meta-analysis of the Interoceptive Accuracy Scale (IAS)"
 subtitle: "Study 1"
 editor: source
 editor_options: 
@@ -34,7 +34,8 @@ library(EGAnet)
 
 ### Sample 1
 
-Murphy (<https://osf.io/3m5nh)>
+- Murphy (2020)
+  - https://osf.io/3m5nh
 
 ```{r}
 df1a <- haven::read_sav("../data/Murphy2020/Study 1.sav") |>
@@ -48,7 +49,8 @@ df1b <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
 
 ### Sample 2
 
-Gaggero (2021) (<https://osf.io/5x9sg)>
+- Gaggero (2021) 
+  - https://osf.io/5x9sg
 
 ```{r}
 load("../data/Gaggero2021/data.rda")
@@ -66,7 +68,8 @@ rm(data)
 
 ### Sample 3
 
-Campos (2022) - Study 1 (<https://osf.io/j6ef3)>
+- Campos (2022) - Study 1 
+  - https://osf.io/j6ef3
 
 ```{r}
 df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
@@ -83,7 +86,8 @@ df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
 
 ### Sample 4
 
-Todd (2022) - <https://osf.io/ms354/>
+- Todd (2022) 
+  - https://osf.io/ms354/
 
 ```{r}
 df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
@@ -99,7 +103,8 @@ df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
 
 ### Sample 5
 
-Arslanova (2022) - <https://osf.io/mp3cy/>
+- Arslanova (2022)
+  - https://osf.io/mp3cy/
 
 ```{r}
 df5 <- readxl::read_excel("../data/Arslanova2022/Murphy_Iacc_scale.xlsx")  |> 
@@ -118,7 +123,8 @@ df5 <- readxl::read_excel("../data/Arslanova2022/Murphy_Iacc_scale.xlsx")  |>
 
 ### Sample 6
 
-Brand (2022) - <https://osf.io/xwz6g/>
+- Brand (2022) 
+  - https://osf.io/xwz6g/
 
 ```{r}
 df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |> 
@@ -136,7 +142,8 @@ df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |>
 
 ### Sample 7
 
-Brand (2023) - <https://osf.io/3f2h6/>
+- Brand (2023) 
+  - https://osf.io/3f2h6/
 
 ```{r}
 df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |> 
@@ -179,7 +186,9 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
 
 ### Sample 8
 
-Lin (2023) - <https://osf.io/3eztd> - Note: No tickle because same Chinese character
+- Lin (2023)
+  - https://osf.io/3eztd
+  - Note: No tickle because same Chinese character
 
 ```{r}
 df8a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
@@ -208,7 +217,8 @@ df8b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
 
 ### Sample 9
 
-VonMohr (2023) - Study 3 (<https://osf.io/7p9u5/)>
+- VonMohr (2023) - Study 3 
+  - https://osf.io/7p9u5/
 
 ```{r}
 df9 <- read.csv("../data/VonMohr2023/DataSet_study3.csv")
@@ -226,10 +236,9 @@ df9 <- df9 |>
 
 ### Sample 10
 
-Makowski
-
--   Note: First sample has some missing items
--   Note: Analog scales
+- Makowski
+  - Note: First sample has some missing items
+  - Note: Analog scales
 
 ```{r}
 df10a <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
@@ -371,7 +380,8 @@ table <- data.frame(
   Available_at= c('', '', 'https://osf.io/3m5nh', 'https://osf.io/5x9sg', 'https://osf.io/j6ef3', 'https://osf.io/ms354', 'https://osf.io/mp3cy', 'https://osf.io/xwz6g', '', '', 'https://osf.io/3f2h6', '','','', 'https://osf.io/3eztd', 'https://osf.io/7p9u5', 'In preparation **', 'In preparation **', '')
 ) 
 
-table_apa <- table |> gt() |>
+table_apa <- table |> 
+  gt() |>
   cols_label(Number_of_Sample = "Number of Sample", Items_Language = "Items Language", Sample_Size = "Sample Size", Mean_age = "Mean Age", Female_Percentage = "Female %", Available_at = "Available at")
   
 
