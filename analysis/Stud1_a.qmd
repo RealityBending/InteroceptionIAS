@@ -340,10 +340,10 @@ perce_female = sum(desc_total$female)/sum(desc_total$n) *100
 library(gt)
 
 # APA style ####
-apa_style <- function(data) {
-  data %>%
-    opt_table_lines(extent = "none") %>%
-    tab_options(
+gt_apastyle <- function(gt_table, font.size=12) {
+  gt_table  |> 
+    gt::opt_table_lines(extent = "none") %>%
+    gt::tab_options(
       heading.border.bottom.width = 2,
       heading.border.bottom.color = "black",
       heading.border.bottom.style = "solid",
@@ -354,39 +354,49 @@ apa_style <- function(data) {
       table_body.border.top.color = "black",
       table_body.border.top.style = "solid",
       table_body.border.top.width = 2,
-      heading.title.font.size = 12,
-      table.font.size = 12,
-      heading.subtitle.font.size = 12,
+      heading.title.font.size = font.size,
+      table.font.size = font.size,
+      heading.subtitle.font.size = font.size,
       table_body.border.bottom.color = "black",
       table_body.border.bottom.width = 2,
       table_body.border.bottom.style = "solid",
       column_labels.border.bottom.color = "black",
       column_labels.border.bottom.style = "solid",
       column_labels.border.bottom.width = 1
-    ) %>%
-      opt_table_font(font = "times")
+    ) |> 
+      gt::opt_table_font(font = "times")
 }
+
+make_age <- function(age) {
+  age <- as.numeric(age) 
+  
+  mean(age, na.rm = TRUE) |> 
+    insight::format_value(digits=1) |> 
+    paste0(" ± ", 
+           insight::format_value(sd(age, na.rm = TRUE), digits=1)) 
+} 
 
 # Create the dataframe
 table <- data.frame(
-  Samples = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Total'),
-  Number_of_Sample = c('', 'Sample 1', 'Sample 2', '', '', '', '', '', '', 'Sample 1', 'Sample 2', 'Sample 3', '', 'Sample 1', 'Sample 2', '', '', '', ''),   
-  Items_Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', ''),
-  Sample_Size = c('', 451, 375, 814, 515, 802, 96, 619,'', 522, 1993, 802,'', 1166, 500, 21843, 485, 251, 31317),
-  Mean_age = c('', 25.8, 35.3, 24.9, 30.7, 36.58, 28.78, 43.9,'', 23.4, 32.0, 27.3,'', 32.5, 37.4, 56.5, 30.1, 37.5, 49.5),
-  SD = c('', 8.4, 16.9, 5.3, 10.5, 12.41, 27.5, 14.5,'',  6.7, 12.6, 9.3, '', 8.4, 7.4, 14.4, 10.1, 13.2, 13.2),
+  Sample = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Total'),
+  Subsample = c('', 'Sample 1', 'Sample 2', '', '', '', '', '', '', 'Sample 1', 'Sample 2', 'Sample 3', '', 'Sample 1', 'Sample 2', '', '', '', ''),   
+  Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', ''),
+  N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), 96, nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10a), nrow(df10b), 31317),
+  Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "TODO*", "TODO*", make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10a$Age), make_age(df10b$Age), 49.5),
   Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76', '17 - 93'),
   Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', NA, '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '71.5%'),
-  Available_at= c('', '', 'https://osf.io/3m5nh', 'https://osf.io/5x9sg', 'https://osf.io/j6ef3', 'https://osf.io/ms354', 'https://osf.io/mp3cy', 'https://osf.io/xwz6g', '', '', 'https://osf.io/3f2h6', '','','', 'https://osf.io/3eztd', 'https://osf.io/7p9u5', 'In preparation **', 'In preparation **', '')
+  Availability= c('', '', 'https://osf.io/3m5nh', 'https://osf.io/5x9sg', 'https://osf.io/j6ef3', 'https://osf.io/ms354', 'https://osf.io/mp3cy', 'https://osf.io/xwz6g', '', '', 'https://osf.io/3f2h6', '','','', 'https://osf.io/3eztd', 'https://osf.io/7p9u5', 'https://github.com/RealityBending/IllusionGameReliability', 'https://github.com/DominiqueMakowski/PHQ4R', '')
 ) 
 
 table_apa <- table |> 
   gt() |>
-  cols_label(Number_of_Sample = "Number of Sample", Items_Language = "Items Language", Sample_Size = "Sample Size", Mean_age = "Mean Age", Female_Percentage = "Female %", Available_at = "Available at")
+  cols_align(align = c("right"), columns = "Age") |> 
+  cols_label(Age = "Age (Mean  ± SD)", Female_Percentage = "Female %") |> 
+  tab_footnote("* Information copied from the sample description rather than recomputed.") |> 
+  gt_apastyle() 
   
-
-table_apa <- apa_style(table_apa) 
 table_apa
+gtsave(table_apa, "figures/table1.tex")
 ```
 
 

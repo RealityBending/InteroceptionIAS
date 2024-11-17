@@ -1,10 +1,10 @@
 ---
 title: "Meta-analysis of the Interoceptive Accuracy Scale (IAS) Structure and its Subjective Correlates"
-shorttitle: "IAS Factor structure and correlates"
+shorttitle: "IAS Meta-analysis"
 author:
-  - name: Magdalena Pfaff
+  - name: Ana Neves
     corresponding: true
-    orcid: 0009-0006-2386-7936
+    orcid: 0009-0006-0020-7599
     # roles: 
       # - Project administration
       # - Data curation
@@ -59,9 +59,9 @@ author:
     #   - Visualization
     #   - Writing – original draft
     #   - Writing – review & editing
-  - name: Ana Neves
-    orcid: 0009-0006-0020-7599
-    # roles:
+  - name: Magdalena Pfaff
+    corresponding: true
+    orcid: 0009-0006-2386-7936
     affiliations:
       - ref: id1 
   - name: Dominique Makowski
@@ -168,89 +168,30 @@ Thus, providing additionally a individual analysis (i.e., on all samples individ
 
 #### Datasets
 
-```{r}
-#| warning: false
-#| label: tbl-samples
-#| tbl-cap: "Blabla caption fds Samples demographics"
-# #| apa-note: "Some note bedlow the table"
-
-table <- data.frame(
-  Studies = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Total'),
-  Samples = c('', 'Sample 1', 'Sample 2', '', '', '', '', '', '', 'Sample 1', 'Sample 2', 'Sample 3', '', 'Sample 1', 'Sample 2', '', '', '', ''),   
-  Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', ''),
-  N = c('', 451, 375, 814, 515, 802, 96, 619,'', 522, 1993, 802,'', 1166, 500, 21843, 485, 251, "31317"),
-  Age = c('', "25.8 ± 8.4 [18-69]", 35.3, 24.9, 30.7, 36.58, 28.78, 43.9,'', 23.4, 32.0, 27.3,'', 32.5, 37.4, 56.5, 30.1, 37.5, 49.5),
-  SD = c('', 8.4, 16.9, 5.3, 10.5, 12.41, 27.5, 14.5,'',  6.7, 12.6, 9.3, '', 8.4, 7.4, 14.4, 10.1, 13.2, 13.2),
-  Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76', '17 - 93'),
-  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', NA, '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '71.5%'),
-  Link= c('', '', 'https://osf.io/3m5nh', 'https://osf.io/5x9sg', 'https://osf.io/j6ef3', 'https://osf.io/ms354', 'https://osf.io/mp3cy', 'https://osf.io/xwz6g', '', '', 'https://osf.io/3f2h6', '','','', 'https://osf.io/3eztd', 'https://osf.io/7p9u5', 'In preparation **', 'In preparation **', '')
-) 
-
-knitr::kable(table, format = "latex", booktabs = TRUE, longtable = TRUE, 
-             col.names = stringr::str_replace(names(table), "Female_Percentage", "Female %")) |> 
-  kableExtra::kable_styling(font_size = 7) |> 
-  kableExtra::row_spec(0, bold=TRUE) |> 
-  kableExtra::row_spec(nrow(table), bold=TRUE, italic=TRUE)
-```
 
 
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of **XX/XX/2024**).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
 A total of 9 studies was included.
 Additionally, we added datasets of two unpublished (but already open-access) studies from our lab.
-**See @tbl-samples** for a summary of the samples demographics.
+See @tbl-samples for a summary of the samples demographics.
 
+```{r}
+#| warning: false
+#| label: tbl-samples
+#| tbl-cap: "Blabla caption for Samples demographics"
+# #| apa-note: "Some note bedlow the table"
 
+```
 
-<!-- **Table 1.** Samples demographics -->
-
-<!-- | Samples                  |          | Language of Items|  Sample Size | Mean age | SD      | Range   | Female % | Available at           | -->
-
-<!-- |---------|---------|---------|---------|---------|---------|---------|---------|---------| -->
-
-<!-- | Murphy et al., (2020)    |          |             |          |         |         |          |                        | -->
-
-<!-- |                          | Sample 1 | English     |451         | 25.8     | 8.4     | 18-69   | 69.4%    |                        | -->
-
-<!-- |                          | Sample 2 | English     | 375         | 35.3     | 16.9    | 18-91   | 70.1%    | <https://osf.io/3m5nh> | -->
-
-<!-- | Gaggero et al., (2021)   |          | English and Italian   | 814         | 24.9     | 5.3     | 18-58   | 60.3%    | <https://osf.io/5x9sg> | -->
-
-<!-- | Campos et al., (2022)    |          | Portuguese  | 515         | 30.7     | 10.5    | 18-72   | 59.6%    | <https://osf.io/j6ef3> | -->
-
-<!-- | Todd et al., (2022)      |          | English     | 802         | 36.58\*  | 12.41\* | 18-92\* | NA       | <https://osf.io/ms354> | -->
-
-<!-- | Arslanova et al., (2022) |          | English     | 96          | 28.78    | 27.5    | 18-73   | 46.8%    | <https://osf.io/mp3cy> | -->
-
-<!-- | Brand et al., (2022)     |          | German      | 619         | 43.9     | 14.5    | 18-78   | 78.7%    | <https://osf.io/xwz6g> | -->
-
-<!-- | Brand et al., (2023)     |          |             |             |          |         |         |          |                        | -->
-
-<!-- |                          | Sample 1 | German      | 522         | 23.4     | 6.7     | 18-79   | 79.5%    |                        | -->
-
-<!-- |                          | Sample 2 | German      |1993        | 32.0     | 12.6    | 16-81   | 77.7%    | <https://osf.io/3f2h6> | -->
-
-<!-- |                          | Sample 3 | German      | 802         | 27.3     | 9.3     | 18-72   | 68.9%    |                        |instaiin -->
-
-<!-- | Lin et al., (2023)       |          |             |             |          |         |         |          |                        | -->
-
-<!-- |                          | Sample 1 | Chinese     | 1166        | 32.5     | 8.4     | 16-60   | 57.0%    |                        | -->
-
-<!-- |                          | Sample 2 | Chinese     | 500         | 37.4     | 7.4     | 20-60   | 56.2%    | <https://osf.io/3eztd> | -->
-
-<!-- | VonMohr et al., (2023)   |          | English     | 21843       | 56.5     | 14.4    | 18-93   | 73.2%    | <https://osf.io/7p9u5> | -->
-
-<!-- | Makowski et al., (2023a) |          | English     | 485         | 30.1     | 10.1    | 18-73   | 50.3%    | In preparation \*\*    | -->
-
-<!-- | Makowski et al., (2023b) |          | English     |251         | 37.5     | 13.2    | 17-76   | 53.0%    | In preparation \*\*    | -->
-
-<!-- | Total                    |          |             |31317       | 49.5     | 13.2    | 17 - 93 | 71.5%    | | -->
+\tiny 
+\input{../../analysis/figures/table1.tex}
+\normalsize
 
 **Note**.
 \* Numbers were sourced from the original paper rather than independently calculated.
 \*\* Data for Makowski et al., 2023a: <https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv> and Makowski et al., 2013b: <https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv>
 
-<!-- **TODO: add row for Total N, average age etc.** -->
 
 **TODO: add language also, as well as maybe something like "difference" from the original validation (which could actually be language, and for our the type of scale / less items)** <!-- **TODO: add links to GH for our studies** -->
 
