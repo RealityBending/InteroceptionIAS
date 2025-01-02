@@ -71,7 +71,16 @@ author:
     # roles:
     affiliations:
       - ref: id1 
-keywords: []
+author-note:
+  disclosures:
+    gratitude: |
+      ::: {.callout-note icon=false appearance="simple"}
+      This preprint is a non-peer-reviewed work from the [**Reality Bending Lab**](https://realitybending.github.io/).
+      ![](https://realitybending.github.io/media/ReBeL_LogoOnly_hu11484441381606756729.png){width=20% fig-align="center"}
+      :::
+abstract: |
+  Blabla the abstract blabla.
+keywords: [keyword1, keyword2, keyword3]
 floatsintext: true
 numbered-lines: true
 bibliography: bibliography.bib
