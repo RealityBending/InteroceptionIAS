@@ -339,13 +339,14 @@ correlation::correlation(
 
 ### Sample 11
 
-- Giulia
-  - note: anx_21 , tas20_21 are attention checks
+- Poreiro et al., 
+  - Study 1: https://osf.io/49wbv
+  - Study 2: unpublished
 
 ```{r}
 
 df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |> 
-  select(AGE, GENDER, contains("IAS_ACC"), -IAS_ACC_20, starts_with(c("MAIA", "TAS20", "DEP", "ANX")),  -ANX_21, -TAS20_21) |>
+  select(AGE, GENDER, contains("IAS_ACC"), -IAS_ACC_20, starts_with(c("MAIA", "TAS20", "DEP", "ANX")),  -ANX_21, -TAS20_21) |> #anx_21 , tas20_21 are attention checks
   mutate_all(as.numeric) |>
   rename(
     Age = AGE, Gender = GENDER,
@@ -409,7 +410,7 @@ save(data, file = "../data/data.RData")
 - **Sample 10a**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10a, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 10b**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10b, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 10c**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10c, age = "Age", sex = NA, gender = "Gender")`.
--- **Sample 11a**: Data from [Giulia's (2024)](https://osf.io/49wbv) study , included `r report::report_participants(df11a, age = "Age", sex = NA, gender = "Gender")`
+- **Sample 11a**: Data from [Giulia's (2024)](https://osf.io/49wbv) study , included `r report::report_participants(df11a, age = "Age", sex = NA, gender = "Gender")`
 - **Sample 11b**: Data from [Giulia] study , included `r report::report_participants(df11b, age = "Age", sex = NA, gender = "Gender")`
 
 
