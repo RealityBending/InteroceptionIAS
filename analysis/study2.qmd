@@ -38,6 +38,7 @@ library(EGAnet)
 load("../data/data.RData")
 load("../data/scores.RData")
 
+
 df1a <- cbind(data$df1a, scores$sample1a)
 df1b <- cbind(data$df1b, scores$sample1b)
 df2 <- cbind(data$df2, scores$sample2)
@@ -53,6 +54,9 @@ df8b <- cbind(data$df8b, scores$sample8b)
 df9 <- cbind(data$df9, scores$sample9)
 df10a <- cbind(data$df10a, scores$sample10a)
 df10b <- cbind(data$df10b, scores$sample10b)
+df10c <- cbind(data$df10c, scores$sample10c)
+df11a <- cbind(data$df11a, scores$sample11a)
+df11b <- cbind(data$df11b, scores$sample11b)
 
 vars_intero <- names(select(scores$sample1a, -Sample, -starts_with("CFA_"), -starts_with("EGA")))
 # vars_cfa <- names(select(scores$sample1a, -Sample, -starts_with("EGA")))
@@ -73,6 +77,9 @@ vars_intero <- names(select(scores$sample1a, -Sample, -starts_with("CFA_"), -sta
 # names(df9)  # BFI, STQ, EQ, ECR, 
 # names(df10a)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
 # names(df10b)  # BDI, STAI, PHQ4
+# names(df10c) # PI, MAIA
+# names(df11a) # MAIA, TAS, MFQ(DEP), STAI(ANX)
+# names(df11b) 
 ```
 
 ## Empirical Scores vs. Model-based
@@ -96,7 +103,10 @@ df_scores <- rbind(
   select(df8b, all_of(vars_scores)),
   select(df9, all_of(vars_scores)),
   select(df10a, all_of(vars_scores)),
-  select(df10b, all_of(vars_scores))
+  select(df10b, all_of(vars_scores)),
+  select(df10c, all_of(vars_scores)),
+  select(df11a, all_of(vars_scores)),
+  select(df11b, all_of(vars_scores))
 )
 
 order <- c("WindBurp", "CoughSneeze", "MusclesPain", "ItchBruise", "HeartBreathing", "HungryThirsty", "UrinateDefecate")
@@ -156,8 +166,8 @@ data <- rbind(
   make_diff(df1b, vars_intero, component="Demographic"),
   make_diff(df2, vars_intero, component="Demographic"),
   make_diff(df3, vars_intero, component="Demographic"),
-  # make_diff(df4, vars_intero, component="Demographic"),
-  # make_diff(df5, vars_intero, component="Demographic"),
+  #make_diff(df4, vars_intero, component="Demographic"),
+  #make_diff(df5_attention, vars_intero, component="Demographic"),
   make_diff(df6, vars_intero, component="Demographic"),
   make_diff(df7a, vars_intero, component="Demographic"),
   make_diff(df7b, vars_intero, component="Demographic"),
@@ -166,7 +176,10 @@ data <- rbind(
   make_diff(df8b, vars_intero, component="Demographic"),
   make_diff(df9, vars_intero, component="Demographic"),
   make_diff(df10a, vars_intero, component="Demographic"),
-  make_diff(df10b, vars_intero, component="Demographic")
+  make_diff(df10b, vars_intero, component="Demographic"),
+  make_diff(df10c, vars_intero, component="Demographic"),
+  make_diff(df11a, vars_intero, component="Demographic"),
+  make_diff(df11b, vars_intero, component="Demographic")
 ) |>
   mutate(var_Correlate = "Gender (Male vs. Female)")
 ```
@@ -207,7 +220,10 @@ data <- rbind(
   make_cor(df8b, vars_intero, with = "Age", component="Demographic"),
   make_cor(df9, vars_intero, with = "Age", component="Demographic"),
   make_cor(df10a, vars_intero, with = "Age", component="Demographic"),
-  make_cor(df10b, vars_intero, with = "Age", component="Demographic")
+  make_cor(df10b, vars_intero, with = "Age", component="Demographic"),
+  make_cor(df10c, vars_intero, with = "Age", component="Demographic"),
+  make_cor(df11a, vars_intero, with = "Age", component="Demographic"),
+  make_cor(df11b, vars_intero, with = "Age", component="Demographic")
 )
 ```
 
@@ -223,6 +239,9 @@ names(df4)[str_detect(names(df4), "MAIA")]  # ?
 names(df7a)[str_detect(names(df7a), "MAIA")]  
 names(df7b)[str_detect(names(df7b), "maia")] 
 names(df10a)[str_detect(names(df10b), "MAIA")]
+names(df10c)[str_detect(names(df10c), "MAIA")]
+names(df11a)[str_detect(names(df11b), "MAIA")]
+
 
 data <- rbind(
   data,
@@ -297,6 +316,43 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "MAIA_SelfRegulation", component="MAIA") |>
     mutate(var_Correlate = "Self Regulation"),
   make_cor(df10a, vars_intero, with = "MAIA_Trusting", component="MAIA") |>
+    mutate(var_Correlate = "Trusting"),
+
+  # df10c 
+  make_cor(df10c, vars_intero, with = "MAIA_AttentionRegulation", component="MAIA")  |>
+    mutate(var_Correlate = "Attention Regulation"),
+  make_cor(df10c, vars_intero, with = "MAIA_BodyListening", component="MAIA") |>
+    mutate(var_Correlate = "Listening"),
+  make_cor(df10c, vars_intero, with = "MAIA_EmotionalAwareness", component="MAIA") |>
+    mutate(var_Correlate = "Emotional Awareness"),
+  make_cor(df10c, vars_intero, with = "MAIA_NotDistracting", component="MAIA") |>
+    mutate(var_Correlate = "Not Distracting"),
+  make_cor(df10c, vars_intero, with = "MAIA_Noticing", component="MAIA") |>
+    mutate(var_Correlate = "Noticing"),
+  make_cor(df10c, vars_intero, with = "MAIA_NotWorrying", component="MAIA") |>
+    mutate(var_Correlate = "Not Worrying"),
+  make_cor(df10c, vars_intero, with = "MAIA_SelfRegulation", component="MAIA") |>
+    mutate(var_Correlate = "Self Regulation"),
+  make_cor(df10c, vars_intero, with = "MAIA_Trusting", component="MAIA") |>
+    mutate(var_Correlate = "Trusting"),
+
+
+    # df11a
+  make_cor(df11a, vars_intero, with = "MAIA_Attention", component="MAIA")  |>
+    mutate(var_Correlate = "Attention Regulation"),
+  make_cor(df11a, vars_intero, with = "MAIA_BodyListening", component="MAIA") |>
+    mutate(var_Correlate = "Listening"),
+  make_cor(df11a, vars_intero, with = "MAIA_Emotional", component="MAIA") |>
+    mutate(var_Correlate = "Emotional Awareness"),
+  make_cor(df11a, vars_intero, with = "MAIA_NotDistracting", component="MAIA") |>
+    mutate(var_Correlate = "Not Distracting"),
+  make_cor(df11a, vars_intero, with = "MAIA_Noticing", component="MAIA") |>
+    mutate(var_Correlate = "Noticing"),
+  make_cor(df11a, vars_intero, with = "MAIA_NotWorrying", component="MAIA") |>
+    mutate(var_Correlate = "Not Worrying"),
+  make_cor(df11a, vars_intero, with = "MAIA_SelfRegulation", component="MAIA") |>
+    mutate(var_Correlate = "Self Regulation"),
+  make_cor(df11a, vars_intero, with = "MAIA_Trusting", component="MAIA") |>
     mutate(var_Correlate = "Trusting")
 )
 ```
@@ -334,6 +390,7 @@ names(df2)[str_detect(names(df2), "TAS")]
 names(df3)[str_starts(names(df3), "TAS")]
 names(df7c)[str_starts(names(df7c), "TAS")]
 names(df8b)[str_starts(names(df8b), "TAS")]
+names(df11a)[str_starts(names(df11a), "TAS")] 
 
 data <- rbind(
   data,
@@ -359,6 +416,12 @@ data <- rbind(
     mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
   make_cor(df8b, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
     mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
+  make_cor(df11a, vars_intero, with = "TAS_DIF", component="Alexithymia") |>
+    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
+  make_cor(df11a, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
+    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
+  make_cor(df11a, vars_intero, with = "TAS_EOT", component="Alexithymia") |>
+    mutate(var_Correlate = "External Thinking (TAS)"),
   # BVAQ
   make_cor(df2, vars_intero, with = "BVAQ_Affective", component="Alexithymia") |>
     mutate(var_Correlate = "Affective (BVAQ)"),
@@ -366,10 +429,6 @@ data <- rbind(
     mutate(var_Correlate = "Cognitive (BVAQ)")
 )
 ```
-
-
-
-
 
 
 ## Mood
@@ -382,6 +441,7 @@ names(df7b)[str_detect(names(df7b), "PHQ")]
 names(df7c)[str_detect(names(df7c), "BDI")]
 names(df8b)[str_detect(names(df8b), "PHQ")]
 names(df9)
+names(df11a)
 
 data <- rbind(
   data,
@@ -400,7 +460,9 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "PHQ4_Depression", component="Mood") |>
     mutate(var_Correlate = "Depression (PHQ-2)"),
   make_cor(df10b, vars_intero, with = "BDI2_Total", component="Mood") |>
-    mutate(var_Correlate = "Depression (BDI)")
+    mutate(var_Correlate = "Depression (BDI)"),
+  make_cor(df11a, vars_intero, with = "DEP", component = "Mood") |>
+    mutate(var_Correlate = "Depression (MFQ)")
 )
 ```
 
@@ -427,6 +489,8 @@ data <- rbind(
   make_cor(df10b, vars_intero, with = "PHQ4_Anxiety", component="Mood") |>
     mutate(var_Correlate = "Anxiety (GAD-2)"),
   make_cor(df10b, vars_intero, with = "STAI5_General", component="Mood") |>
+    mutate(var_Correlate = "Anxiety (STAI)"),
+  make_cor(df11a, vars_intero, with =  "ANX", component = "Mood") |>
     mutate(var_Correlate = "Anxiety (STAI)")
 )
 ```
@@ -556,6 +620,20 @@ data <- rbind(
   make_cor(df10a, vars_intero, with = "PI_Safe", component="World Beliefs") |>
     mutate(var_Correlate = "Safe"),
   make_cor(df10a, vars_intero, with = "PI_Understandable", component="World Beliefs") |>
+    mutate(var_Correlate = "Understandable"),
+  make_cor(df10c, vars_intero, with = "PI_Alive", component="World Beliefs") |>
+    mutate(var_Correlate = "Alive"),
+  make_cor(df10c, vars_intero, with = "PI_Changing", component="World Beliefs") |>
+    mutate(var_Correlate = "Changing"),
+  make_cor(df10c, vars_intero, with = "PI_Enticing", component="World Beliefs") |>
+    mutate(var_Correlate = "Enticing"),
+  make_cor(df10c, vars_intero, with = "PI_Good", component="World Beliefs") |>
+    mutate(var_Correlate = "Good"),
+  make_cor(df10c, vars_intero, with = "PI_Hierarchical", component="World Beliefs") |>
+    mutate(var_Correlate = "Hierarchical"),
+  make_cor(df10c, vars_intero, with = "PI_Safe", component="World Beliefs") |>
+    mutate(var_Correlate = "Safe"),
+  make_cor(df10c, vars_intero, with = "PI_Understandable", component="World Beliefs") |>
     mutate(var_Correlate = "Understandable")
 )
 ```
@@ -621,7 +699,7 @@ p <- data |>
   scale_alpha_discrete(range = c(0.2, 0.7), guide = "none") +
   scale_y_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
   facet_grid(Component ~ var_Interoception, scales = "free_y", switch = "y") +
-  coord_flip(ylim = c(-0.45, 0.45)) +
+  coord_flip(ylim = c(-0.7, 0.7)) +
   theme_modern(axis.title.space = 5) +
   theme(panel.grid.major.y = element_line(),
         axis.title.y = element_blank(),
