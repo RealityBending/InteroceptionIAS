@@ -282,11 +282,12 @@ df10b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
-    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
+    typeSample = Sample
   )
 
 df10c <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionPrimals/refs/heads/main/data/data_participants.csv") |>
-  select("Participant" = "participant_id", "Gender", "Age", "Ethnicity", starts_with("IAS")) |>
+  select("Participant" = "participant_id", "Gender", "Age", "Ethnicity", starts_with(c("IAS","MAIA","PI"))) |>
    rename(
     Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
     Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
@@ -296,16 +297,55 @@ df10c <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
   ) |>
   filter(!is.na(Heart)) # participant is outlier and had total IAS scores below 0.4 
 
+
 ```
+
+```{r}
+pi_vars <- c("PI_Enticing", "PI_Alive", "PI_Safe", "PI_Good", "PI_Changing", 
+             "PI_Hierarchical", "PI_Understandable", "PI_AboutMe", "PI_Abundant", 
+             "PI_Acceptable", "PI_Beautiful", "PI_Cooperative", "PI_Funny", 
+             "PI_Harmless", "PI_Improvable", "PI_Intentional", "PI_Interconnected", 
+             "PI_Interesting", "PI_Just", "PI_Meaningful", "PI_NeedsMe", 
+             "PI_Pleasurable", "PI_Progressing", "PI_Regenerative", "PI_Stable", 
+             "PI_WorthExploring")
+
+
+correlation::correlation(
+  df10c[, "IAS_Total", drop = FALSE],  
+  data2 = select(df10c, all_of(pi_vars)), 
+) |> 
+  # Formatting correlation results
+  mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE))) |>
+  
+  # Releveling factors for visualization
+  mutate(Parameter2 = fct_relevel(Parameter2, rev(pi_vars)),
+         Parameter1 = fct_relevel(Parameter1, "IAS_Total")) |>
+  
+  # Plotting the correlation matrix
+  ggplot(aes(x = Parameter1, y = Parameter2)) +
+  geom_tile(aes(fill = r), color = "white") +  
+  geom_text(aes(label = val), size = 3) +  
+  labs(title = "Correlation Matrix") +
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", limit = c(-1, 1), midpoint = 0, guide = guide_colourbar(ticks = FALSE)) +  
+  theme_minimal() +
+  theme(
+    legend.title = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(hjust = 1)
+  )
+```
+
 
 ### Sample 11
 
 - Giulia
+  - note: anx_21 , tas20_21 are attention checks
 
 ```{r}
 
-df11a <- df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |> 
-  select(AGE, GENDER, contains("IAS_ACC"), -IAS_ACC_20) |>
+df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |> 
+  select(AGE, GENDER, contains("IAS_ACC"), -IAS_ACC_20, starts_with(c("MAIA", "TAS20", "DEP", "ANX")),  -ANX_21, -TAS20_21) |>
   mutate_all(as.numeric) |>
   rename(
     Age = AGE, Gender = GENDER,
@@ -320,12 +360,15 @@ df11a <- df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sa
     Gender == 2 ~ "Female",
     Gender %in% c(3, 5) ~ "Other",
     Gender == 4 ~ "NA"
-  ))
-  
+  )) |> ## compute dimensions for the TAS
+  mutate(TAS_DIF = TAS20_1 + TAS20_3 + TAS20_6 + TAS20_7 + TAS20_9 + TAS20_13 + TAS20_14,
+         TAS_DDF = TAS20_2 + (1-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
+         TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20)
+
 
 df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
   filter(Total_Attention_Fail == 0) |> # 32 participants removed based on failing one or more checks
-  select(AGE, GENDER, contains("IAS_ACC")) |> 
+  select(AGE, GENDER, contains("IAS_ACC"), ) |> 
   mutate_all(as.numeric) |> 
   rename( Age = AGE, Gender = GENDER, 
           Heart = IAS_ACC_1, Hungry = IAS_ACC_2, Breathing = IAS_ACC_3, Thirsty = IAS_ACC_4, Urinate = IAS_ACC_5, Defecate = IAS_ACC_6, Taste = IAS_ACC_7,
@@ -336,7 +379,8 @@ df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive S
     Gender == 1 ~ "Male", 
     Gender == 2 ~"Female", 
     Gender %in% c(3, 5) ~ "Other", 
-    Gender == 4 ~ "NA", ))
+    Gender == 4 ~ "NA", )) |>
+  na.omit()
 
 
 # Save all
@@ -571,7 +615,7 @@ data10a <- select(df10a, all_of(dens10a$Parameter))
 data10b <- select(df10b, all_of(dens10b$Parameter))
 data10c <- select(df10c, all_of(dens10c$Parameter))
 data11a <- normalize(select(df11a, all_of(dens11a$Parameter)), range = c(1, 5))
-data11b <- na.omit(normalize(select(df11b, all_of(dens11b$Parameter)), range = c(1, 5)))
+data11b <- na.omit(normalize(select(df11b, all_of(dens11b$Parameter)), range = c(1, 5))) # remove NAS
 row.names(data11b) <- NULL
 
 
