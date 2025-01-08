@@ -124,42 +124,47 @@ While there is no consensus as to which particular approach provides the most ac
 #| label: "fig-measures"
 #| fig-cap: "Different ways in which interoception can be measured."
 
-knitr::include_graphics("figures/measuring_interoception.png")
+knitr::include_graphics("1_Initial/figures/MeasuringInteroception.png")
 ```
 
 
 <!-- self-reports -->
 
+<!-- what most recent paper? -->
+
 For instance, while the use of self-reports questionnaires to measure an embodied function might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019] [**TODO: also cite the most recent paper**]. 
-The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field **(REF)**. 
+The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. 
 Still, a better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness) is needed to clarify the role of self-reports in the assessment of interoception.
 
 <!-- Introducing the IAS -->
 
+<!-- was the second reference asked for the MAIA, the MAIA-2 ? -->
+
 A recently developed scale with a rapidly growing popularity is the Interoceptive Accuracy Scale [IAS, @murphy2019].
 The IAS consists of 21 Likert-scale items that query how accurately one can perceive different bodily signals, with one item per physiological modality such as respiration (*"I can always accurately perceive when I am breathing fast"*), heart (e.g *"I can always accurately perceive when my heart is beating fast"*), skin (e.g *"I can always accurately perceive when something is going to be ticklish"*), arousal or bodily functions like coughing (e.g *"I can always accurately perceive when I am going to cough"*) or urinating (e.g. *"I can always accurately perceive when I need to urinate"*).
-Interestingly, the IAS' statements are about specific interoceptive behaviours, which is a notable difference with other popular interoception questionnaires, such as the Multidimensional Assessment of Interoceptive Awareness scale [MAIA, @mehling2012; **SECOND REF**], which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*).
+Interestingly, the IAS' statements are about specific interoceptive behaviours, which is a notable difference with other popular interoception questionnaires, such as the Multidimensional Assessment of Interoceptive Awareness scale [MAIA, @mehling2012; MAIA-2, @mehling2018multidimensional], which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*).
 
 <!-- IAS structure  -->
 
 Although the original validation study suggested a two-factor solution structure, the authors underlines the need for further investigation of the scale's factor structure, as it provided acceptable but imperfect explanation of the data [@murphy2019; p. 127].
 Notably, the only other validation study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper.
 Other follow-up studies using confirmatory factor analysis (CFA) and structural modeling [@morin2016] have identified different optimal solutions. 
-Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions **(i.e., QUICK DESCRIPTION)** to be the best fit.
+Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of lowe-level factors (@rodriguez2016evaluating) - to be the best fit.
 
 Discussions have also been focused on specific items. For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119). 
-@lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items **(WHICH ONES)** with exceptionally high difficulty and low discrimination. 
+@lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination. 
 Additionally, @campos2021 suggests that the "tickle" item represents a more specific factor.
-Interestingly, @lin2023 reported that all items of the IAS grouped together using a new approach, Exploratory Graph Analysis (EGA) **[REFS]**, to assess convergent and discriminant validity, which suggests unidimensionality.
+Interestingly, @lin2023 reported that all items of the IAS grouped together using a new approach, Exploratory Graph Analysis [EGA; @golino2017exploratory], to assess convergent and discriminant validity, which suggests unidimensionality.
 
 <!-- TO BE COMPLETED -->
 
 <!-- Convergent validity (correlates)  -->
 
-While the assessment of the validity of an interoception scale can be conceived as theoretically challenging, several traits have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2023, @murphy2019], somatic symptoms [@brand2023; @koike2023], depressive symptoms [@brand2023; @koike2023], anxiety [@brand2023], neuroticism [@brand2023].   
-<!-- **anything else?**. TO BE COMPLETED -->
-The IAS has also been compared to other interoception scales (and interoceptive related scales), yielding a positive correlation with most facets of the MAIA, with the notable exception of *Non distracting* and *Not worrying* subscales [@brand2023], the body awareness dimension of the Body Perception Questionnaire [BPQ-A; @brand2023; @campos2021; @koike2023; @lin2023], the observation and description scales of the Five Facet Mindfulness Questionnaire [FFMQ **what is ref?**; @ref, @brand2023], the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the interoceptive confusion questionnaire [@brand2023] **[I don't think this is the correct ref]**, IATS [@lin2023; @murphy2019].
-<!-- What about the iats? -->
+While the assessment of the validity of an interoception scale can be conceived as theoretically challenging, several traits have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2023, @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023], depressive symptoms [@brand2023; @koike2023], anxiety [@brand2023], neuroticism [@brand2023]. 
+<!-- **anything else?**. TO BE COMPLETED -- to be determined -->
+
+The IAS has also been compared to other interoception scales (and interoceptive related scales),generally showing positive correlations with most facets of the MAIA, except for the Non-Distracting and Not-Worrying subscales [@brand2023]. Findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire (BPQ-A; @porges1993body) have been mixed: some studies report small positive correlations [@brand2023; @campos; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019]. Small positive correlations have also been observed with the observation and description subscales of the Five Facet Mindfulness Questionnaire (FFMQ, @baer2006using; @brand2023; @koike2023), as well as with the nonreactivity and acting with awareness subscales [@koike2023]. Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia; @brand2023; @murphy2019]. Lastly, small positive correlations have been reported between the Interoceptive Attention Scale (IATS, @gabriele2022dissociations) and the IAS [@lin2023; @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations].
+
 <!-- TO BE COMPLETED -->
 
 <!-- Moreover, the current subjective measures do not correlate well with the objective measures [@murphy2019]. -->
@@ -318,7 +323,7 @@ The questionnaires used for the IAS correlates are listed in Table 2 (**TODO: ad
 | PI-18                      | 1                    | Beliefs about the world                 | 99              | 6-point Likert scale   |              |
 | LIE scale                  | 4                    | Lying tendencies                        | 16              | Visual analogue scales |              |
 
-*Note.* MAIA-2 Multidimensional Assessment of Interoceptive Awareness Version-2; BPQ Body Perception Questionnaire (Mehling et al. 2018); TAS-20 Toronto Alexithymia Scale (Bagby et al., 1994); BVAQ Bermond-Vorst Alexithymia Questionnaire (Vorst & Bermond, 2001); BDI-II Beck's Depression Inventory (Dozois et al., 1998); PHQ-4 Patient Health Questionnaire (Kroenke et al., 2009); STAI-T State-Trait-Anxiety Inventory Trait-Version (Spielberger et al. 1970); GAD- 2 Generalized Anxiety Disorder Scale – 2 (Spitzer et al., 2007); NEO-FFI NEO Five-Factor Inventory Neuroticism (Costa & McCrae, 2008); Mini IPIP6 Mini International Personality Item Pool (Sibley et al. 2011); BFI Big Five Inventory (John et al., 2010); PID-5-SF Personality Inventory for DSM-5 Short Form (Thimm et al., 2016); SPQ-BRU Schizotypal Personality Questionnaire (Davidson et al., 2016); MSI-BPD Mclean Screening Instrument for Borderline Personality Disorder (Zanarini et al. 2003); ASQ Short Autism-Spectrum Quotient (Hoekstra et al. 2011); GCB Generic Conspiracist Beliefs scale (Brotherton et al.,  2013); PI-18 Primals Inventory (Clifton et al., 2021); LIE scale Lying Profile Questionnaire (Makowski, et al,. 2023).
+*Note.* MAIA-2 Multidimensional Assessment of Interoceptive Awareness Version-2 (Mehling et al. 2018); BPQ Body Perception Questionnaire; TAS-20 Toronto Alexithymia Scale (Bagby et al., 1994); BVAQ Bermond-Vorst Alexithymia Questionnaire (Vorst & Bermond, 2001); BDI-II Beck's Depression Inventory (Dozois et al., 1998); PHQ-4 Patient Health Questionnaire (Kroenke et al., 2009); STAI-T State-Trait-Anxiety Inventory Trait-Version (Spielberger et al. 1970); GAD- 2 Generalized Anxiety Disorder Scale – 2 (Spitzer et al., 2007); NEO-FFI NEO Five-Factor Inventory Neuroticism (Costa & McCrae, 2008); Mini IPIP6 Mini International Personality Item Pool (Sibley et al. 2011); BFI Big Five Inventory (John et al., 2010); PID-5-SF Personality Inventory for DSM-5 Short Form (Thimm et al., 2016); SPQ-BRU Schizotypal Personality Questionnaire (Davidson et al., 2016); MSI-BPD Mclean Screening Instrument for Borderline Personality Disorder (Zanarini et al. 2003); ASQ Short Autism-Spectrum Quotient (Hoekstra et al. 2011); GCB Generic Conspiracist Beliefs scale (Brotherton et al.,  2013); PI-18 Primals Inventory (Clifton et al., 2021); LIE scale Lying Profile Questionnaire (Makowski, et al,. 2023).
 
 #### Statistical analysis
 
