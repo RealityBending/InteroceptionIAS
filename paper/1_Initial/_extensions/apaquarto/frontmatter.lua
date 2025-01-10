@@ -86,7 +86,7 @@ local get_author_paragraph = function(authors, different)
           sep = ""
         elseif i == #authors then
           if i == 2 then
-            sep = " " .. andreplacement .. ""
+            sep = " " .. andreplacement .. " "
           else
             sep = ", " .. andreplacement .. " "
           end
@@ -259,7 +259,19 @@ return {
 
       
       if not mask then
-      body:extend({authordiv})
+        body:extend({authordiv})
+      end
+      
+      if meta["draft-date"] then
+        draftdate = os.date("%B %d, %Y")
+        if type(meta["draft-date"]) == "table" then
+          draftdate = meta["draft-date"]
+        end
+        draftdatediv = pandoc.Div({
+            pandoc.Para(draftdate)
+        })
+        draftdatediv.classes:insert("Author")
+        body:extend({draftdatediv})
       end
       
       local authornoteheadertext = "Author Note"
@@ -572,14 +584,21 @@ return {
         end
         
         local keywords_paragraph = pandoc.Para({pandoc.Emph(keywordsword), pandoc.Str(":")})
-        for i, k in ipairs(meta.keywords) do
-          if i == 1 then
-            keywords_paragraph = extend_paragraph(keywords_paragraph, k)
-          else
-            keywords_paragraph = extend_paragraph(keywords_paragraph, k, pandoc.Str(", "))
+        
+        print(pandoc.utils.type(meta.keywords))
+        if pandoc.utils.type(meta.keywords) == "Inlines" then
+          keywords_paragraph = keywords_paragraph.content:extend(meta.keywords)
+        else
+          for i, k in ipairs(meta.keywords) do
+            if i == 1 then
+              keywords_paragraph = extend_paragraph(keywords_paragraph, k)
+            else
+              keywords_paragraph = extend_paragraph(keywords_paragraph, k, pandoc.Str(", "))
+            end
+            
           end
-          
         end
+        
         body:extend({keywords_paragraph})
       end
 
