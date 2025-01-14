@@ -124,7 +124,7 @@ While there is no consensus as to which particular approach provides the most ac
 #| label: "fig-measures"
 #| fig-cap: "Different ways in which interoception can be measured."
 
-knitr::include_graphics("1_Initial/figures/MeasuringInteroception.png")
+knitr::include_graphics("figures/MeasuringInteroception.jpg")
 ```
 
 
@@ -160,10 +160,10 @@ Interestingly, @lin2023 reported that all items of the IAS grouped together usin
 
 <!-- Convergent validity (correlates)  -->
 
-While the assessment of the validity of an interoception scale can be conceived as theoretically challenging, several traits have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2023, @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023], depressive symptoms [@brand2023; @koike2023], anxiety [@brand2023], neuroticism [@brand2023]. 
+While the assessment of the validity of an interoception scale can be conceived as theoretically challenging, several traits have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2021, @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023], depressive symptoms [@brand2023; @koike2023], anxiety [@brand2023], neuroticism [@brand2023]. 
 <!-- **anything else?**. TO BE COMPLETED -- to be determined -->
 
-The IAS has also been compared to other interoception scales (and interoceptive related scales),generally showing positive correlations with most facets of the MAIA, except for the Non-Distracting and Not-Worrying subscales [@brand2023]. Findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire (BPQ-A; @porges1993body) have been mixed: some studies report small positive correlations [@brand2023; @campos; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019]. Small positive correlations have also been observed with the observation and description subscales of the Five Facet Mindfulness Questionnaire (FFMQ, @baer2006using; @brand2023; @koike2023), as well as with the nonreactivity and acting with awareness subscales [@koike2023]. Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia; @brand2023; @murphy2019]. Lastly, small positive correlations have been reported between the Interoceptive Attention Scale (IATS, @gabriele2022dissociations) and the IAS [@lin2023; @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations].
+The IAS has also been compared to other interoception scales (and interoceptive related scales),generally showing positive correlations with most facets of the MAIA, except for the Non-Distracting and Not-Worrying subscales [@brand2023]. Findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire (BPQ-A; @porges1993body) have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019]. Small positive correlations have also been observed with the observation and description subscales of the Five Facet Mindfulness Questionnaire (FFMQ, @baer2006using; @brand2023; @koike2023), as well as with the nonreactivity and acting with awareness subscales [@koike2023]. Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia; @brand2023; @murphy2019]. Lastly, small positive correlations have been reported between the Interoceptive Attention Scale (IATS, @gabriele2022dissociations) and the IAS [@lin2023; @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations].
 
 <!-- TO BE COMPLETED -->
 
@@ -182,43 +182,54 @@ Thus, providing additionally an individual analysis (i.e., on all samples indivi
 
 #### Datasets
 
-Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of **XX/XX/2024**).
+Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of 01/05/2024).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
-A total of **XX** studies was included.
-We also included the data of two unpublished (but already open-access) studies from the authors.
-The total N participants was 31,317 participants (Mean SD, 71.5% Female).
+A total of 10  studies was included.
+We also included the data of two unpublished (but already open-access) studies from the authors and one from another author.
+The total N participants was 32,214 participants (*Mean* = 48.6 years, *SD* = 13.1, 71.6% Female).
 See @tbl-samples for a summary of the samples demographics.
 
 ```{r}
 #| warning: false
 #| label: tbl-samples
-#| tbl-cap: "Blabla caption for Samples demographics"
-# #| apa-note: "Some note bedlow the table"
+#| tbl-cap: "Samples demographics"
+#| apa-note: "Some note bedlow the table"
+
+knitr::include_graphics("figures/table1.png")
 
 ```
 
+<!-- This only works when redering to pdf right? -->
 \tiny 
 \input{../../analysis/figures/table1.tex}
 \normalsize
 
-**TODO: add language also, as well as maybe something like "difference" from the original validation (which could actually be language, and for our the type of scale / less items)** <!-- **TODO: add links to GH for our studies** -->
-
-
 ### Statistical Analysis
 
 To examine the factor structure of the IAS, a two-step approach was employed.
-First, Exploratory Graph Analysis (EGA), was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques.
+First, Exploratory Graph Analysis (EGA), was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
 The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates.
+A novel network psychometrics - Unique variable analysis [UVA; @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (> 0.25).
 Subsequently, exploratory factor analysis (EFA) was employed followed by confirmatory factor analysis (CFA).
 
 ### Results
 
-Visualizing the distribution of the items for all samples suggests the presence of a consistent modal value (Fig. X).
+Visualizing the distribution of the items for all samples suggests the presence of a consistent modal value (@fig-distributions).
 In other words, participants are most likely to answer 4/5 (i.e., agree) on most items (but "affective touch", "blood sugar", and "bruise" that exhibit a different distributional pattern).
-Additionally, one can note the low density on extreme values (1 and 5), meaning that the bulk of answers **(87% TODO: get the actual statistic: what's the proportion of non 1&5 answers for the likert scale samples)** varies between 3 values.
+Additionally, one can note the low density on extreme values (1 and 5), meaning that the bulk of answers (i.e., 99%%) varies between 3 values.
 The interindividual variability seems improved in the samples using an analogue scale, displaying a more continuous and progressive spread of answers.
 
-![**Figure 1.** Distribution of responses for all items across all datasets.](figures/clipboard-1080495164.png){width="723"}
+```{r}
+#| warning: false
+#| label: fig-distributions
+#| fig-cap: "Distribution of responses for all items across various datasets."
+# #| fig-width:
+# #| apa-note: "Some note bedlow the table"
+
+knitr::include_graphics("figures/Figure1.png")
+
+```
+
 
 #### Correlations
 
@@ -228,25 +239,25 @@ However, there are possibly some higher-order groupings emerging for the 2 analo
 
 #### EGA
 
-The unique variable analysis revealed that there are two redundant variables when taking all samples into account.
-Namely, "itch" and "tickle", where "tickle" should be removed, and "itch" should remain in the questionnaire.
+The UVA revealed that there are two large to very large redundant variables when taking all samples into account.
+Namely, "itch" and "tickle", where "tickle" should be removed, and "itch" should be kept. 
 There are several more items that are moderately to largely redundant, namely, "wind" and "burp", and "urinate" and "defecate".
 On top of that, "sneeze" and "cough", "heart" and "breathing", and "hungry" and "thirsty" seem to have small to moderate redundancy.
-These findings are rather consistent across the samples with minor differences, such as that when the questionnaire had an analog scale, there seems to be no redundant items. 
+These findings are rather consistent across the samples with minor differences, such as that when the questionnaire had an analog scale, there seems to be no large to very large redundant items but "itch" and "tickle" remain moderately to largely redundant and "heart" and "breathing" small to moderately redundant in one sample. 
 
-According to the network analysis, a 4-factor structure fits the questionnaire best across all data sets.
+According to the network analysis, using the Walktrap and Louvain algorithms applied to Glasso networks, a 4-factor structure fits the questionnaire best across all data sets.
 This is rather consistent within the data sets, where some samples indicate 3-factor structure, and some a 5-factor structure would fit well too.
 The 4-factor structure model with the best fit entails the following items per group: 1) itch, tickle, bruise, blood sugar; 2) burp, wind, cough, sneeze, vomit; 3) affective touch, sexual arousal, muscles, temperature, pain, and taste; 4) Heart, breathing, hungry, thirsty, urinate, and defecate.
 
 Stability analysis, employing 500 bootstrap iterations, also favoured the 4-factor solution for its greater stability.
-Most items, except for 'affective touch,' demonstrated stability levels exceeding 0.70, indicating structural consistency and reliability [@christensen2021].
+Most items, except for 'affective touch,' demonstrated stability levels exceeding 0.90, indicating structural consistency and reliability [@christensen2021].
 These findings underscore the robustness of the identified 4-dimensional structure.
 
 When accounting for all samples, the factor analysis reveals that a 4-factor structure fits best.
-The exploratory factor analysis revealed that 4 latent factors (oblimin rotation) accounted for 41.67% of 5the total variance of the original data (MR1 = 14.64%, MR3 = 11.59%, MR4 = 7.30%).
-Confirmatory factor analysis showed that the time "tickle" can be discarded, as it was flagged as redundant in the samples consistently.
-Some of the factors were ambiguous, namely, temperature, vomit, effective touch, sexual arousal, as well as taste.
-There was no evidence for higher order factors.
+The exploratory factor analysis revealed that 4 latent factors (oblimin rotation) accounted for 51.95% of the total variance of the original data (MR2 = 19.08%, MR1 = 17.78%, MR4 = 9.34%, MR3 = 5.75%).
+Since UVA identified "tickle" as the item to be removed—and it also had the lowest uniqueness value in factor analysis with a similar loading to "itch"—"tickle" was excluded from subsequent analyses. 
+
+Confirmatory factor analysis compared 5 models: a single-factor solution, a 4-factor solution, a 5-factor solution, a 6-factor solution and a 7-factor solution. The latter was preferred in most datasets, including with indices that penalise increased number of parameters (such as BIC). There was no evidence for higher order factors.
 
 ### Discussion
 
@@ -394,7 +405,7 @@ Overall, the IAS is straightforward with its sensation-centered items.
 There are several points of improvement to the IAS, which this work suggests.
 Firstly, removing redundant items, such as the itch item as shown in the above analysis.
 Previous work has also shown that the itch and tickle items are subject to redundancy [@lin2023, @campos2021] has shown.
-Interestingly, @campos2021 suggest removin the tickle item instead.
+Interestingly, @campos2021 suggest removing the tickle item instead.
 @lin2023 on the other hand removed the itch item, because the sign for itch and tickle is the same.
 Furthermore, this work recommends using analog scales, instead of 5 point scales.
 In a 5-point scale, the variability is clearly limited with most people choosing ⅘.

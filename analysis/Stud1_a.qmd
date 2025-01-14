@@ -507,10 +507,11 @@ table <- data.frame(
    Sample = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Poreiro et al., (2024)', 'Poreiro et al., unpublished', 'Total'),
   Subsample = c('', 'Sample 1', 'Sample 2', '', '', '', '', '', '', 'Sample 1', 'Sample 2', 'Sample 3', '', 'Sample 1', 'Sample 2', '', '', '', '', '','', ''),   
   Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English',''),
-  N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10a), nrow(df10b), nrow(df10c), nrow(df11a), nrow(df11b), 32216),
+  N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10a), nrow(df10b), nrow(df10c), nrow(df11a), nrow(df11b), 32214),
+  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tingling"', 'Collapsed "Itch" and "Tingling"', '', 'Analog scales', 'Analog scales', 'Analog scales', '', '', ''),
   Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10a$Age), make_age(df10b$Age), make_age(df10c$Age), make_age(df11a$Age), make_age(df11b$Age), '48.6 ± 13.1'),
   Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '18-57', '18-60', '17-93'),
-  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '74.8%', '75.9%', '71.6'),
+  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '74.8%', '75.9%', '71.6%'),
   Availability= c('', '', 'https://osf.io/3m5nh', 'https://osf.io/5x9sg', 'https://osf.io/j6ef3', 'https://osf.io/ms354', 'https://osf.io/mp3cy', 'https://osf.io/xwz6g', '', '', 'https://osf.io/3f2h6', '','','', 'https://osf.io/3eztd', 'https://osf.io/7p9u5', 'https://github.com/RealityBending/IllusionGameReliability', 'https://github.com/DominiqueMakowski/PHQ4R', 'https://github.com/RealityBending/InteroceptionPrimals', 'https://osf.io/49wbv', '','')
 ) 
 
@@ -523,6 +524,7 @@ table_apa <- table |>
   
 table_apa
 gtsave(table_apa, "figures/table1.tex")
+gtsave(table_apa, "figures/table1.png")
 ```
 
 
@@ -579,7 +581,14 @@ dens11b <- estimate_density(select(df11b, all_of(vars)), method = "kernSmooth") 
   mutate(Sample = "Sample 11b")
 
 
-p1 <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10a, dens10b, dens10c, dens11a, dens11b) |>
+p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10a, dens10b, dens10c, dens11a, dens11b) 
+
+# proportion of non-1 and non-5 values 
+p1_data |>
+  filter(x > 1 & x < 5) |>  # Keep only x values strictly between 1 and 5
+  summarise(proportion = sum(y) / sum(p1_data$y))  # Normalize by total density
+
+p1 <- p1_data |>
   mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10a", "Sample 10b", "Sample 10c", "Sample 11a", "Sample 11b")) |>
   # mutate(Dashed = ifelse(Parameter %in% c("Affective_touch", "Blood_Sugar", "Bruise"), TRUE, FALSE)) |> 
   ggplot(aes(x = x, y = y, color = Parameter)) +
@@ -589,7 +598,7 @@ p1 <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, d
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         plot.title = element_text(face="bold")) +
-  labs(title = "Distribution of responses for all items across various datasets", x = "Response", y = "Density", color = "Item") +
+  labs(x = "Response", y = "Density", color = "Item") +
   facet_wrap(~Sample, scales = "free_y", nrow = 5)
 
 ggsave("figures/Figure1.png", p1, width=10, height=10, dpi=200, bg="white")
