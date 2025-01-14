@@ -98,11 +98,11 @@ language:
   title-block-role-introduction: "Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows:"
   references-meta-analysis:
 format:
-  apaquarto-docx: default
-  apaquarto-html: default
   apaquarto-pdf:
     # Can be jou (journal), man (manuscript), stu (student), or doc (document)
-    documentmode: man
+    documentmode: jou
+  apaquarto-docx: default
+  apaquarto-html: default
 editor: 
   markdown: 
     wrap: sentence
@@ -123,6 +123,8 @@ While there is no consensus as to which particular approach provides the most ac
 ```{r}
 #| label: "fig-measures"
 #| fig-cap: "Different ways in which interoception can be measured."
+#| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
+#| out-width: "100%"
 
 knitr::include_graphics("figures/MeasuringInteroception.jpg")
 ```
@@ -132,7 +134,7 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 
 <!-- what most recent paper? -->
 
-For instance, while the use of self-reports questionnaires to measure an embodied function might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019] [**TODO: also cite the most recent paper**]. 
+For instance, while the use of self-reports questionnaires to measure an embodied function might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019] [**TODO: also cite the most recent paper OF MURPHY with the chinese**]. 
 The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. 
 Still, a better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness) is needed to clarify the role of self-reports in the assessment of interoception.
 
@@ -190,13 +192,11 @@ The total N participants was 32,214 participants (*Mean* = 48.6 years, *SD* = 13
 See @tbl-samples for a summary of the samples demographics.
 
 ```{r}
-#| warning: false
 #| label: tbl-samples
 #| tbl-cap: "Samples demographics"
-#| apa-note: "Some note bedlow the table"
+#| apa-note: "Some note below the table"
 
 knitr::include_graphics("figures/table1.png")
-
 ```
 
 <!-- This only works when redering to pdf right? -->
@@ -264,21 +264,21 @@ Confirmatory factor analysis compared 5 models: a single-factor solution, a 4-fa
 In this study, several datasets were analyzed for a meta analysis of the structure of the IAS.
 The findings reveal that a 4-factor model fits the IAS best.
 Additionally, the lowest level structure (pairs of items) seem to be the most robust, especially for samples using Likert scales (some higher-order groupings might emerge for the 2 analog-scale samples).
-There was no clear evidence for higher-order factors. 
+There was no clear evidence for higher-order factors.
 
 These findings contrast with previous research, which all found that a 2-factor model, or a 1-factor model fits the data best [@murphy2019, @lin2023, @campos2021, @brand2023].
 While this analysis also revealed an okay fit for the 1-factor model, the 4-factor model revealed the best fit.
 The 4-factor structure reveals different ‘hubs' of items that are related, not only in this structure analysis, but also in underlying mechanisms.
 The ‘wind-burp-cough-sneeze-vomit' category, for example, only entails items that are linked to excretion through the mouth.
 The other categories are organized similarly.
-This organization  and structure is useful for further analysis, as the data can be analyzed and interpreted according to a grouping that is coherent in result, as well as underlying mechanisms. 
+This organization and structure is useful for further analysis, as the data can be analyzed and interpreted according to a grouping that is coherent in result, as well as underlying mechanisms.
 
 There are several items that show redundancy suggesting that adapting the IAS would be beneficial for validity.
 Based on the given results, we suggest removing the tickle, while keeping the itch item (stats).
 Other items with slight redundancy were Hungry and Thirsty, Urinate and Defecate, and Sneeze and Cough.
 
 Interestingly, @lin2023 also found that tickle and itch were redundant, excluding one of them but the reason being that the character for both words is the same in the Chinese language.
-On top of that, they came up with a shortened version of the IAS, excluding further items, resulting in a 12-item IAS, which aligns with our findings, suggesting that further items are ambiguous as to whether they should be removed. 
+On top of that, they came up with a shortened version of the IAS, excluding further items, resulting in a 12-item IAS, which aligns with our findings, suggesting that further items are ambiguous as to whether they should be removed.
 In contrast, other findings also found itch and tickle to be redundant but did not suggest excluding items .
 
 The findings indicate a high proportion of answers at 4 (see Figure 1), especially when using a 5-step scale.
@@ -334,7 +334,7 @@ The questionnaires used for the IAS correlates are listed in Table 2 (**TODO: ad
 | PI-18                      | 1                    | Beliefs about the world                 | 99              | 6-point Likert scale   |              |
 | LIE scale                  | 4                    | Lying tendencies                        | 16              | Visual analogue scales |              |
 
-*Note.* MAIA-2 Multidimensional Assessment of Interoceptive Awareness Version-2 (Mehling et al. 2018); BPQ Body Perception Questionnaire; TAS-20 Toronto Alexithymia Scale (Bagby et al., 1994); BVAQ Bermond-Vorst Alexithymia Questionnaire (Vorst & Bermond, 2001); BDI-II Beck's Depression Inventory (Dozois et al., 1998); PHQ-4 Patient Health Questionnaire (Kroenke et al., 2009); STAI-T State-Trait-Anxiety Inventory Trait-Version (Spielberger et al. 1970); GAD- 2 Generalized Anxiety Disorder Scale – 2 (Spitzer et al., 2007); NEO-FFI NEO Five-Factor Inventory Neuroticism (Costa & McCrae, 2008); Mini IPIP6 Mini International Personality Item Pool (Sibley et al. 2011); BFI Big Five Inventory (John et al., 2010); PID-5-SF Personality Inventory for DSM-5 Short Form (Thimm et al., 2016); SPQ-BRU Schizotypal Personality Questionnaire (Davidson et al., 2016); MSI-BPD Mclean Screening Instrument for Borderline Personality Disorder (Zanarini et al. 2003); ASQ Short Autism-Spectrum Quotient (Hoekstra et al. 2011); GCB Generic Conspiracist Beliefs scale (Brotherton et al.,  2013); PI-18 Primals Inventory (Clifton et al., 2021); LIE scale Lying Profile Questionnaire (Makowski, et al,. 2023).
+*Note.* MAIA-2 Multidimensional Assessment of Interoceptive Awareness Version-2 (Mehling et al. 2018); BPQ Body Perception Questionnaire; TAS-20 Toronto Alexithymia Scale (Bagby et al., 1994); BVAQ Bermond-Vorst Alexithymia Questionnaire (Vorst & Bermond, 2001); BDI-II Beck's Depression Inventory (Dozois et al., 1998); PHQ-4 Patient Health Questionnaire (Kroenke et al., 2009); STAI-T State-Trait-Anxiety Inventory Trait-Version (Spielberger et al. 1970); GAD- 2 Generalized Anxiety Disorder Scale – 2 (Spitzer et al., 2007); NEO-FFI NEO Five-Factor Inventory Neuroticism (Costa & McCrae, 2008); Mini IPIP6 Mini International Personality Item Pool (Sibley et al. 2011); BFI Big Five Inventory (John et al., 2010); PID-5-SF Personality Inventory for DSM-5 Short Form (Thimm et al., 2016); SPQ-BRU Schizotypal Personality Questionnaire (Davidson et al., 2016); MSI-BPD Mclean Screening Instrument for Borderline Personality Disorder (Zanarini et al. 2003); ASQ Short Autism-Spectrum Quotient (Hoekstra et al. 2011); GCB Generic Conspiracist Beliefs scale (Brotherton et al., 2013); PI-18 Primals Inventory (Clifton et al., 2021); LIE scale Lying Profile Questionnaire (Makowski, et al,. 2023).
 
 #### Statistical analysis
 
@@ -356,7 +356,7 @@ Maladaptiveness had mostly negative correlations with the IAS, with only a few s
 Overall, mood was mostly negatively correlated with the IAS, where "hungry/thirsty" had the strongest negative correlation of all mood measures.
 Except for "neuroticism" and "honesty-humility", personality traits, such as "openness" and "extraversion" were positively correlated with the IAS groupings.
 Shizotypic traits were mostly negatively correlated with the IAS, with "hungry/thirsty" showing the strongest negative correlation between schizotypic and the IAS.
-World beliefs were mostly positively correlated with the IAS, however, only a few were significant: "hierarchical", "enticing", and "alive" correlates significantly with "muscle/pain"; "Understandable" has a significant positive correlation with "heart/breathing"; And  "hierarchical" and "alive" has a significant positive correlation with "hungry/thirsty". 
+World beliefs were mostly positively correlated with the IAS, however, only a few were significant: "hierarchical", "enticing", and "alive" correlates significantly with "muscle/pain"; "Understandable" has a significant positive correlation with "heart/breathing"; And "hierarchical" and "alive" has a significant positive correlation with "hungry/thirsty".
 
 ![**Figure 2.** Correlates of the IAS](figures/clipboard-1619164537.png){width="911"}
 
@@ -364,11 +364,11 @@ World beliefs were mostly positively correlated with the IAS, however, only a fe
 
 Our findings confirmed that interception lies within an intricate network of correlates.
 Alexithyma has the most negative correlation with the IAS, whereas, the MAIA questionnaire is most strongly positively correlated with the IAS.
-The correlates cannot only explain attributes of interoception, but can also be used to validate measures for interoception. 
+The correlates cannot only explain attributes of interoception, but can also be used to validate measures for interoception.
 
 While these results reveal correlations of different categories with the IAS, the findings are limited to the given questionnaire.
 However, they give a good indication of how interoception in general might be linked to the different categories, leading to interesting findings.
-The results show a consistent pattern of correlations with other interoception measures, psychopathology, and highlighting of interesting exploratory results, such as how primal world beliefs correlate with the IAS. 
+The results show a consistent pattern of correlations with other interoception measures, psychopathology, and highlighting of interesting exploratory results, such as how primal world beliefs correlate with the IAS.
 
 The analysis revealed a negative correlation between alexithymia and scores in the IAS, which is in line with previous research [@herbert2011].
 A negative correlation between autism and interoceptive awareness, which has been found in this sample, has also been found in previous research [@dubois2016].
