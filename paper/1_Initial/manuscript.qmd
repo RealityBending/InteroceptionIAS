@@ -134,9 +134,10 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 
 <!-- what most recent paper? -->
 
-For instance, while the use of self-reports questionnaires to measure an embodied function might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019] [**TODO: also cite the most recent paper OF MURPHY with the chinese**]. 
-The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. 
-Still, a better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness) is needed to clarify the role of self-reports in the assessment of interoception.
+For instance, while the use of subjective self-reports questionnaires to measure deeply embodied functions might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019] [**TODO: also cite the most recent paper OF MURPHY with the chinese**]. 
+**TODO: that's a long sentence consider splitting**
+The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between various measures in the field [@desmedt2022measures]. 
+A better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness), is thus needed to clarify the role of self-reports in the assessment of interoception.
 
 <!-- Introducing the IAS -->
 
@@ -148,15 +149,17 @@ Interestingly, the IAS' statements are about specific interoceptive behaviours, 
 
 <!-- IAS structure  -->
 
-Although the original validation study suggested a two-factor solution structure, the authors underlines the need for further investigation of the scale's factor structure, as it provided acceptable but imperfect explanation of the data [@murphy2019; p. 127].
+Although the original validation study suggested a two-factor structure for the IAS (**TODO: what are they?**), the authors underline its acceptable but imperfect fit [@murphy2019; p. 127], calling on further investigation of the scale's factor structure.
 Notably, the only other validation study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper.
+**TODO: this above is not really a validation study showing 2 factors is good if they prespecified two to match the original?**
 Other follow-up studies using confirmatory factor analysis (CFA) and structural modeling [@morin2016] have identified different optimal solutions. 
-Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of lowe-level factors (@rodriguez2016evaluating) - to be the best fit.
+Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit.
+**TODO: what does morin2016 found? I would cite it after saying what they found rather than here**
 
 Discussions have also been focused on specific items. For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119). 
 @lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination. 
-Additionally, @campos2021 suggests that the "tickle" item represents a more specific factor.
-Interestingly, @lin2023 reported that all items of the IAS grouped together using a new approach, Exploratory Graph Analysis [EGA; @golino2017exploratory], to assess convergent and discriminant validity, which suggests unidimensionality.
+Additionally, @campos2021 suggests that the "tickle" item represents a more specific *(separate?*) factor.
+Interestingly, @lin2023 reported that all items of the IAS grouped together using a new approach, Exploratory Graph Analysis [EGA; @golino2017exploratory], to assess convergent and discriminant validity, providing further evidence for unidimensionality.
 
 <!-- TO BE COMPLETED -->
 
