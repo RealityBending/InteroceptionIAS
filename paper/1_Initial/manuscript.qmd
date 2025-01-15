@@ -100,7 +100,7 @@ language:
 format:
   apaquarto-pdf:
     # Can be jou (journal), man (manuscript), stu (student), or doc (document)
-    documentmode: jou
+    documentmode: man
   apaquarto-docx: default
   apaquarto-html: default
 editor: 
@@ -186,25 +186,14 @@ Thus, providing additionally an individual analysis (i.e., on all samples indivi
 
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of 01/05/2024).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
-A total of 10  studies was included.
+A total of 10 studies was included (see **Table 1**).
 We also included the data of two unpublished (but already open-access) studies from the authors and one from another author.
 The total N participants was 32,214 participants (*Mean* = 48.6 years, *SD* = 13.1, 71.6% Female).
-See @tbl-samples for a summary of the samples demographics.
-
-```{r}
-#| label: tbl-samples
-#| tbl-cap: "Samples demographics"
-#| apa-note: "Some note below the table"
-
-knitr::include_graphics("figures/table1.png")
-```
 
 <!-- This only works when redering to pdf right? -->
-\tiny 
 \input{../../analysis/figures/table1.tex}
-\normalsize
 
-### Statistical Analysis
+#### Statistical Analysis
 
 To examine the factor structure of the IAS, a two-step approach was employed.
 First, Exploratory Graph Analysis (EGA), was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
@@ -216,18 +205,15 @@ Subsequently, exploratory factor analysis (EFA) was employed followed by confirm
 
 Visualizing the distribution of the items for all samples suggests the presence of a consistent modal value (@fig-distributions).
 In other words, participants are most likely to answer 4/5 (i.e., agree) on most items (but "affective touch", "blood sugar", and "bruise" that exhibit a different distributional pattern).
-Additionally, one can note the low density on extreme values (1 and 5), meaning that the bulk of answers (i.e., 99%%) varies between 3 values.
+Additionally, one can note the low density on extreme values (1 and 5), meaning that the bulk of answers (i.e., 99\%) varies between 3 values.
 The interindividual variability seems improved in the samples using an analogue scale, displaying a more continuous and progressive spread of answers.
 
 ```{r}
 #| warning: false
 #| label: fig-distributions
 #| fig-cap: "Distribution of responses for all items across various datasets."
-# #| fig-width:
-# #| apa-note: "Some note bedlow the table"
 
 knitr::include_graphics("figures/Figure1.png")
-
 ```
 
 
