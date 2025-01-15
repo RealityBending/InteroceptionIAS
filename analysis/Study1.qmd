@@ -1,5 +1,5 @@
 ---
-title: "Meta-analysis of the Interoceptive Accuracy Scale"
+title: "Meta-analysis of the Interoceptive Accuracy Scale (IAS)"
 subtitle: "Study 1"
 editor: source
 editor_options: 
@@ -28,15 +28,14 @@ library(tidySEM)
 library(EGAnet)
 ```
 
-
 ## Data Preparation
 
 ::: {.panel-tabset}
 
 ### Sample 1
 
-Murphy (https://osf.io/3m5nh)
-
+- Murphy (2020)
+  - https://osf.io/3m5nh
 
 ```{r}
 df1a <- haven::read_sav("../data/Murphy2020/Study 1.sav") |>
@@ -48,11 +47,10 @@ df1b <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
 ```
 
-
 ### Sample 2
 
-Gaggero (2021) (https://osf.io/5x9sg)
-
+- Gaggero (2021) 
+  - https://osf.io/5x9sg
 
 ```{r}
 load("../data/Gaggero2021/data.rda")
@@ -68,11 +66,10 @@ df2 <- data |>
 rm(data)
 ```
 
-
 ### Sample 3
 
-Campos (2022) - Study 1 (https://osf.io/j6ef3)
-
+- Campos (2022) - Study 1 
+  - https://osf.io/j6ef3
 
 ```{r}
 df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
@@ -87,11 +84,10 @@ df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
   )
 ```
 
-
 ### Sample 4
 
-Todd (2022) - https://osf.io/ms354/
-
+- Todd (2022) 
+  - https://osf.io/ms354/
 
 ```{r}
 df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
@@ -105,15 +101,27 @@ df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
   )
 ```
 
-
-
 ### Sample 5
 
-Arslanova (2022) - https://osf.io/mp3cy/
-
+- Arslanova (2022)
+  - https://osf.io/mp3cy/
+  - note: Final.xlsx includes information about which participants passed the attention checks 
 
 ```{r}
-df5 <- readxl::read_excel("../data/Arslanova2022/Murphy_Iacc_scale.xlsx")  |> 
+
+df5_attention <- readxl::read_excel("../data/Arslanova2022/Participants2.xlsx", 
+    sheet = "FINAL") |>
+  filter(ActorHR == 1) |>
+  select(Subj.ID, Gender, Age) |>
+  mutate(Gender = as.numeric(Gender), Age = as.numeric(Age)) |>
+  filter(!is.na(Age)) |> #error on the documentation of this participant - attention check failed but not noted
+  mutate(Gender = case_when(
+    Gender== 0 ~ "Male",
+    Gender== 1 ~ "Female" # based on paper reporting 65 women
+  ))
+
+
+df5 <- readxl::read_excel("../data/Arslanova2022/Murphy_Iacc_scale.xlsx")  |>
   filter(str_detect(Question.Key, "IAC_")) |> 
   filter(str_detect(Question.Key, "-quantised")) |> 
   pivot_wider(names_from = Question.Key, values_from = Response) |>
@@ -123,15 +131,20 @@ df5 <- readxl::read_excel("../data/Arslanova2022/Murphy_Iacc_scale.xlsx")  |>
          Temp = HotCold, Tickle = Ticklish, Breathing= BreatheFast, 
          Affective_touch= PleasantAffectionate, Blood_Sugar= BloodSugar, 
          Muscles=TiredMuscles, Heart= FastHeart, Taste=Tastes) |> 
-  select(-starts_with("Participant")) |> 
-  mutate_all(as.numeric)
-```
+  rename(Subj.ID = "Participant.Public.ID") |>
+  select(-starts_with("Participant")) 
 
+df5 <- df5 |>
+  filter(Subj.ID %in% df5_attention$Subj.ID) |>
+  select(-Subj.ID) |>
+  mutate(across(everything(), as.numeric))
+  
+```
 
 ### Sample 6
 
-Brand (2022) - https://osf.io/xwz6g/
-
+- Brand (2022) 
+  - https://osf.io/xwz6g/
 
 ```{r}
 df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |> 
@@ -147,12 +160,10 @@ df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |>
   )
 ```
 
-
-
 ### Sample 7
 
-Brand (2023) - https://osf.io/3f2h6/
-
+- Brand (2023) 
+  - https://osf.io/3f2h6/
 
 ```{r}
 df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |> 
@@ -193,12 +204,11 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
   )
 ```
 
-
 ### Sample 8
 
-Lin (2023) - https://osf.io/3eztd
-- Note: No tickle because same Chinese character
-
+- Lin (2023)
+  - https://osf.io/3eztd
+  - Note: No tickle because same Chinese character
 
 ```{r}
 df8a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
@@ -225,11 +235,10 @@ df8b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
     Affective_touch = Touch, Itch = ITCH)
 ```
 
-
 ### Sample 9
 
-VonMohr (2023) - Study 3 (https://osf.io/7p9u5/)
-
+- VonMohr (2023) - Study 3 
+  - https://osf.io/7p9u5/
 
 ```{r}
 df9 <- read.csv("../data/VonMohr2023/DataSet_study3.csv")
@@ -245,14 +254,12 @@ df9 <- df9 |>
   )
 ```
 
-
 ### Sample 10
 
-Makowski
-
-- Note: First sample has some missing items
-- Note: Analog scales
-
+- Makowski
+  - Note: First sample has some missing items
+  - Note: Analog scales
+  - note df10c = primals data
 
 ```{r}
 df10a <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
@@ -275,18 +282,114 @@ df10b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
-    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
+    typeSample = Sample
   )
 
-# Save all
-data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10a=df10a, df10b=df10b)
-save(data, file = "../data/data.RData")
+df10c <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionPrimals/refs/heads/main/data/data_participants.csv") |>
+  select("Participant" = "participant_id", "Gender", "Age", "Ethnicity", starts_with(c("IAS","MAIA","PI"))) |>
+   rename(
+    Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
+    Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
+    Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
+    Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+  ) |>
+  filter(!is.na(Heart)) # participant is outlier and had total IAS scores below 0.4 
+
+
+```
+
+```{r}
+pi_vars <- c("PI_Enticing", "PI_Alive", "PI_Safe", "PI_Good", "PI_Changing", 
+             "PI_Hierarchical", "PI_Understandable", "PI_AboutMe", "PI_Abundant", 
+             "PI_Acceptable", "PI_Beautiful", "PI_Cooperative", "PI_Funny", 
+             "PI_Harmless", "PI_Improvable", "PI_Intentional", "PI_Interconnected", 
+             "PI_Interesting", "PI_Just", "PI_Meaningful", "PI_NeedsMe", 
+             "PI_Pleasurable", "PI_Progressing", "PI_Regenerative", "PI_Stable", 
+             "PI_WorthExploring")
+
+
+correlation::correlation(
+  df10c[, "IAS_Total", drop = FALSE],  
+  data2 = select(df10c, all_of(pi_vars)), p_adjust = "none"
+) |> 
+  # Formatting correlation results
+  mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE))) |>
+  
+  # Releveling factors for visualization
+  mutate(Parameter2 = fct_relevel(Parameter2, rev(pi_vars)),
+         Parameter1 = fct_relevel(Parameter1, "IAS_Total")) |>
+  
+  # Plotting the correlation matrix
+  ggplot(aes(x = Parameter1, y = Parameter2)) +
+  geom_tile(aes(fill = r), color = "white") +  
+  geom_text(aes(label = val), size = 3) +  
+  labs(title = "Correlation Matrix") +
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", limit = c(-1, 1), midpoint = 0, guide = guide_colourbar(ticks = FALSE)) +  
+  theme_minimal() +
+  theme(
+    legend.title = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(hjust = 1)
+  )
 ```
 
 
+### Sample 11
+
+- Poreiro et al., 
+  - Study 1: https://osf.io/49wbv
+  - Study 2: unpublished
+
+```{r}
+
+df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |> 
+  select(AGE, GENDER, contains("IAS_ACC"), -IAS_ACC_20, starts_with(c("MAIA", "TAS20", "DEP", "ANX")),  -ANX_21, -TAS20_21) |> #anx_21 , tas20_21 are attention checks
+  mutate_all(as.numeric) |>
+  rename(
+    Age = AGE, Gender = GENDER,
+    Heart = IAS_ACC_1, Hungry = IAS_ACC_2, Breathing = IAS_ACC_3, Thirsty = IAS_ACC_4,
+    Urinate = IAS_ACC_5, Defecate = IAS_ACC_6, Taste = IAS_ACC_7, Vomit = IAS_ACC_8, Sneeze = IAS_ACC_9,
+    Cough = IAS_ACC_10, Temp = IAS_ACC_11, Sex_arousal = IAS_ACC_12, Wind = IAS_ACC_13, Burp = IAS_ACC_14,
+    Muscles = IAS_ACC_15, Bruise = IAS_ACC_16, Pain = IAS_ACC_17, Blood_Sugar = IAS_ACC_18,
+    Affective_touch = IAS_ACC_19, Tickle =IAS_ACC_21, Itch = IAS_ACC_22
+  ) |>
+   mutate(Gender = case_when(
+    Gender == 1 ~ "Male",
+    Gender == 2 ~ "Female",
+    Gender %in% c(3, 5) ~ "Other",
+    Gender == 4 ~ "NA"
+  )) |> ## compute dimensions for the TAS
+  mutate(TAS_DIF = TAS20_1 + TAS20_3 + TAS20_6 + TAS20_7 + TAS20_9 + TAS20_13 + TAS20_14,
+         TAS_DDF = TAS20_2 + (1-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
+         TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20)
+
+
+df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
+  filter(Total_Attention_Fail == 0) |> # 32 participants removed based on failing one or more checks
+  select(AGE, GENDER, contains("IAS_ACC"), ) |> 
+  mutate_all(as.numeric) |> 
+  rename( Age = AGE, Gender = GENDER, 
+          Heart = IAS_ACC_1, Hungry = IAS_ACC_2, Breathing = IAS_ACC_3, Thirsty = IAS_ACC_4, Urinate = IAS_ACC_5, Defecate = IAS_ACC_6, Taste = IAS_ACC_7,
+          Vomit = IAS_ACC_8, Sneeze = IAS_ACC_9, Cough = IAS_ACC_10, Temp = IAS_ACC_11, Sex_arousal = IAS_ACC_12, Wind = IAS_ACC_13, Burp = IAS_ACC_14,
+          Muscles = IAS_ACC_15, Bruise = IAS_ACC_16, Pain = IAS_ACC_17, Blood_Sugar = IAS_ACC_18, Affective_touch = IAS_ACC_19, Tickle =IAS_ACC_20, 
+          Itch = IAS_ACC_21 )  |> 
+  mutate(Gender = case_when(
+    Gender == 1 ~ "Male", 
+    Gender == 2 ~"Female", 
+    Gender %in% c(3, 5) ~ "Other", 
+    Gender == 4 ~ "NA", )) |>
+  na.omit()
+
+
+# Save all
+data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10a=df10a, df10b=df10b, df10c=df10c, df11a=df11a, df11b=df11b)
+save(data, file = "../data/data.RData")
+```
+
 :::
-
-
 
 
 ## Participants
@@ -296,7 +399,7 @@ save(data, file = "../data/data.RData")
 - **Sample 2**: Data from [Gaggero's(2020)](https://osf.io/5x9sg/) study, downloaded from OSF, included `r report::report_participants(df2[c("Age", "Gender")], age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 3**: Data from [Campos's(2022)](https://osf.io/j6ef3) study, downloaded from OSF, included `r report::report_participants(df3, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 4**: Data from [Todd's(2022)]( https://osf.io/ms354/) study, downloaded from OSF, included `r report::report_participants(df4, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 5**: Data from [Arslanova (2022)](https://osf.io/mp3cy/) study, downloaded from OSF, included `r report::report_participants(df5, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 5**: Data from [Arslanova (2022)](https://osf.io/mp3cy/) study, downloaded from OSF, included `r report::report_participants(df5_attention, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 6**: Data from [Brand's(2022)](https://osf.io/xwz6g/) study, downloaded from OSF, included `r report::report_participants(df6, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 7a**: Data from [Brand's(2023)](https://osf.io/3f2h6/) study, downloaded from OSF, included `r report::report_participants(df7a, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 7b**: Data from [Brand's(2023)](https://osf.io/3f2h6/) study, downloaded from OSF, included `r report::report_participants(df7b, age = "Age", sex = NA, gender = "Gender")`.
@@ -306,16 +409,131 @@ save(data, file = "../data/data.RData")
 - **Sample 9**: Data from [VonMohr's(2023)](https://osf.io/7p9u5/) study 3, downloaded from OSF, included `r report::report_participants(df9, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 10a**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10a, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 10b**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10b, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 10c**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10c, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 11a**: Data from [Poreiro's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df11a, age = "Age", sex = NA, gender = "Gender")`
+- **Sample 11b**: Data from [Poreiro's] study , included `r report::report_participants(df11b, age = "Age", sex = NA, gender = "Gender")`
 
 
-Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10a) + nrow(df10b)`.
+Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10a) + nrow(df10b) + nrow(df10c) +nrow(df11a) + nrow(df11b)`.
+
+```{r}
+
+desc <- function(df){
+  summary <- df |> summarise(
+      n = n(),
+      mean = mean(Age, na.rm = TRUE),
+      sd = sd(Age, na.rm = TRUE),
+      min = min(Age, na.rm = TRUE),
+      max = max(Age, na.rm = TRUE),
+      female = sum(Gender == "Female", na.rm = TRUE)
+    )
+    return(summary)
+}
+
+desc_df1a <- desc(df1a)
+desc_df1b <- desc(df1b)
+desc_df2 <- desc(df2)
+desc_df3 <- desc(df3)
+#desc_df4 <- desc(df4) # no demographic data available
+desc_df5 <- desc(df5_attention)
+desc_df6 <- desc(df6)
+desc_df7a <- desc(df7a)
+desc_df7b <- desc(df7b)
+desc_df7c <- desc(df7c)
+desc_df8a <- desc(df8a)
+desc_df8b <- desc(df8b)
+desc_df9 <- desc(df9)
+desc_df10a <- desc(df10a)
+desc_df10b <- desc(df10b)
+desc_df10c <- desc(df10c)
+desc_df11a <- desc(df11a)
+desc_df11b <- desc(df11b)
+
+desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df5, desc_df6, desc_df7a, desc_df7b, desc_df7c, desc_df8a, desc_df8b, desc_df9, desc_df10a, desc_df10b, desc_df10c, desc_df11a, desc_df11b)
+
+## calculate weighted mean
+
+total_mean = sum(desc_total$mean * desc_total$n) / sum(desc_total$n)
+total_sd = sum(desc_total$sd * desc_total$n) / sum(desc_total$n)
+perce_female = sum(desc_total$female)/sum(desc_total$n) *100
+
+``` 
+
+```{r}
+#| output: false
+#| warning: false
+
+library(gt)
+
+# APA style ####
+gt_apastyle <- function(gt_table, font.size=12) {
+  gt_table  |> 
+    gt::opt_table_lines(extent = "none") %>%
+    gt::tab_options(
+      heading.border.bottom.width = 2,
+      heading.border.bottom.color = "black",
+      heading.border.bottom.style = "solid",
+      table.border.top.color = "black",
+      table.border.top.style = "solid",
+      table.border.top.width = 2,  
+      table_body.hlines.color = "white",
+      table_body.border.top.color = "black",
+      table_body.border.top.style = "solid",
+      table_body.border.top.width = 2,
+      heading.title.font.size = font.size,
+      table.font.size = font.size,
+      heading.subtitle.font.size = font.size,
+      table_body.border.bottom.color = "black",
+      table_body.border.bottom.width = 2,
+      table_body.border.bottom.style = "solid",
+      column_labels.border.bottom.color = "black",
+      column_labels.border.bottom.style = "solid",
+      column_labels.border.bottom.width = 1,
+      latex.use_longtable = FALSE
+    ) |> 
+      gt::opt_table_font(font = "times")
+}
+
+make_age <- function(age) {
+  age <- as.numeric(age) 
+  
+  mean(age, na.rm = TRUE) |> 
+    insight::format_value(digits=1) |> 
+    paste0(" ± ", 
+           insight::format_value(sd(age, na.rm = TRUE), digits=1)) 
+} 
+
+# Create the dataframe
+table <- data.frame(
+   Sample = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Poreiro et al., (2024)', 'Poreiro et al., unpublished', 'Total'),
+  Subsample = c('', 'Sample 1', 'Sample 2', '', '', '', '', '', '', 'Sample 1', 'Sample 2', 'Sample 3', '', 'Sample 1', 'Sample 2', '', '', '', '', '','', ''),   
+  Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English',''),
+  N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10a), nrow(df10b), nrow(df10c), nrow(df11a), nrow(df11b), 32214),
+  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tingling"', 'Collapsed "Itch" and "Tingling"', '', 'Analog scales', 'Analog scales', 'Analog scales', '', '', ''),
+  Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10a$Age), make_age(df10b$Age), make_age(df10c$Age), make_age(df11a$Age), make_age(df11b$Age), '48.6 ± 13.1'),
+  Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '18-57', '18-60', '17-93'),
+  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '74.8%', '75.9%', '71.6%'),
+  Availability= c('osf.io/3m5nh', '', '', 'osf.io/5x9sg', 'osf.io/j6ef3', 'osf.io/ms354', 'osf.io/mp3cy', 'osf.io/xwz6g', 'osf.io/3f2h6', '', '', '','osf.io/3eztd','', '', 'osf.io/7p9u5', 'github.com/RealityBending/IllusionGameReliability', 'github.com/DominiqueMakowski/PHQ4R', 'github.com/RealityBending/InteroceptionPrimals', 'osf.io/49wbv', '','')
+) 
+
+table_apa <- table |> 
+  gt() |>
+  cols_align(align = c("right"), columns = "Age") |> 
+  cols_label(Age = "Age (Mean  ± SD)", Female_Percentage = "Female %") |> 
+  tab_footnote("* Information taken from the sample description of relevant paper rather than recomputed.")
+  
+gt_apastyle(table_apa, font.size=12)
+gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
+
+# gtsave(table_apa, "figures/table1.png")
+```
+
 
 ## Descriptive
 
 ### Distribution
 
 The items with the differing distribution pattern (with a lower mode around 2/5) are "Affective Touch", "Blood Sugar" and "Bruise".
-
 
 ```{r}
 vars <- c(
@@ -355,10 +573,24 @@ dens10a <- estimate_density(select(df10a, all_of(setdiff(vars, c("Taste", "Cough
 dens10b <- estimate_density(select(df10b, all_of(vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 10b",
          x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
+dens10c <- estimate_density(select(df10c, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 10c",
+         x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
+dens11a <- estimate_density(select(df11a, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 11a")
+dens11b <- estimate_density(select(df11b, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 11b")
 
 
-p1 <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10a, dens10b) |>
-  mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10a", "Sample 10b")) |>
+p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10a, dens10b, dens10c, dens11a, dens11b) 
+
+# proportion of non-1 and non-5 values 
+p1_data |>
+  filter(x > 1 & x < 5) |>  # Keep only x values strictly between 1 and 5
+  summarise(proportion = sum(y) / sum(p1_data$y))  # Normalize by total density
+
+p1 <- p1_data |>
+  mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10a", "Sample 10b", "Sample 10c", "Sample 11a", "Sample 11b")) |>
   # mutate(Dashed = ifelse(Parameter %in% c("Affective_touch", "Blood_Sugar", "Bruise"), TRUE, FALSE)) |> 
   ggplot(aes(x = x, y = y, color = Parameter)) +
   geom_line() +
@@ -367,12 +599,14 @@ p1 <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, d
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         plot.title = element_text(face="bold")) +
-  labs(title = "Distribution of responses for all items across various datasets", x = "Response", y = "Density", color = "Item") +
+  labs(x = "Response", y = "Density", color = "Item") +
   facet_wrap(~Sample, scales = "free_y", nrow = 5)
 
 ggsave("figures/Figure1.png", p1, width=10, height=10, dpi=200, bg="white")
 p1
+
 ```
+
 
 ```{r}
 data1a <- normalize(select(df1a, all_of(dens1a$Parameter)), range = c(1, 5))
@@ -390,14 +624,19 @@ data8b <- normalize(select(df8b, all_of(dens8b$Parameter)), range = c(1, 5))
 data9 <- normalize(select(df9, all_of(dens9$Parameter)), range = c(1, 5))
 data10a <- select(df10a, all_of(dens10a$Parameter))
 data10b <- select(df10b, all_of(dens10b$Parameter))
+data10c <- select(df10c, all_of(dens10c$Parameter))
+data11a <- normalize(select(df11a, all_of(dens11a$Parameter)), range = c(1, 5))
+data11b <- na.omit(normalize(select(df11b, all_of(dens11b$Parameter)), range = c(1, 5))) # remove NAS
+row.names(data11b) <- NULL
+
+
 
 data_all <- rbind(
   data1a, data1b, data2, data3, data4, data5, data6, data7a, data7b, data7c,
   mutate(data8a, Tickle = NA), mutate(data8b, Tickle = NA), data9,
-  mutate(data10a, Taste = NA, Cough = NA, Blood_Sugar = NA), data10b
+  mutate(data10a, Taste = NA, Cough = NA, Blood_Sugar = NA),  data10b,  data10c, data11a, data11b
 ) 
 ```
-
 
 ### Correlations
 
@@ -406,7 +645,6 @@ An overall positive intercorrelation pattern, with no clear structure emerging.
 ::: {.panel-tabset}
 
 #### All data
-
 
 ```{r}
 make_correlation <- function(df) {
@@ -433,132 +671,119 @@ make_correlation(data_all)
 ```
 
 
-
 #### Sample 1a
-
 
 ```{r}
 make_correlation(data1a)
 ```
 
-
 #### Sample 1b
-
 
 ```{r}
 make_correlation(data1b)
 ```
 
 
-
 #### Sample 2
-
 
 ```{r}
 make_correlation(data2)
 ```
 
 
-
 #### Sample 3
-
 
 ```{r}
 make_correlation(data3)
 ```
 
-
 #### Sample 4
-
 
 ```{r}
 make_correlation(data4)
 ```
 
-
 #### Sample 5
-
 
 ```{r}
 make_correlation(data5)
 ```
 
-
 #### Sample 6
-
 
 ```{r}
 make_correlation(data6)
 ```
 
-
 #### Sample 7a
-
 
 ```{r}
 make_correlation(data7a)
 ```
 
-
 #### Sample 7b
-
 
 ```{r}
 make_correlation(data7b)
 ```
 
-
 #### Sample 7c
-
 
 ```{r}
 make_correlation(data7c)
 ```
 
 
-
 #### Sample 8a
-
 
 ```{r}
 make_correlation(data8a)
 ```
 
-
 #### Sample 8b
-
 
 ```{r}
 make_correlation(data8b)
 ```
 
-
 #### Sample 9
-
 
 ```{r}
 make_correlation(data9)
 ```
 
-
 #### Sample 10a
-
 
 ```{r}
 make_correlation(data10a)
 ```
 
-
 #### Sample 10b
-
 
 ```{r}
 make_correlation(data10b)
 ```
 
+#### Sample 10c
 
+```{r}
+make_correlation(data10c)
+```
+
+#### Sample 11a
+
+```{r}
+make_correlation(data11a)
+```
+
+#### Sample 11b
+
+```{r}
+make_correlation(data11b)
+```
 
 :::
+
 ## Graph Analysis
 
 Exploratory Graph Analysis (EGA) is a recently developed framework for psychometric assessment, that can be used to estimate the number of dimensions in questionnaire data using network estimation methods and community detection algorithms, and assess the stability of dimensions and items using bootstrapping.
@@ -572,7 +797,6 @@ Unique Variable Analysis (Christensen, Garrido, & Golino, 2023) uses the weighte
 
 #### All data
 
-
 ```{r}
 uva <- EGAnet::UVA(data = data_all, cut.off = 0.3)
 uva
@@ -580,9 +804,7 @@ uva$keep_remove
 ```
 
 
-
 #### Sample 1a
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data1a, cut.off = 0.3)
@@ -590,9 +812,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 1b
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data1b, cut.off = 0.3)
@@ -600,9 +820,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 3
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data3, cut.off = 0.3)
@@ -610,9 +828,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 4
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data4, cut.off = 0.3)
@@ -620,9 +836,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 5 
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data5, cut.off = 0.3)
@@ -630,9 +844,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 6
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data6, cut.off = 0.3)
@@ -640,9 +852,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 7a
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data7a, cut.off = 0.3)
@@ -650,9 +860,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 7b
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data7b, cut.off = 0.3)
@@ -660,9 +868,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 7c
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data7c, cut.off = 0.3)
@@ -670,9 +876,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 8a
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data8a, cut.off = 0.3)
@@ -680,9 +884,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 8b
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data8b, cut.off = 0.3)
@@ -690,9 +892,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 9
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data9, cut.off = 0.3)
@@ -700,9 +900,7 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 10a
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data10a, cut.off = 0.3)
@@ -710,12 +908,34 @@ uva
 uva$keep_remove
 ```
 
-
 #### Sample 10b
-
 
 ```{r}
 uva <- EGAnet::UVA(data = data10b, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+#### Sample 10c
+
+```{r}
+uva <- EGAnet::UVA(data = data10c, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+#### Sample 11a
+
+```{r}
+uva <- EGAnet::UVA(data = data11a, cut.off = 0.3)
+uva
+uva$keep_remove
+```
+
+#### Sample 11b
+
+```{r}
+uva <- EGAnet::UVA(data = data11b, cut.off = 0.3)
 uva
 uva$keep_remove
 ```
@@ -728,7 +948,6 @@ uva$keep_remove
 ::: {.panel-tabset}
 
 #### All data
-
 
 
 ```{r ega_all}
@@ -781,9 +1000,7 @@ egas_all <- make_egas(data_all)
 egas_all$p
 ```
 
-
 #### Sample 1a
-
 
 ```{r ega1a}
 #| fig-height: 20
@@ -793,9 +1010,7 @@ egas1a <- make_egas(data1a)
 egas1a$p
 ```
 
-
 #### Sample 1b
-
 
 ```{r ega1b}
 #| fig-height: 20
@@ -805,9 +1020,7 @@ egas1b <- make_egas(data1b)
 egas1b$p
 ```
 
-
 #### Sample 2
-
 
 ```{r ega2}
 #| fig-height: 20
@@ -818,9 +1031,7 @@ egas2$p
 ```
 
 
-
 #### Sample 3
-
 
 ```{r ega3}
 #| fig-height: 20
@@ -830,9 +1041,7 @@ egas3 <- make_egas(data3)
 egas3$p
 ```
 
-
 #### Sample 4
-
 
 ```{r ega4}
 #| fig-height: 20
@@ -842,9 +1051,7 @@ egas4 <- make_egas(data4)
 egas4$p
 ```
 
-
 #### Sample 5
-
 
 ```{r ega5}
 #| fig-height: 20
@@ -854,9 +1061,7 @@ egas5 <- make_egas(data5)
 egas5$p
 ```
 
-
 #### Sample 6
-
 
 ```{r ega6}
 #| fig-height: 20
@@ -866,9 +1071,7 @@ egas6 <- make_egas(data6)
 egas6$p
 ```
 
-
 #### Sample 7a
-
 
 ```{r ega7&}
 #| fig-height: 20
@@ -878,9 +1081,7 @@ egas7a <- make_egas(data7a)
 egas7a$p
 ```
 
-
 #### Sample 7b
-
 
 ```{r ega7b}
 #| fig-height: 20
@@ -890,9 +1091,7 @@ egas7b <- make_egas(data7b)
 egas7b$p
 ```
 
-
 #### Sample 7c
-
 
 ```{r ega7c}
 #| fig-height: 20
@@ -902,9 +1101,7 @@ egas7c <- make_egas(data7c)
 egas7c$p
 ```
 
-
 #### Sample 8a
-
 
 ```{r ega8a}
 #| fig-height: 20
@@ -914,9 +1111,7 @@ egas8a <- make_egas(data8a)
 egas8a$p
 ```
 
-
 #### Sample 8b
-
 
 ```{r ega8b}
 #| fig-height: 20
@@ -926,9 +1121,7 @@ egas8b <- make_egas(data8b)
 egas8b$p
 ```
 
-
 #### Sample 9
-
 
 ```{r ega9}
 #| fig-height: 20
@@ -938,9 +1131,7 @@ egas9 <- make_egas(data9)
 egas9$p
 ```
 
-
 #### Sample 10a
-
 
 ```{r ega10a}
 #| fig-height: 20
@@ -950,9 +1141,7 @@ egas10a <- make_egas(data10a)
 egas10a$p
 ```
 
-
 #### Sample 10b
-
 
 ```{r ega10b}
 #| fig-height: 20
@@ -962,6 +1151,35 @@ egas10b <- make_egas(data10b)
 egas10b$p
 ```
 
+#### Sample 10c
+
+```{r ega10c}
+#| fig-height: 20
+#| fig-width: 12
+
+egas10c <- make_egas(data10c)
+egas10c$p
+```
+
+#### Sample 11a
+
+```{r ega11a}
+#| fig-height: 20
+#| fig-width: 12
+
+egas11a <- make_egas(data11a)
+egas11a$p
+```
+
+#### Sample 11b
+
+```{r ega11c}
+#| fig-height: 20
+#| fig-width: 12
+
+egas11b <- make_egas(data11b)
+egas11b$p
+```
 
 
 :::
@@ -972,7 +1190,6 @@ egas10b$p
 
 #### All data
 
-
 ```{r}
 #| fig-height: 20
 #| fig-width: 12
@@ -980,9 +1197,7 @@ egas10b$p
 patchwork::wrap_plots(lapply(egas_all$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 1a
-
 
 ```{r}
 #| fig-height: 20
@@ -991,9 +1206,7 @@ patchwork::wrap_plots(lapply(egas_all$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas1a$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 1b
-
 
 ```{r}
 #| fig-height: 20
@@ -1002,9 +1215,7 @@ patchwork::wrap_plots(lapply(egas1a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas1b$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 2
-
 
 ```{r}
 #| fig-height: 20
@@ -1013,9 +1224,7 @@ patchwork::wrap_plots(lapply(egas1b$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas2$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 3
-
 
 ```{r}
 #| fig-height: 20
@@ -1024,9 +1233,7 @@ patchwork::wrap_plots(lapply(egas2$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas3$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 4
-
 
 ```{r}
 #| fig-height: 20
@@ -1035,9 +1242,7 @@ patchwork::wrap_plots(lapply(egas3$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas4$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 5
-
 
 ```{r}
 #| fig-height: 20
@@ -1046,9 +1251,7 @@ patchwork::wrap_plots(lapply(egas4$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas5$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 6
-
 
 ```{r}
 #| fig-height: 20
@@ -1057,9 +1260,7 @@ patchwork::wrap_plots(lapply(egas5$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas6$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 7a
-
 
 ```{r}
 #| fig-height: 20
@@ -1068,9 +1269,7 @@ patchwork::wrap_plots(lapply(egas6$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas7a$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 7b
-
 
 ```{r}
 #| fig-height: 20
@@ -1079,9 +1278,7 @@ patchwork::wrap_plots(lapply(egas7a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas7b$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 7c
-
 
 ```{r}
 #| fig-height: 20
@@ -1090,9 +1287,7 @@ patchwork::wrap_plots(lapply(egas7b$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas7c$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 8a
-
 
 ```{r}
 #| fig-height: 20
@@ -1101,9 +1296,7 @@ patchwork::wrap_plots(lapply(egas7c$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas8a$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 8b
-
 
 ```{r}
 #| fig-height: 20
@@ -1112,9 +1305,7 @@ patchwork::wrap_plots(lapply(egas8a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas8b$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 9
-
 
 ```{r}
 #| fig-height: 20
@@ -1123,9 +1314,7 @@ patchwork::wrap_plots(lapply(egas8b$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas9$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 10a
-
 
 ```{r}
 #| fig-height: 20
@@ -1134,9 +1323,7 @@ patchwork::wrap_plots(lapply(egas9$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas10a$egas, plot), nrow = 3)
 ```
 
-
 #### Sample 10b
-
 
 ```{r}
 #| fig-height: 20
@@ -1145,11 +1332,37 @@ patchwork::wrap_plots(lapply(egas10a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas10b$egas, plot), nrow = 3)
 ```
 
+#### Sample 10c
+
+```{r}
+#| fig-height: 20
+#| fig-width: 12
+
+patchwork::wrap_plots(lapply(egas10c$egas, plot), nrow = 3)
+```
+
+#### Sample 11a
+
+```{r}
+#| fig-height: 20
+#| fig-width: 12
+
+patchwork::wrap_plots(lapply(egas11a$egas, plot), nrow = 3)
+```
+
+#### Sample 11b
+
+```{r}
+#| fig-height: 20
+#| fig-width: 12
+
+patchwork::wrap_plots(lapply(egas11b$egas, plot), nrow = 3)
+```
 
 :::
 
-### Scores
 
+### Scores
 
 ```{r}
 ega <- egas_all$egas$glasso_louvain_ega$EGA
@@ -1176,8 +1389,11 @@ ega_scores_8b <- get_scores(data8b, ega)
 ega_scores_9 <- get_scores(data9, ega)
 ega_scores_10a <- get_scores(data10a, ega)
 ega_scores_10b <- get_scores(data10b, ega)
+ega_scores_10c <- get_scores(data10c, ega)
+ega_scores_11a <- get_scores(data11a, ega)
+ega_scores_11b <- na.omit(get_scores(data11b, ega)) # remove two rows with NAS
+row.names(ega_scores_11b) <- NULL
 ```
-
 
 ## Factor Analysis
 
@@ -1187,7 +1403,6 @@ ega_scores_10b <- get_scores(data10b, ega)
 
 #### All data
 
-
 ```{r}
 n <- parameters::n_factors(data_all, n_max = 12)
 
@@ -1195,9 +1410,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 1a
-
 
 ```{r}
 n <- parameters::n_factors(data1a, n_max = 12)
@@ -1206,9 +1419,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 1b
-
 
 ```{r}
 n <- parameters::n_factors(data1b, n_max = 12)
@@ -1217,9 +1428,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 2
-
 
 ```{r}
 n <- parameters::n_factors(data2, n_max = 12)
@@ -1228,9 +1437,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 3
-
 
 ```{r}
 n <- parameters::n_factors(data3, n_max = 12)
@@ -1239,9 +1446,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 4
-
 
 ```{r}
 n <- parameters::n_factors(data4, n_max = 12)
@@ -1250,9 +1455,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 5
-
 
 ```{r}
 n <- parameters::n_factors(data5, n_max = 12)
@@ -1261,9 +1464,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 6
-
 
 ```{r}
 n <- parameters::n_factors(data6, n_max = 12)
@@ -1272,9 +1473,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 7a
-
 
 ```{r}
 n <- parameters::n_factors(data7a, n_max = 12)
@@ -1283,9 +1482,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 7b
-
 
 ```{r}
 n <- parameters::n_factors(data7b, n_max = 12)
@@ -1294,9 +1491,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 7c
-
 
 ```{r}
 n <- parameters::n_factors(data7c, n_max = 12)
@@ -1306,9 +1501,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 ```
 
 
-
 #### Sample 8a
-
 
 ```{r}
 n <- parameters::n_factors(data8a, n_max = 12)
@@ -1317,9 +1510,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 8b
-
 
 ```{r}
 n <- parameters::n_factors(data8b, n_max = 12)
@@ -1329,9 +1520,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 ```
 
 
-
 #### Sample 9
-
 
 ```{r}
 n <- parameters::n_factors(data9, n_max = 12)
@@ -1340,9 +1529,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 10a
-
 
 ```{r}
 n <- parameters::n_factors(data10a, n_max = 12)
@@ -1351,9 +1538,7 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
-
 #### Sample 10b
-
 
 ```{r}
 n <- parameters::n_factors(data10b, n_max = 12)
@@ -1362,8 +1547,32 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+#### Sample 10c
 
+```{r}
+n <- parameters::n_factors(data10c, n_max = 12)
 
+plot(n)
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
+```
+
+#### Sample 11a
+
+```{r}
+n <- parameters::n_factors(data11a, n_max = 12)
+
+plot(n)
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
+```
+
+#### Sample 11b
+
+```{r}
+n <- parameters::n_factors(data11b, n_max = 12)
+
+plot(n)
+knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
+```
 :::
 
 
@@ -1372,7 +1581,6 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 ::: {.panel-tabset}
 
 #### All data
-
 
 ```{r}
 #| fig-height: 10
@@ -1384,9 +1592,7 @@ display(efa5)
 ```
 
 
-
 #### Sample 1a
-
 
 ```{r}
 #| fig-height: 10
@@ -1397,9 +1603,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 1b
-
 
 ```{r}
 #| fig-height: 10
@@ -1410,9 +1614,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 2
-
 
 ```{r}
 #| fig-height: 10
@@ -1424,9 +1626,7 @@ display(efa4)
 
 ```
 
-
 #### Sample 3
-
 
 ```{r}
 #| fig-height: 10
@@ -1437,9 +1637,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### sample 4
-
 
 ```{r}
 #| fig-height: 10
@@ -1451,9 +1649,7 @@ display(efa4)
 ```
 
 
-
 #### Sample 5
-
 
 ```{r}
 #| fig-height: 10
@@ -1464,9 +1660,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 6
-
 
 ```{r}
 #| fig-height: 10
@@ -1477,9 +1671,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 7a
-
 
 ```{r}
 #| fig-height: 10
@@ -1490,9 +1682,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 7b
-
 
 ```{r}
 #| fig-height: 10
@@ -1503,9 +1693,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 7c
-
 
 ```{r}
 #| fig-height: 10
@@ -1516,9 +1704,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 8a
-
 
 ```{r}
 #| fig-height: 10
@@ -1529,9 +1715,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 8b
-
 
 ```{r}
 #| fig-height: 10
@@ -1542,9 +1726,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 9
-
 
 ```{r}
 #| fig-height: 10
@@ -1555,9 +1737,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 10a
-
 
 ```{r}
 #| fig-height: 10
@@ -1568,9 +1748,7 @@ plot(efa4)
 display(efa4)
 ```
 
-
 #### Sample 10b
-
 
 ```{r}
 #| fig-height: 10
@@ -1581,6 +1759,38 @@ plot(efa4)
 display(efa4)
 ```
 
+#### Sample 10c
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data10c, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 11a
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data11a, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
+
+#### Sample 11b
+
+```{r}
+#| fig-height: 10
+
+efa4 <- parameters::factor_analysis(data11b, n = 4, rotation = "oblimin", sort = TRUE)
+plot(efa4)
+
+display(efa4)
+```
 
 :::
 
@@ -1604,7 +1814,6 @@ Ambiguous:
 
 
 #### All data
-
 
 
 ```{r}
@@ -1688,9 +1897,7 @@ parameters::parameters(m7_all, standardize=TRUE) |>
   display()
 ```
 
-
 #### Sample 1a
-
 
 ```{r}
 #| warning: false
@@ -1698,9 +1905,7 @@ parameters::parameters(m7_all, standardize=TRUE) |>
 display(compare_mods(data1a))
 ```
 
-
 #### Sample 1b
-
 
 ```{r}
 #| warning: false
@@ -1710,9 +1915,7 @@ display(compare_mods(data1b))
 ```
 
 
-
 #### Sample 2
-
 
 ```{r}
 #| warning: false
@@ -1722,9 +1925,7 @@ display(compare_mods(data2))
 ```
 
 
-
 #### Sample 3
-
 
 ```{r}
 #| warning: false
@@ -1734,9 +1935,7 @@ display(compare_mods(data3))
 ```
 
 
-
 #### Sample 4
-
 
 ```{r}
 #| warning: false
@@ -1746,9 +1945,7 @@ display(compare_mods(data4))
 ```
 
 
-
 #### Sample 5
-
 
 ```{r}
 #| warning: false
@@ -1758,9 +1955,7 @@ display(compare_mods(data5))
 ```
 
 
-
 #### Sample 6
-
 
 ```{r}
 #| warning: false
@@ -1769,9 +1964,7 @@ display(compare_mods(data6))
 ```
 
 
-
 #### Sample 7a
-
 
 ```{r}
 #| warning: false
@@ -1780,9 +1973,7 @@ display(compare_mods(data7a))
 ```
 
 
-
 #### Sample 7b
-
 
 ```{r}
 #| warning: false
@@ -1792,9 +1983,7 @@ display(compare_mods(data7b))
 ```
 
 
-
 #### Sample 7c
-
 
 ```{r}
 #| warning: false
@@ -1804,9 +1993,7 @@ display(compare_mods(data7c))
 ```
 
 
-
 #### Sample 8a
-
 
 ```{r}
 #| warning: false
@@ -1815,9 +2002,7 @@ display(compare_mods(data8a))
 ```
 
 
-
 #### Sample 8b
-
 
 ```{r}
 #| warning: false
@@ -1826,9 +2011,7 @@ display(compare_mods(data8b))
 ```
 
 
-
 #### Sample 9
-
 
 ```{r}
 #| warning: false
@@ -1838,9 +2021,7 @@ display(compare_mods(data9))
 ```
 
 
-
 #### Sample 10a
-
 
 ```{r}
 #| warning: false
@@ -1850,9 +2031,7 @@ display(compare_mods(data10a))
 ```
 
 
-
 #### Sample 10b 
-
 
 ```{r}
 #| warning: false
@@ -1861,7 +2040,32 @@ display(compare_mods(data10b))
 
 ```
 
+#### Sample 10c 
 
+```{r}
+#| warning: false
+
+display(compare_mods(data10c))
+
+```
+
+#### Sample 11a 
+
+```{r}
+#| warning: false
+
+display(compare_mods(data11a))
+
+```
+
+#### Sample 11b 
+
+```{r}
+#| warning: false
+
+display(compare_mods(data11b))
+
+```
 
 :::
 
@@ -1875,7 +2079,6 @@ Conclusion: The 7th factor solution was preferred in most datasets, including by
 ::: {.panel-tabset}
 
 #### All data
-
 
 ```{r}
 m7h1 <- paste0(m7, "
@@ -1894,10 +2097,18 @@ m7h3 <- paste0(m7, "
               ")
 
 compare_mods_h <- function(data) {
-  m7 <- lavaan::cfa(m7, data = data)
-  m7h2 <- lavaan::cfa(m7h2, data = data)
-  m7h1 <- lavaan::cfa(m7h1, data = data)
-  m7h3 <- lavaan::cfa(m7h3, data = data)
+  
+  fit_model_h <- function(f, data) {
+    if(!"Cough" %in% names(data)) {
+      f <- str_remove(f, fixed("Cough +"))
+    }
+    lavaan::cfa(f, data = data)
+  }
+  
+  m7 <- fit_model_h(m7, data = data)
+  m7h2 <- fit_model_h(m7h2, data = data)
+  m7h1 <- fit_model_h(m7h1, data = data)
+  m7h3 <- fit_model_h(m7h3, data = data)
   
   anova(m7, m7h1, m7h2, m7h3) |>
     parameters::parameters() |>
@@ -1911,148 +2122,134 @@ display(compare_mods_h(data_all))
 ```
 
 
-
 No evidence for higher order factors.
 
 
 #### Sample 1a
 
-
 ```{r}
 display(compare_mods_h(data1a))
 ```
 
-
 #### Sample 1b
-
 
 ```{r}
 display(compare_mods_h(data1b))
 ```
 
 
-
 #### Sample 2
-
 
 ```{r}
 display(compare_mods_h(data2))
 ```
 
 
-
 #### Sample 3
-
 
 ```{r}
 display(compare_mods_h(data3))
 ```
 
 
-
 #### Sample 4
-
 
 ```{r}
 display(compare_mods_h(data4))
 ```
 
 
-
 #### Sample 5
-
 
 ```{r}
 display(compare_mods_h(data5))
 ```
 
 
-
 #### Sample 6
-
 
 ```{r}
 display(compare_mods_h(data6))
 ```
 
 
-
 #### Sample 7a
-
 
 ```{r}
 display(compare_mods_h(data7a))
 ```
 
 
-
 #### Sample 7b
-
 
 ```{r}
 display(compare_mods_h(data7b))
 ```
 
 
-
 #### Sample 7c
-
 
 ```{r}
 display(compare_mods_h(data7c))
 ```
 
 
-
 #### Sample 8a
-
 
 ```{r}
 display(compare_mods_h(data8a))
 ```
 
 
-
 #### Sample 8b
-
 
 ```{r}
 display(compare_mods_h(data8b))
 ```
 
 
-
 #### Sample 9
-
 
 ```{r}
 display(compare_mods_h(data9))
 ```
 
 
-
 #### Sample 10a
-
 
 ```{r}
 display(compare_mods_h(data10a))
 ```
 
 
-
 #### Sample 10b 
-
 
 ```{r}
 display(compare_mods_h(data10b))
 ```
 
+#### Sample 10c 
 
+```{r}
+display(compare_mods_h(data10c))
+```
+
+#### Sample 11a 
+
+```{r}
+display(compare_mods_h(data11a))
+```
+
+#### Sample 11b 
+
+```{r}
+display(compare_mods_h(data11b))
+```
 
 :::
 
-### Model Performance
 
+### Model Performance
 
 ```{r}
 #| warning: false
@@ -2089,7 +2286,13 @@ rbind(
   performance::performance(lavaan::cfa(str_remove(m7, fixed("\nCoughSneeze =~ Cough + Sneeze")), data = data10a), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
     mutate(Sample = "Sample 10a"),
   performance::performance(update(m7_all, data = data10b), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 10b")
+    mutate(Sample = "Sample 10b"),
+  performance::performance(update(m7_all, data = data10c), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 10c"),
+  performance::performance(update(m7_all, data = data11a), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 11a"),
+  performance::performance(update(m7_all, data = data11b), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
+    mutate(Sample = "Sample 11b")
 ) |>
   display()
 ```
@@ -2097,11 +2300,9 @@ rbind(
 
 
 
-
 ## Scores
 
 Note the usage of descriptive factor names relating directly to the items to avoid abstraction.
-
 
 ```{r}
 #| warning: false
@@ -2174,9 +2375,22 @@ scores <- list(
     mutate(Sample = "Sample 10a", CFA_CoughSneeze = NA),
   sample10b = cbind(ega_scores_10b, data_addprefix(as.data.frame(predict(m7_all, newdata=data10b)), "CFA_")) |>
     add_empirical(data10b) |> 
-    mutate(Sample = "Sample 10b")
+    mutate(Sample = "Sample 10b"),
+  sample10c = cbind(ega_scores_10c, data_addprefix(as.data.frame(predict(m7_all, newdata=data10c)), "CFA_")) |>
+    add_empirical(data10c) |> 
+    mutate(Sample = "Sample 10c"),
+  sample11a = cbind(ega_scores_11a, data_addprefix(as.data.frame(predict(m7_all, newdata=data11a)), "CFA_")) |>
+    add_empirical(data11a) |> 
+    mutate(Sample = "Sample 11a"),
+  sample11b = cbind(ega_scores_11b, data_addprefix(as.data.frame(predict(m7_all, newdata=data11b)), "CFA_")) |>
+    add_empirical(data11b) |> 
+    mutate(Sample = "Sample 11b")
 )
 
 save(scores, file = "../data/scores.RData")
 ```
+
+
+
+
 

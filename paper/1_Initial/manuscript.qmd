@@ -115,6 +115,8 @@ editor_options:
 Interoception is referred to the process of sensing, interpreting and integrating information pertaining to internal organs, such as the heart, the lungs or the gut [@khalsa2018].
 While recent research emphasizes a key role of interoception in a variety of processes (e.g., emotion regulation, decision making) and of outcomes (physical and psychological well being), the field remains clouded by concerns about how interoception is assessed.
 
+[**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)]
+
 <!-- Interoception measure -->
 
 Various measures of interoception have been developed (see **@fig-measures**), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking vs. questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes *vs.* measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., accuracy, sensitivity, awareness).
@@ -132,12 +134,18 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 
 <!-- self-reports -->
 
+<<<<<<< Updated upstream
 <!-- what most recent paper? -->
 
 For instance, while the use of subjective self-reports questionnaires to measure deeply embodied functions might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019] [**TODO: also cite the most recent paper OF MURPHY with the chinese**]. 
 **TODO: that's a long sentence consider splitting**
 The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between various measures in the field [@desmedt2022measures]. 
 A better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness), is thus needed to clarify the role of self-reports in the assessment of interoception.
+=======
+For instance, while the use of self-reports questionnaires to measure an embodied function might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019; @lin2023].
+The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. 
+Still, a better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness) is needed to clarify the role of self-reports in the assessment of interoception.
+>>>>>>> Stashed changes
 
 <!-- Introducing the IAS -->
 
@@ -153,8 +161,12 @@ Although the original validation study suggested a two-factor structure for the 
 Notably, the only other validation study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper.
 **TODO: this above is not really a validation study showing 2 factors is good if they prespecified two to match the original?**
 Other follow-up studies using confirmatory factor analysis (CFA) and structural modeling [@morin2016] have identified different optimal solutions. 
+<<<<<<< Updated upstream
 Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit.
 **TODO: what does morin2016 found? I would cite it after saying what they found rather than here**
+=======
+Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of loweroike -level factors (@rodriguez2016evaluating) - to be the best fit.
+>>>>>>> Stashed changes
 
 Discussions have also been focused on specific items. For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119). 
 @lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination. 
@@ -165,7 +177,7 @@ Interestingly, @lin2023 reported that all items of the IAS grouped together usin
 
 <!-- Convergent validity (correlates)  -->
 
-While the assessment of the validity of an interoception scale can be conceived as theoretically challenging, several traits have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2021, @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023], depressive symptoms [@brand2023; @koike2023], anxiety [@brand2023], neuroticism [@brand2023]. 
+While the assessment of the validity of an interoception scale can be conceived as theoretically challenging, several traits have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2021, @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023, @lin2023], depressive symptoms [@brand2023; @koike2023; @lin2023], anxiety [@brand2023], neuroticism [@brand2023] and self-esteem [@murphy2019]. 
 <!-- **anything else?**. TO BE COMPLETED -- to be determined -->
 
 The IAS has also been compared to other interoception scales (and interoceptive related scales),generally showing positive correlations with most facets of the MAIA, except for the Non-Distracting and Not-Worrying subscales [@brand2023]. Findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire (BPQ-A; @porges1993body) have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019]. Small positive correlations have also been observed with the observation and description subscales of the Five Facet Mindfulness Questionnaire (FFMQ, @baer2006using; @brand2023; @koike2023), as well as with the nonreactivity and acting with awareness subscales [@koike2023]. Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia; @brand2023; @murphy2019]. Lastly, small positive correlations have been reported between the Interoceptive Attention Scale (IATS, @gabriele2022dissociations) and the IAS [@lin2023; @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations].
@@ -173,6 +185,10 @@ The IAS has also been compared to other interoception scales (and interoceptive 
 <!-- TO BE COMPLETED -->
 
 <!-- Moreover, the current subjective measures do not correlate well with the objective measures [@murphy2019]. -->
+
+Few studies have examined the correlation between objective interoceptive measures, such as the Heartbeat Counting Task (HCT; Schandry, 1981) and the Heartbeat Detection Task (HDT; Kleckner et al., 2015). Existing findings report weak correlations for the HCT (Murphy et al., 2019), no correlations except for the sensitivity variable of the HCT (Brand et al., 2023), and small correlations for the HDT (Brand et al., 2023). These results suggest that the IAS, a subjective measure, does not strongly align with objective interoceptive assessments.
+
+<!-- current study --> 
 
 The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA.
 2) The second part will provide an overview of the dispositional correlates of the IAS, providing an overview of the pattern of associations that is key to better understand the nature, place and role of interoception questionnaires within a larger context.
@@ -206,6 +222,8 @@ Subsequently, exploratory factor analysis (EFA) was employed followed by confirm
 
 ### Results
 
+<!-- Distibutions of items -->
+
 Visualizing the distribution of the items for all samples suggests the presence of a consistent modal value (@fig-distributions).
 In other words, participants are most likely to answer 4/5 (i.e., agree) on most items (but "affective touch", "blood sugar", and "bruise" that exhibit a different distributional pattern).
 Additionally, one can note the low density on extreme values (1 and 5), meaning that the bulk of answers (i.e., 99\%) varies between 3 values.
@@ -228,47 +246,67 @@ However, there are possibly some higher-order groupings emerging for the 2 analo
 
 #### EGA
 
+<!-- Univariate analysis -->
+
 The UVA revealed that there are two large to very large redundant variables when taking all samples into account.
 Namely, "itch" and "tickle", where "tickle" should be removed, and "itch" should be kept. 
 There are several more items that are moderately to largely redundant, namely, "wind" and "burp", and "urinate" and "defecate".
 On top of that, "sneeze" and "cough", "heart" and "breathing", and "hungry" and "thirsty" seem to have small to moderate redundancy.
 These findings are rather consistent across the samples with minor differences, such as that when the questionnaire had an analog scale, there seems to be no large to very large redundant items but "itch" and "tickle" remain moderately to largely redundant and "heart" and "breathing" small to moderately redundant in one sample. 
 
+<!-- Network analysis --> 
+
 According to the network analysis, using the Walktrap and Louvain algorithms applied to Glasso networks, a 4-factor structure fits the questionnaire best across all data sets.
 This is rather consistent within the data sets, where some samples indicate 3-factor structure, and some a 5-factor structure would fit well too.
 The 4-factor structure model with the best fit entails the following items per group: 1) itch, tickle, bruise, blood sugar; 2) burp, wind, cough, sneeze, vomit; 3) affective touch, sexual arousal, muscles, temperature, pain, and taste; 4) Heart, breathing, hungry, thirsty, urinate, and defecate.
+
+<!-- Stability analysis --> 
 
 Stability analysis, employing 500 bootstrap iterations, also favoured the 4-factor solution for its greater stability.
 Most items, except for 'affective touch,' demonstrated stability levels exceeding 0.90, indicating structural consistency and reliability [@christensen2021].
 These findings underscore the robustness of the identified 4-dimensional structure.
 
+<!-- Factor analysis -->
+
 When accounting for all samples, the factor analysis reveals that a 4-factor structure fits best.
 The exploratory factor analysis revealed that 4 latent factors (oblimin rotation) accounted for 51.95% of the total variance of the original data (MR2 = 19.08%, MR1 = 17.78%, MR4 = 9.34%, MR3 = 5.75%).
 Since UVA identified "tickle" as the item to be removed—and it also had the lowest uniqueness value in factor analysis with a similar loading to "itch"—"tickle" was excluded from subsequent analyses. 
 
+<!-- Confirmatory factor analysis --> 
+
 Confirmatory factor analysis compared 5 models: a single-factor solution, a 4-factor solution, a 5-factor solution, a 6-factor solution and a 7-factor solution. The latter was preferred in most datasets, including with indices that penalise increased number of parameters (such as BIC). There was no evidence for higher order factors.
 
 ### Discussion
+
+<!-- Ias structure -->
 
 In this study, several datasets were analyzed for a meta analysis of the structure of the IAS.
 The findings reveal that a 4-factor model fits the IAS best.
 Additionally, the lowest level structure (pairs of items) seem to be the most robust, especially for samples using Likert scales (some higher-order groupings might emerge for the 2 analog-scale samples).
 There was no clear evidence for higher-order factors.
 
-These findings contrast with previous research, which all found that a 2-factor model, or a 1-factor model fits the data best [@murphy2019, @lin2023, @campos2021, @brand2023].
+<!-- linking findings to previous research -->
+
+These findings contrast with previous research, which all found that 2-factor model[@murphy2019; @koike2023], 1-factor model [@brand2023] and bifactor model [@lin2023; @campos2021] fits the data best.
 While this analysis also revealed an okay fit for the 1-factor model, the 4-factor model revealed the best fit.
 The 4-factor structure reveals different ‘hubs' of items that are related, not only in this structure analysis, but also in underlying mechanisms.
 The ‘wind-burp-cough-sneeze-vomit' category, for example, only entails items that are linked to excretion through the mouth.
 The other categories are organized similarly.
 This organization and structure is useful for further analysis, as the data can be analyzed and interpreted according to a grouping that is coherent in result, as well as underlying mechanisms.
 
+<!-- Items redundancy --> 
+
 There are several items that show redundancy suggesting that adapting the IAS would be beneficial for validity.
-Based on the given results, we suggest removing the tickle, while keeping the itch item (stats).
-Other items with slight redundancy were Hungry and Thirsty, Urinate and Defecate, and Sneeze and Cough.
+Based on the given results, we suggest removing the tickle, while keeping the itch item [**todo**: stats?].
+Other items with slight redundancy were Hungry and Thirsty, Urinate and Defecate, and Sneeze and Cough. 
+
+<!-- Lins short IAs kept: Hunger, Breath, Urinate, Taste, Vomit, Cough, Temperature, Sexual Arousal, Wind, Muscle, Pain, Itch --> 
 
 Interestingly, @lin2023 also found that tickle and itch were redundant, excluding one of them but the reason being that the character for both words is the same in the Chinese language.
 On top of that, they came up with a shortened version of the IAS, excluding further items, resulting in a 12-item IAS, which aligns with our findings, suggesting that further items are ambiguous as to whether they should be removed.
-In contrast, other findings also found itch and tickle to be redundant but did not suggest excluding items .
+In contrast, other findings also found itch and tickle to be redundant but did not suggest excluding items [@campos2021].
+
+<!-- low density on extreme values (1 and 5) --> 
 
 The findings indicate a high proportion of answers at 4 (see Figure 1), especially when using a 5-step scale.
 The analogue scale shows a more dispersed distribution, with some answers indicating the highest 5/5, which was not the case in the 5-step scale.
@@ -293,37 +331,9 @@ The
 
 #### Materials
 
-The questionnaires used for the IAS correlates are listed in Table 2 (**TODO: add the rest of the questionnaires, sample items and references**).
+The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO: add the rest of the questionnaires, sample items and references**).
 
-**Table 2.** Questionnaires used for the IAS correlates analysis.
-
-| Questionnaire              | Number of Dimensions | Assessment                              | Number of Items | Scoring                | Example Item |
-|------------|------------|------------|------------|------------|------------|
-| **Interoceptive Related**  |                      |                                         |                 |                        |              |
-| MAIA-2                     | 8                    | Interoception                           | 37              | 6-point Likert scale   |              |
-| BPQ                        | 2                    | Body awareness and autonomic reactivity | 49              | 5-point Likert scale   |              |
-| TAS-20                     | 3                    | Alexithymia                             | 20              | 5-point Likert scale   |              |
-| BVAQ                       | 2                    | Alexithymia                             | 40              | 5-point Likert scale   |              |
-| **Mood**                   |                      |                                         |                 |                        |              |
-| BDI-II                     | 1                    | Severity of depressive symptoms         | 21              | 0-to-3-point values    |              |
-| PHQ-4                      | 2                    | Anxiety and depressive symptoms         | 4               | 5-point Likert scale   |              |
-| STAI-T                     | 1                    | Trait anxiety                           | 20              | 4-point Likert scale   |              |
-| GAD-2                      | 1                    | General Anxiety                         | 2               | 4-point Likert scale   |              |
-| **Personality**            |                      |                                         |                 |                        |              |
-| NEO-FFI                    | 1                    | Neuroticism                             | 12              | 5-point Likert scale   |              |
-| Mini IPIP6                 | 6                    | Personality                             | 24              | Analogue scales        |              |
-| BFI                        | 5                    | Personality                             | 44              | 5-point Likert scale   |              |
-| PID-5-SF                   | 5                    | Dysfunctional personality traits        | 25              | 4-point Likert scale   |              |
-| **Psychopathology**        |                      |                                         |                 |                        |              |
-| SPQ-BRU                    | 4                    | Schizotypy                              | 32              | 5-point Likert scale   |              |
-| MSI-BPD                    | 1                    | Borderline personality disorder         | 10              | Analogue scales        |              |
-| ASQ - Short                | 5                    | Autistic Traits                         | 28              | 4-point Likert scale   |              |
-| **Beliefs and Misbeliefs** |                      |                                         |                 |                        |              |
-| GCB                        | 5                    | Conspiracy beliefs                      | 15              | 5-point Likert scale   |              |
-| PI-18                      | 1                    | Beliefs about the world                 | 99              | 6-point Likert scale   |              |
-| LIE scale                  | 4                    | Lying tendencies                        | 16              | Visual analogue scales |              |
-
-*Note.* MAIA-2 Multidimensional Assessment of Interoceptive Awareness Version-2 (Mehling et al. 2018); BPQ Body Perception Questionnaire; TAS-20 Toronto Alexithymia Scale (Bagby et al., 1994); BVAQ Bermond-Vorst Alexithymia Questionnaire (Vorst & Bermond, 2001); BDI-II Beck's Depression Inventory (Dozois et al., 1998); PHQ-4 Patient Health Questionnaire (Kroenke et al., 2009); STAI-T State-Trait-Anxiety Inventory Trait-Version (Spielberger et al. 1970); GAD- 2 Generalized Anxiety Disorder Scale – 2 (Spitzer et al., 2007); NEO-FFI NEO Five-Factor Inventory Neuroticism (Costa & McCrae, 2008); Mini IPIP6 Mini International Personality Item Pool (Sibley et al. 2011); BFI Big Five Inventory (John et al., 2010); PID-5-SF Personality Inventory for DSM-5 Short Form (Thimm et al., 2016); SPQ-BRU Schizotypal Personality Questionnaire (Davidson et al., 2016); MSI-BPD Mclean Screening Instrument for Borderline Personality Disorder (Zanarini et al. 2003); ASQ Short Autism-Spectrum Quotient (Hoekstra et al. 2011); GCB Generic Conspiracist Beliefs scale (Brotherton et al., 2013); PI-18 Primals Inventory (Clifton et al., 2021); LIE scale Lying Profile Questionnaire (Makowski, et al,. 2023).
+\input{../../analysis/figures/table2.tex}
 
 #### Statistical analysis
 
