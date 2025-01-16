@@ -116,6 +116,7 @@ Interoception is referred to the process of sensing, interpreting and integratin
 While recent research emphasizes a key role of interoception in a variety of processes (e.g., emotion regulation, decision making) and of outcomes (physical and psychological well being), the field remains clouded by concerns about how interoception is assessed.
 
 [**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)]
+**I  would rather put that in the discussion in the suggestions for better scales**
 
 <!-- Interoception measure -->
 
@@ -134,18 +135,11 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 
 <!-- self-reports -->
 
-<<<<<<< Updated upstream
-<!-- what most recent paper? -->
-
-For instance, while the use of subjective self-reports questionnaires to measure deeply embodied functions might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019] [**TODO: also cite the most recent paper OF MURPHY with the chinese**]. 
+For instance, while the use of subjective self-reports questionnaires to measure deeply embodied functions might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019; @lin2023].
 **TODO: that's a long sentence consider splitting**
-The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between various measures in the field [@desmedt2022measures]. 
-A better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness), is thus needed to clarify the role of self-reports in the assessment of interoception.
-=======
-For instance, while the use of self-reports questionnaires to measure an embodied function might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019; @lin2023].
 The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. 
-Still, a better understanding of what is being measured with different questionnaires and dimensions, as well their potential overlaps with other constructs (e.g., alexithymia, body awareness) is needed to clarify the role of self-reports in the assessment of interoception.
->>>>>>> Stashed changes
+A better understanding of what is being measured with different questionnaires and dimensions, as well as their potential overlaps with other constructs (e.g., alexithymia, body awareness), is thus needed to clarify the role of self-reports in the assessment of interoception.
+
 
 <!-- Introducing the IAS -->
 
@@ -161,12 +155,8 @@ Although the original validation study suggested a two-factor structure for the 
 Notably, the only other validation study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper.
 **TODO: this above is not really a validation study showing 2 factors is good if they prespecified two to match the original?**
 Other follow-up studies using confirmatory factor analysis (CFA) and structural modeling [@morin2016] have identified different optimal solutions. 
-<<<<<<< Updated upstream
 Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit.
 **TODO: what does morin2016 found? I would cite it after saying what they found rather than here**
-=======
-Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of loweroike -level factors (@rodriguez2016evaluating) - to be the best fit.
->>>>>>> Stashed changes
 
 Discussions have also been focused on specific items. For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119). 
 @lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination. 
