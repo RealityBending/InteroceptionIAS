@@ -140,7 +140,7 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 
 For instance, while the use of subjective self-reports questionnaires to measure deeply embodied functions might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019; @lin2023].
 **TODO: that's a long sentence consider splitting**
-The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. 
+The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. **(TODO: I would talk here a bit more about the relationship and lack thereof with intero tasks rather than later)**
 A better understanding of what is being measured with different questionnaires and dimensions, as well as their potential overlaps with other constructs (e.g., alexithymia, body awareness), is thus needed to clarify the role of self-reports in the assessment of interoception.
 
 
