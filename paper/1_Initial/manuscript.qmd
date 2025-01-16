@@ -191,8 +191,7 @@ The current study aims at 1) clarifying the structure of the IAS with a meta-ana
 ## Study 1
 
 The goal of study 1 is to re-analyse and assess the factor structure of the IAS by taking advantage of the large number of open-access datasets [@brand2023; @campos2021; @lin2023; @murphy2019; @arslanova2022; @todd2022; @gaggero2021; @brand2022; @von2023].
-While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, it is important to note that the studies differ in their sample sizes, demographics, language, and the way they collected the data.
-Thus, providing additionally an individual analysis (i.e., on all samples individually) will help adding nuance to the general picture.
+While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, we also additionally provide an individual analysis (i.e., on all samples separately) to add nuance to the general picture, as all studies differ in their sample sizes, demographics, language, and procedure.
 
 ### Methods
 
