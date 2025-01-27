@@ -55,34 +55,34 @@ author:
     #   - Validation
     #   - Visualization
     #   - Writing – original draft
-    #   - Writing – review & editing
-  - name: Magdalena Pfaff
-    orcid: 0009-0006-2386-7936
-    affiliations:
-      - ref: "id1" 
-  - name: Dominique Makowski
-    corresponding: true
-    orcid: 0000-0001-5375-9967
-    email: D.Makowski@sussex.ac.uk
-    url: https://realitybending.github.io/
-    roles:
-      - Conceptualization
-      - Data curation
-      - Formal Analysis
-      - Funding acquisition
-      - Investigation
-      - Methodology
-      - Project administration
-      - Resources
-      - Software
-      - Supervision
-      - Validation
-      - Visualization
-      - Writing – original draft
-    affiliations:
-      - ref: "id1"
-      - name: "University of Sussex"
-        department:  "Sussex Centre for Consciousness Science"
+  #   #   - Writing – review & editing
+  # - name: Magdalena Pfaff
+  #   orcid: 0009-0006-2386-7936
+  #   affiliations:
+  #     - ref: "id1" 
+  # - name: Dominique Makowski
+  #   corresponding: true
+  #   orcid: 0000-0001-5375-9967
+  #   email: D.Makowski@sussex.ac.uk
+  #   url: https://realitybending.github.io/
+  #   roles:
+  #     - Conceptualization
+  #     - Data curation
+  #     - Formal Analysis
+  #     - Funding acquisition
+  #     - Investigation
+  #     - Methodology
+  #     - Project administration
+  #     - Resources
+  #     - Software
+  #     - Supervision
+  #     - Validation
+  #     - Visualization
+  #     - Writing – original draft
+  #   affiliations:
+  #     - ref: "id1"
+  #     - name: "University of Sussex"
+  #       department:  "Sussex Centre for Consciousness Science"
 author-note:
   disclosures:
     gratitude: |
@@ -130,9 +130,6 @@ editor_options:
 Interoception is referred to the process of sensing, interpreting and integrating information pertaining to internal organs, such as the heart, the lungs or the gut [@khalsa2018].
 While recent research emphasizes a key role of interoception in a variety of processes (e.g., emotion regulation, decision making) and of outcomes (physical and psychological well being), the field remains clouded by concerns about how interoception is assessed.
 
-[**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)]
-**I  would rather put that in the discussion in the suggestions for better scales**
-
 <!-- Interoception measure -->
 
 Various measures of interoception have been developed (see **@fig-measures**), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking vs. questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes *vs.* measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., accuracy, sensitivity, awareness).
@@ -150,11 +147,21 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 
 <!-- self-reports -->
 
-For instance, while the use of subjective self-reports questionnaires to measure deeply embodied functions might seem paradoxical, recent redefinitions of interoception, emphasizing the role of high-level and metacognitive elaboration of interoceptive information, has provided the theoretical grounding to support the idea that some facets of interoception (including participants' metacognitive beliefs) can be assessed subjectively, providing useful and interesting measures [@murphy2019; @lin2023].
-**TODO: that's a long sentence consider splitting**
-The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. **(TODO: I would talk here a bit more about the relationship and lack thereof with intero tasks rather than later)**
-A better understanding of what is being measured with different questionnaires and dimensions, as well as their potential overlaps with other constructs (e.g., alexithymia, body awareness), is thus needed to clarify the role of self-reports in the assessment of interoception.
+The use of subjective self-report questionnaires to measure deeply embodied functions might seem paradoxical. However, recent redefinitions of interoception emphasize the role of high-level and metacognitive elaboration of interoceptive information. These redefinitions provide theoretical grounding to support the idea that some facets of interoception, including participants' metacognitive beliefs, can be assessed subjectively. This approach offers useful and interesting measures [@murphy2019; @lin2023].
 
+The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. 
+
+<!-- lack of convergence between self-reported questionnaires --> 
+
+A recent systematic review by @desmedt2022measures examined whether various questionnaires designed to measure "interoceptive sensibility" truly assess the same construct. Notably, @garfinkel2015knowing defines interoceptive sensibility as the self-reported tendency to focus on and detect internal sensations, whereas @khalsa2018interoception defines it more narrowly, excluding the ability to detect these signals. According to @desmedt2022measures, most authors adopt the latter definition. The review found that these questionnaires measure related but distinct constructs, leading researchers to commit the 'jingle fallacy'—mistakenly treating them as equivalent measures of interoceptive sensibility. 
+
+**TODO: do a better job** 
+
+<!-- Moreover, the current subjective measures do not correlate well with the objective measures [@murphy2019]. -->
+
+Few studies have examined the correlation between objective interoceptive measures, such as the Heartbeat Counting Task (HCT; Schandry, 1981) and the Heartbeat Detection Task (HDT; Kleckner et al., 2015). Existing findings report weak correlations for the HCT (Murphy et al., 2019), no correlations except for the sensitivity variable of the HCT (Brand et al., 2023), and small correlations for the HDT (Brand et al., 2023). These results suggest that the IAS, a subjective measure, does not strongly align with objective interoceptive assessments.
+
+A better understanding of what is being measured with different questionnaires and dimensions, as well as their potential overlaps with other constructs (e.g., alexithymia, body awareness), is thus needed to clarify the role of self-reports in the assessment of interoception.
 
 <!-- Introducing the IAS -->
 
@@ -166,21 +173,23 @@ Interestingly, the IAS' statements are about specific interoceptive behaviours, 
 
 <!-- IAS structure  -->
 
-Although the original validation study suggested a two-factor structure for the IAS (**TODO: what are they?**), the authors underline its acceptable but imperfect fit [@murphy2019; p. 127], calling on further investigation of the scale's factor structure.
-Notably, the only other validation study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper.
-**TODO: this above is not really a validation study showing 2 factors is good if they prespecified two to match the original?**
-Other follow-up studies using confirmatory factor analysis (CFA) and structural modeling [@morin2016] have identified different optimal solutions. 
+Although the original validation study suggested a two-factor structure for the IAS, the authors underline its acceptable but imperfect fit [@murphy2019; p. 127], calling on further investigation of the scale's factor structure. Notably, the authors did not define these factors, as no clear explanations were evident. They suggested that the first factor reflects the perception of interoceptive signals, while the second pertains to signals that may be difficult to perceive solely through interoceptive information.
+
+<!-- [@morin2016] is a methodological paper on ESEM --> 
+
+Other follow-up studies using confirmatory factor analysis (CFA) and structural modeling have identified different optimal solutions. 
 Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit.
-**TODO: what does morin2016 found? I would cite it after saying what they found rather than here**
+Notably, the only other study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper.
 
 Discussions have also been focused on specific items. For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119). 
 @lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination. 
-Additionally, @campos2021 suggests that the "tickle" item represents a more specific *(separate?*) factor.
+Additionally, @campos2021 reported "tickle" to be the only item that reflected more specific factors than the general factor. 
 Interestingly, @lin2023 reported that all items of the IAS grouped together using a new approach, Exploratory Graph Analysis [EGA; @golino2017exploratory], to assess convergent and discriminant validity, providing further evidence for unidimensionality.
 
-<!-- Relationship with other interoception measures -->
+<!-- Relationship with other interoception measures --> 
+<!-- The MAIA was introduced above --> 
 
-The IAS has naturally been compared to other interoception-related scales, and shows a positive correlations with most facets of the MAIA **(TODO: MAIA should be introduced before)**, except for the Non-Distracting and Not-Worrying subscales [@brand2023]. Interestingly, findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire [BPQ-A, @porges1993body] have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019]. Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023]. Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia; @brand2023; @murphy2019]. Lastly, small positive correlations have also been reported with the Interoceptive Attention Scale [IATS, @gabriele2022dissociations], though studies have also found no correlation between these measures [@gabriele2022dissociations] **(TODO: why same reference for two contradictory claims?)**.
+The IAS has naturally been compared to other interoception-related scales, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Non-Distracting and Not-Worrying subscales [@brand2023]. Interestingly, findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire [BPQ-A, @porges1993body] have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019]. Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023]. Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia; @brand2023; @murphy2019]. Lastly, small positive correlations have also been reported with the Interoceptive Attention Scale [IATS, @lin2023; @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations]. 
 
 <!-- TO BE COMPLETED -->
 
@@ -188,12 +197,6 @@ The IAS has naturally been compared to other interoception-related scales, and s
 
 While assessing the validity of an interoception scale can be conceived as theoretically challenging, several measures have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2021, @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023, @lin2023], depressive symptoms [@brand2023; @koike2023; @lin2023], anxiety [@brand2023], neuroticism [@brand2023] and self-esteem [@murphy2019]. 
 <!-- **anything else?**. TO BE COMPLETED -- to be determined -->
-
-
-
-<!-- Moreover, the current subjective measures do not correlate well with the objective measures [@murphy2019]. -->
-
-Few studies have examined the correlation between objective interoceptive measures, such as the Heartbeat Counting Task (HCT; Schandry, 1981) and the Heartbeat Detection Task (HDT; Kleckner et al., 2015). Existing findings report weak correlations for the HCT (Murphy et al., 2019), no correlations except for the sensitivity variable of the HCT (Brand et al., 2023), and small correlations for the HDT (Brand et al., 2023). These results suggest that the IAS, a subjective measure, does not strongly align with objective interoceptive assessments.
 
 <!-- current study --> 
 
@@ -215,9 +218,9 @@ A total of 10 studies was included (see **Table 1**).
 We also included the data of two unpublished (but already open-access) studies from the authors and one from another author.
 The total N participants was 32,214 participants (*Mean* = 48.6 years, *SD* = 13.1, 71.6% Female).
 
-\begin{landscape}
-\input{../../analysis/figures/table1.tex}
-\end{landscape}
+<!-- \begin{landscape} -->
+<!-- \input{../../analysis/figures/table1.tex} -->
+<!-- \end{landscape} -->
 
 #### Statistical Analysis
 
@@ -341,13 +344,14 @@ The
 
 The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO: add the rest of the questionnaires, sample items and references**).
 
-\input{../../analysis/figures/table2.tex}
+<!-- \input{../../analysis/figures/table2.tex} -->
 
 #### Statistical analysis
 
 Correlations will be computed using the correlation package under a Bayesian framework (ref).
 
 ### Results
+**todo:  compute average correlations **
 
 The EGA components capture groupings of pairs of items, such as "wind" and "burp", "cough" and "sneeze", or "muscle" and "pain".
 These groupings were used in the correlational analysis, to observe how much each group/pair correlates with other factors, such as Alexithymia, or the MAIA (see Figure 2).
@@ -445,6 +449,9 @@ The IAS is a good way of measuring interoception considering the current existin
 However, revising, or even re-inventing a survey to measure interoception would lead to the best measure of interoception.
 Therefore, this study proposes that a new scale to measure interoception is needed to evolve the current research on interoception.
 This study revealed many correlates of the IAS, giving space for future analysis on what might be a good interoceptive measure, and therefore laying the groundwork for the creation of a new interoception survey.
+
+[**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)]
+**I  would rather put that in the discussion in the suggestions for better scales**
 
 ## References
 
