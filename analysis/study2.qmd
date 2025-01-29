@@ -208,6 +208,34 @@ correlation::correlation(select(df_scores, -all_of(vars_intero)),
 
 Even EGA components capture pairs or groupings of pairs of items.
 
+## Average Correlations
+
+```{r}
+
+# names(df1a)
+# names(df1b)
+# names(df2)  # BPQ, BVAQ, MAIA, ICQ (?), TAS
+# names(df3)  # TAS, BPQ
+# names(df4)  # BAQ (?), BPQ, MAIA, BRS (resilience?), PBCS (private bodily consciousness?)
+# names(df5)
+# names(df6)  # IATS, SSS, GAD, PHQ2
+# names(df7a)  # MAIA, STAI, FFMQ, NEOFFI, CES
+# names(df7b)  # MAIA, STAI, BPQ, PHQ15, PHQ9
+# names(df7c)  # TAS, BPQ, TAS, ASI, BDI, IASV
+# names(df8a)  # EDI, BPQ
+# names(df8b)  # TAS, PHQ15, PHQ9
+# names(df9)  # BFI, STQ, EQ, ECR,
+# names(df10a)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
+# names(df10b)  # BDI, STAI, PHQ4
+# names(df10c) # PI, MAIA
+# names(df11a) # MAIA, TAS, MFQ(DEP), STAI(ANX)
+# names(df11b)
+
+# Compute total IAS scores for each dataset 
+df1a$total_IAS <- rowSums(df1a[, c(3:23)])
+```
+
+
 ## Demographics
 
 ### Gender
@@ -789,7 +817,6 @@ p <- data |>
 p
 ggsave("figures/Figure2.png", p, width=21*0.6, height=29.7*0.45, dpi=200, bg="white")
 ```
-
 
 
 ## Discussion
