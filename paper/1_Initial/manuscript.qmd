@@ -136,10 +136,11 @@ Various measures of interoception have been developed (see @fig-measures), formi
 While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014].
 
 ```{r}
+#| warning: false 
 #| label: "fig-measures"
 #| fig-cap: "Different ways in which interoception can be measured."
 #| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
-#| out-width: "100%"
+## | out-width: "100%"
 
 knitr::include_graphics("figures/MeasuringInteroception.jpg")
 ```
@@ -154,14 +155,12 @@ This approach offers useful and interesting measures [@murphy2019; @lin2023].
 <!-- lack of correlation between objective and subjective measures + lack of correlation between self-report measures-->
 
 The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures].
-
-While few studies have explored the correlation between objective interoceptive measures,  such as the Heartbeat Counting Task (HCT; @schandry1981heart) and the Heartbeat Detection Task (HDT; @kleckner2015methodological), and correspondent self-report measures, existing findings typically show weak or no correlations (e.g., task-based accuracy vs. self-reported accuracy) [@murphy2019; @brand2023].
+While few studies have explored the correlation between objective interoceptive measures,  such as the Heartbeat Counting Task [HCT, @schandry1981heart] and the Heartbeat Detection Task [HDT, @kleckner2015methodological], and correspondent self-report measures, existing findings typically show weak or no correlations [e.g., task-based accuracy vs. self-reported accuracy, @murphy2019; @brand2023].
 
 Even among self-report measures low correlations have been observed, suggesting that these measures, while group in the same umbrella term of self-report assess different facets of interoception. 
 A recent systematic review by @desmedt2022measures examined whether various questionnaires designed to assess "interoceptive sensibility" truly measure the same construct. 
 Notably, @garfinkel2015knowing defines interoceptive sensibility as the self-reported tendency to focus on and detect internal sensations, whereas @khalsa2018interoception defines it more narrowly, excluding the ability to detect these signals. According to @desmedt2022measures, most authors adopt the latter definition. 
-The review found that these questionnaires measure related but distinct constructs, leading researchers to commit the 'jingle fallacy'— mistakenly treating them as equivalent measures of interoceptive sensibility. 
-
+The review found that these questionnaires measure related but distinct constructs, leading researchers to mistakenly treating them as equivalent measures of interoceptive sensibility. 
 A better understanding of what is being measured with different questionnaires and dimensions, as well as their potential overlaps with other constructs (e.g., alexithymia, body awareness), is thus needed to clarify the role of self-reports in the assessment of interoception. 
 
 <!-- Introducing the IAS -->
@@ -172,7 +171,7 @@ Interestingly, the IAS' statements are about specific interoceptive behaviours, 
 
 <!-- IAS structure  -->
 
-Although the original validation study suggested a two-factor structure for the IAS, the authors underline its acceptable but imperfect fit [@murphy2019; p. 127], calling on further investigation of the scale's factor structure.
+Although the original validation study suggested a two-factor structure for the IAS, the authors underline its acceptable but imperfect fit [@murphy2019, p. 127], calling on further investigation of the scale's factor structure.
 Notably, the authors did not define these factors, as no clear explanations were evident.
 They suggested that the first factor reflects the perception of interoceptive signals, while the second pertains to signals that may be difficult to perceive solely through interoceptive information.
 
@@ -186,11 +185,9 @@ Discussions have also been focused on specific items.
 For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119).
 @lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination.
 Additionally, @campos2021 reported "tickle" to be the only item that reflected more specific factors than the general factor.
-Interestingly, @lin2023 reported that all items of the IAS grouped together using a new approach, Exploratory Graph Analysis [EGA; @golino2017exploratory], to assess convergent and discriminant validity, providing further evidence for unidimensionality.
+Interestingly, @lin2023 reported that all items of the IAS grouped together using a new approach, Exploratory Graph Analysis [EGA, @golino2017exploratory], to assess convergent and discriminant validity, providing further evidence for unidimensionality.
 
 <!-- Relationship with other interoception measures -->
-
-**note to dom**: the maia was introduced above
 
 The IAS has naturally been compared to other interoception-related scales, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Non-Distracting and Not-Worrying subscales [@brand2023].
 Interestingly, findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire [BPQ-A, @porges1993body] have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
@@ -203,13 +200,13 @@ Interestingly, the IAS and the IATS supposedly measure two different interocepti
 
 <!-- Convergent validity (correlates)  -->
 
-While assessing the validity of an interoception scale can be conceived as theoretically challenging, several measures have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2021, @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023, @lin2023], depressive symptoms [@brand2023; @koike2023; @lin2023], anxiety [@brand2023], neuroticism [@brand2023] and self-esteem [@murphy2019].
+While assessing the validity of an interoception scale can be conceived as theoretically challenging, several measures have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2021; @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023; @lin2023], depressive symptoms [@brand2023; @koike2023; @lin2023], anxiety [@brand2023], neuroticism [@brand2023] and self-esteem [@murphy2019].
 <!-- **anything else?**. TO BE COMPLETED -- to be determined -->
 
 <!-- current study -->
 
-The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA.
-2) The second part will provide an overview of the dispositional correlates of the IAS, providing an overview of the pattern of associations that is key to better understand the nature, place and role of interoception questionnaires within a larger context.
+The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
+2) the second part will provide an overview of the dispositional correlates of the IAS, clarifying the pattern of associations which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 ## Study 1
 
@@ -237,7 +234,7 @@ The total N participants was 32,214 participants (*Mean* = 48.6 years, *SD* = 13
 To examine the factor structure of the IAS, a two-step approach was employed.
 First, Exploratory Graph Analysis (EGA), was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
 The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates.
-A novel network psychometrics - Unique variable analysis [UVA; @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25).
+A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25).
 Subsequently, exploratory factor analysis (EFA) was employed followed by confirmatory factor analysis (CFA).
 
 ### Results
@@ -291,19 +288,17 @@ These findings underscore the robustness of the identified 4-dimensional structu
 
 When accounting for all samples, the factor analysis reveals that a 4-factor structure fits best.
 The exploratory factor analysis revealed that 4 latent factors (oblimin rotation) accounted for  41.58% of the total variance of the original data (MR1 = 14.45%, MR3 = 11.76%, MR2 = 8.09%, MR4 = 7.28%).
-Since UVA identified "tickle" as the item to be removed—and it also had the lowest uniqueness value in factor analysis with a similar loading to "itch"—"tickle" was excluded from subsequent analyses.
+Since UVA identified "tickle" as the item to be removed—and it also had the lowest uniqueness value in factor analysis with a similar loading to "itch"—" it was excluded from subsequent analyses.
 
 <!-- Confirmatory factor analysis -->
 
-CFA was computed with the removal of the item Tickle as it was constantly flagged as redundant. This analysis compared 5 models: a single-factor solution, a 4-factor solution, a 5-factor solution, a 6-factor solution and a 7-factor solution. 
+CFA was computed with the removal of the item "tickle" as it was constantly flagged as redundant. This analysis compared 5 models: a single-factor solution, a 4-factor solution, a 5-factor solution, a 6-factor solution and a 7-factor solution. 
 The latter was preferred in most datasets, including with indices that penalise increased number of parameters (such as BIC).
 There was no evidence for higher order factors.
 
 ### Discussion
 
 <!-- Ias structure -->
-
-**note to dom**: should we say the 4-factor structure fits best considering the CFA indicated that 7-factor fits best? And considering that we argue for pairs of items being the msot robust?  
 
 In this study, several datasets were analyzed for a meta analysis of the structure of the IAS.
 The findings reveal that a 4-factor model fits the IAS best.
@@ -312,8 +307,8 @@ There was no clear evidence for higher-order factors.
 
 <!-- linking findings to previous research -->
 
-These findings contrast with previous research, which all found that 2-factor model[@murphy2019; @koike2023], 1-factor model [@brand2023] and bifactor model [@lin2023; @campos2021] fits the data best.
-While this analysis also revealed an okay fit for the 1-factor model, the 4-factor model revealed the best fit.
+These findings contrast with previous research, which all found that 2-factor model [@murphy2019; @koike2023], 1-factor model [@brand2023] and bifactor model [@lin2023; @campos2021] fits the data best.
+While this analysis also revealed an okay fit for the 1-factor model, the 4-factor model was superior.
 The 4-factor structure reveals different ‘hubs' of items that are related, not only in this structure analysis, but also in underlying mechanisms.
 The ‘wind-burp-cough-sneeze-vomit' category, for example, only entails items that are linked to excretion through the mouth.
 The other categories are organized similarly.
@@ -325,14 +320,14 @@ This organization and structure is useful for further analysis, as the data can 
 
 There are several items that show redundancy suggesting that adapting the IAS would be beneficial for validity.
 Based on the given results, we suggest removing the tickle, while keeping the itch item  \[**todo**: stats?\].
-Other items with slight redundancy were Hungry and Thirsty, Urinate and Defecate, and Sneeze and Cough.
+Other items with slight redundancy were "hungry" and "thirsty", "urinate" and "defecate", and "sneeze" and "cough".
 
 <!-- Lins short IAs kept: Hunger, Breath, Urinate, Taste, Vomit, Cough, Temperature, Sexual Arousal, Wind, Muscle, Pain, Itch -->
 
-Interestingly, @lin2023 also found that tickle and itch were redundant, excluding one of them but the reason being that the character for both words is the same in the Chinese language.
+Interestingly, @lin2023 also found that "tickle" and "itch" were redundant, which led them to excludw one of them. Although, the reason being that the character for both words is the same in the Chinese language.
 On top of that, they came up with a shortened version of the IAS, excluding further items, resulting in a 12-item IAS, which aligns with our findings, suggesting that further items are ambiguous as to whether they should be removed.
-Their 12-item IAS included the Hunger, Breath, Urinate, Taste, Vomit, Cough, Temperature, Sexual Arousal, Wind, Muscle, Pain, Itch items.  
-In contrast, other findings also found itch and tickle to be redundant but did not suggest excluding items [@campos2021].
+Their 12-item IAS included the "hunger", "breath", "urinate", "taste", "vomit", "cough", "temperature", "sexual arousa", "wind", "muscle", "pain", "itch" items.  
+In contrast, other findings also found "tickle" to be redundant but did not suggest excluding items [@campos2021].
 
 <!-- low density on extreme values (1 and 5) -->
 
@@ -340,12 +335,13 @@ The findings indicate a high proportion of answers at 4 (see Figure 1), especial
 The analogue scale shows a more dispersed distribution, with some answers indicating the highest 5/5, which was not the case in Likert-scales. 
 Therefore, we recommend using an analog scale for the IAS.
 
-Before this paper, the IAS has not yet been used or analyzed with an analog scale, rather than a five step scale.
+Before this paper, the IAS had not yet been used or analyzed with an analog scale, rather than a five-step scale.
 Therefore, this study provides a novel approach to improving the IAS in a simple manner.
 
 ### Limitations and Future Directions
 
-There are several limitations to the IAS; There are some redundant items, the 5-point scale does not provide great variability, and the structure could be improved.
+<!-- pooor arguments --> 
+There are several limitations to the IAS. There are some redundant items, the 5-point scale does not provide great variability, and the structure could be improved.
 Therefore, improving the IAS, or creating a new questionnaire investigating interoception could be useful to achieving reliable and accurate indication of interoceptive awareness.
 
 ## Study 2
@@ -374,104 +370,128 @@ Correlations will be computed using the correlation package under a Bayesian fra
 
 **todo: compute average correlations**
 
-The EGA components capture groupings of pairs of items, such as "wind" and "burp", "cough" and "sneeze", or "muscle" and "pain".
+The EGA components capture groupings of pairs of items, such as "wind" and "burp", "cough" and "sneeze", and "muscle" and "pain".
 These groupings were used in the correlational analysis, to observe how much each group/pair correlates with other factors, such as Alexithymia, or the MAIA (see Figure 2).
 
 Alexithymia is negatively correlated with all interoceptive groups.
 Autistic traits are mostly negatively correlated with IAS measure, except for patterns and numbers (as an autistic trait), which is significantly and positively correlated with the "itch/bruise" pairing.
+
 The BPQ Body Awareness part is positively correlated with all IAS pairs, whereas the Autonomic Reactivity part is negatively correlated with all IAS groupings.
 Conspiracy Beliefs were all positively correlated with the IAS pairs, however, only Global Conspiracy with "hungry/thirsty", "urinate/defecate" and "cough/sneeze", as well as personal wellbeing with "hungry/thirsty", and Information Control with "cough/sneeze" were significantly positively correlated.
+
 Demographic data is also mostly positively correlated with the IAS findings, where gender and age more strongly correlated with "hungry/thirsty".
-In this analysis, lying profile is not strongly correlated with the IAS; Except for contextuality, which shows a significant negative correlation with "itch/bruise".
-The MAIA has a strong positive correlation with most IAS pairings, except for the "not worrying" and "not distracting" items of the MAIA, which show less strong, or even negative correlations with all IAS item pairings.
+
+In this analysis, lying profile is not strongly correlated with the IAS, except for contextuality which shows a significant negative correlation with "itch/bruise".
+The MAIA has a strong positive correlation with most IAS pairings, except for the Not Worrying and Not Distracting items of the MAIA, which show less strong, or even negative correlations with all IAS item pairings.
+
 Maladaptiveness had mostly negative correlations with the IAS, with only a few significant correlations, namely "psychoticism", "negative affect", and "detachment" with "muscle/pain" and "hungry/thirsty", as well as "negative affect" with "wind/burp".
+
 Overall, mood was mostly negatively correlated with the IAS, where "hungry/thirsty" had the strongest negative correlation of all mood measures.
 Except for "neuroticism" and "honesty-humility", personality traits, such as "openness" and "extraversion" were positively correlated with the IAS groupings.
 Shizotypic traits were mostly negatively correlated with the IAS, with "hungry/thirsty" showing the strongest negative correlation between schizotypic and the IAS.
+
 World beliefs were mostly positively correlated with the IAS, however, only a few were significant: "hierarchical", "enticing", and "alive" correlates significantly with "muscle/pain"; "Understandable" has a significant positive correlation with "heart/breathing"; And "hierarchical" and "alive" has a significant positive correlation with "hungry/thirsty".
 
 ![**Figure 2.** Correlates of the IAS](figures/clipboard-1619164537.png){width="911"}
 
 ### Discussion
 
-Our findings confirmed that interception lies within an intricate network of correlates.
-Alexithyma has the most negative correlation with the IAS, whereas, the MAIA questionnaire is most strongly positively correlated with the IAS.
-The correlates cannot only explain attributes of interoception, but can also be used to validate measures for interoception.
+<!-- strongest and weakest correlations with the IAS--> 
+Our findings confirm that interoception exists within a complex network of correlates. 
+Among these, alexithymia exhibits the strongest negative correlation with the IAS, whereas the MAIA questionnaire shows the strongest positive correlation. 
+These correlates not only help explain different aspects of interoception but also serve as valuable tools for validating interoceptive measures.
 
-While these results reveal correlations of different categories with the IAS, the findings are limited to the given questionnaire.
-However, they give a good indication of how interoception in general might be linked to the different categories, leading to interesting findings.
-The results show a consistent pattern of correlations with other interoception measures, psychopathology, and highlighting of interesting exploratory results, such as how primal world beliefs correlate with the IAS.
+<!-- consistent pattern of results and interesting exprolatory analysis --> 
+While our results reveal various correlations with the IAS, they are limited to the scope of the given questionnaire.
+Nonetheless, they provide valuable insights into how interoception may relate to different psychological and personality traits. 
+The results show a consistent pattern of correlations with other measures and highlight interesting exploratory results, such as correlations between primal world beliefs with the IAS.
 
-The analysis revealed a negative correlation between alexithymia and scores in the IAS, which is in line with previous research [@herbert2011].
-A negative correlation between autism and interoceptive awareness, which has been found in this sample, has also been found in previous research [@dubois2016].
-Conspiracy Beliefs and IAS scores were not strongly correlated.
-However, there was a slight positive correlation.
-To the best of our knowledge, this interaction has not been investigated before.
-However, research shows correlations between (political) beliefs and interoception, which could underlie the same mechanism [@ruisch2022].
-Lying profile was also not strongly correlated with the IAS.
-Previous research provides some evidence for a relationshipbetween interoception and lying profile [@makowski2023a], indicating a contrast from the literature to the results at hand.
-The analysis showed that mood and the IAS scores have a strong negative correlation, which has been investigated in previous studies, finding a correlation between the two variables as well [@solanolópez2018].
-The analysis showed that personality is also correlated with interoceptive accuracy scores as retrieved by the IAS.
-While there are many aspects of personality, put simply, personality and interoception have been found to correlate in previous studies as well [@erle2021].
-Our findings show some negative correlations between schizotypy and interoception.
-Previous research has investigated this relationship and, similarly, found a negative correlation between interoceptive awareness and schizotypy, particularly at the onset of psychosis [@torregrossa2022].
-Lastly, World Beliefs and Interoception showed some significant positive correlations.
-World Beliefs have not been linked with interoception previously.
-As mentioned, other beliefs, such as political beliefs have been mentioned to interoception, where significant correlations were observed [@ruisch2022a].
-Further research is needed to understand this mechanism and validate whether world beliefs, which lay the framework through which we see the world [@clifton2020], is needed.
+<!-- negative correlation with alexithymia and autism --> 
+Our analysis found a strong negative correlation between alexithymia and IAS scores, aligning with previous research [@herbert2011; @brand2023; @murphy2019]. 
+Similarly, a negative correlation between autism and interoceptive awareness was observed in our sample, consistent with prior findings [@dubois2016].
 
-The above findings show how interoception is correlated with many lifestyle and health factors, and is therefore an important concept to study.
-Here we showed many correlates of the IAS and lifestyle, as well as health factors.
-This is not only valuable to understand interception, and the role it plays in our lives, better, but also crucial to further validate the Ias, as well as other interoception measures.
-This analysis therefore lays the groundwork for validating new interoceptive measures and questionnaires needed to grasp interoception and its role in our life.
+<!-- weak correlation with conspiracy beliefs --> 
+Conspiracy beliefs did not strongly correlate with IAS scores, though a slight positive correlation was present. 
+To our knowledge, this relationship has not been previously explored. 
+However, prior studies have suggested connections between interoception and (political) beliefs, potentially pointing to shared underlying mechanisms [@ruisch2022].
+
+<!-- weak correlation with lying profiles --> 
+The relationship between interoception and lying profiles was also weak. 
+This contrasts with previous research suggesting associations between interoception and deception [@makowski2023a], warranting further investigation.
+
+<!-- stroong negative correlations with Mood --> 
+Mood and IAS scores exhibited a strong negative correlation, consistent with prior studies that have documented similar findings [@solanolópez2018]. 
+Additionally, personality traits correlated with interoceptive accuracy scores, reinforcing existing research linking personality and interoception [@erle2021].
+
+<!-- negative correlations with schizotypy --> 
+We also observed negative correlations between schizotypy and interoception, in line with previous studies that identified a similar relationship with interoceptive awareness, particularly in individuals at risk for psychosis [@torregrossa2022].
+
+<!-- positive correlations with some Primal World Beliefs --> 
+Interestingly, world beliefs demonstrated significant positive correlations with interoception. 
+While this relationship has not been previously documented, other forms of belief, such as political ideology, have been linked to interoception [@ruisch2022a]. 
+Further research is needed to determine whether world beliefs, which shape our perception of reality [@clifton2020], are meaningfully connected to interoception.
+
+<!--Summary --> 
+
+Overall, our findings highlight the broad relevance of interoception across various cognitive and affective traits, underscoring its significance in both research and clinical contexts. 
+By identifying numerous correlates of the IAS, we contribute not only to a deeper understanding of interoception’s role in daily life but also to the ongoing validation of the IAS and other interoceptive measures. 
+This analysis lays an important foundation for the development of new interoceptive assessment tools, further advancing our comprehension of interoception and its impact on human experience.
 
 ## General Discussion
 
-The analyses revealed that the IAS has 4-factor structure, and a rather uneven distribution.
-The findings indicate that the IAS is measuring interoception in an acceptable manner, but there is also room for improvement.
-Furthermore, the results reveal different correlation measures with the IAS, giving space to further explore whether and how measures correlate with interoception/the IAS.
-In the following section, the IAS is discussed further to reveal shortcomings and strengths of the questionnaire.
-Finally, future steps will be revealed to improve the way in which we measure interoception.
+<!-- factor structure --> 
 
-Overall, the IAS is straightforward with its sensation-centered items.
-There are several points of improvement to the IAS, which this work suggests.
-Firstly, removing redundant items, such as the itch item as shown in the above analysis.
-Previous work has also shown that the itch and tickle items are subject to redundancy [@lin2023, @campos2021] has shown.
-Interestingly, @campos2021 suggest removing the tickle item instead.
-@lin2023 on the other hand removed the itch item, because the sign for itch and tickle is the same.
-Furthermore, this work recommends using analog scales, instead of 5 point scales.
-In a 5-point scale, the variability is clearly limited with most people choosing ⅘.
-As visible in Figure X, the variability increases significantly, using an analog scale.
-However, it is important to note that even with an analog scale, the variability of the IAS is still limited.
-The more variability a scale shows, the more results can depict individual differences between participants.
-Therefore, good dispersion is essential for achieving relevant and usable results, and striving for more variability would be beneficial to this interoception scale, too.
+Our analyses revealed that the IAS follows a four-factor structure with an uneven distribution. 
+While the findings indicate that the IAS measures interoception adequately, there is room for improvement. 
+Additionally, different correlation measures with the IAS suggest opportunities for further exploration of how interoception is assessed.
+In the following section, we discuss the strengths and shortcomings of the IAS, followed by proposed steps to enhance interoception measurement.
 
-In this work, it becomes apparent that even with the mentioned improvements to the scale, there are limitations to the IAS, which reduce the accuracy of this scale.
-Those limitations include that there are few items for some modalities, such as only one item for heart perception.
-Having more modality is useful as each grouping can have more variability with increased modality, leading to more nuanced results.
-On top of that, there is no clear and theoretical, or empirical structure, as there is a very small grouping of items.
-Ideally, a scale would allow for an analysis showing different groupings so that different categories can be created based on which the data can be analyzed.
-The groupings in this analysis reveal that the IAS can only be grouped with two items per group, leading to low scores and variability in each group.
-On top of that, there are ambiguous items in the IAS, of which the grouping depends on the context.
-For example, one might indicate that they can perceive well how their heart is beating fast as well as vomiting, but both items can be linked to feeling anxious, and therefore might indicate different results than initially expected.
-Therefore, the grouping and structure of the IAS can be improved.
+<!-- redundancy of tickle and other items --> 
 
-Furthermore, all items are phrased positively, which might influence how participants answer the questions.
-While phrasing items in a positive manner can be beneficial, the benefits of positive phrasing might exacerbate a positive bias and thus lead to unidimensional results.
-Therefore, phrasing questions in a more diverse manner might lead to more accurate results and might thus be beneficial.
+Overall, the IAS is straightforward in its sensation-centered items.
+However, several areas for improvement emerge from this study. Firstly, redundant items should be removed, such as the "itch" item, as highlighted in our analysis. 
+Previous research also suggests redundancy between itch and tickle items [@lin2023, @campos2021]. 
+Interestingly, while @campos2021 does not recommend the removal of either, @lin2023 argues for removing the itch item due to their overlapping character representation.
 
-Based on the given arguments, it becomes clear that there is a need for context-specific items, which are cross-modal when possible, such as integrating cardioception and respiroception.
-After establishing the clear need for a new scale to measure interoception, this study proposes the need for a new scale (Multimodal Interoceptive Sensitivity Scale, MISS) to adapt to the newest findings on the IAS and what we know about interoception to this day.
-The new scale will be able to be compared to the correlates of the IAS.
+<!-- benefit of analog scales --> 
+
+Furthermore, this study recommends using analog scales instead of 5-point scales. 
+The limited variability of the 5-point scale often results in most responses clustering around 3 or 4. 
+As shown in @fig-distributions, adopting an analog scale significantly increases variability. However, even with an analog scale, IAS variability remains constrained. 
+Greater variability allows for better differentiation among participants, making dispersion an essential factor for obtaining meaningful results. 
+Enhancing variability would therefore be beneficial for the IAS.
+
+<!-- Underrepresentation of modalities --> 
+
+Despite these improvements, certain limitations persist in the IAS that affect its accuracy. 
+Notably, some modalities are underrepresented—for instance, heart perception is measured by only one item. 
+Expanding modality coverage would enhance variability within each category, leading to more nuanced results. 
+Moreover, the IAS lacks a clear theoretical or empirical structure, with only small item groupings. 
+Ideally, a scale should allow for clear groupings that support meaningful data analysis. 
+In this study, each group contained only two items, resulting in low scores and limited variability. 
+Additionally, some IAS items are ambiguous, with their interpretation depending on context. 
+For example, an item about perceiving heartbeats and another about vomiting could both relate to anxiety, leading to results that may differ from initial expectations. 
+Thus, the grouping and structure of the IAS require refinement.
+
+<!-- positve response bias from only positive worded items --> 
+
+Another concern is that all IAS items are phrased positively, which may influence participant responses. 
+While positive phrasing has advantages, it can also introduce response bias, leading to unidimensional results.
+A more balanced phrasing approach, incorporating both positively and negatively framed items, could yield more accurate responses.
+
+<!-- suggestion for more context-specific --> 
+
+Given these considerations, it is clear that context-specific, cross-modal items—such as integrating cardioception and respiroception—are needed. 
+Recognizing the necessity for a refined interoception scale, this study proposes the development of the Multidimensional Interoceptive Inventory (MInt). 
+This new scale will be designed to align with recent findings on the IAS and interoception research while allowing for direct comparison with IAS correlates.
+
+\[**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)\] **I would rather put that in the discussion in the suggestions for better scales**
 
 ## Conclusion
 
-The IAS is a good way of measuring interoception considering the current existing questionnaires and tools.
-However, revising, or even re-inventing a survey to measure interoception would lead to the best measure of interoception.
-Therefore, this study proposes that a new scale to measure interoception is needed to evolve the current research on interoception.
-This study revealed many correlates of the IAS, giving space for future analysis on what might be a good interoceptive measure, and therefore laying the groundwork for the creation of a new interoception survey.
-
-\[**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)\] **I would rather put that in the discussion in the suggestions for better scales**
+The IAS is a valuable tool for measuring interoception compared to existing questionnaires and methods. 
+However, refining or even redesigning the questionnaire could lead to a more precise and comprehensive assessment. 
+This study highlights the need for a new interoception scale to advance research in the field. By identifying various correlates of the IAS, this work paves the way for future investigations into optimal interoceptive measures, ultimately laying the foundation for the development of a more effective interoception survey.
 
 ## References
 
