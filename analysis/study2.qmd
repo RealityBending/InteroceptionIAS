@@ -208,34 +208,6 @@ correlation::correlation(select(df_scores, -all_of(vars_intero)),
 
 Even EGA components capture pairs or groupings of pairs of items.
 
-## Average Correlations
-
-```{r}
-
-# names(df1a)
-# names(df1b)
-# names(df2)  # BPQ, BVAQ, MAIA, ICQ (?), TAS
-# names(df3)  # TAS, BPQ
-# names(df4)  # BAQ (?), BPQ, MAIA, BRS (resilience?), PBCS (private bodily consciousness?)
-# names(df5)
-# names(df6)  # IATS, SSS, GAD, PHQ2
-# names(df7a)  # MAIA, STAI, FFMQ, NEOFFI, CES
-# names(df7b)  # MAIA, STAI, BPQ, PHQ15, PHQ9
-# names(df7c)  # TAS, BPQ, TAS, ASI, BDI, IASV
-# names(df8a)  # EDI, BPQ
-# names(df8b)  # TAS, PHQ15, PHQ9
-# names(df9)  # BFI, STQ, EQ, ECR,
-# names(df10a)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
-# names(df10b)  # BDI, STAI, PHQ4
-# names(df10c) # PI, MAIA
-# names(df11a) # MAIA, TAS, MFQ(DEP), STAI(ANX)
-# names(df11b)
-
-# Compute total IAS scores for each dataset 
-df1a$total_IAS <- rowSums(df1a[, c(3:23)])
-```
-
-
 ## Demographics
 
 ### Gender
@@ -771,6 +743,40 @@ data <- rbind(
     mutate(var_Correlate = "Negativity")
 )
 ```
+
+## Average Correlations
+
+- BPQ - sf - Body perception questionnaire short form
+- BPQ - vsf - Body perception questionnaire very short form 
+- BVAQ - Bermond–Vorst Alexithymia Questionnaire 
+- MAIA-2 - Multidimensional Assessment of Interoceptive Awareness , Version-2
+- ICQ  - Interocpetive Confusion Questionnaire
+- TAS - Toronto Alexithymia Scale 
+- BAQ - Body awareness questionnaire
+- BRS - the body responsiveness scale 
+- PHQ-2 - Patient Health Questionnaire 2 items on major depressive episodes 
+- PHQ-4 - atient Health Questionnaire 4 items assessing anxiety and depression 
+- PHQ-9 - Patient Health Questionnaire 9-Item Version assesses depressive symptoms
+- PHQ-15 - Patient Health Questionnaire 15-Item Version assesses Somatic symptom distress 
+- SSS-8 - Somatic Symptom Scale 
+- IATS - Interoceptive Attention Scale
+- GAD-2 - Generalized Anxiety Disorder Scale 2 items on anxiety disorder 
+- STAIT - State-Trait-Anxiety Inventory Trait subscale
+- FFMQ - Observation and Description subscales of the Five Facet Mindfulness Questionnaire
+- NEOFFI - Neuroticism Neo Five-Factor Inventory Neuroticism subscale
+- ASI - Anxiety Sensitivity Inventory 3
+- BDI - The Beck Depression Inventory
+- EDI_IA - Eating Disorder Inventory, interoceptive awareness subscale
+- BFI -  Big Five inventory-10
+- ASQ -  Autism-Spectrum Quotient
+- MSI-BPD - Mclean Screening Instrument for Borderline Personality Disorder
+- GCB - Generic Conspiracist Beliefs scale
+- IPIP6 - Mini International Personality Item Pool
+- PI - Primal Inventory 18 items and 99 items 
+- PID5-sf - Personality Inventory for DSM-5 Short Form 
+- SPQ-BRU - Schizotypal Personality Questionnaire, brief revised updated
+- LIE - Lying Profile Questionnaire
+
 
 ## Summary
 
