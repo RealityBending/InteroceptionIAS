@@ -140,20 +140,20 @@ vars_intero <- names(select(scores$sample1a, -Sample, -starts_with("CFA_"), -sta
 
 # names(df1a)
 # names(df1b)
-# names(df2)  # BPQ, BVAQ, MAIA, ICQ (?), TAS
+# names(df2)  #TAS, MAIA, ICQ, BPQ, BVAQ
 # names(df3)  # TAS, BPQ
-# names(df4)  # BAQ (?), BPQ, MAIA, BRS (resilience?), PBCS (private bodily consciousness?)
+# names(df4)  # BPQ, PBCS (private bodily consciousness?), MAIA, BAQ, BRS
 # names(df5)  
-# names(df6)  # IATS, SSS, GAD, PHQ2
-# names(df7a)  # MAIA, STAI, FFMQ, NEOFFI, CES
-# names(df7b)  # MAIA, STAI, BPQ, PHQ15, PHQ9
-# names(df7c)  # TAS, BPQ, TAS, ASI, BDI, IASV
+# names(df6)  # PHQ2, GAD2, SSS8, IATS
+# names(df7a)  # STAIT, MAIA, CES (not reported in the paper), FFMQ, NEOFFI
+# names(df7b)  # BPQ, PHQ15, PHQ9, MAIA, STAIT, 
+# names(df7c)  # CI01 (not reported in the paper), TAS, BPQ, MAIA, ASI, ICQ 
 # names(df8a)  # EDI, BPQ
-# names(df8b)  # TAS, PHQ15, PHQ9
-# names(df9)  # BFI, STQ, EQ, ECR, 
-# names(df10a)  # MAIA, PHQ4, PI, LIE, IPIP, PID, SPQ
-# names(df10b)  # BDI, STAI, PHQ4
-# names(df10c) # PI, MAIA
+# names(df8b)  # PHQ9, PHQ15, TAS
+# names(df9)  # ECR (Experience in Close Relationship Scale), TEAQ (touch experiences and attitudes questionnaire), STQ, TACSEN, UCLA, BFI, DBIA, BO, EQ
+# names(df10a)  # ASQ, BPD, GCBS, IPIP6, LIE, MAIA, PHQ4, PI, PID, SPQ
+# names(df10b)  # PHQ4, STAIT5, BDI, MAIA
+# names(df10c) # MAIA, PI, 
 # names(df11a) # MAIA, TAS, MFQ(DEP), STAI(ANX)
 # names(df11b) 
 ```
@@ -311,10 +311,12 @@ data <- rbind(
 
 ```{r}
 names(df2)[str_detect(names(df2), "MAIA")]  
-names(df4)[str_detect(names(df4), "MAIA")]  # ?
+names(df4)[str_detect(names(df4), "MAIA")]  # individual items
 names(df7a)[str_detect(names(df7a), "MAIA")]  
 names(df7b)[str_detect(names(df7b), "maia")] 
-names(df10a)[str_detect(names(df10b), "MAIA")]
+names(df7c)[str_detect(names(df7c), "MAIA")]
+names(df10a)[str_detect(names(df10a), "MAIA")]
+names(df10b)[str_detect(names(df10b), "MAIA2")] # all columns with NA values 
 names(df10c)[str_detect(names(df10c), "MAIA")]
 names(df11a)[str_detect(names(df11b), "MAIA")]
 
@@ -337,7 +339,9 @@ data <- rbind(
     mutate(var_Correlate = "Not Worrying"),
   make_cor(df2, vars_intero, with = "MAIA_SelfReg", component="MAIA") |>
     mutate(var_Correlate = "Self Regulation"),
+  
   # df4
+  
   # df7a
   make_cor(df7a, vars_intero, with = "mAIA_ATTENTION_REGULATION", component="MAIA") |>
     mutate(var_Correlate = "Attention Regulation"),
@@ -376,6 +380,25 @@ data <- rbind(
   make_cor(df7b, vars_intero, with = "maiaTrusting", component="MAIA") |>
     mutate(var_Correlate = "Trusting"),
   
+  # df7c
+   make_cor(df7c, vars_intero, with = "MAIA_noticing", component="MAIA") |>
+    mutate(var_Correlate = "Noticing"),
+  make_cor(df7c, vars_intero, with = "MAIA_notdis", component="MAIA") |>
+    mutate(var_Correlate = "Not Distracting"),
+  make_cor(df7c, vars_intero, with = "MAIA_notwor", component="MAIA") |>
+    mutate(var_Correlate = "Not Worrying"),
+  make_cor(df7c, vars_intero, with = "MAIA_attreg", component="MAIA") |>
+    mutate(var_Correlate = "Attention Regulation"),
+  make_cor(df7c, vars_intero, with = "MAIA_emoaw", component="MAIA") |>
+    mutate(var_Correlate = "Emotional Awareness"),
+  make_cor(df7c, vars_intero, with = "MAIA_selfreg", component="MAIA") |>
+    mutate(var_Correlate = "Self Regulation"),
+  make_cor(df7c, vars_intero, with = "MAIA_bodlis", component="MAIA") |>
+    mutate(var_Correlate = "Listening"),
+  make_cor(df7c, vars_intero, with = "MAIA_trust", component="MAIA") |>
+    mutate(var_Correlate = "Trusting"),
+
+  
   # df10a
   make_cor(df10a, vars_intero, with = "MAIA_AttentionRegulation", component="MAIA")  |>
     mutate(var_Correlate = "Attention Regulation"),
@@ -393,6 +416,8 @@ data <- rbind(
     mutate(var_Correlate = "Self Regulation"),
   make_cor(df10a, vars_intero, with = "MAIA_Trusting", component="MAIA") |>
     mutate(var_Correlate = "Trusting"),
+  
+  #df10b
 
   # df10c 
   make_cor(df10c, vars_intero, with = "MAIA_AttentionRegulation", component="MAIA")  |>
@@ -462,6 +487,7 @@ data <- rbind(
 ### Alexithymia
 
 ```{r}
+#  only one study assess alexithymia with BVAQ (df2)
 names(df2)[str_detect(names(df2), "TAS")]
 names(df3)[str_starts(names(df3), "TAS")]
 names(df7c)[str_starts(names(df7c), "TAS")]
@@ -470,12 +496,16 @@ names(df11a)[str_starts(names(df11a), "TAS")]
 
 data <- rbind(
   data,
+  
+  #df2 
   make_cor(df2, vars_intero, with = "TAS_DIF", component="Alexithymia") |>
     mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
   make_cor(df2, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
     mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
   make_cor(df2, vars_intero, with = "TAS_EOT", component="Alexithymia") |>
     mutate(var_Correlate = "External Thinking (TAS)"),
+
+  #df3 
   make_cor(df3, vars_intero, with = "TAS_DescribingFeelings", component="Alexithymia") |>
     mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
   make_cor(df3, vars_intero, with = "TAS_IdentifyingFeelings", component="Alexithymia") |> 
