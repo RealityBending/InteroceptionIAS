@@ -807,6 +807,45 @@ data <- rbind(
 - SPQ-BRU - Schizotypal Personality Questionnaire, brief revised updated
 - LIE - Lying Profile Questionnaire
 
+```{r}
+# names(df1a)
+# names(df1b)
+# names(df2)  #TAS, MAIA, ICQ, BPQ, BVAQ
+# names(df3)  # TAS, BPQ
+# names(df4)  # BPQ, PBCS (private bodily consciousness?), MAIA, BAQ, BRS
+# names(df5)  
+# names(df6)  # PHQ2, GAD2, SSS8, IATS
+# names(df7a)  # STAIT, MAIA, CES (not reported in the paper), FFMQ, NEOFFI
+# names(df7b)  # BPQ, PHQ15, PHQ9, MAIA, STAIT, 
+# names(df7c)  # CI01 (not reported in the paper), TAS, BPQ, MAIA, ASI, ICQ 
+# names(df8a)  # EDI, BPQ
+# names(df8b)  # PHQ9, PHQ15, TAS
+# names(df9)  # ECR (Experience in Close Relationship Scale), TEAQ (touch experiences and attitudes questionnaire), STQ, TACSEN, UCLA, BFI, DBIA, BO, EQ
+# names(df10a)  # ASQ, BPD, GCBS, IPIP6, LIE, MAIA, PHQ4, PI, PID, SPQ
+# names(df10b)  # PHQ4, STAIT5, BDI, MAIA
+# names(df10c) # MAIA, PI, 
+# names(df11a) # MAIA, TAS, MFQ(DEP), STAI(ANX)
+# names(df11b) 
+
+average_corr <- data |>
+    summarise(mean_r = mean(r, na.rm = TRUE), .by=c("Component", "var_Correlate", "var_Interoception")) 
+
+# Alexithymia
+average_corr |>
+  filter(Component == "Alexithymia") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
+#BPQ
+average_corr |>
+  filter(Component == "BPQ") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
+
+  
+```
+
 
 ## Summary
 

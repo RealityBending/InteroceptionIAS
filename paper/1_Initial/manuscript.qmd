@@ -354,8 +354,6 @@ Investigating correlates will help validate the IAS, as well as other interocept
 
 #### Materials
 
-**note to dom** how do you want to present the questionnaires? in text format or in the table with their references on a footnote? 
-
 The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO: add the rest of the questionnaires, sample items and references**).
 
 \input{../../analysis/figures/table2.tex}
@@ -368,7 +366,53 @@ Correlations will be computed using the correlation package under a Bayesian fra
 
 ### Results
 
-**todo: compute average correlations**
+## Average correlations 
+
+**compute internal consistency**
+
+
+### Correlations with body measures
+<!-- Alexithymia -->
+Alexithymia was assessed in the samples with the Bermond–Vorst Alexithymia Questionnaire [BVAQ; @vorst2001validity] and the Toronto Alexithymia Scale[TAS; @bagby1994twenty]. 
+
+<!-- BVAQ -->
+The BVAQ consists of 5 subscales - fantasising, idenitying, analysing; verbalising and emotionalising - assessed with 40 items on a 5-point Likert scale, from 'defnitely applies to me' to 'in no way applies to me'.
+Additionally, the BVAQ reduces these subscales into two high order factors, an affective component and a cognitive one, with high scores being indicative of high proneness to alexithymia. 
+
+On average, the cognitive component of the BVAQ was weakly and negatively correlated with all IAS pairs of items with the biggest correlation being with the Itch/Bruise pair (r = -0.112) and the lowest correlation beeing with the Muscle/Pain pair (r = -0.244). 
+The affective component of the BVAQ was positively, but very weak, correlated with all pairs, with the biggest correlation being with the Itch/Bruise pair (r = 0.107). 
+The only exception was a negative correlation with the Urinate/Defecate pair (r = -0.036). 
+
+<!-- TAS -->
+The TAS contains 20-items rated on a 5-point forced scale, from 'strongly disagree' to 'strongly afree', divided into 3 dimensions - difficulty identiying feelings, difficulty describing feelings, and externally thinking. 
+High scores on this scale also reflect higher alexithymia. 
+
+All the three dimensions assessed with the TAS were on average negatively correlated with all pairs of IAS items.
+The difficulty describing feelings had its strongest correlation with Hungry/Thirsty (r = -0.179) and weakest with the Wind/Burp (r = -0.117).
+while, the difficulty describing feelings had its strongest correlation with Muscle/Pain (r = -0.247) and weakest with Itch/Bruise (r = -0.157).
+Lastly, the external thinking dimension was more correlated with the Cough/Sneeze pair (r = -0.138) and less correlated with the Hungry/Thirsty (r = -0.018). 
+
+<!-- BPQ -->
+The studies within our sample used the Body Perception Questionnaire short-form (BPQ-SF) and the very-short form (BPQ-VSF) to assess interoception [@cabrera2018assessing]. 
+The BPQ-SF comprised of 46 items on a 5-point Likert scale assessing body awareness (26 items) and autonomic reactivity (21 items). 
+The BPQ-VSF comprises of 12 items from the body awareness subscale of the BPQ-SF.
+In this study, all scores assessing these two dimensions were grouped together, hence no disitintion is made between awareness measured with the BPQ-SF and the BPQ-VSF.
+
+**note to add:** discuss later
+
+In general, all pairs of the IAS were positively,and weakily, associated with the body awareness subscales, while negative and weakily correlated with the autonomic reactivity subscale. 
+The strongest correlation identified between the IAS pairs and the body awereness subscale was with the 	
+Heart/Breathing pair (r = 0.151) whilst the strongest correlation with the autonomic reactivity was with the Urinate/Defecate pair (r = -0.235). 
+The weakest correlation between the body awareness and the IAS was with the Hungry/Thirsty pair (r =  0.055) and between the autonomic reactivity and the IAS was with the Heart/Breathing pair (r = -0.106). 
+
+<!-- MAIA -->
+
+
+
+
+<!-- MAIA -->
+
+## Correlations 
 
 The EGA components capture groupings of pairs of items, such as "wind" and "burp", "cough" and "sneeze", and "muscle" and "pain".
 These groupings were used in the correlational analysis, to observe how much each group/pair correlates with other factors, such as Alexithymia, or the MAIA (see Figure 2).
