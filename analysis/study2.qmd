@@ -458,6 +458,22 @@ data <- rbind(
 )
 ```
 
+### ICQ
+```{r}
+
+names(df2)[str_detect(names(df2), "ICQ")] 
+names(df7c)[str_detect(names(df7c), "ICQ")] 
+
+
+data <- rbind(
+  data,
+  make_cor(df2, vars_intero, with = "ICQ", component="ICQ") |>
+    mutate(var_Correlate = "ICQ"),
+  make_cor(df7c, vars_intero, with = "ICQ_sum", component="ICQ") |>
+    mutate(var_Correlate = "ICQ")
+)
+
+```
 
 ### BPQ
 
@@ -579,25 +595,28 @@ names(df6)[str_detect(names(df6), "GAD")]
 names(df7a)[str_detect(names(df7a), "STAI")] 
 names(df7b)[str_detect(names(df7b), "STAI")] 
 names(df7c)[str_detect(names(df7c), "STAI")]
+names(df10b)[str_detect(names(df10b), "STAI")] 
+names(df11a)[str_detect(names(df11a), "ANX")] # anx = stai-t
+
 
 data <- rbind(
   data,
   make_cor(df6, vars_intero, with = "GAD2_sum", component="Mood") |>
     mutate(var_Correlate = "Anxiety (GAD-2)"),
   make_cor(df7a, vars_intero, with = "STAI_T_Sumscore", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI)"),
+    mutate(var_Correlate = "Anxiety (STAI-T)"),
   make_cor(df7b, vars_intero, with = "STAIT_Sum", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI)"),
+    mutate(var_Correlate = "Anxiety (STAI-T)"),
   make_cor(df7c, vars_intero, with = "STAIT_sum", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI)"),
+    mutate(var_Correlate = "Anxiety (STAI-T)"),
   make_cor(df10a, vars_intero, with = "PHQ4_Anxiety", component="Mood") |>
     mutate(var_Correlate = "Anxiety (GAD-2)"),
   make_cor(df10b, vars_intero, with = "PHQ4_Anxiety", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (GAD-2)"),
+    mutate(var_Correlate = "Anxiety (STAI-5)"),
   make_cor(df10b, vars_intero, with = "STAI5_General", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI)"),
+    mutate(var_Correlate = "Anxiety (STAI-T)"),
   make_cor(df11a, vars_intero, with =  "ANX", component = "Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI)")
+    mutate(var_Correlate = "Anxiety (STAI-T)")
 )
 ```
 
@@ -843,6 +862,24 @@ average_corr |>
   summarise(min = min(mean_r),
              max = max(mean_r))
 
+#MAIA
+average_corr |>
+  filter(Component == "MAIA") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
+#ICQ
+average_corr |>
+  filter(Component == "ICQ") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
+#Mood
+average_corr |>
+  filter(Component == "Mood") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
   
 ```
 

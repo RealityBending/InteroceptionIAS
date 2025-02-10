@@ -358,8 +358,6 @@ The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO
 
 \input{../../analysis/figures/table2.tex}
 
-##### Interoceptive Measures
-
 #### Statistical analysis
 
 Correlations will be computed using the correlation package under a Bayesian framework [@ben2020effectsize].
@@ -368,10 +366,12 @@ Correlations will be computed using the correlation package under a Bayesian fra
 
 ## Average correlations 
 
-**compute internal consistency**
+The EGA components captured grouping of items such as 'wind' and 'burp, 'cough' and 'sneeze', 'muscle' and 'pain'. 
+These groupings were used in correlational analysis to analyse how much each pairing is associated with other factor such as Alexithymia and with Mood disorders (see figure 2). 
 
+**note**compute internal consistency
 
-### Correlations with body measures
+#### Correlations with body measures
 <!-- Alexithymia -->
 Alexithymia was assessed in the samples with the Bermond–Vorst Alexithymia Questionnaire [BVAQ; @vorst2001validity] and the Toronto Alexithymia Scale[TAS; @bagby1994twenty]. 
 
@@ -407,34 +407,53 @@ The weakest correlation between the body awareness and the IAS was with the Hung
 
 <!-- MAIA -->
 
+The MAIA was one of the most commonly used measures of interoception in our study, with nine samples reporting its use. 
+This 37-item questionnaire assesses eight state-trait dimensions of interoception: Noticing, Not-Distracting, Not-Worrying, Attention Regulation, Emotional Awareness, Self-Regulation, Body Listening, and Trust. 
+Responses are rated on a scale from 0 (Never) to 5 (Always).
+
+On average, all MAIA dimensions were positively and weakly to moderately correlated with IAS pairings. 
+Notably, the strongest correlations were observed between the Noticing dimension and the Heart/Breathing pairing (r = 0.394), Trusting and Hungry/Thirsty (r = 0.347), and Attention Regulation and Heart/Breathing (r = 0.334). 
+The Not-Distracting and Not-Worrying subscales were generally positively correlated with IAS pairings, with a few exceptions: Not-Distracting showed minimal correlation with Cough/Sneeze (r = 0.0206) and Heart/Breathing (r = -0.007), while Not-Worrying had a low correlation with Itch/Bruise (r = 0.031).
+
+<!-- ICQ -->
+
+The Interoceptive Confusion Questionnaire (ICQ; @brewer2016alexithymia) was used to assess individuals' difficulties in interpreting non-affective physiological states, such as pain and hunger. The ICQ consists of 20 items rated on a scale from 1 ("Does not describe me") to 5 ("Describes me very well"), with higher scores indicating greater interoceptive confusion.
+
+The ICQ showed weak to moderate negative correlations with all IAS pairings. The strongest correlation was observed with the Hunger/Thirsty pairing (r = 0.348), while the weakest was with the Itch/Bruise pairing (r = 0.207).
+
+#### Correlations with mood measures
+
+Mood disorders were assessed using several standardized measures, including the General Anxiety Disorder-2 [GAD-2; @kroenke2007anxiety], the State-Trait Anxiety Inventory [STAI; @spielberger1970manual] and its shorter version, the STAI-5 [@zsido2020development], Beck’s Depression Inventory [BDI; @beck1996beck], and the Mood and Feelings Questionnaire [MFQ; @messer1995development].
+Additionally, the Patient Health Questionnaire (PHQ) was administered in its 2-item [PHQ-2; @kroenke2003patient], 9-item [PHQ-9; @kroenke2001phq], and 15-item [PHQ-15; @kroenke2002phq] versions.
+Finally, borderline personality traits were assessed using the McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD; @zanarini2003zanarini].
 
 
+<!-- Anxiety -->
+The GAD-2, a brief screening tool for generalized anxiety disorder, consists of two items rated on a scale from 0 (not at all) to 3 (nearly every day).
+The STAI, a 40-item questionnaire rated on a 4-point Likert scale (0 to 3), measures both state and trait anxiety. 
+However, in our study, most participants primarily completed the trait anxiety subscale. 
+In some samples, a shorter 5-item version (STAI-5) was used to assess both state and trait anxiety.
 
-<!-- MAIA -->
+On average, anxiety measures showed weak negative correlations with all IAS pairs. 
+Notably, the strongest correlations between the IAS pairings and the GAD-2, STAI-T and STAIT-5 were observed with the Hungry/Thirsty pair (r = -0.168, r = -0.270 and r =  -0.248, respectively).
 
-## Correlations 
+<!-- Depression -->
+The BDI consists of 21 items measuring the severity of depressive symptoms on a scale from 0 to 3. 
+The total score is calculated by summing the highest responses, which are then compared to six depression severity levels, ranging from 1–10 (normal fluctuations in mood) to over 40 (extreme depression).
+The PHQ-2 includes two items assessing the frequency of depressive symptoms and anhedonia. 
+The PHQ-2 is derived from the PHQ-9, a nine-item screening tool used to assess depression severity and monitor treatment response.
+Both questionnaires are measured on on a scale from 0 (not at all) to 3 (nearly every day)
 
-The EGA components capture groupings of pairs of items, such as "wind" and "burp", "cough" and "sneeze", and "muscle" and "pain".
-These groupings were used in the correlational analysis, to observe how much each group/pair correlates with other factors, such as Alexithymia, or the MAIA (see Figure 2).
+Depression measures showed weak to moderate negative correlations with IAS pairings. 
+The BDI (r = -0.372), PHQ-2 (r = -0.148), and PHQ-9 (r = -0.241) correlated most with the Hungry/Thirsty pair, while the MFQ correlated most with Heart/Breathing (r = -0.345) pair.
 
-Alexithymia is negatively correlated with all interoceptive groups.
-Autistic traits are mostly negatively correlated with IAS measure, except for patterns and numbers (as an autistic trait), which is significantly and positively correlated with the "itch/bruise" pairing.
+<!-- Somatic concerns  -->
+ 
+The PHQ-15 also showed its strongest correlation with the Hungry/Thirsty pair (r = -0.241) but was, on average, weakly and negatively correlated with all other IAS pairings.
 
-The BPQ Body Awareness part is positively correlated with all IAS pairs, whereas the Autonomic Reactivity part is negatively correlated with all IAS groupings.
-Conspiracy Beliefs were all positively correlated with the IAS pairs, however, only Global Conspiracy with "hungry/thirsty", "urinate/defecate" and "cough/sneeze", as well as personal wellbeing with "hungry/thirsty", and Information Control with "cough/sneeze" were significantly positively correlated.
+<!-- Borderline personality -->
 
-Demographic data is also mostly positively correlated with the IAS findings, where gender and age more strongly correlated with "hungry/thirsty".
-
-In this analysis, lying profile is not strongly correlated with the IAS, except for contextuality which shows a significant negative correlation with "itch/bruise".
-The MAIA has a strong positive correlation with most IAS pairings, except for the Not Worrying and Not Distracting items of the MAIA, which show less strong, or even negative correlations with all IAS item pairings.
-
-Maladaptiveness had mostly negative correlations with the IAS, with only a few significant correlations, namely "psychoticism", "negative affect", and "detachment" with "muscle/pain" and "hungry/thirsty", as well as "negative affect" with "wind/burp".
-
-Overall, mood was mostly negatively correlated with the IAS, where "hungry/thirsty" had the strongest negative correlation of all mood measures.
-Except for "neuroticism" and "honesty-humility", personality traits, such as "openness" and "extraversion" were positively correlated with the IAS groupings.
-Shizotypic traits were mostly negatively correlated with the IAS, with "hungry/thirsty" showing the strongest negative correlation between schizotypic and the IAS.
-
-World beliefs were mostly positively correlated with the IAS, however, only a few were significant: "hierarchical", "enticing", and "alive" correlates significantly with "muscle/pain"; "Understandable" has a significant positive correlation with "heart/breathing"; And "hierarchical" and "alive" has a significant positive correlation with "hungry/thirsty".
+Lastly, the MSI-BPD also showed its strongest negative correlation with the Hungry/Thirsty pair (r = -0.140) and was negatively correlated with all other pairings, except for Cough/Sneeze, which showed a slight positive correlation (r = 0.0219).
 
 ![**Figure 2.** Correlates of the IAS](figures/clipboard-1619164537.png){width="911"}
 
