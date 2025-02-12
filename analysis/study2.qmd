@@ -691,9 +691,13 @@ data <- rbind(
 ```{r}
 names(df7a)[str_detect(names(df7a), "NEO")]
 names(df9)[str_detect(names(df9), "BFI_")]
+names(df10a)[str_detect(names(df10a), "IPIP6_")]
+
 
 data <- rbind(
   data,
+  make_cor(df7a, vars_intero, with = "NEO_FFI_SUMSCORE", component = "Personality") |>
+      mutate(var_Correlate = "Neuroticism"),
   make_cor(df9, vars_intero, with = "BFI_AGREEABLENESS", component="Personality") |>
     mutate(var_Correlate = "Agreeableness"),
   make_cor(df9, vars_intero, with = "BFI_CONSCIENTIOUSNESS", component="Personality") |>
@@ -787,7 +791,7 @@ data <- rbind(
 
 ## Average Correlations
 
--   BPQ - sf - Body perception questionnaire short form
+-   BPQ - sf - Body perception questionnaire short form 
 -   BPQ - vsf - Body perception questionnaire very short form
 -   BVAQ - Bermond–Vorst Alexithymia Questionnaire
 -   MAIA-2 - Multidimensional Assessment of Interoceptive Awareness , Version-2
@@ -818,6 +822,32 @@ data <- rbind(
 -   SPQ-BRU - Schizotypal Personality Questionnaire, brief revised updated
 -   LIE - Lying Profile Questionnaire
 
+## Internal Reliability 
+
+### BPQ
+
+- sample df7c does not have individual BPQ items 
+
+```{r}
+
+# BPQ 46 Items SV
+df2_BPQ <- df2 |> select(contains("BPQ ")) 
+df3_BPQ <- df3 |> select(contains("BPQ"), -contains("BPQ_"))
+
+
+
+# BPQ 26 items - awareness subscale
+
+df4_BPQ_A <- df4 |> select(contains("BPQ_"))
+
+# BPQ 12 items VSF
+df7a_BPQVSF <- df7b |> select(contains("BPQ_"), -BPQ_Sum)
+df8a_BPQVSF <- df8a |> select(contains("BPQ"), -BPQ_A)
+
+
+```
+
+
 ```{r}
 # names(df1a)
 # names(df1b)
@@ -841,39 +871,72 @@ data <- rbind(
 average_corr <- data |>
     summarise(mean_r = mean(r, na.rm = TRUE), .by=c("Component", "var_Correlate", "var_Interoception")) 
 
-# Alexithymia
 average_corr |>
   filter(Component == "Alexithymia") |>
   group_by(var_Correlate) |>
   summarise(min = min(mean_r),
              max = max(mean_r))
-#BPQ
+
 average_corr |>
   filter(Component == "BPQ") |>
   group_by(var_Correlate) |>
   summarise(min = min(mean_r),
              max = max(mean_r))
 
-#MAIA
+
 average_corr |>
   filter(Component == "MAIA") |>
   group_by(var_Correlate) |>
   summarise(min = min(mean_r),
              max = max(mean_r))
-#ICQ
+
 average_corr |>
   filter(Component == "ICQ") |>
   group_by(var_Correlate) |>
   summarise(min = min(mean_r),
              max = max(mean_r))
-#Mood
+
 average_corr |>
   filter(Component == "Mood") |>
   group_by(var_Correlate) |>
   summarise(min = min(mean_r),
              max = max(mean_r))
+
+
+average_corr |>
+  filter(Component == "Maladaptive") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
+
+
+average_corr |>
+  filter(Component == "Schizotypic") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
+
+average_corr |>
+  filter(Component == "Autistic") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
+
+
+average_corr |>
+  filter(Component == "Personality") |>
+  group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
+
+average_corr |>
+  filter(Component == "World Beliefs") |>
+  # group_by(var_Correlate) |>
+  summarise(min = min(mean_r),
+             max = max(mean_r))
   
 ```
+
 
 ## Summary
 
