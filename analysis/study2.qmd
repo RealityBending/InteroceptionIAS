@@ -31,6 +31,9 @@ library(EGAnet)
 ## Measures used
 
 ```{r}
+#| output: false
+
+
 library(gt)
 
 # APA style ####
@@ -103,8 +106,6 @@ table_apa <- table |>
 gt_apastyle(table_apa, font.size=12)
 gtsave(gt_apastyle(table_apa, font.size=9), "figures/table2.tex")
 ```
-
-
 
 ## Data Preparation
 
@@ -303,8 +304,6 @@ data <- rbind(
 )
 ```
 
-
-
 ## Body
 
 ### MAIA
@@ -459,6 +458,7 @@ data <- rbind(
 ```
 
 ### ICQ
+
 ```{r}
 
 names(df2)[str_detect(names(df2), "ICQ")] 
@@ -552,7 +552,6 @@ data <- rbind(
 )
 ```
 
-
 ## Mood
 
 ### Depression
@@ -620,10 +619,7 @@ data <- rbind(
 )
 ```
 
-
-
 ## Psychopathology
-
 
 ```{r}
 data <- rbind(
@@ -632,7 +628,6 @@ data <- rbind(
     mutate(var_Correlate = "Boderline Personality")
 )
 ```
-
 
 ```{r}
 data <- rbind(
@@ -674,7 +669,6 @@ data <- rbind(
 )
 ```
 
-
 ```{r}
 #  names(select(df10a, starts_with("ASQ")))
 data <- rbind(
@@ -691,7 +685,6 @@ data <- rbind(
     mutate(var_Correlate = "Routines")
 )
 ```
-
 
 ## Personality
 
@@ -727,7 +720,6 @@ data <- rbind(
 ```
 
 ## Others
-
 
 ```{r}
 data <- rbind(
@@ -795,36 +787,36 @@ data <- rbind(
 
 ## Average Correlations
 
-- BPQ - sf - Body perception questionnaire short form
-- BPQ - vsf - Body perception questionnaire very short form 
-- BVAQ - Bermond–Vorst Alexithymia Questionnaire 
-- MAIA-2 - Multidimensional Assessment of Interoceptive Awareness , Version-2
-- ICQ  - Interocpetive Confusion Questionnaire
-- TAS - Toronto Alexithymia Scale 
-- BAQ - Body awareness questionnaire
-- BRS - the body responsiveness scale 
-- PHQ-2 - Patient Health Questionnaire 2 items on major depressive episodes 
-- PHQ-4 - atient Health Questionnaire 4 items assessing anxiety and depression 
-- PHQ-9 - Patient Health Questionnaire 9-Item Version assesses depressive symptoms
-- PHQ-15 - Patient Health Questionnaire 15-Item Version assesses Somatic symptom distress 
-- SSS-8 - Somatic Symptom Scale 
-- IATS - Interoceptive Attention Scale
-- GAD-2 - Generalized Anxiety Disorder Scale 2 items on anxiety disorder 
-- STAIT - State-Trait-Anxiety Inventory Trait subscale
-- FFMQ - Observation and Description subscales of the Five Facet Mindfulness Questionnaire
-- NEOFFI - Neuroticism Neo Five-Factor Inventory Neuroticism subscale
-- ASI - Anxiety Sensitivity Inventory 3
-- BDI - The Beck Depression Inventory
-- EDI_IA - Eating Disorder Inventory, interoceptive awareness subscale
-- BFI -  Big Five inventory-10
-- ASQ -  Autism-Spectrum Quotient
-- MSI-BPD - Mclean Screening Instrument for Borderline Personality Disorder
-- GCB - Generic Conspiracist Beliefs scale
-- IPIP6 - Mini International Personality Item Pool
-- PI - Primal Inventory 18 items and 99 items 
-- PID5-sf - Personality Inventory for DSM-5 Short Form 
-- SPQ-BRU - Schizotypal Personality Questionnaire, brief revised updated
-- LIE - Lying Profile Questionnaire
+-   BPQ - sf - Body perception questionnaire short form
+-   BPQ - vsf - Body perception questionnaire very short form
+-   BVAQ - Bermond–Vorst Alexithymia Questionnaire
+-   MAIA-2 - Multidimensional Assessment of Interoceptive Awareness , Version-2
+-   ICQ - Interocpetive Confusion Questionnaire
+-   TAS - Toronto Alexithymia Scale
+-   BAQ - Body awareness questionnaire
+-   BRS - the body responsiveness scale
+-   PHQ-2 - Patient Health Questionnaire 2 items on major depressive episodes
+-   PHQ-4 - atient Health Questionnaire 4 items assessing anxiety and depression
+-   PHQ-9 - Patient Health Questionnaire 9-Item Version assesses depressive symptoms
+-   PHQ-15 - Patient Health Questionnaire 15-Item Version assesses Somatic symptom distress
+-   SSS-8 - Somatic Symptom Scale
+-   IATS - Interoceptive Attention Scale
+-   GAD-2 - Generalized Anxiety Disorder Scale 2 items on anxiety disorder
+-   STAIT - State-Trait-Anxiety Inventory Trait subscale
+-   FFMQ - Observation and Description subscales of the Five Facet Mindfulness Questionnaire
+-   NEOFFI - Neuroticism Neo Five-Factor Inventory Neuroticism subscale
+-   ASI - Anxiety Sensitivity Inventory 3
+-   BDI - The Beck Depression Inventory
+-   EDI_IA - Eating Disorder Inventory, interoceptive awareness subscale
+-   BFI - Big Five inventory-10
+-   ASQ - Autism-Spectrum Quotient
+-   MSI-BPD - Mclean Screening Instrument for Borderline Personality Disorder
+-   GCB - Generic Conspiracist Beliefs scale
+-   IPIP6 - Mini International Personality Item Pool
+-   PI - Primal Inventory 18 items and 99 items
+-   PID5-sf - Personality Inventory for DSM-5 Short Form
+-   SPQ-BRU - Schizotypal Personality Questionnaire, brief revised updated
+-   LIE - Lying Profile Questionnaire
 
 ```{r}
 # names(df1a)
@@ -883,7 +875,6 @@ average_corr |>
   
 ```
 
-
 ## Summary
 
 ```{r}
@@ -930,26 +921,14 @@ p
 ggsave("figures/Figure2.png", p, width=21*0.6, height=29.7*0.45, dpi=200, bg="white")
 ```
 
-
 ## Discussion
 
+Benefits of the IAS: - Straightforward and sensation-centered items
 
-Benefits of the IAS:
-- Straightforward and sensation-centered items
+Recommendations: - Remove Itch (redundant + issue in Chinese) - Use analog scales
 
-Recommendations:
-- Remove Itch (redundant + issue in Chinese)
-- Use analog scales
-
-Limitations:
-- Not much clear theorethical or empirical structure (small grouping of items)
-- Limited variability (clear mode at 4/5), very low prevalence of 5/5 responses.
-- Ambiguous items which grouping depends on the context (and its awareness)
-  - E.g., heart beating fast, vomit when nauseaous
-- Few items for some modalities (e.g., 1 for heart)
-- Positive phrasing: benefits but also might exacerbate positivity bias (and thus unidimensionality)
+Limitations: - Not much clear theorethical or empirical structure (small grouping of items) - Limited variability (clear mode at 4/5), very low prevalence of 5/5 responses. - Ambiguous items which grouping depends on the context (and its awareness) - E.g., heart beating fast, vomit when nauseaous - Few items for some modalities (e.g., 1 for heart) - Positive phrasing: benefits but also might exacerbate positivity bias (and thus unidimensionality)
 
 Need for context-specific items (cross-modal when possible, i.E., cardioception, respiroception, etc.).
-
 
 New Scale: Multimodal Interoceptive Sensitivity Scale (MISS)
