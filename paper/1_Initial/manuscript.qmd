@@ -164,9 +164,7 @@ Notably, the IAS' statements are about specific interoceptive behaviours, which 
 
 <!-- IAS structure  -->
 
-Although the original validation study suggested a two-factor structure for the IAS, the authors underline its acceptable but imperfect fit [@murphy2019, p. 127], calling on further investigation of the scale's factor structure.
-Notably, the authors did not define these factors, as no clear explanations were evident.
-They suggested that the first factor reflects the perception of interoceptive signals, while the second pertains to signals that may be difficult to perceive solely through interoceptive information.
+Although the original validation study suggested a two-factor structure for the IAS, reflecting the perception of [**general?**] interoceptive signals, and that of signals that may be difficult to perceive solely through interoceptive information. However, the authors underline its acceptable but imperfect fit [@murphy2019, p. 127], calling on further investigation of the scale's factor structure.
 
 **note to dom**:@morin2016 is a methodological paper on ESEM
 
