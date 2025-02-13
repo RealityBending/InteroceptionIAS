@@ -132,7 +132,7 @@ While recent research emphasizes a key role of interoception in a variety of pro
 
 <!-- Interoception measure -->
 
-Various measures of interoception have been developed (see @fig-measures), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking vs. questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes *vs.* measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., accuracy, sensitivity, awareness).
+Various measures of interoception have been developed (see @fig-measures), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking *vs.* questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes *vs.* measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., accuracy, sensitivity, awareness).
 While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014].
 
 ```{r}
@@ -147,9 +147,9 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 
 <!-- self-reports -->
 
-The use of subjective self-report questionnaires to measure deeply embodied functions might seem paradoxical.
-However, recent redefinitions of interoception emphasize the role of high-level and metacognitive elaboration of interoceptive information.
+Although the use of subjective self-report questionnaires to measure deeply embodied functions might seem paradoxical at first, recent redefinitions of interoception emphasize the role of high-level and metacognitive elaboration of interoceptive information.
 These redefinitions provide theoretical grounding to support the idea that some facets of interoception, including participants' metacognitive beliefs, can be assessed subjectively [@khalsa2018interoception; @suksasilp2022towards].
+
 This approach offers useful and interesting measures [@murphy2019; @lin2023].
 
 <!-- lack of correlation between objective and subjective measures + lack of correlation between self-report measures-->
