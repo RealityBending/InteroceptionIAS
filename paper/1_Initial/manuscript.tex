@@ -88,15 +88,17 @@
 
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 
@@ -184,14 +186,14 @@ and its Subjective Correlates}
 
 \authornote{\par{\addORCIDlink{Ana Neves}{0009-0006-0020-7599}} 
 
-\par{     \begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, colback=white, breakable, opacityback=0, leftrule=.75mm, arc=.35mm, bottomrule=.15mm, toprule=.15mm, left=2mm, colframe=quarto-callout-note-color-frame]
+\par{     \begin{tcolorbox}[enhanced jigsaw, colback=white, colframe=quarto-callout-note-color-frame, leftrule=.75mm, opacityback=0, arc=.35mm, toprule=.15mm, breakable, rightrule=.15mm, left=2mm, bottomrule=.15mm]
 
 \end{tcolorbox}
 
 This preprint is a non-peer-reviewed work from the
 \href{https://realitybending.github.io/}{\textbf{Reality Bending Lab}}.
 \begin{center}
-\includegraphics[width=0.2\textwidth,height=\textheight]{manuscript_files/mediabag/ReBeL_LogoOnly_hu114.png}
+\includegraphics[width=0.2\linewidth,height=\textheight,keepaspectratio]{manuscript_files/mediabag/ReBeL_LogoOnly_hu114.png}
 \end{center}  Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows: Ana
 Neves:   Project administration, Data curation, Formal
 Analysis, Investigation, Visualization, Writing -- original
@@ -342,7 +344,7 @@ goal at hand (\citeproc{ref-jahedi2014}{Jahedi \& Méndez, 2014}).
 {\caption{{Different ways in which interoception can be
 measured.}{\label{fig-measures}}}}
 
-\includegraphics[width=6.4in,height=\textheight]{figures/MeasuringInteroception.jpg}
+\includegraphics[width=6.4in,height=\textheight,keepaspectratio]{figures/MeasuringInteroception.jpg}
 
 \end{figure*}
 
@@ -596,7 +598,7 @@ items across various datasets.}
 
 \centering{
 
-\includegraphics[width=6.67in,height=\textheight]{figures/Figure1.png}
+\includegraphics[width=6.67in,height=\textheight,keepaspectratio]{figures/Figure1.png}
 
 }
 
@@ -812,7 +814,8 @@ assessing body awareness (26 items) and autonomic reactivity (21 items).
 The BPQ-VSF comprises of 12 items from the body awareness subscale of
 the BPQ-SF. In this study, all scores assessing these two dimensions
 were grouped together, hence no disitintion is made between awareness
-measured with the BPQ-SF and the BPQ-VSF.
+measured with the BPQ-SF and the BPQ-VSF, or eith scores obtained only
+using the awareness subscale.
 
 \textbf{note to add:} discuss later
 
@@ -907,20 +910,152 @@ IAS pairings. The BDI (r = -0.372), PHQ-2 (r = -0.148), and PHQ-9 (r =
 -0.241) correlated most with the Hungry/Thirsty pair, while the MFQ
 correlated most with Heart/Breathing (r = -0.345) pair.
 
-The PHQ-15 also showed its strongest correlation with the Hungry/Thirsty
-pair (r = -0.241) but was, on average, weakly and negatively correlated
-with all other IAS pairings.
+The PHQ-15 is a 15-item questionnaire that assesses somatic symptoms on
+a 3-point scale (e.g., back pain). It exhibited its strongest
+correlation with the Hungry/Thirsty pair (r = -0.241) and, on average,
+showed weak negative correlations with all other IAS pairings.
 
-Lastly, the MSI-BPD also showed its strongest negative correlation with
-the Hungry/Thirsty pair (r = -0.140) and was negatively correlated with
-all other pairings, except for Cough/Sneeze, which showed a slight
-positive correlation (r = 0.0219).
+Lastly, the MSI-BPD is a 10-item questionnaire used to assess
+personality disorder, where items are rated on a dichotomous scale of 1
+(present) and 0 (absent). The MSI-BPD also showed its strongest negative
+correlation with the Hungry/Thirsty pair (r = -0.140) and was negatively
+correlated with all other pairings, except for Cough/Sneeze, which
+showed a slight positive correlation (r = 0.0219).
+
+\paragraph{Correlations with psychopathology
+measures.}\label{correlations-with-psychopathology-measures}
+
+Maladaptive personality traits were assessed using the Personality
+Inventory for DSM-5 Short Form {[}PID-5-SF; Thimm et al.
+(\citeproc{ref-thimm2016personality}{2016}){]}, which measures five
+domains: disinhibition, antagonism, detachment, negative affect, and
+psychoticism. The scale consists of 25 items rated on a 4-point Likert
+scale, ranging from 0 (very false or often false) to 3 (very true or
+often true).
+
+On average, all maladaptive personality traits assessed by the PID-5-SF
+were weakly and negatively correlated with IAS pairings. The strongest
+correlation was observed between the psychoticism dimension and the
+Muscle/Pain pairing (r = -0.173).
+
+Schizotypy was assessed using the Schizotypal Personality Questionnaire
+-- Brief Revised Updated (SPQ-BRU; Davidson et al.
+(\citeproc{ref-davidson2016schizotypal}{2016})), which consists of 32
+items rated on a 5-point Likert scale ranging from strongly agree to
+strongly disagree. This questionnaire evaluates four primary dimensions:
+cognitive-perceptual (positive), interpersonal (negative), disorganized,
+and social anxiety. These dimensions are further divided into nine
+secondary factors: constricted affect, eccentricity, magical thinking,
+lack of close friends, odd speech, referential thinking, social anxiety,
+suspiciousness, and unusual perceptions.
+
+On average, all nine factors were weakly and negatively correlated with
+IAS pairings, with correlations ranging from r = -0.170 (between lack of
+close friends and Muscles/Pain) to r = 0.102 (between magical thinking
+and Itch/Bruise).
+
+The short version of the Autism-Spectrum Quotient (ASQ-Short; Hoekstra
+et al., 2011) was used to assess five autistic traits: social skills,
+adherence to routines, cognitive flexibility (switching), imagination,
+and patterns/numbers. The questionnaire consists of 28 items rated on a
+4-point Likert scale, ranging from 1 (definitely agree) to 4 (definitely
+disagree).
+
+Overall, all pairings were weakly and negatively correlated with the ASQ
+dimensions, except for the Itch/Bruise and Heart/Breathing pairings,
+which showed weak positive correlations with the patterns/numbers trait
+(r = 0.184 and r = 0.038, respectively). The strongest correlation was
+observed between the imagination trait and the Wind/Burp pairing (r =
+-0.218).
+
+\paragraph{Correlations with personality
+measures.}\label{correlations-with-personality-measures}
+
+The Big Five Inventory-Short Form {[}BFI-S; Lang et al.
+(\citeproc{ref-lang2011short}{2011}){]} and the Mini International
+Personality Item Pool {[}Mini-IPIP6; Sibley et al.
+(\citeproc{ref-sibley2011mini}{2011}){]} were used to assess general
+personality traits. The BFI-S consists of 15 items rated on a 7-point
+Likert scale, ranging from 1 (strongly disagree) to 7 (strongly agree),
+measuring five personality factors: Openness, Conscientiousness,
+Extraversion, Agreeableness, and Neuroticism. The Mini-IPIP6 assesses
+six personality traits---Extraversion, Agreeableness, Conscientiousness,
+Neuroticism, Openness, and Honesty-Humility---using 24 items. While this
+questionnaire is typically scored on a 7-point Likert scale from 1 (very
+inaccurate) to 7 (very accurate), an analogous scale was used in the
+respective sample. Lastly, the Neuroticism subscale of the NEO
+Five-Factor Inventory {[}Neo-FFI; Costa and McCrae
+(\citeproc{ref-costa1992normal}{1992}){]} was used to assess
+Neuroticism, consisting of 12 items rated on a 5-point Likert scale from
+1 (strongly disagree) to 5 (strongly agree).
+
+To assess correlations with the IAS pairings, scores were grouped across
+personality dimensions due to the overlap among these traits (with the
+exception of Honesty-Humility). On average, IAS pairings were positively
+associated with most personality dimensions, though these correlations
+were generally weak. The strongest correlation was observed between
+Conscientiousness and the Hungry/Thirsty pairing (r = 0.164). Both
+Honesty-Humility and Neuroticism were weakly and negatively correlated
+with the IAS pairings, with the highest correlations observed for the
+Hungry/Thirsty pairing (r = -0.217 and r = -0.200, respectively).
+
+\paragraph{Correlations with other
+measures.}\label{correlations-with-other-measures}
+
+The IAS was also correlated with primal world beliefs, as measured by
+the Primal Inventory {[}PI-18; J. D. Clifton and Yaden
+(\citeproc{ref-clifton2021brief}{2021}){]}, which assesses beliefs about
+the world being alive, good, safe, and enticing. Items that evaluate
+neutral beliefs about the hierarchical order of importance in the world
+(i.e., hierarchical), as well as beliefs about the comprehensibility of
+most things and situations (i.e., understandable), and the belief that
+the world is characterized by flux (i.e., changing) were added as well.
+The scale contains 18 items ranging from 5 (Strongly agree) to 0
+(strongly disagree).
+
+Overall, most primal beliefs show weak positive correlations with all
+pairings of the IAS. The strongest correlation is between the
+hierarchical belief and the Hungry/Thirsty pairing (r = 0.181). Some
+beliefs, however, exhibit negative correlations with certain pairings.
+These negative correlations range from r = -0.0940 between the changing
+belief and the Hungry/Thirsty pairing, to r = -0.00490 between the
+Enticing belief and the Itch/Bruise pairing.
+
+The Generic Conspiracist Beliefs Scale {[}GCBS; Brotherton et al.
+(\citeproc{ref-brotherton2013measuring}{2013}){]} was used to assess
+five facets of conspiracy beliefs: Extraterrestrial, Global
+Conspiracies, Government Malfeasance, Information Control, and Personal
+Wellbeing. The scale comprises 15 items rated on a 5-point Likert scale,
+ranging from definitely not true (1) to definitely true (5).
+
+Overall, the GCBS showed a weak but positive correlation with all facets
+of the IAS, with the strongest correlation observed between Global
+Conspiracies and Hungry/Thirsty (r = 0.140). Negative correlations were
+found within the Global Conspiracies, Extraterrestrial, and Information
+Control facets, though these were small, ranging from r = -0.0101 to r =
+-0.0167.
+
+Lastly, the Lying Profile Questionnaire {[}LIE; Makowski, Pham, et al.
+(\citeproc{ref-makowski2023structure}{2023}){]} a 16 item visual analog
+scale was used to assess 4 dispositional lying simensions: ability;
+negativity, contextuality, and frequency.
+
+Overall, most lying profile dimensions show weak correlations with IAS
+pairings. Ability exhibits primarily weak positive correlations, with
+the strongest observed for Wind/Burp (r = 0.082). In contrast, Frequency
+tends to show weak negative correlations, ranging from Wind/Burp (r =
+-0.062) to Muscles/Pain (r = -0.088). Contextuality displays mixed
+correlations, with Itch/Bruise showing the strongest negative
+association (r = -0.127), while Urinate/Defecate has a small positive
+correlation (r = 0.045). Finally, Negativity is consistently positively
+correlated with all pairings, with the strongest relationship found for
+Hungry/Thirsty (r = 0.090).
 
 \begin{figure}[H]
 
 \caption{\textbf{Figure 2.} Correlates of the IAS}
 
-{\centering \includegraphics[width=9.48958in,height=\textheight]{figures/clipboard-1619164537.png}
+{\centering \includegraphics[width=9.48958in,height=\textheight,keepaspectratio]{figures/clipboard-1619164537.png}
 
 }
 
@@ -961,8 +1096,8 @@ beliefs, potentially pointing to shared underlying mechanisms
 
 The relationship between interoception and lying profiles was also weak.
 This contrasts with previous research suggesting associations between
-interoception and deception (\citeproc{ref-makowski2023a}{Makowski et
-al., 2023}), warranting further investigation.
+interoception and deception (\citeproc{ref-makowski2023a}{Makowski, Lau,
+et al., 2023}), warranting further investigation.
 
 Mood and IAS scores exhibited a strong negative correlation, consistent
 with prior studies that have documented similar findings
@@ -983,8 +1118,8 @@ previously documented, other forms of belief, such as political
 ideology, have been linked to interoception
 (\citeproc{ref-ruisch2022a}{Ruisch et al., 2022b}). Further research is
 needed to determine whether world beliefs, which shape our perception of
-reality (\citeproc{ref-clifton2020}{Clifton, 2020}), are meaningfully
-connected to interoception.
+reality (\citeproc{ref-clifton2020}{J. D. W. Clifton, 2020}), are
+meaningfully connected to interoception.
 
 Overall, our findings highlight the broad relevance of interoception
 across various cognitive and affective traits, underscoring its
@@ -1121,6 +1256,11 @@ Brewer, R., Cook, R., \& Bird, G. (2016). Alexithymia: A general deficit
 of interoception. \emph{Royal Society Open Science}, \emph{3}(10),
 150664.
 
+\bibitem[\citeproctext]{ref-brotherton2013measuring}
+Brotherton, R., French, C. C., \& Pickering, A. D. (2013). Measuring
+belief in conspiracy theories: The generic conspiracist beliefs scale.
+\emph{Frontiers in Psychology}, \emph{4}, 279.
+
 \bibitem[\citeproctext]{ref-cabrera2018assessing}
 Cabrera, A., Kolacz, J., Pailhez, G., Bulbena-Cabre, A., Bulbena, A., \&
 Porges, S. W. (2018). Assessing body awareness and autonomic reactivity:
@@ -1152,6 +1292,22 @@ Clifton, J. D. W. (2020). Testing if primal world beliefs reflect
 experiences{\textemdash}or at least some experiences identified ad hoc.
 \emph{Frontiers in Psychology}, \emph{11}.
 \url{https://doi.org/10.3389/fpsyg.2020.01145}
+
+\bibitem[\citeproctext]{ref-clifton2021brief}
+Clifton, J. D., \& Yaden, D. B. (2021). Brief measures of the four
+highest-order primal world beliefs. \emph{Psychological Assessment},
+\emph{33}(12), 1267.
+
+\bibitem[\citeproctext]{ref-costa1992normal}
+Costa, P. T., \& McCrae, R. R. (1992). Normal personality assessment in
+clinical practice: The NEO personality inventory. \emph{Psychological
+Assessment}, \emph{4}(1), 5.
+
+\bibitem[\citeproctext]{ref-davidson2016schizotypal}
+Davidson, C. A., Hoffman, L., \& Spaulding, W. D. (2016). Schizotypal
+personality questionnaire--brief revised (updated): An update of norms,
+factor structure, and item content in a large non-clinical young adult
+sample. \emph{Psychiatry Research}, \emph{238}, 345--355.
 
 \bibitem[\citeproctext]{ref-desmedt2022measures}
 Desmedt, O., Heeren, A., Corneille, O., \& Luminet, O. (2022). What do
@@ -1257,6 +1413,12 @@ B. (2007). Anxiety disorders in primary care: Prevalence, impairment,
 comorbidity, and detection. \emph{Annals of Internal Medicine},
 \emph{146}(5), 317--325.
 
+\bibitem[\citeproctext]{ref-lang2011short}
+Lang, F. R., John, D., Lüdtke, O., Schupp, J., \& Wagner, G. G. (2011).
+Short assessment of the big five: Robust across survey methods except
+telephone interviewing. \emph{Behavior Research Methods}, \emph{43},
+548--567.
+
 \bibitem[\citeproctext]{ref-lin2023}
 Lin, X.-X., Shen, H.-R., Lin, J.-X., Zhang, Y.-H., Murphy, J., Wang,
 Y.-Z., Sun, Y.-B., Wang, N., Wang, J.-Y., Wei, G.-X., \& Luo, F. (2023).
@@ -1270,6 +1432,11 @@ Makowski, D., Lau, Z. J., Pham, T., Te, A., Kirk, S., \& Liauw Yong
 Tong, C. (2023). \emph{The heart can lie: The role of interoception and
 theory of mind in deception}.
 \url{http://dx.doi.org/10.31234/osf.io/p342w}
+
+\bibitem[\citeproctext]{ref-makowski2023structure}
+Makowski, D., Pham, T., Lau, Z. J., Raine, A., \& Chen, S. A. (2023).
+The structure of deception: Validation of the lying profile
+questionnaire. \emph{Current Psychology}, \emph{42}(5), 4001--4016.
 
 \bibitem[\citeproctext]{ref-mehling2018multidimensional}
 Mehling, W. E., Acree, M., Stewart, A., Silas, J., \& Jones, A. (2018).
@@ -1333,6 +1500,13 @@ liberalism}}. \emph{Politics and the Life Sciences}, \emph{41}(2),
 Schandry, R. (1981). Heart beat perception and emotional experience.
 \emph{Psychophysiology}, \emph{18}(4), 483--488.
 
+\bibitem[\citeproctext]{ref-sibley2011mini}
+Sibley, C. G., Luyten, N., Purnomo, M., Mobberley, A., Wootton, L. W.,
+Hammond, M. D., Sengupta, N., Perry, R., West-Newman, T., Wilson, M. S.,
+et al. (2011). The mini-IPIP6: Validation and extension of a short
+measure of the big-six factors of personality in new zealand. \emph{New
+Zealand Journal of Psychology}, \emph{40}(3).
+
 \bibitem[\citeproctext]{ref-solanoluxf3pez2018}
 Solano López, A. L., \& Moore, S. (2018). Dimensions of Body-Awareness
 and Depressed Mood and Anxiety. \emph{Western Journal of Nursing
@@ -1347,6 +1521,12 @@ Spielberger, C. D. (1970). Manual for the state-trait anxiety inventory
 Suksasilp, C., \& Garfinkel, S. N. (2022). Towards a comprehensive
 assessment of interoception in a multi-dimensional framework.
 \emph{Biological Psychology}, \emph{168}, 108262.
+
+\bibitem[\citeproctext]{ref-thimm2016personality}
+Thimm, J. C., Jordan, S., \& Bach, B. (2016). The personality inventory
+for DSM-5 short form (PID-5-SF): Psychometric properties and association
+with big five traits and pathological beliefs in a norwegian population.
+\emph{BMC Psychology}, \emph{4}, 1--11.
 
 \bibitem[\citeproctext]{ref-todd2022}
 Todd, J., Swami, V., Aspell, J. E., Furnham, A., Horne, G., \& Stieger,

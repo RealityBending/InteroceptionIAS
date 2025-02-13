@@ -829,6 +829,7 @@ data <- rbind(
 - sample df7c does not have individual BPQ items 
 
 ```{r}
+#| output: false
 
 # BPQ 46 Items SV
 df2_BPQ <- df2 |> select(contains("BPQ ")) 

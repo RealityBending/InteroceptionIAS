@@ -494,6 +494,7 @@ Both Honesty-Humility and Neuroticism were weakly and negatively correlated with
 
 The IAS was also correlated with primal world beliefs, as measured by the Primal Inventory [PI-18; @clifton2021brief], which assesses beliefs about the world being alive, good, safe, and enticing. 
 Items that evaluate neutral beliefs about the hierarchical order of importance in the world (i.e., hierarchical), as well as beliefs about the comprehensibility of most things and situations (i.e., understandable), and the belief that the world is characterized by flux (i.e., changing) were added as well.
+The scale contains 18 items ranging from 5 (Strongly agree) to 0 (strongly disagree). 
 
 Overall, most primal beliefs show weak positive correlations with all pairings of the IAS. The strongest correlation is between the hierarchical belief and the Hungry/Thirsty pairing (r = 0.181). 
 Some beliefs, however, exhibit negative correlations with certain pairings. 
@@ -501,9 +502,21 @@ These negative correlations range from r = -0.0940 between the changing belief a
 
 <!-- GCBS -->
 
+The Generic Conspiracist Beliefs Scale [GCBS; @brotherton2013measuring] was used to assess five facets of conspiracy beliefs: Extraterrestrial, Global Conspiracies, Government Malfeasance, Information Control, and Personal Wellbeing. 
+The scale comprises 15 items rated on a 5-point Likert scale, ranging from definitely not true (1) to definitely true (5).
+
+Overall, the GCBS showed a weak but positive correlation with all facets of the IAS, with the strongest correlation observed between Global Conspiracies and Hungry/Thirsty (r = 0.140). 
+Negative correlations were found within the Global Conspiracies, Extraterrestrial, and Information Control facets, though these were small, ranging from r = -0.0101 to r = -0.0167.
+
 <!-- LIE -->
 
+Lastly, the Lying Profile Questionnaire [LIE; @makowski2023structure] a 16 item visual analog scale was used to assess 4 dispositional lying simensions: ability; negativity, contextuality, and frequency.
 
+Overall, most lying profile dimensions show weak correlations with IAS pairings. 
+Ability exhibits primarily weak positive correlations, with the strongest observed for Wind/Burp (r = 0.082).
+In contrast, Frequency tends to show weak negative correlations, ranging from Wind/Burp (r = -0.062) to Muscles/Pain (r = -0.088).
+Contextuality displays mixed correlations, with Itch/Bruise showing the strongest negative association (r = -0.127), while Urinate/Defecate has a small positive correlation (r = 0.045).
+Finally, Negativity is consistently positively correlated with all pairings, with the strongest relationship found for Hungry/Thirsty (r = 0.090).
 
 
 ![**Figure 2.** Correlates of the IAS](figures/clipboard-1619164537.png){width="911"}
