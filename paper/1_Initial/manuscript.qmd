@@ -150,8 +150,6 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 Although the use of subjective self-report questionnaires to measure deeply embodied functions might seem paradoxical at first, recent redefinitions of interoception emphasize the role of high-level and metacognitive elaboration of interoceptive information.
 These redefinitions provide theoretical grounding to support the idea that some facets of interoception, including participants' metacognitive beliefs, can be assessed subjectively [@khalsa2018interoception; @suksasilp2022towards].
 
-This approach offers useful and interesting measures [@murphy2019; @lin2023].
-
 <!-- lack of correlation between objective and subjective measures + lack of correlation between self-report measures-->
 
 The notion that self-reports might not reflect the same processes as other interoception measures is important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures].
