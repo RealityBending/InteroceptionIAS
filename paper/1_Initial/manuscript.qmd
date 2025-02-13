@@ -87,9 +87,9 @@ author-note:
   disclosures:
     gratitude: |
       ::: {.callout-note icon=false appearance="simple"}
-      :::
       This preprint is a non-peer-reviewed work from the [**Reality Bending Lab**](https://realitybending.github.io/).
       ![](https://realitybending.github.io/media/ReBeL_LogoOnly_hu11484441381606756729.png){width=20% fig-align="center"}
+      :::
 abstract: |
   Blabla the abstract blabla.
 keywords: [keyword1, keyword2, keyword3]
@@ -139,8 +139,8 @@ While there is no consensus as to which particular approach provides the most ac
 #| warning: false 
 #| label: "fig-measures"
 #| fig-cap: "Different ways in which interoception can be measured."
-#| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
-## | out-width: "100%"
+#| apa-twocolumn: false  # A Figure Spanning Two Columns When in Journal Mode
+#| out-width: "100%"
 
 knitr::include_graphics("figures/MeasuringInteroception.jpg")
 ```
@@ -219,9 +219,10 @@ While combining these studies might provide a more robust and generalizable unde
 
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of 01/05/2024).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
+We also included the data of two unpublished (but already open-access) studies.
 A total of 10 studies was included (see **Table 1**).
-We also included the data of two unpublished (but already open-access) studies from the authors and one from another researcher.
-The total N participants was 32,214 participants (*Mean* = 48.6 years, *SD* = 13.1, 71.6% Female).
+
+The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1, 71.6\% Female).
 
 \begin{landscape}
 
@@ -231,7 +232,7 @@ The total N participants was 32,214 participants (*Mean* = 48.6 years, *SD* = 13
 
 #### Statistical Analysis
 
-To examine the factor structure of the IAS, a two-step approach was employed.
+To examine the factor structure of the IAS, a two-steps approach was employed.
 First, Exploratory Graph Analysis (EGA), was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
 The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates.
 A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25).
