@@ -164,39 +164,39 @@ Notably, the IAS' statements are about specific interoceptive behaviours, which 
 
 <!-- IAS structure  -->
 
-Although the original validation study suggested a two-factor structure for the IAS, reflecting the perception of [**general?**] interoceptive signals, and that of signals that may be difficult to perceive solely through interoceptive information. However, the authors underline its acceptable but imperfect fit [@murphy2019, p. 127], calling on further investigation of the scale's factor structure.
-
-**note to dom**:@morin2016 is a methodological paper on ESEM
-
-Other follow-up studies using confirmatory factor analysis (CFA) and structural modeling have identified different optimal solutions.
-Some studies, like @brand2023, reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor and a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit.
-Notably, the only other study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper.
-
+Although the original validation study suggested a two-factor structure for the IAS, reflecting the perception of [**general?**] interoceptive signals, and that of signals that may be difficult to perceive solely through interoceptive information. 
+The authors however underlined its acceptable but imperfect fit [@murphy2019, p. 127], and several follow-up studies have indeed identified different optimal solutions. 
+For instance, @brand2023 and @golino2017exploratory (the latter using a new approach to structure analysis, Exploratory Graph Analysis), reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor above a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit. 
 Discussions have also been focused on specific items.
 For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119).
-@lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination.
-Additionally, @campos2021 reported "tickle" to be the only item that reflected more specific factors than the general factor.
-Interestingly, @lin2023 reported that all items of the IAS grouped together using a new approach, Exploratory Graph Analysis [EGA, @golino2017exploratory], to assess convergent and discriminant validity, providing further evidence for unidimensionality.
+@lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination, and @campos2021 reported "tickle" to be the only item that reflected more specific factors than the general factor.
+Localization issues also arisen with two items, **TODO** (talk about chinese stuff)
+
+<!-- Notably, the only other study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper. -->
+**TODO: how did koike2023 interpret the two factors? Do they say?**
+
+
 
 <!-- Relationship with other interoception measures -->
 
-The IAS has naturally been compared to other interoception-related scales, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Non-Distracting and Not-Worrying subscales [@brand2023].
+Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were highlighted previously as related to non-interoceptive abilities [**do we have a ref to say that? will also be useful for our MINT paper to back up our claims that these 2 dims are something else**].
 Interestingly, findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire [BPQ-A, @porges1993body] have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
 Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023].
 Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia; @brand2023; @murphy2019].
 Lastly, small positive correlations have also been reported with the Interoceptive Attention Scale [IATS, @lin2023; @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations].
-Interestingly, the IAS and the IATS supposedly measure two different interoceptive processes (i.e., accuracy and attention, respectively) which contradict @murphy2019 proposed 2x2 framework. 
-
-<!-- TO BE COMPLETED -->
+Interestingly, the IAS and the IATS supposedly measure two different interoceptive processes (i.e., accuracy and attention, respectively) which contradict @murphy2019 proposed 2x2 framework. **TODO: how so? Elaborate**
 
 <!-- Convergent validity (correlates)  -->
 
-While assessing the validity of an interoception scale can be conceived as theoretically challenging, several measures have been used to assess convergent validity for the the IAS, including expected negative associations with alexithymia [@brand2023; @koike2023; @campos2021; @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023; @lin2023], depressive symptoms [@brand2023; @koike2023; @lin2023], anxiety [@brand2023], neuroticism [@brand2023] and self-esteem [@murphy2019].
+While assessing the predictive validity of an interoception scale can be conceived as theoretically challenging, expected negative associations were observed between the IAS and alexithymia [@brand2023; @koike2023; @campos2021; @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023; @lin2023], depressive symptoms [@brand2023; @koike2023; @lin2023], anxiety [@brand2023], neuroticism [@brand2023] and self-esteem [@murphy2019].
+
+**TODO: can you update the fig. 1's box (assessmeent of related traits) to remove the question marks and put the the stronger interoception correlates**
+
 <!-- **anything else?**. TO BE COMPLETED -- to be determined -->
 
 <!-- current study -->
 
-The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
+Given The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
 2) the second part will provide an overview of the dispositional correlates of the IAS, clarifying the pattern of associations which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 ## Study 1
