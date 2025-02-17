@@ -136,7 +136,7 @@ Various measures of interoception have been developed (see @fig-measures), formi
 While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014].
 
 ```{r}
-#| warning: false 
+#| warning: false
 #| label: "fig-measures"
 #| fig-cap: "Different ways in which interoception can be measured."
 #| apa-twocolumn: false  # A Figure Spanning Two Columns When in Journal Mode
@@ -152,8 +152,15 @@ These redefinitions provide theoretical grounding to support the idea that some 
 Moreover, the notion that self-reports might not reflect the same processes as other interoception tasks might be important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. For instance, existing findings typically show weak or no correlations between questionnaires and objective measures [including for measures of the same theorethical dimensions, e.g., task-based accuracy vs. self-reported accuracy, @murphy2019; @brand2023], such as the Heartbeat Counting Task [HCT, @schandry1981heart] and the Heartbeat Detection Task [HDT, @kleckner2015methodological]. 
 Perhaps more surprisingly, low correlations have been observed even among questionnaires, suggesting the targeting of different facets related to interoception. 
 
-One striking example concerns the assessment of "interoceptive sensibility", defined as the self-reported tendency to focus on and detect internal sensations [@garfinkel2015knowing], or more narrowly as the subjective ability to focus on interoceptive signals [@khalsa2018interoception]. **TODO: ANA check if the definitions are correct**.
-A recent systematic review suggested that various questionnaires [**WHICH ONES**] designed to assess this dimension actually measure distinct constructs, leading researchers to mistakenly treating them as equivalent measures [@desmedt2022measures].
+<!-- 
+Garfinkel - sensibility-> Self-perceived dispositional tendency to be internally self-focused and interoceptively cognisant,
+Khalsa - sensibility -> Self-perceived tendency to focus on interoceptive stimuli (trait measure)
+ -->
+
+**todo**: reframe paragraph to reflect that review focus on looking at whether the self-report scales and interoceptive sensibility, which are both assessed with questionnaires tap onto a common or different construct
+
+One striking example concerns the assessment of "interoceptive sensibility", defined as the self-reported tendency to focus on and detect internal sensations [@garfinkel2015knowing], or more narrowly as the subjective ability to focus on interoceptive signals [@khalsa2018interoception]. 
+A recent systematic review suggested that various questionnaires (e.g., MAIA, Body Perception Questionnaire, Body Awareness Questionnaire, Eating Disorder Inventory) designed to assess this dimension actually measure distinct constructs, leading researchers to mistakenly treating them as equivalent measures [@desmedt2022measures].
 This underlines the need for a more comprehensive understanding of what is being measured with different questionnaires and dimensions, as well as their potential overlaps with other constructs (e.g., alexithymia, body awareness). 
 
 <!-- Introducing the IAS -->
