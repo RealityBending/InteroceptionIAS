@@ -157,46 +157,44 @@ Garfinkel - sensibility-> Self-perceived dispositional tendency to be internally
 Khalsa - sensibility -> Self-perceived tendency to focus on interoceptive stimuli (trait measure)
 Khalsa self-report scales -> The ability to reflect upon one’s autobiographical experiences of interoceptive states, make judgments about their outcomes, and describe them through verbal or motor responses. -->
 
-One striking example concerns the assessment of "interoceptive sensibility," defined as the self-reported tendency to focus on and detect internal sensations [@garfinkel2015knowing], or more narrowly as the subjective ability to focus on interoceptive signals [@khalsa2018interoception]. 
+One striking example concerns the assessment of "interoceptive sensibility" defined as the self-reported tendency to focus on and detect internal sensations [@garfinkel2015knowing], or more narrowly as the subjective ability to focus on interoceptive signals [@khalsa2018interoception]. 
 A recent systematic review suggested that various questionnaires designed to assess this dimension actually measure distinct constructs, leading researchers to mistakenly treat them as equivalent measures [@desmedt2022measures]. 
 
 Notably, 'sensibility' in this review also included self-report scales based on @khalsa2018interoception's 8-facet model of interoception, which divides self-report measures into sensibility and self-report scales as the capacity to evaluate one's personal experiences of internal bodily states, assess their consequences, and express them through speech or movement. 
-Some of the studies included the Multidimensional Assessment of Interoceptive Awareness scale [MAIA, @mehling2012; MAIA-2, @mehling2018multidimensional], Body Perception Questionnaire [BPQ; @porges1993body], Private subscale of the Body Consciousness Questionnaire [PBCS, @miller1981consciousness], Body Awareness Questionnaire [BAQ, @shields1989body], and Eating Disorder Inventory [EDI, @garner1991eating; @garner1983]. 
+Some of the studies included the Multidimensional Assessment of Interoceptive Awareness scale [MAIA, @mehling2012; MAIA-2, @mehling2018multidimensional], Body Perception Questionnaire [BPQ, @porges1993body], Private subscale of the Body Consciousness Questionnaire [PBCS, @miller1981consciousness], Body Awareness Questionnaire [BAQ, @shields1989body], and Eating Disorder Inventory [EDI; @garner1991eating, @garner1983]. 
 The inexistent to moderate correlations between these questionnaires underlines the need for a more comprehensive understanding of what is being measured with different questionnaires and dimensions, as well as their potential overlaps with other constructs (e.g., alexithymia, body awareness).
 
 <!-- Introducing the IAS -->
 
 A recently developed scale with a rapidly growing popularity is the Interoceptive Accuracy Scale [IAS, @murphy2019].
 The IAS consists of 21 Likert-scale items that query how accurately one can perceive different bodily signals, with one item per physiological modality such as respiration (*"I can always accurately perceive when I am breathing fast"*), heart (*"I can always accurately perceive when my heart is beating fast"*), skin (*"I can always accurately perceive when something is going to be ticklish"*), arousal or bodily functions like coughing (*"I can always accurately perceive when I am going to cough"*) or urinating (*"I can always accurately perceive when I need to urinate"*).
-Notably, the IAS' statements are about specific interoceptive behaviours, which is a notable difference with other popular interoception questionnaires, such as the MAIA-2, which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), as well as dimensions related to attention regulation (e.g., Not-distracting) or emotion regulation (e.g., Not-worrying).
+Notably, the IAS' statements are about specific interoceptive behaviours, which is a distinct difference with other popular interoception questionnaires, such as the MAIA-2, which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), as well as dimensions related to attention regulation (e.g., Not-distracting) or emotion regulation (e.g., Not-worrying).
 
 <!-- IAS structure  --> 
 
-**note to dom**: review this. 
-1. yes I think they are general interoceptive signals (I added the items that loaded to both factors for Murphy's and Koike's validation)
-2. Do we want to add that lin created a short verison of the scale?
-3. Yes kioke  did named their factors 
+**note to dom review this. 1. yes I think they are general interoceptive signals (I added the items that loaded to both factors for Murphy's and Koike's validation) 2. Do we want to add that lin created a short verison of the scale? 3. Yes kioke  did named their factors**
 
 Although the original validation study suggested a two-factor structure for the IAS, reflecting the perception of general interoceptive signals (i.e., urinate, hungry, defecate, thirsty, pain, heart, taste, breathing, temperature, mulscles, affective touch, vomit, sexual arousal), and that of signals that may be difficult to perceive solely through interoceptive information (i.e., itch, tickle, cough, burp, bruise, blood sugar, sneeze, wind). 
 The authors however underlined its acceptable but imperfect fit [@murphy2019, p. 127], and several follow-up studies have indeed identified different optimal solutions. 
-For instance, @brand2023 reported a 1-factor solution, while @lin2023 and @campos2021 [the former using a new approach to structure analysis, Exploratory Graph Analysis; @golino2017exploratory] found bifactor solutions - one general factor above a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit. 
+For instance, @brand2023 reported a 1-factor solution, while @lin2023 and @campos2021 [the former using a new approach to structure analysis, Exploratory Graph Analysis, @golino2017exploratory] found bifactor solutions - one general factor above a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit. 
 
 Discussions have also been focused on specific items.
 For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119).
 @lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination, and @campos2021 reported "tickle" to be the only item that reflected more specific factors than the general factor.
+
 Localization issues also arose in @lin2023 validation of the IAS, where both "itch" and "tickle" correspond to the same Chinese character, leading to their collapse into a single item. 
 Notably, the only other study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper. 
 According to the authors, the first factor appears to reflect cutaneous sensations (e.g., itching, tickling, coughing, burping, affective touch, bruising, passing gas, sneezing, muscle sensations, sexual arousal, and taste), while the second factor seems to represent visceral sensations (e.g., urination, defecation, hunger, thirst, pain, breathing, fatigue/blood sugar, temperature, vomiting, and heartbeat).
 
 <!-- Relationship with other interoception measures -->
 
-**Note to dom**: @ferentzi2021examining suggests that all MAIA dimensions, except for Not-Worrying and Not-Distracting, relate to a general interoceptive awareness factor. The low correlations of NW and ND with this general factor indicate that these dimensions do not contribute significantly to the measurement of general interoceptive awareness. Instead, NW appears to measure low emotionality or neuroticism, while ND does not capture a coherent underlying structure.
+**Note to dom: @ferentzi2021examining suggests that all MAIA dimensions, except for Not-Worrying and Not-Distracting, relate to a general interoceptive awareness factor. The low correlations of NW and ND with this general factor indicate that these dimensions do not contribute significantly to the measurement of general interoceptive awareness. Instead, NW appears to measure low emotionality or neuroticism, while ND does not capture a coherent underlying structure.**
 
-Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were highlighted previously as related to non-interoceptive abilities [@ferentzi2021examining]
+Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were highlighted previously as related to non-interoceptive abilities [@ferentzi2021examining].
 Interestingly, findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire [BPQ-A, @porges1993body] have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
 Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023].
-Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia; @brand2023; @murphy2019].
-Lastly, small positive correlations have also been reported with the Interoceptive Attention Scale [IATS, @lin2023; @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations].
+Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia, @brand2023; @murphy2019].
+Lastly, small positive correlations have also been reported with the Interoceptive Attention Scale [IATS, @lin2023, @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations].
 
 <!-- Convergent validity (correlates)  -->
 
@@ -208,7 +206,8 @@ While assessing the predictive validity of an interoception scale can be conceiv
 
 <!-- current study -->
 
-Given The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
+
+The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
 2) the second part will provide an overview of the dispositional correlates of the IAS, clarifying the pattern of associations which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 ## Study 1
