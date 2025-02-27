@@ -127,7 +127,7 @@ editor_options:
 
 <!-- Interoception definition -->
 
-Interoception is referred to the process of sensing, interpreting and integrating information pertaining to internal organs, such as the heart, the lungs or the gut [@khalsa2018].
+Interoception is referred to the process of sensing, interpreting and integrating information pertaining to internal organs, such as the heart, the lungs or the gut [@khalsa2018interoception].
 While recent research emphasizes a key role of interoception in a variety of processes (e.g., emotion regulation, decision making) and of outcomes (physical and psychological well being), the field remains clouded by concerns about how interoception is assessed.
 
 <!-- Interoception measure -->
@@ -159,7 +159,8 @@ Khalsa self-report scales -> The ability to reflect upon one’s autobiographica
 
 One striking example concerns the assessment of "interoceptive sensibility," defined as the self-reported tendency to focus on and detect internal sensations [@garfinkel2015knowing], or more narrowly as the subjective ability to focus on interoceptive signals [@khalsa2018interoception]. 
 A recent systematic review suggested that various questionnaires designed to assess this dimension actually measure distinct constructs, leading researchers to mistakenly treat them as equivalent measures [@desmedt2022measures]. 
-Notably, sensibility in this review also included self-report scales from @khalsa2018interoception's 8-facet model of interoception, which divides self-report measures into sensibility and self-report scales as the capacity to evaluate one's personal experiences of internal bodily states, assess their consequences, and express them through speech or movement. 
+
+Notably, 'sensibility' in this review also included self-report scales based on @khalsa2018interoception's 8-facet model of interoception, which divides self-report measures into sensibility and self-report scales as the capacity to evaluate one's personal experiences of internal bodily states, assess their consequences, and express them through speech or movement. 
 Some of the studies included the Multidimensional Assessment of Interoceptive Awareness scale [MAIA, @mehling2012; MAIA-2, @mehling2018multidimensional], Body Perception Questionnaire [BPQ; @porges1993body], Private subscale of the Body Consciousness Questionnaire [PBCS, @miller1981consciousness], Body Awareness Questionnaire [BAQ, @shields1989body], and Eating Disorder Inventory [EDI, @garner1991eating; @garner1983]. 
 The inexistent to moderate correlations between these questionnaires underlines the need for a more comprehensive understanding of what is being measured with different questionnaires and dimensions, as well as their potential overlaps with other constructs (e.g., alexithymia, body awareness).
 
@@ -178,7 +179,8 @@ Notably, the IAS' statements are about specific interoceptive behaviours, which 
 
 Although the original validation study suggested a two-factor structure for the IAS, reflecting the perception of general interoceptive signals (i.e., urinate, hungry, defecate, thirsty, pain, heart, taste, breathing, temperature, mulscles, affective touch, vomit, sexual arousal), and that of signals that may be difficult to perceive solely through interoceptive information (i.e., itch, tickle, cough, burp, bruise, blood sugar, sneeze, wind). 
 The authors however underlined its acceptable but imperfect fit [@murphy2019, p. 127], and several follow-up studies have indeed identified different optimal solutions. 
-For instance, @brand2023 and @golino2017exploratory (the latter using a new approach to structure analysis, Exploratory Graph Analysis), reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions - one general factor above a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit. 
+For instance, @brand2023 reported a 1-factor solution, while @lin2023 and @campos2021 [the former using a new approach to structure analysis, Exploratory Graph Analysis; @golino2017exploratory] found bifactor solutions - one general factor above a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit. 
+
 Discussions have also been focused on specific items.
 For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119).
 @lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination, and @campos2021 reported "tickle" to be the only item that reflected more specific factors than the general factor.
