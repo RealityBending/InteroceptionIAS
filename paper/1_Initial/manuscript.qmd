@@ -196,7 +196,7 @@ While assessing the predictive validity of an interoception scale can be conceiv
 
 <!-- current study -->
 
-Given The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
+The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
 2) the second part will provide an overview of the dispositional correlates of the IAS, clarifying the pattern of associations which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 ## Study 1
