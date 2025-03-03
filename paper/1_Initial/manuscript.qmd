@@ -222,7 +222,9 @@ The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1
 
 #### Data Analysis
 
-In order to obtain a comprehensive view, we will examine the factor structure of the IAS using two different approaches, namely Exploratory Graph Analysis (EGA) and traditional exploratory and confirmatory Factor Analysis (EFA/CFA).
+Psychometrically good items should exhibit various qualities, such as validity and reliability, and one of the contributing factors is the amount of variability captured by an item. Items to which all participants' answers are concentrated around one option - i.e., exhibiting a narrow distribution - should be flagged as potentially problematic. 
+
+After examining the distributions to all IAS items, we will analyze the factor structure using two different approaches, namely Exploratory Graph Analysis (EGA) and traditional exploratory and confirmatory Factor Analysis (EFA/CFA).
 
 **TODO: Explain EGA. Rework the following paraphraph**.
 
@@ -237,10 +239,14 @@ We will first apply EFA to... and then identify the best fitting models using CF
 
 <!-- Distributions of items -->
 
-Visualizing the distribution of the items for all samples suggests the presence of a consistent modal value (@fig-distributions).
-In other words, participants are most likely to answer 4/5 (i.e., agree) on most items (but "affective touch", "blood sugar", and "bruise" that exhibit a different distributional pattern).
-Additionally, one can note the low density on extreme values (1 and 5), meaning that the bulk of answers (i.e., 99%) varies between 3 values.
-The interindividual variability seems improved in the samples using an analogue scale, displaying a more continuous and progressive spread of answers.
+The distribution of the items for all samples suggests the presence of a consistent modal value (@fig-distributions).
+In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "affective touch" (**TODO: this one only seem off in ssames 8 no? could it be a language thing?**), "blood sugar", and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5).
+Additionally, one can note the low occurence of extreme values (1 and 5), meaning that the bulk of answers varies between 3 values (assuming the IAS is implemented as a 5-point Likert scale following its validation).
+The samples using an analogue scale (samples 10a, 10b and 10c in the figure **what about 11?**) displaying a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially suggesting a second lower mode at \~2.  
+
+**TODO: add more information to the caption to highlight some interesting things. What are the two items that stand out. Mention caveat that for most samples the undelying data is disrete (Likert scales), and hence the density plots are not the most accurate visualization method but have been chosen as the clearer to highlight what we are interested in.**
+
+**TODO: change the number of rows/cols of the figure to make it nicer (e.g., 3x6). And add x-axis on all subplots. Consider making the problematic items dashed.**.
 
 ```{r}
 #| warning: false
