@@ -55,7 +55,6 @@ author:
     #   - Validation
     #   - Visualization
     #   - Writing – original draft
-  #   #   - Writing – review & editing
   # - name: Magdalena Pfaff
   #   orcid: 0009-0006-2386-7936
   #   affiliations:
@@ -66,19 +65,6 @@ author:
   #   email: D.Makowski@sussex.ac.uk
   #   url: https://realitybending.github.io/
   #   roles:
-  #     - Conceptualization
-  #     - Data curation
-  #     - Formal Analysis
-  #     - Funding acquisition
-  #     - Investigation
-  #     - Methodology
-  #     - Project administration
-  #     - Resources
-  #     - Software
-  #     - Supervision
-  #     - Validation
-  #     - Visualization
-  #     - Writing – original draft
   #   affiliations:
   #     - ref: "id1"
   #     - name: "University of Sussex"
@@ -87,9 +73,9 @@ author-note:
   disclosures:
     gratitude: |
       ::: {.callout-note icon=false appearance="simple"}
+      :::
       This preprint is a non-peer-reviewed work from the [**Reality Bending Lab**](https://realitybending.github.io/).
       ![](https://realitybending.github.io/media/ReBeL_LogoOnly_hu11484441381606756729.png){width=20% fig-align="center"}
-      :::
 abstract: |
   Blabla the abstract blabla.
 keywords: [keyword1, keyword2, keyword3]
@@ -139,6 +125,8 @@ Various measures of interoception have been developed (see @fig-measures), combi
 A further distinction can be made between “explicit” and “implicit” paradigms, where explicit measures direct participants’ awareness toward interoceptive processes, while implicit measures assess interoception unbeknownst to them. 
 Additionally, interoceptive measures vary across different modalities, such as cardioception, respiroception, and gastroception, and assess various theoretical dimensions, including accuracy, sensitivity, awareness, and magnitude. 
 While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014; @Desmedt2023accuracy].
+
+**TODO: more detailed caption for the graph below. A good caption typically repeats and summarizes info from the text. E.g., "The different modalities of interoception can be measured in a variety of ways, directly and indirectly, ..."**
 
 ```{r}
 #| warning: false
@@ -193,8 +181,6 @@ According to the authors, the first factor appears to reflect cutaneous sensatio
 
 <!-- Relationship with other interoception measures -->
 
-**Note to dom: @ferentzi2021examining suggests that all MAIA dimensions, except for Not-Worrying and Not-Distracting, relate to a general interoceptive awareness factor. The low correlations of NW and ND with this general factor indicate that these dimensions do not contribute significantly to the measurement of general interoceptive awareness. Instead, NW appears to measure low emotionality or neuroticism, while ND does not capture a coherent underlying structure.**
-
 Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were highlighted previously as related to non-interoceptive abilities [@ferentzi2021examining].
 Interestingly, findings on the correlation between the IAS and the body awareness dimension of the BPQ (i.e., BPQ-A) have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
 Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023].
@@ -204,10 +190,6 @@ Lastly, no correlations have also been reported with the Interoceptive Attention
 <!-- Convergent validity (correlates)  -->
 
 While assessing the predictive validity of an interoception scale can be conceived as theoretically challenging, expected negative associations were observed between the IAS and alexithymia [@brand2023; @koike2023; @campos2021; @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023; @lin2023], depressive symptoms [@brand2023; @koike2023; @lin2023], anxiety [@brand2023], neuroticism [@brand2023] and self-esteem [@murphy2019].
-
-**TODO: can you update the fig. 1's box (assessmeent of related traits) to remove the question marks and put the the stronger interoception correlates. -- > I have put somatic symptoms but can also change to anxiety or depression?**  
-
-<!-- **anything else?**. TO BE COMPLETED -- to be determined -->
 
 <!-- current study -->
 
@@ -222,8 +204,6 @@ While combining these studies might provide a more robust and generalizable unde
 ### Methods
 
 #### Datasets
-
-**Note to dom: just to confirm all of your samples are from unpublished papers tight ?** 
 
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of 01/05/2024).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
@@ -360,20 +340,22 @@ Investigating correlates will help validate the IAS, as well as other interocept
 
 The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO: add the rest of the questionnaires, sample items and references**).
 
+<!-- Note: this table is generated during data analysis -->
 \input{../../analysis/figures/table2.tex}
 
-#### Statistical analysis
+#### Data Analysis
 
 Correlations will be computed using the correlation package under a Bayesian framework [@ben2020effectsize].
 
 ### Results
 
-## Average correlations 
+#### Average correlations 
 
 The EGA components captured grouping of items such as 'wind' and 'burp, 'cough' and 'sneeze', 'muscle' and 'pain'. 
 These groupings were used in correlational analysis to analyse how much each pairing is associated with other factor such as Alexithymia and with Mood disorders (see figure 2). 
 
-#### Correlations with body measures
+##### Correlations with body measures
+
 <!-- Alexithymia -->
 Alexithymia was assessed in the samples with the Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] and the Toronto Alexithymia Scale [TAS, @bagby1994twenty]. 
 
@@ -421,7 +403,7 @@ The Interoceptive Confusion Questionnaire was used to assess individuals' diffic
 
 The ICQ showed weak to moderate negative correlations with all IAS pairings. The strongest correlation was observed with the Hunger/Thirsty pairing (r = 0.348), while the weakest was with the Itch/Bruise pairing (r = 0.207).
 
-#### Correlations with mood measures
+##### Correlations with mood measures
 
 Mood disorders were assessed using several standardized measures, including the General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety], the State-Trait Anxiety Inventory [STAI, @spielberger1970manual] and its shorter version, the STAI-5 [@zsido2020development], Beck’s Depression Inventory [BDI, @beck1996beck], and the Mood and Feelings Questionnaire [MFQ; @messer1995development].
 Additionally, the Patient Health Questionnaire (PHQ) was administered in its 2-item [PHQ-2; @kroenke2003patient], 9-item [PHQ-9; @kroenke2001phq], and 15-item [PHQ-15, @kroenke2002phq] versions.
@@ -455,7 +437,7 @@ It exhibited its strongest correlation with the Hungry/Thirsty pair (r = -0.241)
 Lastly, the MSI-BPD is a 10-item questionnaire used to assess personality disorder, where items are rated on a dichotomous scale of 1 (present) and 0 (absent). 
 The MSI-BPD also showed its strongest negative correlation with the Hungry/Thirsty pair (r = -0.140) and was negatively correlated with all other pairings, except for Cough/Sneeze, which showed a slight positive correlation (r = 0.0219).
 
-#### Correlations with psychopathology measures 
+##### Correlations with psychopathology measures 
 
 <!-- Maladaptive  -->
 Maladaptive personality traits were assessed using the Personality Inventory for DSM-5 Short Form [PID-5-SF; @thimm2016personality], which measures five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism. 
@@ -477,7 +459,7 @@ The questionnaire consists of 28 items rated on a 4-point Likert scale, ranging 
 Overall, all pairings were weakly and negatively correlated with the ASQ dimensions, except for the Itch/Bruise and Heart/Breathing pairings, which showed weak positive correlations with the patterns/numbers trait (r = 0.184 and r = 0.038, respectively). 
 The strongest correlation was observed between the imagination trait and the Wind/Burp pairing (r = -0.218).
 
-#### Correlations with personality measures
+##### Correlations with personality measures
 
 The Big Five Inventory-Short Form [BFI-S; @lang2011short] and the Mini International Personality Item Pool [Mini-IPIP6; @sibley2011mini] were used to assess general personality traits. 
 The BFI-S consists of 15 items rated on a 7-point Likert scale, ranging from 1 (strongly disagree) to 7 (strongly agree), measuring five personality factors: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism.
@@ -490,7 +472,7 @@ On average, IAS pairings were positively associated with most personality dimens
 The strongest correlation was observed between Conscientiousness and the Hungry/Thirsty pairing (r = 0.164).
 Both Honesty-Humility and Neuroticism were weakly and negatively correlated with the IAS pairings, with the highest correlations observed for the Hungry/Thirsty pairing (r = -0.217 and r = -0.200, respectively).
 
-#### Correlations with other measures
+##### Correlations with other measures
 
 <!-- PI -->
 
@@ -523,12 +505,17 @@ Finally, Negativity is consistently positively correlated with all pairings, wit
 
 ![**Figure 2.** Correlates of the IAS](figures/clipboard-1619164537.png){width="911"}
 
+
 ### Discussion
 
 <!-- strongest and weakest correlations with the IAS--> 
 Our findings confirm that interoception exists within a complex network of correlates. 
 Among these, alexithymia exhibits the strongest negative correlation with the IAS, whereas the MAIA questionnaire shows the strongest positive correlation. 
 These correlates not only help explain different aspects of interoception but also serve as valuable tools for validating interoceptive measures.
+
+**TODO: integrate the following**
+**Note to dom: @ferentzi2021examining suggests that all MAIA dimensions, except for Not-Worrying and Not-Distracting, relate to a general interoceptive awareness factor. The low correlations of NW and ND with this general factor indicate that these dimensions do not contribute significantly to the measurement of general interoceptive awareness. Instead, NW appears to measure low emotionality or neuroticism, while ND does not capture a coherent underlying structure.**
+
 
 <!-- consistent pattern of results and interesting exprolatory analysis --> 
 While our results reveal various correlations with the IAS, they are limited to the scope of the given questionnaire.
