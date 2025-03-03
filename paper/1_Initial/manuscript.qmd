@@ -199,7 +199,7 @@ The current study aims at 1) clarifying the structure of the IAS with a meta-ana
 ## Study 1
 
 Study 1 will re-analyse and assess the factor structure of the IAS by taking advantage of the large number of open-access datasets [@brand2023; @campos2021; @lin2023; @murphy2019; @arslanova2022; @todd2022; @gaggero2021; @brand2022; @von2023].
-While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, we also additionally provide an individual analysis (i.e., on all samples separately) to add nuance to the general picture, as all studies differ in their sample sizes, demographics, language, and procedure.
+While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, we also additionally provide an individual analysis (i.e., on all samples separately) to add nuance to the general picture, as all studies differ in their sample size, demographic characteristics, language, and procedure.
 
 ### Methods
 
@@ -212,23 +212,30 @@ A total of 14 studies was included (see **Table 1**).
 
 The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1, 71.6\% Female).
 
+<!-- Note: this table is generated during data analysis -->
+
 \begin{landscape}
 
 \input{../../analysis/figures/table1.tex}
 
 \end{landscape}
 
-#### Statistical Analysis
+#### Data Analysis
 
-To examine the factor structure of the IAS, a two-steps approach was employed.
-First, EGA  was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
-The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates.
-A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25).
-Subsequently, exploratory factor analysis (EFA) was employed followed by CFA.
+In order to obtain a comprehensive view, we will examine the factor structure of the IAS using two different approaches, namely Exploratory Graph Analysis (EGA) and traditional exploratory and confirmatory Factor Analysis (EFA/CFA).
+
+**TODO: Explain EGA. Rework the following paraphraph**.
+
+<!-- was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory]. -->
+<!-- The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates. -->
+<!-- A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25). -->
+
+In contrast, the factor analsyis framework... **TODO**. 
+We will first apply EFA to... and then identify the best fitting models using CFA.
 
 ### Results
 
-<!-- Distibutions of items -->
+<!-- Distributions of items -->
 
 Visualizing the distribution of the items for all samples suggests the presence of a consistent modal value (@fig-distributions).
 In other words, participants are most likely to answer 4/5 (i.e., agree) on most items (but "affective touch", "blood sugar", and "bruise" that exhibit a different distributional pattern).
@@ -338,9 +345,9 @@ Investigating correlates will help validate the IAS, as well as other interocept
 
 #### Materials
 
+
 The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO: add the rest of the questionnaires, sample items and references**).
 
-<!-- Note: this table is generated during data analysis -->
 \input{../../analysis/figures/table2.tex}
 
 #### Data Analysis
