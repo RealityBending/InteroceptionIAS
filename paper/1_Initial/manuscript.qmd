@@ -135,10 +135,9 @@ While recent research emphasizes a key role of interoception in a variety of pro
 <!-- Various measures of interoception have been developed (see @fig-measures), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking *vs.* questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes *vs.* measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., accuracy, sensitivity, awareness). -->
 
 <!-- While this is longer it breaks it down a bit more -->
-Various measures of interoception have been developed (see @fig-measures), combining different approaches, including both “objective” and “subjective” assessments—physiological tasks, such as  Heartbeat Counting Task [HCT, @schandry1981heart] or the Heartbeat Detection Task [HDT, @kleckner2015methodological], versus questionnaires and rating scales that require metacognitive reflection. 
+Various measures of interoception have been developed (see @fig-measures), combining different approaches, including both “objective” and “subjective” assessments—physiological tasks, such as  Heartbeat Counting Task [HCT, @schandry1981heart] or the Heartbeat Detection Task [HDT, @kleckner2015methodological]- versus questionnaires and rating scales that require metacognitive reflection. 
 A further distinction can be made between “explicit” and “implicit” paradigms, where explicit measures direct participants’ awareness toward interoceptive processes, while implicit measures assess interoception unbeknownst to them. 
-Additionally, interoceptive measures vary across different modalities, such as cardioception, respiroception, and gastroception. 
-Finally, these measures assess various theoretical dimensions, including accuracy, sensitivity, awareness, and magnitude.
+Additionally, interoceptive measures vary across different modalities, such as cardioception, respiroception, and gastroception, and assess various theoretical dimensions, including accuracy, sensitivity, awareness, and magnitude. 
 While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014; @Desmedt2023accuracy].
 
 ```{r}
@@ -180,58 +179,56 @@ The IAS consists of 21 Likert-scale items that query how accurately one can perc
 Notably, the IAS' statements are about specific interoceptive behaviours, which is a distinct difference with other popular interoception questionnaires, such as the MAIA-2, which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), as well as dimensions related to attention regulation (e.g., Not-distracting) or emotion regulation (e.g., Not-worrying).
 
 <!-- IAS structure  --> 
-
-**note to dom review this. 1. yes I think they are general interoceptive signals (I added the items that loaded to both factors for Murphy's and Koike's validation) 2. Do we want to add that lin created a short verison of the scale? 3. Yes kioke  did named their factors**
-
-Although the original validation study suggested a two-factor structure for the IAS, reflecting the perception of general interoceptive signals (i.e., urinate, hungry, defecate, thirsty, pain, heart, taste, breathing, temperature, mulscles, affective touch, vomit, sexual arousal), and that of signals that may be difficult to perceive solely through interoceptive information (i.e., itch, tickle, cough, burp, bruise, blood sugar, sneeze, wind). 
+Although the original validation study suggested a two-factor structure for the IAS: one reflecting the perception of general interoceptive signals (i.e., urinate, hungry, defecate, thirsty, pain, heart, taste, breathing, temperature, mulscles, affective touch, vomit, sexual arousal), and other relating to signals that may be difficult to perceive solely through interoceptive information (i.e., itch, tickle, cough, burp, bruise, blood sugar, sneeze, wind). 
 The authors however underlined its acceptable but imperfect fit [@murphy2019, p. 127], and several follow-up studies have indeed identified different optimal solutions. 
-For instance, @brand2023 reported a 1-factor solution, while @lin2023 and @campos2021 [the former using a new approach to structure analysis, Exploratory Graph Analysis, @golino2017exploratory] found bifactor solutions - one general factor above a set of lower-level factors [@rodriguez2016evaluating] - to be the best fit. 
+For instance, @brand2023 reported a 1-factor solution, while @lin2023 - using a new approach to structure analysis, namely Exploratory Graph Analysis [EGA, @golino2017exploratory]- and @campos2021 found bifactor solutions, that is one general factor above a set of lower-level factors [@rodriguez2016evaluating],  to be the best fit. 
 
 Discussions have also been focused on specific items.
-For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119).
+For instance, @murphy2019 notes that some items might measure direct interoceptive signals such as cardioception, while others might capture phenomena not perceivable through interoceptive signals alone (e.g., "bruising"; p. 119). 
 @lin2023 also highlights their correlation analysis, showing five locally dependent pairs and three items (touch, blood sugar, bruise) with exceptionally high difficulty and low discrimination, and @campos2021 reported "tickle" to be the only item that reflected more specific factors than the general factor.
 
 Localization issues also arose in @lin2023 validation of the IAS, where both "itch" and "tickle" correspond to the same Chinese character, leading to their collapse into a single item. 
 Notably, the only other study to report a 2-factor solution was conducted by @koike2023, who performed an Exploratory Factor Analysis (EFA) assuming 2 factors to align with the findings from the original validation paper. 
-According to the authors, the first factor appears to reflect cutaneous sensations (e.g., itching, tickling, coughing, burping, affective touch, bruising, passing gas, sneezing, muscle sensations, sexual arousal, and taste), while the second factor seems to represent visceral sensations (e.g., urination, defecation, hunger, thirst, pain, breathing, fatigue/blood sugar, temperature, vomiting, and heartbeat).
+According to the authors, the first factor appears to reflect cutaneous sensations (i.e., itching, tickling, coughing, burping, affective touch, bruising, passing gas, sneezing, muscle sensations, sexual arousal, and taste), while the second factor seems to represent visceral sensations (i.e., urination, defecation, hunger, thirst, pain, breathing, fatigue/blood sugar, temperature, vomiting, and heartbeat).
 
 <!-- Relationship with other interoception measures -->
 
 **Note to dom: @ferentzi2021examining suggests that all MAIA dimensions, except for Not-Worrying and Not-Distracting, relate to a general interoceptive awareness factor. The low correlations of NW and ND with this general factor indicate that these dimensions do not contribute significantly to the measurement of general interoceptive awareness. Instead, NW appears to measure low emotionality or neuroticism, while ND does not capture a coherent underlying structure.**
 
 Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were highlighted previously as related to non-interoceptive abilities [@ferentzi2021examining].
-Interestingly, findings on the correlation between the IAS and the body awareness dimension of the Body Perception Questionnaire [BPQ-A, @porges1993body] have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
+Interestingly, findings on the correlation between the IAS and the body awareness dimension of the BPQ (i.e., BPQ-A) have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
 Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023].
-Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia, @brand2023; @murphy2019].
-Lastly, small positive correlations have also been reported with the Interoceptive Attention Scale [IATS, @lin2023, @koike2023], though studies have also found no correlation between these measures [@gabriele2022dissociations].
+Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the EDI [@lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia], as reported by @brand2023 and @murphy2019.
+Lastly, no correlations have also been reported with the Interoceptive Attention Scale [IATS, @gabriele2022dissociations], though studies have also found small positive correlation between these measures [@lin2023; @koike2023].
 
 <!-- Convergent validity (correlates)  -->
 
 While assessing the predictive validity of an interoception scale can be conceived as theoretically challenging, expected negative associations were observed between the IAS and alexithymia [@brand2023; @koike2023; @campos2021; @murphy2019; @lin2023], somatic symptoms [@brand2023; @koike2023; @lin2023], depressive symptoms [@brand2023; @koike2023; @lin2023], anxiety [@brand2023], neuroticism [@brand2023] and self-esteem [@murphy2019].
 
-**TODO: can you update the fig. 1's box (assessmeent of related traits) to remove the question marks and put the the stronger interoception correlates** - as in with what? 
+**TODO: can you update the fig. 1's box (assessmeent of related traits) to remove the question marks and put the the stronger interoception correlates. -- > I have put somatic symptoms but can also change to anxiety or depression?**  
 
 <!-- **anything else?**. TO BE COMPLETED -- to be determined -->
 
 <!-- current study -->
 
-
-The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
+Given the conflicting findings surrounding the IAS, the current study aims at 1) clarifying its structure with a meta-analytic approach that leverages existing data and contrast the traditional confirmatory factor analysis (CFA)/structural equation modeling (SEM) factor-based analyses with network-based ones such as EGA;
 2) the second part will provide an overview of the dispositional correlates of the IAS, clarifying the pattern of associations which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 ## Study 1
 
-The goal of study 1 is to re-analyse and assess the factor structure of the IAS by taking advantage of the large number of open-access datasets [@brand2023; @campos2021; @lin2023; @murphy2019; @arslanova2022; @todd2022; @gaggero2021; @brand2022; @von2023].
+Study 1 will re-analyse and assess the factor structure of the IAS by taking advantage of the large number of open-access datasets [@brand2023; @campos2021; @lin2023; @murphy2019; @arslanova2022; @todd2022; @gaggero2021; @brand2022; @von2023].
 While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, we also additionally provide an individual analysis (i.e., on all samples separately) to add nuance to the general picture, as all studies differ in their sample sizes, demographics, language, and procedure.
 
 ### Methods
 
 #### Datasets
 
+**Note to dom: just to confirm all of your samples are from unpublished papers tight ?** 
+
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of 01/05/2024).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
-We also included the data of two unpublished (but already open-access) studies.
-A total of 10 studies was included (see **Table 1**).
+We also included the data of four unpublished (but already open-access) studies.
+A total of 14 studies was included (see **Table 1**).
 
 The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1, 71.6\% Female).
 
@@ -244,10 +241,10 @@ The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1
 #### Statistical Analysis
 
 To examine the factor structure of the IAS, a two-steps approach was employed.
-First, Exploratory Graph Analysis (EGA), was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
+First, EGA  was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
 The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates.
 A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25).
-Subsequently, exploratory factor analysis (EFA) was employed followed by confirmatory factor analysis (CFA).
+Subsequently, exploratory factor analysis (EFA) was employed followed by CFA.
 
 ### Results
 
@@ -273,9 +270,7 @@ This remains the same across all samples.
 However, there are possibly some higher-order groupings emerging for the 2 analog-scale samples.
 
 #### EGA
-
 <!-- Univariate analysis -->
-
 The UVA revealed that there are two large to very large redundant variables when taking all samples into account.
 Namely, "itch" and "tickle", where "tickle" should be removed, and "itch" should be kept.
 There are several more items that are moderately to largely redundant, namely, "wind" and "burp", and "urinate" and "defecate".
@@ -283,35 +278,32 @@ On top of that, "sneeze" and "cough", "heart" and "breathing", and "hungry" and 
 These findings are rather consistent across the samples with minor differences, such as that when the questionnaire had an analog scale, there seems to be no large to very large redundant items but "itch" and "tickle" remain moderately to largely redundant and "heart" and "breathing" small to moderately redundant in one sample.
 
 <!-- Network analysis -->
-
 According to the network analysis, using the Walktrap and Louvain algorithms applied to Glasso networks, a 4-factor structure fits the questionnaire best across all data sets.
-This is rather consistent within the data sets, where some samples indicate 3-factor structure, and some a 5-factor structure would fit well too.
-The 4-factor structure model with the best fit entails the following items per group: 1) itch, tickle, bruise, blood sugar; 2) burp, wind, cough, sneeze, vomit; 3) affective touch, sexual arousal, muscles, temperature, pain, and taste; 4) Heart, breathing, hungry, thirsty, urinate, and defecate.
+This is generally consistent within the data sets, although some samples suggest that a 3-factor or 5-factor structure might also be a good fit.
+The 4-factor structure model with the best fit entails the following items per group: 1)"itch", "tickle", "bruise", "blood sugar"; 2) "burp", "wind", "cough", "sneeze", "vomit"; 3) "affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"; 4) "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate".
 
 <!-- Stability analysis -->
-
 Stability analysis, employing 500 bootstrap iterations, also favoured the 4-factor solution for its greater stability.
 Most items, except for 'affective touch,' demonstrated stability levels exceeding 0.90, indicating structural consistency and reliability [@christensen2021].
 These findings underscore the robustness of the identified 4-dimensional structure.
 
 <!-- Factor analysis -->
-
-<!-- check EFA results again -->
-
 When accounting for all samples, the factor analysis reveals that a 4-factor structure fits best.
 The exploratory factor analysis revealed that 4 latent factors (oblimin rotation) accounted for  41.58% of the total variance of the original data (MR1 = 14.45%, MR3 = 11.76%, MR2 = 8.09%, MR4 = 7.28%).
-Since UVA identified "tickle" as the item to be removed—and it also had the lowest uniqueness value in factor analysis with a similar loading to "itch"—" it was excluded from subsequent analyses.
+
+<!-- Removal of items before the CFA -->
+Since UVA identified "tickle" as the item to be removed—and it had the lowest uniqueness value in factor analysis, with a loading similar to "itch"—it was excluded from subsequent analyses.
+Additionally, several items were removed due to ambiguity, in which ....
+**need to add reasoning for the removal of 'ambiguous items'** 
 
 <!-- Confirmatory factor analysis -->
-
-CFA was computed with the removal of the item "tickle" as it was constantly flagged as redundant. This analysis compared 5 models: a single-factor solution, a 4-factor solution, a 5-factor solution, a 6-factor solution and a 7-factor solution. 
-The latter was preferred in most datasets, including with indices that penalise increased number of parameters (such as BIC).
-There was no evidence for higher order factors.
+CFA analysis compared 5 models: a single-factor solution, a 4-factor solution, a 5-factor solution, a 6-factor solution and a 7-factor solution. 
+The latter, which composed of pairs of itmes was preferred in most datasets, including with indices that penalise increased number of parameters (such as BIC).
+Lastly, there was no evidence for higher order factors.
 
 ### Discussion
 
 <!-- Ias structure -->
-
 In this study, several datasets were analyzed for a meta analysis of the structure of the IAS.
 The findings reveal that a 4-factor model fits the IAS best.
 Additionally, the lowest level structure (pairs of items) seem to be the most robust, especially for samples using Likert scales (some higher-order groupings might emerge for the 2 analog-scale samples).
@@ -336,14 +328,14 @@ Other items with slight redundancy were "hungry" and "thirsty", "urinate" and "d
 
 <!-- Lins short IAs kept: Hunger, Breath, Urinate, Taste, Vomit, Cough, Temperature, Sexual Arousal, Wind, Muscle, Pain, Itch -->
 
-Interestingly, @lin2023 also found that "tickle" and "itch" were redundant, which led them to excludw one of them. Although, the reason being that the character for both words is the same in the Chinese language.
+Interestingly, @lin2023 also found that "tickle" and "itch" were redundant, which led them to exclude one of them. Although, the reason being that the character for both words is the same in the Chinese language.
 On top of that, they came up with a shortened version of the IAS, excluding further items, resulting in a 12-item IAS, which aligns with our findings, suggesting that further items are ambiguous as to whether they should be removed.
-Their 12-item IAS included the "hunger", "breath", "urinate", "taste", "vomit", "cough", "temperature", "sexual arousa", "wind", "muscle", "pain", "itch" items.  
+Their 12-item IAS included the "hunger", "breath", "urinate", "taste", "vomit", "cough", "temperature", "sexual arousa", "wind", "muscle", "pain", "itch" items.
 In contrast, other findings also found "tickle" to be redundant but did not suggest excluding items [@campos2021].
 
 <!-- low density on extreme values (1 and 5) -->
 
-The findings indicate a high proportion of answers at 4 (see Figure 1), especially when using a 5-step scale.
+The findings indicate a high proportion of answers at 4 (see @fig-distributions), especially when using a 5-step scale.
 The analogue scale shows a more dispersed distribution, with some answers indicating the highest 5/5, which was not the case in Likert-scales. 
 Therefore, we recommend using an analog scale for the IAS.
 
@@ -381,11 +373,9 @@ Correlations will be computed using the correlation package under a Bayesian fra
 The EGA components captured grouping of items such as 'wind' and 'burp, 'cough' and 'sneeze', 'muscle' and 'pain'. 
 These groupings were used in correlational analysis to analyse how much each pairing is associated with other factor such as Alexithymia and with Mood disorders (see figure 2). 
 
-**note**compute internal consistency
-
 #### Correlations with body measures
 <!-- Alexithymia -->
-Alexithymia was assessed in the samples with the Bermond–Vorst Alexithymia Questionnaire [BVAQ; @vorst2001validity] and the Toronto Alexithymia Scale[TAS; @bagby1994twenty]. 
+Alexithymia was assessed in the samples with the Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] and the Toronto Alexithymia Scale [TAS, @bagby1994twenty]. 
 
 <!-- BVAQ -->
 The BVAQ consists of 5 subscales - fantasising, idenitying, analysing; verbalising and emotionalising - assessed with 40 items on a 5-point Likert scale, from 'defnitely applies to me' to 'in no way applies to me'.
