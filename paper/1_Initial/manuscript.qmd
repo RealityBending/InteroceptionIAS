@@ -126,14 +126,12 @@ A further distinction can be made between “explicit” and “implicit” para
 Additionally, interoceptive measures vary across different modalities, such as cardioception, respiroception, and gastroception, and assess various theoretical dimensions, including accuracy, sensitivity, awareness, and magnitude. 
 While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014; @Desmedt2023accuracy].
 
-**TODO: more detailed caption for the graph below. A good caption typically repeats and summarizes info from the text. E.g., "The different modalities of interoception can be measured in a variety of ways, directly and indirectly, ..."**
-
 ```{r}
 #| warning: false
 #| label: "fig-measures"
-#| fig-cap: "Different ways in which interoception can be measured."
 #| apa-twocolumn: false  # A Figure Spanning Two Columns When in Journal Mode
 #| out-width: "100%"
+#| fig-cap: "The different modalities of interoception can be assessed through both direct and indirect methods. Direct measures are classified as subjective or objective, depending on whether they involve conscious metacognitive interpretation. Objective measures are further divided into implicit and explicit, based on whether they bypass participants' conscious awareness and metacognitive processes. Indirect assessments evaluate interoception by examining its relationship with psychological traits (reflecting ability level) or physiological indices (reflecting underlying mechanisms)."
 
 knitr::include_graphics("figures/MeasuringInteroception.jpg")
 ```
@@ -224,7 +222,14 @@ The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1
 
 Psychometrically good items should exhibit various qualities, such as validity and reliability, and one of the contributing factors is the amount of variability captured by an item. Items to which all participants' answers are concentrated around one option - i.e., exhibiting a narrow distribution - should be flagged as potentially problematic. 
 
-After examining the distributions to all IAS items, we will analyze the factor structure using two different approaches, namely Exploratory Graph Analysis (EGA) and traditional exploratory and confirmatory Factor Analysis (EFA/CFA).
+After examining the distributions to all IAS items, we will analyze the factor structure using two different approaches, namely EGA and traditional exploratory and confirmatory Factor Analysis (EFA/CFA).
+
+<!-- EGA -->
+EGA is a network-based approach for estimating the number of dimensions in psychological data while also identifying which items belong to each dimension [@golino2017exploratory]. 
+It was developed to address limitations of traditional methods like parallel analysis, minimum average partial procedure, and the Kaiser-Guttman rule, which can either underestimate or overestimate factor numbers depending on factors such as sample size and item correlations.
+Rooted in the network psychometric perspective, EGA integrates network analysis with psychometric methods to model relationships between psychological variables[@golino2020investigating]. 
+Specifically, it combines the Gaussian Graphical Model with the walktrap clustering algorithm to determine the dimensional structure of psychological constructs.
+
 
 **TODO: Explain EGA. Explain UVA. Rework the following paragraph**.
 
