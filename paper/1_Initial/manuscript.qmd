@@ -225,17 +225,20 @@ Psychometrically good items should exhibit various qualities, such as validity a
 After examining the distributions to all IAS items, we will analyze the factor structure using two different approaches, namely EGA and traditional exploratory and confirmatory Factor Analysis (EFA/CFA).
 
 <!-- EGA -->
-EGA is a network-based approach for estimating the number of dimensions in psychological data while also identifying which items belong to each dimension [@golino2017exploratory]. 
-It was developed to address limitations of traditional methods like parallel analysis, minimum average partial procedure, and the Kaiser-Guttman rule, which can either underestimate or overestimate factor numbers depending on factors such as sample size and item correlations.
-Rooted in the network psychometric perspective, EGA integrates network analysis with psychometric methods to model relationships between psychological variables[@golino2020investigating]. 
-Specifically, it combines the Gaussian Graphical Model with the walktrap clustering algorithm to determine the dimensional structure of psychological constructs.
+EGA is a powerful network-based approach for estimating the number of dimensions in psychological data while identifying which items belong to each dimension, both crucial for understanding the structure of complex constructs and improving the validity of psychological assessments [@golino2017exploratory; @markos2024dimensionality].
+This new approach addresses limitations of traditional methods which can either underestimate or overestimate factor numbers depending on factors such as sample size and item correlations.
+By combining network analysis with psychometric methods, EGA offers a unique perspective for modeling relationships between psychological variables [@golino2020investigating]. 
+For instance, unlike factor analysis, which assumes a common cause for observed variables, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them [@christensen2021equivalency]. 
+Clustering these nodes reveals distinct communities of related items, which resemble latent factors without explicitly assuming their presence. 
+EGA has shown strong performance with binary, continuous [@cosemans2022exploratory], and more recently, ordinal data [@markos2024dimensionality], providing a flexible and reliable alternative for exploring data dimensionality. 
+Given the IAS's unclear factor structure and EGA's proven accuracy with complex psychological constructs, it is a suitable technique for this analysis.
 
 
-**TODO: Explain EGA. Explain UVA. Rework the following paragraph**.
+**TODO: Explain UVA. Rework the following paragraph**.
 
-<!-- was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory]. -->
-<!-- The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates. -->
-<!-- A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25). -->
+<!-- was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
+The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates.
+A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25). -->
 
 In contrast, the factor analsyis framework... **TODO**. 
 We will first apply EFA to... and then identify the best fitting models using CFA.
