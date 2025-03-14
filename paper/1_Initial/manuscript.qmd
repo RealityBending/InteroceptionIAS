@@ -118,12 +118,7 @@ While recent research emphasizes a key role of interoception in a variety of pro
 
 <!-- Interoception measure -->
 
-<!-- Various measures of interoception have been developed (see @fig-measures), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking *vs.* questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes *vs.* measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., accuracy, sensitivity, awareness). -->
-
-<!-- While this is longer it breaks it down a bit more -->
-Various measures of interoception have been developed (see @fig-measures), combining different approaches, including both “objective” and “subjective” assessments—physiological tasks, such as  Heartbeat Counting Task [HCT, @schandry1981heart] or the Heartbeat Detection Task [HDT, @kleckner2015methodological]- versus questionnaires and rating scales that require metacognitive reflection. 
-A further distinction can be made between “explicit” and “implicit” paradigms, where explicit measures direct participants’ awareness toward interoceptive processes, while implicit measures assess interoception unbeknownst to them. 
-Additionally, interoceptive measures vary across different modalities, such as cardioception, respiroception, and gastroception, and assess various theoretical dimensions, including accuracy, sensitivity, awareness, and magnitude. 
+Various measures of interoception have been developed (see @fig-measures), forming a combination of "objective" and "subjective" assessments (i.e., physiological tasks such as the heart beat counting or tracking *vs.* questionnaires and subjective scales involving a metacognitive reflection), "explicit" and "implicit" paradigms (i.e., directing participants' awareness and attention to interoceptive processes *vs.* measuring interoception unbeknownst to them), various interoceptive modalities (e.g., cardioception, respiroception, gastroception) and theoretical dimensions (e.g., accuracy, sensitivity, awareness).
 While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014; @Desmedt2023accuracy].
 
 ```{r}
@@ -131,7 +126,7 @@ While there is no consensus as to which particular approach provides the most ac
 #| label: "fig-measures"
 #| apa-twocolumn: false  # A Figure Spanning Two Columns When in Journal Mode
 #| out-width: "100%"
-#| fig-cap: "The different modalities of interoception can be assessed through both direct and indirect methods. Direct measures are classified as subjective or objective, depending on whether they involve conscious metacognitive interpretation. Objective measures are further divided into implicit and explicit, based on whether they bypass participants' conscious awareness and metacognitive processes. Indirect assessments evaluate interoception by examining its relationship with psychological traits (reflecting ability level) or physiological indices (reflecting underlying mechanisms)."
+#| fig-cap: "The different modalities of interoception (e.g., cardioception) can be assessed directly or indirectly. Direct assessments can further be subjective or objective, depending on whether they involve conscious metacognitive appraisals or more performance-based indices. Interoceptive tasks can be explicit (the participant is aware of the interoceptive nature of the task and must consciously attend to interoceptive signals; e.g., the heartbeat counting task) or implicit (measurements of interoception done unbeknowst to the participant; e.g., heartbeat evoked potentials measured during resting state). Indirect assessments evaluate constructs typically related (and ideally dependent on) to interoceptive processes or ability (or its deficit)."
 
 knitr::include_graphics("figures/MeasuringInteroception.jpg")
 ```
@@ -141,7 +136,7 @@ knitr::include_graphics("figures/MeasuringInteroception.jpg")
 Although the use of subjective self-report questionnaires to measure deeply embodied functions might seem paradoxical at first, recent redefinitions of interoception emphasize the role of high-level and metacognitive elaboration of interoceptive information.
 These redefinitions provide theoretical grounding to support the idea that some facets of interoception, including participants' metacognitive beliefs, can be assessed subjectively [@khalsa2018interoception; @suksasilp2022towards].
 Moreover, the notion that self-reports might not reflect the same processes as other interoception tasks might be important to contextualize the apparent lack of convergence between measures in the field [@desmedt2022measures]. 
-For instance, existing findings typically show weak or no correlations between questionnaires and objective measures [including for measures of the same theorethical dimensions, e.g., task-based accuracy vs. self-reported accuracy, @murphy2019; @brand2023; @arslanova2022], such as the HCT and the HDT. 
+For instance, existing findings typically show weak or no correlations between questionnaires and objective measures [including for measures of the same theoretical dimensions, e.g., task-based accuracy vs. self-reported accuracy, @murphy2019; @brand2023; @arslanova2022], such as the Heartbeat Counting Task [HCT, @schandry1981heart] and the Heartbeat Detection Task [HDT, @kleckner2015methodological]. 
 Additionally, objective measures assessing the same interoceptive dimension, such as accuracy, either show no correlation [e.g., @brand2023] or only weak correlations [e.g., @hickman2020relationship].
 Perhaps more surprisingly, low correlations have been observed even among questionnaires, suggesting the targeting of different facets related to interoception. 
 
@@ -162,7 +157,7 @@ The lack of correlations to moderate correlations among these questionnaires hig
 
 A recently developed scale with a rapidly growing popularity is the Interoceptive Accuracy Scale [IAS, @murphy2019].
 The IAS consists of 21 Likert-scale items that query how accurately one can perceive different bodily signals, with one item per physiological modality such as respiration (*"I can always accurately perceive when I am breathing fast"*), heart (*"I can always accurately perceive when my heart is beating fast"*), skin (*"I can always accurately perceive when something is going to be ticklish"*), arousal or bodily functions like coughing (*"I can always accurately perceive when I am going to cough"*) or urinating (*"I can always accurately perceive when I need to urinate"*).
-Notably, the IAS' statements are about specific interoceptive behaviours, which is a distinct difference with other popular interoception questionnaires, such as the MAIA-2, which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), as well as dimensions related to attention regulation (e.g., Not-distracting) or emotion regulation (e.g., Not-worrying).
+Appealingly, the IAS' statements are about specific interoceptive behaviours, which is a distinct difference with other popular interoception questionnaires, such as the MAIA-2, which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), as well as dimensions related to attention regulation (e.g., Not-distracting) or emotion regulation (e.g., Not-worrying).
 
 <!-- IAS structure  --> 
 Although the original validation study suggested a two-factor structure for the IAS: one reflecting the perception of general interoceptive signals (i.e., urinate, hungry, defecate, thirsty, pain, heart, taste, breathing, temperature, mulscles, affective touch, vomit, sexual arousal), and other relating to signals that may be difficult to perceive solely through interoceptive information (i.e., itch, tickle, cough, burp, bruise, blood sugar, sneeze, wind). 
@@ -191,7 +186,7 @@ While assessing the predictive validity of an interoception scale can be conceiv
 
 <!-- current study -->
 
-The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones such as EGA;
+The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones (Exploratory Graph Analysis);
 2) the second part will provide an overview of the dispositional correlates of the IAS, clarifying the pattern of associations which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 ## Study 1
@@ -222,16 +217,22 @@ The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1
 
 Psychometrically good items should exhibit various qualities, such as validity and reliability, and one of the contributing factors is the amount of variability captured by an item. Items to which all participants' answers are concentrated around one option - i.e., exhibiting a narrow distribution - should be flagged as potentially problematic. 
 
-After examining the distributions to all IAS items, we will analyze the factor structure using two different approaches, namely EGA and traditional exploratory and confirmatory Factor Analysis (EFA/CFA).
+After examining the distributions to all IAS items, we will analyze the factor structure using two different approaches, namely traditional exploratory and confirmatory Factor Analysis (EFA/CFA) as well as Exploratory Graph Analysis (EGA).
 
 <!-- EGA -->
-EGA is a powerful network-based approach for estimating the number of dimensions in psychological data while identifying which items belong to each dimension, both crucial for understanding the structure of complex constructs and improving the validity of psychological assessments [@golino2017exploratory; @markos2024dimensionality].
-This new approach addresses limitations of traditional methods which can either underestimate or overestimate factor numbers depending on factors such as sample size and item correlations.
-By combining network analysis with psychometric methods, EGA offers a unique perspective for modeling relationships between psychological variables [@golino2020investigating]. 
-For instance, unlike factor analysis, which assumes a common cause for observed variables, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them [@christensen2021equivalency]. 
-Clustering these nodes reveals distinct communities of related items, which resemble latent factors without explicitly assuming their presence. 
-EGA has shown strong performance with binary, continuous [@cosemans2022exploratory], and more recently, ordinal data [@markos2024dimensionality], providing a flexible and reliable alternative for exploring data dimensionality. 
-Given the IAS's unclear factor structure and EGA's proven accuracy with complex psychological constructs, it is a suitable technique for this analysis.
+<!-- EGA is a powerful network-based approach for estimating the number of dimensions in psychological data while identifying which items belong to each dimension, both crucial for understanding the structure of complex constructs and improving the validity of psychological assessments [@golino2017exploratory; @markos2024dimensionality]. -->
+<!-- This new approach addresses limitations of traditional methods which can either underestimate or overestimate factor numbers depending on factors such as sample size and item correlations. -->
+<!-- By combining network analysis with psychometric methods, EGA offers a unique perspective for modeling relationships between psychological variables [@golino2020investigating].  -->
+<!-- For instance, unlike factor analysis, which assumes a common cause for observed variables, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them [@christensen2021equivalency].  -->
+<!-- Clustering these nodes reveals distinct communities of related items, which resemble latent factors without explicitly assuming their presence.  -->
+<!-- EGA has shown strong performance with binary, continuous [@cosemans2022exploratory], and more recently, ordinal data [@markos2024dimensionality], providing a flexible and reliable alternative for exploring data dimensionality.  -->
+<!-- Given the IAS's unclear factor structure and EGA's proven accuracy with complex psychological constructs, it is a suitable technique for this analysis. -->
+
+By combining network analysis with psychometric methods, the recently-developed EGA framework that allows to jointly estimate the number of dimensions (i.e., groups of items), the structure as well as its stability [@golino2017exploratory; @golino2020investigating]. Evidence has underlined its suitability as an alternative to traditional factor analysis, addressing some of its limitations such as the assumption of a "latent" source of variability, possible biasing in the estimation of the optimal factor numbers depending on sample size, and **TODO: a third example would be nice?** **REF**, while remaining comparable and interpretable [@christensen2021equivalency]. At a fundamental level, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them. Clustering these nodes reveals distinct communities of related items, in practice akin to traditional latent factors - but without explicitly assuming their presence [@christensen2021equivalency].
+
+
+
+
 
 
 **TODO: Explain UVA. Rework the following paragraph**.
