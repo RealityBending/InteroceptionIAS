@@ -341,7 +341,8 @@ Therefore, this study provides a novel approach to improving the IAS in a simple
 
 ## Study 2
 
-Study 2 aims to investigate correlates of the IAS.
+The second study focuses on the dispositional correlates of the IAS.
+
 Correlations of the IAS will be computed to assess the relationship between subjective interoceptive accuracy and other subjective measures of interoception, mood, psychopathology, personality, and beliefs.
 Investigating correlates will help validate the IAS, as well as other interoceptive measures in the future.
 
@@ -363,7 +364,11 @@ Correlations will be computed using the correlation package under a Bayesian fra
 #### Average correlations 
 
 The EGA components captured grouping of items such as 'wind' and 'burp, 'cough' and 'sneeze', 'muscle' and 'pain'. 
+**TODO: but that's not true, we used only pairs, not EGA clusters?J**
+
 These groupings were used in correlational analysis to analyse how much each pairing is associated with other factor such as Alexithymia and with Mood disorders (see figure 2). 
+
+**TODO: Massively streamline. It can be all summarize in one or two paragraphs max.**
 
 ##### Correlations with body measures
 
@@ -520,7 +525,13 @@ Finally, Negativity is consistently positively correlated with all pairings, wit
 ### Discussion
 
 <!-- strongest and weakest correlations with the IAS--> 
-Our findings confirm that interoception exists within a complex network of correlates. 
+Our findings underline how subjective measures of interoception exist within a complex network of correlates. 
+
+**TODO:: Firstly, talk about the link with other interoceptive measures.**
+**Then, discuss other correlates by order of importance**
+
+**TODO: this discussion is too much descriptive for now. Discuss that from a larger perspective. What does it mean in general.**
+
 Among these, alexithymia exhibits the strongest negative correlation with the IAS, whereas the MAIA questionnaire shows the strongest positive correlation. 
 These correlates not only help explain different aspects of interoception but also serve as valuable tools for validating interoceptive measures.
 
@@ -565,6 +576,8 @@ By identifying numerous correlates of the IAS, we contribute not only to a deepe
 This analysis lays an important foundation for the development of new interoceptive assessment tools, further advancing our comprehension of interoception and its impact on human experience.
 
 ## General Discussion
+
+**The present study aimed... [always start with a description of the study]**.
 
 <!-- factor structure --> 
 
