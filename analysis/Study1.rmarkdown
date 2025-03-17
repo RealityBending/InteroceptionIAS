@@ -28,6 +28,8 @@ library(tidySEM)
 library(EGAnet)
 ```
 
+
+
 ## Data Preparation
 
 ::: {.panel-tabset}
@@ -36,6 +38,8 @@ library(EGAnet)
 
 - Murphy (2020)
   - https://osf.io/3m5nh
+
+
 
 ```{r}
 df1a <- haven::read_sav("../data/Murphy2020/Study 1.sav") |>
@@ -47,10 +51,14 @@ df1b <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
 ```
 
+
+
 ### Sample 2
 
 - Gaggero (2021) 
   - https://osf.io/5x9sg
+
+
 
 ```{r}
 load("../data/Gaggero2021/data.rda")
@@ -66,10 +74,14 @@ df2 <- data |>
 rm(data)
 ```
 
+
+
 ### Sample 3
 
 - Campos (2022) - Study 1 
   - https://osf.io/j6ef3
+
+
 
 ```{r}
 df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
@@ -84,10 +96,14 @@ df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
   )
 ```
 
+
+
 ### Sample 4
 
 - Todd (2022) 
   - https://osf.io/ms354/
+
+
 
 ```{r}
 df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
@@ -101,11 +117,15 @@ df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
   )
 ```
 
+
+
 ### Sample 5
 
 - Arslanova (2022)
   - https://osf.io/mp3cy/
   - note: Final.xlsx includes information about which participants passed the attention checks 
+
+
 
 ```{r}
 
@@ -141,10 +161,14 @@ df5 <- df5 |>
   
 ```
 
+
+
 ### Sample 6
 
 - Brand (2022) 
   - https://osf.io/xwz6g/
+
+
 
 ```{r}
 df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |> 
@@ -160,10 +184,14 @@ df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |>
   )
 ```
 
+
+
 ### Sample 7
 
 - Brand (2023) 
   - https://osf.io/3f2h6/
+
+
 
 ```{r}
 df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |> 
@@ -204,11 +232,15 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
   )
 ```
 
+
+
 ### Sample 8
 
 - Lin (2023)
   - https://osf.io/3eztd
   - Note: No tickle because same Chinese character
+
+
 
 ```{r}
 df8a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
@@ -235,10 +267,14 @@ df8b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
     Affective_touch = Touch, Itch = ITCH)
 ```
 
+
+
 ### Sample 9
 
 - VonMohr (2023) - Study 3 
   - https://osf.io/7p9u5/
+
+
 
 ```{r}
 df9 <- read.csv("../data/VonMohr2023/DataSet_study3.csv")
@@ -254,12 +290,16 @@ df9 <- df9 |>
   )
 ```
 
+
+
 ### Sample 10
 
 - Makowski
   - Note: First sample has some missing items
   - Note: Analog scales
   - note df10c = primals data
+
+
 
 ```{r}
 df10a <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
@@ -337,11 +377,15 @@ correlation::correlation(
 ```
 
 
+
+
 ### Sample 11
 
 - Poreiro et al., 
   - Study 1: https://osf.io/49wbv
   - Study 2: unpublished
+
+
 
 ```{r}
 
@@ -389,6 +433,8 @@ data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, 
 save(data, file = "../data/data.RData")
 ```
 
+
+
 :::
 
 
@@ -415,6 +461,8 @@ save(data, file = "../data/data.RData")
 
 
 Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10a) + nrow(df10b) + nrow(df10c) +nrow(df11a) + nrow(df11b)`.
+
+
 
 ```{r}
 
@@ -505,7 +553,7 @@ make_age <- function(age) {
 
 # Create the dataframe
 table <- data.frame(
-   Sample = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Total'),
+   Sample = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Poreiro et al., (2024)', 'Poreiro et al., unpublished', 'Total'),
   Subsample = c('', 'Sample 1', 'Sample 2', '', '', '', '', '', '', 'Sample 1', 'Sample 2', 'Sample 3', '', 'Sample 1', 'Sample 2', '', '', '', '', '','', ''),   
   Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English',''),
   N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10a), nrow(df10b), nrow(df10c), nrow(df11a), nrow(df11b), 32214),
@@ -529,11 +577,15 @@ gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
 ```
 
 
+
+
 ## Descriptive
 
 ### Distribution
 
 The items with the differing distribution pattern (with a lower mode around 2/5) are "Affective Touch", "Blood Sugar" and "Bruise".
+
+
 
 ```{r}
 vars <- c(
@@ -607,7 +659,6 @@ p1
 
 ```
 
-
 ```{r}
 data1a <- normalize(select(df1a, all_of(dens1a$Parameter)), range = c(1, 5))
 data1b <- normalize(select(df1b, all_of(dens1b$Parameter)), range = c(1, 5))
@@ -638,6 +689,8 @@ data_all <- rbind(
 ) 
 ```
 
+
+
 ### Correlations
 
 An overall positive intercorrelation pattern, with no clear structure emerging.
@@ -645,6 +698,8 @@ An overall positive intercorrelation pattern, with no clear structure emerging.
 ::: {.panel-tabset}
 
 #### All data
+
+
 
 ```{r}
 make_correlation <- function(df) {
@@ -671,116 +726,190 @@ make_correlation(data_all)
 ```
 
 
+
+
 #### Sample 1a
+
+
 
 ```{r}
 make_correlation(data1a)
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 make_correlation(data1b)
 ```
 
 
+
+
 #### Sample 2
+
+
 
 ```{r}
 make_correlation(data2)
 ```
 
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 make_correlation(data3)
 ```
 
+
+
 #### Sample 4
+
+
 
 ```{r}
 make_correlation(data4)
 ```
 
+
+
 #### Sample 5
+
+
 
 ```{r}
 make_correlation(data5)
 ```
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 make_correlation(data6)
 ```
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 make_correlation(data7a)
 ```
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 make_correlation(data7b)
 ```
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 make_correlation(data7c)
 ```
 
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 make_correlation(data8a)
 ```
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 make_correlation(data8b)
 ```
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 make_correlation(data9)
 ```
 
+
+
 #### Sample 10a
+
+
 
 ```{r}
 make_correlation(data10a)
 ```
 
+
+
 #### Sample 10b
+
+
 
 ```{r}
 make_correlation(data10b)
 ```
 
+
+
 #### Sample 10c
+
+
 
 ```{r}
 make_correlation(data10c)
 ```
 
+
+
 #### Sample 11a
+
+
 
 ```{r}
 make_correlation(data11a)
 ```
 
+
+
 #### Sample 11b
+
+
 
 ```{r}
 make_correlation(data11b)
 ```
+
+
 
 :::
 
@@ -797,6 +926,8 @@ Unique Variable Analysis (Christensen, Garrido, & Golino, 2023) uses the weighte
 
 #### All data
 
+
+
 ```{r}
 uva <- EGAnet::UVA(data = data_all, cut.off = 0.3)
 uva
@@ -804,7 +935,11 @@ uva$keep_remove
 ```
 
 
+
+
 #### Sample 1a
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data1a, cut.off = 0.3)
@@ -812,7 +947,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data1b, cut.off = 0.3)
@@ -820,7 +959,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data3, cut.off = 0.3)
@@ -828,7 +971,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 4
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data4, cut.off = 0.3)
@@ -836,7 +983,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 5 
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data5, cut.off = 0.3)
@@ -844,7 +995,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data6, cut.off = 0.3)
@@ -852,7 +1007,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data7a, cut.off = 0.3)
@@ -860,7 +1019,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data7b, cut.off = 0.3)
@@ -868,7 +1031,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data7c, cut.off = 0.3)
@@ -876,7 +1043,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data8a, cut.off = 0.3)
@@ -884,7 +1055,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data8b, cut.off = 0.3)
@@ -892,7 +1067,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data9, cut.off = 0.3)
@@ -900,7 +1079,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 10a
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data10a, cut.off = 0.3)
@@ -908,7 +1091,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 10b
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data10b, cut.off = 0.3)
@@ -916,7 +1103,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 10c
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data10c, cut.off = 0.3)
@@ -924,7 +1115,11 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 11a
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data11a, cut.off = 0.3)
@@ -932,13 +1127,19 @@ uva
 uva$keep_remove
 ```
 
+
+
 #### Sample 11b
+
+
 
 ```{r}
 uva <- EGAnet::UVA(data = data11b, cut.off = 0.3)
 uva
 uva$keep_remove
 ```
+
+
 
 
 :::
@@ -948,6 +1149,8 @@ uva$keep_remove
 ::: {.panel-tabset}
 
 #### All data
+
+
 
 
 ```{r ega_all}
@@ -1000,7 +1203,11 @@ egas_all <- make_egas(data_all)
 egas_all$p
 ```
 
+
+
 #### Sample 1a
+
+
 
 ```{r ega1a}
 #| fig-height: 20
@@ -1010,7 +1217,11 @@ egas1a <- make_egas(data1a)
 egas1a$p
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r ega1b}
 #| fig-height: 20
@@ -1020,7 +1231,11 @@ egas1b <- make_egas(data1b)
 egas1b$p
 ```
 
+
+
 #### Sample 2
+
+
 
 ```{r ega2}
 #| fig-height: 20
@@ -1031,7 +1246,11 @@ egas2$p
 ```
 
 
+
+
 #### Sample 3
+
+
 
 ```{r ega3}
 #| fig-height: 20
@@ -1041,7 +1260,11 @@ egas3 <- make_egas(data3)
 egas3$p
 ```
 
+
+
 #### Sample 4
+
+
 
 ```{r ega4}
 #| fig-height: 20
@@ -1051,7 +1274,11 @@ egas4 <- make_egas(data4)
 egas4$p
 ```
 
+
+
 #### Sample 5
+
+
 
 ```{r ega5}
 #| fig-height: 20
@@ -1061,7 +1288,11 @@ egas5 <- make_egas(data5)
 egas5$p
 ```
 
+
+
 #### Sample 6
+
+
 
 ```{r ega6}
 #| fig-height: 20
@@ -1071,7 +1302,11 @@ egas6 <- make_egas(data6)
 egas6$p
 ```
 
+
+
 #### Sample 7a
+
+
 
 ```{r ega7&}
 #| fig-height: 20
@@ -1081,7 +1316,11 @@ egas7a <- make_egas(data7a)
 egas7a$p
 ```
 
+
+
 #### Sample 7b
+
+
 
 ```{r ega7b}
 #| fig-height: 20
@@ -1091,7 +1330,11 @@ egas7b <- make_egas(data7b)
 egas7b$p
 ```
 
+
+
 #### Sample 7c
+
+
 
 ```{r ega7c}
 #| fig-height: 20
@@ -1101,7 +1344,11 @@ egas7c <- make_egas(data7c)
 egas7c$p
 ```
 
+
+
 #### Sample 8a
+
+
 
 ```{r ega8a}
 #| fig-height: 20
@@ -1111,7 +1358,11 @@ egas8a <- make_egas(data8a)
 egas8a$p
 ```
 
+
+
 #### Sample 8b
+
+
 
 ```{r ega8b}
 #| fig-height: 20
@@ -1121,7 +1372,11 @@ egas8b <- make_egas(data8b)
 egas8b$p
 ```
 
+
+
 #### Sample 9
+
+
 
 ```{r ega9}
 #| fig-height: 20
@@ -1131,7 +1386,11 @@ egas9 <- make_egas(data9)
 egas9$p
 ```
 
+
+
 #### Sample 10a
+
+
 
 ```{r ega10a}
 #| fig-height: 20
@@ -1141,7 +1400,11 @@ egas10a <- make_egas(data10a)
 egas10a$p
 ```
 
+
+
 #### Sample 10b
+
+
 
 ```{r ega10b}
 #| fig-height: 20
@@ -1151,7 +1414,11 @@ egas10b <- make_egas(data10b)
 egas10b$p
 ```
 
+
+
 #### Sample 10c
+
+
 
 ```{r ega10c}
 #| fig-height: 20
@@ -1161,7 +1428,11 @@ egas10c <- make_egas(data10c)
 egas10c$p
 ```
 
+
+
 #### Sample 11a
+
+
 
 ```{r ega11a}
 #| fig-height: 20
@@ -1171,7 +1442,11 @@ egas11a <- make_egas(data11a)
 egas11a$p
 ```
 
+
+
 #### Sample 11b
+
+
 
 ```{r ega11c}
 #| fig-height: 20
@@ -1182,6 +1457,8 @@ egas11b$p
 ```
 
 
+
+
 :::
 
 ### Structure Stability
@@ -1190,6 +1467,8 @@ egas11b$p
 
 #### All data
 
+
+
 ```{r}
 #| fig-height: 20
 #| fig-width: 12
@@ -1197,7 +1476,11 @@ egas11b$p
 patchwork::wrap_plots(lapply(egas_all$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 1a
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1206,7 +1489,11 @@ patchwork::wrap_plots(lapply(egas_all$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas1a$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1215,7 +1502,11 @@ patchwork::wrap_plots(lapply(egas1a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas1b$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 2
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1224,7 +1515,11 @@ patchwork::wrap_plots(lapply(egas1b$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas2$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1233,7 +1528,11 @@ patchwork::wrap_plots(lapply(egas2$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas3$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 4
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1242,7 +1541,11 @@ patchwork::wrap_plots(lapply(egas3$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas4$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 5
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1251,7 +1554,11 @@ patchwork::wrap_plots(lapply(egas4$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas5$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1260,7 +1567,11 @@ patchwork::wrap_plots(lapply(egas5$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas6$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1269,7 +1580,11 @@ patchwork::wrap_plots(lapply(egas6$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas7a$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1278,7 +1593,11 @@ patchwork::wrap_plots(lapply(egas7a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas7b$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1287,7 +1606,11 @@ patchwork::wrap_plots(lapply(egas7b$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas7c$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1296,7 +1619,11 @@ patchwork::wrap_plots(lapply(egas7c$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas8a$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1305,7 +1632,11 @@ patchwork::wrap_plots(lapply(egas8a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas8b$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1314,7 +1645,11 @@ patchwork::wrap_plots(lapply(egas8b$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas9$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 10a
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1323,7 +1658,11 @@ patchwork::wrap_plots(lapply(egas9$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas10a$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 10b
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1332,7 +1671,11 @@ patchwork::wrap_plots(lapply(egas10a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas10b$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 10c
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1341,7 +1684,11 @@ patchwork::wrap_plots(lapply(egas10b$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas10c$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 11a
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1350,7 +1697,11 @@ patchwork::wrap_plots(lapply(egas10c$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas11a$egas, plot), nrow = 3)
 ```
 
+
+
 #### Sample 11b
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1359,10 +1710,14 @@ patchwork::wrap_plots(lapply(egas11a$egas, plot), nrow = 3)
 patchwork::wrap_plots(lapply(egas11b$egas, plot), nrow = 3)
 ```
 
+
+
 :::
 
 
 ### Scores
+
+
 
 ```{r}
 ega <- egas_all$egas$glasso_louvain_ega$EGA
@@ -1395,6 +1750,8 @@ ega_scores_11b <- na.omit(get_scores(data11b, ega)) # remove two rows with NAS
 row.names(ega_scores_11b) <- NULL
 ```
 
+
+
 ## Factor Analysis
 
 ### How Many Factors
@@ -1403,6 +1760,8 @@ row.names(ega_scores_11b) <- NULL
 
 #### All data
 
+
+
 ```{r}
 n <- parameters::n_factors(data_all, n_max = 12)
 
@@ -1410,7 +1769,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 1a
+
+
 
 ```{r}
 n <- parameters::n_factors(data1a, n_max = 12)
@@ -1419,7 +1782,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 n <- parameters::n_factors(data1b, n_max = 12)
@@ -1428,7 +1795,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 2
+
+
 
 ```{r}
 n <- parameters::n_factors(data2, n_max = 12)
@@ -1437,7 +1808,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 n <- parameters::n_factors(data3, n_max = 12)
@@ -1446,7 +1821,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 4
+
+
 
 ```{r}
 n <- parameters::n_factors(data4, n_max = 12)
@@ -1455,7 +1834,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 5
+
+
 
 ```{r}
 n <- parameters::n_factors(data5, n_max = 12)
@@ -1464,7 +1847,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 n <- parameters::n_factors(data6, n_max = 12)
@@ -1473,7 +1860,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 n <- parameters::n_factors(data7a, n_max = 12)
@@ -1482,7 +1873,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 n <- parameters::n_factors(data7b, n_max = 12)
@@ -1491,7 +1886,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 n <- parameters::n_factors(data7c, n_max = 12)
@@ -1501,7 +1900,11 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 ```
 
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 n <- parameters::n_factors(data8a, n_max = 12)
@@ -1510,7 +1913,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 n <- parameters::n_factors(data8b, n_max = 12)
@@ -1520,7 +1927,11 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 ```
 
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 n <- parameters::n_factors(data9, n_max = 12)
@@ -1529,7 +1940,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 10a
+
+
 
 ```{r}
 n <- parameters::n_factors(data10a, n_max = 12)
@@ -1538,7 +1953,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 10b
+
+
 
 ```{r}
 n <- parameters::n_factors(data10b, n_max = 12)
@@ -1547,7 +1966,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 10c
+
+
 
 ```{r}
 n <- parameters::n_factors(data10c, n_max = 12)
@@ -1556,7 +1979,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 11a
+
+
 
 ```{r}
 n <- parameters::n_factors(data11a, n_max = 12)
@@ -1565,7 +1992,11 @@ plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
 
+
+
 #### Sample 11b
+
+
 
 ```{r}
 n <- parameters::n_factors(data11b, n_max = 12)
@@ -1573,6 +2004,8 @@ n <- parameters::n_factors(data11b, n_max = 12)
 plot(n)
 knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
 ```
+
+
 :::
 
 
@@ -1581,6 +2014,8 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 ::: {.panel-tabset}
 
 #### All data
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1592,7 +2027,11 @@ display(efa5)
 ```
 
 
+
+
 #### Sample 1a
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1603,7 +2042,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1614,7 +2057,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 2
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1626,7 +2073,11 @@ display(efa4)
 
 ```
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1637,7 +2088,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### sample 4
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1649,7 +2104,11 @@ display(efa4)
 ```
 
 
+
+
 #### Sample 5
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1660,7 +2119,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1671,7 +2134,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1682,7 +2149,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1693,7 +2164,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1704,7 +2179,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1715,7 +2194,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1726,7 +2209,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1737,7 +2224,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 10a
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1748,7 +2239,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 10b
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1759,7 +2254,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 10c
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1770,7 +2269,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 11a
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1781,7 +2284,11 @@ plot(efa4)
 display(efa4)
 ```
 
+
+
 #### Sample 11b
+
+
 
 ```{r}
 #| fig-height: 10
@@ -1791,6 +2298,8 @@ plot(efa4)
 
 display(efa4)
 ```
+
+
 
 :::
 
@@ -1814,6 +2323,8 @@ Ambiguous:
 
 
 #### All data
+
+
 
 
 ```{r}
@@ -1897,7 +2408,11 @@ parameters::parameters(m7_all, standardize=TRUE) |>
   display()
 ```
 
+
+
 #### Sample 1a
+
+
 
 ```{r}
 #| warning: false
@@ -1905,7 +2420,11 @@ parameters::parameters(m7_all, standardize=TRUE) |>
 display(compare_mods(data1a))
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 #| warning: false
@@ -1915,7 +2434,11 @@ display(compare_mods(data1b))
 ```
 
 
+
+
 #### Sample 2
+
+
 
 ```{r}
 #| warning: false
@@ -1925,7 +2448,11 @@ display(compare_mods(data2))
 ```
 
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 #| warning: false
@@ -1935,7 +2462,11 @@ display(compare_mods(data3))
 ```
 
 
+
+
 #### Sample 4
+
+
 
 ```{r}
 #| warning: false
@@ -1945,7 +2476,11 @@ display(compare_mods(data4))
 ```
 
 
+
+
 #### Sample 5
+
+
 
 ```{r}
 #| warning: false
@@ -1955,7 +2490,11 @@ display(compare_mods(data5))
 ```
 
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 #| warning: false
@@ -1964,7 +2503,11 @@ display(compare_mods(data6))
 ```
 
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 #| warning: false
@@ -1973,7 +2516,11 @@ display(compare_mods(data7a))
 ```
 
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 #| warning: false
@@ -1983,7 +2530,11 @@ display(compare_mods(data7b))
 ```
 
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 #| warning: false
@@ -1993,7 +2544,11 @@ display(compare_mods(data7c))
 ```
 
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 #| warning: false
@@ -2002,7 +2557,11 @@ display(compare_mods(data8a))
 ```
 
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 #| warning: false
@@ -2011,7 +2570,11 @@ display(compare_mods(data8b))
 ```
 
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 #| warning: false
@@ -2021,7 +2584,11 @@ display(compare_mods(data9))
 ```
 
 
+
+
 #### Sample 10a
+
+
 
 ```{r}
 #| warning: false
@@ -2031,7 +2598,11 @@ display(compare_mods(data10a))
 ```
 
 
+
+
 #### Sample 10b 
+
+
 
 ```{r}
 #| warning: false
@@ -2040,7 +2611,11 @@ display(compare_mods(data10b))
 
 ```
 
+
+
 #### Sample 10c 
+
+
 
 ```{r}
 #| warning: false
@@ -2049,7 +2624,11 @@ display(compare_mods(data10c))
 
 ```
 
+
+
 #### Sample 11a 
+
+
 
 ```{r}
 #| warning: false
@@ -2058,7 +2637,11 @@ display(compare_mods(data11a))
 
 ```
 
+
+
 #### Sample 11b 
+
+
 
 ```{r}
 #| warning: false
@@ -2066,6 +2649,8 @@ display(compare_mods(data11a))
 display(compare_mods(data11b))
 
 ```
+
+
 
 :::
 
@@ -2079,6 +2664,8 @@ Conclusion: The 7th factor solution was preferred in most datasets, including by
 ::: {.panel-tabset}
 
 #### All data
+
+
 
 ```{r}
 m7h1 <- paste0(m7, "
@@ -2122,134 +2709,210 @@ display(compare_mods_h(data_all))
 ```
 
 
+
+
 No evidence for higher order factors.
 
 
 #### Sample 1a
 
+
+
 ```{r}
 display(compare_mods_h(data1a))
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 display(compare_mods_h(data1b))
 ```
 
 
+
+
 #### Sample 2
+
+
 
 ```{r}
 display(compare_mods_h(data2))
 ```
 
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 display(compare_mods_h(data3))
 ```
 
 
+
+
 #### Sample 4
+
+
 
 ```{r}
 display(compare_mods_h(data4))
 ```
 
 
+
+
 #### Sample 5
+
+
 
 ```{r}
 display(compare_mods_h(data5))
 ```
 
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 display(compare_mods_h(data6))
 ```
 
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 display(compare_mods_h(data7a))
 ```
 
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 display(compare_mods_h(data7b))
 ```
 
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 display(compare_mods_h(data7c))
 ```
 
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 display(compare_mods_h(data8a))
 ```
 
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 display(compare_mods_h(data8b))
 ```
 
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 display(compare_mods_h(data9))
 ```
 
 
+
+
 #### Sample 10a
+
+
 
 ```{r}
 display(compare_mods_h(data10a))
 ```
 
 
+
+
 #### Sample 10b 
+
+
 
 ```{r}
 display(compare_mods_h(data10b))
 ```
 
+
+
 #### Sample 10c 
+
+
 
 ```{r}
 display(compare_mods_h(data10c))
 ```
 
+
+
 #### Sample 11a 
+
+
 
 ```{r}
 display(compare_mods_h(data11a))
 ```
 
+
+
 #### Sample 11b 
+
+
 
 ```{r}
 display(compare_mods_h(data11b))
 ```
 
+
+
 :::
 
 
 ### Model Performance
+
+
 
 ```{r}
 #| warning: false
@@ -2300,9 +2963,13 @@ rbind(
 
 
 
+
+
 ## Scores
 
 Note the usage of descriptive factor names relating directly to the items to avoid abstraction.
+
+
 
 ```{r}
 #| warning: false
@@ -2389,8 +3056,4 @@ scores <- list(
 
 save(scores, file = "../data/scores.RData")
 ```
-
-
-
-
 

@@ -220,48 +220,51 @@ Psychometrically good items should exhibit various qualities, such as validity a
 After examining the distributions to all IAS items, we will analyze the factor structure using two different approaches, namely traditional exploratory and confirmatory Factor Analysis (EFA/CFA) as well as Exploratory Graph Analysis (EGA).
 
 <!-- EGA -->
-<!-- EGA is a powerful network-based approach for estimating the number of dimensions in psychological data while identifying which items belong to each dimension, both crucial for understanding the structure of complex constructs and improving the validity of psychological assessments [@golino2017exploratory; @markos2024dimensionality]. -->
-<!-- This new approach addresses limitations of traditional methods which can either underestimate or overestimate factor numbers depending on factors such as sample size and item correlations. -->
-<!-- By combining network analysis with psychometric methods, EGA offers a unique perspective for modeling relationships between psychological variables [@golino2020investigating].  -->
-<!-- For instance, unlike factor analysis, which assumes a common cause for observed variables, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them [@christensen2021equivalency].  -->
-<!-- Clustering these nodes reveals distinct communities of related items, which resemble latent factors without explicitly assuming their presence.  -->
-<!-- EGA has shown strong performance with binary, continuous [@cosemans2022exploratory], and more recently, ordinal data [@markos2024dimensionality], providing a flexible and reliable alternative for exploring data dimensionality.  -->
-<!-- Given the IAS's unclear factor structure and EGA's proven accuracy with complex psychological constructs, it is a suitable technique for this analysis. -->
+By combining network analysis with psychometric methods, the recently-developed EGA framework allows to jointly estimate the number of dimensions (i.e., groups of items), the structure as well as its stability [@golino2017exploratory; @golino2020investigating]. 
+Evidence has underlined its suitability as an alternative to traditional factor analysis, addressing some of its limitations such as the assumption of a "latent" source of variability, possible biasing in the estimation of the optimal factor numbers depending on sample size, and the poor performance of other methods in complex population structures, while remaining comparable and interpretable [@christensen2021equivalency; @jimenez2023dimensionality]. 
+At a fundamental level, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them. 
+Clustering these nodes reveals distinct communities of related items, in practice akin to traditional latent factors - but without explicitly assuming their presence [@christensen2021equivalency].
+<!-- By applying UVA, the analysis can maintain the integrity of the IAS while improving its efficiency and reducing redundancy. -->
 
-By combining network analysis with psychometric methods, the recently-developed EGA framework allows to jointly estimate the number of dimensions (i.e., groups of items), the structure as well as its stability [@golino2017exploratory; @golino2020investigating]. Evidence has underlined its suitability as an alternative to traditional factor analysis, addressing some of its limitations such as the assumption of a "latent" source of variability, possible biasing in the estimation of the optimal factor numbers depending on sample size, and **TODO: a third example would be nice?** **REF**, while remaining comparable and interpretable [@christensen2021equivalency]. At a fundamental level, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them. Clustering these nodes reveals distinct communities of related items, in practice akin to traditional latent factors - but without explicitly assuming their presence [@christensen2021equivalency].
+<!-- UVA -->
+To assess whether the IAS contains redundant items (e.g., due to multicollinearity or local dependency), Unique Variable Analysis [UVA, @christensen2023unique] will be employed. 
+UVA is another novel network psychometric method designed to identify and merge items that share substantial variance, effectively reducing datasets to a set of unique variables. 
+Unlike other reduction methods that aim to minimize variables broadly, UVA targets redundancy specifically, preserving meaningful information that may otherwise be lost [@merritt2022experimental]. 
+By focusing on statistically redundant variables, UVA offers a middle ground between no reduction and extensive reduction approaches. 
+Simulation studies have demonstrated that using a threshold of 0.25 optimally balances accuracy and false positives, ensuring that only genuinely redundant items are combined. 
 
+<!-- Factor Analysis -->
 
+While EGA offers a robust alternative to traditional factor analysis, factor analysis remains a widely used method for dimensionality assessment, hence it will be also be computed in this analysis. 
+Unlike EGA, factor analysis assumes a latent source of variability — a common latent variable — underlies the observed set of manifest variables [@cosemans2022exploratory].
+A critical step in factor analysis is determining the optimal number of factors, typically achieved by examining eigenvalue patterns and applying stopping rules, such as the Kaiser-Guttman criterion (eigenvalues greater than 1) or parallel analysis.
+These methods aim to identify the most meaningful factor structure, though their performance can vary depending on sample size and data complexity [@christensen2023unique].
 
-
-
-
-**TODO: Explain UVA. Rework the following paragraph**.
-
-<!-- was used to estimate the dimensions via network estimation and community detection, alongside assessing the stability of dimensions and items using the bootstrapping techniques [@golino2017exploratory].
-The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates.
-A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25). -->
-
-In contrast, the factor analsyis framework... **TODO**. **Meention rotation and how number of factors is selected**
-We will first apply EFA to... and then identify the best fitting models using CFA.
+To determine the appropriate number of factors to retain during factor analysis, the n_factors function from the performance package will be used [@ludecke2021performance]. 
+This function runs multiple established procedures for factor retention and identifies the optimal number of factors based on the maximum consensus across methods - i.e., Method Agreement Procedure. 
+These methods include the Kaiser criterion, parallel analysis,  Velicer's MAP, and others.
+Following this, EFA with the optimal number of factors identified, using 'oblimin' rotation, will be aplied. 
+Model fit using CFA to identify the best-fitting model will then be computed. 
 
 ### Results
 
 <!-- Distributions of items -->
 
 The distribution of the items across samples suggests the presence of a consistent modal value (@fig-distributions).
-In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "affective touch" (**TODO: this one only seem off in samples 8 no? could it be a language thing?**), "blood sugar", and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5).
+In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "blood sugar" and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5). 
+This pattern persists across most samples, except for "affective touch" in samples 8a and 8b, where it deviates from the general trend. 
+In these samples, "affective touch" follows a distribution similar to that of "blood sugar" and "bruise".  **-could it be a language thing?**
 Additionally, one can note the low occurrence of extreme values (1 and 5), meaning that the bulk of answers varies between 3 values (assuming the IAS is implemented as a 5-point Likert scale following its validation).
-The samples using an analogue scale (samples 10a, 10b and 10c in the figure **what about 11?**) displaying a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially suggesting a second lower mode at \~2.  
+The samples using an analogue scale (samples 10a, 10b and 10c in the figure) displaying a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially suggesting a second lower mode at \~2.  **- sample 11's were rated on a liker-scale**
 
-**TODO: add more information to the caption to highlight some interesting things. What are the two items that stand out. Mention caveat that for most samples the undelying data is disrete (Likert scales), and hence the density plots are not the most accurate visualization method but have been chosen as the clearer to highlight what we are interested in.**
+**TODO: And add x-axis on all subplots. Consider making the problematic items dashed.**.
 
-**TODO: change the number of rows/cols of the figure to make it nicer (e.g., 3x6). And add x-axis on all subplots. Consider making the problematic items dashed.**.
 
 ```{r}
 #| warning: false
 #| label: fig-distributions
-#| fig-cap: "Distribution of responses for all items across various datasets."
-
+#| fig-cap: "Distribution of responses across datasets reveals a consistent modal value, typically around 4 or 5 (indicating agreement), except for 'blood sugar' and 'bruise,' which have lower modes. Most responses cluster around the middle values, with few extreme scores (1 and 5). Samples using an analogue scale (10a, 10b, 10c) show a more continuous distribution and increased interindividual variability. Since most samples use Likert scales (discrete), the density plots may not be the most accurate representation but were chosen to clearly highlight variability patterns in the data."
+#|
 knitr::include_graphics("figures/Figure1.png")
 ```
 
@@ -271,32 +274,78 @@ UVA flagged two strongly redundant variables, "itch" and "tickle" - suggesting t
 Several more pairs of items were flagged as moderately redundant ("wind" and "burp"; "urinate" and "defecate") and mildly redundant ("sneeze" and "cough"; "heart" and "breathing"; "hungry" and "thirsty").
 These patterns consistently appeared in most samples when considered individually.
 
-<!-- Network analysis -->
-Applying EGA to all data sets yielded 4 clusters as the optimal solution; C1. "itch", "tickle", "bruise", "blood sugar"; C2. "burp", "wind", "cough", "sneeze", "vomit"; C3. "affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"; C4. "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate". 
-**TODO: if these clusters are consistent with the factor dimensions below, consider naming them**
-Most items, except for "affective touch", demonstrated a high structural stability **what that means needs to be explained in the section above**.
+<!-- Network analysis and Strcuture stability -->
+
+**TO DOM: I put a bunch of info from the fucntion you created an the package documentation. Let me know what you want to keep from this information** 
+
+The EGA analysis employed a sparse Gaussian graphical model with the graphical lasso (glasso) method. 
+To identify community structures, both the Louvain and Walktrap algorithms were applied.
+The Walktrap algorithm identified an optimal solution with five clusters, whereas the Louvain algorithm indicated an optimal solution with four clusters. 
+To assess the stability of these solutions, a bootstrap resampling approach was implemented, evaluating stability based on the proportion of bootstrap samples in which the original structure was replicated.
+The four-cluster solution demonstrated greater item stability, with a higher proportion of items consistently appearing within the same dimension across bootstrap samples.
+In this solution, item stability for all variables exceeded 0.91, with the exception of "affective touch" in the four-cluster solution, which showed comparatively lower stability.
+Nevertheless, this solution was considered the most optimal; C1. "itch", "tickle", "bruise", "blood sugar"; C2. "burp", "wind", "cough", "sneeze", "vomit"; C3. "affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"; C4. "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate". 
 This solution was generally consistent within the data sets, although some samples yielded 3- or 5- clusters as the optimal structure.
 
+**EGA Clusters not consistent with FA dimensions**
+<!-- EGA clusters 
+c1- "itch", "tickle", "bruise", "blood sugar
+c2- burp", "wind", "cough", "sneeze", "vomit"
+c3 - affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"
+c4- "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate"
+
+<!-- FA clusters -->
+<!-- c1 - burp, cough, wind, sneeze, vomit, temp, sexual arousal, taste
+c2 - breathing, hungry, heart, thirsty, pain, muscles , blood sugar, bruise
+c3 - tickle, itch, affective touch,
+c4 - urinate, defecate --> 
+
 <!-- Factor analysis -->
-**TODO: explain how we obtained the optimal number of factors**
-Across all samples, the Method Agreement Procedure to find the optimal number of latent factors suggested a 4-factors solution, accounting for 41.58% of the total variance. **describe the loading items** **does it match the clusters above?** (MR1 = 14.45%, MR3 = 11.76%, MR2 = 8.09%, MR4 = 7.28%).
 
-**TODO: rework the CFA part below**
+**TODO: explain how we obtained the optimal number of factors** -->  **I think i explained it above on the analysis bit, please confirm whether there needs to be more info** 
+Across all samples, the Method Agreement Procedure recommended a four-factor solution. 
+Approximately 30% of the tested methods — the Beta method, Optimal Coordinates, Parallel Analysis, and the Kaiser criterion — converged on this as the optimal number of factors to retain.
 
-<!-- Removal of items before the CFA -->
-Since UVA identified "tickle" as the item to be removed—and it had the lowest uniqueness value in factor analysis, with a loading similar to "itch"—it was excluded from subsequent analyses.
-Additionally, several items were removed due to ambiguity, in which ....
-**need to add reasoning for the removal of 'ambiguous items'** 
+In line with the Method Agreement Procedure's recommendation, a four-factor solution was extracted using an oblimin rotation, accounting for 41.58% of the total variance.
+The first factor included items "burp," "cough," "wind," "sneeze," "vomit," "temperature," "sexual arousal," and "taste," explaining 14.45% of the total variance. 
+The second factor incuded "breathing," "hungry," "heart," "thirsty," "pain," "muscles," "blood sugar," and "bruise," accounting for 11.76% of the variance. 
+The third factor contained "tickle," "itch," and "affective touch," explaining 8.09% of the total variance. 
+Lastly, the fourth factor included "urinate" and "defecate," accounting for only 7.28% of the total variance.
+Notably this grouping differs from that of the EGA's four cluster optimal solution.
+
+<!-- CFA -->
+Throughout the EGA and EFA analyses, the item "tickle" was consistently identified as redundant and was flagged for removal in the UVA analysis. 
+It also demonstrated the lowest uniqueness value in the factor analysis, leading to its exclusion from further analysis.
+SSimilarly, several "ambiguous" items — such as "temp", "vomit", "affective touch", "sexual arousal", and "taste" — were removed due to their context-dependent nature, which may compromise measurement consistency and reduce the clarity of factor structure. **need to add reasoning for the removal of 'ambiguous items'** 
+
+**TO DOM: HELP WITH AMBIGUOUS REASONING PLEASE**
+
 
 <!-- Confirmatory factor analysis -->
-CFA analysis compared 5 models: a single-factor solution, a 4-factor solution, a 5-factor solution, a 6-factor solution and a 7-factor solution. 
-The latter, which composed of pairs of items was preferred in most datasets, including with indices that penalise increased number of parameters (such as BIC).
-Lastly, there was no evidence for higher order factors.
+CFA was performed to identify the best-fitting model for the data. 
+A total of five models were computed: Model 1 assumed a general interoception factor (1-factor solution), Model 2 proposed four factors, Model 3 assumed five factors, Model 4 proposed six factors, and Model 5, the most refined model, separated the factors into smaller, more specific groups, resulting in a 7-factor solution.
+
+<!-- Model Fit + lower-level factors + high-order factors-->
+The results of model comparison indicate that the Model 5 - with 7 factors  - had the best fit among all the models (AIC = -171638, BIC = -171228, χ² (56) = 2195.20, p < .001). 
+Parameter estimates for the model with 7 factors were also analyzed, with all factor loadings found to be significant (p < .001) and standardized coefficients ranging from 0.50 to 0.82. 
+Furthermore, the correlations between latent factors were all significant, ranging from 0.43 to 0.80, with the strongest correlation observed between ItchBruise and MusclesPain (0.80).
+
+<!-- higher- level factors -->
+To assess whether the inclusion of higher-order factors was justified, three models were evaluated. 
+Model 1 assumed one higher-order factor. 
+Model 2 introduced two higher-order factors, while Model 3 included three higher-order factors. 
+The baseline model, which consisted of 7 factors, was compared with these alternative models. 
+The results indicated that the baseline model provided the best fit (AIC = -171638, BIC = -171228, χ²(56) = 2195.20, p < .001), suggesting no evidence to support the inclusion of higher-order factors.
+
+<!-- Model Performance -->
+When taking acount all the samples, the fit statistics indicated a very good model fit (χ²(56) = 2195.20, p < .001, RMSEA = 0.03, CFI= 0.98 SRMR = 0.92) for the model with 7-factors.
+These fit statistics collectively suggest that the model adequately represents the data structure.
+Overall, the CFA results suggest that Model 7 provides the best fit for the data, with significant factor loadings and strong correlations between the factors. 
 
 ### Discussion
 
 <!-- Ias structure -->
-The comprehensive structural analysis of a large body of IAS item-level datasets revealed a 4-factor model as the most appropriate solution - consisting of strongly-related pairs of items - including **TODO: list the dimensions?**
+The comprehensive structural analysis of a large body of IAS item-level datasets revealed a 4-factor model as the most appropriate solution - consisting of strongly-related pairs of items - including including Hungry/Thirsty, Urinate/Defecate, ItchBruise, Muscles/Pain, Heart/Breathing, Cough/Sneeze, and Wind/Burp,
 There was no clear evidence in favour of higher-order general factors (relative to other solutions).
 
 <!-- Additionally, the lowest level structure (pairs of items) seem to be the most robust, especially for samples using Likert scales (some higher-order groupings might emerge for the 2 analog-scale samples). -->
