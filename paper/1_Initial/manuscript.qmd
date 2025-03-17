@@ -1,5 +1,5 @@
 ---
-title: "Meta-analysis of the Interoceptive Accuracy Scale (IAS) Structure and its Subjective Correlates"
+title: "Mega-analysis of the Interoceptive Accuracy Scale (IAS) Structure and its Subjective Correlates"
 shorttitle: "IAS Meta-analysis"
 author:
   - name: Ana Neves
@@ -186,7 +186,7 @@ While assessing the predictive validity of an interoception scale can be conceiv
 
 <!-- current study -->
 
-The current study aims at 1) clarifying the structure of the IAS with a meta-analytic approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones (Exploratory Graph Analysis);
+The current study aims at 1) clarifying the structure of the IAS with a mega-analytic (which involves a re-analysis at the raw data level by aggregating datasets) approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones (Exploratory Graph Analysis);
 2) the second part will provide an overview of the dispositional correlates of the IAS, clarifying the pattern of associations which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 ## Study 1
@@ -241,7 +241,7 @@ By combining network analysis with psychometric methods, the recently-developed 
 The selection of EGA was motivated by its capability to handle complex, multidimensional data and provide robust dimension estimates.
 A novel network psychometrics - Unique variable analysis [UVA, @christensen2023unique] - approach based on the weighted topological overlap will be computed to evaluate which items have substantial local dependence (\> 0.25). -->
 
-In contrast, the factor analsyis framework... **TODO**. 
+In contrast, the factor analsyis framework... **TODO**. **Meention rotation and how number of factors is selected**
 We will first apply EFA to... and then identify the best fitting models using CFA.
 
 ### Results
@@ -249,7 +249,7 @@ We will first apply EFA to... and then identify the best fitting models using CF
 <!-- Distributions of items -->
 
 The distribution of the items across samples suggests the presence of a consistent modal value (@fig-distributions).
-In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "affective touch" (**TODO: this one only seem off in ssames 8 no? could it be a language thing?**), "blood sugar", and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5).
+In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "affective touch" (**TODO: this one only seem off in samples 8 no? could it be a language thing?**), "blood sugar", and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5).
 Additionally, one can note the low occurrence of extreme values (1 and 5), meaning that the bulk of answers varies between 3 values (assuming the IAS is implemented as a 5-point Likert scale following its validation).
 The samples using an analogue scale (samples 10a, 10b and 10c in the figure **what about 11?**) displaying a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially suggesting a second lower mode at \~2.  
 
@@ -267,26 +267,21 @@ knitr::include_graphics("figures/Figure1.png")
 
 
 <!-- Univariate analysis -->
-The UVA flagged two strongly redundant variables.
-Namely, "itch" and "tickle" - suggesting to remove the latter.
+UVA flagged two strongly redundant variables, "itch" and "tickle" - suggesting to remove the latter.
 Several more pairs of items were flagged as moderately redundant ("wind" and "burp"; "urinate" and "defecate") and mildly redundant ("sneeze" and "cough"; "heart" and "breathing"; "hungry" and "thirsty").
 These patterns consistently appeared in most samples when considered individually.
 
 <!-- Network analysis -->
-According to the network analysis, using the Walktrap and Louvain algorithms applied to Glasso networks, a 4-factor structure fits the questionnaire best across all data sets.
-This is generally consistent within the data sets, although some samples suggest that a 3-factor or 5-factor structure might also be a good fit.
-The 4-factor structure model with the best fit entails the following items per group: 1)"itch", "tickle", "bruise", "blood sugar"; 2) "burp", "wind", "cough", "sneeze", "vomit"; 3) "affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"; 4) "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate".
-
-<!-- Stability analysis -->
-Stability analysis, employing 500 bootstrap iterations, also favoured the 4-factor solution for its greater stability.
-Most items, except for 'affective touch,' demonstrated stability levels exceeding 0.90, indicating structural consistency and reliability [@christensen2021].
-These findings underscore the robustness of the identified 4-dimensional structure.
+Applying EGA to all data sets yielded 4 clusters as the optimal solution; C1. "itch", "tickle", "bruise", "blood sugar"; C2. "burp", "wind", "cough", "sneeze", "vomit"; C3. "affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"; C4. "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate". 
+**TODO: if these clusters are consistent with the factor dimensions below, consider naming them**
+Most items, except for "affective touch", demonstrated a high structural stability **what that means needs to be explained in the section above**.
+This solution was generally consistent within the data sets, although some samples yielded 3- or 5- clusters as the optimal structure.
 
 <!-- Factor analysis -->
 **TODO: explain how we obtained the optimal number of factors**
+Across all samples, the Method Agreement Procedure to find the optimal number of latent factors suggested a 4-factors solution, accounting for 41.58% of the total variance. **describe the loading items** **does it match the clusters above?** (MR1 = 14.45%, MR3 = 11.76%, MR2 = 8.09%, MR4 = 7.28%).
 
-When accounting for all samples, the factor analysis reveals that a 4-factor structure fits best.
-The exploratory factor analysis revealed that 4 latent factors (oblimin rotation) accounted for  41.58% of the total variance of the original data (MR1 = 14.45%, MR3 = 11.76%, MR2 = 8.09%, MR4 = 7.28%).
+**TODO: rework the CFA part below**
 
 <!-- Removal of items before the CFA -->
 Since UVA identified "tickle" as the item to be removed—and it had the lowest uniqueness value in factor analysis, with a loading similar to "itch"—it was excluded from subsequent analyses.
@@ -295,16 +290,17 @@ Additionally, several items were removed due to ambiguity, in which ....
 
 <!-- Confirmatory factor analysis -->
 CFA analysis compared 5 models: a single-factor solution, a 4-factor solution, a 5-factor solution, a 6-factor solution and a 7-factor solution. 
-The latter, which composed of pairs of itmes was preferred in most datasets, including with indices that penalise increased number of parameters (such as BIC).
+The latter, which composed of pairs of items was preferred in most datasets, including with indices that penalise increased number of parameters (such as BIC).
 Lastly, there was no evidence for higher order factors.
 
 ### Discussion
 
 <!-- Ias structure -->
-In this study, several datasets were analyzed for a meta analysis of the structure of the IAS.
-The findings reveal that a 4-factor model fits the IAS best.
-Additionally, the lowest level structure (pairs of items) seem to be the most robust, especially for samples using Likert scales (some higher-order groupings might emerge for the 2 analog-scale samples).
-There was no clear evidence for higher-order factors.
+The comprehensive structural analysis of a large body of IAS item-level datasets revealed a 4-factor model as the most appropriate solution - consisting of strongly-related pairs of items - including **TODO: list the dimensions?**
+There was no clear evidence in favour of higher-order general factors (relative to other solutions).
+
+<!-- Additionally, the lowest level structure (pairs of items) seem to be the most robust, especially for samples using Likert scales (some higher-order groupings might emerge for the 2 analog-scale samples). -->
+
 
 <!-- linking findings to previous research -->
 
@@ -314,6 +310,8 @@ The 4-factor structure reveals different ‘hubs' of items that are related, not
 The ‘wind-burp-cough-sneeze-vomit' category, for example, only entails items that are linked to excretion through the mouth.
 The other categories are organized similarly.
 This organization and structure is useful for further analysis, as the data can be analyzed and interpreted according to a grouping that is coherent in result, as well as underlying mechanisms.
+
+**Reorganize the below following the order of the analysis. Group all of it into one section which would be "recommendations for improvement"**
 
 <!-- Items redundancy -->
 
@@ -339,11 +337,7 @@ Therefore, we recommend using an analog scale for the IAS.
 Before this paper, the IAS had not yet been used or analyzed with an analog scale, rather than a five-step scale.
 Therefore, this study provides a novel approach to improving the IAS in a simple manner.
 
-### Limitations and Future Directions
 
-<!-- pooor arguments --> 
-There are several limitations to the IAS. There are some redundant items, the 5-point scale does not provide great variability, and the structure could be improved.
-Therefore, improving the IAS, or creating a new questionnaire investigating interoception could be useful to achieving reliable and accurate indication of interoceptive awareness.
 
 ## Study 2
 
@@ -619,6 +613,12 @@ Recognizing the necessity for a refined interoception scale, this study proposes
 This new scale will be designed to align with recent findings on the IAS and interoception research while allowing for direct comparison with IAS correlates.
 
 \[**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)\] **I would rather put that in the discussion in the suggestions for better scales**
+
+## Limitations and Future Directions
+
+<!-- pooor arguments --> 
+There are several limitations to the IAS. There are some redundant items, the 5-point scale does not provide great variability, and the structure could be improved.
+Therefore, improving the IAS, or creating a new questionnaire investigating interoception could be useful to achieving reliable and accurate indication of interoceptive awareness.
 
 ## Conclusion
 
