@@ -303,6 +303,7 @@ c4 - urinate, defecate -->
 <!-- Factor analysis -->
 
 **TODO: explain how we obtained the optimal number of factors** -->  **I think i explained it above on the analysis bit, please confirm whether there needs to be more info** 
+
 Across all samples, the Method Agreement Procedure recommended a four-factor solution. 
 Approximately 30% of the tested methods — the Beta method, Optimal Coordinates, Parallel Analysis, and the Kaiser criterion — converged on this as the optimal number of factors to retain.
 
@@ -316,10 +317,7 @@ Notably this grouping differs from that of the EGA's four cluster optimal soluti
 <!-- CFA -->
 Throughout the EGA and EFA analyses, the item "tickle" was consistently identified as redundant and was flagged for removal in the UVA analysis. 
 It also demonstrated the lowest uniqueness value in the factor analysis, leading to its exclusion from further analysis.
-SSimilarly, several "ambiguous" items — such as "temp", "vomit", "affective touch", "sexual arousal", and "taste" — were removed due to their context-dependent nature, which may compromise measurement consistency and reduce the clarity of factor structure. **need to add reasoning for the removal of 'ambiguous items'** 
-
-**TO DOM: HELP WITH AMBIGUOUS REASONING PLEASE**
-
+Similarly, several "ambiguous" items — such as "temp", "vomit", "affective touch", "sexual arousal", and "taste" — were removed due to their context-dependent nature as well as weak loadings on multiple factors, which may compromise measurement consistency and reduce the clarity of factor structure.
 
 <!-- Confirmatory factor analysis -->
 CFA was performed to identify the best-fitting model for the data. 
@@ -344,49 +342,68 @@ Overall, the CFA results suggest that Model 7 provides the best fit for the data
 
 ### Discussion
 
-<!-- Ias structure -->
-The comprehensive structural analysis of a large body of IAS item-level datasets revealed a 4-factor model as the most appropriate solution - consisting of strongly-related pairs of items - including including Hungry/Thirsty, Urinate/Defecate, ItchBruise, Muscles/Pain, Heart/Breathing, Cough/Sneeze, and Wind/Burp,
-There was no clear evidence in favour of higher-order general factors (relative to other solutions).
+The comprehensive structural analysis of a large body of IAS item-level datasets revealed a 4-factor model as the most appropriate solution when taking into account all the items in the scale. 
+These findings contrast with previous research which all found that 2-factor model [@murphy2019; @koike2023], 1-factor model [@brand2023] and bifactor model [@lin2023; @campos2021] fits the data best.
+While this analysis also revealed an okay fit for the 1-factor model, the 4-factor model was ultimately superior.
+Notably, this 4-factor solution was found in both the EGA and EFA analysis, altough groupings differed. 
 
-<!-- Additionally, the lowest level structure (pairs of items) seem to be the most robust, especially for samples using Likert scales (some higher-order groupings might emerge for the 2 analog-scale samples). -->
+<!-- EGA groupings -->
+The EGA analysis revealed different ‘hubs' of items that are related, not only in this structure analysis, but also in underlying mechanisms.
+The ‘wind-burp-cough-sneeze-vomit' category, for example, only entails items that are linked to excretion through the mouth. 
+The 'heart-breathing-hungry-urinate-defecate' category includes items linked to basic physiological functions essential for homeostasis and survival.
+The 'affective-touch-sexual arousal-temperature-pain-taste-muscles' category represents sensations closely tied to both affective experiences and bodily awareness.
+Lastly, the 'tickle-itch-bruise-blood-sugar' category includes items that reflect more localized or transient bodily sensations, often linked to surface-level or metabolic responses.
 
+<!-- EFA groupings -->
+The EFA groupings, in contrast, revealed a less balanced division of items into clusters. One factor consisted of just two items—'urinate' and 'defecate'—while another contained three items—'tickle', 'itch', and 'affective touch'. 
+Of notice is the loading for 'affective touch' as 0.33, barely meeting the acceptable threshold of >0.32 [@costello2005best], while the other items in this factor had loadings above 0.75. 
 
-<!-- linking findings to previous research -->
+<!-- CFA -->
+While the 4-factor structure repeatedely showed up reagrdless of the dimensionality method, some items were flagged as redudant and in particular 'tickle' was suggested to be removed. 
+Additionally, some items appear to be ambiguous, as their interpretation and grouping may be contextually dependent. For instance, sensations such as feeling one's heart beat faster and experiencing nausea-related urges to vomit often co-occur. 
+This overlap is not merely coincidental; these sensations may reflect interconnected physiological processes, such as autonomic arousal or the body's stress response. 
+Such interdependencies challenge the assumption that IAS items neatly map onto distinct bodily sensations. 
+Empirical evidence further highlights item ambiguity. 
+Items such as 'taste' showed similarly weak loadings across multiple factors (0.24 for Factor 1 and 0.20 for Factor 3), falling below the commonly accepted threshold for meaningful loadings. 
+Likewise, 'temperature' loaded weakly on both Factor 1 (0.26) and Factor 3 (0.25), while 'sexual arousal' demonstrated similarly low and split loadings (0.25 to Factor 1 and 0.23 to Factor 3). 
+Although 'vomit' showed a slightly stronger loading on Factor 1, its context-dependent nature further complicates its conceptual clarity.
+Consequently, refining the scale by removing items with overlapping or ambiguous content could enhance its precision, ensuring that each item captures a unique and meaningful aspect of interoceptive awareness.
+Based on this, the CFA was conducted with 14 items out of the 21, suggetsing that 7-factors (i.e., pairs of items) is the model with the best fit for the data. 
 
-These findings contrast with previous research, which all found that 2-factor model [@murphy2019; @koike2023], 1-factor model [@brand2023] and bifactor model [@lin2023; @campos2021] fits the data best.
-While this analysis also revealed an okay fit for the 1-factor model, the 4-factor model was superior.
-The 4-factor structure reveals different ‘hubs' of items that are related, not only in this structure analysis, but also in underlying mechanisms.
-The ‘wind-burp-cough-sneeze-vomit' category, for example, only entails items that are linked to excretion through the mouth.
-The other categories are organized similarly.
-This organization and structure is useful for further analysis, as the data can be analyzed and interpreted according to a grouping that is coherent in result, as well as underlying mechanisms.
-
-**Reorganize the below following the order of the analysis. Group all of it into one section which would be "recommendations for improvement"**
-
-<!-- Items redundancy -->
-
-**note to dom**: what stats do you mean here? the UVA one?
-
-There are several items that show redundancy suggesting that adapting the IAS would be beneficial for validity.
-Based on the given results, we suggest removing the tickle, while keeping the itch item  \[**todo**: stats?\].
-Other items with slight redundancy were "hungry" and "thirsty", "urinate" and "defecate", and "sneeze" and "cough".
-
-<!-- Lins short IAs kept: Hunger, Breath, Urinate, Taste, Vomit, Cough, Temperature, Sexual Arousal, Wind, Muscle, Pain, Itch -->
-
-Interestingly, @lin2023 also found that "tickle" and "itch" were redundant, which led them to exclude one of them. Although, the reason being that the character for both words is the same in the Chinese language.
-On top of that, they came up with a shortened version of the IAS, excluding further items, resulting in a 12-item IAS, which aligns with our findings, suggesting that further items are ambiguous as to whether they should be removed.
-Their 12-item IAS included the "hunger", "breath", "urinate", "taste", "vomit", "cough", "temperature", "sexual arousa", "wind", "muscle", "pain", "itch" items.
-In contrast, other findings also found "tickle" to be redundant but did not suggest excluding items [@campos2021].
-
-<!-- low density on extreme values (1 and 5) -->
-
+<!-- Recomendations -->
+There are couple recomendations that follow from this mega-analysis on the IAS.
 The findings indicate a high proportion of answers at 4 (see @fig-distributions), especially when using a 5-step scale.
-The analogue scale shows a more dispersed distribution, with some answers indicating the highest 5/5, which was not the case in Likert-scales. 
-Therefore, we recommend using an analog scale for the IAS.
+The analogue scale shows a more dispersed distribution, with some answers indicating the highest 5/5, which was not the case in Likert-scales.
+Therefore, we recommend using an analog scale for the IAS, which provides a novel approach to improving the scale in a simple manner. 
 
-Before this paper, the IAS had not yet been used or analyzed with an analog scale, rather than a five-step scale.
-Therefore, this study provides a novel approach to improving the IAS in a simple manner.
+<!-- removal of tickle and potential for a short version of the IAS -->
+Secondly, there are several items that show redundancy suggesting that adapting the IAS would be beneficial for validity.
+Based on the given results, we suggest removing the tickle, while keeping the itch item  \[wTO = 0.364\].
+Other items with moderate redundancy include 'wind' and 'burp', as well as 'urinate' and 'defecate'. 
+Additionally, there are pairs with slight redundancy, such as 'hungry' and 'thirsty', 'sneeze' and 'cough', and 'heart' and 'breathing'.
+Interestingly, @lin2023 also found redundancy between 'tickle' and 'itch', ultimately deciding to exclude the former due to the fact that the characters for both terms are identical in the Chinese language.
+In contrast, @campos2021 also found 'tickle' to be redudant but did not suggest excluding it from the analysis.
+@lin2023 also developed a shortened version of the IAS, removing additional items to create a 12-item scale, including the following items:'hunger', 'breath', 'urinate', 'taste', 'vomit', 'cough', 'temperature', 'sexual arousal', 'wind', 'muscle', 'pain', and 'itch'.
+As demonstrated by @lin2023, reducing redundancy and streamlining the scale through a short-form IAS can improve the model fit and enhance the scale's unidimensionality, ultimately making it a more efficient tool for assessing interoceptive accuracy.
+<!-- ...aligns with our findings, suggesting that further items are ambiguous as to whether they should be removed. -->
 
+<!-- Context-specific items -->
 
+The IAS aims to measure subjective interoceptive accuracy by assessing individuals' self-reported ability to detect internal bodily sensations. 
+However, the interpretation of these sensations is highly dependent on their physiological context. 
+Sensations such as heart rate acceleration, breathing changes, or muscle soreness can arise in diverse contexts — for instance, during exercise, emotional arousal, or illness. 
+Without considering the underlying physiological context, individuals may misattribute these sensations to different causes, potentially confounding their self-assessments.
+For example, a fast heartbeat may be accurately detected but interpreted as anxiety rather than exertion. Similarly, sensations like nausea or sexual arousal may fluctuate in intensity depending on contextual factors such as stress, fatigue, or hormonal cycles. 
+In fact, previous research has highlighted the need for interoceptive questionnaires to prioritize neutral bodily sensations that are less susceptible to cognitive or emotional reinterpretation [@vlemincx2023novel]. 
+
+<!-- Conclusion -->
+In conclusion this study provided valuable insights into the structure and content of the IAS. 
+While the original factor structure was not replicated, our findings revealed a more stable 4-factor model that emerged across both EGA and EFA approaches. 
+This structure highlights meaningful item clusters that align with underlying physiological processes, improving our understanding of subjective interoceptive accuracy.
+However, our analysis also uncovered several limitations that warrant further attention. 
+The presence of redundant items (e.g., ‘tickle’) and items with ambiguous or weak factor loadings (e.g., ‘taste’ and ‘temperature’) suggests a need for scale refinement. 
+Adopting an analog scale format may further enhance variability and improve response accuracy. 
+Additionally, the observed overlap between context-dependent sensations underscores the importance of developing items that account for physiological contexts to minimize misattributions.
 
 ## Study 2
 
@@ -394,6 +411,8 @@ The second study focuses on the dispositional correlates of the IAS.
 
 Correlations of the IAS will be computed to assess the relationship between subjective interoceptive accuracy and other subjective measures of interoception, mood, psychopathology, personality, and beliefs.
 Investigating correlates will help validate the IAS, as well as other interoceptive measures in the future.
+
+<!-- what factor structure to choose -->
 
 ### Methods
 
