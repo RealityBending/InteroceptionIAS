@@ -9,8 +9,8 @@ $if(title)$
 $endif$
 $endif$
 $endif$
-$if(paper)$
-  paper: "$paper$",
+$if(papersize)$
+  paper: "$papersize$",
 $endif$
 $if(margin)$
   margin: ($for(margin/pairs)$$margin.key$: $margin.value$,$endfor$),
@@ -34,6 +34,15 @@ $if(lang)$
 $endif$
 $if(cols)$
   cols: $cols$,
+$endif$
+$if(toc)$
+  toc: "true",
+$endif$
+$if(first-page)$
+  first-page: $first-page$,
+$endif$
+$if(suppress-title-page)$
+  suppresstitlepage: $suppress-title-page$,
 $endif$
   document,
 )
