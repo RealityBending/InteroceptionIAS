@@ -82,9 +82,9 @@ author-note:
   disclosures:
     gratitude: |
       ::: {.callout-note icon=false appearance="simple"}
+      :::
       This preprint is a non-peer-reviewed work from the [**Reality Bending Lab**](https://realitybending.github.io/).
       ![](https://realitybending.github.io/media/ReBeL_LogoOnly_hu11484441381606756729.png){width=20% fig-align="center"}
-      :::
 abstract: |
   Blabla the abstract blabla.
 keywords: [keyword1, keyword2, keyword3]
@@ -120,14 +120,14 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Introduction 
+# Introduction 
 
 <!-- Interoception definition -->
 
 Interoception is referred to the process of sensing, interpreting and integrating information pertaining to internal organs, such as the heart, the lungs or the gut [@khalsa2018interoception].
 While recent research emphasizes a key role of interoception in a variety of processes (e.g., emotion regulation, decision making) and of outcomes (physical and psychological well being), the field remains clouded by concerns about how interoception is assessed.
 
-### The Interoceptive Assessment Puzzle
+## The Interoceptive Assessment Puzzle
 
 <!-- Interoception measure -->
 
@@ -161,7 +161,7 @@ Notably, this review adopted a broad definition of sensibility, incorporating bo
 Several widely used questionnaires were included in the review, such as the Multidimensional Assessment of Interoceptive Awareness [MAIA, @mehling2012; MAIA-2, @mehling2018multidimensional], the Body Perception Questionnaire [BPQ, @porges1993body], the Private subscale of the Body Consciousness Questionnaire [PBCS, @miller1981consciousness], the Body Awareness Questionnaire [BAQ, @shields1989body], and the Eating Disorder Inventory [EDI, @garner1991eating; @garner1983].
 The lack of correlations to moderate correlations among these questionnaires highlight the need for greater conceptual clarity regarding what each measure captures, how they relate to different dimensions of interoception, and their potential overlaps with other constructs, such as alexithymia and body awareness.
 
-### The Interoceptive Accuracy Scale (IAS)
+## The Interoceptive Accuracy Scale (IAS)
 
 <!-- Introducing the IAS -->
 
@@ -200,19 +200,19 @@ Taken together, these findings support the IAS as measuring an adaptive aspect o
 The current study aims at 1) clarifying the structure of the IAS with a mega-analytic (which involves a re-analysis at the raw data level by aggregating datasets) approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones (Exploratory Graph Analysis);
 2) provide an overview of the dispositional correlates of the IAS, clarifying its general pattern of associations, which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
-## Study 1
+# Study 1
 
 Study 1 will re-analyse and assess the factor structure of the IAS by taking advantage of the large number of open-access datasets [@brand2023; @campos2021; @lin2023; @murphy2019; @arslanova2022; @todd2022; @gaggero2021; @brand2022; @von2023].
-While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, we also additionally provide an individual analysis (i.e., on all samples separately) to add nuance to the general picture, as all studies differ in their sample size, demographic characteristics, language, and procedure.
+While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, we also additionally provide an individual analysis (i.e., applying the same method on all samples separately) to add nuance to the general picture, as all studies differ in their sample size, demographic characteristics, language, and procedure.
 
-### Methods
+## Methods
 
-#### Datasets
+### Datasets
 
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of 01/05/2024).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
-We also included the data of four unpublished (but already open-access) studies.
-A total of 14 studies was included (see **Table 1**).
+We also included the data of four unpublished studies.
+A total of 14 datasets was included (see **Table 1**).
 
 The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1, 71.6\% Female).
 
@@ -224,81 +224,68 @@ The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1
 
 \end{landscape}
 
-#### Data Analysis
+### Data Analysis
 
-Psychometrically good items should exhibit various qualities, such as validity and reliability, and one of the contributing factors is the amount of variability captured by an item. Items to which all participants' answers are concentrated around one option - i.e., exhibiting a narrow distribution - should be flagged as potentially problematic. 
+Psychometrically good items should exhibit various qualities, such as validity, reliability and discrimination, to which one of the contributing factors is the amount of inter-individual variability captured by an item. Items to which all participants' answers are concentrated around one option - i.e., exhibiting a narrow distribution - will be flagged as potentially problematic. 
 
-After examining the distributions to all IAS items, we will analyze the factor structure using two different approaches, namely traditional exploratory and confirmatory Factor Analysis (EFA/CFA) as well as Exploratory Graph Analysis (EGA).
+<!-- UVA -->
+After examining the distributions to all IAS items, we will test for "redundant" items (e.g., due to multicollinearity or local dependency) using Unique Variable Analysis [UVA, @christensen2023unique], a novel method derived from network psychometric designed to identify and merge items that share substantial variance (which can distort the structure estimation).
+We will use a threshold of 0.25, suggested to optimally balances accuracy and false positives **[REF NEEDED]**.
+
 
 <!-- EGA -->
+Following the analysis of items, we will analyze the factor structure of the IAS using two different approaches, namely traditional exploratory and confirmatory Factor Analysis (EFA/CFA) and Exploratory Graph Analysis (EGA).
 By combining network analysis with psychometric methods, the recently-developed EGA framework allows to jointly estimate the number of dimensions (i.e., groups of items), the structure as well as its stability [@golino2017exploratory; @golino2020investigating]. 
 Evidence has underlined its suitability as an alternative to traditional factor analysis, addressing some of its limitations such as the assumption of a "latent" source of variability, possible biasing in the estimation of the optimal factor numbers depending on sample size, and the poor performance of other methods in complex population structures, while remaining comparable and interpretable [@christensen2021equivalency; @jimenez2023dimensionality]. 
 At a fundamental level, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them. 
 Clustering these nodes reveals distinct communities of related items, in practice akin to traditional latent factors - but without explicitly assuming their presence [@christensen2021equivalency].
-<!-- By applying UVA, the analysis can maintain the integrity of the IAS while improving its efficiency and reducing redundancy. -->
-
-<!-- UVA -->
-To assess whether the IAS contains redundant items (e.g., due to multicollinearity or local dependency), Unique Variable Analysis [UVA, @christensen2023unique] will be employed. 
-UVA is another novel network psychometric method designed to identify and merge items that share substantial variance, effectively reducing datasets to a set of unique variables. 
-Unlike other reduction methods that aim to minimize variables broadly, UVA targets redundancy specifically, preserving meaningful information that may otherwise be lost [@merritt2022experimental]. 
-By focusing on statistically redundant variables, UVA offers a middle ground between no reduction and extensive reduction approaches. 
-Simulation studies have demonstrated that using a threshold of 0.25 optimally balances accuracy and false positives, ensuring that only genuinely redundant items are combined. 
 
 <!-- Factor Analysis -->
+While EGA offers a robust alternative to traditional factor analysis, factor analysis remains a widely used method for dimensionality assessment. As our goal is to provide a general - yet nuanced - picture, with room to show potential discrepancies emerging from the methods used, we will also include it in the present study.
+Unlike EGA, factor analysis assumes that  a latent source of variability — a common latent variable — underlies the observed set of manifest variables [@cosemans2022exploratory].
+A critical step in factor analysis is determining the optimal number of factors, for which we will used the Method Agreement Procedure [@ludecke2021performance], which involves a consensus-based decision based on multiple factor estimation methods applied concurrently.
 
-While EGA offers a robust alternative to traditional factor analysis, factor analysis remains a widely used method for dimensionality assessment, hence it will be also be computed in this analysis. 
-Unlike EGA, factor analysis assumes a latent source of variability — a common latent variable — underlies the observed set of manifest variables [@cosemans2022exploratory].
-A critical step in factor analysis is determining the optimal number of factors, typically achieved by examining eigenvalue patterns and applying stopping rules, such as the Kaiser-Guttman criterion (eigenvalues greater than 1) or parallel analysis.
-These methods aim to identify the most meaningful factor structure, though their performance can vary depending on sample size and data complexity [@christensen2023unique].
+## Results
 
-To determine the appropriate number of factors to retain during factor analysis, the n_factors function from the performance package will be used [@ludecke2021performance]. 
-This function runs multiple established procedures for factor retention and identifies the optimal number of factors based on the maximum consensus across methods - i.e., Method Agreement Procedure. 
-These methods include the Kaiser criterion, parallel analysis,  Velicer's MAP, and others.
-Following this, EFA with the optimal number of factors identified, using 'oblimin' rotation, will be aplied. 
-Model fit using CFA to identify the best-fitting model will then be computed. 
-
-### Results
 
 <!-- Distributions of items -->
 
 The distribution of the items across samples suggests the presence of a consistent modal value (@fig-distributions).
 In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "blood sugar" and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5). 
-This pattern persists across most samples, except for "affective touch" in samples 8a and 8b, where it deviates from the general trend. 
-In these samples, "affective touch" follows a distribution similar to that of "blood sugar" and "bruise".  **-could it be a language thing?**
+This is also the case for "affective touch" in samples 8a and 8b (the Chinese validation samples), which might indicate localisation issues.
 Additionally, one can note the low occurrence of extreme values (1 and 5), meaning that the bulk of answers varies between 3 values (assuming the IAS is implemented as a 5-point Likert scale following its validation).
-The samples using an analogue scale (samples 10a, 10b and 10c in the figure) displaying a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially suggesting a second lower mode at \~2.  **- sample 11's were rated on a liker-scale**
-
-**TODO: And add x-axis on all subplots. Consider making the problematic items dashed.**.
+The samples using an analogue scale (samples 10a, 10b and 10c in the figure) display a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially displaying a secondary lower mode at \~2 (which might be suggesting the existence of potential clusters of participants).
 
 
 ```{r}
 #| warning: false
 #| label: fig-distributions
-#| fig-cap: "Distribution of responses across datasets reveals a consistent modal value, typically around 4 or 5 (indicating agreement), except for 'blood sugar' and 'bruise,' which have lower modes. Most responses cluster around the middle values, with few extreme scores (1 and 5). Samples using an analogue scale (10a, 10b, 10c) show a more continuous distribution and increased interindividual variability. Since most samples use Likert scales (discrete), the density plots may not be the most accurate representation but were chosen to clearly highlight variability patterns in the data."
-#|
-knitr::include_graphics("figures/Figure1.png")
+#| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
+#| out-width: "100%"
+#| fig-cap: "Distribution of responses across datasets reveals a consistent modal value, typically around 4 or 5 (indicating agreement), except for 'blood sugar' and 'bruise' - in dashed lines - and 'affective touch' (dotted lines) in the Chinese validation sample, which have lower modes. Most responses cluster around the middle values, with few extreme scores (1 and 5). Samples using an analogue scale (10a, 10b, 10c) show a more continuous distribution and increased interindividual variability. Since most samples use Likert scales (discrete), the density plots may not be the most accurate representation but were chosen to clearly highlight variability patterns in the data."
+
+knitr::include_graphics("../../analysis/figures/Figure1.png")
 ```
 
 
-<!-- Univariate analysis -->
+<!-- UVA -->
 UVA flagged two strongly redundant variables, "itch" and "tickle" - suggesting to remove the latter.
 Several more pairs of items were flagged as moderately redundant ("wind" and "burp"; "urinate" and "defecate") and mildly redundant ("sneeze" and "cough"; "heart" and "breathing"; "hungry" and "thirsty").
 These patterns consistently appeared in most samples when considered individually.
 
-<!-- Network analysis and Strcuture stability -->
+<!-- Network analysis and Structure stability -->
+The EGA analysis employed a sparse Gaussian graphical model (GGM) with the graphical lasso (glasso) method. We applied the Walktrap (**REF**) and the Louvain (**REF**) algorithms for clusters identification, which yielded a five and four clusters solution, respectively. The four-cluster solution appeared as being more stable (based on the bootstrapped stability analysis: it had a higher proportion of items consistently assigned to the same cluster across bootstrap samples).
+In this solution, item stability for all variables exceeded 0.90, except for "affective touch". The first cluster included skin-related items "itch", "tickle", "bruise", and "blood sugar"; the second cluster contained expulsion-related items "burp", "wind", "cough", "sneeze", and "vomit"; the third cluster (**NAME or interpretation?**) comprised "affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"; and the fourth cluster included visceroceptive items like "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate".
+This solution was generally consistent when applied to samples separately.
 
-**TO DOM: I put a bunch of info from the fucntion you created an the package documentation. Let me know what you want to keep from this information** 
 
-The EGA analysis employed a sparse Gaussian graphical model with the graphical lasso (glasso) method. 
-To identify community structures, both the Louvain and Walktrap algorithms were applied.
-The Walktrap algorithm identified an optimal solution with five clusters, whereas the Louvain algorithm indicated an optimal solution with four clusters. 
-To assess the stability of these solutions, a bootstrap resampling approach was implemented, evaluating stability based on the proportion of bootstrap samples in which the original structure was replicated.
-The four-cluster solution demonstrated greater item stability, with a higher proportion of items consistently appearing within the same dimension across bootstrap samples.
-In this solution, item stability for all variables exceeded 0.91, with the exception of "affective touch" in the four-cluster solution, which showed comparatively lower stability.
-Nevertheless, this solution was considered the most optimal; C1. "itch", "tickle", "bruise", "blood sugar"; C2. "burp", "wind", "cough", "sneeze", "vomit"; C3. "affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"; C4. "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate". 
-This solution was generally consistent within the data sets, although some samples yielded 3- or 5- clusters as the optimal structure.
+<!-- Factor analysis -->
 
-**EGA Clusters not consistent with FA dimensions**
+Regarding Factor Analysis, the Method Agreement Procedure recommended a four-factor solution for the whole sample. A four-factor solution was extracted using an *oblimin* rotation, accounting for 41.58% of the total variance.
+The first factor (14.45%) included items "burp", "cough", "wind", "sneeze", "vomit", "temperature", "sexual arousal" and "taste". The second factor (11.76%) included "breathing", "hungry", "heart", "thirsty", "pain", "muscles", "blood sugar", and "bruise". 
+The third factor (8.09%) contained skin-related items "tickle", "itch" and "affective touch", and the final factor (7.28%) included "urinate" and "defecate".
+Notably, this structure differed from that suggested by EGA.
+
 <!-- EGA clusters 
 c1- "itch", "tickle", "bruise", "blood sugar
 c2- burp", "wind", "cough", "sneeze", "vomit"
@@ -311,21 +298,17 @@ c2 - breathing, hungry, heart, thirsty, pain, muscles , blood sugar, bruise
 c3 - tickle, itch, affective touch,
 c4 - urinate, defecate --> 
 
-<!-- Factor analysis -->
 
-**TODO: explain how we obtained the optimal number of factors** -->  **I think i explained it above on the analysis bit, please confirm whether there needs to be more info** 
+<!-- Item selection -->
+**UVA**, then re-run EGA and EFA. Then CFA.
 
-Across all samples, the Method Agreement Procedure recommended a four-factor solution. 
-Approximately 30% of the tested methods — the Beta method, Optimal Coordinates, Parallel Analysis, and the Kaiser criterion — converged on this as the optimal number of factors to retain.
 
-In line with the Method Agreement Procedure's recommendation, a four-factor solution was extracted using an oblimin rotation, accounting for 41.58% of the total variance.
-The first factor included items "burp," "cough," "wind," "sneeze," "vomit," "temperature," "sexual arousal," and "taste," explaining 14.45% of the total variance. 
-The second factor incuded "breathing," "hungry," "heart," "thirsty," "pain," "muscles," "blood sugar," and "bruise," accounting for 11.76% of the variance. 
-The third factor contained "tickle," "itch," and "affective touch," explaining 8.09% of the total variance. 
-Lastly, the fourth factor included "urinate" and "defecate," accounting for only 7.28% of the total variance.
-Notably this grouping differs from that of the EGA's four cluster optimal solution.
 
 <!-- CFA -->
+We then attempted at testing various candidate structures using confirmatory factor analysis (CFA).
+
+
+
 Throughout the EGA and EFA analyses, the item "tickle" was consistently identified as redundant and was flagged for removal in the UVA analysis. 
 It also demonstrated the lowest uniqueness value in the factor analysis, leading to its exclusion from further analysis.
 Similarly, several "ambiguous" items — such as "temp", "vomit", "affective touch", "sexual arousal", and "taste" — were removed due to their context-dependent nature as well as weak loadings on multiple factors, which may compromise measurement consistency and reduce the clarity of factor structure.
@@ -351,7 +334,7 @@ When taking acount all the samples, the fit statistics indicated a very good mod
 These fit statistics collectively suggest that the model adequately represents the data structure.
 Overall, the CFA results suggest that Model 7 provides the best fit for the data, with significant factor loadings and strong correlations between the factors. 
 
-### Discussion
+## Discussion
 
 The comprehensive structural analysis of a large body of IAS item-level datasets revealed a 4-factor model as the most appropriate solution when taking into account all the items in the scale. 
 These findings contrast with previous research which all found that 2-factor model [@murphy2019; @koike2023], 1-factor model [@brand2023] and bifactor model [@lin2023; @campos2021] fits the data best.
@@ -416,7 +399,7 @@ The presence of redundant items (e.g., ‘tickle’) and items with ambiguous or
 Adopting an analog scale format may further enhance variability and improve response accuracy. 
 Additionally, the observed overlap between context-dependent sensations underscores the importance of developing items that account for physiological contexts to minimize misattributions.
 
-## Study 2
+# Study 2
 
 The second study focuses on the dispositional correlates of the IAS.
 
@@ -425,22 +408,22 @@ Investigating correlates will help validate the IAS, as well as other interocept
 
 <!-- what factor structure to choose -->
 
-### Methods
+## Methods
 
-#### Materials
+### Materials
 
 
 The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO: add the rest of the questionnaires, sample items and references**).
 
 \input{../../analysis/figures/table2.tex}
 
-#### Data Analysis
+### Data Analysis
 
 Correlations will be computed using the correlation package under a Bayesian framework [@ben2020effectsize].
 
-### Results
+## Results
 
-#### Average correlations 
+### Average correlations 
 
 The EGA components captured grouping of items such as 'wind' and 'burp, 'cough' and 'sneeze', 'muscle' and 'pain'. 
 **TODO: but that's not true, we used only pairs, not EGA clusters?J**
@@ -449,7 +432,7 @@ These groupings were used in correlational analysis to analyse how much each pai
 
 **TODO: Massively streamline. It can be all summarize in one or two paragraphs max.**
 
-##### Correlations with body measures
+#### Correlations with body measures
 
 <!-- Alexithymia -->
 Alexithymia was assessed in the samples with the Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] and the Toronto Alexithymia Scale [TAS, @bagby1994twenty]. 
@@ -498,7 +481,7 @@ The Interoceptive Confusion Questionnaire was used to assess individuals' diffic
 
 The ICQ showed weak to moderate negative correlations with all IAS pairings. The strongest correlation was observed with the Hunger/Thirsty pairing (r = 0.348), while the weakest was with the Itch/Bruise pairing (r = 0.207).
 
-##### Correlations with mood measures
+#### Correlations with mood measures
 
 Mood disorders were assessed using several standardized measures, including the General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety], the State-Trait Anxiety Inventory [STAI, @spielberger1970manual] and its shorter version, the STAI-5 [@zsido2020development], Beck’s Depression Inventory [BDI, @beck1996beck], and the Mood and Feelings Questionnaire [MFQ; @messer1995development].
 Additionally, the Patient Health Questionnaire (PHQ) was administered in its 2-item [PHQ-2; @kroenke2003patient], 9-item [PHQ-9; @kroenke2001phq], and 15-item [PHQ-15, @kroenke2002phq] versions.
@@ -532,7 +515,7 @@ It exhibited its strongest correlation with the Hungry/Thirsty pair (r = -0.241)
 Lastly, the MSI-BPD is a 10-item questionnaire used to assess personality disorder, where items are rated on a dichotomous scale of 1 (present) and 0 (absent). 
 The MSI-BPD also showed its strongest negative correlation with the Hungry/Thirsty pair (r = -0.140) and was negatively correlated with all other pairings, except for Cough/Sneeze, which showed a slight positive correlation (r = 0.0219).
 
-##### Correlations with psychopathology measures 
+#### Correlations with psychopathology measures 
 
 <!-- Maladaptive  -->
 Maladaptive personality traits were assessed using the Personality Inventory for DSM-5 Short Form [PID-5-SF; @thimm2016personality], which measures five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism. 
@@ -554,7 +537,7 @@ The questionnaire consists of 28 items rated on a 4-point Likert scale, ranging 
 Overall, all pairings were weakly and negatively correlated with the ASQ dimensions, except for the Itch/Bruise and Heart/Breathing pairings, which showed weak positive correlations with the patterns/numbers trait (r = 0.184 and r = 0.038, respectively). 
 The strongest correlation was observed between the imagination trait and the Wind/Burp pairing (r = -0.218).
 
-##### Correlations with personality measures
+#### Correlations with personality measures
 
 The Big Five Inventory-Short Form [BFI-S; @lang2011short] and the Mini International Personality Item Pool [Mini-IPIP6; @sibley2011mini] were used to assess general personality traits. 
 The BFI-S consists of 15 items rated on a 7-point Likert scale, ranging from 1 (strongly disagree) to 7 (strongly agree), measuring five personality factors: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism.
@@ -567,7 +550,7 @@ On average, IAS pairings were positively associated with most personality dimens
 The strongest correlation was observed between Conscientiousness and the Hungry/Thirsty pairing (r = 0.164).
 Both Honesty-Humility and Neuroticism were weakly and negatively correlated with the IAS pairings, with the highest correlations observed for the Hungry/Thirsty pairing (r = -0.217 and r = -0.200, respectively).
 
-##### Correlations with other measures
+#### Correlations with other measures
 
 <!-- PI -->
 
@@ -601,7 +584,7 @@ Finally, Negativity is consistently positively correlated with all pairings, wit
 ![**Figure 2.** Correlates of the IAS](figures/clipboard-1619164537.png){width="911"}
 
 
-### Discussion
+## Discussion
 
 <!-- strongest and weakest correlations with the IAS--> 
 Our findings underline how subjective measures of interoception exist within a complex network of correlates. 
@@ -654,7 +637,7 @@ Overall, our findings highlight the broad relevance of interoception across vari
 By identifying numerous correlates of the IAS, we contribute not only to a deeper understanding of interoception’s role in daily life but also to the ongoing validation of the IAS and other interoceptive measures. 
 This analysis lays an important foundation for the development of new interoceptive assessment tools, further advancing our comprehension of interoception and its impact on human experience.
 
-## General Discussion
+# General Discussion
 
 **The present study aimed... [always start with a description of the study]**.
 
@@ -706,19 +689,19 @@ This new scale will be designed to align with recent findings on the IAS and int
 
 \[**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)\] **I would rather put that in the discussion in the suggestions for better scales**
 
-## Limitations and Future Directions
+# Limitations and Future Directions
 
 <!-- pooor arguments --> 
 There are several limitations to the IAS. There are some redundant items, the 5-point scale does not provide great variability, and the structure could be improved.
 Therefore, improving the IAS, or creating a new questionnaire investigating interoception could be useful to achieving reliable and accurate indication of interoceptive awareness.
 
-## Conclusion
+# Conclusion
 
 The IAS is a valuable tool for measuring interoception compared to existing questionnaires and methods. 
 However, refining or even redesigning the questionnaire could lead to a more precise and comprehensive assessment. 
 This study highlights the need for a new interoception scale to advance research in the field. By identifying various correlates of the IAS, this work paves the way for future investigations into optimal interoceptive measures, ultimately laying the foundation for the development of a more effective interoception survey.
 
-## References
+# References
 
 <!-- References will auto-populate in the refs div below -->
 

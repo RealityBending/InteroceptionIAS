@@ -1,5 +1,5 @@
 ---
-title: "Meta-analysis of the Interoceptive Accuracy Scale (IAS)"
+title: "Mega-analysis of the Interoceptive Accuracy Scale (IAS)"
 subtitle: "Study 1"
 editor: source
 editor_options: 
@@ -584,27 +584,35 @@ dens11b <- estimate_density(select(df11b, all_of(vars)), method = "kernSmooth") 
 
 p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10a, dens10b, dens10c, dens11a, dens11b) 
 
+linetype <- setNames(rep("solid", length(vars)), vars)
+linetype["Affective touch"] <- "dotted"
+linetype["Blood sugar"] <- "dashed"
+linetype["Sex arousal"] <- "solid"
+linetype["Bruise"] <- "dashed"
+
 # proportion of non-1 and non-5 values 
 p1_data |>
   filter(x > 1 & x < 5) |>  # Keep only x values strictly between 1 and 5
   summarise(proportion = sum(y) / sum(p1_data$y))  # Normalize by total density
 
 p1 <- p1_data |>
-  mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10a", "Sample 10b", "Sample 10c", "Sample 11a", "Sample 11b")) |>
+  mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10a", "Sample 10b", "Sample 10c", "Sample 11a", "Sample 11b"),
+         Parameter = ifelse(Parameter == "Affective_touch", "Affective touch", Parameter),
+         Parameter = ifelse(Parameter == "Blood_Sugar", "Blood sugar", Parameter),
+         Parameter = ifelse(Parameter == "Sex_arousal", "Sex arousal", Parameter)) |>
   # mutate(Dashed = ifelse(Parameter %in% c("Affective_touch", "Blood_Sugar", "Bruise"), TRUE, FALSE)) |> 
   ggplot(aes(x = x, y = y, color = Parameter)) +
-  geom_line() +
+  geom_line(aes(linetype = Parameter), linewidth = 0.7) +
   scale_color_material_d() +
-  scale_linetype_manual(values = c("solid", "dashed"), guide="none") +
+  scale_linetype_manual(values = linetype) +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         plot.title = element_text(face="bold")) +
-  labs(x = "Response", y = "Density", color = "Item") +
-  facet_wrap(~Sample, scales = "free_y", nrow = 5)
+  labs(x = "Response", y = "Distribution", color = "Item", linetype = "Item") +
+  facet_wrap(~Sample, scales = "free_y", nrow = 3)
 
-ggsave("figures/Figure1.png", p1, width=10, height=10, dpi=200, bg="white")
+ggsave("figures/Figure1.png", p1, width=12, height=7, dpi=300, bg="white")
 p1
-
 ```
 
 
