@@ -957,6 +957,16 @@ uva$keep_remove
 
 #### All data
 
+Discarded the following items:
+- Tickle: not present in the same dataset and consistently flagged as redundant in UVA analysis.
+
+Ambiguous:
+- Temp
+- Vomit
+- Affective_touch
+- Sex_arousal
+- Taste
+- Blood Sugar
 
 ```{r ega_all}
 #| fig-height: 20
@@ -976,7 +986,7 @@ make_egas <- function(data) {
           EGA.type = type,
           type = "resampling",
           plot.itemStability = FALSE,
-          verbose = FALSE
+          verbose = FALSE, 
         )
       }
     }
@@ -1006,7 +1016,6 @@ make_egas <- function(data) {
 
 egas_all <- make_egas(data_all)
 egas_all$p
-```
 
 #### Sample 1a
 
@@ -1188,7 +1197,6 @@ egas11a$p
 egas11b <- make_egas(data11b)
 egas11b$p
 ```
-
 
 :::
 
@@ -1411,7 +1419,23 @@ row.names(ega_scores_11b) <- NULL
 
 #### All data
 
+We discarded the following items: 
+- Tickle
+- Blood Sugar
+- Temp
+- Vomit
+- Affective_touch
+- Sex_arousal
+- Taste
+
 ```{r}
+cols_to_remove <- c("Temp", "Vomit", "Affective_touch", "Sex_arousal", "Taste", "Tickle", "Bloo")
+```
+
+```{r}
+data_all <- data_all |>
+  select(-any_of(cols_to_remove))
+
 n <- parameters::n_factors(data_all, n_max = 12)
 
 plot(n)
@@ -1421,6 +1445,9 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 1a
 
 ```{r}
+data1a <- data1a |>
+  select(-any_of(cols_to_remove))
+
 n <- parameters::n_factors(data1a, n_max = 12)
 
 plot(n)
@@ -1430,6 +1457,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 1b
 
 ```{r}
+data1b <- data1b |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data1b, n_max = 12)
 
 plot(n)
@@ -1439,6 +1470,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 2
 
 ```{r}
+data2 <- data2 |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data2, n_max = 12)
 
 plot(n)
@@ -1448,6 +1483,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 3
 
 ```{r}
+data3 <- data3 |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data3, n_max = 12)
 
 plot(n)
@@ -1457,6 +1496,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 4
 
 ```{r}
+data4 <- data4 |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data4, n_max = 12)
 
 plot(n)
@@ -1466,6 +1509,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 5
 
 ```{r}
+data5 <- data5 |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data5, n_max = 12)
 
 plot(n)
@@ -1475,6 +1522,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 6
 
 ```{r}
+data6 <- data6 |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data6, n_max = 12)
 
 plot(n)
@@ -1484,6 +1535,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 7a
 
 ```{r}
+data7a <- data7a |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data7a, n_max = 12)
 
 plot(n)
@@ -1493,6 +1548,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 7b
 
 ```{r}
+data7b <- data7b |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data7b, n_max = 12)
 
 plot(n)
@@ -1502,6 +1561,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 7c
 
 ```{r}
+data7c <- data7c |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data7c, n_max = 12)
 
 plot(n)
@@ -1512,6 +1575,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 8a
 
 ```{r}
+data8a <- data8a |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data8a, n_max = 12)
 
 plot(n)
@@ -1521,6 +1588,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 8b
 
 ```{r}
+data8b <- data8b |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data8b, n_max = 12)
 
 plot(n)
@@ -1531,6 +1602,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 9
 
 ```{r}
+data9 <- data9 |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data9, n_max = 12)
 
 plot(n)
@@ -1540,6 +1615,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 10a
 
 ```{r}
+data10a <- data10a |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data10a, n_max = 12)
 
 plot(n)
@@ -1549,6 +1628,9 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 10b
 
 ```{r}
+data10b <- data10b |>
+  select(-any_of(cols_to_remove))
+
 n <- parameters::n_factors(data10b, n_max = 12)
 
 plot(n)
@@ -1558,6 +1640,10 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 10c
 
 ```{r}
+data10c <- data10c |>
+  select(-any_of(cols_to_remove))
+
+
 n <- parameters::n_factors(data10c, n_max = 12)
 
 plot(n)
@@ -1567,6 +1653,9 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 11a
 
 ```{r}
+data11a <- data11a |>
+  select(-any_of(cols_to_remove))
+
 n <- parameters::n_factors(data11a, n_max = 12)
 
 plot(n)
@@ -1576,6 +1665,9 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 #### Sample 11b
 
 ```{r}
+data11b <- data11b |>
+  select(-any_of(cols_to_remove))
+
 n <- parameters::n_factors(data11b, n_max = 12)
 
 plot(n)
@@ -1593,7 +1685,7 @@ knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FAL
 ```{r}
 #| fig-height: 10
 
-efa5 <- parameters::factor_analysis(data_all, n = 4, rotation = "oblimin", sort = TRUE)
+efa5 <- parameters::factor_analysis(data_all, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa5)
 
 display(efa5)
@@ -1605,7 +1697,7 @@ display(efa5)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data1a, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data1a, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1616,7 +1708,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data1b, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data1b, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1627,7 +1719,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data2, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data2, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1639,7 +1731,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data3, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data3, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1650,7 +1742,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data4, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data4, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1662,7 +1754,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data5, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data5, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1673,7 +1765,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data6, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data6, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1684,7 +1776,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data7a, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data7a, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1695,7 +1787,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data7b, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data7b, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1706,7 +1798,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data7c, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data7c, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1717,7 +1809,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data8a, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data8a, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1728,7 +1820,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data8b, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data8b, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1739,7 +1831,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data9, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data9, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1750,7 +1842,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data10a, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data10a, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1761,7 +1853,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data10b, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data10b, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1772,7 +1864,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data10c, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data10c, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1783,7 +1875,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data11a, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data11a, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1794,7 +1886,7 @@ display(efa4)
 ```{r}
 #| fig-height: 10
 
-efa4 <- parameters::factor_analysis(data11b, n = 4, rotation = "oblimin", sort = TRUE)
+efa4 <- parameters::factor_analysis(data11b, n = 3, rotation = "oblimin", sort = TRUE)
 plot(efa4)
 
 display(efa4)
@@ -1805,11 +1897,9 @@ display(efa4)
 
 ## CFA
 
-We discarded the following items:
-- Tickle: not present in the same dataset and consistently flagged as redundant.
-<!-- - Blood_Sugar -->
-
-Ambiguous:
+We discarded the following items: 
+- Tickle
+- Blood Sugar
 - Temp
 - Vomit
 - Affective_touch
