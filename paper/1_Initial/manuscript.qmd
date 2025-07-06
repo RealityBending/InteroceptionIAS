@@ -251,7 +251,7 @@ A critical step in factor analysis is determining the optimal number of factors,
 <!-- Distributions of items -->
 
 The distribution of the items across samples suggests the presence of a consistent modal value (@fig-distributions).
-In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "blood sugar" and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5). 
+In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "blood sugar" and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5). While it is not a problem *per se*, the contrasting distribution might be indicative of items with non-homogeneous psychometric "difficulty".
 This is also the case for "affective touch" in samples 8a and 8b (the Chinese validation samples), which might indicate localisation issues.
 Additionally, one can note the low occurrence of extreme values (1 and 5), meaning that the bulk of answers varies between 3 values (assuming the IAS is implemented as a 5-point Likert scale following its validation).
 The samples using an analogue scale (samples 10a, 10b and 10c in the figure) display a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially displaying a secondary lower mode at \~2 (which might be suggesting the existence of potential clusters of participants).
@@ -271,7 +271,7 @@ knitr::include_graphics("../../analysis/figures/Figure1.png")
 <!-- UVA -->
 UVA flagged two strongly redundant variables, "itch" and "tickle" - suggesting to remove the latter.
 Several more pairs of items were flagged as moderately redundant ("wind" and "burp"; "urinate" and "defecate") and mildly redundant ("sneeze" and "cough"; "heart" and "breathing"; "hungry" and "thirsty").
-These patterns consistently appeared in most samples when considered individually.
+These patterns consistently appeared in most samples when considered individually. We removed "tickle" from further analysis due to its high redundancy (and because it is absent from some datasets due to translation issues).
 
 <!-- Network analysis and Structure stability -->
 The EGA analysis employed a sparse Gaussian graphical model (GGM) with the graphical lasso (glasso) method. We applied the Walktrap (**REF**) and the Louvain (**REF**) algorithms for clusters identification, which yielded a five and four clusters solution, respectively. The four-cluster solution appeared as being more stable (based on the bootstrapped stability analysis: it had a higher proportion of items consistently assigned to the same cluster across bootstrap samples).

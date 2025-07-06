@@ -62,7 +62,11 @@ df2 <- data |>
     Urinate = `IAS 5`, Defecate = `IAS 6`, Taste = `IAS 7`, Vomit = `IAS 8`, Sneeze = `IAS 9`,
     Cough = `IAS 10`, Temp = `IAS 11`, Sex_arousal = `IAS 12`, Wind = `IAS 13`, Burp = `IAS 14`,
     Muscles = `IAS 15`, Bruise = `IAS 16`, Pain = `IAS 17`, Blood_Sugar = `IAS 18`,
-    Affective_touch = `IAS 19`, Tickle = `IAS 20`, Itch = `IAS 21`)
+    Affective_touch = `IAS 19`, Tickle = `IAS 20`, Itch = `IAS 21`,
+    MAIA_AttentionRegulation = MAIA_AttentionReg, MAIA_BodyListening = MAIA_BodyListening,
+    MAIA_Trusting = MAIA_BodyTrusting, MAIA_EmotionalAwareness = MAIA_EmoAwareness,
+    MAIA_NonDistracting=MAIA_NotDistracting, MAIA_NotWorrying=MAIA_NotWorrying,
+    MAIA_SelfRegulation=MAIA_SelfReg, MAIA_Noticing=MAIA_Noticing)
 rm(data)
 ```
 
@@ -99,6 +103,13 @@ df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
     Muscles = IAS15, Bruise = IAS16, Pain = IAS17, Blood_Sugar = IAS18,
     Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21
   )
+df4$MAIA_AttentionRegulation <- rowMeans(select(df4, starts_with("MAIA_AR")), na.rm = TRUE)
+df4$MAIA_BodyListening <- rowMeans(select(df4, starts_with("MAIA_BL")), na.rm = TRUE)
+df4$MAIA_Trusting <- rowMeans(select(df4, starts_with("MAIA_TR")), na.rm = TRUE)
+df4$MAIA_EmotionalAwareness <- rowMeans(select(df4, starts_with("MAIA_EA")), na.rm = TRUE)
+df4$MAIA_SelfRegulation <- rowMeans(select(df4, starts_with("MAIA_SR")), na.rm = TRUE)
+# TODO: what is NT?
+# Check if that's all
 ```
 
 ### Sample 5
@@ -138,7 +149,6 @@ df5 <- df5 |>
   filter(Subj.ID %in% df5_attention$Subj.ID) |>
   select(-Subj.ID) |>
   mutate(across(everything(), as.numeric))
-  
 ```
 
 ### Sample 6
@@ -175,7 +185,11 @@ df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |>
     Urinate = IAS_05, Defecate = IAS_06, Taste = IAS_07, Vomit = IAS_08, Sneeze = IAS_09,
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
-    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
+    MAIA_Noticing = MAIA_NOTICING, MAIA_NonDistracting = MAIA_NON_DISTRACTING,
+    MAIA_NotWorrying = MAIA_NOT_WORRYING, MAIA_AttentionRegulation = mAIA_ATTENTION_REGULATION,
+    MAIA_SelfRegulation = MAIA_SELF_REGULATION, MAIA_BodyListening = MAIA_BODY_LISTENING,
+    MAIA_Trusting = MAIA_TRUSTING, MAIA_EmotionalAwareness = MAIA_EMOTIONAL_AWARENESS
   )
 
 df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |> 
@@ -187,7 +201,11 @@ df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |>
     Urinate = IAS_05, Defecate = IAS_06, Taste = IAS_07, Vomit = IAS_08, Sneeze = IAS_09,
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
-    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
+    MAIA_Noticing = maiaNotice, MAIA_NonDistracting = maiaNonDistracting,
+    MAIA_NotWorrying = maiaNotWorrying, MAIA_AttentionRegulation = maiaAttentionRegulation,
+    MAIA_SelfRegulation = maiaSelfRegulation, MAIA_BodyListening = maiaBodyListening,
+    MAIA_Trusting = maiaTrusting, MAIA_EmotionalAwareness = maiaEmotionalAwareness
   )
   
   
@@ -200,7 +218,12 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
     Urinate = IA02_05, Defecate = IA02_06, Taste = IA02_07, Vomit = IA02_08, Sneeze = IA02_09,
     Cough = IA02_10, Temp = IA02_11, Sex_arousal = IA02_12, Wind = IA02_13, Burp = IA02_14,
     Muscles = IA02_15, Bruise = IA02_16, Pain = IA02_17, Blood_Sugar = IA02_18,
-    Affective_touch = IA02_19, Tickle = IA02_20, Itch = IA02_21
+    Affective_touch = IA02_19, Tickle = IA02_20, Itch = IA02_21,
+    MAIA_Noticing = MAIA_noticing, MAIA_NonDistracting = MAIA_notdis, 
+    MAIA_NotWorrying = MAIA_notwor, MAIA_AttentionRegulation = MAIA_attreg,
+    MAIA_SelfRegulation = MAIA_selfreg, MAIA_BodyListening = MAIA_bodlis,
+    MAIA_Trusting = MAIA_trust, MAIA_EmotionalAwareness = MAIA_emoaw,
+    ICQ = ICQ_sum
   )
 ```
 
@@ -257,7 +280,7 @@ df9 <- df9 |>
 ### Sample 10
 
 - Makowski
-  - Note: First sample has some missing items
+  - Note: First sample has some missing items (No Taste, Cough, Blood_Sugar)
   - Note: Analog scales
   - note df10c = primals data
 
@@ -276,6 +299,9 @@ df10a <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGame
   ) |>
   filter(!is.na(Urinate))
 
+# TODO: Sanitize MAIA names / Compute dimensions.
+
+
 df10b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
   rename(
     Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
@@ -285,6 +311,8 @@ df10b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
     typeSample = Sample
   )
+
+# TODO: Sanitize MAIA names / Compute dimensions.
 
 df10c <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionPrimals/refs/heads/main/data/data_participants.csv") |>
   select("Participant" = "participant_id", "Gender", "Age", "Ethnicity", starts_with(c("IAS","MAIA","PI"))) |>
@@ -297,43 +325,58 @@ df10c <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
   ) |>
   filter(!is.na(Heart)) # participant is outlier and had total IAS scores below 0.4 
 
+# TODO: Sanitize MAIA names / Compute dimensions.
+
+
+df10d <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionScale/refs/heads/main/study2/data/rawdata_participants.csv") |>
+  select("Participant", "Gender", "Age", "Ethnicity", starts_with(c("IAS","MAIA","PI", "PHQ4"))) |>
+   rename(
+    Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
+    Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
+    Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
+    Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+  ) |> 
+  filter(Participant %in% read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionScale/refs/heads/main/study2/data/data_participants.csv")$Participant)
+
+# TODO: Sanitize MAIA names / Compute dimensions.
 
 ```
 
 ```{r}
-pi_vars <- c("PI_Enticing", "PI_Alive", "PI_Safe", "PI_Good", "PI_Changing", 
-             "PI_Hierarchical", "PI_Understandable", "PI_AboutMe", "PI_Abundant", 
-             "PI_Acceptable", "PI_Beautiful", "PI_Cooperative", "PI_Funny", 
-             "PI_Harmless", "PI_Improvable", "PI_Intentional", "PI_Interconnected", 
-             "PI_Interesting", "PI_Just", "PI_Meaningful", "PI_NeedsMe", 
-             "PI_Pleasurable", "PI_Progressing", "PI_Regenerative", "PI_Stable", 
-             "PI_WorthExploring")
-
-
-correlation::correlation(
-  df10c[, "IAS_Total", drop = FALSE],  
-  data2 = select(df10c, all_of(pi_vars)), p_adjust = "none"
-) |> 
-  # Formatting correlation results
-  mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE))) |>
-  
-  # Releveling factors for visualization
-  mutate(Parameter2 = fct_relevel(Parameter2, rev(pi_vars)),
-         Parameter1 = fct_relevel(Parameter1, "IAS_Total")) |>
-  
-  # Plotting the correlation matrix
-  ggplot(aes(x = Parameter1, y = Parameter2)) +
-  geom_tile(aes(fill = r), color = "white") +  
-  geom_text(aes(label = val), size = 3) +  
-  labs(title = "Correlation Matrix") +
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", limit = c(-1, 1), midpoint = 0, guide = guide_colourbar(ticks = FALSE)) +  
-  theme_minimal() +
-  theme(
-    legend.title = element_blank(),
-    axis.title.x = element_blank(),
-    axis.title.y = element_blank(),
-    axis.text.x = element_text(hjust = 1)
-  )
+# pi_vars <- c("PI_Enticing", "PI_Alive", "PI_Safe", "PI_Good", "PI_Changing", 
+#              "PI_Hierarchical", "PI_Understandable", "PI_AboutMe", "PI_Abundant", 
+#              "PI_Acceptable", "PI_Beautiful", "PI_Cooperative", "PI_Funny", 
+#              "PI_Harmless", "PI_Improvable", "PI_Intentional", "PI_Interconnected", 
+#              "PI_Interesting", "PI_Just", "PI_Meaningful", "PI_NeedsMe", 
+#              "PI_Pleasurable", "PI_Progressing", "PI_Regenerative", "PI_Stable", 
+#              "PI_WorthExploring")
+# 
+# 
+# correlation::correlation(
+#   df10c[, "IAS_Total", drop = FALSE],  
+#   data2 = select(df10c, all_of(pi_vars)), p_adjust = "none"
+# ) |> 
+#   # Formatting correlation results
+#   mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE))) |>
+#   
+#   # Releveling factors for visualization
+#   mutate(Parameter2 = fct_relevel(Parameter2, rev(pi_vars)),
+#          Parameter1 = fct_relevel(Parameter1, "IAS_Total")) |>
+#   
+#   # Plotting the correlation matrix
+#   ggplot(aes(x = Parameter1, y = Parameter2)) +
+#   geom_tile(aes(fill = r), color = "white") +  
+#   geom_text(aes(label = val), size = 3) +  
+#   labs(title = "Correlation Matrix") +
+#   scale_fill_gradient2(low = "blue", high = "red", mid = "white", limit = c(-1, 1), midpoint = 0, guide = guide_colourbar(ticks = FALSE)) +  
+#   theme_minimal() +
+#   theme(
+#     legend.title = element_blank(),
+#     axis.title.x = element_blank(),
+#     axis.title.y = element_blank(),
+#     axis.text.x = element_text(hjust = 1)
+#   )
 ```
 
 
@@ -366,6 +409,7 @@ df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |>
          TAS_DDF = TAS20_2 + (1-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
          TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20)
 
+# TODO: sanitize MAIA names / Compute dimensions.
 
 df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
   filter(Total_Attention_Fail == 0) |> # 32 participants removed based on failing one or more checks
@@ -382,6 +426,8 @@ df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive S
     Gender %in% c(3, 5) ~ "Other", 
     Gender == 4 ~ "NA", )) |>
   na.omit()
+
+# TODO: sanitize MAIA names / Compute dimensions.
 
 
 # Save all
@@ -505,11 +551,11 @@ make_age <- function(age) {
 
 # Create the dataframe
 table <- data.frame(
-   Sample = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Total'),
-  Subsample = c('', 'Sample 1', 'Sample 2', '', '', '', '', '', '', 'Sample 1', 'Sample 2', 'Sample 3', '', 'Sample 1', 'Sample 2', '', '', '', '', '','', ''),   
+  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Total'),
+  Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15'),   
   Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English',''),
   N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10a), nrow(df10b), nrow(df10c), nrow(df11a), nrow(df11b), 32214),
-  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tingling"', 'Collapsed "Itch" and "Tingling"', '', 'Analog scales', 'Analog scales', 'Analog scales', '', '', ''),
+  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales', 'Analog scales', 'Analog scales', '', '', ''),
   Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10a$Age), make_age(df10b$Age), make_age(df10c$Age), make_age(df11a$Age), make_age(df11b$Age), '48.6 ± 13.1'),
   Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '18-57', '18-60', '17-93'),
   Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '74.8%', '75.9%', '71.6%'),
@@ -529,7 +575,8 @@ gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
 ```
 
 
-## Descriptive
+## Item Selection
+
 
 ### Distribution
 
@@ -604,14 +651,15 @@ p1 <- p1_data |>
   ggplot(aes(x = x, y = y, color = Parameter)) +
   geom_line(aes(linetype = Parameter), linewidth = 0.7) +
   scale_color_material_d() +
-  scale_linetype_manual(values = linetype) +
+  scale_linetype_manual(values = linetype)  +
+  labs(x = "Response", y = "Distribution", color = "Item", linetype = "Item", title = "Item Distribution") +
+  guides(color = guide_legend(ncol = 1)) +
+  facet_wrap(~Sample, scales = "free_y", nrow = 3) +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
-        plot.title = element_text(face="bold")) +
-  labs(x = "Response", y = "Distribution", color = "Item", linetype = "Item") +
-  facet_wrap(~Sample, scales = "free_y", nrow = 3)
+        axis.title.y = element_blank(),
+        plot.title = element_text(face="bold"))
 
-ggsave("figures/Figure1.png", p1, width=12, height=7, dpi=300, bg="white")
 p1
 ```
 
@@ -641,8 +689,10 @@ row.names(data11b) <- NULL
 
 data_all <- rbind(
   data1a, data1b, data2, data3, data4, data5, data6, data7a, data7b, data7c,
-  mutate(data8a, Tickle = NA), mutate(data8b, Tickle = NA), data9,
-  mutate(data10a, Taste = NA, Cough = NA, Blood_Sugar = NA),  data10b,  data10c, data11a, data11b
+  mutate(data8a, Tickle = NA), 
+  mutate(data8b, Tickle = NA), data9,
+  mutate(data10a, Taste = NA, Cough = NA, Blood_Sugar = NA),  
+  data10b,  data10c, data11a, data11b
 ) 
 ```
 
@@ -658,24 +708,40 @@ An overall positive intercorrelation pattern, with no clear structure emerging.
 make_correlation <- function(df) {
   correlation::correlation(df, redundant = TRUE) |>
     correlation::cor_sort() |>
-    correlation::cor_lower() |>
-    mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE))) |>
-    mutate(Parameter2 = fct_rev(Parameter2)) |>
-    ggplot(aes(x = Parameter1, y = Parameter2)) +
+    # correlation::cor_lower() |>
+    mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE)),
+           r = ifelse(Parameter1 == Parameter2, NA, r),
+           lbl = ifelse(Parameter1 == Parameter2, "", format_value(r, zap_small = TRUE, lead_zero = FALSE)),
+           lbl = ifelse(p > .05, "", lbl),
+           Param1 = fct_relevel(str_replace(Parameter1, "_", " "), str_replace(levels(Parameter1), "_", " ")),
+           Param2 = fct_relevel(str_replace(Parameter2, "_", " "), str_replace(levels(Parameter2), "_", " "))) |>
+    # mutate(Parameter2 = fct_rev(Parameter2)) |>
+    ggplot(aes(x = Param1, y = Param2)) +
     geom_tile(aes(fill = r), color = "white") +
-    geom_text(aes(label = val), size = 3) +
-    labs(title = "Correlation Matrix") +
-    scale_fill_metro_c(limit = c(0, 0.75), guide = guide_colourbar(ticks = FALSE)) +
+    geom_text(aes(label = lbl), size = 3) +
+    labs(title = "Correlation Matrix", subtitle = paste0("N = ", nrow(df))) +
+    scale_fill_gradientn(
+      colors = c("white", "#FFF9C4", "#FFF59D", "#FFEB3B", "#FFCA28", "#FF9800", "#FF5722", "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#512DA8", "#311B92"),
+      na.value = "#311B92",
+      limits = c(0, 0.8),
+      guide = guide_colorbar(ticks.colour = NA)
+    ) +
+    # scale_fill_metro_c(limit = c(0, 0.75), guide = guide_colourbar(ticks = FALSE)) +
     theme_minimal() +
     theme(
       legend.title = element_blank(),
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
-      axis.text.x = element_text(angle = 45, hjust = 1)
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      plot.title = element_text(face = "bold")
     )
 }
 
-make_correlation(data_all)
+p2 <- make_correlation(data_all)
+p2
+
+fig1 <- p1 / p2
+ggsave("figures/Figure1.png", fig1, width=10, height=12, dpi=300, bg="white")
 ```
 
 
@@ -792,10 +858,6 @@ make_correlation(data11b)
 
 :::
 
-## Graph Analysis
-
-Exploratory Graph Analysis (EGA) is a recently developed framework for psychometric assessment, that can be used to estimate the number of dimensions in questionnaire data using network estimation methods and community detection algorithms, and assess the stability of dimensions and items using bootstrapping.
-See https://r-ega.net/articles/ega.html for details.
 
 ### Unique Variable Analysis (UVA)
 
@@ -806,1593 +868,928 @@ Unique Variable Analysis (Christensen, Garrido, & Golino, 2023) uses the weighte
 #### All data
 
 ```{r}
-uva <- EGAnet::UVA(data = data_all, cut.off = 0.3)
-uva
-uva$keep_remove
+uva0 <- EGAnet::UVA(data = data_all, cut.off = 0.3)
+uva0
+uva0$keep_remove
 ```
 
 
 #### Sample 1a
 
 ```{r}
-uva <- EGAnet::UVA(data = data1a, cut.off = 0.3)
-uva
-uva$keep_remove
+uva1a <- EGAnet::UVA(data = data1a, cut.off = 0.3)
+uva1a
+uva1a$keep_remove
 ```
 
 #### Sample 1b
 
 ```{r}
-uva <- EGAnet::UVA(data = data1b, cut.off = 0.3)
-uva
-uva$keep_remove
+uva1b <- EGAnet::UVA(data = data1b, cut.off = 0.3)
+uva1b
+uva1b$keep_remove
 ```
+
+#### Sample 2
+
+```{r}
+uva2 <- EGAnet::UVA(data = data2, cut.off = 0.3)
+uva2
+uva2$keep_remove
+```
+
 
 #### Sample 3
 
 ```{r}
-uva <- EGAnet::UVA(data = data3, cut.off = 0.3)
-uva
-uva$keep_remove
+uva3 <- EGAnet::UVA(data = data3, cut.off = 0.3)
+uva3
+uva3$keep_remove
 ```
 
 #### Sample 4
 
 ```{r}
-uva <- EGAnet::UVA(data = data4, cut.off = 0.3)
-uva
-uva$keep_remove
+uva4 <- EGAnet::UVA(data = data4, cut.off = 0.3)
+uva4
+uva4$keep_remove
 ```
 
 #### Sample 5 
 
 ```{r}
-uva <- EGAnet::UVA(data = data5, cut.off = 0.3)
-uva
-uva$keep_remove
+uva5 <- EGAnet::UVA(data = data5, cut.off = 0.3)
+uva5
+uva5$keep_remove
 ```
 
 #### Sample 6
 
 ```{r}
-uva <- EGAnet::UVA(data = data6, cut.off = 0.3)
-uva
-uva$keep_remove
+uva6 <- EGAnet::UVA(data = data6, cut.off = 0.3)
+uva6
+uva6$keep_remove
 ```
 
 #### Sample 7a
 
 ```{r}
-uva <- EGAnet::UVA(data = data7a, cut.off = 0.3)
-uva
-uva$keep_remove
+uva7a <- EGAnet::UVA(data = data7a, cut.off = 0.3)
+uva7a
+uva7a$keep_remove
 ```
 
 #### Sample 7b
 
 ```{r}
-uva <- EGAnet::UVA(data = data7b, cut.off = 0.3)
-uva
-uva$keep_remove
+uva7b <- EGAnet::UVA(data = data7b, cut.off = 0.3)
+uva7b
+uva7b$keep_remove
 ```
 
 #### Sample 7c
 
 ```{r}
-uva <- EGAnet::UVA(data = data7c, cut.off = 0.3)
-uva
-uva$keep_remove
+uva7c <- EGAnet::UVA(data = data7c, cut.off = 0.3)
+uva7c
+uva7c$keep_remove
 ```
 
 #### Sample 8a
 
 ```{r}
-uva <- EGAnet::UVA(data = data8a, cut.off = 0.3)
-uva
-uva$keep_remove
+uva8a <- EGAnet::UVA(data = data8a, cut.off = 0.3)
+uva8a
+uva8a$keep_remove
 ```
 
 #### Sample 8b
 
 ```{r}
-uva <- EGAnet::UVA(data = data8b, cut.off = 0.3)
-uva
-uva$keep_remove
+uva8b <- EGAnet::UVA(data = data8b, cut.off = 0.3)
+uva8b
+uva8b$keep_remove
 ```
 
 #### Sample 9
 
 ```{r}
-uva <- EGAnet::UVA(data = data9, cut.off = 0.3)
-uva
-uva$keep_remove
+uva9 <- EGAnet::UVA(data = data9, cut.off = 0.3)
+uva9
+uva9$keep_remove
 ```
 
 #### Sample 10a
 
 ```{r}
-uva <- EGAnet::UVA(data = data10a, cut.off = 0.3)
-uva
-uva$keep_remove
+uva10a <- EGAnet::UVA(data = data10a, cut.off = 0.3)
+uva10a
+uva10a$keep_remove
 ```
 
 #### Sample 10b
 
 ```{r}
-uva <- EGAnet::UVA(data = data10b, cut.off = 0.3)
-uva
-uva$keep_remove
+uva10b <- EGAnet::UVA(data = data10b, cut.off = 0.3)
+uva10b
+uva10b$keep_remove
 ```
 
 #### Sample 10c
 
 ```{r}
-uva <- EGAnet::UVA(data = data10c, cut.off = 0.3)
-uva
-uva$keep_remove
+uva10c <- EGAnet::UVA(data = data10c, cut.off = 0.3)
+uva10c
+uva10c$keep_remove
 ```
 
 #### Sample 11a
 
 ```{r}
-uva <- EGAnet::UVA(data = data11a, cut.off = 0.3)
-uva
-uva$keep_remove
+uva11a <- EGAnet::UVA(data = data11a, cut.off = 0.3)
+uva11a
+uva11a$keep_remove
 ```
 
 #### Sample 11b
 
 ```{r}
-uva <- EGAnet::UVA(data = data11b, cut.off = 0.3)
-uva
-uva$keep_remove
+uva11b <- EGAnet::UVA(data = data11b, cut.off = 0.3)
+uva11b
+uva11b$keep_remove
 ```
+
+#### Summary
+
+
+```{r}
+rez_uva <- c(uva1a$keep_remove$remove,
+  uva1b$keep_remove$remove,
+  uva2$keep_remove$remove,
+  uva3$keep_remove$remove,
+  uva4$keep_remove$remove,
+  uva5$keep_remove$remove,
+  uva6$keep_remove$remove,
+  uva7a$keep_remove$remove,
+  uva7b$keep_remove$remove,
+  uva7c$keep_remove$remove,
+  uva8a$keep_remove$remove,
+  uva8b$keep_remove$remove,
+  uva9$keep_remove$remove,
+  uva10a$keep_remove$remove,
+  uva10b$keep_remove$remove,
+  uva10c$keep_remove$remove,
+  uva11a$keep_remove$remove,
+  uva11b$keep_remove$remove)
+
+sort(table(rez_uva), decreasing = TRUE) / length(rez_uva) 
+```
+
 
 
 :::
 
-### Networks
 
-::: {.panel-tabset}
 
-#### All data
+
+
+### Structure Refinement
 
 Discarded the following items:
 - Tickle: not present in the same dataset and consistently flagged as redundant in UVA analysis.
 
-Ambiguous:
-- Temp
-- Vomit
-- Affective_touch
-- Sex_arousal
-- Taste
-- Blood Sugar
-
-```{r ega_all}
-#| fig-height: 20
-#| fig-width: 12
-
-make_egas <- function(data) {
-  egas <- list()
-  for (model in c("glasso")) {  # , "TMFG"
-    for (algo in c("walktrap", "louvain")) {
-      for (type in c("ega", "ega.fit")) { # "" # "hierega"
-        if (type == "ega.fit" & algo == "louvain") next # Too slow
-        egas[[paste0(model, "_", algo, "_", type)]] <- EGAnet::bootEGA(
-          data = data,
-          seed = 123,
-          model = model,
-          algorithm = algo,
-          EGA.type = type,
-          type = "resampling",
-          plot.itemStability = FALSE,
-          verbose = FALSE, 
-        )
-      }
-    }
-  }
-
-  p <- EGAnet::compare.EGA.plots(
-    egas$glasso_walktrap_ega, 
-    # egas$glasso_walktrap_ega.fit,
-    egas$glasso_louvain_ega, 
-    # egas$TMFG_louvain_ega,
-    # egas$TMFG_walktrap_ega, 
-    # egas$TMFG_walktrap_ega.fit,
-    labels = c(
-      "glasso_walktrap_ega", 
-      # "glasso_walktrap_ega.fit",
-      "glasso_louvain_ega" 
-      # "TMFG_louvain_ega",
-      # "TMFG_walktrap_ega", 
-      # "TMFG_walktrap_ega.fit"
-    ),
-    rows = 3,
-    plot.all = FALSE
-  )$all
-  list(egas = egas, p = p)
-}
-
-
-egas_all <- make_egas(data_all)
-egas_all$p
-
-#### Sample 1a
-
-```{r ega1a}
-#| fig-height: 20
-#| fig-width: 12
-
-egas1a <- make_egas(data1a)
-egas1a$p
-```
-
-#### Sample 1b
-
-```{r ega1b}
-#| fig-height: 20
-#| fig-width: 12
-
-egas1b <- make_egas(data1b)
-egas1b$p
-```
-
-#### Sample 2
-
-```{r ega2}
-#| fig-height: 20
-#| fig-width: 12
-
-egas2 <- make_egas(data2)
-egas2$p
-```
-
-
-#### Sample 3
-
-```{r ega3}
-#| fig-height: 20
-#| fig-width: 12
-
-egas3 <- make_egas(data3)
-egas3$p
-```
-
-#### Sample 4
-
-```{r ega4}
-#| fig-height: 20
-#| fig-width: 12
-
-egas4 <- make_egas(data4)
-egas4$p
-```
-
-#### Sample 5
-
-```{r ega5}
-#| fig-height: 20
-#| fig-width: 12
-
-egas5 <- make_egas(data5)
-egas5$p
-```
-
-#### Sample 6
-
-```{r ega6}
-#| fig-height: 20
-#| fig-width: 12
-
-egas6 <- make_egas(data6)
-egas6$p
-```
-
-#### Sample 7a
-
-```{r ega7&}
-#| fig-height: 20
-#| fig-width: 12
-
-egas7a <- make_egas(data7a)
-egas7a$p
-```
-
-#### Sample 7b
-
-```{r ega7b}
-#| fig-height: 20
-#| fig-width: 12
-
-egas7b <- make_egas(data7b)
-egas7b$p
-```
-
-#### Sample 7c
-
-```{r ega7c}
-#| fig-height: 20
-#| fig-width: 12
-
-egas7c <- make_egas(data7c)
-egas7c$p
-```
-
-#### Sample 8a
-
-```{r ega8a}
-#| fig-height: 20
-#| fig-width: 12
-
-egas8a <- make_egas(data8a)
-egas8a$p
-```
-
-#### Sample 8b
-
-```{r ega8b}
-#| fig-height: 20
-#| fig-width: 12
-
-egas8b <- make_egas(data8b)
-egas8b$p
-```
-
-#### Sample 9
-
-```{r ega9}
-#| fig-height: 20
-#| fig-width: 12
-
-egas9 <- make_egas(data9)
-egas9$p
-```
-
-#### Sample 10a
-
-```{r ega10a}
-#| fig-height: 20
-#| fig-width: 12
-
-egas10a <- make_egas(data10a)
-egas10a$p
-```
-
-#### Sample 10b
-
-```{r ega10b}
-#| fig-height: 20
-#| fig-width: 12
-
-egas10b <- make_egas(data10b)
-egas10b$p
-```
-
-#### Sample 10c
-
-```{r ega10c}
-#| fig-height: 20
-#| fig-width: 12
-
-egas10c <- make_egas(data10c)
-egas10c$p
-```
-
-#### Sample 11a
-
-```{r ega11a}
-#| fig-height: 20
-#| fig-width: 12
-
-egas11a <- make_egas(data11a)
-egas11a$p
-```
-
-#### Sample 11b
-
-```{r ega11c}
-#| fig-height: 20
-#| fig-width: 12
-
-egas11b <- make_egas(data11b)
-egas11b$p
-```
-
-:::
-
-### Structure Stability
-
-::: {.panel-tabset}
-
-#### All data
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas_all$egas, plot), nrow = 3)
-```
-
-#### Sample 1a
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas1a$egas, plot), nrow = 3)
-```
-
-#### Sample 1b
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas1b$egas, plot), nrow = 3)
-```
-
-#### Sample 2
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas2$egas, plot), nrow = 3)
-```
-
-#### Sample 3
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas3$egas, plot), nrow = 3)
-```
-
-#### Sample 4
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas4$egas, plot), nrow = 3)
-```
-
-#### Sample 5
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas5$egas, plot), nrow = 3)
-```
-
-#### Sample 6
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas6$egas, plot), nrow = 3)
-```
-
-#### Sample 7a
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas7a$egas, plot), nrow = 3)
-```
-
-#### Sample 7b
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas7b$egas, plot), nrow = 3)
-```
-
-#### Sample 7c
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas7c$egas, plot), nrow = 3)
-```
-
-#### Sample 8a
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas8a$egas, plot), nrow = 3)
-```
-
-#### Sample 8b
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas8b$egas, plot), nrow = 3)
-```
-
-#### Sample 9
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas9$egas, plot), nrow = 3)
-```
-
-#### Sample 10a
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas10a$egas, plot), nrow = 3)
-```
-
-#### Sample 10b
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas10b$egas, plot), nrow = 3)
-```
-
-#### Sample 10c
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas10c$egas, plot), nrow = 3)
-```
-
-#### Sample 11a
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas11a$egas, plot), nrow = 3)
-```
-
-#### Sample 11b
-
-```{r}
-#| fig-height: 20
-#| fig-width: 12
-
-patchwork::wrap_plots(lapply(egas11b$egas, plot), nrow = 3)
-```
-
-:::
-
-
-### Scores
-
-```{r}
-ega <- egas_all$egas$glasso_louvain_ega$EGA
-plot(ega)
-
-get_scores <- function(data, ega) {
-  EGAnet::net.scores(data, ega)$scores$std.scores |>
-    as.data.frame() |>
-    setNames(c("EGA1", "EGA2", "EGA3", "EGA4"))
-}
-
-ega_scores_1a <- get_scores(data1a, ega)
-ega_scores_1b <- get_scores(data1b, ega)
-ega_scores_2 <- get_scores(data2, ega)
-ega_scores_3 <- get_scores(data3, ega)
-ega_scores_4 <- get_scores(data4, ega)
-ega_scores_5 <- get_scores(data5, ega)
-ega_scores_6 <- get_scores(data6, ega)
-ega_scores_7a <- get_scores(data7a, ega)
-ega_scores_7b <- get_scores(data7b, ega)
-ega_scores_7c <- get_scores(data7c, ega)
-ega_scores_8a <- get_scores(data8a, ega)
-ega_scores_8b <- get_scores(data8b, ega)
-ega_scores_9 <- get_scores(data9, ega)
-ega_scores_10a <- get_scores(data10a, ega)
-ega_scores_10b <- get_scores(data10b, ega)
-ega_scores_10c <- get_scores(data10c, ega)
-ega_scores_11a <- get_scores(data11a, ega)
-ega_scores_11b <- na.omit(get_scores(data11b, ega)) # remove two rows with NAS
-row.names(ega_scores_11b) <- NULL
-```
-
-## Factor Analysis
-
-### How Many Factors
-
-::: {.panel-tabset}
-
-#### All data
-
-We discarded the following items: 
-- Tickle
-- Blood Sugar
-- Temp
-- Vomit
-- Affective_touch
-- Sex_arousal
-- Taste
-
-```{r}
-cols_to_remove <- c("Temp", "Vomit", "Affective_touch", "Sex_arousal", "Taste", "Tickle", "Bloo")
-```
-
-```{r}
-data_all <- data_all |>
-  select(-any_of(cols_to_remove))
-
-n <- parameters::n_factors(data_all, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 1a
-
-```{r}
-data1a <- data1a |>
-  select(-any_of(cols_to_remove))
-
-n <- parameters::n_factors(data1a, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 1b
-
-```{r}
-data1b <- data1b |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data1b, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 2
-
-```{r}
-data2 <- data2 |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data2, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 3
-
-```{r}
-data3 <- data3 |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data3, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 4
-
-```{r}
-data4 <- data4 |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data4, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 5
-
-```{r}
-data5 <- data5 |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data5, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 6
-
-```{r}
-data6 <- data6 |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data6, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 7a
-
-```{r}
-data7a <- data7a |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data7a, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 7b
-
-```{r}
-data7b <- data7b |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data7b, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 7c
-
-```{r}
-data7c <- data7c |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data7c, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-
-#### Sample 8a
-
-```{r}
-data8a <- data8a |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data8a, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 8b
-
-```{r}
-data8b <- data8b |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data8b, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-
-#### Sample 9
-
-```{r}
-data9 <- data9 |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data9, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 10a
-
-```{r}
-data10a <- data10a |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data10a, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 10b
-
-```{r}
-data10b <- data10b |>
-  select(-any_of(cols_to_remove))
-
-n <- parameters::n_factors(data10b, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 10c
-
-```{r}
-data10c <- data10c |>
-  select(-any_of(cols_to_remove))
-
-
-n <- parameters::n_factors(data10c, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 11a
-
-```{r}
-data11a <- data11a |>
-  select(-any_of(cols_to_remove))
-
-n <- parameters::n_factors(data11a, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-
-#### Sample 11b
-
-```{r}
-data11b <- data11b |>
-  select(-any_of(cols_to_remove))
-
-n <- parameters::n_factors(data11b, n_max = 12)
-
-plot(n)
-knitr::kable(as.data.frame(n)[n$n_Factors %in% c(1, 3, 4, 5), ], row.names = FALSE)
-```
-:::
-
-
-### EFA
-
-::: {.panel-tabset}
-
-#### All data
-
-```{r}
-#| fig-height: 10
-
-efa5 <- parameters::factor_analysis(data_all, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa5)
-
-display(efa5)
-```
-
-
-#### Sample 1a
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data1a, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 1b
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data1b, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 2
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data2, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-
-```
-
-#### Sample 3
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data3, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### sample 4
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data4, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-
-#### Sample 5
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data5, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 6
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data6, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 7a
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data7a, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 7b
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data7b, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 7c
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data7c, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 8a
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data8a, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 8b
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data8b, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 9
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data9, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 10a
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data10a, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 10b
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data10b, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 10c
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data10c, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 11a
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data11a, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-#### Sample 11b
-
-```{r}
-#| fig-height: 10
-
-efa4 <- parameters::factor_analysis(data11b, n = 3, rotation = "oblimin", sort = TRUE)
-plot(efa4)
-
-display(efa4)
-```
-
-:::
-
-
-## CFA
-
-We discarded the following items: 
-- Tickle
-- Blood Sugar
-- Temp
-- Vomit
-- Affective_touch
-- Sex_arousal
-- Taste
-
-### Lower-Level Factors
-
-::: {.panel-tabset}
-
-
-#### All data
-
-
-```{r}
-m1 <- "
-Interoception =~ Hungry + Thirsty + Urinate + Defecate + Itch + Bruise + Muscles + Pain + Breathing + Heart + Cough + Sneeze + Wind + Burp
-"
-
-m4 <- "
-Sustenance =~ Hungry + Thirsty + Urinate + Defecate + Muscles + Pain
-Skin =~ Itch + Bruise
-HeartBreathing =~ Breathing + Heart
-Expulsion =~ Cough + Sneeze + Wind + Burp
-"
-
-
-m5 <- "
-Sustenance =~ Hungry + Thirsty + Pain
-UrinateDefecate =~ Urinate + Defecate
-Skin =~ Itch + Bruise + Muscles
-HeartBreathing =~ Breathing + Heart
-Expulsion =~ Cough + Sneeze + Wind + Burp
-"
-
-
-m6 <- "
-HungryThirsty =~ Hungry + Thirsty
-UrinateDefecate =~ Urinate + Defecate
-ItchBruise =~ Itch + Bruise
-MusclesPain =~ Muscles + Pain
-HeartBreathing =~ Breathing + Heart
-Expulsion =~ Cough + Sneeze + Wind + Burp
-"
-
-m7 <- "
-HungryThirsty =~ Hungry + Thirsty
-UrinateDefecate =~ Urinate + Defecate
-ItchBruise =~ Itch + Bruise
-MusclesPain =~ Muscles + Pain
-HeartBreathing =~ Breathing + Heart
-CoughSneeze =~ Cough + Sneeze
-WindBurp =~ Wind + Burp
-"
-
-is_converged <- function(m) {
-  ev <- eigen(lavaan::lavTech(m, "cov.lv")[[1]], symmetric=TRUE, only.values=TRUE)$values
-  if (any(ev < -1 * .Machine$double.eps^(3/4))) {
-    "Not converged"
-  } else {
-    ""
-  }
-}
-
-compare_mods <- function(data) {
-  
-  fit_model <- function(f, data) {
-    if(!"Cough" %in% names(data)) {
-      f <- str_remove(f, fixed("Cough +"))
-    }
-    lavaan::cfa(f, data = data)
-  }
-  
-  
-  cfa1 <- fit_model(m1, data = data)
-  cfa4 <- fit_model(m4, data = data)
-  cfa5 <- fit_model(m5, data = data)
-  cfa6 <- fit_model(m6, data = data)
-  cfa7 <- fit_model(m7, data = data)
-  
-  anova(cfa1, cfa4, cfa5, cfa6, cfa7) |> 
-    parameters::parameters() |>
-    mutate(AIC = format(round(AIC, 0), nsmall = 0),
-           BIC = format(round(BIC, 0), nsmall = 0),
-           Chi2 = format(round(Chi2, 2), nsmall = 2),
-           Converged = sapply(list(cfa1, cfa4, cfa5, cfa6, cfa7), is_converged))
-}
-
-display(compare_mods(data_all))
-
-m7_all <- lavaan::cfa(m7, data = data_all)
-parameters::parameters(m7_all, standardize=TRUE) |>
-  display()
-```
-
-#### Sample 1a
-
-```{r}
-#| warning: false
-
-display(compare_mods(data1a))
-```
-
-#### Sample 1b
-
-```{r}
-#| warning: false
-
-display(compare_mods(data1b))
-
-```
-
-
-#### Sample 2
-
-```{r}
-#| warning: false
-
-display(compare_mods(data2))
-
-```
-
-
-#### Sample 3
-
-```{r}
-#| warning: false
-
-display(compare_mods(data3))
-
-```
-
-
-#### Sample 4
-
-```{r}
-#| warning: false
-
-display(compare_mods(data4))
-
-```
-
-
-#### Sample 5
-
-```{r}
-#| warning: false
-
-display(compare_mods(data5))
-
-```
-
-
-#### Sample 6
-
-```{r}
-#| warning: false
-
-display(compare_mods(data6))
-```
-
-
-#### Sample 7a
-
-```{r}
-#| warning: false
-
-display(compare_mods(data7a))
-```
-
-
-#### Sample 7b
-
 ```{r}
-#| warning: false
-
-display(compare_mods(data7b))
-
-```
-
-
-#### Sample 7c
-
-```{r}
-#| warning: false
-
-display(compare_mods(data7c))
-
-```
-
-
-#### Sample 8a
-
-```{r}
-#| warning: false
-
-display(compare_mods(data8a))
-```
-
-
-#### Sample 8b
-
-```{r}
-#| warning: false
-
-display(compare_mods(data8b))
-```
-
-
-#### Sample 9
-
-```{r}
-#| warning: false
-
-display(compare_mods(data9))
-
-```
-
-
-#### Sample 10a
-
-```{r}
-#| warning: false
-
-display(compare_mods(data10a))
-
-```
-
-
-#### Sample 10b 
-
-```{r}
-#| warning: false
-
-display(compare_mods(data10b))
-
-```
-
-#### Sample 10c 
-
-```{r}
-#| warning: false
-
-display(compare_mods(data10c))
-
+data_all <- select(data_all, -Tickle)
+data1a <- select(data1a, -Tickle)
+data1b <- select(data1b, -Tickle)
+data2 <- select(data2, -Tickle)
+data3 <- select(data3, -Tickle)
+data4 <- select(data4, -Tickle)
+data5 <- select(data5, -Tickle)
+data6 <- select(data6, -Tickle)
+data7a <- select(data7a, -Tickle)
+data7b <- select(data7b, -Tickle)
+data7c <- select(data7c, -Tickle)
+# data8a <- select(data8a, -Tickle)
+# data8b <- select(data8b, -Tickle)
+data9 <- select(data9, -Tickle)
+data10a <- select(data10a, -Tickle)
+data10b <- select(data10b, -Tickle)
+data10c <- select(data10c, -Tickle)
+data11a <- select(data11a, -Tickle)
+data11b <- select(data11b, -Tickle)
+```
+
+#### Initial
+
+
+```{r}
+colors <- c("Heart" = "#F44336", "Breathing" = "#FF5722",
+            "Hungry" = "#FF9800", "Thirsty" = "#FFC107",
+            "Burp" = "#4CAF50", "Wind" = "#009688",
+            "Urinate" = "#63824C", "Defecate" = "#795548",
+            "Cough" = "#8BC34A", "Sneeze" = "#CDDC39", 
+            "Bruise" = "#673AB7", "Blood Sugar" = "#3F51B5",
+            "Muscles" = "#2196F3", "Pain" = "#00BCD4",
+            "Sex arousal" = "#FF4081", "Temp" = "#9C27B0",
+            "Vomit" = "#76FF03", "Taste" = "#00E676",
+            "Affective touch" = "#FF1744", "Itch" = "#D500F9")
 ```
-
-#### Sample 11a 
-
-```{r}
-#| warning: false
-
-display(compare_mods(data11a))
-
-```
-
-#### Sample 11b 
-
-```{r}
-#| warning: false
-
-display(compare_mods(data11b))
-
-```
-
-:::
-
-
-Conclusion: The 7th factor solution was preferred in most datasets, including by indices that penalize increased number of parameters (such as BIC). 
-
-
-### Higher Order Factors
 
 
 ::: {.panel-tabset}
 
-#### All data
+##### HCA
 
 ```{r}
-m7h1 <- paste0(m7, "
-              Interoception =~ HungryThirsty + UrinateDefecate + ItchBruise + MusclesPain + HeartBreathing + CoughSneeze + WindBurp
-              ")
-
-m7h2 <- paste0(m7, "
-              Expulsion =~ CoughSneeze + WindBurp
-              Interoception =~ HungryThirsty + UrinateDefecate + HeartBreathing
-              ")
-
-m7h3 <- paste0(m7, "
-              Valenced =~ MusclesPain + HeartBreathing + ItchBruise
-              Expulsion =~ CoughSneeze + WindBurp
-              Homeostasis =~ HungryThirsty + UrinateDefecate
-              ")
-
-compare_mods_h <- function(data) {
+make_hclust <- function(data) {
+  rez_pvclust <- pvclust::pvclust(data,
+                 method.hclust = "complete",
+                 method.dist = "correlation",
+                 nboot = 1000, quiet=TRUE, parallel=TRUE)
   
-  fit_model_h <- function(f, data) {
-    if(!"Cough" %in% names(data)) {
-      f <- str_remove(f, fixed("Cough +"))
-    }
-    lavaan::cfa(f, data = data)
-  }
   
-  m7 <- fit_model_h(m7, data = data)
-  m7h2 <- fit_model_h(m7h2, data = data)
-  m7h1 <- fit_model_h(m7h1, data = data)
-  m7h3 <- fit_model_h(m7h3, data = data)
+  dendrogram <- as.dist(1 - cor(data, use = "pairwise.complete.obs")) |> 
+  hclust(method = "complete") |> 
+  tidygraph::as_tbl_graph() 
+
+
+  # Process Nodes
+  nodes <- as.list(dendrogram)$nodes |> 
+    mutate(
+      Size = ifelse(label != "", 10, NA),
+      Item = str_replace(label, "_", " "),
+      idx = 1:nrow(as.list(dendrogram)$nodes))
   
-  anova(m7, m7h1, m7h2, m7h3) |>
-    parameters::parameters() |>
-    mutate(AIC = format(round(AIC, 0), nsmall = 0),
-           BIC = format(round(BIC, 0), nsmall = 0),
-           Chi2 = format(round(Chi2, 2), nsmall = 2),
-           Converged = sapply(list(m7, m7h1, m7h2, m7h3), is_converged))
+  # Central node 
+  nodes[nodes$height == max(nodes$height), c("Item", "Size")] <- data.frame(Item="Central", Size=15)
+  
+  # Process Edges
+  edges <- as.list(dendrogram)$edges
+  edges$linewidth = datawizard::rescale(nodes[edges$from, ]$height, to = c(0.1, 1))
+  
+  p <- tidygraph::tbl_graph(nodes = nodes, edges = edges) |> 
+    ggraph(layout = "dendrogram", circular = TRUE) +
+    # geom_edge_diagonal(strength = 0.7, linewidth = 1) +
+    geom_edge_elbow2(aes(edge_width=linewidth), color="#212121") +
+    geom_node_point(aes(filter=Item %in% c("Central"), size = Size), color="#212121") +
+    # geom_node_point(aes(filter=Group %in% c("Visceroception", "Awareness", "Deficit"), color=Group, size = Size)) +
+    geom_node_text(aes(
+      label = ifelse(Item != "", Item, NA),
+      x = x * 1.10,
+      y = y * 1.10,
+      filter = label != "",
+      angle = ifelse(
+        x >= 0,
+        asin(y) * 360 / 2 / pi,
+        360 - asin(y) * 360 / 2 / pi
+      ),
+      hjust = ifelse(
+        x >= 0, 0, 1
+      ))) +
+    geom_node_point(aes(filter = label != "", color=Item, size=Size), alpha = 1) +
+    # geom_node_text(aes(label=idx)) +  # Debug
+    scale_edge_width_continuous(range=c(1, 3), guide = "none") +
+    scale_size_continuous(range=c(10, 10), guide = "none") +
+    scale_color_manual(values = colors,
+                       breaks = names(colors)) +
+    ggtitle("Hierarchical Clustering Analysis (HCA)", subtitle = "Method = Correlation") +
+    coord_equal(clip = "off", xlim = c(-1.25, 1.25), ylim = c(-1.25, 1.25)) +
+    theme_void() + 
+    # guides(color = guide_legend(override.aes = list(size = c(7.5, 5, 5, 3.5, 7.5, 5, 5, 3.5, 3.5, 3.5, 7.5, 5, 5, 3.5)))) +
+    theme(legend.text = ggtext::element_markdown(),
+          legend.title = element_blank(),
+          legend.position = "none",
+          # plot.title = element_blank(), 
+          # plot.subtitle = element_blank()
+          plot.title = element_text(face="bold"))
+
+  
+  list(pvclust = rez_pvclust, p = p)
 }
 
-display(compare_mods_h(data_all))
+
+rez_hclust <- make_hclust(data_all)
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+rez_hclust$p
 ```
 
-
-No evidence for higher order factors.
-
-
-#### Sample 1a
+##### EGA
 
 ```{r}
-display(compare_mods_h(data1a))
+#| message: false
+#| warning: false
+
+make_ega <- function(data, cols = c("C1" = "#F44336", "C2" = "#FF9800", "C3" = "#795548", "C4" = "#CDDC39", "C5" = "#2196F3", "C6" = "#009688", "C7" = "#9C27B0")) {
+  rez <- EGAnet::bootEGA(
+    data = data,
+    seed = 123,
+    model = "glasso",
+    algorithm = "leiden",
+    EGA.type = "hierEGA",
+    type = "resampling",
+    plot.itemStability = FALSE,
+    verbose = FALSE, 
+    allow.singleton = TRUE
+  )
+  
+  table <- EGAnet::net.loads(rez$EGA$lower_order)$std |> 
+    as.data.frame() |> 
+    rownames_to_column("Item") |>
+    gt::gt() |>
+    gt::tab_header(title = "EGA Loadings") |>
+    gt::data_color(
+      columns = -Item,
+      method = "numeric",
+      colors = scales::col_numeric(
+        palette = c("red", "white", "green"),
+        domain = c(-1, 0, 1)
+      )) |> 
+    gt::fmt_auto()
+  
+    
+  nodes <- rez$EGA$lower_order$dim.variables |> 
+    rename(name = items) |> 
+    mutate(dimension = paste0("C", dimension),
+           size = apply(EGAnet::net.loads(rez$EGA$lower_order)$std, 1, max)[name])
+  
+  loadings <- rez$EGA$lower_order$network |> 
+    as.data.frame() |> 
+    rownames_to_column("to") |>
+    pivot_longer(-c(to), names_to = "from", values_to = "Loading") |> 
+    filter(Loading > quantile(Loading, 1/3)) 
+  
+  g <- tidygraph::tbl_graph(nodes = nodes, edges = loadings, directed = FALSE) |> 
+    mutate(name = str_replace(name, "_", " "),
+           name = ifelse(name == "Sex arousal", "Sex", name)) 
+  
+  set.seed(1)
+  layout <- ggraph::create_layout(g, layout = "fr", weights = abs(loadings$Loading))
+  
+  xrange <- max(layout$x) - min(layout$x)
+  yrange <- max(layout$y) - min(layout$y)
+  xmin <- min(layout$x) - xrange * 0.05
+  xmax <- max(layout$x) + xrange * 0.05
+  ymin <- min(layout$y) - yrange * 0.05
+  ymax <- max(layout$y) + yrange * 0.05
+  
+  p <- layout |> 
+    ggraph() +
+    geom_edge_bend(aes(edge_width = Loading, edge_alpha = Loading), color = "#212121",
+                   strength = 0.3) +
+    geom_node_point(aes(size = size, color = dimension), alpha = 0.95) +
+    geom_node_text(aes(label = name), size = 3, color = "white", fontface = "bold") +
+    scale_size_continuous(range = c(23, 28)) +
+    scale_edge_width(range = c(0.3, 4)) +
+    scale_edge_alpha(range = c(0.1, 0.9)) +
+    scale_color_manual(values = cols) +
+    labs(title = "Exploratory Graph Analysis (EGA)", subtitle = "Method = Leiden") +
+    theme_void() +
+    theme(legend.position = "none",
+          plot.title = element_text(face="bold")) +
+    coord_cartesian(xlim =c(xmin, xmax), ylim = c(ymin, ymax)) 
+    
+  list(rez = rez, table = table, p = p)
+}
+
+rez_ega <- make_ega(data_all, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]]))
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+rez_ega$p
 ```
 
-#### Sample 1b
+##### EFA
 
 ```{r}
-display(compare_mods_h(data1b))
+make_efa <- function(data, n = 3, cols = c("F1" = "#009688", "F2" = "#795548", "F3" = "red")) {
+  n_fac <- n_factors(data)
+
+  rez_efa <- factor_analysis(data, n = n, sort = TRUE, rotation = "oblimin")
+  
+  # Exctract loadings
+  loadings <- attributes(rez_efa)$loadings_long |> 
+    select(from = Component, to=Variable, Loading) |> 
+    mutate(Type = "Loading",
+           to = str_replace(to, "_", " "),
+           from = str_replace(from, "MR", "F")) 
+  
+  # Reorder factors
+  fct_order <- c("Pain", "Muscles", "Blood Sugar", "Bruise",
+                 "Affective touch", "Sex arousal", "Temp", "Itch", "Tickle", 
+                 "Thirsty", "Hungry", "Breathing", "Heart", "Defecate", "Urinate",
+                 "Sneeze", "Cough",  "Wind", "Burp", "Vomit", "Taste")
+  loadings <- loadings |> 
+    mutate(to = fct_relevel(to, fct_order[fct_order %in% unique(loadings$to)])) |> 
+    arrange(to) |> 
+    mutate(to = as.character(to))
+
+  # Get correlations between factors
+  phi <- attributes(rez_efa)$model$Phi
+  phi[upper.tri(phi, diag = TRUE)] <- NA
+  phi <- phi |> 
+    as.data.frame() |> 
+    rownames_to_column("from") %>%
+    pivot_longer(-from, names_to = "to", values_to = "Loading") |> 
+    filter(!is.na(Loading)) |>
+    mutate(Type = "Correlation",
+           from = str_replace(from, "MR", "F"),
+           to = str_replace(to, "MR", "F")) 
+  
+  # Reverse so that arcs are on the same side
+  phi[paste(phi$from, phi$to) %in% c("F3 F1"), c("from", "to")] <- data.frame(from = "F1", to = "F3")
+  phi[paste(phi$from, phi$to) %in% c("F2 F1"), c("from", "to")] <- data.frame(from = "F1", to = "F2")
+  phi[paste(phi$from, phi$to) %in% c("F3 F2"), c("from", "to")] <- data.frame(from = "F2", to = "F3")
+  phi[paste(phi$from, phi$to) %in% c("F4 F1"), c("from", "to")] <- data.frame(from = "F1", to = "F4")
+  phi[paste(phi$from, phi$to) %in% c("F4 F2"), c("from", "to")] <- data.frame(from = "F2", to = "F4")
+  phi[paste(phi$from, phi$to) %in% c("F4 F3"), c("from", "to")] <- data.frame(from = "F3", to = "F4")
+  
+  loadings <- rbind(loadings, phi)
+  
+  # Make layout
+  factor_names <- unique(loadings$from[loadings$Type == "Loading"])
+  item_names <- unique(loadings$to[loadings$Type == "Loading"])
+  
+  nodes <- tibble(name = unique(c(loadings$from, loadings$to))) |>
+    mutate(type = case_when(
+      name %in% factor_names ~ "Factor",
+      name %in% item_names ~ "Item",
+      TRUE ~ "Other"
+    ))
+  
+  y_position <- seq(0.8, 0.2, length.out = length(factor_names))
+  
+  layout <- nodes |>
+    mutate(x = ifelse(type == "Item", 0, 1),
+           y = case_when(
+            name == "F1" ~ y_position[1],
+            name == "F2" ~ y_position[2],
+            name == "F3" ~ y_position[3],
+            name == "F4" ~ y_position[4],
+            name == "F5" ~ y_position[5],
+            name == "F6" ~ y_position[6],
+            .default = NA
+          ))
+  layout[layout$type == "Item", "y"] <- seq(0, 1, length.out = sum(layout$type == "Item"))
+  
+  
+  g <- tidygraph::as_tbl_graph(loadings, directed = TRUE) |>
+    left_join(layout, by = c("name"))
+  
+  p_efa <- ggraph(g, layout = as.data.frame(layout)[c("x", "y")]) + 
+    geom_edge_link(
+      aes(
+        edge_width = abs(Loading),
+        edge_alpha = abs(Loading),
+        # edge_color = Loading,
+        filter = Type == "Loading"
+        # label = insight::format_value(Loading, lead_zero = FALSE, zap_small = TRUE)
+      ),
+      color = "#212121",
+      arrow = arrow(length = unit(2.5, "mm"), type = "closed"),
+      end_cap = circle(5, 'mm')
+    ) +
+      geom_edge_arc(
+      aes(
+        edge_width = abs(Loading),
+        filter = Type == "Correlation",
+        label = insight::format_value(Loading, lead_zero = FALSE, zap_small = TRUE)
+      ),
+      edge_color = "forestgreen",
+      angle_calc = "along",
+      label_dodge = unit(2.5, "mm"),
+      force_flip = TRUE,
+      strength = 0.2  # controls curvature
+    ) +
+    geom_node_label(data=filter(layout, type == "Item"), 
+                    aes(fill = name), 
+                    label = paste(rep(" ", 20), collapse = ""),
+                    size = 3, 
+                    hjust = 0.5, 
+                    nudge_x = -0.05,
+                    label.r = unit(0.2, "lines"),
+                    label.padding = unit(0.5, "lines"),
+                    label.size = 0) +
+    geom_node_label(data=filter(layout, type == "Item"), 
+                    aes(label = name), 
+                    fill = NA,
+                    size = 3, 
+                    hjust = 0.5, 
+                    vjust = 0.5,
+                    color = "white",
+                    fontface = "bold",
+                    nudge_x = -0.05,
+                    label.size = 0) +
+    geom_node_point(data=filter(layout, type == "Factor"), 
+                    aes(color = name), 
+                    size = 12) +
+    geom_node_text(data=filter(layout, type == "Factor"), 
+                   aes(label = name), 
+                   size = 4, 
+                   color = "white", 
+                   fontface = "bold") +
+    scale_edge_width(range = c(0.3, 2)) +
+    scale_edge_alpha(range = c(0.1, 1)) +
+    scale_fill_manual(values = colors) +
+    scale_color_manual(values = cols) +
+    labs(title = "Exploratory Factor Analysis (EFA)", subtitle = "Method = Oblimin") +
+    theme_void() +
+    theme(legend.position = "none",
+          plot.title = element_text(face="bold")) +
+    coord_cartesian(xlim = c(-0.08, 1.08)) 
+
+  list(n_fac=n_fac, efa=rez_efa, p=p_efa)
+}
+
+
+rez_efa <- make_efa(data_all, n = 3, cols = c("F1" = colors[["Wind"]], 
+                                              "F2" = colors[["Defecate"]], 
+                                              "F3" = colors[["Heart"]]))
+plot(rez_efa$n_fac)
+rez_efa$p
 ```
 
 
-#### Sample 2
 
-```{r}
-display(compare_mods_h(data2))
-```
-
-
-#### Sample 3
-
-```{r}
-display(compare_mods_h(data3))
-```
-
-
-#### Sample 4
-
-```{r}
-display(compare_mods_h(data4))
-```
-
-
-#### Sample 5
-
-```{r}
-display(compare_mods_h(data5))
-```
-
-
-#### Sample 6
-
-```{r}
-display(compare_mods_h(data6))
-```
-
-
-#### Sample 7a
-
-```{r}
-display(compare_mods_h(data7a))
-```
-
-
-#### Sample 7b
-
-```{r}
-display(compare_mods_h(data7b))
-```
-
-
-#### Sample 7c
-
-```{r}
-display(compare_mods_h(data7c))
-```
-
-
-#### Sample 8a
-
-```{r}
-display(compare_mods_h(data8a))
-```
-
-
-#### Sample 8b
-
-```{r}
-display(compare_mods_h(data8b))
-```
-
-
-#### Sample 9
-
-```{r}
-display(compare_mods_h(data9))
-```
-
-
-#### Sample 10a
-
-```{r}
-display(compare_mods_h(data10a))
-```
-
-
-#### Sample 10b 
-
-```{r}
-display(compare_mods_h(data10b))
-```
-
-#### Sample 10c 
-
-```{r}
-display(compare_mods_h(data10c))
-```
-
-#### Sample 11a 
-
-```{r}
-display(compare_mods_h(data11a))
-```
-
-#### Sample 11b 
-
-```{r}
-display(compare_mods_h(data11b))
-```
 
 :::
 
 
-### Model Performance
+
+
+#### Final
+
+
+We discarded:
+
+- Taste: Lone item + unstable
+- Affective_touch: Cross-loadings + unstable
+- Vomit: Less strongly associated
+- Itch: Less strongly associated, did not form consistent cluster
+- More controversial: Temp and Sex_arousal: similar cluster yet less reliable
+
+
+```{r}
+#| code-fold: false
+
+data_allf <- select(data_all, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data1af <- select(data1a, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data1bf <- select(data1b, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data2f <- select(data2, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data3f <- select(data3, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data4f <- select(data4, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data5f <- select(data5, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data6f <- select(data6, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data7af <- select(data7a, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data7bf <- select(data7b, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data7cf <- select(data7c, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data8af <- select(data8a, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data8bf <- select(data8b, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data9f <- select(data9, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data10af <- select(data10a, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data10bf <- select(data10b, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data10cf <- select(data10c, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data11af <- select(data11a, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data11bf <- select(data11b, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+```
+
+::: {.panel-tabset}
+
+##### HCA
+
+```{r}
+#| warning: false
+#| message: false
+
+rez_hclust <- make_hclust(data_allf)
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+rez_hclust$p
+```
+
+##### EGA
+
+```{r}
+#| warning: false
+#| message: false
+
+rez_ega <- make_ega(data_allf, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+rez_ega$p
+```
+
+##### EFA
+
+```{r}
+rez_efa <- make_efa(data_allf, n = 3, cols = 
+                      c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                        "F3" = colors[["Heart"]]))
+plot(rez_efa$n_fac)
+rez_efa$p
+```
+
+
+##### CFA
+
+
+
+```{r}
+#| fig-height: 20
+#| fig-width: 12
+
+make_cfa <- function(data) {
+  
+  # Main models
+  m_g <- '
+IAS =~ Burp + Wind + Cough + Sneeze + Hungry + Thirsty  + Urinate + Defecate + Heart + Breathing + Pain + Muscles 
+  '
+  m_ega <- '
+    CoughSneeze =~ Cough + Sneeze
+    UrinateDefecate =~ Urinate + Defecate
+    BruiseBloodsugar =~ Bruise + Blood_Sugar
+    WindBurp =~ Wind + Burp
+    HeartBreath =~ Heart + Breathing
+    MusclesPain =~ Muscles + Pain
+    HungryThirsty =~ Hungry + Thirsty
+  '
+  
+  m_efa <- '
+    UrinateDefecate =~ Urinate + Defecate
+    Sudden =~ Cough + Sneeze + Wind + Burp
+    Homeostasis =~ Heart + Breathing + Muscles + Pain + Hungry + Thirsty + Bruise + Blood_Sugar
+  '
+    
+    
+  m_hclust <- '
+    HeartBreath =~ Heart + Breathing
+    BruiseBloodsugar =~ Bruise + Blood_Sugar
+    HungryThirsty =~ Hungry + Thirsty
+    Sudden =~ Cough + Sneeze + Wind + Burp
+    Unpleasant =~ Urinate + Defecate + Muscles + Pain
+  '
+  
+  # Test bifactor models
+  m_egag <- paste0(m_ega, "\nIAS =~ CoughSneeze + WindBurp + BruiseBloodsugar + UrinateDefecate + HeartBreath + MusclesPain")
+  m_efag <- paste0(m_efa, "\nIAS =~ UrinateDefecate + Sudden + Homeostasis")
+  m_hclustg <- paste0(m_hclust, "\nIAS =~ HeartBreath + BruiseBloodsugar + HungryThirsty + Sudden + Unpleasant")
+
+  fit_g <- lavaan::cfa(m_g, data = data, std.lv = TRUE)
+  fit_ega <- lavaan::cfa(m_ega, data = data, std.lv = TRUE)
+  fit_egag <- lavaan::cfa(m_egag, data = data, std.lv = TRUE)
+  fit_efa <- lavaan::cfa(m_efa, data = data, std.lv = TRUE)
+  fit_efag <- lavaan::cfa(m_efag, data = data, std.lv = TRUE)
+  fit_hclust <- lavaan::cfa(m_hclust, data = data, std.lv = TRUE)
+  fit_hclustg <- lavaan::cfa(m_hclustg, data = data, std.lv = TRUE)
+  
+  # Test
+  bf <- test_bf(fit_ega, fit_g, fit_egag, fit_efa, fit_efag, fit_hclust, fit_hclustg) |> 
+    as.data.frame() |> 
+    select(Name = Model, BF)
+  
+  # test <- lavaan::lavTestLRT(fit_g, fit_ega, fit_egag, fit_efa, fit_efag, fit_hclust, fit_hclustg)
+  test <- compare_performance(fit_g, fit_ega, fit_egag, fit_efa, fit_efag, fit_hclust, fit_hclustg,
+                      metrics = c("BIC", "RMSEA", "Chi2", "CFI")) |> 
+    select(-BIC_wt, -Model) |> 
+    merge(bf, by = "Name") |>
+    arrange(BIC) |> 
+    gt::gt() |> 
+    gt::tab_header(title = "CFA Model Comparison") |>
+    gt::data_color(
+      columns = c(BIC, Chi2, RMSEA),
+      method = "numeric",
+      palette = c("green", "white")) |>
+    gt::data_color(
+      columns = c(CFI),
+      method = "numeric",
+      palette = c("white", "green")) |>
+    gt::data_color(
+      columns = c(BF),
+      method = "numeric",
+      palette = c("red", "yellow", "white", "yellow", "green"),
+      domain = c(0, 0.3, 1, 3, 10000000)) |>
+    gt::fmt_number(columns = c(RMSEA, Chi2, CFI), decimals = 3) 
+
+  
+  param  <- parameters::parameters(fit_ega)
+  perf <- performance::performance(fit_ega)
+  
+  # Graph
+  nodes <- tidySEM::get_nodes(fit_ega) |> 
+    mutate(name = str_replace(name, "_", " "))
+  edges <- tidySEM::get_edges(fit_ega) |> 
+    mutate(from = str_replace(from, "_", " "),
+           to = str_replace(to, "_", " "), 
+           est_std = as.numeric(est_std)) |> 
+    filter(from != to)
+  
+  g <- tidygraph::tbl_graph(nodes = nodes, edges = edges, directed = TRUE) 
+  set.seed(1)
+  layout <- ggraph::create_layout(g, layout = "fr", weights = est_std)
+  
+  p_cfa <- ggraph(layout) +
+    geom_edge_bend(aes(edge_width = abs(est_std), edge_alpha = abs(est_std),
+                       label = format_value(est_std, zap_small = TRUE, lead_zero = FALSE),
+                       filter = arrow == "none"), 
+                   color = "forestgreen",
+                   angle_calc = "along", 
+                   check_overlap = TRUE,
+                   label_dodge = unit(0, "mm"),
+                   label_size = unit(3, "mm"),
+                   strength = 0.3) +
+    geom_edge_link(aes(edge_width = abs(est_std), edge_color = abs(est_std), 
+                       label = format_value(est_std, zap_small = TRUE, lead_zero = FALSE),
+                      filter = arrow != "none"), 
+                   angle_calc = "along", 
+                   label_dodge = unit(3, "mm"),
+                   arrow = arrow(length = unit(2.5, "mm"), type = "open", ends = "first"), 
+                   lineend = "round",
+                   linejoin = "bevel",
+                   start_cap = circle(9, 'mm')) +
+    geom_node_point(aes(color = name, shape=shape), alpha = 0.97, size = 20) +
+    geom_node_text(data = filter(layout, shape == "rect"), aes(label = name), 
+                   size = 3, color = "white", fontface = "bold") +
+    scale_size_continuous(range = c(10, 20)) +
+    scale_edge_width(range = c(0.3, 4)) +
+    scale_edge_alpha(range = c(0.1, 0.9)) +
+    scale_edge_color_gradient(low = "#EEEEEE", high = "#212121") +
+    scale_color_manual(values = c(colors, 
+                               "CoughSneeze" = "#CDDC39", 
+                               "UrinateDefecate" = "#795548", "BruiseBloodsugar" = "#673AB7",
+                               "WindBurp" = "#009688", "HeartBreath" = "#F44336",
+                               "MusclesPain" = "#2196F3", "HungryThirsty" = "#FF9800")) +
+    scale_shape_manual(values = c("oval" = 16, "rect" = 15)) +
+    labs(title = "Confirmatory Factor Analysis (CFA)", subtitle = "Method = Maximum Likelihood") +
+    theme_void() +
+    theme(legend.position = "none",
+          plot.title = element_text(face="bold"))
+  p_cfa
+  
+  list(test = test, param = param, perf = perf, p=p_cfa)
+}
+
+
+rez_cfa0 <- make_cfa(data_allf)
+rez_cfa0$test
+rez_cfa0$perf
+rez_cfa0$param
+rez_cfa0$p
+```
+
+
+:::
+
+#### Figure
+
+The structural analysis seem to converge on the idea of small clusters (of pairs or triplets) that are potentially inter-related parts of larger clusters (although with unstable associations).
+Best way to assess the values of this new granular structure is to assess its predictive value against convergent measures, and see if it's superior to a unique score (-> Study 2).
+
+
+
+```{r}
+#| eval: false
+
+fig2 <- (rez_hclust$p | rez_ega$p) / (rez_efa$p | rez_cfa0$p) 
+ggsave("figures/Figure2.png", fig2, width=14, height=14, dpi=300, bg="white")
+```
+
+
+
+
+
+## Structure Invariance 
+
+::: {.panel-tabset}
+
+### Sample 1a
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data1a)
+rez_ega <- make_ega(data1a, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data1a, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data1af)
+rez_ega <- make_ega(data1af, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data1af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cfa1a  <- make_cfa(data1af)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cfa1a$test
+```
+
+::::
+
+### Sample 1b
+
+TODO.
+
+:::
+
+
+
+## Model Performance
 
 ```{r}
 #| warning: false
 
 rbind(
-  performance::performance(m7_all, metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "All"),
-  performance::performance(update(m7_all, data = data1a), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 1a"),
-  performance::performance(update(m7_all, data = data1b), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 1b"),
-  performance::performance(update(m7_all, data = data2), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 2"),
-  performance::performance(update(m7_all, data = data3), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 3"),
-  performance::performance(update(m7_all, data = data4), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 4"),
-  performance::performance(update(m7_all, data = data5), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 5"),
-  performance::performance(update(m7_all, data = data6), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 6"),
-  performance::performance(update(m7_all, data = data7a), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 7a"),
-  performance::performance(update(m7_all, data = data7b), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 7b"),
-  performance::performance(update(m7_all, data = data7c), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 7c"),
-  performance::performance(update(m7_all, data = data8a), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 8a"),
-  performance::performance(update(m7_all, data = data8b), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 8b"),
-  performance::performance(update(m7_all, data = data9), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 9"),
-  performance::performance(lavaan::cfa(str_remove(m7, fixed("\nCoughSneeze =~ Cough + Sneeze")), data = data10a), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 10a"),
-  performance::performance(update(m7_all, data = data10b), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 10b"),
-  performance::performance(update(m7_all, data = data10c), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 10c"),
-  performance::performance(update(m7_all, data = data11a), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 11a"),
-  performance::performance(update(m7_all, data = data11b), metrics = c("Chi2", "RMSEA", "CFI", "SRMR")) |>
-    mutate(Sample = "Sample 11b")
-) |>
-  display()
+  mutate(rez_cfa0$perf, Sample = "All Samples"),
+  mutate(rez_cfa1a$perf, Sample = "Sample 1a")
+  # TODO
+) |> 
+  select(Sample, Chi2, RMSEA, CFI, "SRMR") 
 ```
 
 
@@ -2406,83 +1803,49 @@ Note the usage of descriptive factor names relating directly to the items to avo
 #| warning: false
 
 # Add empirical variables
-add_empirical <- function(data, df) {
-  x <- data |>
-    mutate(
-      HungryThirsty = (df$Hungry + df$Thirsty) / 2,
-      UrinateDefecate = (df$Urinate + df$Defecate) / 2,
-      MusclesPain = (df$Muscles + df$Pain) / 2,
-      HeartBreathing = (df$Heart + df$Breathing) / 2,
-      ItchBruise = (df$Itch + df$Bruise) / 2,
-      WindBurp = (df$Wind + df$Burp) / 2)
-  if("Cough" %in% names(df)) {
-    mutate(x, CoughSneeze = (df$Cough + df$Sneeze) / 2)
+add_empirical <- function(data, sample = "Sample 1a") {
+  x <- data.frame(
+    Original = rowMeans(data),
+    HungryThirsty = (data$Hungry + data$Thirsty) / 2,
+    MusclesPain = (data$Muscles + data$Pain) / 2,
+    WindBurp = (data$Wind + data$Burp) / 2,
+    UrinateDefecate = (data$Urinate + data$Defecate) / 2,
+    BreathingHeart = (data$Heart + data$Breathing) / 2)
+  
+  if("Blood_Sugar" %in% names(data)) {
+    x$BruiseBlood <- (data$Blood_Sugar + data$Bruise) / 2
   } else {
-    mutate(x, CoughSneeze = df$Sneeze)
+    x$BruiseBlood <- data$Bruise
   }
+  
+  if("Cough" %in% names(data)) {
+    x$CoughSneeze <- (data$Cough + data$Sneeze) / 2
+  } else {
+    x$CoughSneeze <- data$Sneeze
+  }
+  x$Sample <- sample
+  x
 }
 
-# Deal with missing data
-temp <- predict(m7_all, newdata=data7c)
-scores7c <- data.frame(matrix(ncol = 7, nrow = nrow(ega_scores_7c))) 
-scores7c[!is.na(ega_scores_7c$EGA1), ] <- temp
-names(scores7c) <- names(as.data.frame(temp))
-
 scores <- list(
-  sample1a = cbind(ega_scores_1a, data_addprefix(as.data.frame(predict(m7_all, newdata=data1a)), "CFA_")) |>
-    add_empirical(data1a) |> 
-    mutate(Sample = "Sample 1a"),
-  sample1b = cbind(ega_scores_1b, data_addprefix(as.data.frame(predict(m7_all, newdata=data1b)), "CFA_")) |>
-    add_empirical(data1b) |> 
-    mutate(Sample = "Sample 1b"),
-  sample2 = cbind(ega_scores_2, data_addprefix(as.data.frame(predict(m7_all, newdata=data2)), "CFA_")) |>
-    add_empirical(data2) |> 
-    mutate(Sample = "Sample 2"),
-  sample3 = cbind(ega_scores_3, data_addprefix(as.data.frame(predict(m7_all, newdata=data3)), "CFA_")) |>
-    add_empirical(data3) |> 
-    mutate(Sample = "Sample 3"),
-  sample4 = cbind(ega_scores_4, data_addprefix(as.data.frame(predict(m7_all, newdata=data4)), "CFA_")) |>
-    add_empirical(data4) |> 
-    mutate(Sample = "Sample 4"),
-  sample5 = cbind(ega_scores_5, data_addprefix(as.data.frame(predict(m7_all, newdata=data5)), "CFA_")) |>
-    add_empirical(data5) |> 
-    mutate(Sample = "Sample 5"),
-  sample6 = cbind(ega_scores_6, data_addprefix(as.data.frame(predict(m7_all, newdata=data6)), "CFA_")) |>
-    add_empirical(data6) |> 
-    mutate(Sample = "Sample 6"),
-  sample7a = cbind(ega_scores_7a, data_addprefix(as.data.frame(predict(m7_all, newdata=data7a)), "CFA_")) |>
-    add_empirical(data7a) |> 
-    mutate(Sample = "Sample 7a"),
-  sample7b = cbind(ega_scores_7b, data_addprefix(as.data.frame(predict(m7_all, newdata=data7b)), "CFA_")) |>
-    add_empirical(data7b) |> 
-    mutate(Sample = "Sample 7b"),
-  sample7c = cbind(ega_scores_7c, data_addprefix(scores7c, "CFA_")) |> 
-    add_empirical(data7c) |> 
-    mutate(Sample = "Sample 7c"),
-  sample8a = cbind(ega_scores_8a, data_addprefix(as.data.frame(predict(m7_all, newdata=data8a)), "CFA_")) |>
-    add_empirical(data8a) |> 
-    mutate(Sample = "Sample 8a"),
-  sample8b = cbind(ega_scores_8b, data_addprefix(as.data.frame(predict(m7_all, newdata=data8b)), "CFA_")) |>
-    add_empirical(data8b) |> 
-    mutate(Sample = "Sample 8b"),
-  sample9 = cbind(ega_scores_9, data_addprefix(as.data.frame(predict(m7_all, newdata=data9)), "CFA_")) |>
-    add_empirical(data9) |> 
-    mutate(Sample = "Sample 9"),
-  sample10a = cbind(ega_scores_10a, data_addprefix(as.data.frame(predict(lavaan::cfa(str_remove(m7, fixed("\nCoughSneeze =~ Cough + Sneeze")), data = data_all), newdata=data10a)), "CFA_")) |>
-    add_empirical(data10a) |> 
-    mutate(Sample = "Sample 10a", CFA_CoughSneeze = NA),
-  sample10b = cbind(ega_scores_10b, data_addprefix(as.data.frame(predict(m7_all, newdata=data10b)), "CFA_")) |>
-    add_empirical(data10b) |> 
-    mutate(Sample = "Sample 10b"),
-  sample10c = cbind(ega_scores_10c, data_addprefix(as.data.frame(predict(m7_all, newdata=data10c)), "CFA_")) |>
-    add_empirical(data10c) |> 
-    mutate(Sample = "Sample 10c"),
-  sample11a = cbind(ega_scores_11a, data_addprefix(as.data.frame(predict(m7_all, newdata=data11a)), "CFA_")) |>
-    add_empirical(data11a) |> 
-    mutate(Sample = "Sample 11a"),
-  sample11b = cbind(ega_scores_11b, data_addprefix(as.data.frame(predict(m7_all, newdata=data11b)), "CFA_")) |>
-    add_empirical(data11b) |> 
-    mutate(Sample = "Sample 11b")
+  sample1a = add_empirical(data1a, "Sample 1a"),
+  sample1b = add_empirical(data1b, "Sample 1b"),
+  sample2 = add_empirical(data2, "Sample 2"),
+  sample3 = add_empirical(data3, "Sample 3"),
+  sample4 = add_empirical(data4, "Sample 4"),
+  sample5 = add_empirical(data5, "Sample 5"),
+  sample6 = add_empirical(data6, "Sample 6"),
+  sample7a = add_empirical(data7a, "Sample 7a"),
+  sample7b = add_empirical(data7b, "Sample 7b"),
+  sample7c = add_empirical(data7c, "Sample 7c"),
+  sample8a = add_empirical(data8a, "Sample 8a"),
+  sample8b = add_empirical(data8b, "Sample 8b"),
+  sample9 = add_empirical(data9, "Sample 9"),
+  sample10a = add_empirical(data10a, "Sample 10a"),
+  sample10b = add_empirical(data10b, "Sample 10b"),
+  sample10c = add_empirical(data10c, "Sample 10c"),
+  sample11a = add_empirical(data11a, "Sample 11a"),
+  sample11b = add_empirical(data11b, "Sample 11b")
 )
 
 save(scores, file = "../data/scores.RData")
