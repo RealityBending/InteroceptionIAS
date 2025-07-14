@@ -92,6 +92,7 @@ df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
 
 - Todd (2022) 
   - https://osf.io/ms354/
+  - MAIA does not include items for not-worrying and not-distracting 
 
 ```{r}
 df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
@@ -108,8 +109,7 @@ df4$MAIA_BodyListening <- rowMeans(select(df4, starts_with("MAIA_BL")), na.rm = 
 df4$MAIA_Trusting <- rowMeans(select(df4, starts_with("MAIA_TR")), na.rm = TRUE)
 df4$MAIA_EmotionalAwareness <- rowMeans(select(df4, starts_with("MAIA_EA")), na.rm = TRUE)
 df4$MAIA_SelfRegulation <- rowMeans(select(df4, starts_with("MAIA_SR")), na.rm = TRUE)
-# TODO: what is NT?
-# Check if that's all
+df4$MAI_Noticing < rowMeans(select(df4, starts_with("MAIA_NT")), na.rm = TRUE)
 ```
 
 ### Sample 5
@@ -299,8 +299,6 @@ df10a <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGame
   ) |>
   filter(!is.na(Urinate))
 
-# TODO: Sanitize MAIA names / Compute dimensions.
-
 
 df10b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
   rename(
@@ -310,9 +308,29 @@ df10b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
     typeSample = Sample
-  )
+  ) |>
+  mutate(
+    MAIA_NotDistracting_1_R = 1 - MAIA2_NotDistracting_1_R,
+    MAIA_NotDistracting_2_R = 1 - MAIA2_NotDistracting_2_R,
+    MAIA_NotDistracting_3_R = 1 - MAIA2_NotDistracting_3_R,
+    MAIA_NotDistracting_4_R = 1 - MAIA2_NotDistracting_4_R,
+    MAIA_NotDistracting_5_R = 1 - MAIA2_NotDistracting_5_R,
+    MAIA_NotDistracting_6_R = 1 - MAIA2_NotDistracting_6_R,
+    MAIA_NotWorrying_1_R = 1 - MAIA2_NotWorrying_1_R,
+    MAIA_NotWorrying_2_R = 1 - MAIA2_NotWorrying_2_R,
+    MAIA_NotWorrying_5_R = 1 - MAIA2_NotWorrying_5_R)
 
-# TODO: Sanitize MAIA names / Compute dimensions.
+# Compute subscales
+
+df10b$MAIA_AttentionRegulation <- rowMeans(select(df10b, starts_with("MAIA2_Attention")))
+df10b$MAIA_EmotionalAwareness <- rowMeans(select(df10b, starts_with("MAIA2_Emotional")))
+df10b$MAIA_Noticing <- rowMeans(select(df10b, starts_with("MAIA2_Noticing")))
+df10b$MAIA_BodyListening <- rowMeans(select(df10b, starts_with("MAIA2_BodyListening")))
+df10b$MAIA_NotDistracting<- rowMeans(select(df10b, starts_with("MAIA2_NotDistracting")))
+df10b$MAIA_NotWorrying<- rowMeans(select(df10b, starts_with("MAIA2_NotWorrying")))
+df10b$MAIA_SelfRegulation<- rowMeans(select(df10b, starts_with("MAIA2_SelfRegulation")))
+df10b$MAIA_Trusting<- rowMeans(select(df10b, starts_with("MAIA2_Trusting")))
+
 
 df10c <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionPrimals/refs/heads/main/data/data_participants.csv") |>
   select("Participant" = "participant_id", "Gender", "Age", "Ethnicity", starts_with(c("IAS","MAIA","PI"))) |>
@@ -325,7 +343,6 @@ df10c <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
   ) |>
   filter(!is.na(Heart)) # participant is outlier and had total IAS scores below 0.4 
 
-# TODO: Sanitize MAIA names / Compute dimensions.
 
 
 df10d <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionScale/refs/heads/main/study2/data/rawdata_participants.csv") |>
@@ -337,9 +354,29 @@ df10d <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
   ) |> 
-  filter(Participant %in% read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionScale/refs/heads/main/study2/data/data_participants.csv")$Participant)
+  filter(Participant %in% read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionScale/refs/heads/main/study2/data/data_participants.csv")$Participant) |>
+  mutate(
+    MAIA_NotDistracting_1_R = 1 - MAIA_NotDistracting_1_R,
+    MAIA_NotDistracting_2_R = 1 - MAIA_NotDistracting_2_R,
+    MAIA_NotDistracting_3_R = 1 - MAIA_NotDistracting_3_R,
+    MAIA_NotDistracting_4_R = 1 - MAIA_NotDistracting_4_R,
+    MAIA_NotDistracting_5_R = 1 - MAIA_NotDistracting_5_R,
+    MAIA_NotDistracting_6_R = 1 - MAIA_NotDistracting_6_R,
+    MAIA_NotWorrying_1_R = 1 - MAIA_NotWorrying_1_R,
+    MAIA_NotWorrying_2_R = 1 - MAIA_NotWorrying_2_R,
+    MAIA_NotWorrying_5_R = 1 - MAIA_NotWorrying_5_R)
 
-# TODO: Sanitize MAIA names / Compute dimensions.
+# Compute subscales
+
+df10b$MAIA_AttentionRegulation <- rowMeans(select(df10b, starts_with("MAIA2_Attention")))
+df10b$MAIA_EmotionalAwareness <- rowMeans(select(df10b, starts_with("MAIA2_Emotional")))
+df10b$MAIA_Noticing <- rowMeans(select(df10b, starts_with("MAIA2_Noticing")))
+df10b$MAIA_BodyListening <- rowMeans(select(df10b, starts_with("MAIA2_BodyListening")))
+df10b$MAIA_NotDistracting<- rowMeans(select(df10b, starts_with("MAIA2_NotDistracting")))
+df10b$MAIA_NotWorrying<- rowMeans(select(df10b, starts_with("MAIA2_NotWorrying")))
+df10b$MAIA_SelfRegulation<- rowMeans(select(df10b, starts_with("MAIA2_SelfRegulation")))
+df10b$MAIA_Trusting<- rowMeans(select(df10b, starts_with("MAIA2_Trusting")))
+
 
 ```
 
@@ -407,9 +444,8 @@ df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |>
   )) |> ## compute dimensions for the TAS
   mutate(TAS_DIF = TAS20_1 + TAS20_3 + TAS20_6 + TAS20_7 + TAS20_9 + TAS20_13 + TAS20_14,
          TAS_DDF = TAS20_2 + (1-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
-         TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20)
+         TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20) 
 
-# TODO: sanitize MAIA names / Compute dimensions.
 
 df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
   filter(Total_Attention_Fail == 0) |> # 32 participants removed based on failing one or more checks
@@ -426,9 +462,6 @@ df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive S
     Gender %in% c(3, 5) ~ "Other", 
     Gender == 4 ~ "NA", )) |>
   na.omit()
-
-# TODO: sanitize MAIA names / Compute dimensions.
-
 
 # Save all
 data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10a=df10a, df10b=df10b, df10c=df10c, df11a=df11a, df11b=df11b)
@@ -555,7 +588,7 @@ table <- data.frame(
   Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15'),   
   Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English',''),
   N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10a), nrow(df10b), nrow(df10c), nrow(df11a), nrow(df11b), 32214),
-  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales', 'Analog scales', 'Analog scales', '', '', ''),
+  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. Does not include temperature, blood sugar and cough items.', 'Analog scales', 'Analog scales', '', '', ''),
   Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10a$Age), make_age(df10b$Age), make_age(df10c$Age), make_age(df11a$Age), make_age(df11b$Age), '48.6 ± 13.1'),
   Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '18-57', '18-60', '17-93'),
   Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '74.8%', '75.9%', '71.6%'),
@@ -566,7 +599,7 @@ table_apa <- table |>
   gt() |>
   cols_align(align = c("right"), columns = "Age") |> 
   cols_label(Age = "Age (Mean  ± SD)", Female_Percentage = "Female %") |> 
-  tab_footnote("* Information taken from the sample description of relevant paper rather than recomputed.")
+  tab_footnote("Note.*Information taken from the sample description of relevant paper rather than recomputed.")
   
 gt_apastyle(table_apa, font.size=12)
 gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
