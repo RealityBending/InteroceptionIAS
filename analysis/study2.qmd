@@ -246,18 +246,18 @@ data <- rbind(data, make_rez(with = "Age", component = "Demographic"))
 # names(df10c)[str_detect(names(df10c), "MAIA")]
 # names(df11a)[str_detect(names(df11b), "MAIA")]
 
-# data <- rbind(
-#   data,
-#   make_rez(with = "MAIA_AttentionReg", component = "MAIA", name = "Attention Regulation"),
-#   make_rez(with = "MAIA_BodyListening", component = "MAIA", name = "Listening"),
-#   make_rez(with = "MAIA_BodyTrusting", component = "MAIA", name = "Trusting"),
-#   make_rez(with = "MAIA_EmoAwareness", component = "MAIA", name = "Emotional Awareness"),
-#   make_rez(with = "MAIA_NotDistracting", component = "MAIA", name = "Not Distracting"),
-#   make_rez(with = "MAIA_Noticing", component = "MAIA", name = "Noticing"),
-#   make_rez(with = "MAIA_NotWorrying", component = "MAIA", name = "Not Worrying"),
-#   make_rez(with = "MAIA_SelfReg", component = "MAIA", name = "Self Regulation"),
-#   make_rez(with = "MAIA_Trusting", component = "MAIA", name = "Trusting")
-# )
+data <- rbind(
+  data,
+  make_rez(with = "MAIA_AttentionReg", component = "MAIA", name = "Attention Regulation"),
+  make_rez(with = "MAIA_BodyListening", component = "MAIA", name = "Listening"),
+  make_rez(with = "MAIA_BodyTrusting", component = "MAIA", name = "Trusting"),
+  make_rez(with = "MAIA_EmoAwareness", component = "MAIA", name = "Emotional Awareness"),
+  make_rez(with = "MAIA_NotDistracting", component = "MAIA", name = "Not Distracting"),
+  make_rez(with = "MAIA_Noticing", component = "MAIA", name = "Noticing"),
+  make_rez(with = "MAIA_NotWorrying", component = "MAIA", name = "Not Worrying"),
+  make_rez(with = "MAIA_SelfReg", component = "MAIA", name = "Self Regulation"),
+  make_rez(with = "MAIA_Trusting", component = "MAIA", name = "Trusting")
+)
 
 
 ```
@@ -285,15 +285,11 @@ data <- rbind(data, make_rez(with = "ICQ", component="ICQ", name = "ICQ"))
 
 data <- rbind(
   data,
-  make_cor(df2, vars_intero, with = "BPQ_A", component="BPQ") |>
-    mutate(var_Correlate = "Body Awareness (BPQ)"),
-  make_cor(df2, vars_intero, with = "BPQ_R", component="BPQ") |>
-    mutate(var_Correlate = "Autonomic Reactivity (BPQ)"),
-  make_cor(df3, vars_intero, with = "BPQ_BodyAwareness", component="BPQ") |>
-    mutate(var_Correlate = "Body Awareness (BPQ)"),
-  make_cor(df3, vars_intero, with = "BPQ_AutonomicReactivity", component="BPQ") |>
-    mutate(var_Correlate = "Autonomic Reactivity (BPQ)")
-)
+  make_rez(with = "BPQ_A", component="BPQ", name = "Body Awareness (BPQ)"),
+  make_rez(with = "BPQ_R", component="BPQ", name = "Autonomic Reactivity (BPQ)"),
+  make_rez(with = "BPQ_BodyAwareness", component="BPQ", name = "Body Awareness (BPQ)"),
+  make_rez(with = "BPQ_AutonomicReactivity", component="BPQ", name = "Autonomic Reactivity (BPQ)")
+  )
 ```
 
 ### Alexithymia
@@ -306,45 +302,24 @@ data <- rbind(
 # names(df8b)[str_starts(names(df8b), "TAS")]
 # names(df11a)[str_starts(names(df11a), "TAS")] 
 
+
 data <- rbind(
   data,
-  
   #df2 
-  make_cor(df2, vars_intero, with = "TAS_DIF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
-  make_cor(df2, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
-  make_cor(df2, vars_intero, with = "TAS_EOT", component="Alexithymia") |>
-    mutate(var_Correlate = "External Thinking (TAS)"),
+  make_rez(with = "TAS_DIF", component="Alexithymia", name = "Difficulties Identifying Feelings (TAS)"),
+  make_rez(with = "TAS_DDF", component="Alexithymia", name = "Difficulties Describing Feelings (TAS)"),
+  make_rez(with = "TAS_EOT", component="Alexithymia", name = "External Thinking (TAS)"),
 
-  #df3 
-  make_cor(df3, vars_intero, with = "TAS_DescribingFeelings", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
-  make_cor(df3, vars_intero, with = "TAS_IdentifyingFeelings", component="Alexithymia") |> 
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
-  make_cor(df3, vars_intero, with = "TAS_ExternallyOrientedThinking", component="Alexithymia") |>
-    mutate(var_Correlate = "External Thinking (TAS)"),
-  make_cor(df7c, vars_intero, with = "TAS_des", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
-  make_cor(df7c, vars_intero, with = "TAS_ident", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
-  make_cor(df7c, vars_intero, with = "TAS_ext", component="Alexithymia") |>
-    mutate(var_Correlate = "External Thinking (TAS)"),
-  make_cor(df8b, vars_intero, with = "TAS_DIF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
-  make_cor(df8b, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
-  make_cor(df11a, vars_intero, with = "TAS_DIF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Identifying Feelings (TAS)"),
-  make_cor(df11a, vars_intero, with = "TAS_DDF", component="Alexithymia") |>
-    mutate(var_Correlate = "Difficulties Describing Feelings (TAS)"),
-  make_cor(df11a, vars_intero, with = "TAS_EOT", component="Alexithymia") |>
-    mutate(var_Correlate = "External Thinking (TAS)"),
-  # BVAQ
-  make_cor(df2, vars_intero, with = "BVAQ_Affective", component="Alexithymia") |>
-    mutate(var_Correlate = "Affective (BVAQ)"),
-  make_cor(df2, vars_intero, with = "BVAQ_Cognitive", component="Alexithymia") |>
-    mutate(var_Correlate = "Cognitive (BVAQ)")
+  #df3
+  make_rez(with = "TAS_DescribingFeelings", component="Alexithymia", name = "Difficulties Describing Feelings (TAS)"),
+  make_rez(with = "TAS_IdentifyingFeelings", component="Alexithymia", name ="Difficulties Identifying Feelings (TAS)"), 
+  make_rez(with = "TAS_ExternallyOrientedThinking", component="Alexithymia", name = "External Thinking (TAS)"), 
+  make_rez(with = "TAS_des", component="Alexithymia", name = "Difficulties Describing Feelings (TAS)"), 
+  make_rez(with = "TAS_ident", component="Alexithymia", name = "Difficulties Identifying Feelings (TAS)"), 
+  make_rez(with = "TAS_ext", component="Alexithymia", name = "External Thinking (TAS)"), 
+  make_rez(with = "TAS_DIF", component="Alexithymia", name = "Difficulties Identifying Feelings (TAS)"), 
+  make_rez(with = "BVAQ_Affective", component="Alexithymia", name = "Affective (BVAQ)"), 
+  make_rez(df2, vars_intero, with = "BVAQ_Cognitive", component="Alexithymia", name = "Cognitive (BVAQ)")
 )
 ```
 
@@ -362,24 +337,15 @@ data <- rbind(
 
 data <- rbind(
   data,
-  make_cor(df6, vars_intero, with = "PHQ2_sum", component="Mood") |>
-    mutate(var_Correlate = "Depression (PHQ-2)"),
-  make_cor(df7b, vars_intero, with = "PHQ15_Sum", component="Mood") |>
-    mutate(var_Correlate = "Somatic Concerns (PHQ-15)"),
-  make_cor(df7b, vars_intero, with = "PHQ9_Sum", component="Mood")|>
-    mutate(var_Correlate = "Depression (PHQ-9)"),
-  make_cor(df7c, vars_intero, with = "BDI_sum", component="Mood") |>
-    mutate(var_Correlate = "Depression (BDI)"),
-  make_cor(df8b, vars_intero, with = "PHQ15_sum", component="Mood") |>
-    mutate(var_Correlate = "Somatic Concerns (PHQ-15)"),
-  make_cor(df8b, vars_intero, with = "PHQ9_sum", component="Mood") |>
-    mutate(var_Correlate = "Depression (PHQ-9)"),
-  make_cor(df10a, vars_intero, with = "PHQ4_Depression", component="Mood") |>
-    mutate(var_Correlate = "Depression (PHQ-2)"),
-  make_cor(df10b, vars_intero, with = "BDI2_Total", component="Mood") |>
-    mutate(var_Correlate = "Depression (BDI)"),
-  make_cor(df11a, vars_intero, with = "DEP", component = "Mood") |>
-    mutate(var_Correlate = "Depression (MFQ)")
+  make_rez(with = "PHQ2_sum", component="Mood", name = "Depression (PHQ-2)"),
+  make_rez(with = "PHQ15_Sum", component="Mood", name = "Somatic Concerns (PHQ-15)"), 
+  make_rez(with = "PHQ9_Sum", component="Mood", name = "Depression (PHQ-9)"), 
+  make_rez(with = "BDI_sum", component="Mood", name = "Depression (BDI)"), 
+  make_rez(with = "PHQ15_sum", component="Mood", name = "Somatic Concerns (PHQ-15)"), 
+  make_rez(with = "PHQ9_sum", component="Mood", name = "Depression (PHQ-9)"), 
+  make_rez(with = "PHQ4_Depression", component="Mood", name = "Depression (PHQ-2)"),
+  make_rez(with = "BDI2_Total", component="Mood", name = "Depression (BDI)"),
+  make_cor(with = "DEP", component = "Mood", name = "Depression (MFQ)")
 )
 ```
 
@@ -396,22 +362,14 @@ data <- rbind(
 
 data <- rbind(
   data,
-  make_cor(df6, vars_intero, with = "GAD2_sum", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (GAD-2)"),
-  make_cor(df7a, vars_intero, with = "STAI_T_Sumscore", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI-T)"),
-  make_cor(df7b, vars_intero, with = "STAIT_Sum", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI-T)"),
-  make_cor(df7c, vars_intero, with = "STAIT_sum", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI-T)"),
-  make_cor(df10a, vars_intero, with = "PHQ4_Anxiety", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (GAD-2)"),
-  make_cor(df10b, vars_intero, with = "PHQ4_Anxiety", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI-5)"),
-  make_cor(df10b, vars_intero, with = "STAI5_General", component="Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI-T)"),
-  make_cor(df11a, vars_intero, with =  "ANX", component = "Mood") |>
-    mutate(var_Correlate = "Anxiety (STAI-T)")
+  make_rez(with = "GAD2_sum", component="Mood", name = "Anxiety (GAD-2)"), 
+  make_rez(with = "STAI_T_Sumscore", component="Mood", name= "Anxiety (STAI-T)"), 
+  make_rez(with = "STAIT_Sum", component="Mood", name = "Anxiety (STAI-T)"), 
+  make_rez(with = "STAIT_sum", component="Mood", name = "Anxiety (STAI-T)"),
+  make_rez(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (GAD-2)"),
+  make_rez(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (STAI-5)"), 
+  make_rez(with = "STAI5_General", component="Mood", name = "Anxiety (STAI-T)"),
+  make_rez(with =  "ANX", component = "Mood", name = "Anxiety (STAI-T)")
 )
 ```
 
@@ -420,48 +378,33 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_cor(df10a, vars_intero, with = "BPD", component="Mood") |>
-    mutate(var_Correlate = "Boderline Personality")
+  make_rez(with = "BPD", component="Mood", name = "Boderline Personality")
 )
 ```
 
 ```{r}
 data <- rbind(
   data,
-  make_cor(df10a, vars_intero, with = "PID5_Antagonism", component="Maladaptive") |>
-    mutate(var_Correlate = "Antagonism"),
-  make_cor(df10a, vars_intero, with = "PID5_Detachment", component="Maladaptive") |>
-    mutate(var_Correlate = "Detachment"),
-  make_cor(df10a, vars_intero, with = "PID5_Disinhibition", component="Maladaptive") |>
-    mutate(var_Correlate = "Disinhibition"),
-  make_cor(df10a, vars_intero, with = "PID5_NegativeAffect", component="Maladaptive") |>
-    mutate(var_Correlate = "Negative Affect"),
-  make_cor(df10a, vars_intero, with = "PID5_Psychoticism", component="Maladaptive") |>
-    mutate(var_Correlate = "Psychoticism")
+  make_rez(with = "PID5_Antagonism", component="Maladaptive", name = "Antagonism"),
+  make_rez(with = "PID5_Detachment", component="Maladaptive", name = "Detachment"), 
+  make_rez(with = "PID5_Disinhibition", component="Maladaptive", name = "Disinhibition"),
+  make_rez(with = "PID5_NegativeAffect", component="Maladaptive", name = "Negative Affect"),
+  make_rez(with = "PID5_Psychoticism", component="Maladaptive", name = "Psychoticism")
 )
 ```
 
 ```{r}
 data <- rbind(
   data,
-  make_cor(df10a, vars_intero, with = "SPQ_ConstrictedAffect", component="Schizotypic") |>
-    mutate(var_Correlate = "Constricted Affect"),
-  make_cor(df10a, vars_intero, with = "SPQ_Eccentric", component="Schizotypic") |>
-    mutate(var_Correlate = "Eccentric"),
-  make_cor(df10a, vars_intero, with = "SPQ_MagicalThinking", component="Schizotypic") |>
-    mutate(var_Correlate = "Magical Thinking"),
-  make_cor(df10a, vars_intero, with = "SPQ_NoCloseFriends", component="Schizotypic") |>
-    mutate(var_Correlate = "No Close Friends"),
-  make_cor(df10a, vars_intero, with = "SPQ_OddSpeech", component="Schizotypic") |>
-    mutate(var_Correlate = "Odd Speech"),
-  make_cor(df10a, vars_intero, with = "SPQ_Reference", component="Schizotypic") |>
-    mutate(var_Correlate = "Reference"),
-  make_cor(df10a, vars_intero, with = "SPQ_SocialAnxiety", component="Schizotypic") |>
-    mutate(var_Correlate = "Social Anxiety"),
-  make_cor(df10a, vars_intero, with = "SPQ_Suspiciousness", component="Schizotypic") |>
-    mutate(var_Correlate = "Suspiciousness"),
-  make_cor(df10a, vars_intero, with = "SPQ_UnusualPerceptions", component="Schizotypic") |>
-    mutate(var_Correlate = "Unusual Perceptions")
+  make_rez(with = "SPQ_ConstrictedAffect", component="Schizotypic", name = "Constricted Affect"),
+  make_rez(with = "SPQ_Eccentric", component="Schizotypic", name = "Eccentric"),
+  make_rez(with = "SPQ_MagicalThinking", component="Schizotypic", name = "Magical Thinking"),
+  make_rez(with = "SPQ_NoCloseFriends", component="Schizotypic", name = "No Close Friends"),
+  make_rez(with = "SPQ_OddSpeech", component="Schizotypic", name = "Odd Speech"),
+  make_rez(with = "SPQ_Reference", component="Schizotypic", name = "Reference"),
+  make_rez(with = "SPQ_SocialAnxiety", component="Schizotypic", name = "Social Anxiety"),
+  make_rez(with = "SPQ_Suspiciousness", component="Schizotypic", name = "Suspiciousness"),
+  make_rez(with = "SPQ_UnusualPerceptions", component="Schizotypic", name = "Unusual Perceptions")
 )
 ```
 
@@ -469,16 +412,11 @@ data <- rbind(
 #  names(select(df10a, starts_with("ASQ")))
 data <- rbind(
   data,
-  make_cor(df10a, vars_intero, with = "ASQ_Imagination", component="Autistic") |>
-    mutate(var_Correlate = "Imagination"),
-  make_cor(df10a, vars_intero, with = "ASQ_LackSocialSkills", component="Autistic") |>
-    mutate(var_Correlate = "Lack of Social Skills"),
-  make_cor(df10a, vars_intero, with = "ASQ_LowAttentionalSwitching", component="Autistic") |>
-    mutate(var_Correlate = "Low Attentional Switching"),
-  make_cor(df10a, vars_intero, with = "ASQ_Patterns", component="Autistic") |>
-    mutate(var_Correlate = "Patterns and Numbers"),
-  make_cor(df10a, vars_intero, with = "ASQ_Routine", component="Autistic") |>
-    mutate(var_Correlate = "Routines")
+  make_rez(with = "ASQ_Imagination", component="Autistic", name = "Imagination"),
+  make_rez(with = "ASQ_LackSocialSkills", component="Autistic", name = "Lack of Social Skills"), 
+  make_rez(with = "ASQ_LowAttentionalSwitching", component="Autistic", name = "Low Attentional Switching"),
+  make_rez(with = "ASQ_Patterns", component="Autistic", name = "Patterns and Numbers"),
+  make_rez(with = "ASQ_Routine", component="Autistic", name = "Routines")
 )
 ```
 
@@ -492,30 +430,18 @@ data <- rbind(
 
 data <- rbind(
   data,
-  make_cor(df7a, vars_intero, with = "NEO_FFI_SUMSCORE", component = "Personality") |>
-      mutate(var_Correlate = "Neuroticism"),
-  make_cor(df9, vars_intero, with = "BFI_AGREEABLENESS", component="Personality") |>
-    mutate(var_Correlate = "Agreeableness"),
-  make_cor(df9, vars_intero, with = "BFI_CONSCIENTIOUSNESS", component="Personality") |>
-    mutate(var_Correlate = "Conscientiousness"),
-  make_cor(df9, vars_intero, with = "BFI_NEUROTICISM", component="Personality") |>
-    mutate(var_Correlate = "Neuroticism"),
-  make_cor(df9, vars_intero, with = "BFI_OPENNESS", component="Personality") |>
-    mutate(var_Correlate = "Openness"),
-  make_cor(df9, vars_intero, with = "BFI_EXTROVERSION", component="Personality") |>
-    mutate(var_Correlate = "Extraversion"),
-  make_cor(df10a, vars_intero, with = "IPIP6_Agreeableness", component="Personality") |>
-    mutate(var_Correlate = "Agreeableness"),
-  make_cor(df10a, vars_intero, with = "IPIP6_Conscientiousness", component="Personality") |>
-    mutate(var_Correlate = "Conscientiousness"),
-  make_cor(df10a, vars_intero, with = "IPIP6_Neuroticism", component="Personality") |>
-    mutate(var_Correlate = "Neuroticism"),
-  make_cor(df10a, vars_intero, with = "IPIP6_Openness", component="Personality") |>
-    mutate(var_Correlate = "Openness"),
-  make_cor(df10a, vars_intero, with = "IPIP6_Extraversion", component="Personality") |>
-    mutate(var_Correlate = "Extraversion"),
-  make_cor(df10a, vars_intero, with = "IPIP6_HonestyHumility", component="Personality") |>
-    mutate(var_Correlate = "Honesty-Humility")
+  make_rez(with = "NEO_FFI_SUMSCORE", component = "Personality", name = "Neuroticism"),
+  make_rez(with = "BFI_AGREEABLENESS", component="Personality", name = "Agreeableness"),
+  make_rez(with = "BFI_CONSCIENTIOUSNESS", component="Personality", name = "Conscientiousness"), 
+  make_rez(with = "BFI_NEUROTICISM", component="Personality", name = "Neuroticism"),
+  make_rez(with = "BFI_OPENNESS", component="Personality", name = "Openness"),
+  make_rez(with = "BFI_EXTROVERSION", component="Personality", name = "Extraversion"),
+  make_rez(with = "IPIP6_Agreeableness", component="Personality", name = "Agreeableness"),
+  make_rez(with = "IPIP6_Conscientiousness", component="Personality", name = "Conscientiousness"), 
+  make_rez(with = "IPIP6_Neuroticism", component="Personality", name = "Neuroticism"),
+  make_rez(with = "IPIP6_Openness", component="Personality", name = "Openness"),
+  make_rez(with = "IPIP6_Extraversion", component="Personality", name = "Extraversion"), 
+  make_rez(with = "IPIP6_HonestyHumility", component="Personality", name = "Honesty-Humility")
 )
 ```
 
@@ -527,64 +453,41 @@ data <- rbind(data, make_rez(with = "PI_Alive", component="World Beliefs", name 
 
 # data <- rbind(
 #   data,
-#   make_cor(df10a, vars_intero, with = "PI_Alive", component="World Beliefs") |>
-#     mutate(var_Correlate = "Alive"),
-#   make_cor(df10a, vars_intero, with = "PI_Changing", component="World Beliefs") |>
-#     mutate(var_Correlate = "Changing"),
-#   make_cor(df10a, vars_intero, with = "PI_Enticing", component="World Beliefs") |>
-#     mutate(var_Correlate = "Enticing"),
-#   make_cor(df10a, vars_intero, with = "PI_Good", component="World Beliefs") |>
-#     mutate(var_Correlate = "Good"),
-#   make_cor(df10a, vars_intero, with = "PI_Hierarchical", component="World Beliefs") |>
-#     mutate(var_Correlate = "Hierarchical"),
-#   make_cor(df10a, vars_intero, with = "PI_Safe", component="World Beliefs") |>
-#     mutate(var_Correlate = "Safe"),
-#   make_cor(df10a, vars_intero, with = "PI_Understandable", component="World Beliefs") |>
-#     mutate(var_Correlate = "Understandable"),
-#   make_cor(df10c, vars_intero, with = "PI_Alive", component="World Beliefs") |>
-#     mutate(var_Correlate = "Alive"),
-#   make_cor(df10c, vars_intero, with = "PI_Changing", component="World Beliefs") |>
-#     mutate(var_Correlate = "Changing"),
-#   make_cor(df10c, vars_intero, with = "PI_Enticing", component="World Beliefs") |>
-#     mutate(var_Correlate = "Enticing"),
-#   make_cor(df10c, vars_intero, with = "PI_Good", component="World Beliefs") |>
-#     mutate(var_Correlate = "Good"),
-#   make_cor(df10c, vars_intero, with = "PI_Hierarchical", component="World Beliefs") |>
-#     mutate(var_Correlate = "Hierarchical"),
-#   make_cor(df10c, vars_intero, with = "PI_Safe", component="World Beliefs") |>
-#     mutate(var_Correlate = "Safe"),
-#   make_cor(df10c, vars_intero, with = "PI_Understandable", component="World Beliefs") |>
-#     mutate(var_Correlate = "Understandable")
+#   make_rez(with = "PI_Alive", component="World Beliefs", name = "Alive"),
+#   make_rez(with = "PI_Changing", component="World Beliefs", name = "Changing"),
+#   make_rez(with = "PI_Enticing", component="World Beliefs", name = "Enticing"),
+#   make_rez(with = "PI_Good", component="World Beliefs", name = "Good"),
+#   make_rez(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical"),
+#   make_rez(with = "PI_Safe", component="World Beliefs", name = "Safe"),
+#   make_rez(with = "PI_Understandable", component="World Beliefs", name = "Understandable"),
+#   make_rez(with = "PI_Alive", component="World Beliefs", name= "Alive"),
+#   make_rez(with = "PI_Changing", component="World Beliefs", name = "Changing"),
+#   make_rez(with = "PI_Enticing", component="World Beliefs", name = "Enticing"),
+#   make_rez(with = "PI_Good", component="World Beliefs", name = "Good"),
+#   make_rez(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical"),
+#   make_rez(with = "PI_Safe", component="World Beliefs", name = "Safe"),
+#   make_rez(with = "PI_Understandable", component="World Beliefs", name = "Understandable")
 # )
 ```
 
 ```{r}
 data <- rbind(
   data,
-  make_cor(df10a, vars_intero, with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs") |>
-    mutate(var_Correlate = "Extraterrestrial"),
-  make_cor(df10a, vars_intero, with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs") |>
-    mutate(var_Correlate = "Global Conspiracies"),
-  make_cor(df10a, vars_intero, with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs") |>
-    mutate(var_Correlate = "Government Malfeasance"),
-  make_cor(df10a, vars_intero, with = "GCBS_InformationControl", component="Conspiracy Beliefs") |>
-    mutate(var_Correlate = "Information Control"),
-  make_cor(df10a, vars_intero, with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs") |>
-    mutate(var_Correlate = "Personal Wellbeing")
+  make_rez(with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs", name = "Extraterrestrial"),
+  make_rez(with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs", name = "Global Conspiracies"),
+  make_rez(with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs", name  = "Government Malfeasance"),
+  make_rez(with = "GCBS_InformationControl", component="Conspiracy Beliefs", name = "Information Control"),
+  make_rez(with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs", name = "Personal Wellbeing")
 )
 ```
 
 ```{r}
 data <- rbind(
   data,
-  make_cor(df10a, vars_intero, with = "LIE_Ability", component="Lying Profile") |>
-    mutate(var_Correlate = "Ability"),
-  make_cor(df10a, vars_intero, with = "LIE_Frequency", component="Lying Profile") |>
-    mutate(var_Correlate = "Frequency"),
-  make_cor(df10a, vars_intero, with = "LIE_Contextuality", component="Lying Profile") |>
-    mutate(var_Correlate = "Contextuality"),
-  make_cor(df10a, vars_intero, with = "LIE_Negativity", component="Lying Profile") |>
-    mutate(var_Correlate = "Negativity")
+  make_rez(with = "LIE_Ability", component="Lying Profile", name = "Ability"),
+  make_rez(with = "LIE_Frequency", component="Lying Profile", name = "Frequency"),
+  make_rez(with = "LIE_Contextuality", component="Lying Profile", name = "Contextuality"),
+  make_rez(with = "LIE_Negativity", component="Lying Profile", name = "Negativity")
 )
 ```
 
