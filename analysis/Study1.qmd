@@ -65,7 +65,7 @@ df2 <- data |>
     Affective_touch = `IAS 19`, Tickle = `IAS 20`, Itch = `IAS 21`,
     MAIA_AttentionRegulation = MAIA_AttentionReg, MAIA_BodyListening = MAIA_BodyListening,
     MAIA_Trusting = MAIA_BodyTrusting, MAIA_EmotionalAwareness = MAIA_EmoAwareness,
-    MAIA_NonDistracting=MAIA_NotDistracting, MAIA_NotWorrying=MAIA_NotWorrying,
+    MAIA_NotDistracting=MAIA_NotDistracting, MAIA_NotWorrying=MAIA_NotWorrying,
     MAIA_SelfRegulation=MAIA_SelfReg, MAIA_Noticing=MAIA_Noticing)
 rm(data)
 ```
@@ -104,14 +104,16 @@ df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
     Muscles = IAS15, Bruise = IAS16, Pain = IAS17, Blood_Sugar = IAS18,
     Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21
   )
-df4$MAIA_AttentionRegulation <- rowMeans(select(df4, starts_with("MAIA_AR")), na.rm = TRUE)
+
+df4$MAIA_AttentionReg <- rowMeans(select(df4, starts_with("MAIA_AR")), na.rm = TRUE)
 df4$MAIA_BodyListening <- rowMeans(select(df4, starts_with("MAIA_BL")), na.rm = TRUE)
-df4$MAIA_Trusting <- rowMeans(select(df4, starts_with("MAIA_TR")), na.rm = TRUE)
-df4$MAIA_EmotionalAwareness <- rowMeans(select(df4, starts_with("MAIA_EA")), na.rm = TRUE)
-df4$MAIA_SelfRegulation <- rowMeans(select(df4, starts_with("MAIA_SR")), na.rm = TRUE)
-df4$MAI_Noticing < rowMeans(select(df4, starts_with("MAIA_NT")), na.rm = TRUE)
+df4$MAIA_BodyTrusting <- rowMeans(select(df4, starts_with("MAIA_TR")), na.rm = TRUE)
+df4$MAIA_EmoAwareness <- rowMeans(select(df4, starts_with("MAIA_EA")), na.rm = TRUE)
+df4$MAIA_SelfReg<- rowMeans(select(df4, starts_with("MAIA_SR")), na.rm = TRUE)
+df4$MAIA_Noticing <- rowMeans(select(df4, starts_with("MAIA_NT")), na.rm = TRUE)
 ```
 
+    
 ### Sample 5
 
 - Arslanova (2022)
@@ -175,6 +177,7 @@ df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |>
 - Brand (2023) 
   - https://osf.io/3f2h6/
 
+
 ```{r}
 df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |> 
   select(-COUNTRY_OTHER) |> 
@@ -186,10 +189,10 @@ df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |>
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
-    MAIA_Noticing = MAIA_NOTICING, MAIA_NonDistracting = MAIA_NON_DISTRACTING,
-    MAIA_NotWorrying = MAIA_NOT_WORRYING, MAIA_AttentionRegulation = mAIA_ATTENTION_REGULATION,
-    MAIA_SelfRegulation = MAIA_SELF_REGULATION, MAIA_BodyListening = MAIA_BODY_LISTENING,
-    MAIA_Trusting = MAIA_TRUSTING, MAIA_EmotionalAwareness = MAIA_EMOTIONAL_AWARENESS
+    MAIA_Noticing = MAIA_NOTICING, MAIA_NotDistracting = MAIA_NON_DISTRACTING,
+    MAIA_NotWorrying = MAIA_NOT_WORRYING, MAIA_AttentionReg = mAIA_ATTENTION_REGULATION,
+    MAIA_SelfReg = MAIA_SELF_REGULATION, MAIA_BodyListening = MAIA_BODY_LISTENING,
+    MAIA_Trusting = MAIA_TRUSTING, MAIA_EmoAwareness = MAIA_EMOTIONAL_AWARENESS
   )
 
 df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |> 
@@ -202,10 +205,10 @@ df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |>
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
-    MAIA_Noticing = maiaNotice, MAIA_NonDistracting = maiaNonDistracting,
-    MAIA_NotWorrying = maiaNotWorrying, MAIA_AttentionRegulation = maiaAttentionRegulation,
-    MAIA_SelfRegulation = maiaSelfRegulation, MAIA_BodyListening = maiaBodyListening,
-    MAIA_Trusting = maiaTrusting, MAIA_EmotionalAwareness = maiaEmotionalAwareness
+    MAIA_Noticing = maiaNotice, MAIA_NotDistracting = maiaNonDistracting,
+    MAIA_NotWorrying = maiaNotWorrying, MAIA_AttentionReg = maiaAttentionRegulation,
+    MAIA_SelfReg = maiaSelfRegulation, MAIA_BodyListening = maiaBodyListening,
+    MAIA_Trusting = maiaTrusting, MAIA_EmoAwareness = maiaEmotionalAwareness
   )
   
   
@@ -219,10 +222,10 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
     Cough = IA02_10, Temp = IA02_11, Sex_arousal = IA02_12, Wind = IA02_13, Burp = IA02_14,
     Muscles = IA02_15, Bruise = IA02_16, Pain = IA02_17, Blood_Sugar = IA02_18,
     Affective_touch = IA02_19, Tickle = IA02_20, Itch = IA02_21,
-    MAIA_Noticing = MAIA_noticing, MAIA_NonDistracting = MAIA_notdis, 
-    MAIA_NotWorrying = MAIA_notwor, MAIA_AttentionRegulation = MAIA_attreg,
-    MAIA_SelfRegulation = MAIA_selfreg, MAIA_BodyListening = MAIA_bodlis,
-    MAIA_Trusting = MAIA_trust, MAIA_EmotionalAwareness = MAIA_emoaw,
+    MAIA_Noticing = MAIA_noticing, MAIA_NotDistracting = MAIA_notdis, 
+    MAIA_NotWorrying = MAIA_notwor, MAIA_AttentionReg = MAIA_attreg,
+    MAIA_SelfReg = MAIA_selfreg, MAIA_BodyListening = MAIA_bodlis,
+    MAIA_Trusting = MAIA_trust, MAIA_EmoAwareness = MAIA_emoaw,
     ICQ = ICQ_sum
   )
 ```
@@ -282,10 +285,10 @@ df9 <- df9 |>
 - Makowski
   - Note: First sample has some missing items (No Taste, Cough, Blood_Sugar)
   - Note: Analog scales
-  - note df10c = primals data
+  - note df12  = primals data
 
 ```{r}
-df10a <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
+df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
   rename(
     Gender = Sex, Heart = Item_IAS_Interoception_1, Hungry = Item_IAS_Interoception_2,
     Breathing = Item_IAS_Interoception_3, Thirsty = Item_IAS_Interoception_4,
@@ -295,12 +298,18 @@ df10a <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGame
     Burp = Item_IAS_Expulsion_2, Sneeze = Item_IAS_Expulsion_3,
     Muscles = Item_IAS_Nociception_1, Bruise = Item_IAS_Nociception_2,
     Pain = Item_IAS_Nociception_3, Affective_touch = Item_IAS_Skin_1,
-    Tickle = Item_IAS_Skin_2, Itch = Item_IAS_Skin_3
+    Tickle = Item_IAS_Skin_2, Itch = Item_IAS_Skin_3,
+    MAIA_EmoAwareness = MAIA_EmotionalAwareness, MAIA_AttentionReg = MAIA_AttentionRegulation,
+    MAIA_SelfReg = MAIA_SelfRegulation
   ) |>
   filter(!is.na(Urinate))
 
+```
 
-df10b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
+### Sample 11
+
+```{r}
+df11  <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
   rename(
     Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
     Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
@@ -322,30 +331,39 @@ df10b <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
 
 # Compute subscales
 
-df10b$MAIA_AttentionRegulation <- rowMeans(select(df10b, starts_with("MAIA2_Attention")))
-df10b$MAIA_EmotionalAwareness <- rowMeans(select(df10b, starts_with("MAIA2_Emotional")))
-df10b$MAIA_Noticing <- rowMeans(select(df10b, starts_with("MAIA2_Noticing")))
-df10b$MAIA_BodyListening <- rowMeans(select(df10b, starts_with("MAIA2_BodyListening")))
-df10b$MAIA_NotDistracting<- rowMeans(select(df10b, starts_with("MAIA2_NotDistracting")))
-df10b$MAIA_NotWorrying<- rowMeans(select(df10b, starts_with("MAIA2_NotWorrying")))
-df10b$MAIA_SelfRegulation<- rowMeans(select(df10b, starts_with("MAIA2_SelfRegulation")))
-df10b$MAIA_Trusting<- rowMeans(select(df10b, starts_with("MAIA2_Trusting")))
+df11 $MAIA_AttentionReg <- rowMeans(select(df11 , starts_with("MAIA2_Attention")))
+df11 $MAIA_EmoAwareness <- rowMeans(select(df11 , starts_with("MAIA2_Emotional")))
+df11 $MAIA_Noticing <- rowMeans(select(df11 , starts_with("MAIA2_Noticing")))
+df11 $MAIA_BodyListening <- rowMeans(select(df11 , starts_with("MAIA2_BodyListening")))
+df11 $MAIA_NotDistracting<- rowMeans(select(df11 , starts_with("MAIA2_NotDistracting")))
+df11 $MAIA_NotWorrying<- rowMeans(select(df11 , starts_with("MAIA2_NotWorrying")))
+df11 $MAIA_SelfReg<- rowMeans(select(df11 , starts_with("MAIA2_SelfRegulation")))
+df11 $MAIA_Trusting<- rowMeans(select(df11 , starts_with("MAIA2_Trusting")))
 
+```
 
-df10c <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionPrimals/refs/heads/main/data/data_participants.csv") |>
+### Sample 12
+
+```{r}
+df12  <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionPrimals/refs/heads/main/data/data_participants.csv") |>
   select("Participant" = "participant_id", "Gender", "Age", "Ethnicity", starts_with(c("IAS","MAIA","PI"))) |>
    rename(
     Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
     Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
-    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
+    MAIA_EmoAwareness = MAIA_EmotionalAwareness, MAIA_AttentionReg = MAIA_AttentionRegulation,
+    MAIA_SelfReg = MAIA_SelfRegulation
   ) |>
   filter(!is.na(Heart)) # participant is outlier and had total IAS scores below 0.4 
+```
 
+### Sample 13
 
+```{r}
 
-df10d <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionScale/refs/heads/main/study2/data/rawdata_participants.csv") |>
+df13  <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionScale/refs/heads/main/study2/data/rawdata_participants.csv") |>
   select("Participant", "Gender", "Age", "Ethnicity", starts_with(c("IAS","MAIA","PI", "PHQ4"))) |>
    rename(
     Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
@@ -368,14 +386,14 @@ df10d <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
 
 # Compute subscales
 
-df10b$MAIA_AttentionRegulation <- rowMeans(select(df10b, starts_with("MAIA2_Attention")))
-df10b$MAIA_EmotionalAwareness <- rowMeans(select(df10b, starts_with("MAIA2_Emotional")))
-df10b$MAIA_Noticing <- rowMeans(select(df10b, starts_with("MAIA2_Noticing")))
-df10b$MAIA_BodyListening <- rowMeans(select(df10b, starts_with("MAIA2_BodyListening")))
-df10b$MAIA_NotDistracting<- rowMeans(select(df10b, starts_with("MAIA2_NotDistracting")))
-df10b$MAIA_NotWorrying<- rowMeans(select(df10b, starts_with("MAIA2_NotWorrying")))
-df10b$MAIA_SelfRegulation<- rowMeans(select(df10b, starts_with("MAIA2_SelfRegulation")))
-df10b$MAIA_Trusting<- rowMeans(select(df10b, starts_with("MAIA2_Trusting")))
+df13 $MAIA_AttentionReg <- rowMeans(select(df13 , starts_with("MAIA2_Attention")))
+df13 $MAIA_EmoAwareness <- rowMeans(select(df13 , starts_with("MAIA2_Emotional")))
+df13 $MAIA_Noticing <- rowMeans(select(df13 , starts_with("MAIA2_Noticing")))
+df13 $MAIA_BodyListening <- rowMeans(select(df13 , starts_with("MAIA2_BodyListening")))
+df13 $MAIA_NotDistracting<- rowMeans(select(df13 , starts_with("MAIA2_NotDistracting")))
+df13 $MAIA_NotWorrying<- rowMeans(select(df13 , starts_with("MAIA2_NotWorrying")))
+df13 $MAIA_SelfReg<- rowMeans(select(df13 , starts_with("MAIA2_SelfRegulation")))
+df13 $MAIA_Trusting<- rowMeans(select(df13 , starts_with("MAIA2_Trusting")))
 
 
 ```
@@ -391,8 +409,8 @@ df10b$MAIA_Trusting<- rowMeans(select(df10b, starts_with("MAIA2_Trusting")))
 # 
 # 
 # correlation::correlation(
-#   df10c[, "IAS_Total", drop = FALSE],  
-#   data2 = select(df10c, all_of(pi_vars)), p_adjust = "none"
+#   df12 [, "IAS_Total", drop = FALSE],  
+#   data2 = select(df12 , all_of(pi_vars)), p_adjust = "none"
 # ) |> 
 #   # Formatting correlation results
 #   mutate(val = paste0(insight::format_value(r), format_p(p, stars_only = TRUE))) |>
@@ -417,15 +435,14 @@ df10b$MAIA_Trusting<- rowMeans(select(df10b, starts_with("MAIA2_Trusting")))
 ```
 
 
-### Sample 11
+### Sample 14
 
 - Poreiro et al., 
   - Study 1: https://osf.io/49wbv
-  - Study 2: unpublished
 
 ```{r}
 
-df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |> 
+df14  <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |> 
   select(AGE, GENDER, contains("IAS_ACC"), -IAS_ACC_20, starts_with(c("MAIA", "TAS20", "DEP", "ANX")),  -ANX_21, -TAS20_21) |> #anx_21 , tas20_21 are attention checks
   mutate_all(as.numeric) |>
   rename(
@@ -434,7 +451,8 @@ df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |>
     Urinate = IAS_ACC_5, Defecate = IAS_ACC_6, Taste = IAS_ACC_7, Vomit = IAS_ACC_8, Sneeze = IAS_ACC_9,
     Cough = IAS_ACC_10, Temp = IAS_ACC_11, Sex_arousal = IAS_ACC_12, Wind = IAS_ACC_13, Burp = IAS_ACC_14,
     Muscles = IAS_ACC_15, Bruise = IAS_ACC_16, Pain = IAS_ACC_17, Blood_Sugar = IAS_ACC_18,
-    Affective_touch = IAS_ACC_19, Tickle =IAS_ACC_21, Itch = IAS_ACC_22
+    Affective_touch = IAS_ACC_19, Tickle =IAS_ACC_21, Itch = IAS_ACC_22,
+    MAIA_EmoAwareness =MAIA_Emotional, MAIA_SelfReg = MAIA_SelfRegulation, MAIA_AttentionReg = MAIA_Attention
   ) |>
    mutate(Gender = case_when(
     Gender == 1 ~ "Male",
@@ -445,9 +463,15 @@ df11a <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |>
   mutate(TAS_DIF = TAS20_1 + TAS20_3 + TAS20_6 + TAS20_7 + TAS20_9 + TAS20_13 + TAS20_14,
          TAS_DDF = TAS20_2 + (1-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
          TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20) 
+```
 
 
-df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
+### Sample 15
+- Poreiro: unpublished
+
+```{r}
+
+df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
   filter(Total_Attention_Fail == 0) |> # 32 participants removed based on failing one or more checks
   select(AGE, GENDER, contains("IAS_ACC"), ) |> 
   mutate_all(as.numeric) |> 
@@ -464,7 +488,7 @@ df11b <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive S
   na.omit()
 
 # Save all
-data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10a=df10a, df10b=df10b, df10c=df10c, df11a=df11a, df11b=df11b)
+data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11 =df11 , df12 =df12 , df13  = df13 , df14 =df14 , df15  =df15)
 save(data, file = "../data/data.RData")
 ```
 
@@ -486,14 +510,15 @@ save(data, file = "../data/data.RData")
 - **Sample 8a**: Data from [Lin's(2023)](https://osf.io/3eztd) study, downloaded from OSF, included `r report::report_participants(df8a, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 8b**: Data from [Lin's(2023)](https://osf.io/3eztd) study, downloaded from OSF, included `r report::report_participants(df8b, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 9**: Data from [VonMohr's(2023)](https://osf.io/7p9u5/) study 3, downloaded from OSF, included `r report::report_participants(df9, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 10a**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10a, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 10b**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10b, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 10c**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10c, age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 11a**: Data from [Poreiro's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df11a, age = "Age", sex = NA, gender = "Gender")`
-- **Sample 11b**: Data from [Poreiro's] study , included `r report::report_participants(df11b, age = "Age", sex = NA, gender = "Gender")`
+- **Sample 10**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df10, age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 11**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df11 , age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 12**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df12 , age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 13**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df13 , age = "Age", sex = NA, gender = "Gender")`.
+- **Sample 14**: Data from [Poreiro's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df14 , age = "Age", sex = NA, gender = "Gender")`
+- **Sample 15 **: Data from [Poreiro's] study , included `r report::report_participants(df15 , age = "Age", sex = NA, gender = "Gender")`
 
 
-Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10a) + nrow(df10b) + nrow(df10c) +nrow(df11a) + nrow(df11b)`.
+Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15)`.
 
 ```{r}
 
@@ -522,13 +547,14 @@ desc_df7c <- desc(df7c)
 desc_df8a <- desc(df8a)
 desc_df8b <- desc(df8b)
 desc_df9 <- desc(df9)
-desc_df10a <- desc(df10a)
-desc_df10b <- desc(df10b)
-desc_df10c <- desc(df10c)
-desc_df11a <- desc(df11a)
-desc_df11b <- desc(df11b)
+desc_df10 <- desc(df10)
+desc_df11  <- desc(df11)
+desc_df12  <- desc(df12)
+desc_df13  <- desc(df13)
+desc_df14  <- desc(df14)
+desc_df15   <- desc(df15)
 
-desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df5, desc_df6, desc_df7a, desc_df7b, desc_df7c, desc_df8a, desc_df8b, desc_df9, desc_df10a, desc_df10b, desc_df10c, desc_df11a, desc_df11b)
+desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df5, desc_df6, desc_df7a, desc_df7b, desc_df7c, desc_df8a, desc_df8b, desc_df9, desc_df10, desc_df11 , desc_df12 , desc_df13 , desc_df14 , desc_df15 )
 
 ## calculate weighted mean
 
@@ -584,15 +610,17 @@ make_age <- function(age) {
 
 # Create the dataframe
 table <- data.frame(
-  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Total'),
-  Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15'),   
-  Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English',''),
-  N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10a), nrow(df10b), nrow(df10c), nrow(df11a), nrow(df11b), 32214),
-  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. Does not include temperature, blood sugar and cough items.', 'Analog scales', 'Analog scales', '', '', ''),
-  Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10a$Age), make_age(df10b$Age), make_age(df10c$Age), make_age(df11a$Age), make_age(df11b$Age), '48.6 ± 13.1'),
-  Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '18-57', '18-60', '17-93'),
-  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '74.8%', '75.9%', '71.6%'),
-  Availability= c('osf.io/3m5nh', '', '', 'osf.io/5x9sg', 'osf.io/j6ef3', 'osf.io/ms354', 'osf.io/mp3cy', 'osf.io/xwz6g', 'osf.io/3f2h6', '', '', '','osf.io/3eztd','', '', 'osf.io/7p9u5', 'github.com/RealityBending/IllusionGameReliability', 'github.com/DominiqueMakowski/PHQ4R', 'github.com/RealityBending/InteroceptionPrimals', 'osf.io/49wbv', '','')
+  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Total'),
+  Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15', 'Sample 16'),   
+  Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English', 'English',''),
+  N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10), nrow(df11), nrow(df12), nrow(df13), nrow(df14), nrow(df15), 32993),
+  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. Does not include temperature, blood sugar and cough items.', 'Analog scales', 'Analog scales', '', '', '', ''),
+  Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10$Age), make_age(df11$Age), make_age(df12$Age), make_age(df13$Age), make_age(df14$Age), make_age(df15$Age), '48.6 ± 13.1'),
+  Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '17, 87', '18-57', '18-60', '17-93'),
+  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '57.3%', '74.8%', '75.9%', '71.6%'),
+  Availability= c('osf.io/3m5nh', '', '', 'osf.io/5x9sg', 'osf.io/j6ef3', 'osf.io/ms354', 'osf.io/mp3cy', 'osf.io/xwz6g', 'osf.io/3f2h6', '', '', '','osf.io/3eztd','', '', 'osf.io/7p9u5', 'github.com/RealityBending/IllusionGameReliability', 'github.com/DominiqueMakowski/PHQ4R', 'github.com/RealityBending/InteroceptionPrimals', 
+'github.com/RealityBending/InteroceptionScale',
+'osf.io/49wbv', '','')
 ) 
 
 table_apa <- table |> 
@@ -647,22 +675,25 @@ dens8b <- estimate_density(select(df8b, all_of(setdiff(vars, "Tickle"))), method
   mutate(Sample = "Sample 8b")
 dens9 <- estimate_density(select(df9, all_of(vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 9")
-dens10a <- estimate_density(select(df10a, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method = "kernSmooth") |>
-  mutate(Sample = "Sample 10a",
+dens10 <- estimate_density(select(df10, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method = "kernSmooth") |>
+  mutate(Sample = "Sample 10",
          x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
-dens10b <- estimate_density(select(df10b, all_of(vars)), method = "kernSmooth") |>
-  mutate(Sample = "Sample 10b",
+dens11<- estimate_density(select(df11, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 11",
          x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
-dens10c <- estimate_density(select(df10c, all_of(vars)), method = "kernSmooth") |>
-  mutate(Sample = "Sample 10c",
+dens12  <- estimate_density(select(df12, all_of(vars)), method = "kernSmooth") |>
+    mutate(Sample = "Sample 12",
          x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
-dens11a <- estimate_density(select(df11a, all_of(vars)), method = "kernSmooth") |>
-  mutate(Sample = "Sample 11a")
-dens11b <- estimate_density(select(df11b, all_of(vars)), method = "kernSmooth") |>
-  mutate(Sample = "Sample 11b")
+dens13  <- estimate_density(select(df13, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 13",
+         x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
+dens14  <- estimate_density(select(df14, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 14")
+dens15  <- estimate_density(select(df15, all_of(vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 15")
 
 
-p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10a, dens10b, dens10c, dens11a, dens11b) 
+p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10, dens11 , dens12, dens13, dens14, dens15) 
 
 linetype <- setNames(rep("solid", length(vars)), vars)
 linetype["Affective touch"] <- "dotted"
@@ -676,7 +707,7 @@ p1_data |>
   summarise(proportion = sum(y) / sum(p1_data$y))  # Normalize by total density
 
 p1 <- p1_data |>
-  mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10a", "Sample 10b", "Sample 10c", "Sample 11a", "Sample 11b"),
+  mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10", "Sample 11", "Sample 12", "Sample 13", "Sample 14", "Sample 15"),
          Parameter = ifelse(Parameter == "Affective_touch", "Affective touch", Parameter),
          Parameter = ifelse(Parameter == "Blood_Sugar", "Blood sugar", Parameter),
          Parameter = ifelse(Parameter == "Sex_arousal", "Sex arousal", Parameter)) |>
@@ -711,12 +742,13 @@ data7c <- normalize(select(df7c, all_of(dens7c$Parameter)), range = c(1, 5))
 data8a <- normalize(select(df8a, all_of(dens8a$Parameter)), range = c(1, 5))
 data8b <- normalize(select(df8b, all_of(dens8b$Parameter)), range = c(1, 5))
 data9 <- normalize(select(df9, all_of(dens9$Parameter)), range = c(1, 5))
-data10a <- select(df10a, all_of(dens10a$Parameter))
-data10b <- select(df10b, all_of(dens10b$Parameter))
-data10c <- select(df10c, all_of(dens10c$Parameter))
-data11a <- normalize(select(df11a, all_of(dens11a$Parameter)), range = c(1, 5))
-data11b <- na.omit(normalize(select(df11b, all_of(dens11b$Parameter)), range = c(1, 5))) # remove NAS
-row.names(data11b) <- NULL
+data10 <- select(df10, all_of(dens10$Parameter))
+data11  <- select(df11, all_of(dens11$Parameter))
+data12  <- select(df12, all_of(dens12$Parameter))
+data13  <- select(df13, all_of(dens13$Parameter))
+data14  <- normalize(select(df14, all_of(dens14$Parameter)), range = c(1, 5))
+data15   <- na.omit(normalize(select(df15, all_of(dens15$Parameter)), range = c(1, 5))) # remove NAS
+row.names(data15) <- NULL
 
 
 
@@ -724,8 +756,8 @@ data_all <- rbind(
   data1a, data1b, data2, data3, data4, data5, data6, data7a, data7b, data7c,
   mutate(data8a, Tickle = NA), 
   mutate(data8b, Tickle = NA), data9,
-  mutate(data10a, Taste = NA, Cough = NA, Blood_Sugar = NA),  
-  data10b,  data10c, data11a, data11b
+  mutate(data10, Taste = NA, Cough = NA, Blood_Sugar = NA),  
+  data11,  data12 , data13, data14 , data15  
 ) 
 ```
 
@@ -754,8 +786,8 @@ make_correlation <- function(df) {
     geom_text(aes(label = lbl), size = 3) +
     labs(title = "Correlation Matrix", subtitle = paste0("N = ", nrow(df))) +
     scale_fill_gradientn(
-      colors = c("white", "#FFF9C4", "#FFF59D", "#FFEB3B", "#FFCA28", "#FF9800", "#FF5722", "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#512DA8", "#311B92"),
-      na.value = "#311B92",
+      colors = c("white", "#FFF9C4", "#FFF59D", "#FFEB3B", "#FFCA28", "#FF9800", "#FF5722", "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#512DA8", "#315  92"),
+      na.value = "#315  92",
       limits = c(0, 0.8),
       guide = guide_colorbar(ticks.colour = NA)
     ) +
@@ -859,34 +891,40 @@ make_correlation(data8b)
 make_correlation(data9)
 ```
 
-#### Sample 10a
+#### Sample 10
 
 ```{r}
-make_correlation(data10a)
+make_correlation(data10)
 ```
 
-#### Sample 10b
+#### Sample 11 
 
 ```{r}
-make_correlation(data10b)
+make_correlation(data11)
 ```
 
-#### Sample 10c
+#### Sample 12 
 
 ```{r}
-make_correlation(data10c)
+make_correlation(data12)
 ```
 
-#### Sample 11a
+#### Sample 13
 
 ```{r}
-make_correlation(data11a)
+make_correlation(data13)
 ```
 
-#### Sample 11b
+#### Sample 14 
 
 ```{r}
-make_correlation(data11b)
+make_correlation(data14)
+```
+
+#### Sample 15  
+
+```{r}
+make_correlation(data15)
 ```
 
 :::
@@ -1012,44 +1050,51 @@ uva9
 uva9$keep_remove
 ```
 
-#### Sample 10a
+#### Sample 10
 
 ```{r}
-uva10a <- EGAnet::UVA(data = data10a, cut.off = 0.3)
-uva10a
-uva10a$keep_remove
+uva10 <- EGAnet::UVA(data = data10, cut.off = 0.3)
+uva10
+uva10$keep_remove
 ```
 
-#### Sample 10b
+#### Sample 11 
 
 ```{r}
-uva10b <- EGAnet::UVA(data = data10b, cut.off = 0.3)
-uva10b
-uva10b$keep_remove
+uva11  <- EGAnet::UVA(data = data11 , cut.off = 0.3)
+uva11 
+uva11$keep_remove
 ```
 
-#### Sample 10c
+#### Sample 12 
 
 ```{r}
-uva10c <- EGAnet::UVA(data = data10c, cut.off = 0.3)
-uva10c
-uva10c$keep_remove
+uva12  <- EGAnet::UVA(data = data12, cut.off = 0.3)
+uva12 
+uva12$keep_remove
 ```
 
-#### Sample 11a
+#### Sample 13 
 
 ```{r}
-uva11a <- EGAnet::UVA(data = data11a, cut.off = 0.3)
-uva11a
-uva11a$keep_remove
+uva13 <- EGAnet::UVA(data = data13, cut.off = 0.3)
+uva13 
+uva13$keep_remove
+```
+#### Sample 14 
+
+```{r}
+uva14  <- EGAnet::UVA(data = data14 , cut.off = 0.3)
+uva14 
+uva14$keep_remove
 ```
 
-#### Sample 11b
+#### Sample 15  
 
 ```{r}
-uva11b <- EGAnet::UVA(data = data11b, cut.off = 0.3)
-uva11b
-uva11b$keep_remove
+uva15   <- EGAnet::UVA(data = data15  , cut.off = 0.3)
+uva15  
+uva15$keep_remove
 ```
 
 #### Summary
@@ -1069,11 +1114,12 @@ rez_uva <- c(uva1a$keep_remove$remove,
   uva8a$keep_remove$remove,
   uva8b$keep_remove$remove,
   uva9$keep_remove$remove,
-  uva10a$keep_remove$remove,
-  uva10b$keep_remove$remove,
-  uva10c$keep_remove$remove,
-  uva11a$keep_remove$remove,
-  uva11b$keep_remove$remove)
+  uva10$keep_remove$remove,
+  uva11 $keep_remove$remove,
+  uva12 $keep_remove$remove,
+  uva13 $keep_remove$remove,
+  uva14 $keep_remove$remove,
+  uva15  $keep_remove$remove)
 
 sort(table(rez_uva), decreasing = TRUE) / length(rez_uva) 
 ```
@@ -1106,11 +1152,12 @@ data7c <- select(data7c, -Tickle)
 # data8a <- select(data8a, -Tickle)
 # data8b <- select(data8b, -Tickle)
 data9 <- select(data9, -Tickle)
-data10a <- select(data10a, -Tickle)
-data10b <- select(data10b, -Tickle)
-data10c <- select(data10c, -Tickle)
-data11a <- select(data11a, -Tickle)
-data11b <- select(data11b, -Tickle)
+data10 <- select(data10, -Tickle)
+data11  <- select(data11 , -Tickle)
+data12  <- select(data12 , -Tickle)
+data13  <- select(data13 , -Tickle)
+data14  <- select(data14 , -Tickle)
+data15   <- select(data15  , -Tickle)
 ```
 
 #### Initial
@@ -1445,15 +1492,10 @@ rez_efa$p
 ```
 
 
-
-
 :::
 
 
-
-
 #### Final
-
 
 We discarded:
 
@@ -1495,15 +1537,17 @@ data8bf <- select(data8b, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 data9f <- select(data9, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
-data10af <- select(data10a, -Affective_touch, -Vomit, -Itch,
+data10f <- select(data10, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
-data10bf <- select(data10b, -Taste, -Affective_touch, -Vomit, -Itch,
+data11f <- select(data11, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
-data10cf <- select(data10c, -Taste, -Affective_touch, -Vomit, -Itch,
+data12f <- select(data12, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
-data11af <- select(data11a, -Taste, -Affective_touch, -Vomit, -Itch,
+data13f <- select(data13, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
-data11bf <- select(data11b, -Taste, -Affective_touch, -Vomit, -Itch,
+data14f <- select(data14, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data15f <- select(data15, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 ```
 
@@ -1726,7 +1770,6 @@ ggsave("figures/Figure2.png", fig2, width=14, height=14, dpi=300, bg="white")
 
 :::: {.panel-tabset}
 
-
 ##### Summary
 
 ```{r}
@@ -1806,7 +1849,169 @@ rez_cfa1a$test
 
 ### Sample 1b
 
-TODO.
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data1b)
+rez_ega <- make_ega(data1b, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data1b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data1bf)
+rez_ega <- make_ega(data1af, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data1af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cfa1b  <- make_cfa(data1bf)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cfa1b$test
+```
+
+::::
+
+### Sample 2
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data1b)
+rez_ega <- make_ega(data1b, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data1b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data1bf)
+rez_ega <- make_ega(data1af, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data1af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cfa1b  <- make_cfa(data1bf)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cfa1b$test
+```
+
+::::
 
 :::
 
@@ -1824,7 +2029,6 @@ rbind(
 ) |> 
   select(Sample, Chi2, RMSEA, CFI, "SRMR") 
 ```
-
 
 
 
@@ -1874,11 +2078,12 @@ scores <- list(
   sample8a = add_empirical(data8a, "Sample 8a"),
   sample8b = add_empirical(data8b, "Sample 8b"),
   sample9 = add_empirical(data9, "Sample 9"),
-  sample10a = add_empirical(data10a, "Sample 10a"),
-  sample10b = add_empirical(data10b, "Sample 10b"),
-  sample10c = add_empirical(data10c, "Sample 10c"),
-  sample11a = add_empirical(data11a, "Sample 11a"),
-  sample11b = add_empirical(data11b, "Sample 11b")
+  sample10 = add_empirical(data10, "Sample 10"),
+  sample11  = add_empirical(data11 , "Sample 11 "),
+  sample12  = add_empirical(data12 , "Sample 12 "),
+  sample13 = add_empirical(data13, "Sample 13 "),
+  sample14  = add_empirical(data14 , "Sample 14 "),
+  sample15   = add_empirical(data15 , "Sample 15  ")
 )
 
 save(scores, file = "../data/scores.RData")

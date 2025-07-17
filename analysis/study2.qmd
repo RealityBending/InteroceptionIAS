@@ -125,11 +125,12 @@ df7c <- cbind(data$df7c, scores$sample7c)
 df8a <- cbind(data$df8a, scores$sample8a)
 df8b <- cbind(data$df8b, scores$sample8b)
 df9 <- cbind(data$df9, scores$sample9)
-df10a <- cbind(data$df10a, scores$sample10a)
-df10b <- cbind(data$df10b, scores$sample10b)
-df10c <- cbind(data$df10c, scores$sample10c)
-df11a <- cbind(data$df11a, scores$sample11a)
-df11b <- cbind(data$df11b, scores$sample11b)
+df10 <- cbind(data$df10, scores$sample10)
+df11 <- cbind(data$df11, scores$sample11)
+df12 <- cbind(data$df12, scores$sample12)
+df13 <- cbind(data$df13, scores$sample12)
+df14 <- cbind(data$df14, scores$sample14)
+df15 <- cbind(data$df15, scores$sample15)
 
 vars_intero <- names(select(scores$sample1a, -Sample))
 
@@ -146,11 +147,12 @@ vars_intero <- names(select(scores$sample1a, -Sample))
 # names(df8a)  # EDI, BPQ
 # names(df8b)  # PHQ9, PHQ15, TAS
 # names(df9)  # ECR (Experience in Close Relationship Scale), TEAQ (touch experiences and attitudes questionnaire), STQ, TACSEN, UCLA, BFI, DBIA, BO, EQ
-# names(df10a)  # ASQ, BPD, GCBS, IPIP6, LIE, MAIA, PHQ4, PI, PID, SPQ
-# names(df10b)  # PHQ4, STAIT5, BDI, MAIA
-# names(df10c) # MAIA, PI, 
-# names(df11a) # MAIA, TAS, MFQ(DEP), STAI(ANX)
-# names(df11b) 
+# names(df10)  # ASQ, BPD, GCBS, IPIP6, LIE, MAIA, PHQ4, PI, PID, SPQ
+# names(df11)  # PHQ4, STAIT5, BDI, MAIA
+# names(df12) # MAIA, PI, 
+# names(df13) # 
+# names(df14) # MAIA, TAS, MFQ(DEP), STAI(ANX)
+# names(df15) 
 ```
 
 
@@ -167,8 +169,8 @@ pool_coef <- function(with = "Age", component = "Demographic", standardize="with
     data <- data.frame() 
     for(dataset in list(df1a, df1b, df2, df3, df4, 
                      df5, df6, df7a, df7b, df7c, 
-                     df8a, df8b, df9, df10a, df10b, 
-                     df10c, df11a, df11b)) {
+                     df8a, df8b, df9, df10, df11, 
+                     df12, df14, df15)) {
       if (with %in% names(dataset)) {
         d <- dataset[c(with, intero, "Sample")]
         if(standardize == "within") d <- standardize(d)
@@ -241,10 +243,10 @@ data <- rbind(data, make_rez(with = "Age", component = "Demographic"))
 # names(df7a)[str_detect(names(df7a), "MAIA")]  
 # names(df7b)[str_detect(names(df7b), "maia")] 
 # names(df7c)[str_detect(names(df7c), "MAIA")]
-# names(df10a)[str_detect(names(df10a), "MAIA")]
-# names(df10b)[str_detect(names(df10b), "MAIA2")] # all columns with NA values 
-# names(df10c)[str_detect(names(df10c), "MAIA")]
-# names(df11a)[str_detect(names(df11b), "MAIA")]
+# names(df10)[str_detect(names(df10), "MAIA")]
+# names(df11)[str_detect(names(df11), "MAIA2")] # all columns with NA values 
+# names(df12)[str_detect(names(df12), "MAIA")]
+# names(df14)[str_detect(names(df15), "MAIA")]
 
 data <- rbind(
   data,
@@ -300,7 +302,7 @@ data <- rbind(
 # names(df3)[str_starts(names(df3), "TAS")]
 # names(df7c)[str_starts(names(df7c), "TAS")]
 # names(df8b)[str_starts(names(df8b), "TAS")]
-# names(df11a)[str_starts(names(df11a), "TAS")] 
+# names(df14)[str_starts(names(df14), "TAS")] 
 
 
 data <- rbind(
@@ -333,7 +335,7 @@ data <- rbind(
 # names(df7c)[str_detect(names(df7c), "BDI")]
 # names(df8b)[str_detect(names(df8b), "PHQ")]
 # names(df9)
-# names(df11a)
+# names(df14)
 
 data <- rbind(
   data,
@@ -356,8 +358,8 @@ data <- rbind(
 # names(df7a)[str_detect(names(df7a), "STAI")] 
 # names(df7b)[str_detect(names(df7b), "STAI")] 
 # names(df7c)[str_detect(names(df7c), "STAI")]
-# names(df10b)[str_detect(names(df10b), "STAI")] 
-# names(df11a)[str_detect(names(df11a), "ANX")] # anx = stai-t
+# names(df11)[str_detect(names(df11), "STAI")] 
+# names(df14)[str_detect(names(df14), "ANX")] # anx = stai-t
 
 
 data <- rbind(
@@ -409,7 +411,7 @@ data <- rbind(
 ```
 
 ```{r}
-#  names(select(df10a, starts_with("ASQ")))
+#  names(select(df10, starts_with("ASQ")))
 data <- rbind(
   data,
   make_rez(with = "ASQ_Imagination", component="Autistic", name = "Imagination"),
@@ -425,7 +427,7 @@ data <- rbind(
 ```{r}
 # names(df7a)[str_detect(names(df7a), "NEO")]
 # names(df9)[str_detect(names(df9), "BFI_")]
-# names(df10a)[str_detect(names(df10a), "IPIP6_")]
+# names(df10)[str_detect(names(df10), "IPIP6_")]
 
 
 data <- rbind(
@@ -539,11 +541,11 @@ data <- rbind(
 # names(df8a)  # EDI, BPQ
 # names(df8b)  # PHQ9, PHQ15, TAS
 # names(df9)  # ECR (Experience in Close Relationship Scale), TEAQ (touch experiences and attitudes questionnaire), STQ, TACSEN, UCLA, BFI, DBIA, BO, EQ
-# names(df10a)  # ASQ, BPD, GCBS, IPIP6, LIE, MAIA, PHQ4, PI, PID, SPQ
-# names(df10b)  # PHQ4, STAIT5, BDI, MAIA
-# names(df10c) # MAIA, PI, 
-# names(df11a) # MAIA, TAS, MFQ(DEP), STAI(ANX)
-# names(df11b) 
+# names(df10)  # ASQ, BPD, GCBS, IPIP6, LIE, MAIA, PHQ4, PI, PID, SPQ
+# names(df11)  # PHQ4, STAIT5, BDI, MAIA
+# names(df12) # MAIA, PI, 
+# names(df14) # MAIA, TAS, MFQ(DEP), STAI(ANX)
+# names(df15) 
 
 average_corr <- data |>
   summarise(min_r = min(r, na.rm = TRUE), 
