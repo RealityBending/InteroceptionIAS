@@ -733,7 +733,7 @@ data1a <- normalize(select(df1a, all_of(dens1a$Parameter)), range = c(1, 5))
 data1b <- normalize(select(df1b, all_of(dens1b$Parameter)), range = c(1, 5))
 data2 <- normalize(select(df2, all_of(dens2$Parameter)), range = c(1, 5))
 data3 <- normalize(select(df3, all_of(dens3$Parameter)), range = c(1, 5))
-data4 <- normalize(select(df4, all_of(dens4$Parameter)), range = c(1, 5))
+data6 <- normalize(select(df4, all_of(dens4$Parameter)), range = c(1, 5))
 data5 <- normalize(select(df5, all_of(dens5$Parameter)), range = c(1, 5))
 data6 <- normalize(select(df6, all_of(dens6$Parameter)), range = c(1, 5))
 data7a <- normalize(select(df7a, all_of(dens7a$Parameter)), range = c(1, 5))
@@ -753,7 +753,7 @@ row.names(data15) <- NULL
 
 
 data_all <- rbind(
-  data1a, data1b, data2, data3, data4, data5, data6, data7a, data7b, data7c,
+  data1a, data1b, data2, data3, data6, data5, data6, data7a, data7b, data7c,
   mutate(data8a, Tickle = NA), 
   mutate(data8b, Tickle = NA), data9,
   mutate(data10, Taste = NA, Cough = NA, Blood_Sugar = NA),  
@@ -786,8 +786,10 @@ make_correlation <- function(df) {
     geom_text(aes(label = lbl), size = 3) +
     labs(title = "Correlation Matrix", subtitle = paste0("N = ", nrow(df))) +
     scale_fill_gradientn(
-      colors = c("white", "#FFF9C4", "#FFF59D", "#FFEB3B", "#FFCA28", "#FF9800", "#FF5722", "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#512DA8", "#315  92"),
-      na.value = "#315  92",
+      colors = c("white", "#FFF9C4", "#FFF59D", "#FFEB3B", "#FFCA28", "#FF9800", "#FF5722",
+        "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#512DA8",  "#3F51B5", 
+        "#1976D2",  "#00ACC1","#00897B", "#00796B", "#31B192"),,
+      na.value = "#31B192",
       limits = c(0, 0.8),
       guide = guide_colorbar(ticks.colour = NA)
     ) +
@@ -839,7 +841,7 @@ make_correlation(data3)
 #### Sample 4
 
 ```{r}
-make_correlation(data4)
+make_correlation(data6)
 ```
 
 #### Sample 5
@@ -981,7 +983,7 @@ uva3$keep_remove
 #### Sample 4
 
 ```{r}
-uva4 <- EGAnet::UVA(data = data4, cut.off = 0.3)
+uva4 <- EGAnet::UVA(data = data6, cut.off = 0.3)
 uva4
 uva4$keep_remove
 ```
@@ -1124,13 +1126,7 @@ rez_uva <- c(uva1a$keep_remove$remove,
 sort(table(rez_uva), decreasing = TRUE) / length(rez_uva) 
 ```
 
-
-
 :::
-
-
-
-
 
 ### Structure Refinement
 
@@ -1143,7 +1139,7 @@ data1a <- select(data1a, -Tickle)
 data1b <- select(data1b, -Tickle)
 data2 <- select(data2, -Tickle)
 data3 <- select(data3, -Tickle)
-data4 <- select(data4, -Tickle)
+data6 <- select(data6, -Tickle)
 data5 <- select(data5, -Tickle)
 data6 <- select(data6, -Tickle)
 data7a <- select(data7a, -Tickle)
@@ -1271,7 +1267,8 @@ make_ega <- function(data, cols = c("C1" = "#F44336", "C2" = "#FF9800", "C3" = "
     type = "resampling",
     plot.itemStability = FALSE,
     verbose = FALSE, 
-    allow.singleton = TRUE
+    allow.singleton = TRUE,
+    loading.method = "original"
   )
   
   table <- EGAnet::net.loads(rez$EGA$lower_order)$std |> 
@@ -1336,6 +1333,7 @@ make_ega <- function(data, cols = c("C1" = "#F44336", "C2" = "#FF9800", "C3" = "
 rez_ega <- make_ega(data_all, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]]))
+
 stab <- EGAnet::itemStability(rez_ega$rez)
 rez_ega$table
 rez_ega$p
@@ -1519,7 +1517,7 @@ data2f <- select(data2, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 data3f <- select(data3, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
-data4f <- select(data4, -Taste, -Affective_touch, -Vomit, -Itch,
+data6f <- select(data6, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 data5f <- select(data5, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
@@ -1594,8 +1592,6 @@ rez_efa$p
 
 
 ##### CFA
-
-
 
 ```{r}
 #| fig-height: 20
@@ -1757,9 +1753,6 @@ ggsave("figures/Figure2.png", fig2, width=14, height=14, dpi=300, bg="white")
 ```
 
 
-
-
-
 ## Structure Invariance 
 
 ::: {.panel-tabset}
@@ -1904,7 +1897,7 @@ rez_hclust <- make_hclust(data1bf)
 rez_ega <- make_ega(data1af, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+rez_efa <- make_efa(data1bf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
 rez_cfa1b  <- make_cfa(data1bf)
 
@@ -1944,11 +1937,11 @@ rez_cfa1b$test
 #| fig-width: 12
 #| fig-height: 20
 
-rez_hclust <- make_hclust(data1b)
-rez_ega <- make_ega(data1b, cols = c(
+rez_hclust <- make_hclust(data2)
+rez_ega <- make_ega(data2, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+rez_efa <- make_efa(data2, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -1983,13 +1976,13 @@ plot(rez_efa$n_fac)
 #| fig-width: 12
 #| fig-height: 20
 
-rez_hclust <- make_hclust(data1bf)
-rez_ega <- make_ega(data1af, cols = c(
+rez_hclust <- make_hclust(data2f)
+rez_ega <- make_ega(data2f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+rez_efa <- make_efa(data2f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cfa1b  <- make_cfa(data1bf)
+rez_cfa2  <- make_cfa(data2f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2008,14 +2001,676 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cfa1b$test
+rez_cfa2$test
 ```
 
 ::::
 
+### Sample 3
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data3)
+rez_ega <- make_ega(data3, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data3, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data3f)
+rez_ega <- make_ega(data3f, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data3f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cf3  <- make_cfa(data3f)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cfa3$test
+```
+
+::::
+
+### Sample 4
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data4)
+rez_ega <- make_ega(data4, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data4, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data4f)
+rez_ega <- make_ega(data4f, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data4f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cf4  <- make_cfa(data4f)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cf4$test
+```
+
+::::
+
+### Sample 5
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data5)
+rez_ega <- make_ega(data5, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data5, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data5f)
+rez_ega <- make_ega(data5f, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data5f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cfa5  <- make_cfa(data5f)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cf5$test
+```
+
+::::
+
+### Sample 6
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data6)
+rez_ega <- make_ega(data6, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data6, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data6f)
+rez_ega <- make_ega(data6f, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data6f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cf6  <- make_cfa(data6f)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cf6$test
+```
+
+::::
+
+### Sample 7a
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data7a)
+rez_ega <- make_ega(data7a, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data7a, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data7af)
+rez_ega <- make_ega(data7af, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data7af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cf7a  <- make_cfa(data7af)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cf7a$test
+```
+
+::::
+
+### Sample 7b
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data7b)
+rez_ega <- make_ega(data7b, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data7b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data7bf)
+rez_ega <- make_ega(data7bf, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data7bf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cf7b  <- make_cfa(data7bf)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cf7b$test
+```
+
+::::
+
+### Sample 7c
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data7c)
+rez_ega <- make_ega(data7c, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data7c, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data7cf)
+rez_ega <- make_ega(data7cf, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data7cf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cf7c  <- make_cfa(data7cf)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cf7c$test
+```
+
+::::
+
+### Sample 8a
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data8a)
+rez_ega <- make_ega(data8a, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data8a, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data8af)
+rez_ega <- make_ega(data8af, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cf8a  <- make_cfa(data8af)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cf8$test
+```
+::::
+
+### Sample 8b
 :::
-
-
 
 ## Model Performance
 
@@ -2024,8 +2679,25 @@ rez_cfa1b$test
 
 rbind(
   mutate(rez_cfa0$perf, Sample = "All Samples"),
-  mutate(rez_cfa1a$perf, Sample = "Sample 1a")
-  # TODO
+  mutate(rez_cfa1a$perf, Sample = "Sample 1a"),
+  mutate(rez_cfa1b$perf, Sample = "Sample 1b"),
+  mutate(rez_cfa2$perf, Sample = "Sample 2"),
+  mutate(rez_cfa3$perf, Sample = "Sample 3"),
+  mutate(rez_cfa4$perf, Sample = "Sample 4"),
+  mutate(rez_cfa5$perf, Sample = "Sample 5"),
+  mutate(rez_cfa6$perf, Sample = "Sample 6"),
+  mutate(rez_cfa7a$perf, Sample = "Sample 7a"),
+  mutate(rez_cfa7b$perf, Sample = "Sample 7b"),
+  mutate(rez_cfa7c$perf, Sample = "Sample 7c"),
+  mutate(rez_cfa8a$perf, Sample = "Sample 8a"),
+  mutate(rez_cfa8b$perf, Sample = "Sample 8b"),
+  mutate(rez_cfa9$perf, Sample = "Sample 9"),
+  mutate(rez_cfa10$perf, Sample = "Sample 10"),
+  mutate(rez_cfa11$perf, Sample = "Sample 11"),
+  mutate(rez_cfa12$perf, Sample = "Sample 12"),
+  mutate(rez_cfa13$perf, Sample = "Sample 13"),
+  mutate(rez_cfa14$perf, Sample = "Sample 14"),
+  mutate(rez_cfa15$perf, Sample = "Sample 15")
 ) |> 
   select(Sample, Chi2, RMSEA, CFI, "SRMR") 
 ```
@@ -2069,7 +2741,7 @@ scores <- list(
   sample1b = add_empirical(data1b, "Sample 1b"),
   sample2 = add_empirical(data2, "Sample 2"),
   sample3 = add_empirical(data3, "Sample 3"),
-  sample4 = add_empirical(data4, "Sample 4"),
+  sample4 = add_empirical(data6, "Sample 4"),
   sample5 = add_empirical(data5, "Sample 5"),
   sample6 = add_empirical(data6, "Sample 6"),
   sample7a = add_empirical(data7a, "Sample 7a"),
