@@ -26,6 +26,11 @@ library(lavaan)
 library(ggraph)
 library(tidySEM)
 library(EGAnet)
+
+ias_vars <- c(
+  "Heart", "Hungry", "Breathing", "Thirsty", "Urinate", "Defecate", "Taste", "Vomit", "Sneeze", "Cough", "Temp",
+  "Sex_arousal", "Wind", "Burp", "Muscles", "Bruise", "Pain", "Blood_Sugar", "Affective_touch", "Tickle", "Itch"
+)
 ```
 
 ## Data Preparation
@@ -302,8 +307,8 @@ df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameR
     MAIA_EmoAwareness = MAIA_EmotionalAwareness, MAIA_AttentionReg = MAIA_AttentionRegulation,
     MAIA_SelfReg = MAIA_SelfRegulation
   ) |>
-  filter(!is.na(Urinate))
-
+  filter(!is.na(Urinate)) |> 
+  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1))
 ```
 
 ### Sample 11
@@ -319,26 +324,27 @@ df11  <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     typeSample = Sample
   ) |>
   mutate(
-    MAIA_NotDistracting_1_R = 1 - MAIA2_NotDistracting_1_R,
-    MAIA_NotDistracting_2_R = 1 - MAIA2_NotDistracting_2_R,
-    MAIA_NotDistracting_3_R = 1 - MAIA2_NotDistracting_3_R,
-    MAIA_NotDistracting_4_R = 1 - MAIA2_NotDistracting_4_R,
-    MAIA_NotDistracting_5_R = 1 - MAIA2_NotDistracting_5_R,
-    MAIA_NotDistracting_6_R = 1 - MAIA2_NotDistracting_6_R,
-    MAIA_NotWorrying_1_R = 1 - MAIA2_NotWorrying_1_R,
-    MAIA_NotWorrying_2_R = 1 - MAIA2_NotWorrying_2_R,
-    MAIA_NotWorrying_5_R = 1 - MAIA2_NotWorrying_5_R)
+    MAIA2_NotDistracting_1_R = 1 - MAIA2_NotDistracting_1_R,
+    MAIA2_NotDistracting_2_R = 1 - MAIA2_NotDistracting_2_R,
+    MAIA2_NotDistracting_3_R = 1 - MAIA2_NotDistracting_3_R,
+    MAIA2_NotDistracting_4_R = 1 - MAIA2_NotDistracting_4_R,
+    MAIA2_NotDistracting_5_R = 1 - MAIA2_NotDistracting_5_R,
+    MAIA2_NotDistracting_6_R = 1 - MAIA2_NotDistracting_6_R,
+    MAIA2_NotWorrying_1_R = 1 - MAIA2_NotWorrying_1_R,
+    MAIA2_NotWorrying_2_R = 1 - MAIA2_NotWorrying_2_R,
+    MAIA2_NotWorrying_5_R = 1 - MAIA2_NotWorrying_5_R) |> 
+  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1))
 
 # Compute subscales
 
-df11 $MAIA_AttentionReg <- rowMeans(select(df11 , starts_with("MAIA2_Attention")))
-df11 $MAIA_EmoAwareness <- rowMeans(select(df11 , starts_with("MAIA2_Emotional")))
-df11 $MAIA_Noticing <- rowMeans(select(df11 , starts_with("MAIA2_Noticing")))
-df11 $MAIA_BodyListening <- rowMeans(select(df11 , starts_with("MAIA2_BodyListening")))
-df11 $MAIA_NotDistracting<- rowMeans(select(df11 , starts_with("MAIA2_NotDistracting")))
-df11 $MAIA_NotWorrying<- rowMeans(select(df11 , starts_with("MAIA2_NotWorrying")))
-df11 $MAIA_SelfReg<- rowMeans(select(df11 , starts_with("MAIA2_SelfRegulation")))
-df11 $MAIA_Trusting<- rowMeans(select(df11 , starts_with("MAIA2_Trusting")))
+df11$MAIA_AttentionReg <- rowMeans(select(df11 , starts_with("MAIA2_Attention")))
+df11$MAIA_EmoAwareness <- rowMeans(select(df11 , starts_with("MAIA2_Emotional")))
+df11$MAIA_Noticing <- rowMeans(select(df11 , starts_with("MAIA2_Noticing")))
+df11$MAIA_BodyListening <- rowMeans(select(df11 , starts_with("MAIA2_BodyListening")))
+df11$MAIA_NotDistracting<- rowMeans(select(df11 , starts_with("MAIA2_NotDistracting")))
+df11$MAIA_NotWorrying<- rowMeans(select(df11 , starts_with("MAIA2_NotWorrying")))
+df11$MAIA_SelfReg<- rowMeans(select(df11 , starts_with("MAIA2_SelfRegulation")))
+df11$MAIA_Trusting<- rowMeans(select(df11 , starts_with("MAIA2_Trusting")))
 
 ```
 
@@ -353,10 +359,12 @@ df12  <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
-    MAIA_EmoAwareness = MAIA_EmotionalAwareness, MAIA_AttentionReg = MAIA_AttentionRegulation,
+    MAIA_EmoAwareness = MAIA_EmotionalAwareness, 
+    MAIA_AttentionReg = MAIA_AttentionRegulation,
     MAIA_SelfReg = MAIA_SelfRegulation
   ) |>
-  filter(!is.na(Heart)) # participant is outlier and had total IAS scores below 0.4 
+  filter(!is.na(Heart)) |>  # participant is outlier and had total IAS scores below 0.4 
+  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1))
 ```
 
 ### Sample 13
@@ -385,17 +393,14 @@ df13  <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
     MAIA_NotWorrying_5_R = 1 - MAIA_NotWorrying_5_R)
 
 # Compute subscales
-
-df13 $MAIA_AttentionReg <- rowMeans(select(df13 , starts_with("MAIA2_Attention")))
-df13 $MAIA_EmoAwareness <- rowMeans(select(df13 , starts_with("MAIA2_Emotional")))
-df13 $MAIA_Noticing <- rowMeans(select(df13 , starts_with("MAIA2_Noticing")))
-df13 $MAIA_BodyListening <- rowMeans(select(df13 , starts_with("MAIA2_BodyListening")))
-df13 $MAIA_NotDistracting<- rowMeans(select(df13 , starts_with("MAIA2_NotDistracting")))
-df13 $MAIA_NotWorrying<- rowMeans(select(df13 , starts_with("MAIA2_NotWorrying")))
-df13 $MAIA_SelfReg<- rowMeans(select(df13 , starts_with("MAIA2_SelfRegulation")))
-df13 $MAIA_Trusting<- rowMeans(select(df13 , starts_with("MAIA2_Trusting")))
-
-
+df13$MAIA_AttentionReg <- rowMeans(select(df13 , starts_with("MAIA_Attention")))
+df13$MAIA_EmoAwareness <- rowMeans(select(df13 , starts_with("MAIA_Emotional")))
+df13$MAIA_Noticing <- rowMeans(select(df13 , starts_with("MAIA_Noticing")))
+df13$MAIA_BodyListening <- rowMeans(select(df13 , starts_with("MAIA_BodyListening")))
+df13$MAIA_NotDistracting<- rowMeans(select(df13 , starts_with("MAIA_NotDistracting")))
+df13$MAIA_NotWorrying<- rowMeans(select(df13 , starts_with("MAIA_NotWorrying")))
+df13$MAIA_SelfReg<- rowMeans(select(df13 , starts_with("MAIA_SelfRegulation")))
+df13$MAIA_Trusting<- rowMeans(select(df13 , starts_with("MAIA_Trusting")))
 ```
 
 ```{r}
@@ -441,7 +446,6 @@ df13 $MAIA_Trusting<- rowMeans(select(df13 , starts_with("MAIA2_Trusting")))
   - Study 1: https://osf.io/49wbv
 
 ```{r}
-
 df14  <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |> 
   select(AGE, GENDER, contains("IAS_ACC"), -IAS_ACC_20, starts_with(c("MAIA", "TAS20", "DEP", "ANX")),  -ANX_21, -TAS20_21) |> #anx_21 , tas20_21 are attention checks
   mutate_all(as.numeric) |>
@@ -470,7 +474,6 @@ df14  <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |>
 - Poreiro: unpublished
 
 ```{r}
-
 df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
   filter(Total_Attention_Fail == 0) |> # 32 participants removed based on failing one or more checks
   select(AGE, GENDER, contains("IAS_ACC"), ) |> 
@@ -486,16 +489,19 @@ df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive 
     Gender %in% c(3, 5) ~ "Other", 
     Gender == 4 ~ "NA", )) |>
   na.omit()
-
-# Save all
-data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11 =df11 , df12 =df12 , df13  = df13 , df14 =df14 , df15  =df15)
-save(data, file = "../data/data.RData")
 ```
 
 :::
 
 
 ## Participants
+
+```{r}
+# Save all
+data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11 =df11 , df12 =df12 , df13  = df13 , df14 =df14 , df15  =df15)
+save(data, file = "../data/data.RData")
+```
+
 
 - **Sample 1a**: Data from [Murphy's (2020)](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) study 1, downloaded from OSF, included `r report::report_participants(df1a, age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 1b**: Data from [Murphy's (2020)](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) study 6, downloaded from OSF, included `r report::report_participants(df1b, age = "Age", sex = NA, gender = "Gender")`.
@@ -558,9 +564,9 @@ desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df5, desc_df6
 
 ## calculate weighted mean
 
-total_mean = sum(desc_total$mean * desc_total$n) / sum(desc_total$n)
-total_sd = sum(desc_total$sd * desc_total$n) / sum(desc_total$n)
-perce_female = sum(desc_total$female)/sum(desc_total$n) *100
+total_mean <- sum(desc_total$mean * desc_total$n) / sum(desc_total$n)
+total_sd <- sum(desc_total$sd * desc_total$n) / sum(desc_total$n)
+perce_female <- sum(desc_total$female)/sum(desc_total$n) * 100
 
 ``` 
 
@@ -644,58 +650,49 @@ gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
 The items with the differing distribution pattern (with a lower mode around 2/5) are "Affective Touch", "Blood Sugar" and "Bruise".
 
 ```{r}
-vars <- c(
-  "Heart", "Hungry", "Breathing", "Thirsty", "Urinate", "Defecate", "Taste", "Vomit", "Sneeze", "Cough", "Temp",
-  "Sex_arousal", "Wind", "Burp", "Muscles", "Bruise", "Pain", "Blood_Sugar", "Affective_touch", "Tickle", "Itch"
-)
-
-dens1a <- estimate_density(select(df1a, all_of(vars)), method = "kernSmooth") |>
+dens1a <- estimate_density(select(df1a, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 1a")
-dens1b <- estimate_density(select(df1b, all_of(vars)), method = "kernSmooth") |>
+dens1b <- estimate_density(select(df1b, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 1b")
-dens2 <- estimate_density(select(df2, all_of(vars)), method = "kernSmooth") |>
+dens2 <- estimate_density(select(df2, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 2")
-dens3 <- estimate_density(select(df3, all_of(vars)), method = "kernSmooth") |>
+dens3 <- estimate_density(select(df3, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 3")
-dens4 <- estimate_density(select(df4, all_of(vars)), method = "kernSmooth") |>
+dens4 <- estimate_density(select(df4, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 4")
-dens5 <- estimate_density(select(df5, all_of(vars)), method = "kernSmooth") |>
+dens5 <- estimate_density(select(df5, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 5")
-dens6 <- estimate_density(select(df6, all_of(vars)), method = "kernSmooth") |>
+dens6 <- estimate_density(select(df6, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 6")
-dens7a <- estimate_density(select(df7a, all_of(vars)), method = "kernSmooth") |>
+dens7a <- estimate_density(select(df7a, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 7a")
-dens7b <- estimate_density(select(df7b, all_of(vars)), method = "kernSmooth") |>
+dens7b <- estimate_density(select(df7b, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 7b")
-dens7c <- estimate_density(select(df7c, all_of(vars)), method = "kernSmooth") |>
+dens7c <- estimate_density(select(df7c, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 7c")
-dens8a <- estimate_density(select(df8a, all_of(setdiff(vars, "Tickle"))), method = "kernSmooth") |>
+dens8a <- estimate_density(select(df8a, all_of(setdiff(ias_vars, "Tickle"))), method = "kernSmooth") |>
   mutate(Sample = "Sample 8a")
-dens8b <- estimate_density(select(df8b, all_of(setdiff(vars, "Tickle"))), method = "kernSmooth") |>
+dens8b <- estimate_density(select(df8b, all_of(setdiff(ias_vars, "Tickle"))), method = "kernSmooth") |>
   mutate(Sample = "Sample 8b")
-dens9 <- estimate_density(select(df9, all_of(vars)), method = "kernSmooth") |>
+dens9 <- estimate_density(select(df9, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 9")
-dens10 <- estimate_density(select(df10, all_of(setdiff(vars, c("Taste", "Cough", "Blood_Sugar")))), method = "kernSmooth") |>
-  mutate(Sample = "Sample 10",
-         x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
-dens11<- estimate_density(select(df11, all_of(vars)), method = "kernSmooth") |>
-  mutate(Sample = "Sample 11",
-         x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
-dens12  <- estimate_density(select(df12, all_of(vars)), method = "kernSmooth") |>
-    mutate(Sample = "Sample 12",
-         x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
-dens13  <- estimate_density(select(df13, all_of(vars)), method = "kernSmooth") |>
-  mutate(Sample = "Sample 13",
-         x = datawizard::rescale(x, to=c(1, 5), range=c(0, 1)))
-dens14  <- estimate_density(select(df14, all_of(vars)), method = "kernSmooth") |>
+dens10 <- estimate_density(select(df10, all_of(setdiff(ias_vars, c("Taste", "Cough", "Blood_Sugar")))), method = "kernSmooth") |>
+  mutate(Sample = "Sample 10")
+dens11<- estimate_density(select(df11, all_of(ias_vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 11")
+dens12  <- estimate_density(select(df12, all_of(ias_vars)), method = "kernSmooth") |>
+    mutate(Sample = "Sample 12")
+dens13  <- estimate_density(select(df13, all_of(ias_vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 13")
+dens14  <- estimate_density(select(df14, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 14")
-dens15  <- estimate_density(select(df15, all_of(vars)), method = "kernSmooth") |>
+dens15  <- estimate_density(select(df15, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 15")
 
 
 p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10, dens11 , dens12, dens13, dens14, dens15) 
 
-linetype <- setNames(rep("solid", length(vars)), vars)
+linetype <- setNames(rep("solid", length(ias_vars)), ias_vars)
 linetype["Affective touch"] <- "dotted"
 linetype["Blood sugar"] <- "dashed"
 linetype["Sex arousal"] <- "solid"
@@ -729,35 +726,33 @@ p1
 
 
 ```{r}
-data1a <- normalize(select(df1a, all_of(dens1a$Parameter)), range = c(1, 5))
-data1b <- normalize(select(df1b, all_of(dens1b$Parameter)), range = c(1, 5))
-data2 <- normalize(select(df2, all_of(dens2$Parameter)), range = c(1, 5))
-data3 <- normalize(select(df3, all_of(dens3$Parameter)), range = c(1, 5))
-data6 <- normalize(select(df4, all_of(dens4$Parameter)), range = c(1, 5))
-data5 <- normalize(select(df5, all_of(dens5$Parameter)), range = c(1, 5))
-data6 <- normalize(select(df6, all_of(dens6$Parameter)), range = c(1, 5))
-data7a <- normalize(select(df7a, all_of(dens7a$Parameter)), range = c(1, 5))
-data7b <- normalize(select(df7b, all_of(dens7b$Parameter)), range = c(1, 5))
-data7c <- normalize(select(df7c, all_of(dens7c$Parameter)), range = c(1, 5))
-data8a <- normalize(select(df8a, all_of(dens8a$Parameter)), range = c(1, 5))
-data8b <- normalize(select(df8b, all_of(dens8b$Parameter)), range = c(1, 5))
-data9 <- normalize(select(df9, all_of(dens9$Parameter)), range = c(1, 5))
+#  ONLY IAS DATA
+data1a <- select(df1a, all_of(dens1a$Parameter))
+data1b <- select(df1b, all_of(dens1b$Parameter))
+data2 <- select(df2, all_of(dens2$Parameter))
+data3 <- select(df3, all_of(dens3$Parameter))
+data6 <- select(df4, all_of(dens4$Parameter))
+data5 <- select(df5, all_of(dens5$Parameter))
+data6 <- select(df6, all_of(dens6$Parameter))
+data7a <- select(df7a, all_of(dens7a$Parameter))
+data7b <- select(df7b, all_of(dens7b$Parameter))
+data7c <- select(df7c, all_of(dens7c$Parameter))
+data8a <- select(df8a, all_of(dens8a$Parameter))
+data8b <- select(df8b, all_of(dens8b$Parameter))
+data9 <- select(df9, all_of(dens9$Parameter))
 data10 <- select(df10, all_of(dens10$Parameter))
 data11  <- select(df11, all_of(dens11$Parameter))
 data12  <- select(df12, all_of(dens12$Parameter))
 data13  <- select(df13, all_of(dens13$Parameter))
-data14  <- normalize(select(df14, all_of(dens14$Parameter)), range = c(1, 5))
-data15   <- na.omit(normalize(select(df15, all_of(dens15$Parameter)), range = c(1, 5))) # remove NAS
-row.names(data15) <- NULL
-
-
+data14  <- select(df14, all_of(dens14$Parameter))
+data15   <- select(df15, all_of(dens15$Parameter))
 
 data_all <- rbind(
   data1a, data1b, data2, data3, data6, data5, data6, data7a, data7b, data7c,
   mutate(data8a, Tickle = NA), 
   mutate(data8b, Tickle = NA), data9,
   mutate(data10, Taste = NA, Cough = NA, Blood_Sugar = NA),  
-  data11,  data12 , data13, data14 , data15  
+  data11,  data12 , data13, data14, data15  
 ) 
 ```
 
@@ -787,16 +782,16 @@ make_correlation <- function(df) {
     labs(title = "Correlation Matrix", subtitle = paste0("N = ", nrow(df))) +
     scale_fill_gradientn(
       colors = c("white", "#FFF9C4", "#FFF59D", "#FFEB3B", "#FFCA28", "#FF9800", "#FF5722",
-        "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#512DA8",  "#3F51B5", 
-        "#1976D2",  "#00ACC1","#00897B", "#00796B", "#31B192"),,
-      na.value = "#31B192",
-      limits = c(0, 0.8),
+        "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#512DA8", "#311B92"),
+      na.value = "#263238",
+      limits = c(0.05, 0.75),
       guide = guide_colorbar(ticks.colour = NA)
     ) +
     # scale_fill_metro_c(limit = c(0, 0.75), guide = guide_colourbar(ticks = FALSE)) +
     theme_minimal() +
     theme(
       legend.title = element_blank(),
+      legend.position = "none",
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
       axis.text.x = element_text(angle = 45, hjust = 1),
