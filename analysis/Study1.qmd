@@ -72,7 +72,8 @@ df2 <- data |>
     MAIA_AttentionRegulation = MAIA_AttentionReg, MAIA_BodyListening = MAIA_BodyListening,
     MAIA_Trusting = MAIA_BodyTrusting, MAIA_EmotionalAwareness = MAIA_EmoAwareness,
     MAIA_NotDistracting=MAIA_NotDistracting, MAIA_NotWorrying=MAIA_NotWorrying,
-    MAIA_SelfRegulation=MAIA_SelfReg, MAIA_Noticing=MAIA_Noticing)
+    MAIA_SelfRegulation=MAIA_SelfReg, MAIA_Noticing=MAIA_Noticing,
+    BPQ_BodyAwareness = BPQ_A, BPQ_AutonomicReactivity = BPQ_R)
 rm(data)
 ```
 

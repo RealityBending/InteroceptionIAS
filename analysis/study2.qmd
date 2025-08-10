@@ -270,7 +270,7 @@ data <- rbind(
 # names(df2)[str_detect(names(df2), "ICQ")] 
 # names(df7c)[str_detect(names(df7c), "ICQ")] 
 
-data <- rbind(data, make_rez(with = "ICQ", component="ICQ", name = "ICQ"))
+data <- rbind(data, pool_coef(with = "ICQ", component="ICQ", name = "ICQ", unequalrange=TRUE))
 ```
 
 ### BPQ
@@ -287,10 +287,10 @@ data <- rbind(data, make_rez(with = "ICQ", component="ICQ", name = "ICQ"))
 
 data <- rbind(
   data,
-  make_rez(with = "BPQ_A", component="BPQ", name = "Body Awareness (BPQ)"),
-  make_rez(with = "BPQ_R", component="BPQ", name = "Autonomic Reactivity (BPQ)"),
-  make_rez(with = "BPQ_BodyAwareness", component="BPQ", name = "Body Awareness (BPQ)"),
-  make_rez(with = "BPQ_AutonomicReactivity", component="BPQ", name = "Autonomic Reactivity (BPQ)")
+  # pool_coef(with = "BPQ_A", component="BPQ", name = "Body Awareness (BPQ)"),
+  # pool_coef(with = "BPQ_R", component="BPQ", name = "Autonomic Reactivity (BPQ)"),
+  pool_coef(with = "BPQ_BodyAwareness", component="BPQ", name = "Body Awareness (BPQ)"),
+  pool_coef(with = "BPQ_AutonomicReactivity", component="BPQ", name = "Autonomic Reactivity (BPQ)")
   )
 ```
 
@@ -590,23 +590,26 @@ p <- data |>
          # Component = fct_relevel(
          #   Component, "Demographic", "MAIA", "Body", "Mood", "Maladaptive",
          #   "Schizotypic", "Autistic", "Personality", "Conspiracy Beliefs", "World Beliefs", "Lying Profile")) |>
-  ggplot(aes(x = var_Correlate)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
+  ggplot(aes(y = var_Correlate)) +
+  annotate(geom = "rect", xmin = -0.1, xmax = 0.1, ymin = -Inf, ymax=Inf, fill = "#FFF8E1") +
+  annotate(geom = "rect", xmin = c(-0.3, 0.1), xmax = c(-0.1, 0.3), ymin = -Inf, ymax=Inf, fill = "#F1F8E9") +
+  annotate(geom = "rect", xmin = c(-0.6, 0.3), xmax = c(-0.3, 0.6), ymin = -Inf, ymax=Inf, fill = "#E8F5E9") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
   # geom_point2(aes(y=r, color = dir, alpha = sig), size = 3) +
-  geom_linerange(aes(color=dir, alpha=sig, ymax=r, ymin=0), linewidth = 1) +
-  geom_linerange(aes(color = dir, alpha = sig, ymin = CI_low, ymax = CI_high, linewidth = log(N))) +
+  geom_linerange(aes(color=dir, alpha=sig, xmax=r, xmin=0), linewidth = 1) +
+  geom_linerange(aes(color = dir, alpha = sig, xmin = CI_low, xmax = CI_high, linewidth = log(N))) +
   # geom_linerange(aes(color=dir, alpha=sig, ymin=0, ymax=r, group=Sample), position = position_dodge2(width = 0.7), linewidth=2.5) +
   # geom_linerange(aes(ymin = CI_low, ymax = CI_high, color = dir, alpha=sig, group=Sample), position = position_dodge2(width = 0.7),
   #                linewidth = 1) +
-  facet_grid(Component ~ var_Interoception, scales = "free_y", switch = "y") +
+  facet_grid(Component ~ var_Interoception, scales = "free", space ="free", switch = "y") +
   scale_fill_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
   scale_color_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
   scale_alpha_discrete(range = c(0.2, 0.9), guide = "none") +
-  scale_y_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
+  scale_x_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
   scale_linewidth_continuous(range = c(3, 7), guide = "none") +
-  coord_flip(ylim = c(-0.35, 0.35)) +
+  coord_cartesian(xlim = c(-0.4, 0.4)) +
   theme_modern(axis.title.space = 5) +
-  labs(y = "Strength of Association (std. Beta)") +
+  labs(x = "Strength of Association (std. Beta)") +
   theme(panel.grid.major.y = element_line(),
         axis.title.y = element_blank(),
         axis.line.x = element_blank(),
