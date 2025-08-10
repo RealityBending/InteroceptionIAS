@@ -26,6 +26,7 @@ library(lavaan)
 library(ggraph)
 library(tidySEM)
 library(EGAnet)
+library(haven)
 
 ias_vars <- c(
   "Heart", "Hungry", "Breathing", "Thirsty", "Urinate", "Defecate", "Taste", "Vomit", "Sneeze", "Cough", "Temp",
@@ -112,7 +113,7 @@ df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
 
 df4$MAIA_AttentionReg <- rowMeans(select(df4, starts_with("MAIA_AR")), na.rm = TRUE)
 df4$MAIA_BodyListening <- rowMeans(select(df4, starts_with("MAIA_BL")), na.rm = TRUE)
-df4$MAIA_BodyTrusting <- rowMeans(select(df4, starts_with("MAIA_TR")), na.rm = TRUE)
+df4$MAIA_Trusting <- rowMeans(select(df4, starts_with("MAIA_TR")), na.rm = TRUE)
 df4$MAIA_EmoAwareness <- rowMeans(select(df4, starts_with("MAIA_EA")), na.rm = TRUE)
 df4$MAIA_SelfReg<- rowMeans(select(df4, starts_with("MAIA_SR")), na.rm = TRUE)
 df4$MAIA_Noticing <- rowMeans(select(df4, starts_with("MAIA_NT")), na.rm = TRUE)
@@ -198,7 +199,8 @@ df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |>
     MAIA_NotWorrying = MAIA_NOT_WORRYING, MAIA_AttentionReg = mAIA_ATTENTION_REGULATION,
     MAIA_SelfReg = MAIA_SELF_REGULATION, MAIA_BodyListening = MAIA_BODY_LISTENING,
     MAIA_Trusting = MAIA_TRUSTING, MAIA_EmoAwareness = MAIA_EMOTIONAL_AWARENESS
-  )
+  ) |> 
+  mutate(across(starts_with("MAIA_"), \(x) x - 1)) # Original scale 1-6
 
 df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |> 
   select(-COUNTRY_OTHER, -EDUCATION_OTHER, -Sample) |> 
@@ -214,7 +216,8 @@ df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |>
     MAIA_NotWorrying = maiaNotWorrying, MAIA_AttentionReg = maiaAttentionRegulation,
     MAIA_SelfReg = maiaSelfRegulation, MAIA_BodyListening = maiaBodyListening,
     MAIA_Trusting = maiaTrusting, MAIA_EmoAwareness = maiaEmotionalAwareness
-  )
+  ) |> 
+  mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(1, 5)))) # Original scale 1-5
   
   
 df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |> 
@@ -232,7 +235,8 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
     MAIA_SelfReg = MAIA_selfreg, MAIA_BodyListening = MAIA_bodlis,
     MAIA_Trusting = MAIA_trust, MAIA_EmoAwareness = MAIA_emoaw,
     ICQ = ICQ_sum
-  )
+  ) |> 
+  mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(0, 6)))) # Original scale 0-6
 ```
 
 ### Sample 8
@@ -308,7 +312,8 @@ df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameR
     MAIA_SelfReg = MAIA_SelfRegulation
   ) |>
   filter(!is.na(Urinate)) |> 
-  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1))
+  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1)) |> 
+  mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5)))) 
 ```
 
 ### Sample 11
@@ -333,7 +338,7 @@ df11  <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     MAIA2_NotWorrying_1_R = 1 - MAIA2_NotWorrying_1_R,
     MAIA2_NotWorrying_2_R = 1 - MAIA2_NotWorrying_2_R,
     MAIA2_NotWorrying_5_R = 1 - MAIA2_NotWorrying_5_R) |> 
-  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1))
+  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1)) 
 
 # Compute subscales
 
@@ -345,6 +350,8 @@ df11$MAIA_NotDistracting<- rowMeans(select(df11 , starts_with("MAIA2_NotDistract
 df11$MAIA_NotWorrying<- rowMeans(select(df11 , starts_with("MAIA2_NotWorrying")))
 df11$MAIA_SelfReg<- rowMeans(select(df11 , starts_with("MAIA2_SelfRegulation")))
 df11$MAIA_Trusting<- rowMeans(select(df11 , starts_with("MAIA2_Trusting")))
+
+df11 <- mutate(df11, across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5)))) 
 
 ```
 
@@ -364,7 +371,8 @@ df12  <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
     MAIA_SelfReg = MAIA_SelfRegulation
   ) |>
   filter(!is.na(Heart)) |>  # participant is outlier and had total IAS scores below 0.4 
-  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1))
+  datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1)) |> 
+  mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5)))) 
 ```
 
 ### Sample 13
@@ -731,7 +739,7 @@ data1a <- select(df1a, all_of(dens1a$Parameter))
 data1b <- select(df1b, all_of(dens1b$Parameter))
 data2 <- select(df2, all_of(dens2$Parameter))
 data3 <- select(df3, all_of(dens3$Parameter))
-data6 <- select(df4, all_of(dens4$Parameter))
+data4 <- select(df4, all_of(dens4$Parameter))
 data5 <- select(df5, all_of(dens5$Parameter))
 data6 <- select(df6, all_of(dens6$Parameter))
 data7a <- select(df7a, all_of(dens7a$Parameter))
@@ -748,7 +756,7 @@ data14  <- select(df14, all_of(dens14$Parameter))
 data15   <- select(df15, all_of(dens15$Parameter))
 
 data_all <- rbind(
-  data1a, data1b, data2, data3, data6, data5, data6, data7a, data7b, data7c,
+  data1a, data1b, data2, data3, data4, data5, data6, data7a, data7b, data7c,
   mutate(data8a, Tickle = NA), 
   mutate(data8b, Tickle = NA), data9,
   mutate(data10, Taste = NA, Cough = NA, Blood_Sugar = NA),  
@@ -1512,7 +1520,7 @@ data2f <- select(data2, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 data3f <- select(data3, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
-data6f <- select(data6, -Taste, -Affective_touch, -Vomit, -Itch,
+data4f <- select(data4, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 data5f <- select(data5, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
@@ -1809,8 +1817,8 @@ rez_hclust <- make_hclust(data1af)
 rez_ega <- make_ega(data1af, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data1af, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]]))
 rez_cfa1a  <- make_cfa(data1af)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -1892,8 +1900,8 @@ rez_hclust <- make_hclust(data1bf)
 rez_ega <- make_ega(data1af, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1bf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data1bf, n = 3, cols = c("F1" = colors[["Urinate"]], "F2" = colors[["Bruise"]], 
+                                            "F3" = colors[["Cough"]], "F4" = colors[["Itch"]]))
 rez_cfa1b  <- make_cfa(data1bf)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -2009,7 +2017,7 @@ rez_cfa2$test
 
 ##### Summary
 
-```{r}
+```{r data3}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2027,7 +2035,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data3_details}
 #| warning: false
 #| message: false
 
@@ -2048,7 +2056,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data3f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2060,14 +2068,14 @@ rez_ega <- make_ega(data3f, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data3f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf3  <- make_cfa(data3f)
+rez_cfa3  <- make_cfa(data3f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data3f_details}
 #| warning: false
 #| message: false
 
@@ -2092,7 +2100,7 @@ rez_cfa3$test
 
 ##### Summary
 
-```{r}
+```{r data4}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2110,7 +2118,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data4_details}
 #| warning: false
 #| message: false
 
@@ -2131,7 +2139,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data4f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2150,7 +2158,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data4f_details}
 #| warning: false
 #| message: false
 
@@ -2175,7 +2183,7 @@ rez_cf4$test
 
 ##### Summary
 
-```{r}
+```{r data5}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2185,15 +2193,15 @@ rez_hclust <- make_hclust(data5)
 rez_ega <- make_ega(data5, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data5, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data5, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Itch"]], 
+                                            "F3" = colors[["Breathing"]], "F4" = colors[["Urinate"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data5_details}
 #| warning: false
 #| message: false
 
@@ -2214,38 +2222,38 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+Note: EGA errors.
+
+```{r data5f}
 #| warning: false
 #| message: false
 #| fig-width: 12
 #| fig-height: 20
 
 rez_hclust <- make_hclust(data5f)
-rez_ega <- make_ega(data5f, cols = c(
-  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
-  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data5f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+# rez_ega <- make_ega(data5f, cols = c(
+#   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+#   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data5f, n = 5, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]],
+                                            "F5" = colors[["Urinate"]]))
 rez_cfa5  <- make_cfa(data5f)
 
-rez_hclust$p / rez_ega$p / rez_efa$p
+rez_hclust$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data5f_details}
 #| warning: false
 #| message: false
 
 plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
 pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
 
-stab <- EGAnet::itemStability(rez_ega$rez)
-rez_ega$table
-
 plot(rez_efa$n_fac)
 
-rez_cf5$test
+rez_cfa5$test
 ```
 
 ::::
@@ -2258,7 +2266,7 @@ rez_cf5$test
 
 ##### Summary
 
-```{r}
+```{r data6}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2276,7 +2284,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data6_details}
 #| warning: false
 #| message: false
 
@@ -2297,7 +2305,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data6f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2309,14 +2317,14 @@ rez_ega <- make_ega(data6f, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data6f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf6  <- make_cfa(data6f)
+rez_cfa6  <- make_cfa(data6f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data6f_details}
 #| warning: false
 #| message: false
 
@@ -2328,7 +2336,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf6$test
+rez_cfa6$test
 ```
 
 ::::
@@ -2341,7 +2349,7 @@ rez_cf6$test
 
 ##### Summary
 
-```{r}
+```{r data7a}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2359,7 +2367,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data7a_details}
 #| warning: false
 #| message: false
 
@@ -2380,7 +2388,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data7af}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2399,7 +2407,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data7af_details}
 #| warning: false
 #| message: false
 
@@ -2424,7 +2432,7 @@ rez_cf7a$test
 
 ##### Summary
 
-```{r}
+```{r data7b}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2442,7 +2450,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data7b_details}
 #| warning: false
 #| message: false
 
@@ -2463,7 +2471,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data7bf}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2475,14 +2483,14 @@ rez_ega <- make_ega(data7bf, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data7bf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf7b  <- make_cfa(data7bf)
+rez_cfa7b  <- make_cfa(data7bf)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data7bf_details}
 #| warning: false
 #| message: false
 
@@ -2494,7 +2502,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf7b$test
+rez_cfa7b$test
 ```
 
 ::::
@@ -2507,7 +2515,7 @@ rez_cf7b$test
 
 ##### Summary
 
-```{r}
+```{r data7c}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2525,7 +2533,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data7c_details}
 #| warning: false
 #| message: false
 
@@ -2546,7 +2554,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data7cf}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2558,14 +2566,14 @@ rez_ega <- make_ega(data7cf, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data7cf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf7c  <- make_cfa(data7cf)
+rez_cfa7c  <- make_cfa(data7cf)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data7cf_details}
 #| warning: false
 #| message: false
 
@@ -2577,7 +2585,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf7c$test
+rez_cfa7c$test
 ```
 
 ::::
@@ -2590,7 +2598,7 @@ rez_cf7c$test
 
 ##### Summary
 
-```{r}
+```{r data8a}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2608,9 +2616,9 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
-#| warning: false
+```{r data8a_details}
 #| message: false
+#| warning: false
 
 plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
 pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
@@ -2629,11 +2637,11 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
-#| warning: false
+```{r data8af}
 #| message: false
-#| fig-width: 12
+#| warning: false
 #| fig-height: 20
+#| fig-width: 12
 
 rez_hclust <- make_hclust(data8af)
 rez_ega <- make_ega(data8af, cols = c(
@@ -2641,14 +2649,14 @@ rez_ega <- make_ega(data8af, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf8a  <- make_cfa(data8af)
+rez_cfa8a  <- make_cfa(data8af)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data8af_details}
 #| warning: false
 #| message: false
 
@@ -2660,7 +2668,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf8a$test
+rez_cfa8a$test
 ```
 ::::
 
@@ -2672,7 +2680,7 @@ rez_cf8a$test
 
 ##### Summary
 
-```{r}
+```{r data8b}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2690,7 +2698,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data8b_details}
 #| warning: false
 #| message: false
 
@@ -2711,7 +2719,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data8bf}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2723,14 +2731,14 @@ rez_ega <- make_ega(data8bf, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data8bf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf8b  <- make_cfa(data8bf)
+rez_cfa8b  <- make_cfa(data8bf)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data8bf_details}
 #| warning: false
 #| message: false
 
@@ -2742,7 +2750,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf8b$test
+rez_cfa8b$test
 ```
 ::::
 
@@ -2754,7 +2762,7 @@ rez_cf8b$test
 
 ##### Summary
 
-```{r}
+```{r data9}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2772,7 +2780,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data9_details}
 #| warning: false
 #| message: false
 
@@ -2793,7 +2801,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data9f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2805,14 +2813,14 @@ rez_ega <- make_ega(data9f, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data9f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf9  <- make_cfa(data9f)
+rez_cfa9  <- make_cfa(data9f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data9f_details}
 #| warning: false
 #| message: false
 
@@ -2824,7 +2832,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf9$test
+rez_cfa9$test
 ```
 ::::
 
@@ -2836,7 +2844,7 @@ rez_cf9$test
 
 ##### Summary
 
-```{r}
+```{r data10}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2854,7 +2862,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data10_details}
 #| warning: false
 #| message: false
 
@@ -2875,7 +2883,9 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+Note: No CFA (missing items)
+
+```{r data10f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2887,14 +2897,14 @@ rez_ega <- make_ega(data10f, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data10f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf10  <- make_cfa(data10f)
+# rez_cfa10  <- make_cfa(data10f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data10f_details}
 #| warning: false
 #| message: false
 
@@ -2906,7 +2916,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf10$test
+# rez_cfa10$test
 ```
 ::::
 
@@ -2918,7 +2928,7 @@ rez_cf10$test
 
 ##### Summary
 
-```{r}
+```{r data11}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2936,7 +2946,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data11_details}
 #| warning: false
 #| message: false
 
@@ -2957,7 +2967,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data11f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -2969,14 +2979,14 @@ rez_ega <- make_ega(data11f, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf11  <- make_cfa(data11f)
+rez_cfa11  <- make_cfa(data11f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data11f_details}
 #| warning: false
 #| message: false
 
@@ -2988,7 +2998,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf11$test
+rez_cfa11$test
 ```
 ::::
 
@@ -3000,7 +3010,7 @@ rez_cf11$test
 
 ##### Summary
 
-```{r}
+```{r data12}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -3010,7 +3020,7 @@ rez_hclust <- make_hclust(data12)
 rez_ega <- make_ega(data12, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data12, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+rez_efa <- make_efa(data12, n = 2, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3018,7 +3028,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data12_details}
 #| warning: false
 #| message: false
 
@@ -3039,7 +3049,9 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+Note: CFA errors.
+
+```{r data12f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -3049,16 +3061,16 @@ rez_hclust <- make_hclust(data12f)
 rez_ega <- make_ega(data8af, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data12f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf12  <- make_cfa(data12f)
+rez_efa <- make_efa(data12f, n = 5, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+# rez_cfa12  <- make_cfa(data12f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data12f_details}
 #| warning: false
 #| message: false
 
@@ -3070,7 +3082,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf12$test
+# rez_cfa12$test
 ```
 ::::
 
@@ -3082,7 +3094,7 @@ rez_cf12$test
 
 ##### Summary
 
-```{r}
+```{r data13}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -3100,7 +3112,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data13_details}
 #| warning: false
 #| message: false
 
@@ -3121,7 +3133,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data13f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -3133,14 +3145,14 @@ rez_ega <- make_ega(data13f, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data13f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf13  <- make_cfa(data13f)
+rez_cfa13  <- make_cfa(data13f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data13f_details}
 #| warning: false
 #| message: false
 
@@ -3152,7 +3164,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf13$test
+rez_cfa13$test
 ```
 ::::
 
@@ -3164,7 +3176,7 @@ rez_cf13$test
 
 ##### Summary
 
-```{r}
+```{r data14}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -3174,7 +3186,7 @@ rez_hclust <- make_hclust(data14)
 rez_ega <- make_ega(data14, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data14, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+rez_efa <- make_efa(data14, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3182,7 +3194,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data14_details}
 #| warning: false
 #| message: false
 
@@ -3203,7 +3215,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data14f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -3214,15 +3226,15 @@ rez_ega <- make_ega(data14f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf14  <- make_cfa(data14f)
+                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_cfa14  <- make_cfa(data14f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data14f_details}
 #| warning: false
 #| message: false
 
@@ -3234,7 +3246,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf14$test
+rez_cfa14$test
 ```
 ::::
 
@@ -3246,7 +3258,7 @@ rez_cf14$test
 
 ##### Summary
 
-```{r}
+```{r data15}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -3256,7 +3268,7 @@ rez_hclust <- make_hclust(data15)
 rez_ega <- make_ega(data15, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data15, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+rez_efa <- make_efa(data15, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3264,7 +3276,7 @@ rez_hclust$p / rez_ega$p / rez_efa$p
 
 ##### Details
 
-```{r}
+```{r data15_details}
 #| warning: false
 #| message: false
 
@@ -3285,7 +3297,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-```{r}
+```{r data15f}
 #| warning: false
 #| message: false
 #| fig-width: 12
@@ -3297,14 +3309,14 @@ rez_ega <- make_ega(data15f, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
-rez_cf15  <- make_cfa(data15f)
+rez_cfa15  <- make_cfa(data15f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
 ##### Details
 
-```{r}
+```{r data15f_details}
 #| warning: false
 #| message: false
 
@@ -3316,39 +3328,10 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cf15$test
+rez_cfa15$test
 ```
 ::::
 
-## Model Performance
-
-```{r}
-#| warning: false
-
-rbind(
-  mutate(rez_cfa0$perf, Sample = "All Samples"),
-  mutate(rez_cfa1a$perf, Sample = "Sample 1a"),
-  mutate(rez_cfa1b$perf, Sample = "Sample 1b"),
-  mutate(rez_cfa2$perf, Sample = "Sample 2"),
-  mutate(rez_cfa3$perf, Sample = "Sample 3"),
-  mutate(rez_cfa4$perf, Sample = "Sample 4"),
-  mutate(rez_cfa5$perf, Sample = "Sample 5"),
-  mutate(rez_cfa6$perf, Sample = "Sample 6"),
-  mutate(rez_cfa7a$perf, Sample = "Sample 7a"),
-  mutate(rez_cfa7b$perf, Sample = "Sample 7b"),
-  mutate(rez_cfa7c$perf, Sample = "Sample 7c"),
-  mutate(rez_cfa8a$perf, Sample = "Sample 8a"),
-  mutate(rez_cfa8b$perf, Sample = "Sample 8b"),
-  mutate(rez_cfa9$perf, Sample = "Sample 9"),
-  mutate(rez_cfa10$perf, Sample = "Sample 10"),
-  mutate(rez_cfa11$perf, Sample = "Sample 11"),
-  mutate(rez_cfa12$perf, Sample = "Sample 12"),
-  mutate(rez_cfa13$perf, Sample = "Sample 13"),
-  mutate(rez_cfa14$perf, Sample = "Sample 14"),
-  mutate(rez_cfa15$perf, Sample = "Sample 15")
-) |> 
-  select(Sample, Chi2, RMSEA, CFI, "SRMR") 
-```
 
 
 
@@ -3358,6 +3341,7 @@ Note the usage of descriptive factor names relating directly to the items to avo
 
 ```{r}
 #| warning: false
+#| eval: true
 
 # Add empirical variables
 add_empirical <- function(data, sample = "Sample 1a") {
@@ -3389,7 +3373,7 @@ scores <- list(
   sample1b = add_empirical(data1b, "Sample 1b"),
   sample2 = add_empirical(data2, "Sample 2"),
   sample3 = add_empirical(data3, "Sample 3"),
-  sample4 = add_empirical(data6, "Sample 4"),
+  sample4 = add_empirical(data4, "Sample 4"),
   sample5 = add_empirical(data5, "Sample 5"),
   sample6 = add_empirical(data6, "Sample 6"),
   sample7a = add_empirical(data7a, "Sample 7a"),
