@@ -221,9 +221,7 @@ df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |>
     MAIA_NotWorrying = maiaNotWorrying, MAIA_AttentionReg = maiaAttentionRegulation,
     MAIA_SelfReg = maiaSelfRegulation, MAIA_BodyListening = maiaBodyListening,
     MAIA_Trusting = maiaTrusting, MAIA_EmoAwareness = maiaEmotionalAwareness,
-    BPQ_BodyAwareness =BPQ_Sum
-    
-  ) |> 
+    BPQ_BodyAwareness =BPQ_Sum) |> 
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(1, 5)))) # Original scale 1-5
   
   
@@ -600,7 +598,7 @@ save(data, file = "../data/data.RData")
 - **Sample 16 **: Data from [Poreiro's] study , included `r report::report_participants(df16 , age = "Age", gender = "Gender")`
 
 
-Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15)`.
+Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15) +nrow(df16)`.
 
 ```{r}
 
@@ -630,13 +628,14 @@ desc_df8a <- desc(df8a)
 desc_df8b <- desc(df8b)
 desc_df9 <- desc(df9)
 desc_df10 <- desc(df10)
-desc_df11  <- desc(df11)
-desc_df12  <- desc(df12)
-desc_df13  <- desc(df13)
-desc_df14  <- desc(df14)
-desc_df15   <- desc(df15)
+desc_df11 <- desc(df11)
+desc_df12 <- desc(df12)
+desc_df13 <- desc(df13)
+desc_df14 <- desc(df14)
+desc_df15 <- desc(df15)
+desc_df16 <- desc(df16)
 
-desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df5, desc_df6, desc_df7a, desc_df7b, desc_df7c, desc_df8a, desc_df8b, desc_df9, desc_df10, desc_df11 , desc_df12 , desc_df13 , desc_df14 , desc_df15 )
+desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df5, desc_df6, desc_df7a, desc_df7b, desc_df7c, desc_df8a, desc_df8b, desc_df9, desc_df10, desc_df11 , desc_df12 , desc_df13 , desc_df14 , desc_df15, desc_df16)
 
 ## calculate weighted mean
 
@@ -764,9 +763,11 @@ dens14  <- estimate_density(select(df14, all_of(ias_vars)), method = "kernSmooth
   mutate(Sample = "Sample 14")
 dens15  <- estimate_density(select(df15, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 15")
+dens16  <- estimate_density(select(df16, all_of(ias_vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 16")
 
 
-p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10, dens11 , dens12, dens13, dens14, dens15) 
+p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10, dens11 , dens12, dens13, dens14, dens15, dens16) 
 
 linetype <- setNames(rep("solid", length(ias_vars)), ias_vars)
 linetype["Affective touch"] <- "dotted"
@@ -822,13 +823,15 @@ data12  <- select(df12, all_of(dens12$Parameter))
 data13  <- select(df13, all_of(dens13$Parameter))
 data14  <- select(df14, all_of(dens14$Parameter))
 data15   <- select(df15, all_of(dens15$Parameter))
+data16   <- select(df16, all_of(dens16$Parameter))
+
 
 data_all <- rbind(
   data1a, data1b, data2, data3, data4, data5, data6, data7a, data7b, data7c,
   mutate(data8a, Tickle = NA), 
   mutate(data8b, Tickle = NA), data9,
   mutate(data10, Taste = NA, Cough = NA, Blood_Sugar = NA),  
-  data11,  data12 , data13, data14, data15  
+  data11,  data12 , data13, data14, data15, data16  
 ) 
 ```
 
@@ -1000,6 +1003,12 @@ make_correlation(data14)
 make_correlation(data15)
 ```
 
+#### Sample 16  
+
+```{r}
+make_correlation(data16)
+```
+
 :::
 
 
@@ -1157,7 +1166,7 @@ uva13$keep_remove
 #### Sample 14 
 
 ```{r}
-uva14  <- EGAnet::UVA(data = data14 , cut.off = 0.3)
+uva14  <- EGAnet::UVA(data = data14, cut.off = 0.3)
 uva14 
 uva14$keep_remove
 ```
@@ -1165,9 +1174,17 @@ uva14$keep_remove
 #### Sample 15  
 
 ```{r}
-uva15   <- EGAnet::UVA(data = data15  , cut.off = 0.3)
+uva15   <- EGAnet::UVA(data = data15, cut.off = 0.3)
 uva15  
 uva15$keep_remove
+```
+
+#### Sample 16  
+
+```{r}
+uva16  <- EGAnet::UVA(data = data16, cut.off = 0.3)
+uva16  
+uva16$keep_remove
 ```
 
 #### Summary
@@ -1188,11 +1205,12 @@ rez_uva <- c(uva1a$keep_remove$remove,
   uva8b$keep_remove$remove,
   uva9$keep_remove$remove,
   uva10$keep_remove$remove,
-  uva11 $keep_remove$remove,
-  uva12 $keep_remove$remove,
-  uva13 $keep_remove$remove,
-  uva14 $keep_remove$remove,
-  uva15  $keep_remove$remove)
+  uva11$keep_remove$remove,
+  uva12$keep_remove$remove,
+  uva13$keep_remove$remove,
+  uva14$keep_remove$remove,
+  uva15$keep_remove$remove,
+  uva16$keep_remove$remove)
 
 sort(table(rez_uva), decreasing = TRUE) / length(rez_uva) 
 ```
@@ -1220,11 +1238,12 @@ data7c <- select(data7c, -Tickle)
 # data8b <- select(data8b, -Tickle)
 data9 <- select(data9, -Tickle)
 data10 <- select(data10, -Tickle)
-data11  <- select(data11 , -Tickle)
-data12  <- select(data12 , -Tickle)
-data13  <- select(data13 , -Tickle)
-data14  <- select(data14 , -Tickle)
-data15   <- select(data15  , -Tickle)
+data11 <- select(data11 , -Tickle)
+data12 <- select(data12 , -Tickle)
+data13 <- select(data13 , -Tickle)
+data14 <- select(data14 , -Tickle)
+data15 <- select(data15 , -Tickle)
+data16 <- select(data16 , -Tickle)
 ```
 
 #### Initial
@@ -1617,6 +1636,8 @@ data13f <- select(data13, -Taste, -Affective_touch, -Vomit, -Itch,
 data14f <- select(data14, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 data15f <- select(data15, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data16f <- select(data16, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 ```
 
@@ -3400,6 +3421,88 @@ rez_cfa15$test
 ```
 ::::
 
+### Sample 16
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data16)
+rez_ega <- make_ega(data16, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data16, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data16f)
+rez_ega <- make_ega(data16f, cols = c(
+  "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
+  "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data16f, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Heart"]]))
+rez_cfa16  <- make_cfa(data16f)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cfa16$test
+```
+
+::::
 
 
 
