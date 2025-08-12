@@ -69,10 +69,7 @@ df2 <- data |>
     Cough = `IAS 10`, Temp = `IAS 11`, Sex_arousal = `IAS 12`, Wind = `IAS 13`, Burp = `IAS 14`,
     Muscles = `IAS 15`, Bruise = `IAS 16`, Pain = `IAS 17`, Blood_Sugar = `IAS 18`,
     Affective_touch = `IAS 19`, Tickle = `IAS 20`, Itch = `IAS 21`,
-    MAIA_AttentionRegulation = MAIA_AttentionReg, MAIA_BodyListening = MAIA_BodyListening,
-    MAIA_Trusting = MAIA_BodyTrusting, MAIA_EmotionalAwareness = MAIA_EmoAwareness,
-    MAIA_NotDistracting=MAIA_NotDistracting, MAIA_NotWorrying=MAIA_NotWorrying,
-    MAIA_SelfRegulation=MAIA_SelfReg, MAIA_Noticing=MAIA_Noticing,
+    MAIA_Trusting = MAIA_BodyTrusting,
     BPQ_BodyAwareness = BPQ_A, BPQ_AutonomicReactivity = BPQ_R)
 rm(data)
 ```
@@ -91,7 +88,8 @@ df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
     Urinate = IAS5, Defecate = IAS6, Taste = IAS7, Vomit = IAS8, Sneeze = IAS9,
     Cough = IAS10, Temp = IAS11, Sex_arousal = IAS12, Wind = IAS13, Burp = IAS14,
     Muscles = IAS15, Bruise = IAS16, Pain = IAS17, Blood_Sugar = IAS18,
-    Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21
+    Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21,
+    TAS_EOT = TAS_ExternallyOrientedThinking, TAS_DIF = TAS_IdentifyingFeelings, TAS_DDF = TAS_DescribingFeelings
   )
 ```
 
@@ -100,6 +98,7 @@ df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
 - Todd (2022) 
   - https://osf.io/ms354/
   - MAIA does not include items for not-worrying and not-distracting 
+  - BPQ 26 - body awareness 
 
 ```{r}
 df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
@@ -118,6 +117,8 @@ df4$MAIA_Trusting <- rowMeans(select(df4, starts_with("MAIA_TR")), na.rm = TRUE)
 df4$MAIA_EmoAwareness <- rowMeans(select(df4, starts_with("MAIA_EA")), na.rm = TRUE)
 df4$MAIA_SelfReg<- rowMeans(select(df4, starts_with("MAIA_SR")), na.rm = TRUE)
 df4$MAIA_Noticing <- rowMeans(select(df4, starts_with("MAIA_NT")), na.rm = TRUE)
+
+df4$BPQ_BodyAwareness <- rowMeans(select(df4, starts_with("BPQ")), na.rm = TRUE)
 ```
 
     
@@ -175,7 +176,9 @@ df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |>
     Urinate = IAS_05, Defecate = IAS_06, Taste = IAS_07, Vomit = IAS_08, Sneeze = IAS_09,
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
-    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
+    Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
+    PHQ2_Sum= PHQ2_sum,
+    GAD2_Sum = GAD2_sum
   )
 ```
 
@@ -199,7 +202,8 @@ df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |>
     MAIA_Noticing = MAIA_NOTICING, MAIA_NotDistracting = MAIA_NON_DISTRACTING,
     MAIA_NotWorrying = MAIA_NOT_WORRYING, MAIA_AttentionReg = mAIA_ATTENTION_REGULATION,
     MAIA_SelfReg = MAIA_SELF_REGULATION, MAIA_BodyListening = MAIA_BODY_LISTENING,
-    MAIA_Trusting = MAIA_TRUSTING, MAIA_EmoAwareness = MAIA_EMOTIONAL_AWARENESS
+    MAIA_Trusting = MAIA_TRUSTING, MAIA_EmoAwareness = MAIA_EMOTIONAL_AWARENESS,
+    STAIT_Sum = STAI_T_Sumscore
   ) |> 
   mutate(across(starts_with("MAIA_"), \(x) x - 1)) # Original scale 1-6
 
@@ -216,7 +220,9 @@ df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |>
     MAIA_Noticing = maiaNotice, MAIA_NotDistracting = maiaNonDistracting,
     MAIA_NotWorrying = maiaNotWorrying, MAIA_AttentionReg = maiaAttentionRegulation,
     MAIA_SelfReg = maiaSelfRegulation, MAIA_BodyListening = maiaBodyListening,
-    MAIA_Trusting = maiaTrusting, MAIA_EmoAwareness = maiaEmotionalAwareness
+    MAIA_Trusting = maiaTrusting, MAIA_EmoAwareness = maiaEmotionalAwareness,
+    BPQ_BodyAwareness =BPQ_Sum
+    
   ) |> 
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(1, 5)))) # Original scale 1-5
   
@@ -235,7 +241,8 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
     MAIA_NotWorrying = MAIA_notwor, MAIA_AttentionReg = MAIA_attreg,
     MAIA_SelfReg = MAIA_selfreg, MAIA_BodyListening = MAIA_bodlis,
     MAIA_Trusting = MAIA_trust, MAIA_EmoAwareness = MAIA_emoaw,
-    ICQ = ICQ_sum
+    ICQ = ICQ_sum,
+    STAIT_Sum = STAIT_sum
   ) |> 
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(0, 6)))) # Original scale 0-6
 ```
@@ -260,6 +267,8 @@ df8a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
     Affective_touch = Touch, Itch = ITCH
   ) 
 
+df8a$BPQ_BodyAwareness <- rowMeans(select(df8a, starts_with("BPQ")), na.rm = TRUE)
+
 
 df8b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
   mutate(Gender = as.character(ifelse(Sex == "男", "Male", ifelse(Sex == "女", "Female", "Other")))) |>
@@ -268,7 +277,9 @@ df8b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
     Urinate = URINA, Defecate = Defec, Taste = TASTE, Vomit = VOMIT, Sneeze = Sneez,
     Cough = COUGH, Temp = TEMPE, Sex_arousal = SEXAR, Wind = WIND, Burp = Burp,
     Muscles = MUSCL, Bruise = Bruis, Pain = PAIN, Blood_Sugar = BloSu,
-    Affective_touch = Touch, Itch = ITCH)
+    Affective_touch = Touch, Itch = ITCH,
+    PHQ15_Sum = PHQ15_sum,
+    PHQ9_Sum = PHQ9_sum)
 ```
 
 ### Sample 9
@@ -287,7 +298,14 @@ df9 <- df9 |>
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
-  )
+  ) |>
+  mutate(
+    BFI_NEUROTICISM = (BFI_1 + BFI_2 + BFI_3)/3,
+    BFI_AGREEABLENESS = (BFI_10R + BFI_11 + BFI_12)/3,
+    BFI_EXTROVERSION = (BFI_4 + BFI_5 + BFI_6),
+    BFI_CONSCIENTIOUSNESS = (BFI_13 + BFI_14 + BFI_15R)/3,
+    BFI_OPENNESS = (BFI_7 + BFI_8 + BFI_9)/3
+    )
 ```
 
 ### Sample 10
@@ -327,7 +345,9 @@ df11  <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     Cough = IAS_10, Temp = IAS_11, Sex_arousal = IAS_12, Wind = IAS_13, Burp = IAS_14,
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
-    typeSample = Sample
+    typeSample = Sample,
+    STAIT_Sum = STAI5_General,
+    BDI_Sum = BDI2_Total
   ) |>
   mutate(
     MAIA2_NotDistracting_1_R = 1 - MAIA2_NotDistracting_1_R,
@@ -410,6 +430,9 @@ df13$MAIA_NotDistracting<- rowMeans(select(df13 , starts_with("MAIA_NotDistracti
 df13$MAIA_NotWorrying<- rowMeans(select(df13 , starts_with("MAIA_NotWorrying")))
 df13$MAIA_SelfReg<- rowMeans(select(df13 , starts_with("MAIA_SelfRegulation")))
 df13$MAIA_Trusting<- rowMeans(select(df13 , starts_with("MAIA_Trusting")))
+
+df13$PHQ4_Depression <- (df13$PHQ4_Depression_4 + df13$PHQ4_Depression_3)/2
+df13$PHQ4_Anxiety <- (df13$PHQ4_Anxiety_2 + df13$PHQ4_Anxiety_1)/2
 ```
 
 ```{r}
@@ -465,17 +488,17 @@ df14  <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |>
     Cough = IAS_ACC_10, Temp = IAS_ACC_11, Sex_arousal = IAS_ACC_12, Wind = IAS_ACC_13, Burp = IAS_ACC_14,
     Muscles = IAS_ACC_15, Bruise = IAS_ACC_16, Pain = IAS_ACC_17, Blood_Sugar = IAS_ACC_18,
     Affective_touch = IAS_ACC_19, Tickle =IAS_ACC_21, Itch = IAS_ACC_22,
-    MAIA_EmoAwareness =MAIA_Emotional, MAIA_SelfReg = MAIA_SelfRegulation, MAIA_AttentionReg = MAIA_Attention
+    MAIA_EmoAwareness =MAIA_Emotional, MAIA_SelfReg = MAIA_SelfRegulation, MAIA_AttentionReg = MAIA_Attention,
+    STAIT_Sum = ANX
   ) |>
    mutate(Gender = case_when(
     Gender == 1 ~ "Male",
     Gender == 2 ~ "Female",
     Gender %in% c(3, 5) ~ "Other",
-    Gender == 4 ~ "NA"
-  )) |> ## compute dimensions for the TAS
-  mutate(TAS_DIF = TAS20_1 + TAS20_3 + TAS20_6 + TAS20_7 + TAS20_9 + TAS20_13 + TAS20_14,
-         TAS_DDF = TAS20_2 + (1-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
-         TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20) 
+    Gender == 4 ~ "NA"),
+    TAS_DIF = TAS20_1 + TAS20_3 + TAS20_6 + TAS20_7 + TAS20_9 + TAS20_13 + TAS20_14,
+    TAS_DDF = TAS20_2 + (1-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
+    TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20) 
 ```
 
 
@@ -498,6 +521,38 @@ df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive 
     Gender %in% c(3, 5) ~ "Other", 
     Gender == 4 ~ "NA", )) |>
   na.omit()
+```
+
+### Sample 16
+
+- Raquel Arjona and Robyn Scharte data 
+
+```{r}
+
+df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
+  rename(Age= age, Gender = gender_identity,
+         Heart = ias1, Hungry = ias2, Breathing = ias3, Thirsty = ias4, Urinate = ias5, 
+         Defecate=ias6, Taste = ias7,Vomit = ias8, Sneeze = ias9, Cough = ias10, 
+         Temp = ias11, Sex_arousal = ias12, Wind = ias13, Burp = ias14,Muscles = ias15, 
+         Bruise = ias16, Pain = ias17, Blood_Sugar = ias18, Affective_touch = ias19, 
+         Tickle =ias20, Itch = ias21,
+         ) |>
+  mutate(Gender = case_when(
+    Gender == "1" ~ "Male",
+    Gender == 2 ~ "Female",
+    Gender %in% c(3, 4, 5) ~ "Other",
+    Gender == 6 ~ "NA"),
+    MAIA_Noticing = (maia1 + maia2 + maia3 + maia4)/4,
+    MAIA_NotDistracting = (maia5_rev + maia6_rev + maia7_rev +maia8_rev + maia9_rev + maia10_rev)/6, 
+    MAIA_NotWorrying = (maia11_rev +maia12_rev  + maia13)/3,
+    MAIA_AttentionReg = (maia16 + maia17 + maia18 + maia19 + maia20 + maia21 + maia22)/7,
+    MAIA_EmoAwareness = (maia23 + maia24 + maia25 + maia26 +maia27)/5,
+    MAIA_SelfReg = (maia28 + maia29 + maia30 + maia31)/4,
+    MAIA_BodyListening = (maia32 + maia33 +maia34)/3,
+    MAIA_Trusting = (maia35 + maia36 + maia37)/3 ,
+    GAD7_Sum = rowSums(across(starts_with("gad1_")), na.rm = TRUE),
+    PHQ9_Sum = rowSums(across(starts_with("phq1_")), na.rm = TRUE))
+
 ```
 
 :::
