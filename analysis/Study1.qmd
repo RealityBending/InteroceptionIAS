@@ -530,18 +530,27 @@ df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive 
 ```{r}
 
 df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
-  rename(Age= age, Gender = gender_identity,
+  rename(Age= age, Gender = gender_identity, Education = education,
          Heart = ias1, Hungry = ias2, Breathing = ias3, Thirsty = ias4, Urinate = ias5, 
          Defecate=ias6, Taste = ias7,Vomit = ias8, Sneeze = ias9, Cough = ias10, 
          Temp = ias11, Sex_arousal = ias12, Wind = ias13, Burp = ias14,Muscles = ias15, 
          Bruise = ias16, Pain = ias17, Blood_Sugar = ias18, Affective_touch = ias19, 
          Tickle =ias20, Itch = ias21,
+         GAD2_Sum = gad2,
+         PHQ2_Sum = phq2
          ) |>
   mutate(Gender = case_when(
-    Gender == "1" ~ "Male",
+    Gender == 1 ~ "Male",
     Gender == 2 ~ "Female",
     Gender %in% c(3, 4, 5) ~ "Other",
     Gender == 6 ~ "NA"),
+    Education = case_when(
+      Education == 6 ~ "Bachelor",
+      Education == 7 ~ "Master",
+      Education == 8 ~ "Doctorate",
+      Education == 2 | Education == 3 ~ "High School", # GCSE + A-levels (16-18 years old)
+      Education == 4 | Education == 5 ~ "Other",       # NVQ and foundation year
+      Education == 1 ~ "No education"),
     MAIA_Noticing = (maia1 + maia2 + maia3 + maia4)/4,
     MAIA_NotDistracting = (maia5_rev + maia6_rev + maia7_rev +maia8_rev + maia9_rev + maia10_rev)/6, 
     MAIA_NotWorrying = (maia11_rev +maia12_rev  + maia13)/3,
@@ -551,7 +560,9 @@ df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
     MAIA_BodyListening = (maia32 + maia33 +maia34)/3,
     MAIA_Trusting = (maia35 + maia36 + maia37)/3 ,
     GAD7_Sum = rowSums(across(starts_with("gad1_")), na.rm = TRUE),
-    PHQ9_Sum = rowSums(across(starts_with("phq1_")), na.rm = TRUE))
+    PHQ9_Sum = rowSums(across(starts_with("phq1_")), na.rm = TRUE)) |>
+  filter (!Age == 2004.00, !Age == 1999.00, # misreported age
+          att == 2) # only those that select 'no' the attention check
 
 ```
 
@@ -562,7 +573,7 @@ df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
 
 ```{r}
 # Save all
-data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11 =df11 , df12 =df12 , df13  = df13 , df14 =df14 , df15  =df15)
+data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11 =df11 , df12 =df12 , df13  = df13 , df14 =df14 , df15  =df15, df16 = df16)
 save(data, file = "../data/data.RData")
 ```
 
@@ -586,6 +597,7 @@ save(data, file = "../data/data.RData")
 - **Sample 13**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df13 , age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 14**: Data from [Poreiro's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df14 , age = "Age", sex = NA, gender = "Gender")`
 - **Sample 15 **: Data from [Poreiro's] study , included `r report::report_participants(df15 , age = "Age", sex = NA, gender = "Gender")`
+- **Sample 16 **: Data from [Poreiro's] study , included `r report::report_participants(df16 , age = "Age", gender = "Gender")`
 
 
 Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15)`.
