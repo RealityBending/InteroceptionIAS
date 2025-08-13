@@ -354,6 +354,7 @@ data <- rbind(
   make_rez(with = "GAD2_Sum", component="Mood", name = "Anxiety (GAD-2)"), 
   make_rez(with = "STAIT_Sum", component="Mood", name = "Anxiety (STAI-T)"), 
   make_rez(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (PHQ-4)"),
+  make_rez(with = "STAI5_General", component="Mood", name = "Anxiety (STAI-5)"),
   make_rez(with = "GAD7_Sum", component="Mood", name = "Anxiety (GAD-7)")
 )
 ```
