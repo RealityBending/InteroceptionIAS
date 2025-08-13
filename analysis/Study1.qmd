@@ -1507,6 +1507,8 @@ make_efa <- function(data, n = 3, cols = c("F1" = "#009688", "F2" = "#795548", "
             name == "F4" ~ y_position[4],
             name == "F5" ~ y_position[5],
             name == "F6" ~ y_position[6],
+            name == "F7" ~ y_position[7],
+            name == "F8" ~ y_position[8],
             .default = NA
           ))
   layout[layout$type == "Item", "y"] <- seq(0, 1, length.out = sum(layout$type == "Item"))
@@ -1876,8 +1878,8 @@ rez_hclust <- make_hclust(data1a)
 rez_ega <- make_ega(data1a, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1a, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data1a, n = 4, cols = c("F1" = colors[["Itch"]], "F2" = colors[["Burp"]], 
+                                            "F3" = colors[["Defecate"]], "F4" = colors[["Hungry"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -1915,8 +1917,8 @@ rez_hclust <- make_hclust(data1af)
 rez_ega <- make_ega(data1af, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1af, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]]))
+rez_efa <- make_efa(data1af, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Urinate"]], 
+                                            "F3" = colors[["Bruise"]]))
 rez_cfa1a  <- make_cfa(data1af)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -1959,8 +1961,8 @@ rez_hclust <- make_hclust(data1b)
 rez_ega <- make_ega(data1b, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data1b, n = 4, cols = c("F1" = colors[["Urinate"]], "F2" = colors[["Bruise"]], 
+                                            "F3" = colors[["Sneeze"]], "F4" = colors[["Wind"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2125,8 +2127,8 @@ rez_hclust <- make_hclust(data3)
 rez_ega <- make_ega(data3, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data3, n = 3, cols = c("F1" = colors[["Sneeze"]], "F2" = colors[["Hungry"]], 
-                                            "F3" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data3, n = 4, cols = c("F1" = colors[["Cough"]], "F2" = colors[["Urinate"]], 
+                                            "F3" = colors[["Blood Sugar"]], "F4" = colors[["Sex arousal"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2291,8 +2293,9 @@ rez_hclust <- make_hclust(data5)
 rez_ega <- make_ega(data5, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data5, n = 8, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Itch"]], 
-                                            "F3" = colors[["Breathing"]], "F4" = colors[["Urinate"]], "F5" = colors[["Burp"]], "F6" = colors[["Taste"]], "F7" = colors[["Heart"]], "F8" = colors[["Vomit"]]))
+rez_efa <- make_efa(data5, n = 8, cols = c("F1" = colors[["Urinate"]], "F2" = colors[["Itch"]], 
+                                            "F3" = colors[["Burp"]], "F4" = colors[["Hungry"]], 
+                                           "F5" = colors[["Affective touch"]], "F6" = colors[["Breathing"]], "F7" = colors[["Sex arousal"]], "F8" = colors[["Taste"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2332,9 +2335,9 @@ rez_hclust <- make_hclust(data5f)
 # rez_ega <- make_ega(data5f, cols = c(
 #   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
 #   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data5f, n = 5, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]],
-                                            "F5" = colors[["Urinate"]]))
+rez_efa <- make_efa(data5f, n = 5, cols = c("F1" = colors[["Urinate"]], "F2" = colors[["Burp"]], 
+                                            "F3" = colors[["Wind"]], "F4" = colors[["Thirsty"]],
+                                            "F5" = colors[["Sneeze"]]))
 rez_cfa5  <- make_cfa(data5f)
 
 rez_hclust$p / rez_efa$p
@@ -2374,8 +2377,8 @@ rez_hclust <- make_hclust(data6)
 rez_ega <- make_ega(data6, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data6, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data6, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Hungry"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2413,8 +2416,8 @@ rez_hclust <- make_hclust(data6f)
 rez_ega <- make_ega(data6f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data6f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data6f, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Thirsty"]]))
 rez_cfa6  <- make_cfa(data6f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -2457,8 +2460,8 @@ rez_hclust <- make_hclust(data7a)
 rez_ega <- make_ega(data7a, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data7a, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data7a, n = 4, cols = c("F1" = colors[["Pain"]], "F2" = colors[["Sneeze"]], 
+                                            "F3" = colors[["Burp"]], "F4" = colors[["Urinate"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2496,8 +2499,8 @@ rez_hclust <- make_hclust(data7af)
 rez_ega <- make_ega(data7af, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data7af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data7af, n = 4, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Pain"]], 
+                                            "F3" = colors[["Sneeze"]], "F4" = colors[["Urinate"]]))
 rez_cf7a  <- make_cfa(data7af)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -2540,8 +2543,8 @@ rez_hclust <- make_hclust(data7b)
 rez_ega <- make_ega(data7b, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data7b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data7b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Urinate"]], 
+                                            "F3" = colors[["Heart"]], "F4" = colors[["Sneeze"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2579,8 +2582,8 @@ rez_hclust <- make_hclust(data7bf)
 rez_ega <- make_ega(data7bf, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data7bf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data7bf, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Urinate"]], 
+                                            "F3" = colors[["Breathing"]]))
 rez_cfa7b  <- make_cfa(data7bf)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -2623,8 +2626,8 @@ rez_hclust <- make_hclust(data7c)
 rez_ega <- make_ega(data7c, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data7c, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data7c, n = 3, cols = c("F1" = colors[["Cough"]], "F2" = colors[["Urinate"]], 
+                                            "F3" = colors[["Bruise"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2662,8 +2665,8 @@ rez_hclust <- make_hclust(data7cf)
 rez_ega <- make_ega(data7cf, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data7cf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data7cf, n = 4, cols = c("F1" = colors[["Cough"]], "F2" = colors[["Hungry"]], 
+                                            "F3" = colors[["Bruise"]], "F4" = colors[["Breathing"]]))
 rez_cfa7c  <- make_cfa(data7cf)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -2706,8 +2709,8 @@ rez_hclust <- make_hclust(data8a)
 rez_ega <- make_ega(data8a, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data8a, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data8a, n = 5, cols = c("F1" = colors[["Cough"]], "F2" = colors[["Thirsty"]], 
+                                            "F3" = colors[["Bruise"]], "F4" = colors[["Heart"]], "F5" = colors[["Urinate"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2745,8 +2748,8 @@ rez_hclust <- make_hclust(data8af)
 rez_ega <- make_ega(data8af, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Cough"]], "F2" = colors[["Thirsty"]], 
+                                            "F3" = colors[["Bruise"]], "F4" = colors[["Heart"]]))
 rez_cfa8a  <- make_cfa(data8af)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -2788,8 +2791,8 @@ rez_hclust <- make_hclust(data8b)
 rez_ega <- make_ega(data8b, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data8b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data8b, n = 5, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Thirsty"]], 
+                                            "F3" = colors[["Breathing"]], "F4" = colors[["Bruise"]], "F5" = colors[["Urinate"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2827,8 +2830,8 @@ rez_hclust <- make_hclust(data8bf)
 rez_ega <- make_ega(data8bf, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data8bf, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data8bf, n = 4, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Heart"]], 
+                                            "F3" = colors[["Thirsty"]], "F4" = colors[["Bruise"]]))
 rez_cfa8b  <- make_cfa(data8bf)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -2870,8 +2873,8 @@ rez_hclust <- make_hclust(data9)
 rez_ega <- make_ega(data9, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data9, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data9, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Thirsty"]], 
+                                            "F3" = colors[["Bruise"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2909,8 +2912,8 @@ rez_hclust <- make_hclust(data9f)
 rez_ega <- make_ega(data9f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data9f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data9f, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Urinate"]], 
+                                            "F3" = colors[["Pain"]]))
 rez_cfa9  <- make_cfa(data9f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -2952,8 +2955,8 @@ rez_hclust <- make_hclust(data10)
 rez_ega <- make_ega(data10, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data10, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data10, n = 4, cols = c("F1" = colors[["Hungry"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Itch"]], "F4" = colors[["Breathing"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2993,8 +2996,8 @@ rez_hclust <- make_hclust(data10f)
 rez_ega <- make_ega(data10f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data10f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data10f, n = 3, cols = c("F1" = colors[["Breathing"]], "F2" = colors[["Defecate"]], 
+                                            "F3" = colors[["Hungry"]]))
 # rez_cfa10  <- make_cfa(data10f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3036,8 +3039,8 @@ rez_hclust <- make_hclust(data11)
 rez_ega <- make_ega(data11, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data11, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data11, n = 4, cols = c("F1" = colors[["Hungry"]], "F2" = colors[["Wind"]], 
+                                            "F3" = colors[["Bruise"]], "F4" = colors[["Breathing"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -3075,8 +3078,8 @@ rez_hclust <- make_hclust(data11f)
 rez_ega <- make_ega(data11f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data11f, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Hungry"]], 
+                                            "F3" = colors[["Breathing"]]))
 rez_cfa11  <- make_cfa(data11f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3118,8 +3121,7 @@ rez_hclust <- make_hclust(data12)
 rez_ega <- make_ega(data12, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data12, n = 2, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data12, n = 2, cols = c("F1" = colors[["Urinate"]], "F2" = colors[["Bruise"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -3156,11 +3158,11 @@ Note: CFA errors.
 #| fig-height: 20
 
 rez_hclust <- make_hclust(data12f)
-rez_ega <- make_ega(data8af, cols = c(
+rez_ega <- make_ega(data12f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data12f, n = 5, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data12f, n = 5, cols = c("F1" = colors[["Urinate"]], "F2" = colors[["Burp"]], 
+                                             "F3" = colors[["Heart"]], "F4" = colors[["Pain"]], "F5" = colors[["Sneeze"]]))
 # rez_cfa12  <- make_cfa(data12f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3202,8 +3204,8 @@ rez_hclust <- make_hclust(data13)
 rez_ega <- make_ega(data13, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data13, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data13, n = 4, cols = c("F1" = colors[["Thirsty"]], "F2" = colors[["Heart"]], 
+                                            "F3" = colors[["Burp"]], "F4" = colors[["Bruise"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -3241,8 +3243,8 @@ rez_hclust <- make_hclust(data13f)
 rez_ega <- make_ega(data13f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data13f, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data13f, n = 4, cols = c("F1" = colors[["Thirsty"]], "F2" = colors[["Heart"]], 
+                                            "F3" = colors[["Burp"]], "F4" = colors[["Bruise"]]))
 rez_cfa13  <- make_cfa(data13f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3284,8 +3286,10 @@ rez_hclust <- make_hclust(data14)
 rez_ega <- make_ega(data14, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data14, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data14, n = 7, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Thirsty"]], 
+                                            "F3" = colors[["Bruise"]], "F4" = colors[["Temp"]], 
+                                            "F5" = colors[["Pain"]], "F6" = colors[["Sneeze"]],
+                                            "F7" = colors[["Heart"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -3323,8 +3327,9 @@ rez_hclust <- make_hclust(data14f)
 rez_ega <- make_ega(data14f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                             "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data14f, n = 5, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Defecate"]], 
+                                             "F3" = colors[["Thirsty"]], "F4" = colors[["Heart"]], 
+                                             "F5" = colors[["Muscles"]]))
 rez_cfa14  <- make_cfa(data14f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3366,8 +3371,8 @@ rez_hclust <- make_hclust(data15)
 rez_ega <- make_ega(data15, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data15, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data15, n = 3, cols = c("F1" = colors[["Sneeze"]], "F2" = colors[["Hungry"]], 
+                                            "F3" = colors[["Bruise"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -3405,8 +3410,8 @@ rez_hclust <- make_hclust(data15f)
 rez_ega <- make_ega(data15f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data8af, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data15f, n = 3, cols = c("F1" = colors[["Hungry"]], "F2" = colors[["Burp"]], 
+                                            "F3" = colors[["Blood Sugar"]]))
 rez_cfa15  <- make_cfa(data15f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3448,8 +3453,8 @@ rez_hclust <- make_hclust(data16)
 rez_ega <- make_ega(data16, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data16, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]], "F4" = colors[["Itch"]]))
+rez_efa <- make_efa(data16, n = 4, cols = c("F1" = colors[["Thirsty"]], "F2" = colors[["Sneeze"]], 
+                                            "F3" = colors[["Blood Sugar"]], "F4" = colors[["Burp"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -3487,8 +3492,8 @@ rez_hclust <- make_hclust(data16f)
 rez_ega <- make_ega(data16f, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data16f, n = 3, cols = c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
-                                            "F3" = colors[["Heart"]]))
+rez_efa <- make_efa(data16f, n = 4, cols = c("F1" = colors[["Thirsty"]], "F2" = colors[["Cough"]], 
+                                            "F3" = colors[["Bruise"]], "F4" = colors[["Wind"]]))
 rez_cfa16  <- make_cfa(data16f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -3563,11 +3568,12 @@ scores <- list(
   sample8b = add_empirical(data8b, "Sample 8b"),
   sample9 = add_empirical(data9, "Sample 9"),
   sample10 = add_empirical(data10, "Sample 10"),
-  sample11  = add_empirical(data11 , "Sample 11 "),
-  sample12  = add_empirical(data12 , "Sample 12 "),
-  sample13 = add_empirical(data13, "Sample 13 "),
-  sample14  = add_empirical(data14 , "Sample 14 "),
-  sample15   = add_empirical(data15 , "Sample 15  ")
+  sample11 = add_empirical(data11 , "Sample 11"),
+  sample12 = add_empirical(data12 , "Sample 12"),
+  sample13 = add_empirical(data13, "Sample 13"),
+  sample14 = add_empirical(data14 , "Sample 14 "),
+  sample15 = add_empirical(data15 , "Sample 15"),
+  sample16 = add_empirical(data16, "Sample 16")
 )
 
 save(scores, file = "../data/scores.RData")
