@@ -287,8 +287,6 @@ data <- rbind(data, pool_coef(with = "ICQ", component="ICQ", name = "ICQ", unequ
 
 data <- rbind(
   data,
-  # pool_coef(with = "BPQ_A", component="BPQ", name = "Body Awareness (BPQ)"),
-  # pool_coef(with = "BPQ_R", component="BPQ", name = "Autonomic Reactivity (BPQ)"),
   pool_coef(with = "BPQ_BodyAwareness", component="BPQ", name = "Body Awareness (BPQ)"),
   pool_coef(with = "BPQ_AutonomicReactivity", component="BPQ", name = "Autonomic Reactivity (BPQ)")
   )
@@ -311,11 +309,6 @@ data <- rbind(
   make_rez(with = "TAS_DIF", component="Alexithymia", name = "Difficulties Identifying Feelings (TAS)"),
   make_rez(with = "TAS_DDF", component="Alexithymia", name = "Difficulties Describing Feelings (TAS)"),
   make_rez(with = "TAS_EOT", component="Alexithymia", name = "External Thinking (TAS)"),
-
-  make_rez(with = "TAS_des", component="Alexithymia", name = "Difficulties Describing Feelings (TAS)"), 
-  make_rez(with = "TAS_ident", component="Alexithymia", name = "Difficulties Identifying Feelings (TAS)"), 
-  make_rez(with = "TAS_ext", component="Alexithymia", name = "External Thinking (TAS)"), 
-  make_rez(with = "TAS_DIF", component="Alexithymia", name = "Difficulties Identifying Feelings (TAS)"), 
   make_rez(with = "BVAQ_Affective", component="Alexithymia", name = "Affective (BVAQ)"), 
   make_rez(df2, vars_intero, with = "BVAQ_Cognitive", component="Alexithymia", name = "Cognitive (BVAQ)")
 )
@@ -361,8 +354,7 @@ data <- rbind(
   make_rez(with = "GAD2_Sum", component="Mood", name = "Anxiety (GAD-2)"), 
   make_rez(with = "STAIT_Sum", component="Mood", name = "Anxiety (STAI-T)"), 
   make_rez(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (PHQ-4)"),
-  # make_rez(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (STAI-5)"),
-  make_rez(with = "GAD7_Sum", component="Mood", name = "Anxiety (GAD-9)")
+  make_rez(with = "GAD7_Sum", component="Mood", name = "Anxiety (GAD-7)")
 )
 ```
 

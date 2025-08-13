@@ -240,7 +240,9 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
     MAIA_SelfReg = MAIA_selfreg, MAIA_BodyListening = MAIA_bodlis,
     MAIA_Trusting = MAIA_trust, MAIA_EmoAwareness = MAIA_emoaw,
     ICQ = ICQ_sum,
-    STAIT_Sum = STAIT_sum
+    STAIT_Sum = STAIT_sum,
+    TAS_DIF = TAS_ident, TAS_EOT = TAS_ext, TAS_DDF = TAS_des,
+    BPQ_BodyAwareness = BPQ_sum
   ) |> 
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(0, 6)))) # Original scale 0-6
 ```
@@ -326,7 +328,7 @@ df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameR
     Pain = Item_IAS_Nociception_3, Affective_touch = Item_IAS_Skin_1,
     Tickle = Item_IAS_Skin_2, Itch = Item_IAS_Skin_3,
     MAIA_EmoAwareness = MAIA_EmotionalAwareness, MAIA_AttentionReg = MAIA_AttentionRegulation,
-    MAIA_SelfReg = MAIA_SelfRegulation
+    MAIA_SelfReg = MAIA_SelfRegulation,
   ) |>
   filter(!is.na(Urinate)) |> 
   datawizard::rescale(select=ias_vars, to = c(0, 5), range = c(0, 1)) |> 
@@ -429,8 +431,10 @@ df13$MAIA_NotWorrying<- rowMeans(select(df13 , starts_with("MAIA_NotWorrying")))
 df13$MAIA_SelfReg<- rowMeans(select(df13 , starts_with("MAIA_SelfRegulation")))
 df13$MAIA_Trusting<- rowMeans(select(df13 , starts_with("MAIA_Trusting")))
 
+
 df13$PHQ4_Depression <- (df13$PHQ4_Depression_4 + df13$PHQ4_Depression_3)/2
 df13$PHQ4_Anxiety <- (df13$PHQ4_Anxiety_2 + df13$PHQ4_Anxiety_1)/2
+
 ```
 
 ```{r}
@@ -534,8 +538,6 @@ df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
          Temp = ias11, Sex_arousal = ias12, Wind = ias13, Burp = ias14,Muscles = ias15, 
          Bruise = ias16, Pain = ias17, Blood_Sugar = ias18, Affective_touch = ias19, 
          Tickle =ias20, Itch = ias21,
-         GAD2_Sum = gad2,
-         PHQ2_Sum = phq2
          ) |>
   mutate(Gender = case_when(
     Gender == 1 ~ "Male",
