@@ -242,6 +242,8 @@ data <- rbind(data, pool_coef(with = "Age", component = "Demographic", unequalra
 ### MAIA
 
 ```{r}
+#| warning: false
+
 # names(df2)[str_detect(names(df2), "MAIA")]  
 # names(df4)[str_detect(names(df4), "MAIA")]  # individual items
 # names(df7a)[str_detect(names(df7a), "MAIA")]  
@@ -268,6 +270,8 @@ data <- rbind(
 ### ICQ
 
 ```{r}
+#| warning: false
+
 # names(df2)[str_detect(names(df2), "ICQ")] 
 # names(df7c)[str_detect(names(df7c), "ICQ")] 
 
@@ -277,6 +281,8 @@ data <- rbind(data, pool_coef(with = "ICQ", component="ICQ", name = "ICQ", unequ
 ### BPQ
 
 ```{r}
+#| warning: false
+
 # df3$BPQ_BodyAwareness <- -1*normalize(df3$BPQ_BodyAwareness)
 # df3$BPQ_AutonomicReactivity <- -1*normalize(df3$BPQ_AutonomicReactivity)
 # names(df2)[str_detect(names(df2), "BPQ")]  # BPQ_R_Supra and _Sub?
@@ -296,6 +302,8 @@ data <- rbind(
 ### Alexithymia
 
 ```{r}
+#| warning: false
+
 #  only one study assess alexithymia with BVAQ (df2)
 # names(df2)[str_detect(names(df2), "TAS")]
 # names(df3)[str_starts(names(df3), "TAS")]
@@ -319,6 +327,8 @@ data <- rbind(
 ### Depression
 
 ```{r}
+#| warning: false
+
 # names(df6)[str_detect(names(df6), "PHQ")] 
 # names(df7b)[str_detect(names(df7b), "PHQ")]
 # names(df7c)[str_detect(names(df7c), "BDI")]
@@ -340,6 +350,8 @@ data <- rbind(
 ### Anxiety
 
 ```{r}
+#| warning: false
+
 # names(df6)[str_detect(names(df6), "GAD")] 
 # names(df7a)[str_detect(names(df7a), "STAI")] 
 # names(df7b)[str_detect(names(df7b), "STAI")] 
@@ -362,6 +374,8 @@ data <- rbind(
 ## Psychopathology
 
 ```{r}
+#| warning: false
+
 data <- rbind(
   data,
   pool_coef(with = "BPD", component="Mood", name = "Boderline Personality")
@@ -369,6 +383,8 @@ data <- rbind(
 ```
 
 ```{r}
+#| warning: false
+
 data <- rbind(
   data,
   pool_coef(with = "PID5_Antagonism", component="Maladaptive", name = "Antagonism"),
@@ -380,6 +396,8 @@ data <- rbind(
 ```
 
 ```{r}
+#| warning: false
+
 data <- rbind(
   data,
   pool_coef(with = "SPQ_ConstrictedAffect", component="Schizotypic", name = "Constricted Affect"),
@@ -395,7 +413,10 @@ data <- rbind(
 ```
 
 ```{r}
+#| warning: false
+
 #  names(select(df10, starts_with("ASQ")))
+
 data <- rbind(
   data,
   pool_coef(with = "ASQ_Imagination", component="Autistic", name = "Imagination"),
@@ -409,6 +430,8 @@ data <- rbind(
 ## Personality
 
 ```{r}
+#| warning: false
+
 # names(df7a)[str_detect(names(df7a), "NEO")]
 # names(df9)[str_detect(names(df9), "BFI_")]
 # names(df10)[str_detect(names(df10), "IPIP6_")]
@@ -434,6 +457,8 @@ data <- rbind(
 ## Others
 
 ```{r}
+#| warning: false
+
 # names(df10)[str_detect(names(df10), "PI_Alive")]
 # names(df12)[str_detect(names(df12), "PI_Alive")]
 # names(df13)[str_detect(names(df13), "PI_Alive")]
@@ -462,6 +487,8 @@ data <- rbind(
 ```
 
 ```{r}
+#| warning: false
+
 data <- rbind(
   data,
   pool_coef(with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs", name = "Extraterrestrial"),
@@ -473,6 +500,8 @@ data <- rbind(
 ```
 
 ```{r}
+#| warning: false
+
 data <- rbind(
   data,
   pool_coef(with = "LIE_Ability", component="Lying Profile", name = "Ability"),
@@ -563,6 +592,7 @@ average_corr |>
 ## Summary
 
 ```{r}
+#| warning: false
 #| fig-height: 20
 #| fig-width: 15
 
