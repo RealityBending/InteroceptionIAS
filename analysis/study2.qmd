@@ -434,8 +434,13 @@ data <- rbind(
 ## Others
 
 ```{r}
+# names(df10)[str_detect(names(df10), "PI_Alive")]
+# names(df12)[str_detect(names(df12), "PI_Alive")]
+# names(df13)[str_detect(names(df13), "PI_Alive")]
 
-data <- rbind(data, pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive"))
+data <- rbind(
+  data, 
+  pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive", unequalrange=TRUE))
 
 # data <- rbind(
 #   data,
