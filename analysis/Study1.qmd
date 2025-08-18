@@ -57,6 +57,7 @@ df1b <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
 
 - Gaggero (2021) 
   - https://osf.io/5x9sg
+  - BPQ_A = autonomic symptoms
 
 ```{r}
 load("../data/Gaggero2021/data.rda")
@@ -69,9 +70,14 @@ df2 <- data |>
     Cough = `IAS 10`, Temp = `IAS 11`, Sex_arousal = `IAS 12`, Wind = `IAS 13`, Burp = `IAS 14`,
     Muscles = `IAS 15`, Bruise = `IAS 16`, Pain = `IAS 17`, Blood_Sugar = `IAS 18`,
     Affective_touch = `IAS 19`, Tickle = `IAS 20`, Itch = `IAS 21`,
-    MAIA_Trusting = MAIA_BodyTrusting,
-    BPQ_BodyAwareness = BPQ_A, BPQ_AutonomicReactivity = BPQ_R)
+    MAIA_Trusting = MAIA_BodyTrusting)
 rm(data)
+
+
+df2$BPQ_BodyAwareness <- rowMeans(select(df2, `BPQ 1`:`BPQ 26`), na.rm = TRUE)
+df2$BPQ_AutonomicReactivity <- rowMeans(select(df2, `BPQ 27`:`BPQ 46`), na.rm = TRUE)
+
+
 ```
 
 ### Sample 3
@@ -91,6 +97,12 @@ df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
     Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21,
     TAS_EOT = TAS_ExternallyOrientedThinking, TAS_DIF = TAS_IdentifyingFeelings, TAS_DDF = TAS_DescribingFeelings
   )
+
+
+df3$BPQ_BodyAwareness <- rowMeans(select(df3, BPQ1:BPQ26), na.rm = TRUE)
+df3$BPQ_AutonomicReactivity <- rowMeans(select(df3, BPQ27:BPQ46), na.rm = TRUE)
+
+
 ```
 
 ### Sample 4
@@ -118,7 +130,7 @@ df4$MAIA_EmoAwareness <- rowMeans(select(df4, starts_with("MAIA_EA")), na.rm = T
 df4$MAIA_SelfReg<- rowMeans(select(df4, starts_with("MAIA_SR")), na.rm = TRUE)
 df4$MAIA_Noticing <- rowMeans(select(df4, starts_with("MAIA_NT")), na.rm = TRUE)
 
-df4$BPQ_BodyAwareness <- rowMeans(select(df4, starts_with("BPQ")), na.rm = TRUE)
+df4$BPQ_BodyAwareness <- rowMeans(select(df4, starts_with("BPQ_")), na.rm = TRUE)
 ```
 
     
@@ -220,11 +232,14 @@ df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |>
     MAIA_Noticing = maiaNotice, MAIA_NotDistracting = maiaNonDistracting,
     MAIA_NotWorrying = maiaNotWorrying, MAIA_AttentionReg = maiaAttentionRegulation,
     MAIA_SelfReg = maiaSelfRegulation, MAIA_BodyListening = maiaBodyListening,
-    MAIA_Trusting = maiaTrusting, MAIA_EmoAwareness = maiaEmotionalAwareness,
-    BPQ_BodyAwareness =BPQ_Sum) |> 
+    MAIA_Trusting = maiaTrusting, MAIA_EmoAwareness = maiaEmotionalAwareness) |> 
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(1, 5))),# Original scale 1-5
-         across(starts_with("PHQ15_"), \(x) datawizard::rescale(x, to = c(0,2), range =c(1,3))),
-          across(starts_with("PHQ9_"), \(x) datawizard::rescale(x, to = c(0,3), range =c(1,4)))) 
+          across(PHQ15_01:PHQ15_15recode, \(x) datawizard::rescale(x, to = c(0,2), range =c(1,3))),
+           across(PHQ9_01:PHQ9_09, \(x) datawizard::rescale(x, to = c(0,3), range =c(1,4))))
+
+df7b$BPQ_BodyAwareness <- rowMeans(select(df7b, BPQ_01:BPQ_12), na.rm = TRUE)
+df7b$PHQ15_Sum <-rowSums(select(df7b,PHQ15_01:PHQ15_15recode), na.rm = TRUE)
+df7b$PHQ9_Sum <- rowMeans(select(df7b, PHQ9_01:PHQ9_09), , na.rm = TRUE)
   
   
 df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |> 
@@ -243,10 +258,12 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
     MAIA_Trusting = MAIA_trust, MAIA_EmoAwareness = MAIA_emoaw,
     ICQ = ICQ_sum,
     STAIT_Sum = STAIT_sum,
-    TAS_DIF = TAS_ident, TAS_EOT = TAS_ext, TAS_DDF = TAS_des,
-    BPQ_BodyAwareness = BPQ_sum
-  ) |> 
+    TAS_DIF = TAS_ident, TAS_EOT = TAS_ext, TAS_DDF = TAS_des) |> 
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(0, 6)))) # Original scale 0-6
+
+df7c$BPQ_BodyAwareness <- df7c$BPQ_sum / 26
+
+
 ```
 
 ### Sample 8
@@ -254,6 +271,7 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
 - Lin (2023)
   - https://osf.io/3eztd
   - Note: No tickle because same Chinese character
+  - missing phq9_9 item
 
 ```{r}
 df8a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
@@ -269,7 +287,7 @@ df8a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
     Affective_touch = Touch, Itch = ITCH
   ) 
 
-df8a$BPQ_BodyAwareness <- rowMeans(select(df8a, starts_with("BPQ")), na.rm = TRUE)
+df8a$BPQ_BodyAwareness <- rowMeans(select(df8a,BPQ1:BPQ12), na.rm = FALSE)
 
 
 df8b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
@@ -280,8 +298,11 @@ df8b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
     Cough = COUGH, Temp = TEMPE, Sex_arousal = SEXAR, Wind = WIND, Burp = Burp,
     Muscles = MUSCL, Bruise = Bruis, Pain = PAIN, Blood_Sugar = BloSu,
     Affective_touch = Touch, Itch = ITCH,
-    PHQ15_Sum = PHQ15_sum,
-    PHQ9_Sum = PHQ9_sum)
+    PHQ15_Sum = PHQ15_sum, PHQ9_sum = PHQ9_sum)
+
+df8b$PHQ9_Sum <- df8b$PHQ9_sum / 9
+df8b$PHQ15_Sum <- df8b$PHQ15_Sum/ 15
+
 ```
 
 ### Sample 9
@@ -334,7 +355,8 @@ df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameR
   ) |>
   filter(!is.na(Urinate)) |> 
   datawizard::rescale(select=ias_vars, to = c(1, 5), range = c(0, 1)) |> 
-  mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5)))) 
+  mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5))),
+         across(starts_with("PI_"), \(x) datawizard::rescale(x, to = c(0, 1))))
 ```
 
 ### Sample 11
@@ -361,9 +383,11 @@ df11  <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     MAIA2_NotWorrying_2_R = 1 - MAIA2_NotWorrying_2_R,
     MAIA2_NotWorrying_5_R = 1 - MAIA2_NotWorrying_5_R) |> 
   mutate(across(starts_with("MAIA2_"), \(x) datawizard::rescale(x, to = c(0, 5))))  |>
-  datawizard::rescale(select=ias_vars, to = c(1, 5), range = c(0, 1)) 
-
-
+   mutate(across(starts_with("PHQ4_Depression_"), \(x) datawizard::rescale(x, to = c(0, 4))),
+          across(starts_with("PHQ4_Anxiety_"), \(x) datawizard::rescale(x, to = c(0, 4)))) |>
+   mutate(PHQ4_Depression = (PHQ4_Depression_3 + PHQ4_Depression_4)/2,
+          PHQ4_Anxiety = (PHQ4_Anxiety_1 + PHQ4_Anxiety_2)/2) |>
+  datawizard::rescale(select=ias_vars, to = c(1, 5), range = c(0, 1))
 
 # Compute subscales
 
@@ -375,8 +399,6 @@ df11$MAIA_NotDistracting<- rowMeans(select(df11 , starts_with("MAIA2_NotDistract
 df11$MAIA_NotWorrying<- rowMeans(select(df11 , starts_with("MAIA2_NotWorrying")))
 df11$MAIA_SelfReg<- rowMeans(select(df11 , starts_with("MAIA2_SelfRegulation")))
 df11$MAIA_Trusting<- rowMeans(select(df11 , starts_with("MAIA2_Trusting")))
-
-
 
 ```
 
@@ -506,8 +528,8 @@ df14  <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |>
     Gender %in% c(3, 5) ~ "Other",
     Gender == 4 ~ "NA"),
     TAS_DIF = TAS20_1 + TAS20_3 + TAS20_6 + TAS20_7 + TAS20_9 + TAS20_13 + TAS20_14,
-    TAS_DDF = TAS20_2 + (1-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
-    TAS_EOT = (1-TAS20_5) + TAS20_8 + (1-TAS20_10) + TAS20_15 + TAS20_16 + (1-TAS20_18) + (1-TAS20_19) + TAS20_20) 
+    TAS_DDF = TAS20_2 + (6-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
+    TAS_EOT = (6-TAS20_5) + TAS20_8 + (6-TAS20_10) + TAS20_15 + TAS20_16 + (6-TAS20_18) + (6-TAS20_19) + TAS20_20) 
 ```
 
 
@@ -1878,8 +1900,7 @@ rez_hclust <- make_hclust(data1a)
 rez_ega <- make_ega(data1a, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1a, n = 4, cols = c("F1" = colors[["Itch"]], "F2" = colors[["Burp"]], 
-                                            "F3" = colors[["Defecate"]], "F4" = colors[["Hungry"]]))
+rez_efa <- make_efa(data1a, n = 4, cols = c("F1" = colors[["Itch"]], "F2" = colors[["Burp"]], "F3" = colors[["Defecate"]], "F4" = colors[["Hungry"]]))
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -1917,8 +1938,7 @@ rez_hclust <- make_hclust(data1af)
 rez_ega <- make_ega(data1af, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Sneeze"]], 
   "C5" = colors[["Wind"]], "C6" = colors[["Pain"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
-rez_efa <- make_efa(data1af, n = 3, cols = c("F1"  colors[["Burp"]], "F2" = colors[["Urinate"]], 
-                                            "F3" = colors[["Bruise"]]))
+rez_efa <- make_efa(data1af, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Urinate"]], "F3" = colors[["Bruise"]]))
 rez_cfa1a  <- make_cfa(data1af)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
@@ -1989,6 +2009,7 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+- cfa did not converge
 
 ```{r}
 #| warning: false
@@ -2002,7 +2023,7 @@ rez_ega <- make_ega(data1af, cols = c(
   "C5" = colors[["Wind"]], "C6" = colors[["Pain"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data1bf, n = 3, cols = c("F1" = colors[["Urinate"]], "F2" = colors[["Bruise"]], 
                                             "F3" = colors[["Cough"]], "F4" = colors[["Itch"]]))
-rez_cfa1b  <- make_cfa(data1bf)
+# rez_cfa1b  <- make_cfa(data1bf)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2021,7 +2042,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cfa1b$test
+# rez_cfa1b$test
 ```
 
 ::::
@@ -2085,7 +2106,7 @@ rez_ega <- make_ega(data2f, cols = c(
   "C5" = colors[["Wind"]], "C6" = colors[["Pain"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data2f, n = 3, cols = c("F1" = colors[["Cough"]], "F2" = colors[["Bruise"]], 
                                             "F3" = colors[["Hungry"]]))
-rez_cfa2  <- make_cfa(data2f)
+# rez_cfa2  <- make_cfa(data2f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2104,7 +2125,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cfa2$test
+# rez_cfa2$test
 ```
 
 ::::
@@ -2168,7 +2189,7 @@ rez_ega <- make_ega(data3f, cols = c(
   "C5" = colors[["Pain"]], "C6" = colors[["Bruise"]], "C7" = colors[["Muscles"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data3f, n = 3, cols = c("F1" = colors[["Cough"]], "F2" = colors[["Hungry"]], 
                                             "F3" = colors[["Blood Sugar"]]))
-rez_cfa3  <- make_cfa(data3f)
+# rez_cfa3  <- make_cfa(data3f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -2187,7 +2208,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cfa3$test
+# rez_cfa3$test
 ```
 
 ::::
@@ -2338,7 +2359,7 @@ rez_hclust <- make_hclust(data5f)
 rez_efa <- make_efa(data5f, n = 5, cols = c("F1" = colors[["Urinate"]], "F2" = colors[["Burp"]], 
                                             "F3" = colors[["Wind"]], "F4" = colors[["Thirsty"]],
                                             "F5" = colors[["Sneeze"]]))
-rez_cfa5  <- make_cfa(data5f)
+# rez_cfa5  <- make_cfa(data5f)
 
 rez_hclust$p / rez_efa$p
 ```
@@ -2354,7 +2375,7 @@ pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
 
 plot(rez_efa$n_fac)
 
-rez_cfa5$test
+# rez_cfa5$test
 ```
 
 ::::
@@ -3412,7 +3433,7 @@ rez_ega <- make_ega(data15f, cols = c(
   "C5" = colors[["Bruise"]], "C6" = colors[["Wind"]], "C7" = colors[["Pain"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data15f, n = 3, cols = c("F1" = colors[["Hungry"]], "F2" = colors[["Burp"]], 
                                             "F3" = colors[["Blood Sugar"]]))
-rez_cfa15  <- make_cfa(data15f)
+# rez_cfa15  <- make_cfa(data15f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -3431,7 +3452,7 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cfa15$test
+# rez_cfa15$test
 ```
 ::::
 
@@ -3494,7 +3515,7 @@ rez_ega <- make_ega(data16f, cols = c(
   "C5" = colors[["Cough"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
 rez_efa <- make_efa(data16f, n = 4, cols = c("F1" = colors[["Thirsty"]], "F2" = colors[["Cough"]], 
                                             "F3" = colors[["Bruise"]], "F4" = colors[["Wind"]]))
-rez_cfa16  <- make_cfa(data16f)
+# rez_cfa16  <- make_cfa(data16f)
 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
@@ -3513,10 +3534,11 @@ rez_ega$table
 
 plot(rez_efa$n_fac)
 
-rez_cfa16$test
+# rez_cfa16$test
 ```
 
 ::::
+
 
 
 

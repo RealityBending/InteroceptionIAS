@@ -131,6 +131,7 @@ df12 <- cbind(data$df12, scores$sample12)
 df13 <- cbind(data$df13, scores$sample13)
 df14 <- cbind(data$df14, scores$sample14)
 df15 <- cbind(data$df15, scores$sample15)
+df16 <- cbind(data$df16, scores$sample16)
 
 vars_intero <- names(select(scores$sample1a, -Sample))
 
@@ -170,7 +171,7 @@ pool_coef <- function(with = "Age", component = "Demographic", name = with, uneq
     for(dataset in list(df1a, df1b, df2, df3, df4, 
                      df5, df6, df7a, df7b, df7c, 
                      df8a, df8b, df9, df10, df11, 
-                     df12, df14, df15)) {
+                     df12, df14, df15, df16)) {
       if (with %in% names(dataset)) {
         d <- dataset[c(with, intero, "Sample")]
         data <- rbind(data, d)
@@ -329,7 +330,7 @@ data <- rbind(
   data,
   pool_coef(with = "PHQ2_Sum", component="Mood", name = "Depression (PHQ-2)"),
   pool_coef(with = "PHQ15_Sum", component="Mood", name = "Somatic Concerns (PHQ-15)",unequalrange=TRUE), 
-  pool_coef(with = "PHQ9_Sum", component="Mood", name = "Depression (PHQ-9)"), 
+  pool_coef(with = "PHQ9_Sum", component="Mood", name = "Depression (PHQ-9)",unequalrange=TRUE), 
   pool_coef(with = "BDI_Sum", component="Mood", name = "Depression (BDI)"), 
   pool_coef(with = "PHQ4_Depression", component="Mood", name = "Depression (PHQ-2)"),
   pool_coef(with = "DEP", component = "Mood", name = "Depression (MFQ)")
@@ -350,11 +351,11 @@ data <- rbind(
 
 data <- rbind(
   data,
-  make_rez(with = "GAD2_Sum", component="Mood", name = "Anxiety (GAD-2)"), 
-  make_rez(with = "STAIT_Sum", component="Mood", name = "Anxiety (STAI-T)"), 
-  make_rez(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (PHQ-4)"),
-  make_rez(with = "STAI5_General", component="Mood", name = "Anxiety (STAI-5)"),
-  make_rez(with = "GAD7_Sum", component="Mood", name = "Anxiety (GAD-7)")
+  pool_coef(with = "GAD2_Sum", component="Mood", name = "Anxiety (GAD-2)"), 
+  pool_coef(with = "STAIT_Sum", component="Mood", name = "Anxiety (STAI-T)",unequalrange=TRUE), 
+  pool_coef(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (PHQ-4)"),
+  pool_coef(with = "STAI5_General", component="Mood", name = "Anxiety (STAI-5)"),
+  pool_coef(with = "GAD7_Sum", component="Mood", name = "Anxiety (GAD-7)")
 )
 ```
 
@@ -363,33 +364,33 @@ data <- rbind(
 ```{r}
 data <- rbind(
   data,
-  make_rez(with = "BPD", component="Mood", name = "Boderline Personality")
+  pool_coef(with = "BPD", component="Mood", name = "Boderline Personality")
 )
 ```
 
 ```{r}
 data <- rbind(
   data,
-  make_rez(with = "PID5_Antagonism", component="Maladaptive", name = "Antagonism"),
-  make_rez(with = "PID5_Detachment", component="Maladaptive", name = "Detachment"), 
-  make_rez(with = "PID5_Disinhibition", component="Maladaptive", name = "Disinhibition"),
-  make_rez(with = "PID5_NegativeAffect", component="Maladaptive", name = "Negative Affect"),
-  make_rez(with = "PID5_Psychoticism", component="Maladaptive", name = "Psychoticism")
+  pool_coef(with = "PID5_Antagonism", component="Maladaptive", name = "Antagonism"),
+  pool_coef(with = "PID5_Detachment", component="Maladaptive", name = "Detachment"), 
+  pool_coef(with = "PID5_Disinhibition", component="Maladaptive", name = "Disinhibition"),
+  pool_coef(with = "PID5_NegativeAffect", component="Maladaptive", name = "Negative Affect"),
+  pool_coef(with = "PID5_Psychoticism", component="Maladaptive", name = "Psychoticism")
 )
 ```
 
 ```{r}
 data <- rbind(
   data,
-  make_rez(with = "SPQ_ConstrictedAffect", component="Schizotypic", name = "Constricted Affect"),
-  make_rez(with = "SPQ_Eccentric", component="Schizotypic", name = "Eccentric"),
-  make_rez(with = "SPQ_MagicalThinking", component="Schizotypic", name = "Magical Thinking"),
-  make_rez(with = "SPQ_NoCloseFriends", component="Schizotypic", name = "No Close Friends"),
-  make_rez(with = "SPQ_OddSpeech", component="Schizotypic", name = "Odd Speech"),
-  make_rez(with = "SPQ_Reference", component="Schizotypic", name = "Reference"),
-  make_rez(with = "SPQ_SocialAnxiety", component="Schizotypic", name = "Social Anxiety"),
-  make_rez(with = "SPQ_Suspiciousness", component="Schizotypic", name = "Suspiciousness"),
-  make_rez(with = "SPQ_UnusualPerceptions", component="Schizotypic", name = "Unusual Perceptions")
+  pool_coef(with = "SPQ_ConstrictedAffect", component="Schizotypic", name = "Constricted Affect"),
+  pool_coef(with = "SPQ_Eccentric", component="Schizotypic", name = "Eccentric"),
+  pool_coef(with = "SPQ_MagicalThinking", component="Schizotypic", name = "Magical Thinking"),
+  pool_coef(with = "SPQ_NoCloseFriends", component="Schizotypic", name = "No Close Friends"),
+  pool_coef(with = "SPQ_OddSpeech", component="Schizotypic", name = "Odd Speech"),
+  pool_coef(with = "SPQ_Reference", component="Schizotypic", name = "Reference"),
+  pool_coef(with = "SPQ_SocialAnxiety", component="Schizotypic", name = "Social Anxiety"),
+  pool_coef(with = "SPQ_Suspiciousness", component="Schizotypic", name = "Suspiciousness"),
+  pool_coef(with = "SPQ_UnusualPerceptions", component="Schizotypic", name = "Unusual Perceptions")
 )
 ```
 
@@ -397,11 +398,11 @@ data <- rbind(
 #  names(select(df10, starts_with("ASQ")))
 data <- rbind(
   data,
-  make_rez(with = "ASQ_Imagination", component="Autistic", name = "Imagination"),
-  make_rez(with = "ASQ_LackSocialSkills", component="Autistic", name = "Lack of Social Skills"), 
-  make_rez(with = "ASQ_LowAttentionalSwitching", component="Autistic", name = "Low Attentional Switching"),
-  make_rez(with = "ASQ_Patterns", component="Autistic", name = "Patterns and Numbers"),
-  make_rez(with = "ASQ_Routine", component="Autistic", name = "Routines")
+  pool_coef(with = "ASQ_Imagination", component="Autistic", name = "Imagination"),
+  pool_coef(with = "ASQ_LackSocialSkills", component="Autistic", name = "Lack of Social Skills"), 
+  pool_coef(with = "ASQ_LowAttentionalSwitching", component="Autistic", name = "Low Attentional Switching"),
+  pool_coef(with = "ASQ_Patterns", component="Autistic", name = "Patterns and Numbers"),
+  pool_coef(with = "ASQ_Routine", component="Autistic", name = "Routines")
 )
 ```
 
@@ -415,18 +416,18 @@ data <- rbind(
 
 data <- rbind(
   data,
-  make_rez(with = "NEO_FFI_SUMSCORE", component = "Personality", name = "Neuroticism"),
-  make_rez(with = "BFI_AGREEABLENESS", component="Personality", name = "Agreeableness"),
-  make_rez(with = "BFI_CONSCIENTIOUSNESS", component="Personality", name = "Conscientiousness"), 
-  make_rez(with = "BFI_NEUROTICISM", component="Personality", name = "Neuroticism"),
-  make_rez(with = "BFI_OPENNESS", component="Personality", name = "Openness"),
-  make_rez(with = "BFI_EXTROVERSION", component="Personality", name = "Extraversion"),
-  make_rez(with = "IPIP6_Agreeableness", component="Personality", name = "Agreeableness"),
-  make_rez(with = "IPIP6_Conscientiousness", component="Personality", name = "Conscientiousness"), 
-  make_rez(with = "IPIP6_Neuroticism", component="Personality", name = "Neuroticism"),
-  make_rez(with = "IPIP6_Openness", component="Personality", name = "Openness"),
-  make_rez(with = "IPIP6_Extraversion", component="Personality", name = "Extraversion"), 
-  make_rez(with = "IPIP6_HonestyHumility", component="Personality", name = "Honesty-Humility")
+  pool_coef(with = "NEO_FFI_SUMSCORE", component = "Personality", name = "Neuroticism"),
+  pool_coef(with = "BFI_AGREEABLENESS", component="Personality", name = "Agreeableness"),
+  pool_coef(with = "BFI_CONSCIENTIOUSNESS", component="Personality", name = "Conscientiousness"), 
+  pool_coef(with = "BFI_NEUROTICISM", component="Personality", name = "Neuroticism"),
+  pool_coef(with = "BFI_OPENNESS", component="Personality", name = "Openness"),
+  pool_coef(with = "BFI_EXTROVERSION", component="Personality", name = "Extraversion"),
+  pool_coef(with = "IPIP6_Agreeableness", component="Personality", name = "Agreeableness"),
+  pool_coef(with = "IPIP6_Conscientiousness", component="Personality", name = "Conscientiousness"), 
+  pool_coef(with = "IPIP6_Neuroticism", component="Personality", name = "Neuroticism"),
+  pool_coef(with = "IPIP6_Openness", component="Personality", name = "Openness"),
+  pool_coef(with = "IPIP6_Extraversion", component="Personality", name = "Extraversion"), 
+  pool_coef(with = "IPIP6_HonestyHumility", component="Personality", name = "Honesty-Humility")
 )
 ```
 
@@ -434,7 +435,7 @@ data <- rbind(
 
 ```{r}
 
-data <- rbind(data, make_rez(with = "PI_Alive", component="World Beliefs", name = "Alive"))
+data <- rbind(data, pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive"))
 
 # data <- rbind(
 #   data,
@@ -458,21 +459,21 @@ data <- rbind(data, make_rez(with = "PI_Alive", component="World Beliefs", name 
 ```{r}
 data <- rbind(
   data,
-  make_rez(with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs", name = "Extraterrestrial"),
-  make_rez(with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs", name = "Global Conspiracies"),
-  make_rez(with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs", name  = "Government Malfeasance"),
-  make_rez(with = "GCBS_InformationControl", component="Conspiracy Beliefs", name = "Information Control"),
-  make_rez(with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs", name = "Personal Wellbeing")
+  pool_coef(with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs", name = "Extraterrestrial"),
+  pool_coef(with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs", name = "Global Conspiracies"),
+  pool_coef(with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs", name  = "Government Malfeasance"),
+  pool_coef(with = "GCBS_InformationControl", component="Conspiracy Beliefs", name = "Information Control"),
+  pool_coef(with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs", name = "Personal Wellbeing")
 )
 ```
 
 ```{r}
 data <- rbind(
   data,
-  make_rez(with = "LIE_Ability", component="Lying Profile", name = "Ability"),
-  make_rez(with = "LIE_Frequency", component="Lying Profile", name = "Frequency"),
-  make_rez(with = "LIE_Contextuality", component="Lying Profile", name = "Contextuality"),
-  make_rez(with = "LIE_Negativity", component="Lying Profile", name = "Negativity")
+  pool_coef(with = "LIE_Ability", component="Lying Profile", name = "Ability"),
+  pool_coef(with = "LIE_Frequency", component="Lying Profile", name = "Frequency"),
+  pool_coef(with = "LIE_Contextuality", component="Lying Profile", name = "Contextuality"),
+  pool_coef(with = "LIE_Negativity", component="Lying Profile", name = "Negativity")
 )
 ```
 
@@ -528,7 +529,8 @@ data <- rbind(
 # names(df11)  # PHQ4, STAIT5, BDI, MAIA
 # names(df12) # MAIA, PI, 
 # names(df14) # MAIA, TAS, MFQ(DEP), STAI(ANX)
-# names(df15) 
+# names(df15) #
+# names(df16) # 
 
 average_corr <- data |>
   summarise(min_r = min(r, na.rm = TRUE), 
