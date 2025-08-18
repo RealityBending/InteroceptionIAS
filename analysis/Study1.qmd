@@ -446,7 +446,10 @@ df13  <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
     MAIA_NotWorrying_1_R = 1 - MAIA_NotWorrying_1_R,
     MAIA_NotWorrying_2_R = 1 - MAIA_NotWorrying_2_R,
     MAIA_NotWorrying_5_R = 1 - MAIA_NotWorrying_5_R) |>
-    mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5)))) 
+    mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5))),
+           across(starts_with("PI18_"), \(x) datawizard::rescale(x, to = c(0,1)))) |>
+  mutate(
+    PI_Alive = (PI18_GA_2 + PI18_GA_14 + (1-PI18_A_12_R) + PI18_A_16 + PI18_A_4)/5)
 
   
 
@@ -459,6 +462,7 @@ df13$MAIA_NotDistracting<- rowMeans(select(df13 , starts_with("MAIA_NotDistracti
 df13$MAIA_NotWorrying<- rowMeans(select(df13 , starts_with("MAIA_NotWorrying")))
 df13$MAIA_SelfReg<- rowMeans(select(df13 , starts_with("MAIA_SelfRegulation")))
 df13$MAIA_Trusting<- rowMeans(select(df13 , starts_with("MAIA_Trusting")))
+
 
 
 df13$PHQ4_Depression <- (df13$PHQ4_Depression_4 + df13$PHQ4_Depression_3)/2
