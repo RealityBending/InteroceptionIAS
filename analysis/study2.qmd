@@ -305,7 +305,7 @@ data <- rbind(
 #| warning: false
 
 #  only one study assess alexithymia with BVAQ (df2)
-# names(df2)[str_detect(names(df2), "TAS")]
+# names(df2)[str_detect(names(df2), "TAS", "BVAQ)]
 # names(df3)[str_starts(names(df3), "TAS")]
 # names(df7c)[str_starts(names(df7c), "TAS")]
 # names(df8b)[str_starts(names(df8b), "TAS")]
@@ -520,23 +520,24 @@ data <- rbind(
 -   ICQ - Interocpetive Confusion Questionnaire
 -   TAS - Toronto Alexithymia Scale
 -   BAQ - Body awareness questionnaire
--   BRS - the body responsiveness scale
+<!-- -   PBCS - The Private Bodily Consciousness Scale -->
+<!-- -   BRS - the body responsiveness scale -->
 -   PHQ-2 - Patient Health Questionnaire 2 items on major depressive episodes
 -   PHQ-4 - atient Health Questionnaire 4 items assessing anxiety and depression
 -   PHQ-9 - Patient Health Questionnaire 9-Item Version assesses depressive symptoms
 -   PHQ-15 - Patient Health Questionnaire 15-Item Version assesses Somatic symptom distress
--   SSS-8 - Somatic Symptom Scale
--   IATS - Interoceptive Attention Scale
+<!-- -   SSS-8 - Somatic Symptom Scale -->
+<!-- -   IATS - Interoceptive Attention Scale -->
 -   GAD-2 - Generalized Anxiety Disorder Scale 2 items on anxiety disorder
 -   STAIT - State-Trait-Anxiety Inventory Trait subscale
 -   FFMQ - Observation and Description subscales of the Five Facet Mindfulness Questionnaire
 -   NEOFFI - Neuroticism Neo Five-Factor Inventory Neuroticism subscale
--   ASI - Anxiety Sensitivity Inventory 3
+<!-- -   ASI - Anxiety Sensitivity Inventory 3 -->
 -   BDI - The Beck Depression Inventory
--   EDI_IA - Eating Disorder Inventory, interoceptive awareness subscale
+<!-- -   EDI_IA - Eating Disorder Inventory, interoceptive awareness subscale -->
 -   BFI - Big Five inventory-10
 -   ASQ - Autism-Spectrum Quotient
--   MSI-BPD - Mclean Screening Instrument for Borderline Personality Disorder
+<!-- -   MSI-BPD - Mclean Screening Instrument for Borderline Personality Disorder -->
 -   GCB - Generic Conspiracist Beliefs scale
 -   IPIP6 - Mini International Personality Item Pool
 -   PI - Primal Inventory 18 items and 99 items
