@@ -726,8 +726,8 @@ make_age <- function(age) {
 
 # Create the dataframe
 table <- data.frame(
-  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Total'),
   Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15', 'Sample 16'),   
+  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Total'),
   Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English', 'English',''),
   N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10), nrow(df11), nrow(df12), nrow(df13), nrow(df14), nrow(df15), 32993),
   'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. Does not include temperature, blood sugar and cough items.', 'Analog scales', 'Analog scales', '', '', '', ''),
@@ -746,7 +746,8 @@ table_apa <- table |>
   tab_footnote("Note.*Information taken from the sample description of relevant paper rather than recomputed.")
   
 gt_apastyle(table_apa, font.size=12)
-gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
+# gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
+saveRDS(table, "figures/table1.rds")
 
 # gtsave(table_apa, "figures/table1.png")
 ```
@@ -822,12 +823,12 @@ p1 <- p1_data |>
          Parameter = ifelse(Parameter == "Sex_arousal", "Sex arousal", Parameter)) |>
   # mutate(Dashed = ifelse(Parameter %in% c("Affective_touch", "Blood_Sugar", "Bruise"), TRUE, FALSE)) |> 
   ggplot(aes(x = x, y = y, color = Parameter)) +
-  geom_line(aes(linetype = Parameter), linewidth = 0.7) +
+  geom_line(aes(linetype = Parameter), linewidth = 0.5) +
   scale_color_material_d() +
   scale_linetype_manual(values = linetype)  +
   labs(x = "Response", y = "Distribution", color = "Item", linetype = "Item", title = "Item Distribution") +
   guides(color = guide_legend(ncol = 1)) +
-  facet_wrap(~Sample, scales = "free_y", nrow = 3) +
+  facet_wrap(~Sample, scales = "free_y", nrow = 4) +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         axis.title.y = element_blank(),

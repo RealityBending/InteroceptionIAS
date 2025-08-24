@@ -186,8 +186,8 @@ For instance, @murphy2019 notes that some items might measure direct interocepti
 Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were previously highlighted as related to non-interoceptive abilities [@ferentzi2021examining].
 Interestingly, findings on the correlation between the IAS and the body awareness dimension of the BPQ (i.e., BPQ-A) have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
 Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023].
-Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the EDI **Write full name** [EDI, @lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia], as reported by @brand2023 and @murphy2019.
-Lastly, the correlation with the Interoceptive Attention Scale [IATS, @gabriele2022dissociations] **is that the ref for the scale validation?** appears rather small [@lin2023; @koike2023].
+Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the EDI [**ANA Write full name**] [EDI, @lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia], as reported by @brand2023 and @murphy2019.
+Lastly, the correlation with the Interoceptive Attention Scale [IATS, @gabriele2022dissociations] [**ANA is that the ref for the scale validation?**] appears rather small [@lin2023; @koike2023].
 
 <!-- Convergent validity (correlates)  -->
 
@@ -212,17 +212,34 @@ While combining these studies might provide a more robust and generalizable unde
 Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of 01/05/2024).
 To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
 We also included the data of four unpublished studies.
-A total of 14 datasets was included (see **Table 1**).
+A total of 16 datasets was included (see **Table 1**).
 
 The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1, 71.6\% Female).
 
 <!-- Note: this table is generated during data analysis -->
 
-\begin{landscape}
+<!-- \begin{landscape} -->
 
-\input{../../analysis/figures/table1.tex}
+<!-- \input{../../analysis/figures/table1.tex} -->
 
-\end{landscape}
+<!-- \end{landscape} -->
+
+```{r}
+#| label: tbl-table1
+#| tbl-cap: My Table
+#| apa-note: "*Information taken from the sample description of relevant paper rather than recomputed."
+#| apa-twocolumn: true
+
+library(flextable)
+set_flextable_defaults(font.size = 7)
+
+table <- readRDS("../../analysis/figures/table1.rds")
+
+table |> 
+  dplyr::rename("Age (Mean  ± SD)" = Age,  "Female %" = Female_Percentage)  |> 
+  flextable() |> 
+  theme_apa() 
+```
 
 ### Data Analysis
 
@@ -581,7 +598,6 @@ Contextuality displays mixed correlations, with Itch/Bruise showing the stronges
 Finally, Negativity is consistently positively correlated with all pairings, with the strongest relationship found for Hungry/Thirsty (r = 0.090).
 
 
-![**Figure 2.** Correlates of the IAS](figures/clipboard-1619164537.png){width="911"}
 
 
 ## Discussion
