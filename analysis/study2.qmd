@@ -275,7 +275,7 @@ data <- rbind(
 # names(df2)[str_detect(names(df2), "ICQ")] 
 # names(df7c)[str_detect(names(df7c), "ICQ")] 
 
-data <- rbind(data, pool_coef(with = "ICQ", component="ICQ", name = "ICQ", unequalrange=TRUE))
+data <- rbind(data, pool_coef(with = "ICQ", component="Alexithymia", name = "ICQ", unequalrange=TRUE))
 ```
 
 ### BPQ
@@ -628,7 +628,7 @@ p <- data |>
   scale_alpha_discrete(range = c(0.2, 0.9), guide = "none") +
   scale_x_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
   scale_linewidth_continuous(range = c(3, 7), guide = "none") +
-  coord_cartesian(xlim = c(-0.4, 0.4)) +
+  coord_cartesian(xlim = c(-0.45, 0.45)) +
   theme_modern(axis.title.space = 5) +
   labs(x = "Strength of Association (std. Beta)") +
   theme(panel.grid.major.y = element_line(),

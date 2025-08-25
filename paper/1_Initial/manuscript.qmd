@@ -89,7 +89,7 @@ abstract: |
   Blabla the abstract blabla.
 keywords: [keyword1, keyword2, keyword3]
 floatsintext: true
-numbered-lines: true
+numbered-lines: false
 bibliography: bibliography.bib
 suppress-title-page: false
 mask: false
@@ -226,18 +226,19 @@ The total number of participants was 32,214 participants (Mean = 48.6 $\pm$ 13.1
 
 ```{r}
 #| label: tbl-table1
-#| tbl-cap: My Table
+#| tbl-cap: "Description of the samples used in the study."
 #| apa-note: "*Information taken from the sample description of relevant paper rather than recomputed."
 #| apa-twocolumn: true
 
 library(flextable)
-set_flextable_defaults(font.size = 7)
+set_flextable_defaults(font.size = 6)
 
 table <- readRDS("../../analysis/figures/table1.rds")
 
 table |> 
   dplyr::rename("Age (Mean  ± SD)" = Age,  "Female %" = Female_Percentage)  |> 
   flextable() |> 
+  set_table_properties(layout = "autofit", opts_pdf=list(arraystretch=1)) |> 
   theme_apa() 
 ```
 
@@ -246,24 +247,31 @@ table |>
 Psychometrically good items should exhibit various qualities, such as validity, reliability and discrimination, to which one of the contributing factors is the amount of inter-individual variability captured by an item. Items to which all participants' answers are concentrated around one option - i.e., exhibiting a narrow distribution - will be flagged as potentially problematic. 
 
 <!-- UVA -->
-After examining the distributions to all IAS items, we will test for "redundant" items (e.g., due to multicollinearity or local dependency) using Unique Variable Analysis [UVA, @christensen2023unique], a novel method derived from network psychometric designed to identify and merge items that share substantial variance (which can distort the structure estimation).
-We will use a threshold of 0.25, suggested to optimally balances accuracy and false positives **[REF NEEDED]**.
+After examining the distributions and correlations of all IAS items, we will test for "redundant" items (e.g., due to multicollinearity or local dependency) using Unique Variable Analysis [UVA, @christensen2023unique], a novel method derived from network psychometric designed to identify and merge items that share substantial variance (which can distort the structure estimation).
+We will use a threshold of 0.30 that detects large to very large overlap.
 
+
+Following the analysis of items, we will analyze the factor structure of the IAS using three different approaches, each with particular trade-offs and assumptions, to provide a multi-verse picture of likely solutions. Namely, we will apply traditional exploratory and confirmatory Factor Analysis (EFA/CFA), hierarchical clustering (HCA), and Exploratory Graph Analysis (EGA), to the whole sample, as well as to each dataset separately (details being available in the analysis document at https://github.com/RealityBending/InteroceptionIAS), and our decisions and conclusions will try to take into account both levels of analysis. 
 
 <!-- EGA -->
-Following the analysis of items, we will analyze the factor structure of the IAS using two different approaches, namely traditional exploratory and confirmatory Factor Analysis (EFA/CFA) and Exploratory Graph Analysis (EGA).
 By combining network analysis with psychometric methods, the recently-developed EGA framework allows to jointly estimate the number of dimensions (i.e., groups of items), the structure as well as its stability [@golino2017exploratory; @golino2020investigating]. 
 Evidence has underlined its suitability as an alternative to traditional factor analysis, addressing some of its limitations such as the assumption of a "latent" source of variability, possible biasing in the estimation of the optimal factor numbers depending on sample size, and the poor performance of other methods in complex population structures, while remaining comparable and interpretable [@christensen2021equivalency; @jimenez2023dimensionality]. 
 At a fundamental level, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them. 
-Clustering these nodes reveals distinct communities of related items, in practice akin to traditional latent factors - but without explicitly assuming their presence [@christensen2021equivalency].
+Clustering these nodes reveals distinct communities of related items, in practice akin to traditional latent factors - but without explicitly assuming their presence [@christensen2021equivalency]. 
+We used the EGAnet package [@christensen2021estimating] to fit a hierachical EGA with the Leiden community detection algorithm.
 
 <!-- Factor Analysis -->
 While EGA offers a robust alternative to traditional factor analysis, factor analysis remains a widely used method for dimensionality assessment. As our goal is to provide a general - yet nuanced - picture, with room to show potential discrepancies emerging from the methods used, we will also include it in the present study.
 Unlike EGA, factor analysis assumes that  a latent source of variability — a common latent variable — underlies the observed set of manifest variables [@cosemans2022exploratory].
 A critical step in factor analysis is determining the optimal number of factors, for which we will used the Method Agreement Procedure [@ludecke2021performance], which involves a consensus-based decision based on multiple factor estimation methods applied concurrently.
 
-## Results
+<!-- HCA -->
+Finally, we will also apply Hierarchical Clustering Analysis [HCA, @murtagh2014ward], which differs from factor analysis in that it does not assume any latent source of variability, but instead iteratively groups items based on their similarity (e.g., correlation) into a hierarchy of clusters. The benefits of HCA include its interpretability and ability to capture complex relationships among items without relying on strict assumptions about data distribution or latent variables.
 
+<!-- CFA -->
+In a typical 2-step fashion, this first analysis run will be followed by a structure refinement with a further selection of items, and the final pool of items will be tested again. Additionally, various solutions (e.g., adding general factors) will be statistically compared using Confirmatory Factor Analysis (CFA).
+
+## Results
 
 <!-- Distributions of items -->
 
@@ -272,6 +280,7 @@ In other words, participants are most likely to answer 4/5 (i.e., agree) on most
 This is also the case for "affective touch" in samples 8a and 8b (the Chinese validation samples), which might indicate localisation issues.
 Additionally, one can note the low occurrence of extreme values (1 and 5), meaning that the bulk of answers varies between 3 values (assuming the IAS is implemented as a 5-point Likert scale following its validation).
 The samples using an analogue scale (samples 10a, 10b and 10c in the figure) display a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially displaying a secondary lower mode at \~2 (which might be suggesting the existence of potential clusters of participants).
+The correlation matrix between all items shows an overall positive correlation pattern, with highly correlated pairs of items (e.g., Tickle-Itch, Urinate-Defecate, Pain-Wind, Hungry-Thursty) or triplets (Vomit-Sneeze-Cough, Temperature-Muscles-Pain).
 
 
 ```{r}
@@ -279,7 +288,7 @@ The samples using an analogue scale (samples 10a, 10b and 10c in the figure) dis
 #| label: fig-distributions
 #| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
 #| out-width: "100%"
-#| fig-cap: "Distribution of responses across datasets reveals a consistent modal value, typically around 4 or 5 (indicating agreement), except for 'blood sugar' and 'bruise' - in dashed lines - and 'affective touch' (dotted lines) in the Chinese validation sample, which have lower modes. Most responses cluster around the middle values, with few extreme scores (1 and 5). Samples using an analogue scale (10a, 10b, 10c) show a more continuous distribution and increased interindividual variability. Since most samples use Likert scales (discrete), the density plots may not be the most accurate representation but were chosen to clearly highlight variability patterns in the data."
+#| fig-cap: "Top: Distribution of responses across datasets reveals a consistent modal value, typically around 4 or 5 (indicating agreement), except for 'blood sugar' and 'bruise' - in dashed lines - and 'affective touch' (dotted lines) in the Chinese validation sample, which have lower modes. Most responses cluster around the middle values, with few extreme scores (1 and 5). Samples using an analogue scale (10a, 10b, 10c) show a more continuous distribution and increased interindividual variability. Since most samples use Likert scales (discrete), density plots may not be the most accurate representation but were chosen to clearly highlight variability patterns in the data. Bottom: The correlation matrix between all items shows an overall positive correlation pattern, with correlated pairs (e.g., Wind, Burp) of items or triplets (e.g., Vomit, Sneeze and Cough)."
 
 knitr::include_graphics("../../analysis/figures/Figure1.png")
 ```
@@ -290,140 +299,61 @@ UVA flagged two strongly redundant variables, "itch" and "tickle" - suggesting t
 Several more pairs of items were flagged as moderately redundant ("wind" and "burp"; "urinate" and "defecate") and mildly redundant ("sneeze" and "cough"; "heart" and "breathing"; "hungry" and "thirsty").
 These patterns consistently appeared in most samples when considered individually. We removed "tickle" from further analysis due to its high redundancy (and because it is absent from some datasets due to translation issues).
 
-<!-- Network analysis and Structure stability -->
-The EGA analysis employed a sparse Gaussian graphical model (GGM) with the graphical lasso (glasso) method. We applied the Walktrap (**REF**) and the Louvain (**REF**) algorithms for clusters identification, which yielded a five and four clusters solution, respectively. The four-cluster solution appeared as being more stable (based on the bootstrapped stability analysis: it had a higher proportion of items consistently assigned to the same cluster across bootstrap samples).
-In this solution, item stability for all variables exceeded 0.90, except for "affective touch". The first cluster included skin-related items "itch", "tickle", "bruise", and "blood sugar"; the second cluster contained expulsion-related items "burp", "wind", "cough", "sneeze", and "vomit"; the third cluster (**NAME or interpretation?**) comprised "affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"; and the fourth cluster included visceroceptive items like "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate".
-This solution was generally consistent when applied to samples separately.
+<!-- Initial run -->
+The HCA highlighted pairs and triplets of items consistently grouped together across samples, such as "wind" and "burp", "sneeze" and "cough", "itch" and "bruise", "urinate" and "defecate", and "pain", "muscles", and "temperature". This pattern was largely replicated by the EGA, with the additional presence of a unique cluster comprising "Sex arousal", "Affective touch", "Temperature", "Pain", "Muscles", and "Taste". EFA suggested the optimal number of factors to be 3, yielding one dimension with expulsion-related items ("burp", "wind", "cough", "sneeze", and "vomit"), a second dimension with visceroceptive items ("heart", "breathing", "hungry", "thirsty", "urinate", and "defecate"), and a third dimension with skin-related items ("bruise" and "blood sugar").
+
+<!-- We discarded: -->
+
+<!-- Taste: Lone item + unstable -->
+<!-- Affective_touch: Cross-loadings + unstable -->
+<!-- Vomit: Less strongly associated -->
+<!-- Itch: Less strongly associated, did not form consistent cluster -->
+<!-- More controversial: Temp and Sex_arousal: similar cluster yet less reliable -->
+
+Importantly, this initial structure analysis run highlighted some problematic items: "taste" typically displayed a lone or unstable pattern of associations, "affective touch" exhibited cross-loadings and instability, "vomit" was less strongly associated with other items, and "itch" did not form a consistent cluster. Finally, "temperature" and "sexual arousal" showed redundant patterns of associations but were less reliable. These 6 items were thus removed, and a second run of structure analysis was performed on the remaining 14 items.
+
+```{r}
+#| warning: false
+#| label: fig-structure
+#| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
+#| out-width: "100%"
+#| fig-cap: "TODO."
+
+knitr::include_graphics("../../analysis/figures/Figure2.png")
+```
 
 
-<!-- Factor analysis -->
-
-Regarding Factor Analysis, the Method Agreement Procedure recommended a four-factor solution for the whole sample. A four-factor solution was extracted using an *oblimin* rotation, accounting for 41.58% of the total variance.
-The first factor (14.45%) included items "burp", "cough", "wind", "sneeze", "vomit", "temperature", "sexual arousal" and "taste". The second factor (11.76%) included "breathing", "hungry", "heart", "thirsty", "pain", "muscles", "blood sugar", and "bruise". 
-The third factor (8.09%) contained skin-related items "tickle", "itch" and "affective touch", and the final factor (7.28%) included "urinate" and "defecate".
-Notably, this structure differed from that suggested by EGA.
-
-<!-- EGA clusters 
-c1- "itch", "tickle", "bruise", "blood sugar
-c2- burp", "wind", "cough", "sneeze", "vomit"
-c3 - affective touch", "sexual arousal", "muscles", "temperature", "pain", and "taste"
-c4- "heart", "breathing", "hungry", "thirsty", "urinate", and "defecate"
-
-<!-- FA clusters -->
-<!-- c1 - burp, cough, wind, sneeze, vomit, temp, sexual arousal, taste
-c2 - breathing, hungry, heart, thirsty, pain, muscles , blood sugar, bruise
-c3 - tickle, itch, affective touch,
-c4 - urinate, defecate --> 
+<!-- Second run -->
+HCA and EGA yielded highly consistent results, emphasizing pairs of items, namely Hungry-Thirsty, Bruise-Blood sugar, Urinate-Defecate, Muscles-Pain, Breathing-Heart, Cough-Sneeze, Wind-Burp. HCA also significantly grouped the Urinate-Defecate and Muscles-Pain pairs, as well as expulsion items (Wind-Burp and Cough-Sneeze).
+EFA suggested once again 3 factors as the optimal solution, with the first factor including expulsion-related items ("burp", "wind", "cough", "sneeze"), the second factor being related to the Urinate-Defecate pair, and the third factor comprising the remaining items.
 
 
-<!-- Item selection -->
-**UVA**, then re-run EGA and EFA. Then CFA.
-
-
+<!-- CFA Model Comparison -->
+<!-- Name	BIC	RMSEA	Chi2	CFI	BF -->
+<!-- fit_g	933909.6	0.124	27,249.398	0.783	Inf -->
+<!-- fit_ega	1101773.3	0.035	2,306.303	0.984	NA -->
+<!-- fit_egag	1106163.9	0.054	6,842.382	0.952	0 -->
+<!-- fit_hclust	1112649.0	0.078	13,296.328	0.907	0 -->
+<!-- fit_hclustg	1113829.4	0.078	14,528.732	0.898	0 -->
+<!-- fit_efag	1115871.0	0.083	16,591.054	0.883	0 -->
+<!-- fit_efa	1115871.0	0.083	16,591.054	0.883	0 -->
 
 <!-- CFA -->
-We then attempted at testing various candidate structures using confirmatory factor analysis (CFA).
+We then fitted and compared using CFA various candidate structures emerging from the previous analyses, including a 1-factor model (the G-model), a 3-factor model (EFA), a 3+1 model (EFA + general factor), a 5-factor model (HCA), a 5+1 model (HCA + general factor), a 7-factor model (EGA), and a 7+1 model (EGA + general factor). The EGA model with 7 factors of item pairs provided the best fit with the lowest RMSEA (0.035), lowest $\chi^2$ (2306.30), highest CFI (0.984). It was followed by the EGA + general factor model (RMSEA = 0.054, $\chi^2$ = 6842.38, CFI = 0.952), and the HCA model with 5 factors (RMSEA = 0.078, $\chi^2$ = 13296.33, CFI = 0.907). The other models performed poorly, with RMSEA > 0.08 and CFI < 0.90. The unique-factor model yielded the lowest BIC (which takes into account the number of factors), followed by the EGA model. All the other models displayed significantly (BIC-based Bayes Factor < 1/100) lower evidence compared to the EGA model.
 
+**ANA TODO: This result was relatively consistent across unique datasets, ...**
 
-
-Throughout the EGA and EFA analyses, the item "tickle" was consistently identified as redundant and was flagged for removal in the UVA analysis. 
-It also demonstrated the lowest uniqueness value in the factor analysis, leading to its exclusion from further analysis.
-Similarly, several "ambiguous" items — such as "temp", "vomit", "affective touch", "sexual arousal", and "taste" — were removed due to their context-dependent nature as well as weak loadings on multiple factors, which may compromise measurement consistency and reduce the clarity of factor structure.
-
-<!-- Confirmatory factor analysis -->
-CFA was performed to identify the best-fitting model for the data. 
-A total of five models were computed: Model 1 assumed a general interoception factor (1-factor solution), Model 2 proposed four factors, Model 3 assumed five factors, Model 4 proposed six factors, and Model 5, the most refined model, separated the factors into smaller, more specific groups, resulting in a 7-factor solution.
-
-<!-- Model Fit + lower-level factors + high-order factors-->
-The results of model comparison indicate that the Model 5 - with 7 factors  - had the best fit among all the models (AIC = -171638, BIC = -171228, χ² (56) = 2195.20, p < .001). 
-Parameter estimates for the model with 7 factors were also analyzed, with all factor loadings found to be significant (p < .001) and standardized coefficients ranging from 0.50 to 0.82. 
-Furthermore, the correlations between latent factors were all significant, ranging from 0.43 to 0.80, with the strongest correlation observed between ItchBruise and MusclesPain (0.80).
-
-<!-- higher- level factors -->
-To assess whether the inclusion of higher-order factors was justified, three models were evaluated. 
-Model 1 assumed one higher-order factor. 
-Model 2 introduced two higher-order factors, while Model 3 included three higher-order factors. 
-The baseline model, which consisted of 7 factors, was compared with these alternative models. 
-The results indicated that the baseline model provided the best fit (AIC = -171638, BIC = -171228, χ²(56) = 2195.20, p < .001), suggesting no evidence to support the inclusion of higher-order factors.
-
-<!-- Model Performance -->
-When taking acount all the samples, the fit statistics indicated a very good model fit (χ²(56) = 2195.20, p < .001, RMSEA = 0.03, CFI= 0.98 SRMR = 0.92) for the model with 7-factors.
-These fit statistics collectively suggest that the model adequately represents the data structure.
-Overall, the CFA results suggest that Model 7 provides the best fit for the data, with significant factor loadings and strong correlations between the factors. 
 
 ## Discussion
 
-The comprehensive structural analysis of a large body of IAS item-level datasets revealed a 4-factor model as the most appropriate solution when taking into account all the items in the scale. 
-These findings contrast with previous research which all found that 2-factor model [@murphy2019; @koike2023], 1-factor model [@brand2023] and bifactor model [@lin2023; @campos2021] fits the data best.
-While this analysis also revealed an okay fit for the 1-factor model, the 4-factor model was ultimately superior.
-Notably, this 4-factor solution was found in both the EGA and EFA analysis, altough groupings differed. 
-
-<!-- EGA groupings -->
-The EGA analysis revealed different ‘hubs' of items that are related, not only in this structure analysis, but also in underlying mechanisms.
-The ‘wind-burp-cough-sneeze-vomit' category, for example, only entails items that are linked to excretion through the mouth. 
-The 'heart-breathing-hungry-urinate-defecate' category includes items linked to basic physiological functions essential for homeostasis and survival.
-The 'affective-touch-sexual arousal-temperature-pain-taste-muscles' category represents sensations closely tied to both affective experiences and bodily awareness.
-Lastly, the 'tickle-itch-bruise-blood-sugar' category includes items that reflect more localized or transient bodily sensations, often linked to surface-level or metabolic responses.
-
-<!-- EFA groupings -->
-The EFA groupings, in contrast, revealed a less balanced division of items into clusters. One factor consisted of just two items—'urinate' and 'defecate'—while another contained three items—'tickle', 'itch', and 'affective touch'. 
-Of notice is the loading for 'affective touch' as 0.33, barely meeting the acceptable threshold of >0.32 [@costello2005best], while the other items in this factor had loadings above 0.75. 
-
-<!-- CFA -->
-While the 4-factor structure repeatedely showed up reagrdless of the dimensionality method, some items were flagged as redudant and in particular 'tickle' was suggested to be removed. 
-Additionally, some items appear to be ambiguous, as their interpretation and grouping may be contextually dependent. For instance, sensations such as feeling one's heart beat faster and experiencing nausea-related urges to vomit often co-occur. 
-This overlap is not merely coincidental; these sensations may reflect interconnected physiological processes, such as autonomic arousal or the body's stress response. 
-Such interdependencies challenge the assumption that IAS items neatly map onto distinct bodily sensations. 
-Empirical evidence further highlights item ambiguity. 
-Items such as 'taste' showed similarly weak loadings across multiple factors (0.24 for Factor 1 and 0.20 for Factor 3), falling below the commonly accepted threshold for meaningful loadings. 
-Likewise, 'temperature' loaded weakly on both Factor 1 (0.26) and Factor 3 (0.25), while 'sexual arousal' demonstrated similarly low and split loadings (0.25 to Factor 1 and 0.23 to Factor 3). 
-Although 'vomit' showed a slightly stronger loading on Factor 1, its context-dependent nature further complicates its conceptual clarity.
-Consequently, refining the scale by removing items with overlapping or ambiguous content could enhance its precision, ensuring that each item captures a unique and meaningful aspect of interoceptive awareness.
-Based on this, the CFA was conducted with 14 items out of the 21, suggetsing that 7-factors (i.e., pairs of items) is the model with the best fit for the data. 
-
-<!-- Recomendations -->
-There are couple recomendations that follow from this mega-analysis on the IAS.
-The findings indicate a high proportion of answers at 4 (see @fig-distributions), especially when using a 5-step scale.
-The analogue scale shows a more dispersed distribution, with some answers indicating the highest 5/5, which was not the case in Likert-scales.
-Therefore, we recommend using an analog scale for the IAS, which provides a novel approach to improving the scale in a simple manner. 
-
-<!-- removal of tickle and potential for a short version of the IAS -->
-Secondly, there are several items that show redundancy suggesting that adapting the IAS would be beneficial for validity.
-Based on the given results, we suggest removing the tickle, while keeping the itch item  \[wTO = 0.364\].
-Other items with moderate redundancy include 'wind' and 'burp', as well as 'urinate' and 'defecate'. 
-Additionally, there are pairs with slight redundancy, such as 'hungry' and 'thirsty', 'sneeze' and 'cough', and 'heart' and 'breathing'.
-Interestingly, @lin2023 also found redundancy between 'tickle' and 'itch', ultimately deciding to exclude the former due to the fact that the characters for both terms are identical in the Chinese language.
-In contrast, @campos2021 also found 'tickle' to be redudant but did not suggest excluding it from the analysis.
-@lin2023 also developed a shortened version of the IAS, removing additional items to create a 12-item scale, including the following items:'hunger', 'breath', 'urinate', 'taste', 'vomit', 'cough', 'temperature', 'sexual arousal', 'wind', 'muscle', 'pain', and 'itch'.
-As demonstrated by @lin2023, reducing redundancy and streamlining the scale through a short-form IAS can improve the model fit and enhance the scale's unidimensionality, ultimately making it a more efficient tool for assessing interoceptive accuracy.
-<!-- ...aligns with our findings, suggesting that further items are ambiguous as to whether they should be removed. -->
-
-<!-- Context-specific items -->
-
-The IAS aims to measure subjective interoceptive accuracy by assessing individuals' self-reported ability to detect internal bodily sensations. 
-However, the interpretation of these sensations is highly dependent on their physiological context. 
-Sensations such as heart rate acceleration, breathing changes, or muscle soreness can arise in diverse contexts — for instance, during exercise, emotional arousal, or illness. 
-Without considering the underlying physiological context, individuals may misattribute these sensations to different causes, potentially confounding their self-assessments.
-For example, a fast heartbeat may be accurately detected but interpreted as anxiety rather than exertion. Similarly, sensations like nausea or sexual arousal may fluctuate in intensity depending on contextual factors such as stress, fatigue, or hormonal cycles. 
-In fact, previous research has highlighted the need for interoceptive questionnaires to prioritize neutral bodily sensations that are less susceptible to cognitive or emotional reinterpretation [@vlemincx2023novel]. 
-
-<!-- Conclusion -->
-In conclusion this study provided valuable insights into the structure and content of the IAS. 
-While the original factor structure was not replicated, our findings revealed a more stable 4-factor model that emerged across both EGA and EFA approaches. 
-This structure highlights meaningful item clusters that align with underlying physiological processes, improving our understanding of subjective interoceptive accuracy.
-However, our analysis also uncovered several limitations that warrant further attention. 
-The presence of redundant items (e.g., ‘tickle’) and items with ambiguous or weak factor loadings (e.g., ‘taste’ and ‘temperature’) suggests a need for scale refinement. 
-Adopting an analog scale format may further enhance variability and improve response accuracy. 
-Additionally, the observed overlap between context-dependent sensations underscores the importance of developing items that account for physiological contexts to minimize misattributions.
+**TODO.**
 
 # Study 2
 
-The second study focuses on the dispositional correlates of the IAS.
+<!-- The goal of study 2 is two-fold, 1) provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of datasets available, and 2) assess the practical benefits of using a refined version of the IAS (i.e., the 14-item version identified in study 1) compared to the original 21-item one general factor version. -->
 
-Correlations of the IAS will be computed to assess the relationship between subjective interoceptive accuracy and other subjective measures of interoception, mood, psychopathology, personality, and beliefs.
-Investigating correlates will help validate the IAS, as well as other interoceptive measures in the future.
+**TODO**
 
-<!-- what factor structure to choose -->
 
 ## Methods
 
@@ -436,7 +366,6 @@ The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO
 
 ### Data Analysis
 
-Correlations will be computed using the correlation package under a Bayesian framework [@ben2020effectsize].
 
 ## Results
 

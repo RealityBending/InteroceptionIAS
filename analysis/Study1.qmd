@@ -730,7 +730,7 @@ table <- data.frame(
   Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Total'),
   Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English', 'English',''),
   N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10), nrow(df11), nrow(df12), nrow(df13), nrow(df14), nrow(df15), 32993),
-  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. Does not include temperature, blood sugar and cough items.', 'Analog scales', 'Analog scales', '', '', '', ''),
+  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. No Temp, Blood sugar and Cough', 'Analog scales', 'Analog scales', '', '', '', ''),
   Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10$Age), make_age(df11$Age), make_age(df12$Age), make_age(df13$Age), make_age(df14$Age), make_age(df15$Age), '48.6 ± 13.1'),
   Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '17, 87', '18-57', '18-60', '17-93'),
   Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '57.3%', '74.8%', '75.9%', '71.6%'),
@@ -1304,6 +1304,9 @@ colors <- c("Heart" = "#F44336", "Breathing" = "#FF5722",
 ##### HCA
 
 ```{r}
+#| fig.width: 8
+#| fig.height: 12
+
 make_hclust <- function(data) {
   rez_pvclust <- pvclust::pvclust(data,
                  method.hclust = "complete",
@@ -1382,6 +1385,8 @@ rez_hclust$p
 ```{r}
 #| message: false
 #| warning: false
+#| fig.width: 8
+#| fig.height: 12
 
 make_ega <- function(data, cols = c("C1" = "#F44336", "C2" = "#FF9800", "C3" = "#795548", "C4" = "#CDDC39", "C5" = "#2196F3", "C6" = "#009688", "C7" = "#9C27B0")) {
   rez <- EGAnet::bootEGA(
@@ -1468,6 +1473,10 @@ rez_ega$p
 ##### EFA
 
 ```{r}
+#| fig.width: 8
+#| fig.height: 12
+
+
 make_efa <- function(data, n = 3, cols = c("F1" = "#009688", "F2" = "#795548", "F3" = "red")) {
   n_fac <- n_factors(data)
 
@@ -1686,6 +1695,8 @@ data16f <- select(data16, -Taste, -Affective_touch, -Vomit, -Itch,
 ```{r}
 #| warning: false
 #| message: false
+#| fig.width: 8
+#| fig.height: 12
 
 rez_hclust <- make_hclust(data_allf)
 
@@ -1700,6 +1711,8 @@ rez_hclust$p
 ```{r}
 #| warning: false
 #| message: false
+#| fig.width: 8
+#| fig.height: 12
 
 rez_ega <- make_ega(data_allf, cols = c(
   "C1" = colors[["Heart"]], "C2" = colors[["Hungry"]], "C3" = colors[["Defecate"]], "C4" = colors[["Muscles"]], 
@@ -1713,6 +1726,9 @@ rez_ega$p
 ##### EFA
 
 ```{r}
+#| fig.width: 8
+#| fig.height: 12
+
 rez_efa <- make_efa(data_allf, n = 3, cols = 
                       c("F1" = colors[["Wind"]], "F2" = colors[["Defecate"]], 
                         "F3" = colors[["Heart"]]))
