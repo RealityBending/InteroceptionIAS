@@ -338,11 +338,10 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "PHQ2_Sum", component="Mood", name = "Depression (PHQ-2)"),
   pool_coef(with = "PHQ15_Sum", component="Mood", name = "Somatic Concerns (PHQ-15)",unequalrange=TRUE), 
   pool_coef(with = "PHQ9_Sum", component="Mood", name = "Depression (PHQ-9)",unequalrange=TRUE), 
   pool_coef(with = "BDI_Sum", component="Mood", name = "Depression (BDI)"), 
-  pool_coef(with = "PHQ4_Depression", component="Mood", name = "Depression (PHQ-2)"),
+  pool_coef(with = "PHQ4_Depression", component="Mood", name = "Depression (PHQ-4)"),
   pool_coef(with = "DEP", component = "Mood", name = "Depression (MFQ)")
 )
 ```
@@ -363,10 +362,8 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "GAD2_Sum", component="Mood", name = "Anxiety (GAD-2)"), 
-  pool_coef(with = "STAIT_Sum", component="Mood", name = "Anxiety (STAI-T)",unequalrange=TRUE), 
+  pool_coef(with = "STAIT_Mean", component="Mood", name = "Anxiety (STAI-T)",unequalrange=TRUE), 
   pool_coef(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (PHQ-4)"),
-  pool_coef(with = "STAI5_General", component="Mood", name = "Anxiety (STAI-5)"),
   pool_coef(with = "GAD7_Sum", component="Mood", name = "Anxiety (GAD-7)")
 )
 ```
@@ -469,20 +466,13 @@ data <- rbind(
 
 # data <- rbind(
 #   data,
-#   make_rez(with = "PI_Alive", component="World Beliefs", name = "Alive"),
-#   make_rez(with = "PI_Changing", component="World Beliefs", name = "Changing"),
-#   make_rez(with = "PI_Enticing", component="World Beliefs", name = "Enticing"),
-#   make_rez(with = "PI_Good", component="World Beliefs", name = "Good"),
-#   make_rez(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical"),
-#   make_rez(with = "PI_Safe", component="World Beliefs", name = "Safe"),
-#   make_rez(with = "PI_Understandable", component="World Beliefs", name = "Understandable"),
-#   make_rez(with = "PI_Alive", component="World Beliefs", name= "Alive"),
-#   make_rez(with = "PI_Changing", component="World Beliefs", name = "Changing"),
-#   make_rez(with = "PI_Enticing", component="World Beliefs", name = "Enticing"),
-#   make_rez(with = "PI_Good", component="World Beliefs", name = "Good"),
-#   make_rez(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical"),
-#   make_rez(with = "PI_Safe", component="World Beliefs", name = "Safe"),
-#   make_rez(with = "PI_Understandable", component="World Beliefs", name = "Understandable")
+#   pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive"),
+#   pool_coef(with = "PI_Changing", component="World Beliefs", name = "Changing"),
+#   pool_coef(with = "PI_Enticing", component="World Beliefs", name = "Enticing"),
+#   pool_coef(with = "PI_Good", component="World Beliefs", name = "Good"),
+#   pool_coef(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical"),
+#   pool_coef(with = "PI_Safe", component="World Beliefs", name = "Safe"),
+#   pool_coef(with = "PI_Understandable", component="World Beliefs", name = "Understandable"),
 # )
 ```
 
