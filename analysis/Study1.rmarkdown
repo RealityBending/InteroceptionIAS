@@ -34,6 +34,8 @@ ias_vars <- c(
 )
 ```
 
+
+
 ## Data Preparation
 
 ::: {.panel-tabset}
@@ -42,6 +44,8 @@ ias_vars <- c(
 
 - Murphy (2020)
   - https://osf.io/3m5nh
+
+
 
 ```{r}
 df1a <- haven::read_sav("../data/Murphy2020/Study 1.sav") |>
@@ -53,11 +57,15 @@ df1b <- haven::read_sav("../data/Murphy2020/Study 6 IAS.sav") |>
   mutate(Gender = as.character(ifelse(Gender == 1, "Male", ifelse(Gender == 2, "Female", "Other"))))
 ```
 
+
+
 ### Sample 2
 
 - Gaggero (2021) 
   - https://osf.io/5x9sg
   - BPQ_A = autonomic symptoms
+
+
 
 ```{r}
 load("../data/Gaggero2021/data.rda")
@@ -80,10 +88,14 @@ df2$BPQ_AutonomicReactivity <- rowMeans(select(df2, `BPQ 27`:`BPQ 46`), na.rm = 
 
 ```
 
+
+
 ### Sample 3
 
 - Campos (2022) - Study 1 
   - https://osf.io/j6ef3
+
+
 
 ```{r}
 df3 <- haven::read_sav("../data/Campos2022/Dataset_Test.sav") |>
@@ -105,12 +117,16 @@ df3$BPQ_AutonomicReactivity <- rowMeans(select(df3, BPQ27:BPQ46), na.rm = TRUE)
 
 ```
 
+
+
 ### Sample 4
 
 - Todd (2022) 
   - https://osf.io/ms354/
   - MAIA does not include items for not-worrying and not-distracting 
   - BPQ 26 - body awareness 
+
+
 
 ```{r}
 df4 <- haven::read_sav("../data/Todd2022/CompleteData_new.sav") |>
@@ -133,12 +149,16 @@ df4$MAIA_Noticing <- rowMeans(select(df4, starts_with("MAIA_NT")), na.rm = TRUE)
 df4$BPQ_BodyAwareness <- rowMeans(select(df4, starts_with("BPQ_")), na.rm = TRUE)
 ```
 
+
+
     
 ### Sample 5
 
 - Arslanova (2022)
   - https://osf.io/mp3cy/
   - note: Final.xlsx includes information about which participants passed the attention checks 
+
+
 
 ```{r}
 
@@ -173,10 +193,14 @@ df5 <- df5 |>
   mutate(across(everything(), as.numeric))
 ```
 
+
+
 ### Sample 6
 
 - Brand (2022) 
   - https://osf.io/xwz6g/
+
+
 
 ```{r}
 df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |> 
@@ -194,10 +218,14 @@ df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |>
   ) 
 ```
 
+
+
 ### Sample 7
 
 - Brand (2023) 
   - https://osf.io/3f2h6/
+
+
 
 
 ```{r}
@@ -219,8 +247,6 @@ df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |>
   ) |> 
   mutate(across(starts_with("MAIA_"), \(x) x - 1)) # Original scale 1-6
 
-df7a$STAIT_Mean <- df7a$STAIT_Sum/20
-
 df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |> 
   select(-COUNTRY_OTHER, -EDUCATION_OTHER, -Sample) |> 
   mutate_all(as.numeric) |> 
@@ -241,8 +267,7 @@ df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |>
 
 df7b$BPQ_BodyAwareness <- rowMeans(select(df7b, BPQ_01:BPQ_12), na.rm = TRUE)
 df7b$PHQ15_Sum <-rowSums(select(df7b,PHQ15_01:PHQ15_15recode), na.rm = TRUE)
-df7b$PHQ9_Sum <- rowMeans(select(df7b, PHQ9_01:PHQ9_09), na.rm = TRUE)
-df7b$STAIT_Mean <- df7b$STAIT_Sum/20
+df7b$PHQ9_Sum <- rowMeans(select(df7b, PHQ9_01:PHQ9_09), , na.rm = TRUE)
   
   
 df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |> 
@@ -265,10 +290,11 @@ df7c <- haven::read_sav("../data/Brand2023/Data_PotVie.sav") |>
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5), range = c(0, 6)))) # Original scale 0-6
 
 df7c$BPQ_BodyAwareness <- df7c$BPQ_sum / 26
-df7c$STAIT_Mean <- df7c$STAIT_Sum/20
 
 
 ```
+
+
 
 ### Sample 8
 
@@ -276,6 +302,8 @@ df7c$STAIT_Mean <- df7c$STAIT_Sum/20
   - https://osf.io/3eztd
   - Note: No tickle because same Chinese character
   - missing phq9_9 item
+
+
 
 ```{r}
 df8a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
@@ -309,10 +337,14 @@ df8b$PHQ15_Sum <- df8b$PHQ15_Sum/ 15
 
 ```
 
+
+
 ### Sample 9
 
 - VonMohr (2023) - Study 3 
   - https://osf.io/7p9u5/
+
+
 
 ```{r}
 df9 <- read.csv("../data/VonMohr2023/DataSet_study3.csv")
@@ -335,12 +367,16 @@ df9 <- df9 |>
     )
 ```
 
+
+
 ### Sample 10
 
 - Makowski
   - Note: First sample has some missing items (No Taste, Cough, Blood_Sugar)
   - Note: Analog scales
   - note df12  = primals data
+
+
 
 ```{r}
 df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
@@ -360,14 +396,14 @@ df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameR
   filter(!is.na(Urinate)) |> 
   datawizard::rescale(select=ias_vars, to = c(1, 5), range = c(0, 1)) |> 
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5))),
-         across(starts_with("PI_"), \(x) datawizard::rescale(x, to = c(0, 1))),
-         across(starts_with("Item_PHQ4_Depression_"), \(x) datawizard::rescale(x, to = c(1,4))),
-        across(starts_with("Item_PHQ4_Anxiety_"), \(x) datawizard::rescale(x, to = c(1,4)))) |>
-  mutate(PHQ4_Depression = Item_PHQ4_Depression_3 + Item_PHQ4_Depression_4,
-          PHQ4_Anxiety = Item_PHQ4_Anxiety_1 + Item_PHQ4_Anxiety_2)
+         across(starts_with("PI_"), \(x) datawizard::rescale(x, to = c(0, 1))))
 ```
 
+
+
 ### Sample 11
+
+
 
 ```{r}
 df11  <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/main/study2/data/data.csv") |>
@@ -378,7 +414,9 @@ df11  <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
     typeSample = Sample,
-    BDI_Sum = BDI2_Total) |>
+    BDI_Sum = BDI2_Total,
+    STAIT_Sum = STAI5_General
+  ) |>
   mutate(
     MAIA2_NotDistracting_1_R = 1 - MAIA2_NotDistracting_1_R,
     MAIA2_NotDistracting_2_R = 1 - MAIA2_NotDistracting_2_R,
@@ -389,13 +427,11 @@ df11  <- read.csv("https://raw.githubusercontent.com/DominiqueMakowski/PHQ4R/mai
     MAIA2_NotWorrying_1_R = 1 - MAIA2_NotWorrying_1_R,
     MAIA2_NotWorrying_2_R = 1 - MAIA2_NotWorrying_2_R,
     MAIA2_NotWorrying_5_R = 1 - MAIA2_NotWorrying_5_R) |> 
-  mutate(across(starts_with("MAIA2_"), \(x) datawizard::rescale(x, to = c(0, 5))),
-         across(starts_with("PHQ4_Depression_"), \(x) datawizard::rescale(x, to = c(1,4))),
-         across(starts_with("PHQ4_Anxiety_"), \(x) datawizard::rescale(x, to = c(1,4))),
-         across(starts_with("STAI5_"), \(x) datawizard::rescale(x, to = c(1, 4)))) |>
-   mutate(PHQ4_Depression = PHQ4_Depression_3 + PHQ4_Depression_4,
-          PHQ4_Anxiety = PHQ4_Anxiety_1 + PHQ4_Anxiety_2,
-          STAIT_Mean = (STAI5_1 + STAI5_2 + STAI5_3 + STAI5_4 + STAI5_4 + STAI5_5)/5) |>
+  mutate(across(starts_with("MAIA2_"), \(x) datawizard::rescale(x, to = c(0, 5))))  |>
+   mutate(across(starts_with("PHQ4_Depression_"), \(x) datawizard::rescale(x, to = c(0, 4))),
+          across(starts_with("PHQ4_Anxiety_"), \(x) datawizard::rescale(x, to = c(0, 4)))) |>
+   mutate(PHQ4_Depression = (PHQ4_Depression_3 + PHQ4_Depression_4)/2,
+          PHQ4_Anxiety = (PHQ4_Anxiety_1 + PHQ4_Anxiety_2)/2) |>
   datawizard::rescale(select=ias_vars, to = c(1, 5), range = c(0, 1))
 
 # Compute subscales
@@ -411,7 +447,11 @@ df11$MAIA_Trusting<- rowMeans(select(df11 , starts_with("MAIA2_Trusting")))
 
 ```
 
+
+
 ### Sample 12
+
+
 
 ```{r}
 df12  <- read.csv("https://raw.githubusercontent.com/RealityBending/InteroceptionPrimals/refs/heads/main/data/data_participants.csv") |>
@@ -431,7 +471,11 @@ df12  <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5)))) 
 ```
 
+
+
 ### Sample 13
+
+
 
 ```{r}
 
@@ -516,10 +560,14 @@ df13$PHQ4_Anxiety <- (df13$PHQ4_Anxiety_2 + df13$PHQ4_Anxiety_1)/2
 ```
 
 
+
+
 ### Sample 14
 
 - Poreiro et al., 
   - Study 1: https://osf.io/49wbv
+
+
 
 ```{r}
 df14  <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |> 
@@ -543,14 +591,15 @@ df14  <- haven::read_sav("../data/Giulia/Interoceptive Attention ESM.sav") |>
     TAS_DIF = TAS20_1 + TAS20_3 + TAS20_6 + TAS20_7 + TAS20_9 + TAS20_13 + TAS20_14,
     TAS_DDF = TAS20_2 + (6-TAS20_4) + TAS20_11 + TAS20_12 + TAS20_17,
     TAS_EOT = (6-TAS20_5) + TAS20_8 + (6-TAS20_10) + TAS20_15 + TAS20_16 + (6-TAS20_18) + (6-TAS20_19) + TAS20_20) 
-
-df14$STAIT_Mean <- df14$STAIT_Sum/20
-
 ```
+
+
 
 
 ### Sample 15
 - Poreiro: unpublished
+
+
 
 ```{r}
 df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
@@ -570,9 +619,13 @@ df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive 
   na.omit()
 ```
 
+
+
 ### Sample 16
 
 - Raquel Arjona and Robyn Scharte data 
+
+
 
 ```{r}
 
@@ -611,16 +664,22 @@ df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
 
 ```
 
+
+
 :::
 
 
 ## Participants
+
+
 
 ```{r}
 # Save all
 data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11 =df11 , df12 =df12 , df13  = df13 , df14 =df14 , df15  =df15, df16 = df16)
 save(data, file = "../data/data.RData")
 ```
+
+
 
 
 - **Sample 1a**: Data from [Murphy's (2020)](https://osf.io/3m5nh/?view_only=a68051df4abe4ecb992f22dc8c17f769) study 1, downloaded from OSF, included `r report::report_participants(df1a, age = "Age", sex = NA, gender = "Gender")`.
@@ -646,6 +705,8 @@ save(data, file = "../data/data.RData")
 
 
 Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15) +nrow(df16)`.
+
+
 
 ```{r}
 
@@ -761,8 +822,10 @@ gt_apastyle(table_apa, font.size=12)
 # gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
 saveRDS(table, "figures/table1.rds")
 
-gtsave(table_apa, "figures/table1.png")
+# gtsave(table_apa, "figures/table1.png")
 ```
+
+
 
 
 ## Item Selection
@@ -771,6 +834,8 @@ gtsave(table_apa, "figures/table1.png")
 ### Distribution
 
 The items with the differing distribution pattern (with a lower mode around 2/5) are "Affective Touch", "Blood Sugar" and "Bruise".
+
+
 
 ```{r}
 dens1a <- estimate_density(select(df1a, all_of(ias_vars)), method = "kernSmooth") |>
@@ -849,7 +914,6 @@ p1 <- p1_data |>
 p1
 ```
 
-
 ```{r}
 #  ONLY IAS DATA
 data1a <- select(df1a, all_of(dens1a$Parameter))
@@ -883,6 +947,8 @@ data_all <- rbind(
 ) 
 ```
 
+
+
 ### Correlations
 
 An overall positive intercorrelation pattern, with no clear structure emerging.
@@ -890,6 +956,8 @@ An overall positive intercorrelation pattern, with no clear structure emerging.
 ::: {.panel-tabset}
 
 #### All data
+
+
 
 ```{r}
 make_correlation <- function(df) {
@@ -934,128 +1002,210 @@ ggsave("figures/Figure1.png", fig1, width=10, height=12, dpi=300, bg="white")
 ```
 
 
+
+
 #### Sample 1a
+
+
 
 ```{r}
 make_correlation(data1a)
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 make_correlation(data1b)
 ```
 
 
+
+
 #### Sample 2
+
+
 
 ```{r}
 make_correlation(data2)
 ```
 
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 make_correlation(data3)
 ```
 
+
+
 #### Sample 4
+
+
 
 ```{r}
 make_correlation(data6)
 ```
 
+
+
 #### Sample 5
+
+
 
 ```{r}
 make_correlation(data5)
 ```
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 make_correlation(data6)
 ```
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 make_correlation(data7a)
 ```
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 make_correlation(data7b)
 ```
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 make_correlation(data7c)
 ```
 
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 make_correlation(data8a)
 ```
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 make_correlation(data8b)
 ```
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 make_correlation(data9)
 ```
 
+
+
 #### Sample 10
+
+
 
 ```{r}
 make_correlation(data10)
 ```
 
+
+
 #### Sample 11 
+
+
 
 ```{r}
 make_correlation(data11)
 ```
 
+
+
 #### Sample 12 
+
+
 
 ```{r}
 make_correlation(data12)
 ```
 
+
+
 #### Sample 13
+
+
 
 ```{r}
 make_correlation(data13)
 ```
 
+
+
 #### Sample 14 
+
+
 
 ```{r}
 make_correlation(data14)
 ```
 
+
+
 #### Sample 15  
+
+
 
 ```{r}
 make_correlation(data15)
 ```
 
+
+
 #### Sample 16  
+
+
 
 ```{r}
 make_correlation(data16)
 ```
+
+
 
 :::
 
@@ -1068,6 +1218,8 @@ Unique Variable Analysis (Christensen, Garrido, & Golino, 2023) uses the weighte
 
 #### All data
 
+
+
 ```{r}
 uva0 <- EGAnet::UVA(data = data_all, cut.off = 0.3)
 uva0
@@ -1075,7 +1227,11 @@ uva0$keep_remove
 ```
 
 
+
+
 #### Sample 1a
+
+
 
 ```{r}
 uva1a <- EGAnet::UVA(data = data1a, cut.off = 0.3)
@@ -1083,7 +1239,11 @@ uva1a
 uva1a$keep_remove
 ```
 
+
+
 #### Sample 1b
+
+
 
 ```{r}
 uva1b <- EGAnet::UVA(data = data1b, cut.off = 0.3)
@@ -1091,7 +1251,11 @@ uva1b
 uva1b$keep_remove
 ```
 
+
+
 #### Sample 2
+
+
 
 ```{r}
 uva2 <- EGAnet::UVA(data = data2, cut.off = 0.3)
@@ -1100,7 +1264,11 @@ uva2$keep_remove
 ```
 
 
+
+
 #### Sample 3
+
+
 
 ```{r}
 uva3 <- EGAnet::UVA(data = data3, cut.off = 0.3)
@@ -1108,7 +1276,11 @@ uva3
 uva3$keep_remove
 ```
 
+
+
 #### Sample 4
+
+
 
 ```{r}
 uva4 <- EGAnet::UVA(data = data6, cut.off = 0.3)
@@ -1116,7 +1288,11 @@ uva4
 uva4$keep_remove
 ```
 
+
+
 #### Sample 5 
+
+
 
 ```{r}
 uva5 <- EGAnet::UVA(data = data5, cut.off = 0.3)
@@ -1124,7 +1300,11 @@ uva5
 uva5$keep_remove
 ```
 
+
+
 #### Sample 6
+
+
 
 ```{r}
 uva6 <- EGAnet::UVA(data = data6, cut.off = 0.3)
@@ -1132,7 +1312,11 @@ uva6
 uva6$keep_remove
 ```
 
+
+
 #### Sample 7a
+
+
 
 ```{r}
 uva7a <- EGAnet::UVA(data = data7a, cut.off = 0.3)
@@ -1140,7 +1324,11 @@ uva7a
 uva7a$keep_remove
 ```
 
+
+
 #### Sample 7b
+
+
 
 ```{r}
 uva7b <- EGAnet::UVA(data = data7b, cut.off = 0.3)
@@ -1148,7 +1336,11 @@ uva7b
 uva7b$keep_remove
 ```
 
+
+
 #### Sample 7c
+
+
 
 ```{r}
 uva7c <- EGAnet::UVA(data = data7c, cut.off = 0.3)
@@ -1156,7 +1348,11 @@ uva7c
 uva7c$keep_remove
 ```
 
+
+
 #### Sample 8a
+
+
 
 ```{r}
 uva8a <- EGAnet::UVA(data = data8a, cut.off = 0.3)
@@ -1164,7 +1360,11 @@ uva8a
 uva8a$keep_remove
 ```
 
+
+
 #### Sample 8b
+
+
 
 ```{r}
 uva8b <- EGAnet::UVA(data = data8b, cut.off = 0.3)
@@ -1172,7 +1372,11 @@ uva8b
 uva8b$keep_remove
 ```
 
+
+
 #### Sample 9
+
+
 
 ```{r}
 uva9 <- EGAnet::UVA(data = data9, cut.off = 0.3)
@@ -1180,7 +1384,11 @@ uva9
 uva9$keep_remove
 ```
 
+
+
 #### Sample 10
+
+
 
 ```{r}
 uva10 <- EGAnet::UVA(data = data10, cut.off = 0.3)
@@ -1188,7 +1396,11 @@ uva10
 uva10$keep_remove
 ```
 
+
+
 #### Sample 11 
+
+
 
 ```{r}
 uva11  <- EGAnet::UVA(data = data11 , cut.off = 0.3)
@@ -1196,7 +1408,11 @@ uva11
 uva11$keep_remove
 ```
 
+
+
 #### Sample 12 
+
+
 
 ```{r}
 uva12  <- EGAnet::UVA(data = data12, cut.off = 0.3)
@@ -1204,14 +1420,22 @@ uva12
 uva12$keep_remove
 ```
 
+
+
 #### Sample 13 
+
+
 
 ```{r}
 uva13 <- EGAnet::UVA(data = data13, cut.off = 0.3)
 uva13 
 uva13$keep_remove
 ```
+
+
 #### Sample 14 
+
+
 
 ```{r}
 uva14  <- EGAnet::UVA(data = data14, cut.off = 0.3)
@@ -1219,7 +1443,11 @@ uva14
 uva14$keep_remove
 ```
 
+
+
 #### Sample 15  
+
+
 
 ```{r}
 uva15   <- EGAnet::UVA(data = data15, cut.off = 0.3)
@@ -1227,7 +1455,11 @@ uva15
 uva15$keep_remove
 ```
 
+
+
 #### Sample 16  
+
+
 
 ```{r}
 uva16  <- EGAnet::UVA(data = data16, cut.off = 0.3)
@@ -1235,7 +1467,11 @@ uva16
 uva16$keep_remove
 ```
 
+
+
 #### Summary
+
+
 
 
 ```{r}
@@ -1263,12 +1499,16 @@ rez_uva <- c(uva1a$keep_remove$remove,
 sort(table(rez_uva), decreasing = TRUE) / length(rez_uva) 
 ```
 
+
+
 :::
 
 ### Structure Refinement
 
 Discarded the following items:
 - Tickle: not present in the same dataset and consistently flagged as redundant in UVA analysis.
+
+
 
 ```{r}
 data_all <- select(data_all, -Tickle)
@@ -1294,7 +1534,11 @@ data15 <- select(data15 , -Tickle)
 data16 <- select(data16 , -Tickle)
 ```
 
+
+
 #### Initial
+
+
 
 
 ```{r}
@@ -1311,9 +1555,13 @@ colors <- c("Heart" = "#F44336", "Breathing" = "#FF5722",
 ```
 
 
+
+
 ::: {.panel-tabset}
 
 ##### HCA
+
+
 
 ```{r}
 #| fig.width: 8
@@ -1392,7 +1640,11 @@ pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
 rez_hclust$p
 ```
 
+
+
 ##### EGA
+
+
 
 ```{r}
 #| message: false
@@ -1482,7 +1734,11 @@ rez_ega$table
 rez_ega$p
 ```
 
+
+
 ##### EFA
+
+
 
 ```{r}
 #| fig.width: 8
@@ -1639,6 +1895,8 @@ rez_efa$p
 ```
 
 
+
+
 :::
 
 
@@ -1651,6 +1909,8 @@ We discarded:
 - Vomit: Less strongly associated
 - Itch: Less strongly associated, did not form consistent cluster
 - More controversial: Temp and Sex_arousal: similar cluster yet less reliable
+
+
 
 
 ```{r}
@@ -1700,9 +1960,13 @@ data16f <- select(data16, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 ```
 
+
+
 ::: {.panel-tabset}
 
 ##### HCA
+
+
 
 ```{r}
 #| warning: false
@@ -1718,7 +1982,11 @@ pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
 rez_hclust$p
 ```
 
+
+
 ##### EGA
+
+
 
 ```{r}
 #| warning: false
@@ -1735,7 +2003,11 @@ rez_ega$table
 rez_ega$p
 ```
 
+
+
 ##### EFA
+
+
 
 ```{r}
 #| fig.width: 8
@@ -1749,7 +2021,11 @@ rez_efa$p
 ```
 
 
+
+
 ##### CFA
+
+
 
 ```{r}
 #| fig-height: 20
@@ -1894,6 +2170,8 @@ rez_cfa0$p
 ```
 
 
+
+
 :::
 
 #### Figure
@@ -1903,12 +2181,16 @@ Best way to assess the values of this new granular structure is to assess its pr
 
 
 
+
+
 ```{r}
 #| eval: false
 
 fig2 <- (rez_hclust$p | rez_ega$p) / (rez_efa$p | rez_cfa0$p) 
 ggsave("figures/Figure2.png", fig2, width=14, height=14, dpi=300, bg="white")
 ```
+
+
 
 
 ## Structure Invariance 
@@ -1922,6 +2204,8 @@ ggsave("figures/Figure2.png", fig2, width=14, height=14, dpi=300, bg="white")
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r}
 #| warning: false
@@ -1938,7 +2222,11 @@ rez_efa <- make_efa(data1a, n = 4, cols = c("F1" = colors[["Itch"]], "F2" = colo
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r}
 #| warning: false
@@ -1953,6 +2241,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -1960,6 +2250,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r}
 #| warning: false
@@ -1977,7 +2269,11 @@ rez_cfa1a  <- make_cfa(data1af)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r}
 #| warning: false
@@ -1994,6 +2290,8 @@ plot(rez_efa$n_fac)
 rez_cfa1a$test
 ```
 
+
+
 ::::
 
 ### Sample 1b
@@ -2003,6 +2301,8 @@ rez_cfa1a$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r}
 #| warning: false
@@ -2020,7 +2320,11 @@ rez_efa <- make_efa(data1b, n = 4, cols = c("F1" = colors[["Urinate"]], "F2" = c
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r}
 #| warning: false
@@ -2035,6 +2339,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2042,8 +2348,9 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+- cfa did not converge
 
-Note: CFA did not converge
+
 
 ```{r}
 #| warning: false
@@ -2062,7 +2369,11 @@ rez_efa <- make_efa(data1bf, n = 3, cols = c("F1" = colors[["Urinate"]], "F2" = 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r}
 #| warning: false
@@ -2079,6 +2390,8 @@ plot(rez_efa$n_fac)
 # rez_cfa1b$test
 ```
 
+
+
 ::::
 
 ### Sample 2
@@ -2088,6 +2401,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r}
 #| warning: false
@@ -2105,7 +2420,11 @@ rez_efa <- make_efa(data2, n = 4, cols = c("F1" = colors[["Cough"]], "F2" = colo
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r}
 #| warning: false
@@ -2120,6 +2439,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2128,7 +2449,7 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-Note: CFA did not converge
+
 
 ```{r}
 #| warning: false
@@ -2147,7 +2468,11 @@ rez_efa <- make_efa(data2f, n = 3, cols = c("F1" = colors[["Cough"]], "F2" = col
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r}
 #| warning: false
@@ -2164,6 +2489,8 @@ plot(rez_efa$n_fac)
 # rez_cfa2$test
 ```
 
+
+
 ::::
 
 ### Sample 3
@@ -2173,6 +2500,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data3}
 #| warning: false
@@ -2190,7 +2519,11 @@ rez_efa <- make_efa(data3, n = 4, cols = c("F1" = colors[["Cough"]], "F2" = colo
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data3_details}
 #| warning: false
@@ -2205,6 +2538,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2213,7 +2548,6 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-Note: CFA did not converge
 
 
 ```{r data3f}
@@ -2233,7 +2567,11 @@ rez_efa <- make_efa(data3f, n = 3, cols = c("F1" = colors[["Cough"]], "F2" = col
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data3f_details}
 #| warning: false
@@ -2250,6 +2588,8 @@ plot(rez_efa$n_fac)
 # rez_cfa3$test
 ```
 
+
+
 ::::
 
 ### Sample 4
@@ -2259,6 +2599,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data4}
 #| warning: false
@@ -2276,7 +2618,11 @@ rez_efa <- make_efa(data4, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = color
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data4_details}
 #| warning: false
@@ -2291,6 +2637,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2298,6 +2646,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data4f}
 #| warning: false
@@ -2316,7 +2666,11 @@ rez_cf4  <- make_cfa(data4f)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data4f_details}
 #| warning: false
@@ -2333,6 +2687,8 @@ plot(rez_efa$n_fac)
 rez_cf4$test
 ```
 
+
+
 ::::
 
 ### Sample 5
@@ -2342,6 +2698,8 @@ rez_cf4$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data5}
 #| warning: false
@@ -2360,7 +2718,11 @@ rez_efa <- make_efa(data5, n = 8, cols = c("F1" = colors[["Urinate"]], "F2" = co
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data5_details}
 #| warning: false
@@ -2375,6 +2737,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2384,7 +2748,7 @@ plot(rez_efa$n_fac)
 ##### Summary
 
 Note: EGA errors.
-Note: CFA did not converge
+
 
 
 ```{r data5f}
@@ -2405,7 +2769,11 @@ rez_efa <- make_efa(data5f, n = 5, cols = c("F1" = colors[["Urinate"]], "F2" = c
 rez_hclust$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data5f_details}
 #| warning: false
@@ -2419,6 +2787,8 @@ plot(rez_efa$n_fac)
 # rez_cfa5$test
 ```
 
+
+
 ::::
 
 ### Sample 6
@@ -2428,6 +2798,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data6}
 #| warning: false
@@ -2445,7 +2817,11 @@ rez_efa <- make_efa(data6, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = color
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data6_details}
 #| warning: false
@@ -2460,6 +2836,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2467,6 +2845,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data6f}
 #| warning: false
@@ -2485,7 +2865,11 @@ rez_cfa6  <- make_cfa(data6f)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data6f_details}
 #| warning: false
@@ -2502,6 +2886,8 @@ plot(rez_efa$n_fac)
 rez_cfa6$test
 ```
 
+
+
 ::::
 
 ### Sample 7a
@@ -2511,6 +2897,8 @@ rez_cfa6$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data7a}
 #| warning: false
@@ -2528,7 +2916,11 @@ rez_efa <- make_efa(data7a, n = 4, cols = c("F1" = colors[["Pain"]], "F2" = colo
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data7a_details}
 #| warning: false
@@ -2543,6 +2935,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2550,6 +2944,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data7af}
 #| warning: false
@@ -2568,7 +2964,11 @@ rez_cf7a  <- make_cfa(data7af)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data7af_details}
 #| warning: false
@@ -2585,6 +2985,8 @@ plot(rez_efa$n_fac)
 rez_cf7a$test
 ```
 
+
+
 ::::
 
 ### Sample 7b
@@ -2594,6 +2996,8 @@ rez_cf7a$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data7b}
 #| warning: false
@@ -2611,7 +3015,11 @@ rez_efa <- make_efa(data7b, n = 4, cols = c("F1" = colors[["Wind"]], "F2" = colo
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data7b_details}
 #| warning: false
@@ -2626,6 +3034,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2633,6 +3043,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data7bf}
 #| warning: false
@@ -2651,7 +3063,11 @@ rez_cfa7b  <- make_cfa(data7bf)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data7bf_details}
 #| warning: false
@@ -2668,6 +3084,8 @@ plot(rez_efa$n_fac)
 rez_cfa7b$test
 ```
 
+
+
 ::::
 
 ### Sample 7c
@@ -2677,6 +3095,8 @@ rez_cfa7b$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data7c}
 #| warning: false
@@ -2694,7 +3114,11 @@ rez_efa <- make_efa(data7c, n = 3, cols = c("F1" = colors[["Cough"]], "F2" = col
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data7c_details}
 #| warning: false
@@ -2709,6 +3133,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2716,6 +3142,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data7cf}
 #| warning: false
@@ -2734,7 +3162,11 @@ rez_cfa7c  <- make_cfa(data7cf)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data7cf_details}
 #| warning: false
@@ -2751,6 +3183,8 @@ plot(rez_efa$n_fac)
 rez_cfa7c$test
 ```
 
+
+
 ::::
 
 ### Sample 8a
@@ -2760,6 +3194,8 @@ rez_cfa7c$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data8a}
 #| warning: false
@@ -2777,7 +3213,11 @@ rez_efa <- make_efa(data8a, n = 5, cols = c("F1" = colors[["Cough"]], "F2" = col
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data8a_details}
 #| message: false
@@ -2792,6 +3232,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2799,6 +3241,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data8af}
 #| message: false
@@ -2817,7 +3261,11 @@ rez_cfa8a  <- make_cfa(data8af)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data8af_details}
 #| warning: false
@@ -2833,6 +3281,8 @@ plot(rez_efa$n_fac)
 
 rez_cfa8a$test
 ```
+
+
 ::::
 
 ### Sample 8b
@@ -2842,6 +3292,8 @@ rez_cfa8a$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data8b}
 #| warning: false
@@ -2859,7 +3311,11 @@ rez_efa <- make_efa(data8b, n = 5, cols = c("F1" = colors[["Burp"]], "F2" = colo
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data8b_details}
 #| warning: false
@@ -2874,6 +3330,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2881,6 +3339,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data8bf}
 #| warning: false
@@ -2899,7 +3359,11 @@ rez_cfa8b  <- make_cfa(data8bf)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data8bf_details}
 #| warning: false
@@ -2915,6 +3379,8 @@ plot(rez_efa$n_fac)
 
 rez_cfa8b$test
 ```
+
+
 ::::
 
 ### Sample 9
@@ -2924,6 +3390,8 @@ rez_cfa8b$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data9}
 #| warning: false
@@ -2941,7 +3409,11 @@ rez_efa <- make_efa(data9, n = 3, cols = c("F1" = colors[["Burp"]], "F2" = color
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data9_details}
 #| warning: false
@@ -2956,6 +3428,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -2963,6 +3437,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data9f}
 #| warning: false
@@ -2981,7 +3457,11 @@ rez_cfa9  <- make_cfa(data9f)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data9f_details}
 #| warning: false
@@ -2997,6 +3477,8 @@ plot(rez_efa$n_fac)
 
 rez_cfa9$test
 ```
+
+
 ::::
 
 ### Sample 10
@@ -3006,6 +3488,8 @@ rez_cfa9$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data10}
 #| warning: false
@@ -3023,7 +3507,11 @@ rez_efa <- make_efa(data10, n = 4, cols = c("F1" = colors[["Hungry"]], "F2" = co
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data10_details}
 #| warning: false
@@ -3038,6 +3526,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -3047,6 +3537,8 @@ plot(rez_efa$n_fac)
 ##### Summary
 
 Note: No CFA (missing items)
+
+
 
 ```{r data10f}
 #| warning: false
@@ -3065,7 +3557,11 @@ rez_efa <- make_efa(data10f, n = 3, cols = c("F1" = colors[["Breathing"]], "F2" 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data10f_details}
 #| warning: false
@@ -3081,6 +3577,8 @@ plot(rez_efa$n_fac)
 
 # rez_cfa10$test
 ```
+
+
 ::::
 
 ### Sample 11
@@ -3090,6 +3588,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data11}
 #| warning: false
@@ -3107,7 +3607,11 @@ rez_efa <- make_efa(data11, n = 4, cols = c("F1" = colors[["Hungry"]], "F2" = co
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data11_details}
 #| warning: false
@@ -3122,6 +3626,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -3129,6 +3635,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data11f}
 #| warning: false
@@ -3147,7 +3655,11 @@ rez_cfa11  <- make_cfa(data11f)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data11f_details}
 #| warning: false
@@ -3163,6 +3675,8 @@ plot(rez_efa$n_fac)
 
 rez_cfa11$test
 ```
+
+
 ::::
 
 ### Sample 12
@@ -3172,6 +3686,8 @@ rez_cfa11$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data12}
 #| warning: false
@@ -3188,7 +3704,11 @@ rez_efa <- make_efa(data12, n = 2, cols = c("F1" = colors[["Urinate"]], "F2" = c
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data12_details}
 #| warning: false
@@ -3203,6 +3723,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -3212,6 +3734,8 @@ plot(rez_efa$n_fac)
 ##### Summary
 
 Note: CFA errors.
+
+
 
 ```{r data12f}
 #| warning: false
@@ -3230,7 +3754,11 @@ rez_efa <- make_efa(data12f, n = 5, cols = c("F1" = colors[["Urinate"]], "F2" = 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data12f_details}
 #| warning: false
@@ -3246,6 +3774,8 @@ plot(rez_efa$n_fac)
 
 # rez_cfa12$test
 ```
+
+
 ::::
 
 ### Sample 13
@@ -3255,6 +3785,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data13}
 #| warning: false
@@ -3272,7 +3804,11 @@ rez_efa <- make_efa(data13, n = 4, cols = c("F1" = colors[["Thirsty"]], "F2" = c
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data13_details}
 #| warning: false
@@ -3287,6 +3823,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -3294,6 +3832,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data13f}
 #| warning: false
@@ -3312,7 +3852,11 @@ rez_cfa13  <- make_cfa(data13f)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data13f_details}
 #| warning: false
@@ -3328,6 +3872,8 @@ plot(rez_efa$n_fac)
 
 rez_cfa13$test
 ```
+
+
 ::::
 
 ### Sample 14
@@ -3337,6 +3883,8 @@ rez_cfa13$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data14}
 #| warning: false
@@ -3356,7 +3904,11 @@ rez_efa <- make_efa(data14, n = 7, cols = c("F1" = colors[["Burp"]], "F2" = colo
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data14_details}
 #| warning: false
@@ -3371,6 +3923,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -3378,6 +3932,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data14f}
 #| warning: false
@@ -3397,7 +3953,11 @@ rez_cfa14  <- make_cfa(data14f)
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data14f_details}
 #| warning: false
@@ -3413,6 +3973,8 @@ plot(rez_efa$n_fac)
 
 rez_cfa14$test
 ```
+
+
 ::::
 
 ### Sample 15
@@ -3422,6 +3984,8 @@ rez_cfa14$test
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r data15}
 #| warning: false
@@ -3439,7 +4003,11 @@ rez_efa <- make_efa(data15, n = 3, cols = c("F1" = colors[["Sneeze"]], "F2" = co
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data15_details}
 #| warning: false
@@ -3454,6 +4022,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -3462,7 +4032,6 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
-Note: CFA errors.
 
 
 ```{r data15f}
@@ -3482,7 +4051,11 @@ rez_efa <- make_efa(data15f, n = 3, cols = c("F1" = colors[["Hungry"]], "F2" = c
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r data15f_details}
 #| warning: false
@@ -3498,6 +4071,8 @@ plot(rez_efa$n_fac)
 
 # rez_cfa15$test
 ```
+
+
 ::::
 
 ### Sample 16
@@ -3507,6 +4082,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r}
 #| warning: false
@@ -3524,7 +4101,11 @@ rez_efa <- make_efa(data16, n = 4, cols = c("F1" = colors[["Thirsty"]], "F2" = c
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r}
 #| warning: false
@@ -3539,6 +4120,8 @@ rez_ega$table
 plot(rez_efa$n_fac)
 ```
 
+
+
 ::::
 
 #### Final 
@@ -3546,6 +4129,8 @@ plot(rez_efa$n_fac)
 :::: {.panel-tabset}
 
 ##### Summary
+
+
 
 ```{r}
 #| warning: false
@@ -3564,7 +4149,11 @@ rez_efa <- make_efa(data16f, n = 4, cols = c("F1" = colors[["Thirsty"]], "F2" = 
 rez_hclust$p / rez_ega$p / rez_efa$p
 ```
 
+
+
 ##### Details
+
+
 
 ```{r}
 #| warning: false
@@ -3581,6 +4170,8 @@ plot(rez_efa$n_fac)
 # rez_cfa16$test
 ```
 
+
+
 ::::
 
 
@@ -3589,6 +4180,8 @@ plot(rez_efa$n_fac)
 ## Scores
 
 Note the usage of descriptive factor names relating directly to the items to avoid abstraction.
+
+
 
 ```{r}
 #| warning: false
@@ -3644,8 +4237,4 @@ scores <- list(
 
 save(scores, file = "../data/scores.RData")
 ```
-
-
-
-
 
