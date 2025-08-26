@@ -642,10 +642,10 @@ save(data, file = "../data/data.RData")
 - **Sample 13**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df13 , age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 14**: Data from [Poreiro's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df14 , age = "Age", sex = NA, gender = "Gender")`
 - **Sample 15 **: Data from [Poreiro's] study , included `r report::report_participants(df15 , age = "Age", sex = NA, gender = "Gender")`
-- **Sample 16 **: Data from [Poreiro's] study , included `r report::report_participants(df16 , age = "Age", gender = "Gender")`
+- **Sample 16 **: Data from [Arjona's] study , included `r report::report_participants(df16 , age = "Age", gender = "Gender")`
 
 
-Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15) +nrow(df16)`.
+Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15) + nrow(df16)`.
 
 ```{r}
 
@@ -739,7 +739,7 @@ make_age <- function(age) {
 # Create the dataframe
 table <- data.frame(
   Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15', 'Sample 16', 'Sample 17'),   
-  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Scharte et al., unpublished', 'Total'),
+  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Arjona et al., unpublished', 'Total'),
   Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English', 'English','English', ''),
   N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10), nrow(df11), nrow(df12), nrow(df13), nrow(df14), nrow(df15), nrow(df16), 33272),
   'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. No Temperature, Blood sugar and Cough items', 'Analog scales', 'Analog scales', '', '', '', '', ''),
@@ -758,7 +758,7 @@ table_apa <- table |>
   tab_footnote("Note.*Information taken from the sample description of relevant paper rather than recomputed.")
   
 gt_apastyle(table_apa, font.size=12)
-# gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
+gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
 saveRDS(table, "figures/table1.rds")
 
 gtsave(table_apa, "figures/table1.png")
@@ -766,7 +766,6 @@ gtsave(table_apa, "figures/table1.png")
 
 
 ## Item Selection
-
 
 ### Distribution
 
