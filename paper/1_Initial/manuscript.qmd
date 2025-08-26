@@ -235,11 +235,11 @@ set_flextable_defaults(font.size = 6)
 
 table <- readRDS("../../analysis/figures/table1.rds")
 
-table |> 
-  dplyr::rename("Age (Mean  ± SD)" = Age,  "Female %" = Female_Percentage)  |> 
-  flextable() |> 
-  set_table_properties(layout = "autofit", opts_pdf=list(arraystretch=1)) |> 
-  theme_apa() 
+table |>
+  dplyr::rename("Age (Mean  ± SD)" = Age, "Female %" = Female_Percentage) |>
+  flextable() |>
+  set_table_properties(layout = "autofit", opts_pdf = list(arraystretch = 1)) |>
+  theme_apa()
 ```
 
 ### Data Analysis
