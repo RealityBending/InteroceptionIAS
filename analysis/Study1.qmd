@@ -340,7 +340,6 @@ df9 <- df9 |>
 - Makowski
   - Note: First sample has some missing items (No Taste, Cough, Blood_Sugar)
   - Note: Analog scales
-  - note df12  = primals data
 
 ```{r}
 df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameReliability/main/data/preprocessed_questionnaires.csv") |>
@@ -758,10 +757,10 @@ table_apa <- table |>
   tab_footnote("Note.*Information taken from the sample description of relevant paper rather than recomputed.")
   
 gt_apastyle(table_apa, font.size=12)
-gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
+# gtsave(gt_apastyle(table_apa, font.size=9), "figures/table1.tex")
 saveRDS(table, "figures/table1.rds")
 
-gtsave(table_apa, "figures/table1.png")
+# gtsave(table_apa, "figures/table1.png")
 ```
 
 
