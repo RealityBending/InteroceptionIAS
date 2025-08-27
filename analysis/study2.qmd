@@ -26,6 +26,9 @@ library(patchwork)
 
 ## Measures used
 
+- Note, GAD2 and PHQ2 were collapsed into phq4
+- PI-99 was collapsed into PI-18
+
 ```{r}
 #| output: false
 
@@ -63,33 +66,61 @@ gt_apastyle <- function(gt_table, font.size=12) {
 
 
 table <- data.frame(
-  Questionnaire = c("Interoceptive Related", "MAIA-2", "BPQ", "TAS-20", "BVAQ",
-                    "Mood", "BDI-II", "PHQ-4", "STAI-T", "GAD-2",
-                    "Personality", "NEO-FFI", "Mini IPIP6", "BFI", "PID-5-SF",
-                    "Psychopathology", "SPQ-BRU", "MSI-BPD", "ASQ - Short",
-                    "Beliefs and Misbeliefs", "GCB", "PI-18", "LIE scale"),
-  Number_of_Dimensions = c('', 8, 2, 3, 2, 
-                           '', 1, 2, 1, 1, 
-                           '', 1, 6, 5, 5, 
-                           '', 4, 1, 5, 
-                           '', 5, 1, 4),
-  Assessment = c('', "Interoception", "Body awareness and autonomic reactivity", "Alexithymia", "Alexithymia",
-                 '',"Severity of depressive symptoms", "Anxiety and depressive symptoms", "Trait anxiety", "General Anxiety",
-                 '', "Neuroticism", "Personality", "Personality", "Dysfunctional personality traits",
-                 '', "Schizotypy", "Borderline personality disorder", "Autistic Traits",
-                 '', "Conspiracy beliefs", "Beliefs about the world", "Lying tendencies"),
-  Number_of_Items = c('',37, 49, 20, 40, 
-                      '',21, 4, 20, 2, 
-                      '',12, 24, 44, 25, 
-                      '',32, 10, 28, 
-                      '',15, 99, 16),
-  Scoring = c('',"6-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", 
-              '',"0-to-3-point values", "5-point Likert scale", "4-point Likert scale", "4-point Likert scale", 
-              '',"5-point Likert scale", "Analogue scales", "5-point Likert scale", "4-point Likert scale", 
-              '',"5-point Likert scale", "Analogue scales", "4-point Likert scale", 
-              '',"5-point Likert scale", "6-point Likert scale", "Visual analogue scales"), 
+  Questionnaire = c(
+    # Interoception
+    "Interoceptive Related", "MAIA-2", "BPQ-SF", "BPQ-VSF", "ICQ", "TAS-20", "BVAQ",
+    # Mood/Anxiety
+    "Mood", "BDI-II", "PHQ-4", "PHQ-9", "PHQ-15", "MFQ", "STAI-T", "GAD-7",
+    # Personality
+    "Personality", "NEO-FFI (neuroticism subscale)", "Mini IPIP6", "BFI-S",
+    # Psychopathology
+    "Psychopathology", "PID-5-SFF", "SPQ-BR", "MSI-BPD", "ASQ - Short",
+    # Beliefs and Misbeliefs
+    "Beliefs and Misbeliefs", "GCBS", "PI-18", "LIE scale"
+  ),
+  Number_of_Dimensions = c(
+    "", 8, 2, 1, 3, 3, 5,
+    "", 2, 2, 1, 1, 1, 1, 1,
+    "", 1, 6, 5,
+    "", 5, 9, 1, 5,
+    "", 5, 3, 4
+  ),
+  Assessment = c(
+    "", "Interoceptive awareness", "Body awareness and autonomic reactivity", "Body awareness", "Interoceptive confusion", "Alexithymia", "Alexithymia", 
+    "", "Depressive symptoms severity", "Depression and Anxiety", "Depressive symptoms", "Somatic symptom distress", "Mood and affect", "Trait anxiety", "General anxiety disorder symptoms",
+    "", "Neuroticism", "Personality traits", "Personality traits",
+    "", "Maladaptive personality traits", "Schizotypy", "Borderline personality disorder", "Autistic traits",
+    "", "Conspiracy beliefs", "Primal world beliefs", "Lying tendencies"
+  ),
+  Number_of_Items = c(
+    "", 37, 46, 12, 20, 20, 40,
+    "", 21, 4, 9, 15, 13, 20, 7,
+    "", 12, 24, 10,
+    "", 25, 32, 9, 28,
+    "", 15, 18, 16
+  ),
+  Scoring = c(
+    "", "6-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale",
+    "", "4-point scale", "4-point Likert scale", "4-point Likert scale", "3-point scale", "3-point scale", "4-point Likert scale", "4-point Likert scale",
+    "", "5-point Likert scale", "Visual analogue scales", "7-point Likert scale",
+    "", "4-point Likert scale", "5-point Likert scale", "Dichotomous (yes/no)", "4-point Likert scale",
+    "", "5-point Likert scale", "5-point Likert scale", "Visual analogue scales"
+  ),
+  Example_Items = c(
+    # Interoception
+    "", "I notice when I am uncomfortable in my body", "My heart often beats irregularily", "My mouth being dry", " I cannot tell when my muscles are sore or tight", "I have feelings I can't quite identify", "I like to tell others how I feel",
+    #Mood
+    "", "I feel sad much of the time","Little interest or pleasure in doing things", "Feeling tired or having little energy?", "Over the last week, how often have you been bothered by back pain?", "I felt miserable or unhappy", "I worry too much about something that really doesn't matter", "Not being able to stop or control worrying",
+    # Personality
+    "", "I often feel inferior to others", "Am the life of the party", "I see myself as someone who ...is considerate and kind to almost everyone", 
+   # Psychopathology
+    "", "Plenty of people are out to get me", "I am an odd, unusual person", "Have any of your closest relationships been troubled by a lot of arguments or repeated breakups?", "I find it difficult to work out people’s intentions",
+   # Beliefs and Misbeliefs
+    "", "Secret organizations communicate with extraterrestrials, but keep this fact from the public", "Nearly everything in the world is beautiful", "I am a good liar"
+),
   stringsAsFactors = FALSE
 )
+
 
 
 table_apa <- table |> 
@@ -137,23 +168,24 @@ vars_intero <- names(select(scores$sample1a, -Sample))
 
 # names(df1a)
 # names(df1b)
-# names(df2)  #TAS, MAIA, ICQ, BPQ, BVAQ
-# names(df3)  # TAS, BPQ
-# names(df4)  # BPQ, PBCS (private bodily consciousness?), MAIA, BAQ, BRS
+# names(df2)  #TAS(20 items), MAIA(37 items), ICQ (20 items), BPQ(46 items), BVAQ (40 items)
+# names(df3)  # TAS (20), BPQ (46)
+# names(df4)  # BPQ(26), PBCS (private bodily consciousness?), MAIA (37), BAQ (18), BRS (4)
 # names(df5)  
-# names(df6)  # PHQ2, GAD2, SSS8, IATS
-# names(df7a)  # STAIT, MAIA, CES (not reported in the paper), FFMQ, NEOFFI
-# names(df7b)  # BPQ, PHQ15, PHQ9, MAIA, STAIT, 
-# names(df7c)  # CI01 (not reported in the paper), TAS, BPQ, MAIA, ASI, ICQ 
-# names(df8a)  # EDI, BPQ
-# names(df8b)  # PHQ9, PHQ15, TAS
-# names(df9)  # ECR (Experience in Close Relationship Scale), TEAQ (touch experiences and attitudes questionnaire), STQ, TACSEN, UCLA, BFI, DBIA, BO, EQ
-# names(df10)  # ASQ, BPD, GCBS, IPIP6, LIE, MAIA, PHQ4, PI, PID, SPQ
-# names(df11)  # PHQ4, STAIT5, BDI, MAIA
-# names(df12) # MAIA, PI, 
-# names(df13) # 
-# names(df14) # MAIA, TAS, MFQ(DEP), STAI(ANX)
+# names(df6)  # PHQ2 (2 items), GAD2 (2 items), SSS8, IATS
+# names(df7a)  # STAIT (20), MAIA(37), CES (not reported in the paper), FFMQ (39), NEOFFI (12)
+# names(df7b)  # BPQ (12), PHQ15 (15), PHQ9 (9), MAIA (37), STAIT(20), 
+# names(df7c)  # CI01 (not reported in the paper), TAS, BPQ, MAIA, ASI, ICQ  - no individual items
+# names(df8a)  # EDI (10), BPQ (12)
+# names(df8b)  # PHQ9 (9), PHQ15 (15), TAS (20)
+# names(df9)  # ECR (Experience in Close Relationship Scale), TEAQ (touch experiences and attitudes questionnaire), STQ, TACSEN, UCLA, BFI (15), DBIA, BO, EQ
+# names(df10)  # ASQ(28), BPD(9), GCBS (15), IPIP6 (24), LIE (16), MAIA(37), PHQ4 (4), PI (32), PID (25), SPQ (32)
+# names(df11)  # PHQ4 (4), STAIT5 (5), BDI (21), MAIA (37)
+# names(df12) # MAIA (37), PI (99), 
+# names(df13) # PI (18), MAIA (37)
+# names(df14) # MAIA(37), TAS  (20), MFQ(DEP, 13), STAI(ANX, 20)
 # names(df15) 
+# names(df16) # MAIA (37), GAD (7), PHQ9 (9)
 ```
 
 
