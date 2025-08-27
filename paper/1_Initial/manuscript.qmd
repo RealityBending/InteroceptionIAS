@@ -207,8 +207,8 @@ For instance, @murphy2019 notes that some items might measure direct interocepti
 Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were previously highlighted as related to non-interoceptive abilities [@ferentzi2021examining].
 Interestingly, findings on the correlation between the IAS and the body awareness dimension of the BPQ (i.e., BPQ-A) have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
 Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023].
-Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the EDI [**ANA Write full name**] [EDI, @lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia], as reported by @brand2023 and @murphy2019.
-Lastly, the correlation with the Interoceptive Attention Scale [IATS, @gabriele2022dissociations] [**ANA is that the ref for the scale validation?**] appears rather small [@lin2023; @koike2023].
+Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [EDI-IA; @lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia], as reported by @brand2023 and @murphy2019.
+Lastly, the correlation with the Interoceptive Attention Scale [IATS, @gabriele2022dissociations] appears rather small [@lin2023; @koike2023].
 
 <!-- Convergent validity (correlates)  -->
 
@@ -219,7 +219,7 @@ Taken together, these findings support the IAS as measuring an adaptive aspect o
 <!-- current study -->
 
 The current study aims at 1) clarifying the structure of the IAS with a mega-analytic (which involves a re-analysis at the raw data level by aggregating datasets) approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones (Exploratory Graph Analysis);
-2) provide an overview of the dispositional correlates of the IAS, clarifying its general pattern of associations, which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
+1) provide an overview of the dispositional correlates of the IAS, clarifying its general pattern of associations, which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 # Study 1
 
@@ -360,35 +360,55 @@ EFA suggested once again 3 factors as the optimal solution, with the first facto
 <!-- fit_efa	1115871.0	0.083	16,591.054	0.883	0 -->
 
 <!-- CFA -->
-We then fitted and compared using CFA various candidate structures emerging from the previous analyses, including a 1-factor model (the G-model), a 3-factor model (EFA), a 3+1 model (EFA + general factor), a 5-factor model (HCA), a 5+1 model (HCA + general factor), a 7-factor model (EGA), and a 7+1 model (EGA + general factor). The EGA model with 7 factors of item pairs provided the best fit with the lowest RMSEA (0.035), lowest $\chi^2$ (2306.30), highest CFI (0.984). It was followed by the EGA + general factor model (RMSEA = 0.054, $\chi^2$ = 6842.38, CFI = 0.952), and the HCA model with 5 factors (RMSEA = 0.078, $\chi^2$ = 13296.33, CFI = 0.907). The other models performed poorly, with RMSEA > 0.08 and CFI < 0.90. The unique-factor model yielded the lowest BIC (which takes into account the number of factors), followed by the EGA model. All the other models displayed significantly (BIC-based Bayes Factor < 1/100) lower evidence compared to the EGA model.
+We then fitted and compared using CFA various candidate structures emerging from the previous analyses, including a 1-factor model (the G-model), a 3-factor model (EFA), a 3+1 model (EFA + general factor), a 5-factor model (HCA), a 5+1 model (HCA + general factor), a 7-factor model (EGA), and a 7+1 model (EGA + general factor). The EGA model with 7 factors of item pairs provided the best fit with the lowest RMSEA (0.035), lowest $\chi^2$ (2306.30), highest CFI (0.984). It was followed by the EGA + general factor model (RMSEA = 0.054, $\chi^2$ = 6842.38, CFI = 0.952), and the HCA model with 5 factors (RMSEA = 0.078, $\chi^2$ = 13296.33, CFI = 0.907). The other models performed poorly, with RMSEA > 0.08 and CFI < 0.90. The unique-factor model yielded the lowest BIC (which takes into account the number of factors), followed by the EGA model. All the other models displayed significantly (BIC-based Bayes Factor < 1/100) lower evidence compared to the EGA model. 
 
-**ANA TODO:** 
-
-This result was relatively consistent across unique datasets, 
+This result was relatively consistent across unique datasets with the EGA model providing the best fit. In all samples where CFA converged, it showed excellent performance with low RMSEA (≈ 0.025–0.046), high CFI (≥ 0.97), and substantially lower $\chi^2$ compared to alternative models. Adding a general factor systematically worsened fit, while hierarchical clustering and EFA-based models showed poorer performance (RMSEA > 0.06, CFI < 0.93). Although BIC values occasionally favored alternative specifications, Bayes factor comparisons overwhelmingly supported the EGA solution, confirming its robustness across datasets.
 
 <!-- did not converge: df1b, df2, df3, df5, df10 (missing items), df12 (errors), df15 (errors), df16,  -->
 
 ## Discussion
 
-**TODO.**
+<!-- Aim of the study and previous factor structures -->
+
+The first study aimed to clarify the factor structure of the IAS, a widely used subjective measure of interoception whose dimensionality remains contested. Previous validation and psychometric studies have proposed conflicting models ranging from a single general factor [@brand2023] to bifactor [@campos2021; @lin2023], and two-factor solutions [@murphy2019; @koike2023]. At the same time, network-based approaches such as EGA emphasize local dependencies between items, identifying clusters at the item level that may not map neatly onto broader latent constructs [@christensen2023; @desmedt2022measures]. By leveraging open-access datasets and reanalyzing them both in aggregate and individually using a mega-analytic approach, and by contrasting traditional factor-analytic models with network-based methods, this study provides the most comprehensive test of the IAS structure to date.
+
+<!-- 7-pairs of items as optimal model -->
+
+Overall, the findings converge on a robust yet novel picture. Exploratory and confirmatory analyses indicated that the IAS is best characterized by seven pairs of closely related items, consistently identified by EGA and supported by HCA. These pairs (e.g., hunger–thirst, urinate–defecate, cough–sneeze) were highly replicable across independent samples and yielded superior fit indices in CFA compared to one-factor, three-factor, three-factor with ageneral factor, five-factor, a five-factor with a general factor, a 7-factor or a seven factor with a general factor alternatives. Although the one-factor model occasionally achieved lower BIC, Bayes factor comparisons overwhelmingly supported the EGA structure, underlining its empirical robustness.
+
+<!-- IAS not higher-order, but item-level dependencies -->
+
+This pattern has several important implications. First, it suggests that the IAS does not capture a broad latent construct of interoceptive accuracy as originally intended, but rather reflects a set of tightly coupled item clusters tied to specific bodily sensations. In other words, the IAS may function more as a checklist of bodily signal detection items than as a scale measuring a coherent higher-order dimension. This stands in contrast to the original two-factor proposal [@murphy2019], where the factors were highly correlated and often collapsed into a unidimensional score, and helps explain why subsequent studies diverged in their conclusions: the psychometric structure of the IAS appears to be driven more by local dependencies than by robust latent factors. Second, the presence of redundant or unstable items (e.g., tickle, taste, affective touch), already highlighted in prior validation studies [@campos2021; @lin2023], undermines the interpretability of the scale, as their contributions appear inconsistent or overlapping. Together, these findings help explain why previous research has struggled to converge on a stable factor structure: the IAS lacks the psychometric properties required for strong latent modeling and may overstate its dimensionality by conflating redundancy with structure.
+
+**[ADD THAT LIN CREATED A SHORT VERSION OF THE IAS??]**
+
+<!-- Improvements for the scale + proposal of a new scale-->
+
+At the same time, the results do not render the IAS unusable. The consistent emergence of item pairs highlights intuitive bodily domains (e.g., visceral, expulsion, musculoskeletal) that align with everyday interoceptive experiences, supporting its ecological validity. However, the limited breadth of these pairings, the redundancy across items, and the reliance on a narrow 5-point scale all restrict the scale’s ability to differentiate between individuals and to capture the multidimensional nature of interoception [@desmedt2022measures]. These findings therefore call for refinement—either through targeted revisions of the IAS (e.g., removing redundant items, expanding modality coverage, adopting analogue response formats) or through the development of a new questionnaire that better balances theoretical coherence with empirical validity.
+
+<!-- Summary -->
+
+In sum, Study 1 demonstrates that the IAS structure is best described by clusters of tightly coupled item pairs reflecting local dependencies, rather than by a broad latent dimension. While this solution is replicable and statistically robust, it highlights the conceptual and psychometric limitations of the IAS in its current form. These insights help contextualize the mixed findings on the scale’s validity and correlations with other interoceptive measures [@murphy2019; @brand2023; @lin2023] and provide a crucial foundation for Study 2, where we  to the dispositional correlates of the IAS to further evaluate its construct validity and situate it within the broader network of interoceptive and psychological traits.
+
 
 # Study 2
 
 <!-- The goal of study 2 is two-fold, 1) provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of datasets available, and 2) assess the practical benefits of using a refined version of the IAS (i.e., the 14-item version identified in study 1) compared to the original 21-item one general factor version. -->
 
-**TODO**
+## Study 2
 
+Building on the structural findings from Study 1, the second study turns to the validity of the IAS by examining its dispositional correlates. Although the IAS has been widely used, evidence regarding its associations with personality traits, affective dispositions, and related psychological constructs remains scattered and inconsistent. Study 2 therefore had two primary goals. First, to provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of available datasets. Second, to evaluate the practical benefits of using the refined 14-item version of the scale identified in Study 1, compared to the original 21-item unidimensional version, in order to assess whether structural improvements translate into clearer and more reliable external associations.
 
 ## Methods
 
 ### Materials
-
 
 The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO: add the rest of the questionnaires, sample items and references**).
 
 \input{../../analysis/figures/table2.tex}
 
 ### Data Analysis
+
 
 
 ## Results
