@@ -403,19 +403,80 @@ Building on the structural findings from Study 1, the second study turns to the 
 
 ### Materials
 
-The questionnaires used for the IAS correlates are listed in **Table 2** (**TODO: add the rest of the questionnaires, sample items and references**).
+We selected measures that appeared in multiple datasets from Study 1 and/or were relevant given the scope of the study, merging scores of regular and abridged versions for conciseness where applicable. The measures include constructs related to interoception, mood, personality, psychopathology, and beliefs and misbeliefs.
 
-\input{../../analysis/figures/table2.tex}
+<!-- Interoception Related -->
+**Interoception Related**
+The Multidimensional Assessment of Interoceptive Awareness Version-2 [MAIA-2, @memehling2018multidimensional] is a 37-item questionnaire assessing eight dimensions of interoception: Noticing, Not-Distracting, Not-Worrying, Attention Regulation, Emotional Awareness, Self-Regulation, Body Listening, and Trust. Responses are rated on a 6-point Likert scale (e.g., “I notice when I am uncomfortable in my body”).
+
+The Body Perception Questionnaire Short Form [BPQ-SF, @cabrera2018assessing] contains 46 items measuring body awareness and autonomic reactivity on a 5-point Likert scale (e.g., “My heart often beats irregularly”). The very-short form (BPQ-VSF) contains 12 items from the body awareness subscale. For this study, scores from both versions were combined.
+
+The Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia] consists of 20 items rated on a 5-point Likert scale (e.g., “I cannot tell when my muscles are sore or tight”) assessing difficulties in interpreting non-affective physiological states, such as pain or hunger.
+
+The Toronto Alexithymia Scale [TAS-20, @bagby1994twenty] contains 20 items rated on a 5-point forced-choice scale (e.g., “I have feelings I can’t quite identify”), divided into three dimensions: difficulty identifying feelings, difficulty describing feelings, and externally oriented thinking.
+
+The Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] consists of 40 items across five subscales: fantasising, identifying, analysing, verbalising, and emotionalising. Items are rated on a 5-point Likert scale. The BVAQ also provides two higher-order factors, namely affective and cognitive (e.g., “I like to tell others how I feel”).
+
+<!-- Mood and Anxiety -->
+**Mood and Anxiety Related**
+The Beck Depression Inventory-II [BDI-II, @beck1996beck] is a 21-item measure of depressive symptom severity, including psychological (e.g., guilt) and physiological (e.g., loss of energy) components. Items are rated on a 4-point scale (e.g., “I feel sad much of the time”).
+
+The Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra] is a 4-item screening tool for depression and anxiety, rated on a 4-point Likert scale (e.g., “Little interest or pleasure in doing things”; “Not being able to stop or control worrying”). The PHQ-2 [PHQ-2; @kroenke2003patient] and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety] scores were combined with the PHQ-4 scores.
+
+The Patient Health Questionnaire-9 [PHQ-9, @kroenke2001phq] includes 9 items assessing depressive symptoms on a 4-point Likert scale (e.g., “Feeling tired or having little energy?”).
+
+The Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq] assesses somatic symptom distress with 15 items rated on a 3-point scale (e.g., “Over the last week, how often have you been bothered by back pain?”).
+
+The Short Mood and Feelings Questionnaire [SMFQ, @angold1995development] is a 13-item measure of recent depressive symptoms in children aged 6–17, rated on a 3-point scale (e.g., “I felt miserable or unhappy”).
+
+The State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual] is a 20-item trait anxiety questionnaire rated on a 4-point Likert scale (e.g., “I worry too much about something that really doesn’t matter”).
+
+The Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief] is a 7-item measure of generalized anxiety symptoms rated on a 4-point Likert scale (e.g., “Not being able to stop or control worrying”).
+
+<!-- Personality -->
+**Personality**
+The NEO Five-Factor Inventory, neuroticism subscale [NEO-FFI, @costa1989neoffi] is a 12-item measure of neuroticism, assessing the general tendency to experience negative emotions such as fear, sadness, or disgust. Items are rated on a 5-point Likert scale (e.g., “I often feel inferior to others”).
+
+The Mini International Personality Item Pool [MINI-IPIP6, @sibley2011mini] includes 24 items measuring six broad traits: Agreeableness, Conscientiousness, Neuroticism, Openness, Extraversion, and Honesty-Humility. Items were scored on visual analogue scales in our samples (originally 7-point Likert scales; e.g., “Have a vivid imagination”).
+
+The Big Five Inventory Short Form [BFI-S, @rammstedt2007measuring] is a 10-item measure of the Big Five traits, rated on a 7-point Likert scale (e.g., “I see myself as someone who … is considerate and kind to almost everyone”).
+
+<!-- Psychopathology -->
+**Psychopathology**
+The Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality] consists of 25 items rated on a 4-point Likert scale, measuring five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism (e.g., “Plenty of people are out to get me”).
+
+The Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson2016schizotypal] contains 32 items rated on a 5-point Likert scale, assessing four primary dimensions: cognitive-perceptual, interpersonal, disorganized, and social anxiety. These are subdivided into nine secondary factors, including constricted affect, eccentricity, magical thinking, lack of close friends, odd speech, referential thinking, social anxiety, suspiciousness, and unusual perceptions (e.g., “Plenty of people are out to get me”).
+
+The McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini] is a 10-item dichotomous screening measure for borderline personality disorder (present/absent; e.g., “Have any of your closest relationships been troubled by a lot of arguments or repeated breakups?”).
+
+The Autism Spectrum Quotient Short Form [ASQ-S, @Hoekstra et al., 2011] is a 28-item measure of five autistic traits: social skills, adherence to routines, cognitive flexibility, imagination, and patterns/numbers. Items are rated on a 4-point Likert scale (e.g., “I find it difficult to work out people’s intentions”).
+
+<!-- Beliefs and Misbeliefs -->
+**Beliefs and Misbeliefs**
+The Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring] is a 15-item measure assessing five dimensions of conspiracy beliefs: government malfeasance, extraterrestrial cover-up, malevolent global conspiracies, personal wellbeing, and control of information. Items are scored on a 5-point Likert scale (e.g., “Secret organizations communicate with extraterrestrials, but keep this fact from the public”).
+
+The Primal World Beliefs Inventory Short Form [PI-18, @lifton2021brief] is an 18-item measure assessing four high-order beliefs: the world is Good (vs. Bad) and its three dimensions: Safe (vs. Dangerous), Enticing (vs. Dull), and Alive (vs. Mechanistic). Items are scored on a 5-point Likert scale (e.g., “Nearly everything in the world is beautiful”). The PI-99 [@clifton2019primal] scores were combined with the 4 high-order beliefs of the PI-18. 
+
+The Structure of Deception [SoD, @makowski2023structure] is a 16-item measure of lying tendencies across four components: Ability, Frequency, Negativity, and Contextuality. Items are scored on visual analogue scales (e.g., “I am a good liar”).
 
 ### Data Analysis
 
+<!-- Preprocessing and standardization -->
 
+All variables from the 16 open-access datasets will be extracted and standardized (z-scored). For continuous predictors, we will first ensure that their ranges are consistent across datasets; when necessary, ranges will be rescaled to achieve comparability. In cases where scales of different lengths measure the same construct, scores will be harmonised: when possible, means will be computed from overlapping individual items, while in other cases, total scores will be normalized by the number of items. Where redundant subscales exist (e.g., PHQ-2 and GAD-2 items contained within the PHQ-4), these will be collapsed into unified composite scores (e.g., PHQ-4 depression and PHQ-4 anxiety). Similarly, short forms of trait anxiety measures (e.g., STAI-5-trait) will be collapsed with their longer counterparts (STAI-T), with scores computed as the mean to ensure comparable ranges despite differing item counts. Additionally, longer formats of the PI (32 and 99 items) will be collapsed into its shorter versions PI-18. Missing data will be handled via listwise deletion prior to model fitting.
+
+<!-- Multilevel modelling approach -->
+
+Associations will be estimated using multilevel regression models implemented in the glmmTMB package [@glmmTMB]. Each predictor will be entered separately, with IAS pair of ititems identified in Study 1 (i.e., "Hungry–Thirsty", "Muscles–Pain", "Wind–Burp", "Urinate–Defecate", "Breathing–Heart", "Bruise–Blood", "Cough–Sneeze") and the original IAS scale serving as outcomes. Models will include random intercepts and slopes by sample to account for between-study heterogeneity; when models fail to converge, a reduced structure with random intercepts only will be used. This approach will treat datasets as clusters, thereby providing a meta-analytic estimate of the pooled associations while simultaneously accounting for both within- and between-sample variability, an advantage over simple pooled correlations.
+
+<!-- Extraction of parameters -->
+
+From each fitted model, we will extract standardized regression coefficients (r), 95% confidence intervals, p-values, convergence status, and effective sample size. Gender will be modeled as a binary factor (Female vs. Male), with participants identifying as “Other” excluded from analyses due to limited representation.
 
 ## Results
 
 ### Average correlations 
 
-The EGA components captured grouping of items such as 'wind' and 'burp, 'cough' and 'sneeze', 'muscle' and 'pain'. 
 **TODO: but that's not true, we used only pairs, not EGA clusters?J**
 
 These groupings were used in correlational analysis to analyse how much each pairing is associated with other factor such as Alexithymia and with Mood disorders (see figure 2). 
