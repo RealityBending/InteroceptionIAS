@@ -470,7 +470,7 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "NEO_FFI_SUMSCORE", component = "Personality", name = "Neuroticism"),
+  pool_coef(with = "NEO_FFI_Mean", component = "Personality", name = "Neuroticism"),
   pool_coef(with = "BFI_AGREEABLENESS", component="Personality", name = "Agreeableness"),
   pool_coef(with = "BFI_CONSCIENTIOUSNESS", component="Personality", name = "Conscientiousness"), 
   pool_coef(with = "BFI_NEUROTICISM", component="Personality", name = "Neuroticism"),
@@ -598,6 +598,23 @@ average_corr <- data |>
             Max = var_Interoception[which.max(abs(r))],
             .by=c("Component", "var_Correlate")) 
   
+sort(table(average_corr$Max), decreasing = TRUE)
+
+average_corr <- data |>
+  summarise(
+    min_r = min(r, na.rm = TRUE), 
+    mean_r = mean(r, na.rm = TRUE),
+    max_r = max(r, na.rm = TRUE), 
+    Max = var_Interoception[which.max(abs(r))],
+    n_sig_001 = sum(p < .001, na.rm = TRUE),
+    n_sig_01  = sum(p < .01 & p >= .001, na.rm = TRUE),
+    n_ns      = sum(p >= .01 | is.na(p)),
+    total     = dplyr::n(),
+    .by=c("Component", "var_Correlate")
+  ) |>
+  mutate(
+    perc_sig = (n_sig_001 + n_sig_01) / total
+  )
 sort(table(average_corr$Max), decreasing = TRUE)
 
 average_corr |> 

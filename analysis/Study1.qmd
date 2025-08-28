@@ -220,6 +220,8 @@ df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |>
   mutate(across(starts_with("MAIA_"), \(x) x - 1)) # Original scale 1-6
 
 df7a$STAIT_Mean <- df7a$STAIT_Sum/20
+df7a$NEO_FFI_Mean <- rowMeans(select(df7a,NEOFFI_01:NEOFFI_12))
+
 
 df7b <- haven::read_sav("../data/Brand2023/Data_Mainz.sav") |> 
   select(-COUNTRY_OTHER, -EDUCATION_OTHER, -Sample) |> 
@@ -331,8 +333,9 @@ df9 <- df9 |>
     BFI_AGREEABLENESS = (BFI_10R + BFI_11 + BFI_12)/3,
     BFI_EXTROVERSION = (BFI_4 + BFI_5 + BFI_6),
     BFI_CONSCIENTIOUSNESS = (BFI_13 + BFI_14 + BFI_15R)/3,
-    BFI_OPENNESS = (BFI_7 + BFI_8 + BFI_9)/3
-    )
+    BFI_OPENNESS = (BFI_7 + BFI_8 + BFI_9)/3) |>
+  mutate(across(starts_with("BFI_"), \(x) datawizard::rescale(x, to = c(0, 1))))
+  
 ```
 
 ### Sample 10
@@ -361,7 +364,8 @@ df10 <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameR
   mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5))),
          across(starts_with("PI_"), \(x) datawizard::rescale(x, to = c(0, 1))),
          across(starts_with("Item_PHQ4_Depression_"), \(x) datawizard::rescale(x, to = c(1,4))),
-        across(starts_with("Item_PHQ4_Anxiety_"), \(x) datawizard::rescale(x, to = c(1,4)))) |>
+        across(starts_with("Item_PHQ4_Anxiety_"), \(x) datawizard::rescale(x, to = c(1,4))),
+        across(starts_with("IPIP6_"), \(x) datawizard::rescale(x, to = c(0,1)))) |>
   mutate(PHQ4_Depression = Item_PHQ4_Depression_3 + Item_PHQ4_Depression_4,
           PHQ4_Anxiety = Item_PHQ4_Anxiety_1 + Item_PHQ4_Anxiety_2)
 ```
