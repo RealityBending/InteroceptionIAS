@@ -470,18 +470,12 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "NEO_FFI_Mean", component = "Personality", name = "Neuroticism"),
-  pool_coef(with = "BFI_AGREEABLENESS", component="Personality", name = "Agreeableness"),
-  pool_coef(with = "BFI_CONSCIENTIOUSNESS", component="Personality", name = "Conscientiousness"), 
-  pool_coef(with = "BFI_NEUROTICISM", component="Personality", name = "Neuroticism"),
-  pool_coef(with = "BFI_OPENNESS", component="Personality", name = "Openness"),
-  pool_coef(with = "BFI_EXTROVERSION", component="Personality", name = "Extraversion"),
-  pool_coef(with = "IPIP6_Agreeableness", component="Personality", name = "Agreeableness"),
-  pool_coef(with = "IPIP6_Conscientiousness", component="Personality", name = "Conscientiousness"), 
-  pool_coef(with = "IPIP6_Neuroticism", component="Personality", name = "Neuroticism"),
-  pool_coef(with = "IPIP6_Openness", component="Personality", name = "Openness"),
-  pool_coef(with = "IPIP6_Extraversion", component="Personality", name = "Extraversion"), 
-  pool_coef(with = "IPIP6_HonestyHumility", component="Personality", name = "Honesty-Humility")
+  pool_coef(with = "Neuroticism", component = "Personality", name = "Neuroticism"),
+  pool_coef(with = "Agreeableness", component="Personality", name = "Agreeableness"),
+  pool_coef(with = "Conscientiousness", component="Personality", name = "Conscientiousness"), 
+  pool_coef(with = "Openness", component="Personality", name = "Openness"),
+  pool_coef(with = "Extraversion", component="Personality", name = "Extraversion"),
+  pool_coef(with = "HonestyHumility", component="Personality", name = "Honesty-Humility")
 )
 ```
 
