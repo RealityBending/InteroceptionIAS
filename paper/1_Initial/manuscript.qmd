@@ -429,7 +429,7 @@ The Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq] assesses somatic s
 
 The Short Mood and Feelings Questionnaire [SMFQ, @angold1995development] is a 13-item measure of recent depressive symptoms in children aged 6–17, rated on a 3-point scale (e.g., “I felt miserable or unhappy”).
 
-The State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual] is a 20-item trait anxiety questionnaire rated on a 4-point Likert scale (e.g., “I worry too much about something that really doesn’t matter”).
+The State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual] is a 20-item trait anxiety questionnaire rated on a 4-point Likert scale (e.g., “I worry too much about something that really doesn’t matter”). Scores from the shorter version of the STAI-5 [STAIT-5, @zsido2020development] were combined with the STAI-T. 
 
 The Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief] is a 7-item measure of generalized anxiety symptoms rated on a 4-point Likert scale (e.g., “Not being able to stop or control worrying”).
 
@@ -457,182 +457,41 @@ The Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring] is a 15-
 
 The Primal World Beliefs Inventory Short Form [PI-18, @lifton2021brief] is an 18-item measure assessing four high-order beliefs: the world is Good (vs. Bad) and its three dimensions: Safe (vs. Dangerous), Enticing (vs. Dull), and Alive (vs. Mechanistic). Items are scored on a 5-point Likert scale (e.g., “Nearly everything in the world is beautiful”). The PI-99 [@clifton2019primal] scores were combined with the 4 high-order beliefs of the PI-18. 
 
-The Structure of Deception [SoD, @makowski2023structure] is a 16-item measure of lying tendencies across four components: Ability, Frequency, Negativity, and Contextuality. Items are scored on visual analogue scales (e.g., “I am a good liar”).
+The Lie Scale [LIE, @makowski2023structure] is a 16-item measure of lying tendencies across four components: Ability, Frequency, Negativity, and Contextuality. Items are scored on visual analogue scales (e.g., “I am a good liar”).
 
 ### Data Analysis
 
 <!-- Preprocessing and standardization -->
-
-All variables from the 16 open-access datasets will be extracted and standardized (z-scored). For continuous predictors, we will first ensure that their ranges are consistent across datasets; when necessary, ranges will be rescaled to achieve comparability. In cases where scales of different lengths measure the same construct, scores will be harmonised: when possible, means will be computed from overlapping individual items, while in other cases, total scores will be normalized by the number of items. Where redundant subscales exist (e.g., PHQ-2 and GAD-2 items contained within the PHQ-4), these will be collapsed into unified composite scores (e.g., PHQ-4 depression and PHQ-4 anxiety). Similarly, short forms of trait anxiety measures (e.g., STAI-5-trait) will be collapsed with their longer counterparts (STAI-T), with scores computed as the mean to ensure comparable ranges despite differing item counts. Additionally, longer formats of the PI (32 and 99 items) will be collapsed into its shorter versions PI-18. Missing data will be handled via listwise deletion prior to model fitting.
+All variables from the 16 open-access datasets will be extracted and standardized (z-scored). For continuous predictors, we will first ensure consistent ranges across datasets; when necessary, ranges will be rescaled to achieve comparability. In cases where scales of different lengths measured the same construct, scores were harmonized: when possible, means were computed from overlapping items, while in other cases total scores were normalized by the number of items. Redundant subscales (e.g., PHQ-2 and GAD-2 within PHQ-4) were collapsed into unified composite scores. Similarly, short forms of trait anxiety (e.g., STAI-5-trait) were collapsed with their longer counterpart (STAI-T), with scores computed as the mean to ensure comparable ranges. Longer formats of the PI (PI-99) were collapsed into its shorter version (PI-18). Missing data were handled via listwise deletion on a per-model basis prior to fitting.
 
 <!-- Multilevel modelling approach -->
-
-Associations will be estimated using multilevel regression models implemented in the glmmTMB package [@glmmTMB]. Each predictor will be entered separately, with IAS pair of ititems identified in Study 1 (i.e., "Hungry–Thirsty", "Muscles–Pain", "Wind–Burp", "Urinate–Defecate", "Breathing–Heart", "Bruise–Blood", "Cough–Sneeze") and the original IAS scale serving as outcomes. Models will include random intercepts and slopes by sample to account for between-study heterogeneity; when models fail to converge, a reduced structure with random intercepts only will be used. This approach will treat datasets as clusters, thereby providing a meta-analytic estimate of the pooled associations while simultaneously accounting for both within- and between-sample variability, an advantage over simple pooled correlations.
+Associations were estimated using multilevel regression models implemented in the glmmTMB package [@glmmTMB]. Each predictor was entered separately, with the seven IAS item pairs identified in Study 1 (“Hungry–Thirsty”, “Muscles–Pain”, “Wind–Burp”, “Urinate–Defecate”, “Breathing–Heart”, “Bruise–Blood”, “Cough–Sneeze”) and the original IAS scale serving as outcomes. Models included random intercepts and slopes by sample to account for between-study heterogeneity; when models failed to converge, a reduced structure with random intercepts only was used. This approach treats datasets as clusters, thereby providing pooled estimates of the associations while accounting for both within- and between-sample variability, akin to a meta-analytic framework.
 
 <!-- Extraction of parameters -->
+From each fitted model, we extracted standardized regression coefficients (β), 95% confidence intervals, p-values, convergence status, and effective sample size. Participants identifying as “Other” were excluded from analyses due to limited representation.
 
-From each fitted model, we will extract standardized regression coefficients (r), 95% confidence intervals, p-values, convergence status, and effective sample size. Gender will be modeled as a binary factor (Female vs. Male), with participants identifying as “Other” excluded from analyses due to limited representation.
 
 ## Results
 
-### Average correlations 
+<!-- Demographic correlates -->
+Age showed consistent positive associations across tasks (mean r = .12), with all correlations significant. Gender differences were weaker (mean r = −.01), though a majority of effects reached significance.
 
-**TODO: but that's not true, we used only pairs, not EGA clusters?J**
+<!-- Interoceptive measures -->
+Several MAIA subscales showed moderate and consistently significant positive associations with IAS scores. Noticing (mean β = .259), Attention Regulation (β = .249), Trusting (β = .236), Emotional Awareness (β = .197), Listening (β = .176), and Self-Regulation (β = .189) were significant across all pairings and the original scale. Autonomic reactivity from the BPQ was negatively associated (β = −.173, 88% significant), whereas body awareness showed weaker and less reliable effects (β = .122, 25% significant). Alexithymia was consistently negative: ICQ (β = −.316), TAS subscales: Difficulties Identifying Feelings (βs = −.211) , Difficulties Describing Feelings (βs = −.150), External Thinking (βs = −.081, 75% significance), and the BVAQ cognitive component (β = −0.200) were significant for nearly all IAS correlates. 
 
-These groupings were used in correlational analysis to analyse how much each pairing is associated with other factor such as Alexithymia and with Mood disorders (see figure 2). 
+<!-- Mood questionnaires -->
 
-**TODO: Massively streamline. It can be all summarize in one or two paragraphs max.**
+Depression (BDI: β = −0.204) and anxiety (STAI-T: β = −0.189) showed reliably negative associations. PHQ-15 (β = −0.128, 75% significant) PHQ-4 (depression: β = −0.094, 75% significant; anxiety: β = −0.103, 88% significant), and GAD-7 (β =−0.187, 63% significance) also showed consistent negative effects. By contrast, PHQ-9 (β = −0.619) and MFQ (β = −0.139) were largely nonsignificant despite negative averages.
 
-#### Correlations with body measures
+<!-- Psychopathology and personality -->
 
-<!-- Alexithymia -->
-Alexithymia was assessed in the samples with the Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] and the Toronto Alexithymia Scale [TAS, @bagby1994twenty]. 
+Autistic traits showed the clearest pattern: Imagination (β = −0.184, 88% significant), Low Attentional Switching (β = −0.143, 63% significant), and Lack of Social Skills (β = −0.119, 63% significant) were reliably negative. Among maladaptive traits, Negative Affect (β = −0.111, 63% significant) was the only consistent correlate. Schizotypal traits showed generally weak and unreliable associations, with No Close Friends (β = −0.12, significant in 50% of models) being the only subscale to exhibit a small effect, and even this just at the threshold of consistency.
 
-<!-- BVAQ -->
-The BVAQ consists of 5 subscales - fantasising, idenitying, analysing; verbalising and emotionalising - assessed with 40 items on a 5-point Likert scale, from 'defnitely applies to me' to 'in no way applies to me'.
-Additionally, the BVAQ reduces these subscales into two high order factors, an affective component and a cognitive one, with high scores being indicative of high proneness to alexithymia. 
+<!-- Personality and beliefs -->
 
-On average, the cognitive component of the BVAQ was weakly and negatively correlated with all IAS pairs of items with the biggest correlation being with the Itch/Bruise pair (r = -0.112) and the lowest correlation beeing with the Muscle/Pain pair (r = -0.244). 
-The affective component of the BVAQ was positively, but very weak, correlated with all pairs, with the biggest correlation being with the Itch/Bruise pair (r = 0.107). 
-The only exception was a negative correlation with the Urinate/Defecate pair (r = -0.036). 
+Of the Big Five, only Openness showed consistent positive associations (β = 0.123, 63% significant). Other traits were weak or mostly nonsignificant. Conspiracy, world belief, and lying profiles showed no reliable associations.
 
-<!-- TAS -->
-The TAS contains 20-items rated on a 5-point forced scale, from 'strongly disagree' to 'strongly afree', divided into 3 dimensions - difficulty identiying feelings, difficulty describing feelings, and externally thinking. 
-High scores on this scale also reflect higher alexithymia. 
-
-All the three dimensions assessed with the TAS were on average negatively correlated with all pairs of IAS items.
-The difficulty describing feelings had its strongest correlation with Hungry/Thirsty (r = -0.179) and weakest with the Wind/Burp (r = -0.117).
-while, the difficulty describing feelings had its strongest correlation with Muscle/Pain (r = -0.247) and weakest with Itch/Bruise (r = -0.157).
-Lastly, the external thinking dimension was more correlated with the Cough/Sneeze pair (r = -0.138) and less correlated with the Hungry/Thirsty (r = -0.018). 
-
-<!-- BPQ -->
-The studies within our sample used the Body Perception Questionnaire short-form (BPQ-SF) and the very-short form (BPQ-VSF) to assess interoception [@cabrera2018assessing]. 
-The BPQ-SF comprised of 46 items on a 5-point Likert scale assessing body awareness (26 items) and autonomic reactivity (21 items). 
-The BPQ-VSF comprises of 12 items from the body awareness subscale of the BPQ-SF.
-In this study, all scores assessing these two dimensions were grouped together, hence no disitintion is made between awareness measured with the BPQ-SF and the BPQ-VSF, or eith scores obtained only using the awareness subscale. 
-
-**note to add:** discuss later
-
-In general, all pairs of the IAS were positively,and weakily, associated with the body awareness subscales, while negative and weakily correlated with the autonomic reactivity subscale. 
-The strongest correlation identified between the IAS pairs and the body awereness subscale was with the 	
-Heart/Breathing pair (r = 0.151) whilst the strongest correlation with the autonomic reactivity was with the Urinate/Defecate pair (r = -0.235). 
-The weakest correlation between the body awareness and the IAS was with the Hungry/Thirsty pair (r =  0.055) and between the autonomic reactivity and the IAS was with the Heart/Breathing pair (r = -0.106). 
-
-<!-- MAIA -->
-The MAIA was one of the most commonly used measures of interoception in our study, with nine samples reporting its use. 
-This 37-item questionnaire assesses eight state-trait dimensions of interoception: Noticing, Not-Distracting, Not-Worrying, Attention Regulation, Emotional Awareness, Self-Regulation, Body Listening, and Trust. 
-Responses are rated on a scale from 0 (Never) to 5 (Always).
-
-On average, all MAIA dimensions were positively and weakly to moderately correlated with IAS pairings. 
-Notably, the strongest correlations were observed between the Noticing dimension and the Heart/Breathing pairing (r = 0.394), Trusting and Hungry/Thirsty (r = 0.347), and Attention Regulation and Heart/Breathing (r = 0.334). 
-The Not-Distracting and Not-Worrying subscales were generally positively correlated with IAS pairings, with a few exceptions: Not-Distracting showed minimal correlation with Cough/Sneeze (r = 0.0206) and Heart/Breathing (r = -0.007), while Not-Worrying had a low correlation with Itch/Bruise (r = 0.031).
-
-<!-- ICQ -->
-The Interoceptive Confusion Questionnaire was used to assess individuals' difficulties in interpreting non-affective physiological states, such as pain and hunger. The ICQ consists of 20 items rated on a scale from 1 ("Does not describe me") to 5 ("Describes me very well"), with higher scores indicating greater interoceptive confusion.
-
-The ICQ showed weak to moderate negative correlations with all IAS pairings. The strongest correlation was observed with the Hunger/Thirsty pairing (r = 0.348), while the weakest was with the Itch/Bruise pairing (r = 0.207).
-
-#### Correlations with mood measures
-
-Mood disorders were assessed using several standardized measures, including the General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety], the State-Trait Anxiety Inventory [STAI, @spielberger1970manual] and its shorter version, the STAI-5 [@zsido2020development], Beck’s Depression Inventory [BDI, @beck1996beck], and the Mood and Feelings Questionnaire [MFQ; @messer1995development].
-Additionally, the Patient Health Questionnaire (PHQ) was administered in its 2-item [PHQ-2; @kroenke2003patient], 9-item [PHQ-9; @kroenke2001phq], and 15-item [PHQ-15, @kroenke2002phq] versions.
-Finally, borderline personality traits were assessed using the McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD; @zanarini2003zanarini].
-
-
-<!-- Anxiety -->
-The GAD-2, a brief screening tool for generalized anxiety disorder, consists of two items rated on a scale from 0 (not at all) to 3 (nearly every day).
-The STAI, a 40-item questionnaire rated on a 4-point Likert scale (0 to 3), measures both state and trait anxiety. 
-However, in our study, most participants primarily completed the trait anxiety subscale. 
-In some samples, a shorter 5-item version (STAI-5) was used to assess both state and trait anxiety.
-
-On average, anxiety measures showed weak negative correlations with all IAS pairs. 
-Notably, the strongest correlations between the IAS pairings and the GAD-2, STAI-T and STAIT-5 were observed with the Hungry/Thirsty pair (r = -0.168, r = -0.270 and r =  -0.248, respectively).
-
-<!-- Depression -->
-The BDI consists of 21 items measuring the severity of depressive symptoms on a scale from 0 to 3. 
-The total score is calculated by summing the highest responses, which are then compared to six depression severity levels, ranging from 1–10 (normal fluctuations in mood) to over 40 (extreme depression).
-The PHQ-2 includes two items assessing the frequency of depressive symptoms and anhedonia. 
-The PHQ-2 is derived from the PHQ-9, a nine-item screening tool used to assess depression severity and monitor treatment response.
-Both questionnaires are measured on on a scale from 0 (not at all) to 3 (nearly every day)
-
-Depression measures showed weak to moderate negative correlations with IAS pairings. 
-The BDI (r = -0.372), PHQ-2 (r = -0.148), and PHQ-9 (r = -0.241) correlated most with the Hungry/Thirsty pair, while the MFQ correlated most with Heart/Breathing (r = -0.345) pair.
-
-<!-- Somatic concerns  -->
-The PHQ-15 is a 15-item questionnaire that assesses somatic symptoms on a 3-point scale (e.g., back pain). 
-It exhibited its strongest correlation with the Hungry/Thirsty pair (r = -0.241) and, on average, showed weak negative correlations with all other IAS pairings.
-
-<!-- Borderline personality -->
-Lastly, the MSI-BPD is a 10-item questionnaire used to assess personality disorder, where items are rated on a dichotomous scale of 1 (present) and 0 (absent). 
-The MSI-BPD also showed its strongest negative correlation with the Hungry/Thirsty pair (r = -0.140) and was negatively correlated with all other pairings, except for Cough/Sneeze, which showed a slight positive correlation (r = 0.0219).
-
-#### Correlations with psychopathology measures 
-
-<!-- Maladaptive  -->
-Maladaptive personality traits were assessed using the Personality Inventory for DSM-5 Short Form [PID-5-SF; @thimm2016personality], which measures five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism. 
-The scale consists of 25 items rated on a 4-point Likert scale, ranging from 0 (very false or often false) to 3 (very true or often true).
-
-On average, all maladaptive personality traits assessed by the PID-5-SF were weakly and negatively correlated with IAS pairings. The strongest correlation was observed between the psychoticism dimension and the Muscle/Pain pairing (r = -0.173).
-
-<!-- Schyzoty -->
-Schizotypy was assessed using the Schizotypal Personality Questionnaire – Brief Revised Updated (SPQ-BRU; @davidson2016schizotypal), which consists of 32 items rated on a 5-point Likert scale ranging from strongly agree to strongly disagree. 
-This questionnaire evaluates four primary dimensions: cognitive-perceptual (positive), interpersonal (negative), disorganized, and social anxiety. 
-These dimensions are further divided into nine secondary factors: constricted affect, eccentricity, magical thinking, lack of close friends, odd speech, referential thinking, social anxiety, suspiciousness, and unusual perceptions.
-
-On average, all nine factors were weakly and negatively correlated with IAS pairings, with correlations ranging from r = -0.170 (between lack of close friends and Muscles/Pain) to r = 0.102 (between magical thinking and Itch/Bruise).
-
-<!-- Autism -->
-The short version of the Autism-Spectrum Quotient (ASQ-Short; Hoekstra et al., 2011) was used to assess five autistic traits: social skills, adherence to routines, cognitive flexibility (switching), imagination, and patterns/numbers. 
-The questionnaire consists of 28 items rated on a 4-point Likert scale, ranging from 1 (definitely agree) to 4 (definitely disagree).
-
-Overall, all pairings were weakly and negatively correlated with the ASQ dimensions, except for the Itch/Bruise and Heart/Breathing pairings, which showed weak positive correlations with the patterns/numbers trait (r = 0.184 and r = 0.038, respectively). 
-The strongest correlation was observed between the imagination trait and the Wind/Burp pairing (r = -0.218).
-
-#### Correlations with personality measures
-
-The Big Five Inventory-Short Form [BFI-S; @lang2011short] and the Mini International Personality Item Pool [Mini-IPIP6; @sibley2011mini] were used to assess general personality traits. 
-The BFI-S consists of 15 items rated on a 7-point Likert scale, ranging from 1 (strongly disagree) to 7 (strongly agree), measuring five personality factors: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism.
-The Mini-IPIP6 assesses six personality traits—Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness, and Honesty-Humility—using 24 items. 
-While this questionnaire is typically scored on a 7-point Likert scale from 1 (very inaccurate) to 7 (very accurate), an analogous scale was used in the respective sample. 
-Lastly, the Neuroticism subscale of the NEO Five-Factor Inventory [Neo-FFI; @costa1992normal] was used to assess Neuroticism, consisting of 12 items rated on a 5-point Likert scale from 1 (strongly disagree) to 5 (strongly agree).
-
-To assess correlations with the IAS pairings, scores were grouped across personality dimensions due to the overlap among these traits (with the exception of Honesty-Humility). 
-On average, IAS pairings were positively associated with most personality dimensions, though these correlations were generally weak.
-The strongest correlation was observed between Conscientiousness and the Hungry/Thirsty pairing (r = 0.164).
-Both Honesty-Humility and Neuroticism were weakly and negatively correlated with the IAS pairings, with the highest correlations observed for the Hungry/Thirsty pairing (r = -0.217 and r = -0.200, respectively).
-
-#### Correlations with other measures
-
-<!-- PI -->
-
-The IAS was also correlated with primal world beliefs, as measured by the Primal Inventory [PI-18; @clifton2021brief], which assesses beliefs about the world being alive, good, safe, and enticing. 
-Items that evaluate neutral beliefs about the hierarchical order of importance in the world (i.e., hierarchical), as well as beliefs about the comprehensibility of most things and situations (i.e., understandable), and the belief that the world is characterized by flux (i.e., changing) were added as well.
-The scale contains 18 items ranging from 5 (Strongly agree) to 0 (strongly disagree). 
-
-Overall, most primal beliefs show weak positive correlations with all pairings of the IAS. The strongest correlation is between the hierarchical belief and the Hungry/Thirsty pairing (r = 0.181). 
-Some beliefs, however, exhibit negative correlations with certain pairings. 
-These negative correlations range from r = -0.0940 between the changing belief and the Hungry/Thirsty pairing, to r = -0.00490 between the Enticing belief and the Itch/Bruise pairing.
-
-<!-- GCBS -->
-
-The Generic Conspiracist Beliefs Scale [GCBS; @brotherton2013measuring] was used to assess five facets of conspiracy beliefs: Extraterrestrial, Global Conspiracies, Government Malfeasance, Information Control, and Personal Wellbeing. 
-The scale comprises 15 items rated on a 5-point Likert scale, ranging from definitely not true (1) to definitely true (5).
-
-Overall, the GCBS showed a weak but positive correlation with all facets of the IAS, with the strongest correlation observed between Global Conspiracies and Hungry/Thirsty (r = 0.140). 
-Negative correlations were found within the Global Conspiracies, Extraterrestrial, and Information Control facets, though these were small, ranging from r = -0.0101 to r = -0.0167.
-
-<!-- LIE -->
-
-Lastly, the Lying Profile Questionnaire [LIE; @makowski2023structure] a 16 item visual analog scale was used to assess 4 dispositional lying simensions: ability; negativity, contextuality, and frequency.
-
-Overall, most lying profile dimensions show weak correlations with IAS pairings. 
-Ability exhibits primarily weak positive correlations, with the strongest observed for Wind/Burp (r = 0.082).
-In contrast, Frequency tends to show weak negative correlations, ranging from Wind/Burp (r = -0.062) to Muscles/Pain (r = -0.088).
-Contextuality displays mixed correlations, with Itch/Bruise showing the strongest negative association (r = -0.127), while Urinate/Defecate has a small positive correlation (r = 0.045).
-Finally, Negativity is consistently positively correlated with all pairings, with the strongest relationship found for Hungry/Thirsty (r = 0.090).
-
-
-
+[**ANA: Confirm personality**]
 
 ## Discussion
 
