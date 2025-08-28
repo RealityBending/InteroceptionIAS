@@ -35,14 +35,14 @@ author:
     affiliations:
       - ref: "id1"
   - name: Robyn Scharte
-      orcid: 
-      roles: 
-      affiliations:
+    orcid: 
+    roles: 
+    affiliations:
         - ref: "id1"
   - name: Raquel Nogueira Arjona
-      orcid: 0000-0002-5998-701X
-      roles: 
-      affiliations:
+    orcid: 0000-0002-5998-701X
+    roles: 
+    affiliations:
         - ref: "id1"
         - name: "University of Sussex"
           department: "Sussex Addictions Research and Intervention Centre"
