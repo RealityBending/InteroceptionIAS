@@ -28,6 +28,7 @@ library(patchwork)
 
 - Note, GAD2 and PHQ2 were collapsed into phq4
 - PI-99 was collapsed into PI-18
+- STait-5 collapsed into STait-t
 
 ```{r}
 #| output: false
@@ -118,7 +119,7 @@ table <- data.frame(
    # Beliefs and Misbeliefs
     "", "Secret organizations communicate with extraterrestrials, but keep this fact from the public", "Nearly everything in the world is beautiful", "I am a good liar"
 ),
-  stringsAsFactors = FALSE
+   stringsAsFactors = FALSE
 )
 
 
@@ -126,12 +127,13 @@ table <- data.frame(
 table_apa <- table |> 
   gt() |>
   cols_align(align = c("right"), columns = "Scoring") |> 
-  cols_label(Number_of_Dimensions = "Number of Dimensions", Number_of_Items = "Number of Items")  |>
+  cols_label(Number_of_Dimensions = "Number of Dimensions", Number_of_Items = "Number of Items", Example_Items = "Example Items")  |>
   # tab_footnote("* Information taken from the sample description of relevant paper rather than recomputed.") 
   tab_style( style = list(cell_text(weight = "bold")), locations = cells_body(columns = Questionnaire, rows = Questionnaire %in% c("Interoceptive Related", "Mood", "Personality", "Psychopathology", "Beliefs and Misbeliefs")))
   
 gt_apastyle(table_apa, font.size=12)
 gtsave(gt_apastyle(table_apa, font.size=9), "figures/table2.tex")
+saveRDS(table, "figures/table2.rds")
 ```
 
 ## Data Preparation
