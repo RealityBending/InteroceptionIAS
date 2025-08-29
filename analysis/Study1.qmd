@@ -652,8 +652,8 @@ save(data, file = "../data/data.RData")
 - **Sample 11**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df11 , age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 12**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df12 , age = "Age", sex = NA, gender = "Gender")`.
 - **Sample 13**: Data from [Makowski's(2023)] study , downloaded from OSF, included `r report::report_participants(df13 , age = "Age", sex = NA, gender = "Gender")`.
-- **Sample 14**: Data from [Poreiro's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df14 , age = "Age", sex = NA, gender = "Gender")`
-- **Sample 15 **: Data from [Poreiro's] study , included `r report::report_participants(df15 , age = "Age", sex = NA, gender = "Gender")`
+- **Sample 14**: Data from [Poerio's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df14 , age = "Age", sex = NA, gender = "Gender")`
+- **Sample 15 **: Data from [Poerio's] study , included `r report::report_participants(df15 , age = "Age", sex = NA, gender = "Gender")`
 - **Sample 16 **: Data from [Arjona's] study , included `r report::report_participants(df16 , age = "Age", gender = "Gender")`
 
 
