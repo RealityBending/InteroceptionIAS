@@ -342,7 +342,7 @@ df9 <- df9 |>
 ### Sample 10
 
 - Makowski
-  - Note: First sample has some missing items (No Taste, Cough, Blood_Sugar)
+  - Note: sample has some missing items (No Taste, Cough, Blood_Sugar)
   - Note: Analog scales
 
 ```{r}
@@ -530,7 +530,7 @@ df13$PHQ4_Anxiety <- (df13$PHQ4_Anxiety_2 + df13$PHQ4_Anxiety_1)/2
 
 ### Sample 14
 
-- Poreiro et al., 
+- Poerio et al., 
   - Study 1: https://osf.io/49wbv
 
 ```{r}
@@ -562,7 +562,7 @@ df14$STAIT_Mean <- df14$STAIT_Sum/20
 
 
 ### Sample 15
-- Poreiro: unpublished
+- Poerio: unpublished
 
 ```{r}
 df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive Sensitivity.sav") |> # 165 participants
@@ -584,7 +584,7 @@ df15   <- haven::read_sav("../data/Giulia/Sleep and Exteroceptive Interoceptive 
 
 ### Sample 16
 
-- Raquel Arjona and Robyn Scharte data 
+- Raquel Arjona and Robyn Scharte data upublished
 
 ```{r}
 
