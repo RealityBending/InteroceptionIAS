@@ -470,12 +470,12 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "Neuroticism", component = "Personality", name = "Neuroticism"),
-  pool_coef(with = "Agreeableness", component="Personality", name = "Agreeableness"),
-  pool_coef(with = "Conscientiousness", component="Personality", name = "Conscientiousness"), 
-  pool_coef(with = "Openness", component="Personality", name = "Openness"),
-  pool_coef(with = "Extraversion", component="Personality", name = "Extraversion"),
-  pool_coef(with = "HonestyHumility", component="Personality", name = "Honesty-Humility")
+  pool_coef(with = "Neuroticism", component = "Personality", name = "Neuroticism",unequalrange=TRUE),
+  pool_coef(with = "Agreeableness", component="Personality", name = "Agreeableness",unequalrange=TRUE),
+  pool_coef(with = "Conscientiousness", component="Personality", name = "Conscientiousness",unequalrange=TRUE), 
+  pool_coef(with = "Openness", component="Personality", name = "Openness",unequalrange=TRUE),
+  pool_coef(with = "Extraversion", component="Personality", name = "Extraversion", unequalrange=TRUE),
+  pool_coef(with = "HonestyHumility", component="Personality", name = "Honesty-Humility",unequalrange=TRUE)
 )
 ```
 

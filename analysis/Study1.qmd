@@ -217,7 +217,8 @@ df7a <- haven::read_sav("../data/Brand2023/Data_Giessen.sav") |>
     MAIA_Trusting = MAIA_TRUSTING, MAIA_EmoAwareness = MAIA_EMOTIONAL_AWARENESS,
     STAIT_Sum = STAI_T_Sumscore
   ) |> 
-  mutate(across(starts_with("MAIA_"), \(x) x - 1)) # Original scale 1-6
+  mutate(across(starts_with("MAIA_"), \(x) x - 1),
+         across(starts_with("NEOFFI_"),  \(x) datawizard::rescale(x, to = c(0, 1)))) # Original scale 1-6
 
 df7a$STAIT_Mean <- df7a$STAIT_Sum/20
 df7a$Neuroticism <- rowMeans(select(df7a,NEOFFI_01:NEOFFI_12))
@@ -328,13 +329,13 @@ df9 <- df9 |>
     Muscles = IAS_15, Bruise = IAS_16, Pain = IAS_17, Blood_Sugar = IAS_18,
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21
   ) |>
+  mutate(across(starts_with("BFI_"), \(x) datawizard::rescale(x, to = c(0, 1)))) |>
   mutate(
     Neuroticism = (BFI_1 + BFI_2 + BFI_3)/3,
     Agreeableness = (BFI_10R + BFI_11 + BFI_12)/3,
-    Extraversion = (BFI_4 + BFI_5 + BFI_6),
+    Extraversion = (BFI_4 + BFI_5 + BFI_6)/3,
     Conscientiousness = (BFI_13 + BFI_14 + BFI_15R)/3,
-    Openness = (BFI_7 + BFI_8 + BFI_9)/3) |>
-  mutate(across(starts_with("BFI_"), \(x) datawizard::rescale(x, to = c(0, 1))))
+    Openness = (BFI_7 + BFI_8 + BFI_9)/3)
   
 ```
 
