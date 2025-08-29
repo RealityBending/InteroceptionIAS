@@ -474,24 +474,22 @@ From each fitted model, we extracted standardized regression coefficients (β), 
 ## Results
 
 <!-- Demographic correlates -->
-Age showed consistent positive associations across tasks (mean r = .12), with all correlations significant. Gender differences were weaker (mean r = −.01), though a majority of effects reached significance.
+Age was positively associated across Ias correlates (mean r = .12), with all correlations significant. Gender showed near-zero effects (mean r = −.01), with 63% reaching significance.
 
 <!-- Interoceptive measures -->
-Several MAIA subscales showed moderate and consistently significant positive associations with IAS scores. Noticing (mean β = .259), Attention Regulation (β = .249), Trusting (β = .236), Emotional Awareness (β = .197), Listening (β = .176), and Self-Regulation (β = .189) were significant across all pairings and the original scale. Autonomic reactivity from the BPQ was negatively associated (β = −.173, 88% significant), whereas body awareness showed weaker and less reliable effects (β = .122, 25% significant). Alexithymia was consistently negative: ICQ (β = −.316), TAS subscales: Difficulties Identifying Feelings (βs = −.211) , Difficulties Describing Feelings (βs = −.150), External Thinking (βs = −.081, 75% significance), and the BVAQ cognitive component (β = −0.200) were significant for nearly all IAS correlates. 
+MAIA subscales showed consistent positive associations with IAS: Noticing (β = .259), Attention Regulation (β = .249), Trusting (β = .236), Emotional Awareness (β = .197), Listening (β = .176), and Self-Regulation (β = .189) were significant across IAS pairings and the full scale. Autonomic reactivity (BPQ) was negatively associated (β = −.173, 88% significant), while body awareness was weaker and unreliable (β = .122, 25%). Alexithymia was consistently negative: ICQ (β = −.316), TAS-DIF (β = −.211), TAS-DDF (β = −.150), TAS-EOT (β = −.081, 75%), and BVAQ-Cognitive (β = −.200) were robust. In contrast, BVAQ-Affective showed a weak and inconsistent positive effect (β = .042, 13%).
 
 <!-- Mood questionnaires -->
 
-Depression (BDI: β = −0.204) and anxiety (STAI-T: β = −0.189) showed reliably negative associations. PHQ-15 (β = −0.128, 75% significant) PHQ-4 (depression: β = −0.094, 75% significant; anxiety: β = −0.103, 88% significant), and GAD-7 (β =−0.187, 63% significance) also showed consistent negative effects. By contrast, PHQ-9 (β = −0.619) and MFQ (β = −0.139) were largely nonsignificant despite negative averages.
+Depression (BDI: β = −.204) and anxiety (STAI-T: β = −.189) were reliably negative. Additional scales also showed consistent, though weaker, effects: PHQ-15 (β = −.128, 75%), PHQ-4 depression (β = −.094, 75%), PHQ-4 anxiety (β = −.103, 88%), and GAD-7 (β = −.187, 63%). By contrast, PHQ-9 (β = −.619, 25%) and MFQ (β = −.139, 13%) were largely nonsignificant despite negative averages.
 
-<!-- Psychopathology and personality -->
+<!-- Psychopathology -->
 
-Autistic traits showed the clearest pattern: Imagination (β = −0.184, 88% significant), Low Attentional Switching (β = −0.143, 63% significant), and Lack of Social Skills (β = −0.119, 63% significant) were reliably negative. Among maladaptive traits, Negative Affect (β = −0.111, 63% significant) was the only consistent correlate. Schizotypal traits showed generally weak and unreliable associations, with No Close Friends (β = −0.12, significant in 50% of models) being the only subscale to exhibit a small effect, and even this just at the threshold of consistency.
+Autistic traits showed the clearest pattern: Imagination (β = −.184, 88%), Low Attentional Switching (β = −.143, 63%), and Lack of Social Skills (β = −.119, 63%) were consistently negative. Among maladaptive traits, only Negative Affect (β = −.111, 63%) showed reliable associations. Schizotypal traits were generally weak, with only No Close Friends (β = −.122, 50%) approaching consistency.
 
 <!-- Personality and beliefs -->
 
-Of the Big Five, only Openness showed consistent positive associations (β = 0.123, 63% significant). Other traits were weak or mostly nonsignificant. Conspiracy, world belief, and lying profiles showed no reliable associations.
-
-[**ANA: Confirm personality**]
+Within the Big Five, Openness (β = .143, 100%), Agreeableness (β = .053, 100%), and Conscientiousness (β = .028, 88%) were consistently positive; other traits were negligible. Conspiracy, world belief, and lying profiles showed no reliable effects, except a small and small and somewhat consistent association with the belief that the world is alive (β = .087, 63%).
 
 ## Discussion
 
