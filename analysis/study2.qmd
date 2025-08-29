@@ -488,20 +488,20 @@ data <- rbind(
 # names(df12)[str_detect(names(df12), "PI_Alive")]
 # names(df13)[str_detect(names(df13), "PI_Alive")]
 
-data <- rbind(
-  data, 
-  pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive", unequalrange=TRUE))
-
 # data <- rbind(
-#   data,
-#   pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive"),
-#   pool_coef(with = "PI_Changing", component="World Beliefs", name = "Changing"),
-#   pool_coef(with = "PI_Enticing", component="World Beliefs", name = "Enticing"),
-#   pool_coef(with = "PI_Good", component="World Beliefs", name = "Good"),
-#   pool_coef(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical"),
-#   pool_coef(with = "PI_Safe", component="World Beliefs", name = "Safe"),
-#   pool_coef(with = "PI_Understandable", component="World Beliefs", name = "Understandable"),
-# )
+#   data, 
+#   pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive", unequalrange=TRUE))
+
+data <- rbind(
+  data,
+  pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive", unequalrange=TRUE),
+  pool_coef(with = "PI_Changing", component="World Beliefs", name = "Changing", unequalrange=TRUE),
+  pool_coef(with = "PI_Enticing", component="World Beliefs", name = "Enticing", unequalrange=TRUE),
+  pool_coef(with = "PI_Good", component="World Beliefs", name = "Good", unequalrange=TRUE),
+  pool_coef(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical", unequalrange=TRUE),
+  pool_coef(with = "PI_Safe", component="World Beliefs", name = "Safe",unequalrange=TRUE),
+  pool_coef(with = "PI_Understandable", component="World Beliefs", name = "Understandable",unequalrange=TRUE)
+)
 ```
 
 ```{r}
