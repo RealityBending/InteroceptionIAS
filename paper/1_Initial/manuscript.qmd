@@ -194,7 +194,7 @@ The IAS consists of 21 Likert-scale items that query how accurately one can perc
 Appealingly, the IAS' statements are about specific interoceptive behaviours, which is a distinct difference with other popular interoception questionnaires, such as the MAIA-2, which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), as well as dimensions related to attention regulation (e.g., Not-distracting) or emotion regulation (e.g., Not-worrying).
 
 <!-- IAS structure  --> 
-**NOTES: todd 2022 found no correlation for MAIA and IAS except  with the non-worrying facet + Gaggero found positive correlations with IAS and MAIA (general).**
+[**NOTES**: todd 2022 found no correlation for MAIA and IAS except  with the non-worrying facet + Gaggero found positive correlations with IAS and MAIA (general)]
 
 The original validation study suggested a two-factor structure for the IAS, one reflecting the perception of general interoceptive signals (urinate, hungry, defecate, thirsty, pain, heart, taste, breathing, temperature, muscles, affective touch, vomit, sexual arousal), and other relating to signals that may be difficult to perceive solely through interoceptive information (itch, tickle, cough, burp, bruise, blood sugar, sneeze, wind). 
 The authors however underlined its acceptable but imperfect fit [@murphy2019, p. 127], and several follow-up studies have indeed identified different optimal solutions. 
@@ -379,7 +379,7 @@ The first study aimed to provide the most systematic test of the IAS structure t
 
 <!-- 7-pairs of items as optimal model -->
 
-Overall, the findings converge on a robust yet novel picture. Initial analysis revealed issues in 6 items (e.g., instability, redudancy, low associations, less reliable) which led to the formation of a 14-item IAS. Exploratory and confirmatory analyses indicated that the IAS is best characterized by seven pairs of closely related items, consistently identified by EGA and supported by HCA. These pairs (e.g., hunger–thirst, urinate–defecate, cough–sneeze) were highly replicable across independent samples and yielded superior fit indices in CFA compared to other solutions. Although the one-factor model occasionally achieved lower BIC, Bayes factor comparisons overwhelmingly supported the EGA structure, underlining its empirical robustness. 
+Overall, the findings converge on a robust yet novel picture. Initial analysis revealed issues in 7 items (e.g., instability, redudancy, low associations, less reliable) which led to the formation of a 14-item IAS. Exploratory and confirmatory analyses indicated that the IAS is best characterized by seven pairs of closely related items, consistently identified by EGA and supported by HCA. These pairs (e.g., hunger–thirst, urinate–defecate, cough–sneeze) were highly replicable across independent samples and yielded superior fit indices in CFA compared to other solutions. Although the one-factor model occasionally achieved lower BIC, Bayes factor comparisons overwhelmingly supported the EGA structure, underlining its empirical robustness. 
 
 <!-- IAS not higher-order, but item-level dependencies -->
 
@@ -391,7 +391,7 @@ At the same time, the results do not render the IAS unusable. The consistent eme
 
 <!-- Summary -->
 
-In sum, Study 1 demonstrates that the IAS structure is best described by clusters of tightly coupled item pairs reflecting local dependencies, rather than by a broad latent dimension. While this solution is replicable and statistically robust, it highlights the conceptual and psychometric limitations of the IAS in its current form. These insights help contextualize the mixed findings on the scale’s validity and correlations with other interoceptive measures [@murphy2019; @brand2023; @lin2023] and provide a crucial foundation for Study 2, where we  do the dispositional correlates of the IAS to further evaluate its construct validity and situate it within the broader network of interoceptive and psychological traits.
+In sum, Study 1 demonstrates that the IAS structure is best described by clusters of tightly coupled item pairs reflecting local dependencies, rather than by a broad latent dimension. While this solution is replicable and statistically robust, it highlights the conceptual and psychometric limitations of the IAS in its current form. These insights help contextualize the mixed findings on the scale’s validity and provide a crucial foundation for Study 2, where we  do the dispositional correlates of the IAS to further evaluate its construct validity and situate it within the broader network of interoceptive and psychological traits.
 
 # Study 2
 
@@ -399,7 +399,7 @@ In sum, Study 1 demonstrates that the IAS structure is best described by cluster
 
 ## Study 2
 
-Building on the structural findings from Study 1, the second study turns to the validity of the IAS by examining its dispositional correlates. Although the IAS has been widely used, evidence regarding its associations with personality traits, affective dispositions, and related psychological constructs remains scattered and inconsistent. Study 2 therefore had two primary goals. First, to provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of available datasets. Second, to evaluate the practical benefits of using the refined 14-item version of the scale identified in Study 1, compared to the original 21-item unidimensional version, in order to assess whether structural improvements translate into clearer and more reliable external associations.
+Building on the structural findings from Study 1, the second study turns to the validity of the IAS by examining its dispositional correlates. Although the IAS has been widely used, evidence regarding its associations with personality traits, affective dispositions, and related psychological constructs remains scattered and inconsiste [@murphy2019; @brand2023; @lin2023; @todd2022]. Study 2 therefore had two primary goals. First, to provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of available datasets. Second, to evaluate the practical benefits of using the refined 14-item version of the scale identified in Study 1, compared to the original 21-item unidimensional version, in order to assess whether structural improvements translate into clearer and more reliable external associations.
 
 ## Methods
 
@@ -408,7 +408,7 @@ Building on the structural findings from Study 1, the second study turns to the 
 We selected measures that appeared in multiple datasets from Study 1 and/or were relevant given the scope of the study, merging scores of regular and abridged versions for conciseness where applicable. The measures include constructs related to interoception, mood, personality, psychopathology, and beliefs and misbeliefs.
 
 <!-- Interoception Related -->
-**Interoception Related**.
+#### Interoception Related
 The Multidimensional Assessment of Interoceptive Awareness Version-2 [MAIA-2, @mehling2018multidimensional] is a 37-item questionnaire assessing eight dimensions of interoception: Noticing, Not-Distracting, Not-Worrying, Attention Regulation, Emotional Awareness, Self-Regulation, Body Listening, and Trust. Responses are rated on a 6-point Likert scale (e.g., “I notice when I am uncomfortable in my body”).
 
 The Body Perception Questionnaire Short Form [BPQ-SF, @cabrera2018assessing] contains 46 items measuring body awareness and autonomic reactivity on a 5-point Likert scale (e.g., “My heart often beats irregularly”). The very-short form (BPQ-VSF) contains 12 items from the body awareness subscale. For this study, scores from both versions were combined.
@@ -420,10 +420,10 @@ The Toronto Alexithymia Scale [TAS-20, @bagby1994twenty] contains 20 items rated
 The Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] consists of 40 items across five subscales: fantasising, identifying, analysing, verbalising, and emotionalising. Items are rated on a 5-point Likert scale. The BVAQ also provides two higher-order factors, namely affective and cognitive (e.g., “I like to tell others how I feel”).
 
 <!-- Mood and Anxiety -->
-**Mood and Anxiety Related**.
+#### Mood and Anxiety Related
 The Beck Depression Inventory-II [BDI-II, @beck1996beck] is a 21-item measure of depressive symptom severity, including psychological (e.g., guilt) and physiological (e.g., loss of energy) components. Items are rated on a 4-point scale (e.g., “I feel sad much of the time”).
 
-The Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra] is a 4-item screening tool for depression and anxiety, rated on a 4-point Likert scale (e.g., “Little interest or pleasure in doing things”; “Not being able to stop or control worrying”). The PHQ-2 [PHQ-2; @kroenke2003patient] and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety] scores were combined with the PHQ-4 scores.
+The Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra] is a 4-item screening tool for depression and anxiety, rated on a 4-point Likert scale (e.g., “Little interest or pleasure in doing things”; “Not being able to stop or control worrying”). The PHQ-2 [PHQ-2, @kroenke2003patient] and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety] scores were combined with the PHQ-4 scores.
 
 The Patient Health Questionnaire-9 [PHQ-9, @kroenke2001phq] includes 9 items assessing depressive symptoms on a 4-point Likert scale (e.g., “Feeling tired or having little energy?”).
 
@@ -431,12 +431,12 @@ The Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq] assesses somatic s
 
 The Short Mood and Feelings Questionnaire [SMFQ, @angold1995development] is a 13-item measure of recent depressive symptoms in children aged 6–17, rated on a 3-point scale (e.g., “I felt miserable or unhappy”).
 
-The State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual] is a 20-item trait anxiety questionnaire rated on a 4-point Likert scale (e.g., “I worry too much about something that really doesn’t matter”). Scores from the shorter version of the STAI-5 [STAIT-5, @zsido2020development] were combined with the STAI-T. 
+The State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual] is a 20-item trait anxiety questionnaire rated on a 4-point Likert scale (e.g., “I worry too much about something that really doesn’t matter”). Scores from the shorter version of the STAIT-5 [@zsido2020development] were combined with the STAI-T. 
 
 The Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief] is a 7-item measure of generalized anxiety symptoms rated on a 4-point Likert scale (e.g., “Not being able to stop or control worrying”).
 
 <!-- Personality -->
-**Personality**.
+#### Personality
 The NEO Five-Factor Inventory, neuroticism subscale [NEO-FFI, @costa1992neo] is a 12-item measure of neuroticism, assessing the general tendency to experience negative emotions such as fear, sadness, or disgust. Items are rated on a 5-point Likert scale (e.g., “I often feel inferior to others”).
 
 The Mini International Personality Item Pool [MINI-IPIP6, @sibley2011mini] includes 24 items measuring six broad traits: Agreeableness, Conscientiousness, Neuroticism, Openness, Extraversion, and Honesty-Humility. Items were scored on visual analogue scales in our samples (originally 7-point Likert scales; e.g., “Have a vivid imagination”).
@@ -445,22 +445,20 @@ The Big Five Inventory Short Form [BFI-S, @rammstedt2007measuring] is a 10-item 
 
 <!-- Psychopathology -->
 
-**Psychopathology**.
+#### Psychopathology
 The Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality] consists of 25 items rated on a 4-point Likert scale, measuring five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism (e.g., “Plenty of people are out to get me”).
 
 The Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson2016schizotypal] contains 32 items rated on a 5-point Likert scale, assessing four primary dimensions: cognitive-perceptual, interpersonal, disorganized, and social anxiety. These are subdivided into nine secondary factors, including constricted affect, eccentricity, magical thinking, lack of close friends, odd speech, referential thinking, social anxiety, suspiciousness, and unusual perceptions (e.g., “Plenty of people are out to get me”).
 
 The McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini] is a 10-item dichotomous screening measure for borderline personality disorder (present/absent; e.g., “Have any of your closest relationships been troubled by a lot of arguments or repeated breakups?”).
 
-The Autism Spectrum Quotient Short Form [ASQ-S, @Hoekstra et al., 2011] is a 28-item measure of five autistic traits: social skills, adherence to routines, cognitive flexibility, imagination, and patterns/numbers. Items are rated on a 4-point Likert scale (e.g., “I find it difficult to work out people’s intentions”).
+The Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction] is a 28-item measure of five autistic traits: social skills, adherence to routines, cognitive flexibility, imagination, and patterns/numbers. Items are rated on a 4-point Likert scale (e.g., “I find it difficult to work out people’s intentions”).
 
 <!-- Beliefs and Misbeliefs -->
-**Beliefs and Misbeliefs**.
+#### Beliefs and Misbeliefs
 The Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring] is a 15-item measure assessing five dimensions of conspiracy beliefs: government malfeasance, extraterrestrial cover-up, malevolent global conspiracies, personal wellbeing, and control of information. Items are scored on a 5-point Likert scale (e.g., “Secret organizations communicate with extraterrestrials, but keep this fact from the public”).
 
-The Primal World Beliefs Inventory Short Form [PI-18, @clifton2021brief] is an 18-item measure assessing four high-order beliefs: the world is Good (vs. Bad) and its three dimensions: Safe (vs. Dangerous), Enticing (vs. Dull), and Alive (vs. Mechanistic). Items are scored on a 5-point Likert scale (e.g., “Nearly everything in the world is beautiful”). 
-
-The Primal World Beliefs Inventory [PI-99; @clifton2019primal] is a 99-item measure assessing high-order beliefs about the world. Items are scored on a 5-point Likert scale (e.g., “Nearly everything in the world is beautiful”).The PI-18 [@clifton2021brief] is a short form of the orginal questionnaire assessing the 4 main world beliefs: the world is Good (vs. Bad) and its three dimensions: Safe (vs. Dangerous), Enticing (vs. Dull), and Alive (vs. Mechanistic). Scores from the PI-18 scores were combined with the PI-99.
+The Primal World Beliefs Inventory [PI-99, @clifton2019primal] is a 99-item measure assessing 26 high-order beliefs about the world. Items are scored on a 5-point Likert scale (e.g., “Nearly everything in the world is beautiful”) The PI-18 [@clifton2021brief] is a short form of the orginal questionnaire assessing the 4 main world beliefs: the world is Good (vs. Bad) and its three dimensions: Safe (vs. Dangerous), Enticing (vs. Dull), and Alive (vs. Mechanistic). Scores from the PI-18 scores were combined with the PI-99.
 
 The Lie Scale [LIE, @makowski2023structure] is a 16-item measure of lying tendencies across four components: Ability, Frequency, Negativity, and Contextuality. Items are scored on visual analogue scales (e.g., “I am a good liar”).
 
@@ -481,24 +479,18 @@ From each fitted model, we will extract standardized regression coefficients (β
 Age was positively associated across Ias correlates (mean r = .12), with all correlations significant. Gender showed near-zero effects (mean r = −.01), with 63% reaching significance.
 
 <!-- Interoceptive measures -->
-MAIA subscales showed consistent positive associations with IAS: Noticing (β = .259), Attention Regulation (β = .249), Trusting (β = .236), Emotional Awareness (β = .197), Listening (β = .176), and Self-Regulation (β = .189) were significant across IAS pairings and the full scale. Autonomic Reactivity (BPQ) was negatively associated (β = −.173, 88% significant), while Body Awareness (BPQ) was weaker and unreliable (β = .122, 25%). Alexithymia was consistently negative: ICQ (β = −.316), TAS-DIF (β = −.211), TAS-DDF (β = −.150), TAS-EOT (β = −.081, 75%), and BVAQ-Cognitive (β = −.200) were robust. In contrast, BVAQ-Affective showed a weak and inconsistent positive effect (β = .042, 13%).
+Several MAIA subscales showed consistent positive associations with the IAS: Noticing, Attention Regulation, Trusting, Emotional Awareness, Listening, and Self-Regulation (βs ≈ .18–.26). These effects were generally strongest for the full IAS, but often replicated with Hungry/Thirsty or Bruise/Blood pairings. By contrast, Autonomic Reactivity (BPQ; β = −.17) was reliably negative across most pairings, while Body Awareness (BPQ; β = .12) was weak and only reliable for Hungry/Thirsty and Bruise/Blood. Alexithymia measures were consistently negative, with robust effects across both the full IAS and pairings, except for the Affective dimension of the BVAQ which showed only a positive association with the Bruise/Blood sugar pairing (β = .04).
 
-<!-- Mood questionnaires -->
-
-Depression (BDI: β = −.204) and anxiety (STAI-T: β = −.189) were reliably negative. Additional scales also showed consistent, though weaker, effects: PHQ-15 (β = −.128, 75%), PHQ-4 depression (β = −.094, 75%), PHQ-4 anxiety (β = −.103, 88%), and GAD-7 (β = −.187, 63%). By contrast, PHQ-9 (β = −.619, 25%) and MFQ (β = −.139, 13%) were largely nonsignificant despite negative averages.
-
-<!-- Psychopathology -->
-
-Autistic traits showed a clear pattern: Imagination (β = −.184, 88%), Low Attentional Switching (β = −.143, 63%), and Lack of Social Skills (β = −.119, 63%) were consistently negative. Among maladaptive traits, only Negative Affect (β = −.111, 63%) showed reliable associations. Schizotypal traits were generally weak, with only No Close Friends (β = −.122, 50%) approaching consistency.
+<!-- Mood and psychopathology -->
+Depression (BDI; β = −.20) and anxiety (STAI-T; β = −.19) were consistently negative across the IAS and most pairings, with Hungry/Thirsty again emerging as a particularly sensitive correlate. Broader symptom indices (PHQ-15, PHQ-4, GAD-7) showed weaker but often reliable effects, although some were restricted to certain pairings (e.g., PHQ-15 with Hungry/Thirsty, Bruise/Blood). By contrast, PHQ-9 and MFQ averaged negatively but were largely nonsignificant, even with the full scale. Autistic traits were generally negative, especially Imagination (β = −.18), which showed broad consistency across pairings except Cough/Sneeze.
 
 <!-- Personality and beliefs -->
+Within the Big Five, Openness (β = .14), Agreeableness (β = .05), and Conscientiousness (β = .03) showed small but consistent positive associations, most reliably captured by the full IAS but also evident in pairings. Honesty–Humility was uniquely negative, with significant associations for both the full scale and Hungry/Thirsty. Worldview measures were generally null, though belief in a comprehensible world (β = .11) and an “alive” world (β = .09) showed small but consistent positive associations, mainly with the full IAS and Hungry/Thirsty.
 
-Within the Big Five, Openness (β = .143, 100%), Agreeableness (β = .053, 100%), and Conscientiousness (β = .028, 88%) were consistently positive; other traits were negligible. Conspiracy, world belief, and lying profiles showed no reliable effects, except a small and consistent association with the believe the world is readily comprehensible (β = .113, 75%) and a small and somewhat consistent association with the belief that the world is alive (β = .087, 63%)
+<!-- Differences between the full IAS and item pairings -->
+Overall, the full IAS yielded the largest number of significant associations (25), but the Hungry/Thirsty (16) and Bruise/Blood sugar (11) pairings frequently showed equally strong or stronger effects. These item-level pairings often captured variance that the full scale did not, particularly for interoceptive and mood measures. In contrast, other pairings (e.g., Cough/Sneeze, Wind/Burp, Urinate/Defecate) contributed little unique variance. Together, these results suggest that while the full IAS captures broad dispositional tendencies, select pairings may provide more fine-grained sensitivity to specific domains, particularly interoception and affect.
 
-<!-- Number of correlations with the intero vars -->
-Across these pairs, the full scale was most frequently the strongest correlate (25 instances), followed by Hungry/Thirsty (16), Bruise/Blood (11), Muscles/Pain (7), and smaller contributions from Breathing/Heart, Cough/Sneeze, Urinate/Defecate, and Wind/Burp.
-
-[**NOTE* justify the choice of those specific primals ? higehr correlations with the IAS?]
+[**NOTE** justify the choice of those specific primals ? higehr correlations with the IAS?]
 
 ## Discussion
 
@@ -515,16 +507,16 @@ Robust negative correlations were observed between the IAS and alexithymia, in l
 Clear negative associations also emerged with autism-related traits such as imagination, low attentional switching, and reduced social skills. These findings resonate with @dubois2016 review reporting interoceptive abnormalities in autism. Nonetheless, our findings are limited to a single dataset employing the ASQ, which constrains the generalisability of conclusions regarding the relationship between interoception and autistic traits.
 
 <!-- Personality dimensions -->
-The associations between interoception and personality traits were more nuanced. Whereas prior work suggested a negative link with neuroticism [@brand2023], we found this relationship to be inconsistent and even slightly positive, though near zero. By contrast, openness and agreeableness were consistently positively associated with the IAS, albeit with small effect sizes. These findings are consistent with emerging evidence linking openness to interoception as measured by the MAIA-2 [@simkute2025interoception], and complement reports of associations between interoceptive sensitivity (i.e., the accuracy of reported heartbeat counts relative to actual heartbeats) and extraversion [@haustein2024interoception].
+The associations between interoception and personality traits were more nuanced. Whereas prior work suggested a negative link with neuroticism [@brand2023], we found this relationship to be inconsistent and even slightly positive, though near zero. By contrast, openness and agreeableness were consistently positively associated with the IAS, albeit with small effect sizes. These findings are consistent with emerging evidence linking openness to interoception as measured by the MAIA-2 [@simkute2025interoception], and complement reports of associations between interoceptive sensitivity (i.e., the accuracy of reported heartbeat counts relative to actual heartbeats) and extraversion [@haustein2024interoception]. Personality effects more broadly were modest in size, and as such, warrant replication before firm conclusions can be drawn. In contrast, maladaptive personality dimensions and schizotypal traits showed only weak and inconsistent associations with the IAS, indicating that interoceptive accuracy may not play a central role in these domains.
 
 <!-- Exploratory findings -->
-Beyond established correlates, exploratory analyses revealed weak but positive associations between the IAS and primal world beliefs, specifically perceiving the world as alive and understandable. While preliminary, these effects suggest a possible link between one’s relationship with internal bodily signals and broader worldviews, raising intriguing questions about how interoception might shape existential or meaning-related beliefs.
+Beyond established correlates, exploratory analyses revealed weak but positive associations between the IAS and primal world beliefs, specifically perceiving the world as alive and understandable. The inclusion of primal world beliefs was exploratory, motivated by their potential theoretical link to embodied cognition and meaning-making processes. Although effect sizes were small, the emergence of consistent associations with perceiving the world as alive and understandable suggests an intriguing avenue for future work at the intersection of interoception and worldview formation.
 
 <!-- Comparison of 14-item vs. 21-item IAS -->
-A central aim of Study 2 was to assess whether the refined 14-item IAS identified in Study 1 provides practical benefits over the original 21-item scale. Our results showed that while the full version was occasionally the stronger correlate, across dispositional measures, the shortened scale retained comparable validity while offering clearer psychometric structure and reduced redundancy as shown in study 1. This suggests that the 14-item IAS constitutes a more efficient tool without substantial loss of predictive power. In practice, the refined scale offers advantages for researchers and clinicians alike: it reduces participant burden, avoids problematic items flagged in Study 1 (e.g., “tickle,” “taste,” “vomit”), and provides a more coherent representation of interoceptive domains.
+A central aim of Study 2 was to assess whether the refined 14-item IAS identified in Study 1 provides practical benefits over the original 21-item scale. While the full version most often emerged as the strongest correlate, the refined 14-item IAS performed largely comparably across dispositional measures. Importantly, specific item pairings — particularly Hungry/Thirsty and Bruise/Blood sugar — frequently captured associations as strong as, or occasionally stronger than, the full scale. This suggests that beyond efficiency, the refined IAS may offer more fine-grained sensitivity to certain dispositional domains, highlighting that interoceptive self-report is not unidimensional but may be differentially expressed across bodily contexts.
 
-<!-- Summary -->
-Overall, these findings provide converging evidence for the construct validity of the IAS, most strongly in relation to interoceptive self-report, alexithymia, mood, and autism-related traits. Other associations, particularly with personality and belief systems, were weaker and more exploratory, highlighting both the breadth and the limits of interoceptive awareness as captured by the IAS. Taken together, Study 2 advances our understanding of the dispositional landscape of interoception and provides evidence that the refined IAS is a reliable and efficient tool for capturing interoceptive awareness.
+<!-- Summary + need for contextual dimensions-->
+Overall, these findings provide converging evidence for the construct validity of the IAS, most strongly in relation to interoceptive self-report, alexithymia, mood, and autism-related traits. Other associations, particularly with personality and belief systems, were weaker and more exploratory, highlighting both the breadth and the limits of interoceptive accuracy as captured by the IAS. Taken together, Study 2 advances our understanding of the dispositional landscape of interoception. The findings provide strong support for the construct validity of the IAS, while also demonstrating that the refined version can capture comparable patterns of association. Moreover, the sensitivity of specific item pairings points to the possibility that different bodily contexts (e.g., hunger vs. pain) may differentially align with psychological traits, suggesting a promising direction for future research on the contextual dimensions of interoceptive accuracy.
 
 # General Discussion
 
@@ -577,6 +569,9 @@ Recognizing the necessity for a refined interoception scale, this study proposes
 This new scale will be designed to align with recent findings on the IAS and interoception research while allowing for direct comparison with IAS correlates.
 
 \[**TO DO**: add - previous work suggests the importance of physiological contexts (Vlemincx et al., 2021)\] **I would rather put that in the discussion in the suggestions for better scales**
+
+<!-- IAS  sF -->
+This suggests that the 14-item IAS constitutes a more efficient tool without substantial loss of predictive power. In practice, the refined scale offers advantages for researchers and clinicians alike: it reduces participant burden, avoids problematic items flagged in Study 1 (e.g., “tickle,” “taste,” “vomit”), and provides a more coherent representation of interoceptive domains.
 
 # Limitations and Future Directions
 
