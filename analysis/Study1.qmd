@@ -470,7 +470,10 @@ df13  <- read.csv("https://raw.githubusercontent.com/RealityBending/Interoceptio
     mutate(across(starts_with("MAIA_"), \(x) datawizard::rescale(x, to = c(0, 5))),
            across(starts_with("PI18_"), \(x) datawizard::rescale(x, to = c(0,1)))) |>
   mutate(
-    PI_Alive = (PI18_GA_2 + PI18_GA_14 + (1-PI18_A_12_R) + PI18_A_16 + PI18_A_4)/5)
+    PI_Alive = (PI18_GA_2 + PI18_GA_14 + (1-PI18_A_12_R) + PI18_A_16 + PI18_A_4)/5, 
+    PI_Good = ((1-PI18_GE_5_R) + (1-PI18_GS_13_R) + PI18_GA_14 + PI18_GE_8 + PI18_GA_2 + PI18_GE_1 + (1-PI18_GE_9_R) + (1-PI18_GS_10_R) + (1-PI18_GE_6_R) + PI18_GS_15 + PI18_GS_17 + (1-PI18_GS_11_R) + PI18_GS_3 + PI18_GE_18 +  PI18_GE_7)/ 15,
+    PI_Safe = ((1-PI18_GS_13_R) + (1-PI18_GS_10_R) + PI18_GS_15 + PI18_GS_17 + (1-PI18_GS_11_R) + PI18_GS_3)/ 6,
+    PI_Enticing = ((1-PI18_GE_5_R) + PI18_GE_8 + PI18_GE_1 +(1-PI18_GE_9_R) + (1-PI18_GE_6_R) + PI18_GE_18 + PI18_GE_7)/7)
 
   
 
