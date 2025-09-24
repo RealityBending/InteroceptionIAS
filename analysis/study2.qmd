@@ -520,7 +520,7 @@ data <- rbind(
   pool_coef(with = "PI_Regenerative", component="World Beliefs", name = "Regenerative",unequalrange=TRUE),
   pool_coef(with = "PI_Stable", component="World Beliefs", name = "Stable",unequalrange=TRUE),
   pool_coef(with = "PI_WorthExploring", component="World Beliefs", name = "WorthExploring",unequalrange=TRUE),
-  pool_coef(with = "PI_Intentional", component="World Beliefs", name = "Intentional", unequalrange=TRUE),
+  pool_coef(with = "PI_Intentional", component="World Beliefs", name = "Intentional", unequalrange=TRUE)
   )
 ```
 
