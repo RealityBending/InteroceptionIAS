@@ -500,8 +500,28 @@ data <- rbind(
   pool_coef(with = "PI_Good", component="World Beliefs", name = "Good", unequalrange=TRUE),
   pool_coef(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical", unequalrange=TRUE),
   pool_coef(with = "PI_Safe", component="World Beliefs", name = "Safe",unequalrange=TRUE),
-  pool_coef(with = "PI_Understandable", component="World Beliefs", name = "Understandable",unequalrange=TRUE)
-)
+  pool_coef(with = "PI_Understandable", component="World Beliefs", name = "Understandable",unequalrange=TRUE),
+  
+  pool_coef(with = "PI_AboutMe", component="World Beliefs", name = "About me",unequalrange=TRUE),
+  pool_coef(with = "PI_Abundant", component="World Beliefs", name = "Abundant",unequalrange=TRUE),
+  pool_coef(with = "PI_Acceptable", component="World Beliefs", name = "Acceptable",unequalrange=TRUE),
+  pool_coef(with = "PI_Beautiful", component="World Beliefs", name = "Beautiful",unequalrange=TRUE),
+  pool_coef(with = "PI_Cooperative", component="World Beliefs", name = "Cooperative",unequalrange=TRUE),
+  pool_coef(with = "PI_Funny", component="World Beliefs", name = "Funny",unequalrange=TRUE),
+  pool_coef(with = "PI_Harmless", component="World Beliefs", name = "Harmless",unequalrange=TRUE),
+  pool_coef(with = "PI_Improvable", component="World Beliefs", name = "Improvable",unequalrange=TRUE),
+  pool_coef(with = "PI_Interconnected", component="World Beliefs", name = "Interconnected",unequalrange=TRUE),
+  pool_coef(with = "PI_Interesting", component="World Beliefs", name = "Interesting",unequalrange=TRUE),
+  pool_coef(with = "PI_Just", component="World Beliefs", name = "Just",unequalrange=TRUE),
+  pool_coef(with = "PI_Meaningful", component="World Beliefs", name = "Meaningful",unequalrange=TRUE),
+  pool_coef(with = "PI_NeedsMe", component="World Beliefs", name = "Needs Me",unequalrange=TRUE),
+  pool_coef(with = "PI_Pleasurable", component="World Beliefs", name = "Pleasurable",unequalrange=TRUE),
+  pool_coef(with = "PI_Progressing", component="World Beliefs", name = "Progressing",unequalrange=TRUE),
+  pool_coef(with = "PI_Regenerative", component="World Beliefs", name = "Regenerative",unequalrange=TRUE),
+  pool_coef(with = "PI_Stable", component="World Beliefs", name = "Stable",unequalrange=TRUE),
+  pool_coef(with = "PI_WorthExploring", component="World Beliefs", name = "WorthExploring",unequalrange=TRUE),
+  pool_coef(with = "PI_Intentional", component="World Beliefs", name = "Intentional", unequalrange=TRUE),
+  )
 ```
 
 ```{r}
