@@ -383,8 +383,7 @@ Analyses revealed that seven item pairs (e.g., Hunger–Thirst, Urinate–Defeca
 The presence of redundant or unstable items (e.g., Tickle, Taste, Affective Touch) undermines interpretability and likely explains inconsistencies in prior factor-analytic findings [@campos2021; @lin2023]. Nevertheless, the structured item pairs correspond to intuitive bodily domains—visceral, expulsion, musculoskeletal—supporting ecological validity. These findings highlight the need for targeted scale refinement and motivate future development of context-sensitive, multidimensional interoception measures.
 
 <!-- Summary -->
-Study 1 establishes that once probelamtic items are removed the IAS is best conceptualized as a set of item clusters rather than a unidimensional scale. This structural insight provides the foundation for Study 2, where dispositional correlates are examined to further evaluate the IAS’s construct validity.
-
+Study 1 establishes that once probeleamtic items are removed the IAS is best conceptualized as a set of item clusters rather than a unidimensional scale. This structural insight provides the foundation for Study 2, where dispositional correlates are examined to further evaluate the IAS’s construct validity.
 # Study 2
 
 <!-- The goal of study 2 is two-fold, 1) provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of datasets available, and 2) assess the practical benefits of using a refined version of the IAS (i.e., the 14-item version identified in study 1) compared to the original 21-item one general factor version. -->
@@ -508,7 +507,7 @@ Study 2 shows that interoceptive self-report is adaptive, context-sensitive, and
 # General Discussion
 
 <!-- AIms -->
-The present study aimed to provide a comphrensive evaluation of the IAS, spanning both its structure (study 1) and its dispositional correlates (study 2). Together, these studies offer novel insights into the psychometric characteristics, conceptual interpretation, and practical applications of the IAS within the broader landscape of interoception research.
+The present study aimed to provide a comprehensive evaluation of the IAS, spanning both its structure (study 1) and its dispositional correlates (study 2). Together, these studies offer novel insights into the psychometric characteristics, conceptual interpretation, and practical applications of the IAS within the broader landscape of interoception research.
 
 <!-- Item Structure, Redundancy, and Scale Refinement -->
 
@@ -516,7 +515,7 @@ Study 1 demonstrated that the IAS is best conceptualized as clusters of tightly 
 
 <!-- Context-Specific Sensitivity of Interoception -->
 
-Study 2 reinforced this domain-specific view. Certain item pairings, particularly Hunger–Thirst and Bruise–Blood sugar, consistently predicted mood and interoceptive outcomes as well as, or better than, the full scale. These findings indicate that interoceptive self-report is most informative when tied to ecologically meaningful bodily signals, echoing prior suggestions that physiological context are important in the measurement of interoception[@vlemincx2023novel]. At the same time, other pairings (e.g., cough–sneeze, wind–burp) provided little predictive value. Taken together with Study 1, this suggests that the strength of interoceptive reporting lies not in broad aggregation but in the careful targeting of specific bodily domains.
+Study 2 reinforced this domain-specific view. Certain item pairings, particularly Hunger–Thirst and Bruise–Blood sugar, consistently predicted mood and interoceptive outcomes as well as, or better than, the full scale. These findings indicate that interoceptive self-report is most informative when tied to ecologically meaningful bodily signals, echoing prior suggestions that physiological context are important in the measurement of interoception [@vlemincx2023novel]. At the same time, other pairings (e.g., cough–sneeze, wind–burp) provided little predictive value. Taken together with Study 1, this suggests that the strength of interoceptive reporting lies not in broad aggregation but in the careful targeting of specific bodily domains.
 
 <!-- Correlates Across Psychological Domains -->
 
@@ -530,7 +529,7 @@ The structural and correlational findings converge to highlight both limitations
 
 <!-- Conclusion -->
 
-Taken together, these studies advance understanding of the IAS and interoceptive self-report more broadly. The refined 14-item IAS provides a more efficient and interpretable measure, capturing domain-specific interoceptive signals that are differentially associated with psychological outcomes. Consistent associations with mood, alongside modest links to personality and beliefs, indicate that the IAS reflects adaptive, context-sensitive aspects of bodily self-perception rather than broad dispositional traits. At the same time, current findings highlight limitations in modality coverage and item specificity, suggesting that future scale development should incorporate multimodal, context-sensitive, and continuous analogue ratings or wider discrete scales, to better capture the richness of interoceptive processes and clarify their role in affective, cognitive, and health-related outcomes [@desmedt2022measures; @vlemincx2021].
+Taken together, these studies advance understanding of the IAS and interoceptive self-report more broadly. The refined 14-item IAS provides a more efficient and interpretable measure, capturing domain-specific interoceptive signals that are differentially associated with psychological outcomes. Consistent associations with mood, alongside modest links to personality and beliefs, indicate that the IAS reflects adaptive, context-sensitive aspects of bodily self-perception rather than broad dispositional traits. At the same time, current findings highlight limitations in modality coverage and item specificity, suggesting that future scale development should incorporate multimodal, context-sensitive, and continuous analogue ratings or wider discrete scales, to better capture the richness of interoceptive processes and clarify their role in affective, cognitive, and health-related outcomes [@desmedt2022measures; @vlemincx2023novel].
 
 # References
 
