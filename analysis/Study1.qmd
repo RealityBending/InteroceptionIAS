@@ -3648,7 +3648,7 @@ scores <- list(
   sample11 = add_empirical(data11 , "Sample 11"),
   sample12 = add_empirical(data12 , "Sample 12"),
   sample13 = add_empirical(data13, "Sample 13"),
-  sample14 = add_empirical(data14 , "Sample 14 "),
+  sample14 = add_empirical(data14 , "Sample 14"),
   sample15 = add_empirical(data15 , "Sample 15"),
   sample16 = add_empirical(data16, "Sample 16")
 )
