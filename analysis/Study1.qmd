@@ -3597,9 +3597,6 @@ plot(rez_efa$n_fac)
 
 ::::
 
-
-
-
 ## Scores
 
 Note the usage of descriptive factor names relating directly to the items to avoid abstraction.
