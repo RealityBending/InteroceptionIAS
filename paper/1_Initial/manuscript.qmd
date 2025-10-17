@@ -504,8 +504,7 @@ The refined 14-item IAS performed comparably to the original scale, and item pai
 <!-- Summary -->
 Study 2 shows that interoceptive self-report is adaptive, context-sensitive, and most predictive in relation to mood and dynamic bodily monitoring. The refined IAS preserves construct validity while enabling more targeted assessment of domain-specific interoceptive tendencies.
 
-# General DiscussionGeneral Discussion 
-
+# General Discussion
 
 <!-- AIms -->
 The present study aimed to provide a comprehensive evaluation of the IAS, spanning both its structure (study 1) and its dispositional correlates (study 2). Together, these studies offer novel insights into the psychometric characteristics, conceptual interpretation, and practical applications of the IAS within the broader landscape of interoception research.
