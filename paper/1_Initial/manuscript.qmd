@@ -19,15 +19,6 @@ author:
         country: "UK"
         postal-code: "BN1 9RH"
         author:
-  - name: Giulia Poerio
-    orcid: 0000-0002-2343-5109
-    roles: 
-      - bla bla
-    affiliations:
-      affiliations:
-      - ref: "id1"
-      - name: "University of Sussex"
-        department:  "Sussex Centre for Consciousness Science"
   - name: Magdalena Pfaff
     orcid: 0009-0006-2386-7936
     roles:
@@ -49,6 +40,15 @@ author:
       - ref: "id1"
       - name: "University of Sussex"
         department: "Sussex Addictions Research and Intervention Centre"
+  - name: Giulia Poerio
+    orcid: 0000-0002-2343-5109
+    roles: 
+      - bla bla
+    affiliations:
+      affiliations:
+      - ref: "id1"
+      - name: "University of Sussex"
+        department:  "Sussex Centre for Consciousness Science"
   - name: Dominique Makowski
     corresponding: true
     orcid: 0000-0001-5375-9967
@@ -148,7 +148,7 @@ editor_options:
 
 <!-- Interoception definition -->
 
-Interoception is referred to the process of sensing, interpreting and integrating information pertaining to internal organs, such as the heart, the lungs or the gut [@khalsa2018interoception].
+Interoception refers to the process of sensing, interpreting and integrating information pertaining to internal organs, such as the heart, the lungs or the gut [@khalsa2018interoception].
 While recent research emphasizes a key role of interoception in a variety of processes (e.g., emotion regulation, decision making) and of outcomes (physical and psychological well being), the field remains clouded by concerns about how interoception is assessed.
 
 ## The Interoceptive Assessment Puzzle
@@ -189,13 +189,11 @@ The lack of correlations to moderate correlations among these questionnaires hig
 
 <!-- Introducing the IAS -->
 
-Focusing on another dimension of interoception, a recently developed scale with a rapidly growing popularity is the Interoceptive Accuracy Scale [IAS, @murphy2019].
+Focusing on the *accuracy* dimension of interoception, a recently developed scale with a rapidly growing popularity is the Interoceptive Accuracy Scale [IAS, @murphy2019].
 The IAS consists of 21 Likert-scale items that query how accurately one can perceive different bodily signals, with one item per physiological modality such as respiration (*"I can always accurately perceive when I am breathing fast"*), heart (*"I can always accurately perceive when my heart is beating fast"*), skin (*"I can always accurately perceive when something is going to be ticklish"*), arousal or bodily functions like coughing (*"I can always accurately perceive when I am going to cough"*) or urinating (*"I can always accurately perceive when I need to urinate"*).
-Appealingly, the IAS' statements are about specific interoceptive behaviours, which is a distinct difference with other popular interoception questionnaires, such as the MAIA-2, which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), as well as dimensions related to attention regulation (e.g., Not-distracting) or emotion regulation (e.g., Not-worrying).
+Appealingly, the IAS' statements are about specific interoceptive behaviours and "objective" experiences (although still subjective reports of them), which is a distinct difference with other popular interoception questionnaires, such as the MAIA-2, which contains more general and metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), as well as dimensions related to attention regulation (e.g., Not-distracting) or emotion regulation (e.g., Not-worrying).
 
 <!-- IAS structure  --> 
-[**NOTES**: todd 2022 found no correlation for MAIA and IAS except  with the non-worrying facet + Gaggero found positive correlations with IAS and MAIA (general)]
-
 The original validation study suggested a two-factor structure for the IAS, one reflecting the perception of general interoceptive signals (urinate, hungry, defecate, thirsty, pain, heart, taste, breathing, temperature, muscles, affective touch, vomit, sexual arousal), and other relating to signals that may be difficult to perceive solely through interoceptive information (itch, tickle, cough, burp, bruise, blood sugar, sneeze, wind). 
 The authors however underlined its acceptable but imperfect fit [@murphy2019, p. 127], and several follow-up studies have indeed identified different optimal solutions. 
 For instance, @brand2023 reported a 1-factor solution, while @lin2023 and @campos2021 found bifactor solutions [i.e., one general factor above a set of lower-level factors, @rodriguez2016evaluating] to be the best fit. 
@@ -208,10 +206,9 @@ For instance, @murphy2019 notes that some items might measure direct interocepti
 
 
 <!-- Relationship with other interoception measures -->
-
-Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were previously highlighted as related to non-interoceptive abilities [@ferentzi2021examining].
+Regarding its validity, the IAS has naturally been compared to other interoception-related measures, and shows a positive correlations with most facets of the MAIA [@mehling2018multidimensional; @gaggero2021], except for the Not-Distracting and Not-Worrying subscales [@brand2023] - which were previously highlighted as related to non-interoceptive abilities [@ferentzi2021examining].
 Interestingly, findings on the correlation between the IAS and the body awareness dimension of the BPQ (i.e., BPQ-A) have been mixed: some studies report small positive correlations [@brand2023; @campos2021; @koike2023], while others find small negative correlations [@lin2023] or no correlation at all [@murphy2019].
-Small positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023].
+Positive correlations have also been observed with the "observation" and "description" subscales of the Five Facet Mindfulness Questionnaire [FFMQ, @baer2006using; @brand2023; @koike2023], as well as with the "non-reactivity" and "acting with awareness" subscales [@koike2023].
 Additionally, the IAS has shown a positive correlation with the interoceptive awareness subscale of the Eating Disorder Inventory [EDI-IA, @lin2023] and a negative correlation with the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia], as reported by @brand2023 and @murphy2019.
 Lastly, the correlation with the Interoceptive Attention Scale [IATS, @gabriele2022dissociations] appears rather small [@lin2023; @koike2023].
 
@@ -223,7 +220,7 @@ Taken together, these findings support the IAS as measuring an adaptive aspect o
 
 <!-- current study -->
 
-The current study aims at 1) clarifying the structure of the IAS with a mega-analytic (which involves a re-analysis at the raw data level by aggregating datasets) approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones (Exploratory Graph Analysis);
+Given the increasing relevance of interoception across psychology and neuroscience, and the growing use of the IAS as an interesting self-report measure of interoceptive accuracy, the current study aims at 1) clarifying the structure of the IAS with a mega-analytic (which involves a re-analysis at the raw data level by aggregating datasets) approach that leverages existing data and contrast the traditional CFA/SEM factor-based analyses with network-based ones (Exploratory Graph Analysis);
 1) provide an overview of the dispositional correlates of the IAS, clarifying its general pattern of associations, which is key to better understand the nature, place and role of interoception questionnaires within a larger context.
 
 # Study 1
@@ -262,10 +259,13 @@ set_flextable_defaults(font.size = 6)
 table <- readRDS("../../analysis/figures/table1.rds")
 
 table |>
-  dplyr::rename("Age (Mean  ± SD)" = Age, "Female %" = Female_Percentage) |>
-  flextable() |>
-  set_table_properties(layout = "autofit", opts_pdf = list(arraystretch = 1)) |>
-  theme_apa()
+    dplyr::rename("Age (Mean  ± SD)" = Age, "Female %" = Female_Percentage) |>
+    flextable() |>
+    set_table_properties(
+        layout = "autofit",
+        opts_pdf = list(arraystretch = 1)
+    ) |>
+    theme_apa()
 ```
 
 ### Data Analysis
@@ -390,7 +390,7 @@ Study 1 establishes that once probeleamtic items are removed the IAS is best con
 
 ## Study 2
 
-Building on the structural findings from Study 1, the second study turns to the validity of the IAS by examining its dispositional correlates. Although the IAS has been widely used, evidence regarding its associations with personality traits, affective dispositions, and related psychological constructs remains scattered and inconsiste [@murphy2019; @brand2023; @lin2023; @todd2022]. Study 2 therefore had two primary goals. First, to provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of available datasets. Second, to evaluate the practical benefits of using the refined 14-item version of the scale identified in Study 1, compared to the original 21-item unidimensional version, in order to assess whether structural improvements translate into clearer and more reliable external associations.
+Building on the structural findings from Study 1, the second study turns to the validity of the IAS by examining its dispositional correlates. Although the IAS has been widely used, evidence regarding its associations with personality traits, affective dispositions, and related psychological constructs remains scattered and inconsistent [@murphy2019; @brand2023; @lin2023; @todd2022]. Study 2 therefore had two primary goals. First, to provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of available datasets. Second, to evaluate the practical benefits of using the refined 14-item version of the scale identified in Study 1, compared to the original 21-item unidimensional version, in order to assess whether structural improvements translate into clearer and more reliable external associations.
 
 ## Methods
 
