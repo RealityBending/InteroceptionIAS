@@ -438,11 +438,11 @@ check_ranges("DEP")
 
 data <- rbind(
   data,
-  pool_coef(with = "PHQ15_Sum", component="Mood", category = "Mood", name = "Somatic Concerns - PHQ-15",unequalrange=TRUE), 
-  pool_coef(with = "PHQ9_Sum", component="Mood", category = "Mood", name = "Depression - PHQ-9", unequalrange=TRUE), 
-  pool_coef(with = "BDI_Sum", component="Mood", category = "Mood", name = "Depression - BDI"), 
-  pool_coef(with = "PHQ4_Depression", component="Mood", category = "Mood", name = "Depression - PHQ-4"),
-  pool_coef(with = "DEP", component = "Mood", category = "Mood", name = "Depression - MFQ")
+  pool_coef(with = "PHQ15_Sum", component="Depression", category = "Mood", name = "Somatic Concerns - PHQ-15",unequalrange=TRUE), 
+  pool_coef(with = "PHQ9_Sum", component="Depression", category = "Mood", name = "Depression - PHQ-9", unequalrange=TRUE), 
+  pool_coef(with = "BDI_Sum", component="Depression", category = "Mood", name = "Depression - BDI"), 
+  pool_coef(with = "PHQ4_Depression", component="Depression", category = "Mood", name = "Depression - PHQ-4"),
+  pool_coef(with = "DEP", component = "Depression", category = "Mood", name = "Depression - MFQ")
 )
 ```
 
@@ -465,9 +465,9 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "STAIT_Mean", component="Mood", category = "Mood", name = "Anxiety (STAI-T)", unequalrange=TRUE), 
-  pool_coef(with = "PHQ4_Anxiety", component="Mood", category = "Mood", name = "Anxiety (PHQ-4)"),
-  pool_coef(with = "GAD7_Sum", component="Mood", category = "Mood", name = "Anxiety (GAD-7)")
+  pool_coef(with = "STAIT_Mean", component="Anxiety", category = "Mood", name = "Anxiety - STAI-T", unequalrange=TRUE), 
+  pool_coef(with = "PHQ4_Anxiety", component="Anxiety", category = "Mood", name = "Anxiety - PHQ-4"),
+  pool_coef(with = "GAD7_Sum", component="Anxiety", category = "Mood", name = "Anxiety - GAD-7")
 )
 ```
 
@@ -476,11 +476,26 @@ data <- rbind(
 ```{r}
 #| warning: false
 
-check_ranges("BPD")
+# check_ranges("BPD")
 
 data <- rbind(
   data,
-  pool_coef(with = "BPD", component="Mood", category = "Mood", name = "Boderline Personality")
+  pool_coef(with = "BPD", component="Maladaptive", category = "Psychopathology", name = "Boderline Personality")
+)
+```
+
+```{r}
+#| warning: false
+
+# check_ranges("PID5_Antagonism")
+
+data <- rbind(
+  data,
+  pool_coef(with = "PID5_Antagonism", component="Maladaptive", category = "Psychopathology", name = "Antagonism - PID-5"),
+  pool_coef(with = "PID5_Detachment", component="Maladaptive", category = "Psychopathology", name = "Detachment - PID-5"), 
+  pool_coef(with = "PID5_Disinhibition", component="Maladaptive", category = "Psychopathology", name = "Disinhibition - PID-5"),
+  pool_coef(with = "PID5_NegativeAffect", component="Maladaptive", category = "Psychopathology", name = "Negative Affect - PID-5"),
+  pool_coef(with = "PID5_Psychoticism", component="Maladaptive", category = "Psychopathology", name = "Psychoticism - PID-5")
 )
 ```
 
@@ -489,28 +504,15 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "PID5_Antagonism", component="Maladaptive", name = "Antagonism"),
-  pool_coef(with = "PID5_Detachment", component="Maladaptive", name = "Detachment"), 
-  pool_coef(with = "PID5_Disinhibition", component="Maladaptive", name = "Disinhibition"),
-  pool_coef(with = "PID5_NegativeAffect", component="Maladaptive", name = "Negative Affect"),
-  pool_coef(with = "PID5_Psychoticism", component="Maladaptive", name = "Psychoticism")
-)
-```
-
-```{r}
-#| warning: false
-
-data <- rbind(
-  data,
-  pool_coef(with = "SPQ_ConstrictedAffect", component="Schizotypic", name = "Constricted Affect"),
-  pool_coef(with = "SPQ_Eccentric", component="Schizotypic", name = "Eccentric"),
-  pool_coef(with = "SPQ_MagicalThinking", component="Schizotypic", name = "Magical Thinking"),
-  pool_coef(with = "SPQ_NoCloseFriends", component="Schizotypic", name = "No Close Friends"),
-  pool_coef(with = "SPQ_OddSpeech", component="Schizotypic", name = "Odd Speech"),
-  pool_coef(with = "SPQ_Reference", component="Schizotypic", name = "Reference"),
-  pool_coef(with = "SPQ_SocialAnxiety", component="Schizotypic", name = "Social Anxiety"),
-  pool_coef(with = "SPQ_Suspiciousness", component="Schizotypic", name = "Suspiciousness"),
-  pool_coef(with = "SPQ_UnusualPerceptions", component="Schizotypic", name = "Unusual Perceptions")
+  pool_coef(with = "SPQ_ConstrictedAffect", component="Schizotypic", category = "Psychopathology", name = "Constricted Affect - SPQ"),
+  pool_coef(with = "SPQ_Eccentric", component="Schizotypic", category = "Psychopathology", name = "Eccentric - SPQ"),
+  pool_coef(with = "SPQ_MagicalThinking", component="Schizotypic", category = "Psychopathology", name = "Magical Thinking - SPQ"),
+  pool_coef(with = "SPQ_NoCloseFriends", component="Schizotypic", category = "Psychopathology", name = "No Close Friends - SPQ"),
+  pool_coef(with = "SPQ_OddSpeech", component="Schizotypic", category = "Psychopathology", name = "Odd Speech - SPQ"),
+  pool_coef(with = "SPQ_Reference", component="Schizotypic", category = "Psychopathology", name = "Reference - SPQ"),
+  pool_coef(with = "SPQ_SocialAnxiety", component="Schizotypic", category = "Psychopathology", name = "Social Anxiety - SPQ"),
+  pool_coef(with = "SPQ_Suspiciousness", component="Schizotypic", category = "Psychopathology", name = "Suspiciousness - SPQ"),
+  pool_coef(with = "SPQ_UnusualPerceptions", component="Schizotypic", category = "Psychopathology", name = "Unusual Perceptions - SPQ")
 )
 ```
 
@@ -521,11 +523,11 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "ASQ_Imagination", component="Autistic", name = "Imagination"),
-  pool_coef(with = "ASQ_LackSocialSkills", component="Autistic", name = "Lack of Social Skills"), 
-  pool_coef(with = "ASQ_LowAttentionalSwitching", component="Autistic", name = "Low Attentional Switching"),
-  pool_coef(with = "ASQ_Patterns", component="Autistic", name = "Patterns and Numbers"),
-  pool_coef(with = "ASQ_Routine", component="Autistic", name = "Routines")
+  pool_coef(with = "ASQ_Imagination", component="Autistic", category = "Psychopathology", name = "Imagination - ASQ"),
+  pool_coef(with = "ASQ_LackSocialSkills", component="Autistic", category = "Psychopathology", name = "Lack of Social Skills - ASQ"), 
+  pool_coef(with = "ASQ_LowAttentionalSwitching", component="Autistic", category = "Psychopathology", name = "Low Attentional Switching - ASQ"),
+  pool_coef(with = "ASQ_Patterns", component="Autistic", category = "Psychopathology", name = "Patterns and Numbers - ASQ"),
+  pool_coef(with = "ASQ_Routine", component="Autistic", category = "Psychopathology", name = "Routines - ASQ")
 )
 ```
 
@@ -713,8 +715,8 @@ p <- data |>
          var_Interoception = str_replace(var_Interoception, "WindBurp", "Wind/Burp"),
          var_Interoception = fct_relevel(var_Interoception, "Original", "Hungry/Thirsty", "Bruise/Blood sugar", "Muscles/Pain", "Cough/Sneeze", "Wind/Burp", "Breathing/Heart", "Urinate/Defecate"),
          Category = fct_relevel(
-           Category, "General", "Interoception"),
-         Component = fct_relevel(Component, "Personality", "Demographic", "Interoception", "MAIA")) |> 
+           Category, "General", "Interoception", "Mood", "Psychopathology"),
+         Component = fct_relevel(Component, "Personality", "Demographic", "Interoception", "MAIA", "Anxiety", "Depression", "Schizotypic", "Autistic", "Maladaptive")) |> 
   group_by(Component) |> 
   mutate(var_Correlate = fct_reorder(var_Correlate, r, .fun=mean)) |>
   ungroup() |>
