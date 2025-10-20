@@ -188,6 +188,11 @@ vars_intero <- names(select(scores$sample1a, -Sample))
 # names(df14) # MAIA(37), TAS  (20), MFQ(DEP, 13), STAI(ANX, 20)
 # names(df15) 
 # names(df16) # MAIA (37), GAD (7), PHQ9 (9)
+
+alldata <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, 
+                df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, 
+                df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11=df11, 
+                df12=df12, df14=df14, df15=df15, df16=df16)
 ```
 
 
@@ -198,14 +203,11 @@ vars_intero <- names(select(scores$sample1a, -Sample))
 ```{r}
 #| warning: false
 
-pool_coef <- function(with = "Age", component = "Demographic", name = with, unequalrange=FALSE) {
+pool_coef <- function(with = "Age", component = "Demographic", category = "Demographic", name = with, unequalrange=FALSE) {
   rez <- data.frame()
   for(intero in vars_intero) {
     data <- data.frame() 
-    for(dataset in list(df1a, df1b, df2, df3, df4, 
-                     df5, df6, df7a, df7b, df7c, 
-                     df8a, df8b, df9, df10, df11, 
-                     df12, df14, df15, df16)) {
+    for(dataset in alldata) {
       if (with %in% names(dataset)) {
         d <- dataset[c(with, intero, "Sample")]
         data <- rbind(data, d)
@@ -232,23 +234,41 @@ pool_coef <- function(with = "Age", component = "Demographic", name = with, uneq
       data$Gender <- factor(data$Gender, levels = c("Male", "Female"))
       f <- as.formula(paste0(intero, "~", with, " + (", with, "|Sample)"))
       f2 <- as.formula(paste0(intero, "~", with, " + (1|Sample)"))
+      f3 <- as.formula(paste0(intero, "~ Sample * ", with))
     } else {
       f <- as.formula(paste0(intero, "~", with, " + (", with, "|Sample)"))
       f2 <- as.formula(paste0(intero, "~", with, " + (1|Sample)"))
+      f3 <- as.formula(paste0(intero, "~ Sample / ", with))
     }
     
-    # if(length(unique(data$Sample)) == 1)
-    m <- glmmTMB::glmmTMB(f, data = data)
+    # Mixed models
+    control1 <- glmmTMB::glmmTMBControl(parallel = list(n=4, autopar = TRUE))
+    control2 <- glmmTMB::glmmTMBControl(optimizer=optim, optArgs=list(method="BFGS"), parallel = list(n=4, autopar = TRUE))
+    m <- glmmTMB::glmmTMB(f, data = data, control=control1)
     type <- "Full"
     if(!insight::is_converged(m)) {
-      m <- glmmTMB::glmmTMB(f2, data = data)
+      m <- glmmTMB::glmmTMB(f, data = data, control=control2)
+      type <- "Full"
+    }
+    if(!insight::is_converged(m)) {
+      m <- glmmTMB::glmmTMB(f2, data = data, control=control1)
       type <- "Reduced"
     }
+    if(!insight::is_converged(m)) {
+      m <- glmmTMB::glmmTMB(f2, data = data, control=control2)
+      type <- "Reduced"
+    }
+    
+    # # Marginal
+    # m <- lm(f3, data = data)
+    # modelbased::estimate_slopes(m, trend = with)
+    
     out <- parameters::parameters(m)[2, ] |> 
       select(r = Coefficient, CI_low, CI_high, p) |> 
       as.data.frame()
     out$var_Interoception <- intero
     out$var_Correlate <- with
+    out$Category <- category
     out$Component <- component
     out$Type <- type
     out$Converged <- insight::is_converged(m)
@@ -260,7 +280,17 @@ pool_coef <- function(with = "Age", component = "Demographic", name = with, uneq
   rez
 }
 
-data <- pool_coef(with = "Gender", component = "Demographic", name = "Gender (Female - Male)")
+check_ranges <- function(var = "Neuroticism") {
+  for(d in names(alldata)) {
+    dataset <- alldata[[d]]
+    if(!var %in% names(dataset)) next
+    print(paste0(d, ": ", paste(round(range(dataset[[var]], na.rm=TRUE), 2), collapse = "-")))
+  }
+}
+
+
+
+data <- pool_coef(with = "Gender", component = "Demographic", category = "General", name = "Gender (Female - Male)")
 ```
 
 ### Age
@@ -268,8 +298,36 @@ data <- pool_coef(with = "Gender", component = "Demographic", name = "Gender (Fe
 ```{r}
 #| warning: false
 
-data <- rbind(data, pool_coef(with = "Age", component = "Demographic", unequalrange=TRUE))
+# check_ranges("Age")
+data <- rbind(data, pool_coef(with = "Age", component = "Demographic", category = "General", unequalrange=TRUE))
 ```
+
+
+## Personality
+
+```{r}
+#| warning: false
+
+# names(df7a)[str_detect(names(df7a), "NEO")]
+# names(df9)[str_detect(names(df9), "BFI_")]
+# names(df10)[str_detect(names(df10), "IPIP6_")]
+
+# check_ranges("Neuroticism")
+# check_ranges("Agreeableness")
+# check_ranges("Conscientiousness")
+# check_ranges("HonestyHumility")
+
+data <- rbind(
+  data,
+  pool_coef(with = "Neuroticism", component = "Personality", category = "General", name = "Neuroticism", unequalrange=TRUE),
+  pool_coef(with = "Agreeableness", component="Personality", category = "General", name = "Agreeableness",unequalrange=TRUE),
+  pool_coef(with = "Conscientiousness", component="Personality", category = "General", name = "Conscientiousness",unequalrange=TRUE), 
+  pool_coef(with = "Openness", component="Personality", category = "General", name = "Openness",unequalrange=TRUE),
+  pool_coef(with = "Extraversion", component="Personality", category = "General", name = "Extraversion", unequalrange=TRUE),
+  pool_coef(with = "HonestyHumility", component="Personality", category = "General", name = "Honesty-Humility",unequalrange=TRUE)
+)
+```
+
 
 ## Body
 
@@ -290,26 +348,15 @@ data <- rbind(data, pool_coef(with = "Age", component = "Demographic", unequalra
 
 data <- rbind(
   data,
-  pool_coef(with = "MAIA_AttentionReg", component = "MAIA", name = "Attention Regulation", unequalrange=TRUE),
-  pool_coef(with = "MAIA_BodyListening", component = "MAIA", name = "Listening", unequalrange=TRUE),
-  pool_coef(with = "MAIA_Trusting", component = "MAIA", name = "Trusting", unequalrange=TRUE),
-  pool_coef(with = "MAIA_EmoAwareness", component = "MAIA", name = "Emotional Awareness", unequalrange=TRUE),
-  pool_coef(with = "MAIA_NotDistracting", component = "MAIA", name = "Not Distracting", unequalrange=TRUE),
-  pool_coef(with = "MAIA_Noticing", component = "MAIA", name = "Noticing", unequalrange=TRUE),
-  pool_coef(with = "MAIA_NotWorrying", component = "MAIA", name = "Not Worrying", unequalrange=TRUE),
-  pool_coef(with = "MAIA_SelfReg", component = "MAIA", name = "Self Regulation", unequalrange=TRUE)
+  pool_coef(with = "MAIA_AttentionReg", component = "MAIA", category = "Interoception", name = "Attention Regulation - MAIA", unequalrange=TRUE),
+  pool_coef(with = "MAIA_BodyListening", component = "MAIA", category = "Interoception", name = "Listening - MAIA", unequalrange=TRUE),
+  pool_coef(with = "MAIA_Trusting", component = "MAIA", category = "Interoception", name = "Trusting - MAIA", unequalrange=TRUE),
+  pool_coef(with = "MAIA_EmoAwareness", component = "MAIA", category = "Interoception", name = "Emotional Awareness - MAIA", unequalrange=TRUE),
+  pool_coef(with = "MAIA_NotDistracting", component = "MAIA", category = "Interoception", name = "Not Distracting - MAIA", unequalrange=TRUE),
+  pool_coef(with = "MAIA_Noticing", component = "MAIA", category = "Interoception", name = "Noticing - MAIA", unequalrange=TRUE),
+  pool_coef(with = "MAIA_NotWorrying", component = "MAIA", category = "Interoception", name = "Not Worrying - MAIA", unequalrange=TRUE),
+  pool_coef(with = "MAIA_SelfReg", component = "MAIA", category = "Interoception", name = "Self Regulation - MAIA", unequalrange=TRUE)
 )
-```
-
-### ICQ
-
-```{r}
-#| warning: false
-
-# names(df2)[str_detect(names(df2), "ICQ")] 
-# names(df7c)[str_detect(names(df7c), "ICQ")] 
-
-data <- rbind(data, pool_coef(with = "ICQ", component="Alexithymia", name = "ICQ", unequalrange=TRUE))
 ```
 
 ### BPQ
@@ -328,10 +375,23 @@ data <- rbind(data, pool_coef(with = "ICQ", component="Alexithymia", name = "ICQ
 
 data <- rbind(
   data,
-  pool_coef(with = "BPQ_BodyAwareness", component="BPQ", name = "Body Awareness (BPQ)",unequalrange=TRUE),
-  pool_coef(with = "BPQ_AutonomicReactivity", component="BPQ", name = "Autonomic Reactivity (BPQ)",unequalrange=TRUE)
+  pool_coef(with = "BPQ_BodyAwareness", component="Interoception", category = "Interoception", name = "Body Awareness - BPQ",unequalrange=TRUE),
+  pool_coef(with = "BPQ_AutonomicReactivity", component="Interoception", category = "Interoception", name = "Autonomic Reactivity - BPQ",unequalrange=TRUE)
   )
 ```
+
+
+### ICQ
+
+```{r}
+#| warning: false
+
+# names(df2)[str_detect(names(df2), "ICQ")] 
+# names(df7c)[str_detect(names(df7c), "ICQ")] 
+
+data <- rbind(data, pool_coef(with = "ICQ", component="Interoception", category = "Interoception", name = "Interoceptive Confusion - ICQ", unequalrange=TRUE))
+```
+
 
 ### Alexithymia
 
@@ -348,11 +408,11 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "TAS_DIF", component="Alexithymia", name = "Difficulties Identifying Feelings (TAS)", unequalrange=TRUE),
-  pool_coef(with = "TAS_DDF", component="Alexithymia", name = "Difficulties Describing Feelings (TAS)", unequalrange=TRUE),
-  pool_coef(with = "TAS_EOT", component="Alexithymia", name = "External Thinking (TAS)",unequalrange=TRUE),
-  pool_coef(with = "BVAQ_Affective", component="Alexithymia", name = "Affective (BVAQ)"), 
-  pool_coef(with = "BVAQ_Cognitive", component="Alexithymia", name = "Cognitive (BVAQ)")
+  pool_coef(with = "TAS_DIF", component="Interoception", category = "Interoception", name = "Difficulties Identifying Feelings - TAS", unequalrange=TRUE),
+  pool_coef(with = "TAS_DDF", component="Interoception", category = "Interoception", name = "Difficulties Describing Feelings - TAS", unequalrange=TRUE),
+  pool_coef(with = "TAS_EOT", component="Interoception", category = "Interoception", name = "External Thinking - TAS",unequalrange=TRUE),
+  pool_coef(with = "BVAQ_Affective", component="Interoception", category = "Interoception", name = "Affective - BVAQ"), 
+  pool_coef(with = "BVAQ_Cognitive", component="Interoception", category = "Interoception", name = "Cognitive - BVAQ")
 )
 ```
 
@@ -370,13 +430,19 @@ data <- rbind(
 # names(df9)
 # names(df14)
 
+check_ranges("PHQ15_Sum")
+check_ranges("PHQ9_Sum")
+check_ranges("BDI_Sum")
+check_ranges("PHQ4_Depression")
+check_ranges("DEP")
+
 data <- rbind(
   data,
-  pool_coef(with = "PHQ15_Sum", component="Mood", name = "Somatic Concerns (PHQ-15)",unequalrange=TRUE), 
-  pool_coef(with = "PHQ9_Sum", component="Mood", name = "Depression (PHQ-9)",unequalrange=TRUE), 
-  pool_coef(with = "BDI_Sum", component="Mood", name = "Depression (BDI)"), 
-  pool_coef(with = "PHQ4_Depression", component="Mood", name = "Depression (PHQ-4)"),
-  pool_coef(with = "DEP", component = "Mood", name = "Depression (MFQ)")
+  pool_coef(with = "PHQ15_Sum", component="Mood", category = "Mood", name = "Somatic Concerns - PHQ-15",unequalrange=TRUE), 
+  pool_coef(with = "PHQ9_Sum", component="Mood", category = "Mood", name = "Depression - PHQ-9", unequalrange=TRUE), 
+  pool_coef(with = "BDI_Sum", component="Mood", category = "Mood", name = "Depression - BDI"), 
+  pool_coef(with = "PHQ4_Depression", component="Mood", category = "Mood", name = "Depression - PHQ-4"),
+  pool_coef(with = "DEP", component = "Mood", category = "Mood", name = "Depression - MFQ")
 )
 ```
 
@@ -393,12 +459,15 @@ data <- rbind(
 # names(df11)[str_detect(names(df11), "STAI")] 
 # names(df14)[str_detect(names(df14), "ANX")] # anx = stai-t
 
+# check_ranges("STAIT_Mean")
+# check_ranges("PHQ4_Anxiety")
+# check_ranges("GAD7_Sum")
 
 data <- rbind(
   data,
-  pool_coef(with = "STAIT_Mean", component="Mood", name = "Anxiety (STAI-T)",unequalrange=TRUE), 
-  pool_coef(with = "PHQ4_Anxiety", component="Mood", name = "Anxiety (PHQ-4)"),
-  pool_coef(with = "GAD7_Sum", component="Mood", name = "Anxiety (GAD-7)")
+  pool_coef(with = "STAIT_Mean", component="Mood", category = "Mood", name = "Anxiety (STAI-T)", unequalrange=TRUE), 
+  pool_coef(with = "PHQ4_Anxiety", component="Mood", category = "Mood", name = "Anxiety (PHQ-4)"),
+  pool_coef(with = "GAD7_Sum", component="Mood", category = "Mood", name = "Anxiety (GAD-7)")
 )
 ```
 
@@ -407,9 +476,11 @@ data <- rbind(
 ```{r}
 #| warning: false
 
+check_ranges("BPD")
+
 data <- rbind(
   data,
-  pool_coef(with = "BPD", component="Mood", name = "Boderline Personality")
+  pool_coef(with = "BPD", component="Mood", category = "Mood", name = "Boderline Personality")
 )
 ```
 
@@ -458,28 +529,7 @@ data <- rbind(
 )
 ```
 
-## Personality
-
-```{r}
-#| warning: false
-
-# names(df7a)[str_detect(names(df7a), "NEO")]
-# names(df9)[str_detect(names(df9), "BFI_")]
-# names(df10)[str_detect(names(df10), "IPIP6_")]
-
-
-data <- rbind(
-  data,
-  pool_coef(with = "Neuroticism", component = "Personality", name = "Neuroticism",unequalrange=TRUE),
-  pool_coef(with = "Agreeableness", component="Personality", name = "Agreeableness",unequalrange=TRUE),
-  pool_coef(with = "Conscientiousness", component="Personality", name = "Conscientiousness",unequalrange=TRUE), 
-  pool_coef(with = "Openness", component="Personality", name = "Openness",unequalrange=TRUE),
-  pool_coef(with = "Extraversion", component="Personality", name = "Extraversion", unequalrange=TRUE),
-  pool_coef(with = "HonestyHumility", component="Personality", name = "Honesty-Humility",unequalrange=TRUE)
-)
-```
-
-## Others
+## Beliefs
 
 ```{r}
 #| warning: false
@@ -661,10 +711,13 @@ p <- data |>
          var_Interoception = str_replace(var_Interoception, "BreathingHeart", "Breathing/Heart"),
          var_Interoception = str_replace(var_Interoception, "UrinateDefecate", "Urinate/Defecate"),
          var_Interoception = str_replace(var_Interoception, "WindBurp", "Wind/Burp"),
-         var_Interoception = fct_relevel(var_Interoception, "Original", "Hungry/Thirsty", "Bruise/Blood sugar", "Muscles/Pain", "Cough/Sneeze", "Wind/Burp", "Breathing/Heart", "Urinate/Defecate")) |>
-         # Component = fct_relevel(
-         #   Component, "Demographic", "MAIA", "Body", "Mood", "Maladaptive",
-         #   "Schizotypic", "Autistic", "Personality", "Conspiracy Beliefs", "World Beliefs", "Lying Profile")) |>
+         var_Interoception = fct_relevel(var_Interoception, "Original", "Hungry/Thirsty", "Bruise/Blood sugar", "Muscles/Pain", "Cough/Sneeze", "Wind/Burp", "Breathing/Heart", "Urinate/Defecate"),
+         Category = fct_relevel(
+           Category, "General", "Interoception"),
+         Component = fct_relevel(Component, "Personality", "Demographic", "Interoception", "MAIA")) |> 
+  group_by(Component) |> 
+  mutate(var_Correlate = fct_reorder(var_Correlate, r, .fun=mean)) |>
+  ungroup() |>
   ggplot(aes(y = var_Correlate)) +
   annotate(geom = "rect", xmin = -0.1, xmax = 0.1, ymin = -Inf, ymax=Inf, fill = "#FFF8E1") +
   annotate(geom = "rect", xmin = c(-0.3, 0.1), xmax = c(-0.1, 0.3), ymin = -Inf, ymax=Inf, fill = "#F1F8E9") +
@@ -676,13 +729,13 @@ p <- data |>
   # geom_linerange(aes(color=dir, alpha=sig, ymin=0, ymax=r, group=Sample), position = position_dodge2(width = 0.7), linewidth=2.5) +
   # geom_linerange(aes(ymin = CI_low, ymax = CI_high, color = dir, alpha=sig, group=Sample), position = position_dodge2(width = 0.7),
   #                linewidth = 1) +
-  facet_grid(Component ~ var_Interoception, scales = "free", space ="free", switch = "y") +
+  facet_grid(Category ~ var_Interoception, scales = "free", space ="free", switch = "y") +
   scale_fill_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
   scale_color_gradient(low = "#2196F3", high = "#FF5722", guide = "none") +
   scale_alpha_discrete(range = c(0.2, 0.9), guide = "none") +
   scale_x_continuous(expand = c(0, 0), breaks = c(-0.3, 0, 0.3)) +
   scale_linewidth_continuous(range = c(3, 7), guide = "none") +
-  coord_cartesian(xlim = c(-0.45, 0.45)) +
+  coord_cartesian(xlim = c(-0.47, 0.47)) +
   theme_modern(axis.title.space = 5) +
   labs(x = "Strength of Association (std. Beta)") +
   theme(panel.grid.major.y = element_line(),
@@ -695,7 +748,7 @@ p <- data |>
         strip.background.y = element_rect(fill = "#E0E0E0", color = "white"),
         strip.background.x = element_rect(fill = "#F8BBD0", color = "white"))
 p
-ggsave("figures/Figure3.png", p, width=21*0.5, height=29.7*0.5, dpi=300, bg="white")
+ggsave("figures/Figure3.png", p, width=21*1, height=29.7*1, dpi=300, bg="white")
 ```
 
 ## Discussion
@@ -706,6 +759,4 @@ Recommendations: - Remove Itch (redundant + issue in Chinese) - Use analog scale
 
 Limitations: - Not much clear theorethical or empirical structure (small grouping of items) - Limited variability (clear mode at 4/5), very low prevalence of 5/5 responses. - Ambiguous items which grouping depends on the context (and its awareness) - E.g., heart beating fast, vomit when nauseaous - Few items for some modalities (e.g., 1 for heart) - Positive phrasing: benefits but also might exacerbate positivity bias (and thus unidimensionality)
 
-Need for context-specific items (cross-modal when possible, i.E., cardioception, respiroception, etc.).
-
-New Scale: Multimodal Interoceptive Sensitivity Scale (MISS)
+Need for context-specific items (cross-modal when possible, i.e., cardioception, respiroception, etc.).
