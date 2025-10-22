@@ -242,19 +242,19 @@ pool_coef <- function(with = "Age", component = "Demographic", category = "Demog
     }
     
     # Mixed models
-    control1 <- glmmTMB::glmmTMBControl(parallel = list(n=4, autopar = TRUE))
-    control2 <- glmmTMB::glmmTMBControl(optimizer=optim, optArgs=list(method="BFGS"), parallel = list(n=4, autopar = TRUE))
+    control1 <- glmmTMB::glmmTMBControl()
+    control2 <- glmmTMB::glmmTMBControl(optimizer=optim, optArgs=list(method="BFGS"))
     m <- glmmTMB::glmmTMB(f, data = data, control=control1)
     type <- "Full"
-    if(!insight::is_converged(m)) {
+    if(!insight::is_converged(m) || is.nan(insight::get_statistic(m)$Statistic[2])) {
       m <- glmmTMB::glmmTMB(f, data = data, control=control2)
       type <- "Full"
     }
-    if(!insight::is_converged(m)) {
+    if(!insight::is_converged(m)  || is.nan(insight::get_statistic(m)$Statistic[2])) {
       m <- glmmTMB::glmmTMB(f2, data = data, control=control1)
       type <- "Reduced"
     }
-    if(!insight::is_converged(m)) {
+    if(!insight::is_converged(m) || is.nan(insight::get_statistic(m)$Statistic[2])) {
       m <- glmmTMB::glmmTMB(f2, data = data, control=control2)
       type <- "Reduced"
     }
@@ -305,7 +305,7 @@ data <- rbind(data, pool_coef(with = "Age", component = "Demographic", category 
 
 ## Personality
 
-```{r}
+```{r perso}
 #| warning: false
 
 # names(df7a)[str_detect(names(df7a), "NEO")]
@@ -324,7 +324,7 @@ data <- rbind(
   pool_coef(with = "Conscientiousness", component="Personality", category = "General", name = "Conscientiousness",unequalrange=TRUE), 
   pool_coef(with = "Openness", component="Personality", category = "General", name = "Openness",unequalrange=TRUE),
   pool_coef(with = "Extraversion", component="Personality", category = "General", name = "Extraversion", unequalrange=TRUE),
-  pool_coef(with = "HonestyHumility", component="Personality", category = "General", name = "Honesty-Humility",unequalrange=TRUE)
+  pool_coef(with = "HonestyHumility", component="Personality", category = "General", name = "Honesty-Humility", unequalrange=TRUE)
 )
 ```
 
@@ -333,7 +333,7 @@ data <- rbind(
 
 ### MAIA
 
-```{r}
+```{r maia}
 #| warning: false
 
 # names(df2)[str_detect(names(df2), "MAIA")]  
@@ -361,7 +361,7 @@ data <- rbind(
 
 ### BPQ
 
-```{r}
+```{r bpq}
 #| warning: false
 
 # df3$BPQ_BodyAwareness <- -1*normalize(df3$BPQ_BodyAwareness)
@@ -383,7 +383,7 @@ data <- rbind(
 
 ### ICQ
 
-```{r}
+```{r icq}
 #| warning: false
 
 # names(df2)[str_detect(names(df2), "ICQ")] 
@@ -536,6 +536,32 @@ data <- rbind(
 ```{r}
 #| warning: false
 
+data <- rbind(
+  data,
+  pool_coef(with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs", category = "Beliefs", name = "Extraterrestrial - GCBS"),
+  pool_coef(with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs", category = "Beliefs", name = "Global Conspiracies - GCBS"),
+  pool_coef(with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs", category = "Beliefs", name  = "Government Malfeasance - GCBS"),
+  pool_coef(with = "GCBS_InformationControl", component="Conspiracy Beliefs", category = "Beliefs", name = "Information Control - GCBS"),
+  pool_coef(with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs", category = "Beliefs", name = "Personal Wellbeing - GCBS")
+)
+```
+
+```{r}
+#| warning: false
+
+data <- rbind(
+  data,
+  pool_coef(with = "LIE_Ability", component="Lying Profile", category = "Beliefs", name = "Lying Ability"),
+  pool_coef(with = "LIE_Frequency", component="Lying Profile", category = "Beliefs", name = "Lying Frequency"),
+  pool_coef(with = "LIE_Contextuality", component="Lying Profile", category = "Beliefs", name = "Lying Contextuality"),
+  pool_coef(with = "LIE_Negativity", component="Lying Profile", category = "Beliefs", name = "Lying Negativity")
+)
+```
+
+
+```{r}
+#| warning: false
+
 # names(df10)[str_detect(names(df10), "PI_Alive")]
 # names(df12)[str_detect(names(df12), "PI_Alive")]
 # names(df13)[str_detect(names(df13), "PI_Alive")]
@@ -546,60 +572,36 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "PI_Alive", component="World Beliefs", name = "Alive", unequalrange=TRUE),
-  pool_coef(with = "PI_Changing", component="World Beliefs", name = "Changing", unequalrange=TRUE),
-  pool_coef(with = "PI_Enticing", component="World Beliefs", name = "Enticing", unequalrange=TRUE),
-  pool_coef(with = "PI_Good", component="World Beliefs", name = "Good", unequalrange=TRUE),
-  pool_coef(with = "PI_Hierarchical", component="World Beliefs", name = "Hierarchical", unequalrange=TRUE),
-  pool_coef(with = "PI_Safe", component="World Beliefs", name = "Safe",unequalrange=TRUE),
-  pool_coef(with = "PI_Understandable", component="World Beliefs", name = "Understandable",unequalrange=TRUE),
+  pool_coef(with = "PI_Alive", component="World Beliefs", category = "Beliefs", name = "Alive - Primal Belief", unequalrange=TRUE),
+  pool_coef(with = "PI_Changing", component="World Beliefs", category = "Beliefs", name = "Changing - Primal Belief", unequalrange=TRUE),
+  pool_coef(with = "PI_Enticing", component="World Beliefs", category = "Beliefs", name = "Enticing - Primal Belief", unequalrange=TRUE),
+  pool_coef(with = "PI_Good", component="World Beliefs", category = "Beliefs", name = "Good - Primal Belief", unequalrange=TRUE),
+  pool_coef(with = "PI_Hierarchical", component="World Beliefs", category = "Beliefs", name = "Hierarchical - Primal Belief", unequalrange=TRUE),
+  pool_coef(with = "PI_Safe", component="World Beliefs", category = "Beliefs", name = "Safe - Primal Belief",unequalrange=TRUE),
+  pool_coef(with = "PI_Understandable", component="World Beliefs", category = "Beliefs", name = "Understandable - Primal Belief",unequalrange=TRUE)
   
-  pool_coef(with = "PI_AboutMe", component="World Beliefs", name = "About me",unequalrange=TRUE),
-  pool_coef(with = "PI_Abundant", component="World Beliefs", name = "Abundant",unequalrange=TRUE),
-  pool_coef(with = "PI_Acceptable", component="World Beliefs", name = "Acceptable",unequalrange=TRUE),
-  pool_coef(with = "PI_Beautiful", component="World Beliefs", name = "Beautiful",unequalrange=TRUE),
-  pool_coef(with = "PI_Cooperative", component="World Beliefs", name = "Cooperative",unequalrange=TRUE),
-  pool_coef(with = "PI_Funny", component="World Beliefs", name = "Funny",unequalrange=TRUE),
-  pool_coef(with = "PI_Harmless", component="World Beliefs", name = "Harmless",unequalrange=TRUE),
-  pool_coef(with = "PI_Improvable", component="World Beliefs", name = "Improvable",unequalrange=TRUE),
-  pool_coef(with = "PI_Interconnected", component="World Beliefs", name = "Interconnected",unequalrange=TRUE),
-  pool_coef(with = "PI_Interesting", component="World Beliefs", name = "Interesting",unequalrange=TRUE),
-  pool_coef(with = "PI_Just", component="World Beliefs", name = "Just",unequalrange=TRUE),
-  pool_coef(with = "PI_Meaningful", component="World Beliefs", name = "Meaningful",unequalrange=TRUE),
-  pool_coef(with = "PI_NeedsMe", component="World Beliefs", name = "Needs Me",unequalrange=TRUE),
-  pool_coef(with = "PI_Pleasurable", component="World Beliefs", name = "Pleasurable",unequalrange=TRUE),
-  pool_coef(with = "PI_Progressing", component="World Beliefs", name = "Progressing",unequalrange=TRUE),
-  pool_coef(with = "PI_Regenerative", component="World Beliefs", name = "Regenerative",unequalrange=TRUE),
-  pool_coef(with = "PI_Stable", component="World Beliefs", name = "Stable",unequalrange=TRUE),
-  pool_coef(with = "PI_WorthExploring", component="World Beliefs", name = "Worth Exploring",unequalrange=TRUE),
-  pool_coef(with = "PI_Intentional", component="World Beliefs", name = "Intentional", unequalrange=TRUE)
+  # pool_coef(with = "PI_AboutMe", component="World Beliefs", name = "About me",unequalrange=TRUE),
+  # pool_coef(with = "PI_Abundant", component="World Beliefs", name = "Abundant",unequalrange=TRUE),
+  # pool_coef(with = "PI_Acceptable", component="World Beliefs", name = "Acceptable",unequalrange=TRUE),
+  # pool_coef(with = "PI_Beautiful", component="World Beliefs", name = "Beautiful",unequalrange=TRUE),
+  # pool_coef(with = "PI_Cooperative", component="World Beliefs", name = "Cooperative",unequalrange=TRUE),
+  # pool_coef(with = "PI_Funny", component="World Beliefs", name = "Funny",unequalrange=TRUE),
+  # pool_coef(with = "PI_Harmless", component="World Beliefs", name = "Harmless",unequalrange=TRUE),
+  # pool_coef(with = "PI_Improvable", component="World Beliefs", name = "Improvable",unequalrange=TRUE),
+  # pool_coef(with = "PI_Interconnected", component="World Beliefs", name = "Interconnected",unequalrange=TRUE),
+  # pool_coef(with = "PI_Interesting", component="World Beliefs", name = "Interesting",unequalrange=TRUE),
+  # pool_coef(with = "PI_Just", component="World Beliefs", name = "Just",unequalrange=TRUE),
+  # pool_coef(with = "PI_Meaningful", component="World Beliefs", name = "Meaningful",unequalrange=TRUE),
+  # pool_coef(with = "PI_NeedsMe", component="World Beliefs", name = "Needs Me",unequalrange=TRUE),
+  # pool_coef(with = "PI_Pleasurable", component="World Beliefs", name = "Pleasurable",unequalrange=TRUE),
+  # pool_coef(with = "PI_Progressing", component="World Beliefs", name = "Progressing",unequalrange=TRUE),
+  # pool_coef(with = "PI_Regenerative", component="World Beliefs", name = "Regenerative",unequalrange=TRUE),
+  # pool_coef(with = "PI_Stable", component="World Beliefs", name = "Stable",unequalrange=TRUE),
+  # pool_coef(with = "PI_WorthExploring", component="World Beliefs", name = "Worth Exploring",unequalrange=TRUE),
+  # pool_coef(with = "PI_Intentional", component="World Beliefs", name = "Intentional", unequalrange=TRUE)
   )
 ```
 
-```{r}
-#| warning: false
-
-data <- rbind(
-  data,
-  pool_coef(with = "GCBS_Extraterrestrial", component="Conspiracy Beliefs", name = "Extraterrestrial"),
-  pool_coef(with = "GCBS_GlobalConspiracies", component="Conspiracy Beliefs", name = "Global Conspiracies"),
-  pool_coef(with = "GCBS_GovernmentMalfeasance", component="Conspiracy Beliefs", name  = "Government Malfeasance"),
-  pool_coef(with = "GCBS_InformationControl", component="Conspiracy Beliefs", name = "Information Control"),
-  pool_coef(with = "GCBS_PersonalWellbeing", component="Conspiracy Beliefs", name = "Personal Wellbeing")
-)
-```
-
-```{r}
-#| warning: false
-
-data <- rbind(
-  data,
-  pool_coef(with = "LIE_Ability", component="Lying Profile", name = "Ability"),
-  pool_coef(with = "LIE_Frequency", component="Lying Profile", name = "Frequency"),
-  pool_coef(with = "LIE_Contextuality", component="Lying Profile", name = "Contextuality"),
-  pool_coef(with = "LIE_Negativity", component="Lying Profile", name = "Negativity")
-)
-```
 
 ## Average Correlations
 
@@ -715,8 +717,8 @@ p <- data |>
          var_Interoception = str_replace(var_Interoception, "WindBurp", "Wind/Burp"),
          var_Interoception = fct_relevel(var_Interoception, "Original", "Hungry/Thirsty", "Bruise/Blood sugar", "Muscles/Pain", "Cough/Sneeze", "Wind/Burp", "Breathing/Heart", "Urinate/Defecate"),
          Category = fct_relevel(
-           Category, "General", "Interoception", "Mood", "Psychopathology"),
-         Component = fct_relevel(Component, "Personality", "Demographic", "Interoception", "MAIA", "Anxiety", "Depression", "Schizotypic", "Autistic", "Maladaptive")) |> 
+           Category, "General", "Interoception", "Mood", "Psychopathology", "Beliefs"),
+         Component = fct_relevel(Component, "Personality", "Demographic", "Interoception", "MAIA", "Anxiety", "Depression", "Schizotypic", "Autistic", "Maladaptive", "World Beliefs", "Conspiracy Beliefs", "Lying Profile")) |> 
   group_by(Component) |> 
   mutate(var_Correlate = fct_reorder(var_Correlate, r, .fun=mean)) |>
   ungroup() |>
@@ -750,7 +752,7 @@ p <- data |>
         strip.background.y = element_rect(fill = "#E0E0E0", color = "white"),
         strip.background.x = element_rect(fill = "#F8BBD0", color = "white"))
 p
-ggsave("figures/Figure3.png", p, width=21*1, height=29.7*1, dpi=300, bg="white")
+ggsave("figures/Figure3.png", p, width=21*0.55, height=29.7*0.4, dpi=300, bg="white")
 ```
 
 ## Discussion
@@ -762,3 +764,7 @@ Recommendations: - Remove Itch (redundant + issue in Chinese) - Use analog scale
 Limitations: - Not much clear theorethical or empirical structure (small grouping of items) - Limited variability (clear mode at 4/5), very low prevalence of 5/5 responses. - Ambiguous items which grouping depends on the context (and its awareness) - E.g., heart beating fast, vomit when nauseaous - Few items for some modalities (e.g., 1 for heart) - Positive phrasing: benefits but also might exacerbate positivity bias (and thus unidimensionality)
 
 Need for context-specific items (cross-modal when possible, i.e., cardioception, respiroception, etc.).
+
+Neuroticism: effect unclear
+
+Openness (driven by Wind/burp): effect of response bias 
