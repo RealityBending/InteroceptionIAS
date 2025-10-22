@@ -352,23 +352,37 @@ knitr::include_graphics("../../analysis/figures/Figure2.png")
 HCA and EGA yielded highly consistent results, emphasizing pairs of items, namely Hungry-Thirsty, Bruise-Blood sugar, Urinate-Defecate, Muscles-Pain, Breathing-Heart, Cough-Sneeze, Wind-Burp. HCA also significantly grouped the Urinate-Defecate and Muscles-Pain pairs, as well as expulsion items (Wind-Burp and Cough-Sneeze).
 EFA suggested once again 3 factors as the optimal solution, with the first factor including expulsion-related items ("burp", "wind", "cough", "sneeze"), the second factor being related to the Urinate-Defecate pair, and the third factor comprising the remaining items.
 
+<!-- CFA Model Comparison
+Name	BIC	RMSEA	Chi2	CFI	BF
+fit_g	13466.62	0.106	325.704	0.784	Inf
+fit_ega	15870.94	0.026	72.825	0.988	NA
+fit_egag	15892.96	0.059	180.403	0.924	1.654961e-05
+fit_hclustg	15911.16	0.065	210.828	0.905	1.846821e-09
+fit_hclust	15913.39	0.062	182.492	0.921	6.080789e-10
+fit_efa	15941.59	0.073	253.472	0.877	4.576430e-16
+fit_efag	15941.59	0.073	253.472	0.877	4.576430e-16 -->
 
-<!-- CFA Model Comparison -->
-<!-- Name	BIC	RMSEA	Chi2	CFI	BF -->
-<!-- fit_g	933909.6	0.124	27,249.398	0.783	Inf -->
-<!-- fit_ega	1101773.3	0.035	2,306.303	0.984	NA -->
-<!-- fit_egag	1106163.9	0.054	6,842.382	0.952	0 -->
-<!-- fit_hclust	1112649.0	0.078	13,296.328	0.907	0 -->
-<!-- fit_hclustg	1113829.4	0.078	14,528.732	0.898	0 -->
-<!-- fit_efag	1115871.0	0.083	16,591.054	0.883	0 -->
-<!-- fit_efa	1115871.0	0.083	16,591.054	0.883	0 -->
-
-<!-- CFA -->
-We then fitted and compared using CFA various candidate structures emerging from the previous analyses, including a 1-factor model (the G-model), a 3-factor model (EFA), a 3+1 model (EFA + general factor), a 5-factor model (HCA), a 5+1 model (HCA + general factor), a 7-factor model (EGA), and a 7+1 model (EGA + general factor). The EGA model with 7 factors of item pairs provided the best fit with the lowest RMSEA (0.035), lowest $\chi^2$ (2306.30), highest CFI (0.984). It was followed by the EGA + general factor model (RMSEA = 0.054, $\chi^2$ = 6842.38, CFI = 0.952), and the HCA model with 5 factors (RMSEA = 0.078, $\chi^2$ = 13296.33, CFI = 0.907). The other models performed poorly, with RMSEA > 0.08 and CFI < 0.90. The unique-factor model yielded the lowest BIC (which takes into account the number of factors), followed by the EGA model. All the other models displayed significantly (BIC-based Bayes Factor < 1/100) lower evidence compared to the EGA model. 
-
-This result was relatively consistent across unique datasets with the EGA model providing the best fit. In all samples where CFA converged, it showed excellent performance with low RMSEA (≈ 0.025–0.046), high CFI (≥ 0.97), and substantially lower $\chi^2$ compared to alternative models. Adding a general factor systematically worsened fit, while hierarchical clustering and EFA-based models showed poorer performance (RMSEA > 0.06, CFI < 0.93). Although BIC values occasionally favored alternative specifications, Bayes factor comparisons overwhelmingly supported the EGA solution, confirming its robustness across datasets.
+<!-- Samples where CFA converged
+fit_ega	15870.94	0.026	72.825	0.988	NA - sample 1a
+fit_ega	28320.01	0.025	83.537	0.991	NA - sample 4
+fit_ega	20224.33	0.046	130.586	0.978	NA - sample 6
+it_ega	17647.14	0.038	98.571	0.973	NA - sample 7a
+fit_ega	68203.78	0.033	178.485	0.982	NA - sample 7b
+fit_ega	23336.33	0.036	102.630	0.976	NA - sample 7c
+fit_ega	40816.35	0.033	128.727	0.976	NA - sample 8a
+fit_ega	18031.48	0.031	83.225	0.977	NA - sample 8b
+it_ega	720615.2	0.041	2,068.422	0.980	NA - sample 9
+fit_ega	29023.36	0.052	181.784	0.948	NA - sample 11 
+fit_ega	25899.23	0.038	116.734	0.977	NA - sample 13 
+fit_ega	3975.352	0.040	65.620	0.975	NA - sampple 14 -->
 
 <!-- did not converge: df1b, df2, df3, df5, df10 (missing items), df12 (errors), df15 (errors), df16,  -->
+
+<!-- CFA -->
+We then fitted and compared using CFA various candidate structures emerging from the previous analyses, including a 1-factor model (the G-model), a 3-factor model (EFA), a 3+1 model (EFA + general factor), a 5-factor model (HCA), a 5+1 model (HCA + general factor), a 7-factor model (EGA), and a 7+1 model (EGA + general factor). The EGA model with 7 factors of item pairs provided the best fit with the lowest RMSEA (0.026), lowest $\chi^2$ (72.825), highest CFI (0.988). It was followed by the EGA + general factor model (RMSEA = 0.059, $\chi^2$ = 180.403, CFI = 0.065), and the HCA model with 5 factors (RMSEA = 0.062, $\chi^2$ = 182.492, CFI = 0.921). The other models performed poorly, with RMSEA > 0.08 and CFI < 0.90. The unique-factor model yielded the lowest BIC (which takes into account the number of factors), followed by the EGA model. All the other models displayed significantly (BIC-based Bayes Factor < 1/100) lower evidence compared to the EGA model. 
+
+This result was relatively consistent across unique datasets with the EGA model providing the best fit. In all samples where CFA converged, it showed excellent performance with low RMSEA (≈ 0.025–0.052), high CFI (≥ 0.95), and substantially lower $\chi^2$ compared to alternative models. Adding a general factor systematically worsened fit, while hierarchical clustering and EFA-based models showed poorer performance (RMSEA > 0.05, CFI < 0.95). Although BIC values occasionally favored alternative specifications, Bayes factor comparisons overwhelmingly supported the EGA solution, confirming its robustness across datasets.
+
 
 ## Discussion
 
