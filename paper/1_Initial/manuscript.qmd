@@ -508,27 +508,31 @@ Overall, the full IAS yielded the largest number of significant associations (29
 ## Discussion
 
 <!-- Aim and conceptual focus -->
-Study 2 examined the dispositional correlates of the IAS and tested whether the refined 14-item version offers practical advantages over the original 21-item scale. The study provides insight into the conceptual boundaries of interoceptive self-reported accuracy across psychological domains.
+Study 2 examined the dispositional correlates of the IAS and evaluated whether the refined 14-item version offers practical advantages over the original 21-item scale. The findings clarify the conceptual boundaries of self-reported interoceptive accuracy across psychological domains and highlight the domain-specific nature of these associations.
 
-<!-- Interoception and mental health + context dependency -->
-The IAS converged robustly with other interoceptive self-report measures, particularly facets of the MAIA, and correlated more strongly with dynamic bodily monitoring (Autonomic Reactivity on the BPQ) than general body awareness [@brand2023; @campos2021; @todd2022]. Item pairings reflecting visceral sensations, such as Hunger–Thirst, were consistently linked to lower depressive and anxiety symptoms [@brand2023; @lin2023], supporting theoretical models connecting interoception to emotion regulation and monitoring of internal bodily states [@khalsa2018interoception; @suksasilp2022towards].
+<!-- Interoception and correlates - item specific -->
+The IAS correlated robustly with other self-report interoceptive measures, particularly MAIA facets reflecting awareness, regulation, and trust in bodily signals. These associations were stronger with monitoring of autonomic reactivity (BPQ) than with general body awareness (BPQ) replicating previosu findings [@brand2023; @campos2021; @todd2022].  
 
-At the same time, these associations were context-dependent: not all item pairings or bodily domains related equally to mood or somatic symptoms [@murphy2019; @koike2023]. Emerging evidence suggests that interoceptive abilities (e.g., sensitivity, precision and metacognitive insight) may not uniformly predict mental health outcomes and may depend on measurement approach or sample characteristics [@@banellis2025interoceptive].
+Across mood and interoceptive measures, most item pairings showed at least moderate correlations, suggesting that the IAS shares variance with affective and bodily awareness constructs. In contrast, associations with psychopathology were more selective: significant correlations were mainly observed for visceral pairings such as Hunger–Thirsty and Bruise–Blood sugar, while other pairings were weak or nonsignificant. This pattern points to variation in how different interoceptive domains relate to affective and clinical traits [@murphy2019; @koike2023].
 
 <!-- Personality, worldview, and boundaries of interoception -->
-Associations with broader personality traits and high-order beliefs were modest. Small positive correlations with Openness and Agreeableness and weak associations with primal world beliefs (e.g., perceiving the world as alive or comprehensible) suggest that interoception may subtly interact with higher-level cognitive frameworks [@simkute2025interoception; @haustein2024interoception; @gabriele2022dissociations]. However, the effects were weak and inconsistent, reinforcing that interoception primarily aligns with bodily self-perception rather than broad personality or worldview constructs.
+Associations with personality traits showed similar pattern. Effects for the full IAS often reflected contributions from specific pairings: Breathing–Heart correlated most strongly with Openness; Bruise–Blood sugar and Muscles–Pain with Extraversion; and Hunger–Thirsty with Neuroticism. Additionally, the negative correlation with Honesty–Humility in the full scale was mainly attributable to the Hunger–Thirsty and Bruise–Blood sugar pairings. These findings indicate that the strength of associations between interoceptive self-report and personality traits depends on the bodily domain represented by the items.
+
+Correlations with belief systems were small and inconsistent. Some primal world beliefs (e.g., perceiving the world as alive or comprehensible) showed weak positive associations with the full IAS and with certain pairings [@simkute2025interoception; @haustein2024interoception; @gabriele2022dissociations]. These associations were not uniform across items, again reflecting variability in how interoceptive self-reports relate to broader cognitive or worldview constructs.
+
+Correlations with broader belief systems, including conspiracy beliefs and primal world beliefs, were generally small and inconsistent. Some weak positive associations were observed between the IAS and beliefs that the world is comprehensible or alive, and with certain conspiracy belief dimensions, particularly Global Conspiracies and Personal Wellbeing. These effects were largely limited to specific pairings, most notably Hunger–Thirsty and Bruise–Blood sugar, suggesting that any links between interoceptive self-report and belief systems are modest and not uniform across bodily domains.
 
 <!-- Contextual sensitivity and scale refinement -->
-Certain item pairings (e.g., Hunger–Thirst, Bruise–Blood sugar) captured associations with mood and interoception as strongly as, or stronger than, the full 21-item scale. This highlights the contextual nature of interoceptive accuracy: interoceptive tendencies manifest variably across bodily domains [@desmedt2022measures; @khalsa2018], emphasizing the need for context-specific items.
+Certain item pairings, notably Hunger–Thirsty and Bruise–Blood sugar, correlated with mood and interoceptive measures as strongly as, or more strongly than, the full IAS. These pairings accounted for many of the significant relationships observed across variables, whereas others (e.g., Cough–Sneeze, Wind–Burp) showed few consistent effects.  
 
-The refined 14-item IAS performed comparably to the original scale, and item pairings sometimes provided greater sensitivity to specific interoceptive or affective domains, demonstrating that structural refinement can enhance efficiency and interpretability without sacrificing validity.
+The refined 14-item IAS performed comparably to the original 21-item version, maintaining similar patterns of association while reducing item redundancy. This supports the practical utility of the shortened version, which captures the same correlational structure with improved efficiency and interpretability.
 
 <!-- Summary -->
-Study 2 shows that interoceptive self-report is adaptive, context-sensitive, and most predictive in relation to mood and dynamic bodily monitoring. The refined IAS preserves construct validity while enabling more targeted assessment of domain-specific interoceptive tendencies.
+Overall, correlations between the IAS and external measures were not uniform but varied across bodily domains. The results indicate that some interoceptive item pairings, especially those representing visceral sensations, show stronger and more consistent relationships with interoceptive, affective, and personality measures. The refined 14-item IAS retains these patterns while providing a more concise and interpretable assessment of self-reported interoceptive accuracy.
 
 # General Discussion
 
-<!-- AIms -->
+<!-- Aims -->
 The present study provides a comprehensive evaluation of the IAS, examining both its structure (study 1) and its dispositional correlates (study 2). These studies offer novel insights into the psychometric characteristics, conceptual interpretation, and practical applications of the IAS. In this discussion, these findings are contextualized within the broader landscape of interoception research.
 
 <!-- Study 1 findings -->
