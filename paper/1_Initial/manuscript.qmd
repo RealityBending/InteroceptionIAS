@@ -421,6 +421,9 @@ The Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] consist
 
 <!-- Mood and Anxiety -->
 #### Mood and Anxiety Related
+Mood-related measures included the Beck Depression Inventory-II [BDI-II, @beck1996beck], the Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra], the Patient Health Questionnaire-9 [PHQ-9, @kroenke2001phq], the Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq], the Short Mood and Feelings Questionnaire [SMFQ, @angold1995development], the State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual], and the Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief]. We also included the PHQ-2 [@kroenke2003patient] and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety], which were combined with the PHQ-4 scores, and scores from the shorter version of the STAIT-5 [@zsido2020development], which were combined with the STAI-T. Mood measures were included given the well-established association between interoceptive deficits and mental health conditions [@khalsa2018].
+
+<!-- 
 The Beck Depression Inventory-II [BDI-II, @beck1996beck] is a 21-item measure of depressive symptom severity, including psychological (e.g., guilt) and physiological (e.g., loss of energy) components. Items are rated on a 4-point scale (e.g., “I feel sad much of the time”).
 
 The Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra] is a 4-item screening tool for depression and anxiety, rated on a 4-point Likert scale (e.g., “Little interest or pleasure in doing things”; “Not being able to stop or control worrying”). The PHQ-2 [PHQ-2, @kroenke2003patient] and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety] scores were combined with the PHQ-4 scores.
@@ -433,34 +436,40 @@ The Short Mood and Feelings Questionnaire [SMFQ, @angold1995development] is a 13
 
 The State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual] is a 20-item trait anxiety questionnaire rated on a 4-point Likert scale (e.g., “I worry too much about something that really doesn’t matter”). Scores from the shorter version of the STAIT-5 [@zsido2020development] were combined with the STAI-T.
 
-The Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief] is a 7-item measure of generalized anxiety symptoms rated on a 4-point Likert scale (e.g., “Not being able to stop or control worrying”).
-
-<!-- Personality -->
-#### Personality
-The NEO Five-Factor Inventory, neuroticism subscale [NEO-FFI, @costa1992personality] is a 12-item measure of neuroticism, assessing the general tendency to experience negative emotions such as fear, sadness, or disgust. Items are rated on a 5-point Likert scale (e.g., “I often feel inferior to others”).
-
-The Mini International Personality Item Pool [MINI-IPIP6, @sibley2011mini] includes 24 items measuring six broad traits: Agreeableness, Conscientiousness, Neuroticism, Openness, Extraversion, and Honesty-Humility. Items were scored on visual analogue scales in our samples (originally 7-point Likert scales; e.g., “Have a vivid imagination”).
-
-The Big Five Inventory Short Form [BFI-S, @rammstedt2007measuring] is a 10-item measure of the Big Five traits, rated on a 7-point Likert scale (e.g., “I see myself as someone who … is considerate and kind to almost everyone”).
+The Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief] is a 7-item measure of generalized anxiety symptoms rated on a 4-point Likert scale (e.g., “Not being able to stop or control worrying”). -->
 
 <!-- Psychopathology -->
 
 #### Psychopathology
-The Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality] consists of 25 items rated on a 4-point Likert scale, measuring five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism (e.g., “Plenty of people are out to get me”).
+Personality pathology-related measures included the Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality], the Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson2016schizotypal], the McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini], and the Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction]. Similarily, these measures were included due to established associations between various psychopathologies and interoceptive disruptions [@leao2025interoception].
+
+<!-- The Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality] consists of 25 items rated on a 4-point Likert scale, measuring five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism (e.g., “Plenty of people are out to get me”).
 
 The Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson2016schizotypal] contains 32 items rated on a 5-point Likert scale, assessing four primary dimensions: cognitive-perceptual, interpersonal, disorganized, and social anxiety. These are subdivided into nine secondary factors, including constricted affect, eccentricity, magical thinking, lack of close friends, odd speech, referential thinking, social anxiety, suspiciousness, and unusual perceptions (e.g., “Plenty of people are out to get me”).
 
 The McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini] is a 10-item dichotomous screening measure for borderline personality disorder (present/absent; e.g., “Have any of your closest relationships been troubled by a lot of arguments or repeated breakups?”).
 
-The Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction] is a 28-item measure of five autistic traits: social skills, adherence to routines, cognitive flexibility, imagination, and patterns/numbers. Items are rated on a 4-point Likert scale (e.g., “I find it difficult to work out people’s intentions”).
+The Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction] is a 28-item measure of five autistic traits: social skills, adherence to routines, cognitive flexibility, imagination, and patterns/numbers. Items are rated on a 4-point Likert scale (e.g., “I find it difficult to work out people’s intentions”). -->
+
+<!-- Personality -->
+#### Personality
+Personality-related measures included the NEO Five-Factor Inventory, Neuroticism subscale [NEO-FFI, @costa1992personality], the Mini International Personality Item Pool [MINI-IPIP6, @sibley2011mini], and the Big Five Inventory Short Form [BFI-S, @rammstedt2007measuring]. Although associations between personality and interoception have been less frequently explored than those involving mood or psychopathology, previous research has identified links between neuroticism and extroversion and interoceptive sensibility using the MAIA and BPQ measures. This study therefore included extended personality measures to clarify the broader relationships between interoception and personality traits beyond neuroticism and extraversion [@pearson2022two].
+
+<!-- The NEO Five-Factor Inventory, neuroticism subscale [NEO-FFI, @costa1992personality] is a 12-item measure of neuroticism, assessing the general tendency to experience negative emotions such as fear, sadness, or disgust. Items are rated on a 5-point Likert scale (e.g., “I often feel inferior to others”).
+
+The Mini International Personality Item Pool [MINI-IPIP6, @sibley2011mini] includes 24 items measuring six broad traits: Agreeableness, Conscientiousness, Neuroticism, Openness, Extraversion, and Honesty-Humility. Items were scored on visual analogue scales in our samples (originally 7-point Likert scales; e.g., “Have a vivid imagination”).
+
+The Big Five Inventory Short Form [BFI-S, @rammstedt2007measuring] is a 10-item measure of the Big Five traits, rated on a 7-point Likert scale (e.g., “I see myself as someone who … is considerate and kind to almost everyone”). -->
 
 <!-- Beliefs and Misbeliefs -->
 #### Beliefs and Misbeliefs
-The Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring] is a 15-item measure assessing five dimensions of conspiracy beliefs: government malfeasance, extraterrestrial cover-up, malevolent global conspiracies, personal wellbeing, and control of information. Items are scored on a 5-point Likert scale (e.g., “Secret organizations communicate with extraterrestrials, but keep this fact from the public”).
+Beliefs- and misbeliefs-related measures included the Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring], the Primal World Beliefs Inventory [PI-99, @clifton2019primal] and its short form [PI-18, @clifton2021brief], and the Lie Scale [LIE, @makowski2023structure]. These instruments assess individual differences in conspiracist, world, and lying beliefs. This domain represents a novel avenue of research in the context of interoception, as such beliefs have not been previously assessed in relation to interoceptive processes.
+
+<!-- The Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring] is a 15-item measure assessing five dimensions of conspiracy beliefs: government malfeasance, extraterrestrial cover-up, malevolent global conspiracies, personal wellbeing, and control of information. Items are scored on a 5-point Likert scale (e.g., “Secret organizations communicate with extraterrestrials, but keep this fact from the public”).
 
 The Primal World Beliefs Inventory [PI-99, @clifton2019primal] is a 99-item measure assessing 26 high-order beliefs about the world. Items are scored on a 5-point Likert scale (e.g., “Nearly everything in the world is beautiful”) The PI-18 [@clifton2021brief] is a short form of the orginal questionnaire assessing the 4 main world beliefs: the world is Good (vs. Bad) and its three dimensions: Safe (vs. Dangerous), Enticing (vs. Dull), and Alive (vs. Mechanistic). Scores from the PI-18 scores were combined with the PI-99.
 
-The Lie Scale [LIE, @makowski2023structure] is a 16-item measure of lying tendencies across four components: Ability, Frequency, Negativity, and Contextuality. Items are scored on visual analogue scales (e.g., “I am a good liar”).
+The Lie Scale [LIE, @makowski2023structure] is a 16-item measure of lying tendencies across four components: Ability, Frequency, Negativity, and Contextuality. Items are scored on visual analogue scales (e.g., “I am a good liar”). -->
 
 ### Data Analysis
 
