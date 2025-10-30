@@ -627,8 +627,43 @@ df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
 
 ```
 
-:::
+### Sample 17
 
+- Petzke et al 2024
+- STAI - is the stai sf with 6 items (we use stait-trait)
+
+```{r}
+
+df17 <- haven::read_sav("../data/Petzke2024/ETUDE1_main study.sav") |>
+  select(id, age_to_be_completed_that_year, Gender, starts_with("IA0"), PHQ_15_total, DIF_total, DDF_total, EOT_total, PHQ_4_total, BPQ_total, STAI_total) |>
+  rename(Age= age_to_be_completed_that_year,
+         Heart = IA01_01, Hungry = IA01_02, Breathing = IA01_03, Thirsty = IA01_04, Urinate = IA01_05, 
+         Defecate=IA01_06, Taste = IA01_07,Vomit = IA01_08, Sneeze = IA01_09, Cough = IA01_10, 
+         Temp = IA01_11, Sex_arousal = IA01_12, Wind = IA01_13, Burp = IA01_14,Muscles = IA01_15, 
+         Bruise = IA01_16, Pain = IA01_17, Blood_Sugar = IA01_18, Affective_touch = IA01_19, 
+         Tickle =IA01_20, Itch = IA01_21,
+         TAS_DIF = DIF_total, TAS_DDF =  DDF_total, TAS_EOT = EOT_total,
+         PHQ15_Sum = PHQ_15_total,
+         PHQ4_Sum = PHQ_4_total,
+         BPQ_BodyAwareness = BPQ_total,
+          ) |>
+   mutate(Gender = case_when(
+    Gender == 1 ~ "Male",
+    Gender == 2 ~ "Female",
+    Gender ==3 ~ "Other")) 
+
+#Ranges
+df17$PHQ15_Sum <- df17$PHQ15_Sum/15
+df17$BPQ_BodyAwareness <- df17$BPQ_BodyAwareness/12
+
+df17$PHQ4_Depression <- (df13$PHQ4_Depression_4 + df13$PHQ4_Depression_3)/2
+df13$PHQ4_Anxiety <- (df13$PHQ4_Anxiety_2 + df13$PHQ4_Anxiety_1)/2
+
+
+```  
+      
+
+:::
 
 ## Participants
 
