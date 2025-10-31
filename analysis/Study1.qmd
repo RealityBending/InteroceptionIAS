@@ -3672,6 +3672,8 @@ plot(rez_efa$n_fac)
 
 ##### Summary
 
+- the first optimal number of factors was 11, which, although too large for practical higher-order structure description, hints at the scattered nature of the items 
+
 ```{r}
 #| warning: false
 #| message: false
