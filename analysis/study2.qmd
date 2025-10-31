@@ -165,7 +165,7 @@ df13 <- cbind(data$df13, scores$sample13)
 df14 <- cbind(data$df14, scores$sample14)
 df15 <- cbind(data$df15, scores$sample15)
 df16 <- cbind(data$df16, scores$sample16)
-dff17 <- cbind(data$df17, scores$sample17)
+df17 <- cbind(data$df17, scores$sample17)
 
 vars_intero <- names(select(scores$sample1a, -Sample))
 

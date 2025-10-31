@@ -664,8 +664,8 @@ df17 <- haven::read_sav("../data/Petzke2024/ETUDE1_main study.sav") |>
 df17$PHQ15_Sum <- df17$PHQ15_Sum/15
 df17$BPQ_BodyAwareness <- df17$BPQ_BodyAwareness/12
 
-df17$PHQ4_Depression <- (df17$PH01_01 + df17$PH01_02)/2
-df17$PHQ4_Anxiety <- (df17$PH01_03 + df17$PH01_04)/2
+df17$PHQ4_Depression <- df17$PH01_01 + df17$PH01_02
+df17$PHQ4_Anxiety <- df17$PH01_03 + df17$PH01_04
 
 
 ```  
