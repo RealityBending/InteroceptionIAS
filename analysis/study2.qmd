@@ -442,7 +442,7 @@ data <- rbind(
   pool_coef(with = "PHQ15_Sum", component="Depression", category = "Mood", name = "Somatic Concerns - PHQ-15",unequalrange=TRUE), 
   pool_coef(with = "PHQ9_Sum", component="Depression", category = "Mood", name = "Depression - PHQ-9", unequalrange=TRUE), 
   pool_coef(with = "BDI_Sum", component="Depression", category = "Mood", name = "Depression - BDI"), 
-  pool_coef(with = "PHQ4_Depression", component="Depression", category = "Mood", name = "Depression - PHQ-4"),
+  pool_coef(with = "PHQ4_Depression", component="Depression", category = "Mood", name = "Depression - PHQ-4", unequalrange=TRUE),
   pool_coef(with = "DEP", component = "Depression", category = "Mood", name = "Depression - MFQ")
 )
 ```
@@ -467,7 +467,7 @@ data <- rbind(
 data <- rbind(
   data,
   pool_coef(with = "STAIT_Mean", component="Anxiety", category = "Mood", name = "Anxiety - STAI-T", unequalrange=TRUE), 
-  pool_coef(with = "PHQ4_Anxiety", component="Anxiety", category = "Mood", name = "Anxiety - PHQ-4"),
+  pool_coef(with = "PHQ4_Anxiety", component="Anxiety", category = "Mood", name = "Anxiety - PHQ-4",  unequalrange=TRUE),
   pool_coef(with = "GAD7_Sum", component="Anxiety", category = "Mood", name = "Anxiety - GAD-7")
 )
 ```
