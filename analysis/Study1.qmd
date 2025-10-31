@@ -630,12 +630,14 @@ df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
 ### Sample 17
 
 - Petzke et al 2024
-- STAI - is the stai sf with 6 items (we use stait-trait)
+- STAI - is the stai sf with 6 items for state anxiety (we use stait-t)
+- https://osf.io/ntpu4
 
 ```{r}
 
 df17 <- haven::read_sav("../data/Petzke2024/ETUDE1_main study.sav") |>
-  select(id, age_to_be_completed_that_year, Gender, starts_with("IA0"), PHQ_15_total, DIF_total, DDF_total, EOT_total, PHQ_4_total, BPQ_total, STAI_total) |>
+  mutate_all(as.numeric) |>
+  select(id, age_to_be_completed_that_year, Gender, starts_with(c("IA0", "PH01")), PHQ_15_total, DIF_total, DDF_total, EOT_total, PHQ_4_total, BPQ_total) |>
   rename(Age= age_to_be_completed_that_year,
          Heart = IA01_01, Hungry = IA01_02, Breathing = IA01_03, Thirsty = IA01_04, Urinate = IA01_05, 
          Defecate=IA01_06, Taste = IA01_07,Vomit = IA01_08, Sneeze = IA01_09, Cough = IA01_10, 
@@ -647,17 +649,23 @@ df17 <- haven::read_sav("../data/Petzke2024/ETUDE1_main study.sav") |>
          PHQ4_Sum = PHQ_4_total,
          BPQ_BodyAwareness = BPQ_total,
           ) |>
-   mutate(Gender = case_when(
+  mutate(Gender = case_when(
     Gender == 1 ~ "Male",
     Gender == 2 ~ "Female",
-    Gender ==3 ~ "Other")) 
+    Gender == 3 ~ "Other"))|>
+   mutate(
+    Age_code = zap_labels(Age),      # remove SPSS labels, get raw numeric codes
+    Age = case_when(
+      Age_code == -9 ~ NA_real_,
+      TRUE ~ 2024 - (2000 + (21 - Age_code))  # compute actual age
+    ))
 
 #Ranges
 df17$PHQ15_Sum <- df17$PHQ15_Sum/15
 df17$BPQ_BodyAwareness <- df17$BPQ_BodyAwareness/12
 
-df17$PHQ4_Depression <- (df13$PHQ4_Depression_4 + df13$PHQ4_Depression_3)/2
-df13$PHQ4_Anxiety <- (df13$PHQ4_Anxiety_2 + df13$PHQ4_Anxiety_1)/2
+df17$PHQ4_Depression <- (df17$PH01_01 + df17$PH01_02)/2
+df17$PHQ4_Anxiety <- (df17$PH01_03 + df17$PH01_04)/2
 
 
 ```  
@@ -669,7 +677,7 @@ df13$PHQ4_Anxiety <- (df13$PHQ4_Anxiety_2 + df13$PHQ4_Anxiety_1)/2
 
 ```{r}
 # Save all
-data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11 =df11 , df12 =df12 , df13  = df13 , df14 =df14 , df15  =df15, df16 = df16)
+data <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11 =df11 , df12 =df12 , df13  = df13 , df14 =df14 , df15  =df15, df16 = df16, df17 = df17)
 save(data, file = "../data/data.RData")
 ```
 
@@ -694,9 +702,10 @@ save(data, file = "../data/data.RData")
 - **Sample 14**: Data from [Poerio's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df14 , age = "Age", sex = NA, gender = "Gender")`
 - **Sample 15 **: Data from [Poerio's] study , included `r report::report_participants(df15 , age = "Age", sex = NA, gender = "Gender")`
 - **Sample 16 **: Data from [Arjona's] study , included `r report::report_participants(df16 , age = "Age", gender = "Gender")`
+- **Sample 17 **: Data from [Petzke's](https://osf.io/seru4) study, downloaded from OSF, included `r report::report_participants(df17, age = "Age", gender = "Gender")`. 
 
 
-Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15) + nrow(df16)`.
+Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15) + nrow(df16) + nrow(df17)` .
 
 ```{r}
 
@@ -732,8 +741,10 @@ desc_df13 <- desc(df13)
 desc_df14 <- desc(df14)
 desc_df15 <- desc(df15)
 desc_df16 <- desc(df16)
+desc_df17 <- desc(df17)
 
-desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df5, desc_df6, desc_df7a, desc_df7b, desc_df7c, desc_df8a, desc_df8b, desc_df9, desc_df10, desc_df11 , desc_df12 , desc_df13 , desc_df14 , desc_df15, desc_df16)
+
+desc_total <- rbind(desc_df1a, desc_df1b, desc_df2, desc_df3, desc_df5, desc_df6, desc_df7a, desc_df7b, desc_df7c, desc_df8a, desc_df8b, desc_df9, desc_df10, desc_df11 , desc_df12 , desc_df13 , desc_df14 , desc_df15, desc_df16, desc_df17)
 
 ## calculate weighted mean
 
@@ -789,17 +800,17 @@ make_age <- function(age) {
 
 # Create the dataframe
 table <- data.frame(
-  Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15', 'Sample 16', 'Sample 17'),   
-  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Arjona et al., unpublished', 'Total'),
-  Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English', 'English','English', ''),
-  N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10), nrow(df11), nrow(df12), nrow(df13), nrow(df14), nrow(df15), nrow(df16), 33272),
-  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. No Temperature, Blood sugar and Cough items', 'Analog scales', 'Analog scales', '', '', '', '', ''),
-  Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10$Age), make_age(df11$Age), make_age(df12$Age), make_age(df13$Age), make_age(df14$Age), make_age(df15$Age), make_age(df16$Age), '48.09 ± 13.1'),
-  Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '17, 87', '18-57', '18-60', '18-79', '17-93'),
-  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '57.3%', '74.8%', '75.9%', '67.7%', '71.3%'),
+  Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15', 'Sample 16', 'Sample 17', 'Sample 18'),   
+  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Arjona et al., unpublished', 'Petzke et al., (2024)',  'Total'),
+  Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'English', 'English', 'English', 'English', 'English', 'English','English', 'German', ''),
+  N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), 802,'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df10), nrow(df11), nrow(df12), nrow(df13), nrow(df14), nrow(df15), nrow(df16), nrow(df17), 33526),
+  'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Collapsed "Itch" and "Tickling"', 'Collapsed "Itch" and "Tickling"', '', 'Analog scales. No Temperature, Blood sugar and Cough items', 'Analog scales', 'Analog scales', '', '', '', '', '', ''),
+  Age = c('', make_age(df1a$Age), make_age(df1b$Age), make_age(df2$Age), make_age(df3$Age), "48.6.6 ± 14.1*", make_age(df5_attention$Age), make_age(df6$Age),'', make_age(df7a$Age), make_age(df7b$Age), make_age(df7c$Age),'', make_age(df8a$Age), make_age(df8b$Age), make_age(df9$Age), make_age(df10$Age), make_age(df11$Age), make_age(df12$Age), make_age(df13$Age), make_age(df14$Age), make_age(df15$Age), make_age(df16$Age), make_age(df17$Age), '47.96 ± 13.1'),
+  Range = c('', '18-69', '18-91', '18-58', '18-72', '18-92*', '18-73', '18-78', '', '18-79', '16-81', '18-72','', '16-60', '20-60', '18-93', '18-73', '17-76','18-50', '17, 87', '18-57', '18-60', '18-79', '22-69', '17-93'),
+  Female_Percentage = c('', '69.4%', '70.1%', '60.3%', '59.6%', '50%*', '46.8%', '78.7%', '', '79.5%', '77.7%', '68.9%', '', '57.0%', '56.2%', '73.2%', '50.3%', '53.0%', '76%', '57.3%', '74.8%', '75.9%', '67.7%', '68.5%', '71.3%'),
   Availability= c('osf.io/3m5nh', '', '', 'osf.io/5x9sg', 'osf.io/j6ef3', 'osf.io/ms354', 'osf.io/mp3cy', 'osf.io/xwz6g', 'osf.io/3f2h6', '', '', '','osf.io/3eztd','', '', 'osf.io/7p9u5', 'github.com/RealityBending/IllusionGameReliability', 'github.com/DominiqueMakowski/PHQ4R', 'github.com/RealityBending/InteroceptionPrimals', 
 'github.com/RealityBending/InteroceptionScale',
-'osf.io/49wbv', '','', '')
+'osf.io/49wbv', '','', 'osf.io/seru4', '')
 ) 
 
 table_apa <- table |> 
@@ -863,9 +874,11 @@ dens15  <- estimate_density(select(df15, all_of(ias_vars)), method = "kernSmooth
   mutate(Sample = "Sample 15")
 dens16  <- estimate_density(select(df16, all_of(ias_vars)), method = "kernSmooth") |>
   mutate(Sample = "Sample 16")
+dens17  <- estimate_density(select(df17, all_of(ias_vars)), method = "kernSmooth") |>
+  mutate(Sample = "Sample 17")
 
 
-p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10, dens11 , dens12, dens13, dens14, dens15, dens16) 
+p1_data <- rbind(dens1a, dens1b, dens2, dens3, dens4, dens5, dens6, dens7a, dens7b, dens7c, dens8a, dens8b, dens9, dens10, dens11 , dens12, dens13, dens14, dens15, dens16, dens17) 
 
 linetype <- setNames(rep("solid", length(ias_vars)), ias_vars)
 linetype["Affective touch"] <- "dotted"
@@ -879,7 +892,7 @@ p1_data |>
   summarise(proportion = sum(y) / sum(p1_data$y))  # Normalize by total density
 
 p1 <- p1_data |>
-  mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10", "Sample 11", "Sample 12", "Sample 13", "Sample 14", "Sample 15"),
+  mutate(Sample = fct_relevel(Sample, "Sample 1a", "Sample 1b", "Sample 2", "Sample 3", "Sample 4", "Sample 5", "Sample 6", "Sample 7a", "Sample 7b", "Sample 7c", "Sample 8a", "Sample 8b", "Sample 9", "Sample 10", "Sample 11", "Sample 12", "Sample 13", "Sample 14", "Sample 15", 'Sample 16', 'Sample 17'),
          Parameter = ifelse(Parameter == "Affective_touch", "Affective touch", Parameter),
          Parameter = ifelse(Parameter == "Blood_Sugar", "Blood sugar", Parameter),
          Parameter = ifelse(Parameter == "Sex_arousal", "Sex arousal", Parameter)) |>
@@ -890,7 +903,7 @@ p1 <- p1_data |>
   scale_linetype_manual(values = linetype)  +
   labs(x = "Response", y = "Distribution", color = "Item", linetype = "Item", title = "Item Distribution") +
   guides(color = guide_legend(ncol = 1)) +
-  facet_wrap(~Sample, scales = "free_y", nrow = 4) +
+  facet_wrap(~Sample, scales = "free_y", nrow = 3) +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         axis.title.y = element_blank(),
@@ -922,6 +935,7 @@ data13  <- select(df13, all_of(dens13$Parameter))
 data14  <- select(df14, all_of(dens14$Parameter))
 data15   <- select(df15, all_of(dens15$Parameter))
 data16   <- select(df16, all_of(dens16$Parameter))
+data17   <- select(df17, all_of(dens17$Parameter))
 
 
 data_all <- rbind(
@@ -929,7 +943,7 @@ data_all <- rbind(
   mutate(data8a, Tickle = NA), 
   mutate(data8b, Tickle = NA), data9,
   mutate(data10, Taste = NA, Cough = NA, Blood_Sugar = NA),  
-  data11,  data12 , data13, data14, data15, data16  
+  data11,  data12 , data13, data14, data15, data16, data17  
 ) 
 ```
 
@@ -1107,6 +1121,11 @@ make_correlation(data15)
 make_correlation(data16)
 ```
 
+#### Sample 17  
+
+```{r}
+make_correlation(data17)
+```
 :::
 
 
@@ -1285,6 +1304,14 @@ uva16
 uva16$keep_remove
 ```
 
+#### Sample 17  
+
+```{r}
+uva17  <- EGAnet::UVA(data = data17, cut.off = 0.3)
+uva17  
+uva17$keep_remove
+```
+
 #### Summary
 
 
@@ -1308,7 +1335,8 @@ rez_uva <- c(uva1a$keep_remove$remove,
   uva13$keep_remove$remove,
   uva14$keep_remove$remove,
   uva15$keep_remove$remove,
-  uva16$keep_remove$remove)
+  uva16$keep_remove$remove,
+  uva17$keep_remove$remove)
 
 sort(table(rez_uva), decreasing = TRUE) / length(rez_uva) 
 ```
@@ -1342,6 +1370,7 @@ data13 <- select(data13 , -Tickle)
 data14 <- select(data14 , -Tickle)
 data15 <- select(data15 , -Tickle)
 data16 <- select(data16 , -Tickle)
+data17 <- select(data17 , -Tickle)
 ```
 
 #### Initial
@@ -1681,9 +1710,9 @@ make_efa <- function(data, n = 3, cols = c("F1" = "#009688", "F2" = "#795548", "
 }
 
 
-rez_efa <- make_efa(data_all, n = 3, cols = c("F1" = colors[["Wind"]], 
-                                              "F2" = colors[["Defecate"]], 
-                                              "F3" = colors[["Heart"]]))
+rez_efa <- make_efa(data_all, n = 3, cols = c("F1" = colors[["Cough"]], 
+                                              "F2" = colors[["Thirsty"]], 
+                                              "F3" = colors[["Bruise"]]))
 plot(rez_efa$n_fac)
 rez_efa$p
 ```
@@ -1747,6 +1776,8 @@ data14f <- select(data14, -Taste, -Affective_touch, -Vomit, -Itch,
 data15f <- select(data15, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 data16f <- select(data16, -Taste, -Affective_touch, -Vomit, -Itch,
+                   -Sex_arousal, -Temp)
+data17f <- select(data17, -Taste, -Affective_touch, -Vomit, -Itch,
                    -Sex_arousal, -Temp)
 ```
 
@@ -3633,6 +3664,90 @@ plot(rez_efa$n_fac)
 
 ::::
 
+### Sample 17
+
+#### Initial 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data17)
+rez_ega <- make_ega(data17, cols = c(
+  "C1" = colors[["Hungry"]], "C2" = colors[["Defecate"]], "C3" = colors[["Muscles"]], "C4" = colors[["Cough"]], 
+  "C5" = colors[["Itch"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data17, n = 5, cols = c("F1" = colors[["Sneeze"]], "F2" = colors[["Hungry"]], 
+                                            "F3" = colors[["Defecate"]], "F4" = colors[["Burp"]],
+                                            "F5" = colors[["Vomit"]]))
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+```
+
+::::
+
+#### Final 
+
+:::: {.panel-tabset}
+
+##### Summary
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 20
+
+rez_hclust <- make_hclust(data17f)
+rez_ega <- make_ega(data17f, cols = c(
+  "C1" = colors[["Hungry"]], "C2" = colors[["Defecate"]], "C3" = colors[["Cough"]], "C4" = colors[["Burp"]], 
+  "C5" = colors[["Muscles"]], "C6" = colors[["Wind"]], "C7" = colors[["Bruise"]], "C8" = colors[["Blood Sugar"]]))
+rez_efa <- make_efa(data17f, n = 4, cols = c("F1" = colors[["Burp"]], "F2" = colors[["Hungry"]], 
+                                            "F3" = colors[["Urinate"]], "F4" = colors[["Sneeze"]]))
+rez_cfa17  <- make_cfa(data17f)
+
+rez_hclust$p / rez_ega$p / rez_efa$p
+```
+
+##### Details
+
+```{r}
+#| warning: false
+#| message: false
+
+plot(rez_hclust$pvclust, hang = -1, cex = 0.5)
+pvclust::pvrect(rez_hclust$pvclust, alpha=0.95, max.only=FALSE)
+
+stab <- EGAnet::itemStability(rez_ega$rez)
+rez_ega$table
+
+plot(rez_efa$n_fac)
+
+rez_cfa17$test
+```
+
+::::
+
 ## Scores
 
 Note the usage of descriptive factor names relating directly to the items to avoid abstraction.
@@ -3686,7 +3801,8 @@ scores <- list(
   sample13 = add_empirical(data13, "Sample 13"),
   sample14 = add_empirical(data14 , "Sample 14"),
   sample15 = add_empirical(data15 , "Sample 15"),
-  sample16 = add_empirical(data16, "Sample 16")
+  sample16 = add_empirical(data16, "Sample 16"),
+  sample17 = add_empirical(data17, "Sample 16")
 )
 
 save(scores, file = "../data/scores.RData")
