@@ -637,7 +637,7 @@ df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
 
 df17 <- haven::read_sav("../data/Petzke2024/ETUDE1_main study.sav") |>
   mutate_all(as.numeric) |>
-  select(id, age_to_be_completed_that_year, Gender, starts_with(c("IA0", "PH01")), PHQ_15_total, DIF_total, DDF_total, EOT_total, PHQ_4_total, BPQ_total) |>
+  select(age_to_be_completed_that_year, Gender, starts_with(c("IA0", "PH01")), PHQ_15_total, DIF_total, DDF_total, EOT_total, PHQ_4_total, BPQ_total) |>
   rename(Age= age_to_be_completed_that_year,
          Heart = IA01_01, Hungry = IA01_02, Breathing = IA01_03, Thirsty = IA01_04, Urinate = IA01_05, 
          Defecate=IA01_06, Taste = IA01_07,Vomit = IA01_08, Sneeze = IA01_09, Cough = IA01_10, 
@@ -3804,7 +3804,7 @@ scores <- list(
   sample14 = add_empirical(data14 , "Sample 14"),
   sample15 = add_empirical(data15 , "Sample 15"),
   sample16 = add_empirical(data16, "Sample 16"),
-  sample17 = add_empirical(data17, "Sample 16")
+  sample17 = add_empirical(data17, "Sample 17")
 )
 
 save(scores, file = "../data/scores.RData")
