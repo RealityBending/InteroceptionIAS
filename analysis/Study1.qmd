@@ -637,7 +637,7 @@ df16 <- read.csv("../data/Scharte2025/data_IAS_rs.csv") |>
 
 df17 <- haven::read_sav("../data/Petzke2024/ETUDE1_main study.sav") |>
   mutate_all(as.numeric) |>
-  select(age_to_be_completed_that_year, Gender, starts_with(c("IA0", "PH01")), PHQ_15_total, DIF_total, DDF_total, EOT_total, PHQ_4_total, BPQ_total) |>
+  select(age_to_be_completed_that_year, Gender, starts_with(c("IA0", "PH01")), PHQ_15_total, DIF_total, DDF_total, EOT_total, PHQ_4_total, BPQ_total, starts_with("BP01_")) |>
   rename(Age= age_to_be_completed_that_year,
          Heart = IA01_01, Hungry = IA01_02, Breathing = IA01_03, Thirsty = IA01_04, Urinate = IA01_05, 
          Defecate=IA01_06, Taste = IA01_07,Vomit = IA01_08, Sneeze = IA01_09, Cough = IA01_10, 
@@ -659,6 +659,8 @@ df17 <- haven::read_sav("../data/Petzke2024/ETUDE1_main study.sav") |>
       Age_code == -9 ~ NA_real_,
       TRUE ~ 2024 - (2000 + (21 - Age_code))  # compute actual age
     ))
+
+# df17$BPQ_BodyAwarenessManual <- rowMeans(df17[, grep("^BP01_", names(df17))], na.rm = TRUE)
 
 #Ranges
 df17$PHQ15_Sum <- df17$PHQ15_Sum/15
@@ -702,7 +704,7 @@ save(data, file = "../data/data.RData")
 - **Sample 14**: Data from [Poerio's(2024)](https://osf.io/49wbv) study , included `r report::report_participants(df14 , age = "Age", sex = NA, gender = "Gender")`
 - **Sample 15 **: Data from [Poerio's] study , included `r report::report_participants(df15 , age = "Age", sex = NA, gender = "Gender")`
 - **Sample 16 **: Data from [Arjona's] study , included `r report::report_participants(df16 , age = "Age", gender = "Gender")`
-- **Sample 17 **: Data from [Petzke's](https://osf.io/seru4) study, downloaded from OSF, included `r report::report_participants(df17, age = "Age", gender = "Gender")`. 
+- **Sample 17 **: Data from [Petzke's (2024)](https://osf.io/seru4) study, downloaded from OSF, included `r report::report_participants(df17, age = "Age", gender = "Gender")`. 
 
 
 Total N = `r nrow(df1a) + nrow(df1b) + nrow(df2) + nrow(df3) + nrow(df4) + nrow(df5) + nrow(df6) + nrow(df7a) + nrow(df7b) + nrow(df7c) + nrow(df8a) + nrow(df8b) + nrow(df9) + nrow(df10) + nrow(df11) + nrow(df12) + nrow(df13) + nrow(df14) + nrow(df15) + nrow(df16) + nrow(df17)` .
