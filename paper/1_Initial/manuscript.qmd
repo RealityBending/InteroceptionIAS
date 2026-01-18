@@ -108,7 +108,7 @@ author-note:
       ::: {.callout-note icon=false appearance="simple"}
       :::
       This preprint is a non-peer-reviewed work from the [**Reality Bending Lab**](https://realitybending.github.io/).
-      ![](https://realitybending.github.io/media/ReBeL_LogoOnly_hu11484441381606756729.png){width=20% fig-align="center"}
+      ![](https://realitybending.github.io/media/ReBeL_LogoOnly_hu_856944d4b40322bb.png){width=20% fig-align="center"}
 abstract: |
   Blabla the abstract blabla.
 keywords: [keyword1, keyword2, keyword3]
@@ -406,6 +406,26 @@ Building on the structural findings from Study 1, the second study turns to the 
 
 ### Materials
 
+```{r}
+#| label: tbl-table2
+#| tbl-cap: "Description of the measures used in the study."
+#| apa-twocolumn: true
+
+# library(flextable)
+# set_flextable_defaults(font.size = 6)
+
+# table <- readRDS("../../analysis/figures/table2.rds")
+
+# table |>
+#     # dplyr::rename("Age (Mean  ± SD)" = Age, "Female %" = Female_Percentage) |>
+#     flextable() |>
+#     set_table_properties(
+#         layout = "autofit",
+#         opts_pdf = list(arraystretch = 1)
+#     ) |>
+#     theme_apa()
+```
+
 We selected measures that appeared in multiple datasets from Study 1 and/or were relevant given the scope of the study, i.e., constructs related to physiology, mood, personality, psychopathology, and beliefs and misbeliefs. We merged scores of regular and abridged versions for conciseness where applicable.
 
 #### Interoception
@@ -418,13 +438,13 @@ The Body Perception Questionnaire Short Form [BPQ-SF, @cabrera2018assessing] con
 
 The Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia] consists of 20 items rated on a 5-point Likert scale (e.g., “I cannot tell when my muscles are sore or tight”) assessing difficulties in interpreting non-affective physiological states, such as pain or hunger.
 
-The Toronto Alexithymia Scale [TAS-20, @bagby1994twenty] contains 20 items rated on a 5-point forced-choice scale (e.g., “I have feelings I can’t quite identify”), divided into three dimensions: difficulty identifying feelings, difficulty describing feelings, and externally oriented thinking.
+The Toronto Alexithymia Scale [TAS-20, @bagby1994twenty] contains 20 items rated on a 5-point forced-choice scale (e.g., “I have feelings I can't quite identify”), divided into three dimensions: difficulty identifying feelings, difficulty describing feelings, and externally oriented thinking.
 
 The Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] consists of 40 items across five subscales: fantasising, identifying, analysing, verbalising, and emotionalising. Items are rated on a 5-point Likert scale. The BVAQ also provides two higher-order factors, namely affective and cognitive (e.g., “I like to tell others how I feel”). -->
 
 <!-- Mood and Anxiety -->
 #### Mood and Anxiety Related
-Mood-related measures included the Beck Depression Inventory-II [BDI-II, @beck1996beck], the Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra], the Patient Health Questionnaire-9 [PHQ-9, @kroenke2001phq], the Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq], the Short Mood and Feelings Questionnaire [SMFQ, @angold1995development], the State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual], and the Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief]. We also included the PHQ-2 [@kroenke2003patient] and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety], which were combined with the PHQ-4 scores, and scores from the shorter version of the STAIT-5 [@zsido2020development], which were combined with the STAI-T. Mood measures were included given the well-established association between interoceptive deficits and mental health conditions [@khalsa2018].
+Scores from depression and anxiety-related measures were included due to their established associations with interoceptive processing [@khalsa2018]; namely  the Beck Depression Inventory-II [BDI-II, @beck1996beck], the Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra], the Patient Health Questionnaire-9 [PHQ-9, @kroenke2001phq], the Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq], the Short Mood and Feelings Questionnaire [MFQ, @angold1995development], the State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual; and STAIT-T, @zsido2020development], and the Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief], and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety] - obtained from the PHQ-4.
 
 <!-- 
 The Beck Depression Inventory-II [BDI-II, @beck1996beck] is a 21-item measure of depressive symptom severity, including psychological (e.g., guilt) and physiological (e.g., loss of energy) components. Items are rated on a 4-point scale (e.g., “I feel sad much of the time”).
@@ -437,14 +457,14 @@ The Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq] assesses somatic s
 
 The Short Mood and Feelings Questionnaire [SMFQ, @angold1995development] is a 13-item measure of recent depressive symptoms in children aged 6–17, rated on a 3-point scale (e.g., “I felt miserable or unhappy”).
 
-The State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual] is a 20-item trait anxiety questionnaire rated on a 4-point Likert scale (e.g., “I worry too much about something that really doesn’t matter”). Scores from the shorter version of the STAIT-5 [@zsido2020development] were combined with the STAI-T.
+The State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual] is a 20-item trait anxiety questionnaire rated on a 4-point Likert scale (e.g., “I worry too much about something that really doesn't matter”). Scores from the shorter version of the STAIT-5 [@zsido2020development] were combined with the STAI-T.
 
 The Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief] is a 7-item measure of generalized anxiety symptoms rated on a 4-point Likert scale (e.g., “Not being able to stop or control worrying”). -->
 
 <!-- Psychopathology -->
 
 #### Psychopathology
-Personality pathology-related measures included the Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality], the Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson2016schizotypal], the McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini], and the Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction]. Similarily, these measures were included due to established associations between various psychopathologies and interoceptive disruptions [@leao2025interoception].
+Dimensional psychopathology-related scores were included from the Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality], the Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson2016schizotypal], the McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini], and the Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction].
 
 <!-- The Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality] consists of 25 items rated on a 4-point Likert scale, measuring five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism (e.g., “Plenty of people are out to get me”).
 
@@ -452,11 +472,11 @@ The Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson20
 
 The McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini] is a 10-item dichotomous screening measure for borderline personality disorder (present/absent; e.g., “Have any of your closest relationships been troubled by a lot of arguments or repeated breakups?”).
 
-The Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction] is a 28-item measure of five autistic traits: social skills, adherence to routines, cognitive flexibility, imagination, and patterns/numbers. Items are rated on a 4-point Likert scale (e.g., “I find it difficult to work out people’s intentions”). -->
+The Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction] is a 28-item measure of five autistic traits: social skills, adherence to routines, cognitive flexibility, imagination, and patterns/numbers. Items are rated on a 4-point Likert scale (e.g., “I find it difficult to work out people's intentions”). -->
 
 <!-- Personality -->
 #### Personality
-Personality-related measures included the NEO Five-Factor Inventory, Neuroticism subscale [NEO-FFI, @costa1992personality], the Mini International Personality Item Pool [MINI-IPIP6, @sibley2011mini], and the Big Five Inventory Short Form [BFI-S, @rammstedt2007measuring]. Although associations between personality and interoception have been less frequently explored than those involving mood or psychopathology, previous research has identified links between neuroticism and extroversion and interoceptive sensibility using the MAIA and BPQ measures. This study therefore included extended personality measures to clarify the broader relationships between interoception and personality traits beyond neuroticism and extraversion [@pearson2022two].
+Personality-related measures included the NEO Five-Factor Inventory, Neuroticism subscale [NEO-FFI, @costa1992personality], the Mini International Personality Item Pool [MINI-IPIP6, @sibley2011mini], and the Big Five Inventory Short Form [BFI-S, @rammstedt2007measuring].
 
 <!-- The NEO Five-Factor Inventory, neuroticism subscale [NEO-FFI, @costa1992personality] is a 12-item measure of neuroticism, assessing the general tendency to experience negative emotions such as fear, sadness, or disgust. Items are rated on a 5-point Likert scale (e.g., “I often feel inferior to others”).
 
@@ -476,16 +496,33 @@ The Lie Scale [LIE, @makowski2023structure] is a 16-item measure of lying tenden
 
 ### Data Analysis
 
+```{r}
+#| warning: false
+#| label: fig-correlations
+#| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
+#| out-width: "100%"
+#| fig-cap: "Meta-analytic associations (95% CI of standardized coefficients) between the IAS (total score and seven item pairs) and dispositional measures across 16 open-access datasets. Positive associations are shown in red, negative associations in blue. Non-significant associations (CI crossing zero) are transparent. The results show [TODO.]"
+
+knitr::include_graphics("../../analysis/figures/Figure3.png")
+```
+
 <!-- Preprocessing and standardization -->
-All variables from the 16 open-access datasets will be extracted and standardized (z-scored). For continuous predictors, we will first ensure consistent ranges across datasets; when necessary, ranges will be rescaled to achieve comparability. In cases where scales of different lengths measure the same construct, scores will be harmonized: when possible, means will be computed from overlapping items, while in other cases total scores will be normalized by the number of items. We will collapse redundant subscales (e.g., PHQ-2 and GAD-2 within PHQ-4) into unified composite scores. Similarly, short forms of trait anxiety (e.g., STAI-5-trait) will be collapsed with their longer counterpart (STAI-T), with scores computed as the mean to ensure comparable ranges. Shorter formats of the PI (PI-18) will be combined with scores of its longer version (PI-99). Missing data will be handled via listwise deletion on a per-model basis prior to fitting.
+All variables from the 16 open-access datasets will be extracted and standardized (z-scored). Scores were harmonized and combined were meaningful (e.g., scores from the short 18-item form of the PI and scores from its longer 99-item version). Missing data was excluded on a per-model basis, to maximize statistical power. 
 
 <!-- Multilevel modelling approach -->
-Associations will be estimated using multilevel regression models implemented in the glmmTMB package [@glmTMB]. Each predictor will be entered separately, with the seven IAS item pairs identified in Study 1 (Hungry–Thirsty, Muscles–Pain, Wind–Burp, Urinate–Defecate, Breathing–Heart, Bruise–Blood, Cough–Sneeze) and the original IAS scale serving as outcomes. Models will include random intercepts and slopes by sample to account for between-study heterogeneity; when models fail to converge, a reduced structure with random intercepts only will be used. This approach will treat datasets as clusters, thereby providing pooled estimates of the associations while accounting for both within- and between-sample variability, akin to a meta-analytic framework.
+The approach chosen to approach the estimation of the multiple associations, while takin into account study heterogeneity and propagate its variable uncertainty was to treat datasets as clusters (random groups), and compute pooled estimates of the associations that account for both within- and between-sample variability, akin to a meta-analytic framework.
+Specifically, associations were estimated using mixed models implemented in the *glmmTMB* package [@glmTMB], and postprocess with the *easystats* R ecosystem [@ben2020effectsize; @ludecke2020extracting; @makowski2025modelbased]. Each predictor was entered separately (note that the focus is the effect size and confidence interval, and not the *p*-value, thus preventing concerns of multiple hypothesis testing), with the seven IAS item pairs identified in Study 1 (Hungry–Thirsty, Muscles–Pain, Wind–Burp, Urinate–Defecate, Breathing–Heart, Bruise–Blood, Cough–Sneeze) and the original IAS "total" score serving as outcomes. Models included the dataset as random intercept and the predictor as a random slope. 
+<!-- When models failed to converge, a reduced structure with random intercepts only will be used.  -->
+
 
 <!-- Extraction of parameters -->
-From each fitted model, we will extract standardized regression coefficients (β), 95% confidence intervals, p-values, convergence status, and effective sample size. Participants identifying as “Other” will be excluded from analyses due to limited representation.
+From each fitted model, we will extract standardized regression coefficients (intepretable as a correlation index), and 95% confidence intervals (details on *p*-values, convergence status, and effective sample size are included in the Supplementary Materials), and the results are reported in @fig-correlations. We report the mean coefficient in the text when consistent across measures.
+<!-- Note that for Participants identifying as “Other” will be excluded from analyses due to limited representation. -->
 
 ## Results
+
+
+
 
 <!-- Demographic correlates -->
 
@@ -495,45 +532,46 @@ Age showed consistent positive standardized associations across IAS correlates (
 
 MAIA subscales showed robust positive standardized effects with the IAS. Noticing yielded the strongest association (mean β = .26), followed by Attention Regulation (mean β = .25) and related subscales - Body Listening, Trusting, Emotional Awareness and Self-Regulation, each in the .19–.24 range, all significant. Effects were generally strongest for the full IAS, except for Body Listening, which peaked for the Bruise–Blood pairing. Not Distracting was weakly and significantly only for the full IAS, Hungry-Thirsty, Bruise-Blood sugar and the Muscles-Pain pairings (β ≈ −.02 to .06). Not Worrying was significant only for the full IAS and the Hungry–Thirsty and Urinate–Defecate pairings (β ≈ −.01 to .04).
 
-Autonomic Reactivity (BPQ; mean β = −.19) was reliably negative across pairings, reaching significance for all except the Bruise–Blood sugar and Breathing–Heart pairings. In contrast, Body Awareness (BPQ; mean β ≈ .15; range = .10 to .22) was positive and significant across most pairings with the exception of Wind-Burp and Urinate-Defecate.
+The BPQ's Autonomic Reactivity subscale was reliably negative across pairings (mean β = −.19), reaching significance for all except the Bruise–Blood sugar and Breathing–Heart pairings. In contrast, Body Awareness was positive and significant across most pairings  (mean β = .15; range = .10 to .22) with the exception of Wind-Burp and Urinate-Defecate.
 
-Interoceptive deficits showed consistent negative standardized effects. Alexithymia measures (TAS, BVAQ) were robustly negative (β ≈ −.13 to −.2), except for the BVAQ Affective subscale, which was positive for Bruise–Blood (β = .16). Interoceptive confusion (ICQ) was also negative across all IAS measures (mean β ≈ −.32; range = −.49 to −.20).
+Interoceptive deficits showed consistent negative associations: Alexithymia measures (TAS, BVAQ) were robustly negative (β ≈ −.13 to −.2), except for the BVAQ Affective subscale, which was positive for Bruise–Blood (β = .16). Interoceptive confusion (ICQ) was also negative across all IAS measures (mean β = −.32; range = −.49 to −.20).
 
 <!-- Mood-->
 
-Depression (BDI; mean β = −.20) and anxiety (STAI-T; mean β = −.20) showed consistent negative associations across the IAS and its pairings, with the strongest effects observed for the Hungry–Thirsty dimension. Related constructs showed some divergence: the MFQ was largely nonsignificant except for a notable effect in the Breathing–Heart pairing, while somatic concerns (PHQ-15) were unrelated to the total scale but showed weak negative associations with the Hungry–Thirsty, Bruise–Blood sugar, and Urinate–Defecate pairings (β ≈ −.22 to −.05). Other mood indices (PHQ-9, PHQ-4, GAD-7) produced generally weaker but often reliable negative coefficients (typically −.10 to −.15), though effects sometimes appeared only for specific pairings (e.g., PHQ-4 nonsignificant for Wind–Burp and Breathing–Heart). Across measures, the Hungry–Thirsty pairing consistently yielded the strongest standardized effects.
+Depression (mean β = −.20) and anxiety (mean β = −.20) showed consistent negative associations across the IAS and its pairings, with the strongest effects observed for the Hungry–Thirsty dimension. However, different measures showed some divergence: the MFQ was largely nonsignificant except for a notable effect in the Breathing–Heart pairing, while somatic concerns (PHQ-15) were unrelated to the total scale but showed weak negative associations with the Hungry–Thirsty, Bruise–Blood sugar, and Urinate–Defecate pairings (from −.22 to −.05). Other mood indices (PHQ-9, PHQ-4, GAD-7) produced generally weaker but often reliable negative coefficients (typically −.10 to −.15), though effects sometimes appeared only for specific pairings (e.g., PHQ-4 nonsignificant for Wind–Burp and Breathing–Heart). Across measures, the Hungry–Thirsty pairing consistently yielded the strongest standardized effects.
 
 <!-- Psychopathologies -->
 
-Autistic traits (ASQ) were generally negatively associated with IAS scores. Among ASQ subscales, Imagination (mean β = −.18) exhibited the most consistent pattern of negative associations across pairings, with the exception of Cough–Sneeze. The strongest full-scale effects were driven by the Hungry–Thirsty, Bruise–Blood sugar, and Muscles–Pain pairings, which yielded the largest negative coefficients. In contrast, associations weakened or became nonsignificant for other pairings.
+Autistic traits (ASQ) were generally negatively associated with IAS scores. Among ASQ subscales, Imagination (mean β = −.18) exhibited the most consistent pattern of negative associations across pairings, with the exception of Cough–Sneeze. The strongest full-scale effects were driven by the Hungry–Thirsty, Bruise–Blood sugar, and Muscles–Pain pairings, which yielded the largest negative coefficients.
 
-A comparable trend was observed for maladaptive personality traits. Detachment, Psychoticism, and Negative Affect demonstrated the most reliable, albeit weak, negative associations with overall IAS scores (mean β range = −.08 to −.10), again primarily driven by the Hungry–Thirsty, Bruise–Blood sugar, and Muscles–Pain pairings. Other maladaptive traits were unrelated to IAS scores. Notably, Antagonism was the only trait to show a significant positive association, limited to the Bruise–Blood sugar pairing (β = .14), whereas Borderline Personality was uniquely associated with Hungry–Thirsty (mean β = −.14).
+A comparable trend was observed for maladaptive personality traits. Detachment, Psychoticism, and Negative Affect demonstrated the most reliable, albeit weak, negative associations with the IAS scores (from −.08 to −.10), again primarily driven by the Hungry–Thirsty, Bruise–Blood sugar, and Muscles–Pain pairings. Other maladaptive traits were unrelated to IAS scores. Notably, Antagonism was the only trait to show a significant positive association, limited to the Bruise–Blood sugar pairing (β = .14), whereas Borderline Personality was uniquely associated with Hungry–Thirsty (mean β = −.14).
 
-Schizotypal traits showed a similarly negative pattern of associations. Social Anxiety (mean β = −.11) and No Close Friends (mean β = −.12) displayed the most consistent effects. Although some facets were unrelated to the overall IAS score, they were associated with specific pairings: Unusual Perceptions with Muscles–Pain and Urinate–Defecate, and Eccentric with Hungry–Thirsty and Urinate–Defecate.
+Schizotypal traits showed a similarly negative pattern of associations. Social Anxiety (mean β = −.11) and No Close Friends (mean β = −.12) displayed the most consistent effects. Although some facets were unrelated to the total IAS score, they were associated with specific pairings: Unusual Perceptions with Muscles–Pain and Urinate–Defecate, and Eccentric with Hungry–Thirsty and Urinate–Defecate.
 
 <!-- Personality and beliefs -->
 
-Among the Big Five traits, Openness (mean β = .10), Agreeableness (mean β = .08), and Conscientiousness (mean β = .11) exhibited small yet consistent positive effects, most evident for the full IAS. Extraversion showed a weak but positive association, driven primarily by its stronger relation to the Bruise–Blood pairing (β = .17). In contrast, Honesty–Humility (mean β = −.10) demonstrated a small negative effect, most evident for the Hungry–Thirsty and Bruise–Blood sugar pairings. Finally, Neuroticism (mean β = −.23) was negatively associated with the IAS, with the strongest effect observed for the Hungry–Thirsty pairing (β = −.22).
+<!-- TO INCLUDE? Although associations between personality and interoception have been less frequently explored than those involving mood or psychopathology, previous research has identified links between neuroticism and extroversion and interoceptive sensibility using the MAIA and BPQ measures. This study therefore included extended personality measures to clarify the broader relationships between interoception and personality traits beyond neuroticism and extraversion [@pearson2022two]. -->
 
-Primal world beliefs were largely null, with small positive standardized coefficients for certain beliefs: “Understandable,” “Alive,” and “Hierarchical” were weakly positive for the full IAS and Hungry–Thirsty (β ≈ .08–.11), while “Good” was uniquely positive for Muscles–Pain (β ≈ .09). Within the Lying Profile, only Lying Contextuality showed a modest negative coefficient for Bruise–Blood (β = −.12).
+Among the Big Five traits, Openness (mean β = .10), Agreeableness (mean β = .08), and Conscientiousness (mean β = .11) exhibited small yet consistent positive effects, most evident for the total IAS score. Extraversion showed a weak but positive association, driven primarily by its stronger relation to the Bruise–Blood pairing (β = .17). In contrast, Honesty–Humility (mean β = −.10) demonstrated a small negative effect, most evident for the Hungry–Thirsty and Bruise–Blood sugar pairings. Finally, Neuroticism (mean β = −.23) was negatively associated with the IAS, with the strongest effect observed for the Hungry–Thirsty pairing (β = −.22).
 
-Conspiracy Beliefs produced selective small positive effects. Global Conspiracies (GCBS) were associated with the full IAS and three pairings (mean β = .10), Personal Wellbeing with the full scale and the Hungry-Thirsty (mean β = .09), and Information Control (β = .06) with Cough–Sneeze.
+Primal world beliefs were largely null, with small positive associations for appraising the world as being "Understandable", "Alive", and "Hierarchical", with Hungry–Thirsty (β = .09). Appraising the world as "Good" was uniquely positively related with Muscles–Pain (β = .09). Within the Lying Profile, only Lying Contextuality showed a modest negative coefficient for Bruise–Blood (β = −.12). Global Conspiracies (GCBS) beliefs were associated with the total IAS and three pairings (mean β = .10).
+<!-- Personal Wellbeing with the full scale and the Hungry-Thirsty (mean β = .09), and Information Control (β = .06) with Cough–Sneeze. -->
 
 <!-- Differences between the full IAS and item pairings -->
 
-Overall, the full IAS produced the greatest number of significant standardized effects (28), though many were driven by specific pairings rather than uniform scale-wide associations. Hungry–Thirsty (17) and Bruise–Blood sugar (10) consistently yielded the strongest standardized coefficients, especially for interoceptive, mood, and psychopathology measures. Other pairings (Cough–Sneeze, Wind–Burp, Urinate–Defecate) contributed little unique variance and rarely yielded meaningful standardized effects. 
+Overall, the original IAS total score produced the greatest number of significant standardized effects (28), though many were driven by specific pairings rather than uniform scale-wide associations. Hungry–Thirsty (17) and Bruise–Blood sugar (10) consistently yielded the strongest standardized coefficients, especially for interoceptio,, mood, and psychopathology measures. Other pairings (Cough–Sneeze, Wind–Burp, Urinate–Defecate) contributed little unique variance and rarely yielded meaningful standardized effects. 
 
 
 ## Discussion
 
 <!-- Aim and conceptual focus -->
 
-Study 2 examined the dispositional correlates of the IAS and whether the refined 14-item version offers practical advantages over the original 21-item scale. The findings clarify the conceptual boundaries of self-reported interoceptive accuracy and underscore the domain-specific nature of these standardized associations.
+Study 2 examined the dispositional correlates of the IAS and whether the refined 14-item version with subdimensions offers practical advantages over the original 21-item scale, using a meta-analytical approach leveraging large statistical power. The findings clarify the conceptual boundaries of self-reported interoceptive accuracy and underscore the domain-specific nature of these standardized associations.
 
 <!-- Interoception and correlates - item specific -->
 The IAS showed positive associations with most MAIA facets, except for the Not-Distracting and Not-Worrying subscales, replicating prior findings [@brand2023; @todd2022]. Associations with the BPQ Body Awareness subscale were consistent with previous reports on positive association between these measures [@brand2023; @koike2023; @gaggero2021], whereas indices of autonomic reactivity were more strongly and negatively associated with IAS scores, supporting earlier observations that reactivity may reflect aspects of bodily signal processing captured by self-reported interoceptive accuracy [@todd2022]. In contrast, measures of interoceptive difficulties, including alexithymia and interoceptive confusion, were negatively associated with IAS scores, consistent with prior research [@brand2023; @koike2023; @lin2023; @murphy2019]. 
 
-Although associations between the IAS and the BPQ subscales replicated prior work, interpretation remains uncertain due to conceptual ambiguity in the BPQ–Body Awareness subscale. Prior studies have reported non-existent [e.g., @murphy2019], negative, and even quadratic relationships (e.g., @campos2021; @lin2023), and some authors have suggested that these mixed findings stem from divergent interpretations of the items—specifically, whether they capture attentional focus on bodily sensations or perceived accuracy in detecting them (e.g., @gabriele2022Dissociations; @campos2021). Thus, although we observed a positive association between the BPQ–Body Awareness and the IAS, this result should be interpreted with caution, and future studies should assess participants’ understanding of BPQ items to clarify the nature of this relationship.
+Although associations between the IAS and the BPQ subscales replicated prior work, interpretation remains uncertain due to conceptual ambiguity in the BPQ–Body Awareness subscale. Prior studies have reported non-existent [e.g., @murphy2019], negative, and even quadratic relationships [e.g., @campos2021; @lin2023], and some authors have suggested that these mixed findings stem from divergent interpretations of the items—specifically, whether they capture attentional focus on bodily sensations or perceived accuracy in detecting them [e.g., @gabriele2022dissociations; @campos2021]. Thus, although we observed a positive association between the BPQ–Body Awareness and the IAS, this result should be interpreted with caution, and future studies should assess participants' understanding of BPQ items to clarify the nature of this relationship.
 
 Across mood, most item pairings displayed small-to-moderate standardized coefficients, indicating shared variance between interoceptive self-reports and affective tendencies, aligning with previous findings [@murphy2019; @koike2023]. In contrast, associations with psychopathology were more selective: negative associations were primarily observed for visceral pairings such as Hungry–Thirsty and Bruise–Blood sugar, whereas other domains yielded weaker or nonsignificant effects. This pattern suggests that self-reported interoceptive accuracy is more strongly associated with affective and clinical traits for visceral sensations than for somatic or respiratory reflexes.
 
@@ -544,60 +582,59 @@ Associations with personality traits followed a similar domain-specific structur
 Associations with belief systems were uniformly small. Weak positive associations emerged between the IAS and certain primal world beliefs (e.g., perceiving the world as comprehensible or alive) and selected conspiracy belief dimensions, particularly Global Conspiracies and Personal Wellbeing. These effects were limited to specific pairings, most often Hungry–Thirsty and Bruise–Blood sugar, indicating that links between interoceptive self-report and broader cognitive or worldview constructs are modest and domain-specific.
 
 <!-- Short IAS benefits and summary-->
-The 14-item IAS performed similarly to the original 21-item version, showing comparable patterns of association with mood, psychopathology, and interoceptive measures. Overall, standardized effects between the IAS and external constructs were not uniform but varied across bodily domains. Visceral item pairs, particularly Hungry–Thirsty and Bruise–Blood sugar, showed the strongest and most consistent relationships with interoceptive, affective, and personality measures, whereas other pairs contributed little unique information, particularily in measures of psychopathologies and beliefs. These findings suggest that the shorter scale captures domain-specific patterns that were not evident in the full scale, offering a more efficient and nuanced measure of self-reported interoceptive accuracy, though further validation in independent samples is needed.
+In summary, the 14-item IAS performed similarly to the original 21-item version, showing comparable patterns of association with mood, psychopathology, and interoceptive measures. Although associations between the IAS and external constructs were typically captured by the original score, they were often not uniform across bodily domains and driven by specific item pairs. In particular, the Hungry–Thirsty and Bruise–Blood sugar items pairs showed the strongest and most consistent relationships with interoceptive, affective, and personality measures, whereas other pairs contributed little unique information, particularily in measures of psychopathologies and beliefs.
+The homeostatic salience and universality of the former pair, and the contextual relevance and visual/psychological promiennce of the latter, might contribute to their stronger associations with dispositional traits. Overall, these findings suggest that the shorter scale captures domain-specific patterns, offering a more efficient, nuanced, and interpretation-precise measure of self-reported interoceptive accuracy.
 
 # General Discussion
 
 <!-- Aims -->
-The present mega-analysis provides a comprehensive evaluation of the IAS, examining both its structure (study 1) and its dispositional correlates (study 2). These studies offer novel insights into the conceptual interpretation, and practical applications of the IAS. In this discussion, these findings are contextualized within the broader landscape of interoception research.
+The present study leveraged a number of existing datasets to provide a comprehensive evaluation of the IAS, examining both its structure (study 1) and its dispositional correlates (study 2). These studies offer novel insights into the conceptual interpretation, and practical applications of the IAS. In this discussion, these findings are contextualized within the broader landscape of interoception research.
 
 <!-- Structural insights from Study 1 -->
 
-Study 1 re-analysed the IAS using complementary psychometric and network-based approaches. Across analyses, seven stable item pairings emerged (Hungry–Thirsty, Urinate–Defecate, Muscles–Pain, Breathing–Heart, Cough–Sneeze, Wind–Burp, and Bruise–Blood sugar), yielding a refined 14-item structure with superior fit and cross-dataset stability compared to previously proposed unidimensional or bifactor models. These results challenge interpretations of the IAS as a single latent construct [e.g., @brand2023; @murphy2019] and instead indicate that it captures multiple, interrelated but domain-specific clusters of bodily sensations.
+Study 1 re-analysed the IAS using complementary psychometric and network-based approaches. Across samples, seven stable item pairings emerged (Hungry–Thirsty, Urinate–Defecate, Muscles–Pain, Breathing–Heart, Cough–Sneeze, Wind–Burp, and Bruise–Blood sugar), yielding a refined 14-item structure with superior fit and cross-dataset stability compared to previously proposed unidimensional or bifactor models. These results challenge interpretations of the IAS as a single latent construct [e.g., @brand2023; @murphy2019] and instead suggest that it is best described as capturing multiple, interrelated but domain-specific clusters of bodily sensations.
 
-Unlike @lin2023, whose 12-item solution supported unidimensionality, the present findings suggest that local dependencies between items reflect meaningful theoretical coupling among functionally related sensations (e.g., Heart–Breathing). Such clustering likely mirrors the way bodily signals co-occur physiologically or phenomenologically (e.., hunger with thirst, coughing with sneezing) and are therefore perceived and evaluated together. Perceived accuracy in one bodily system may generalize to conceptually or functionally linked sensations, yielding a clustered rather than continuous organization of interoceptive beliefs. 
+Unlike @lin2023, whose 12-item solution supported unidimensionality, the present findings suggest that local dependencies between items reflect meaningful theoretical coupling among functionally related sensations (e.g., Heart–Breathing). Such clustering likely mirrors the way bodily signals co-occur physiologically or phenomenologically (e.g., hunger with thirst, coughing with sneezing) and are therefore perceived and evaluated together. Perceived accuracy in one bodily system may generalize to conceptually or functionally linked sensations, yielding a clustered rather than continuous organization of interoceptive beliefs. 
 
 Consistent with this interpretation, self-reported interoceptive awareness across related bodily axes (e.g., cardiac and respiratory) tends to show positive associations [@garfinkel2016interoceptive], whereas objective measures of interoceptive accuracy across modalities typically show weak or absent correlations [@bruni2023interoception; @ferentzi2018interoceptive]. This dissociation indicates that actual interoceptive abilities are largely domain-specific, while subjective interoceptive beliefs generalize across functionally related systems. Accordingly, the present clustering likely reflects the conceptual organization of interoceptive beliefs, structured by perceived bodily interdependence, rather than a single general interoceptive capacity.
 
 <!-- Dispositional correlates and domain specificity (Study 2) -->
 
 <!-- Interoception and interoception-related -->
-Study 2 extended these findings by examining the IAS’s associations with interoceptive, affective, personality, and belief-related traits. Consistent with prior work, the IAS correlated positively with adaptive aspects of interoceptive sensibility (e.g., MAIA subscales reflecting noticing, attention regulation, and body trust) and negatively with interoceptive difficulties, namely alexithymia and interoceptive confusion [e.g., @brand2023; @garfinkel2015knowing; @gaggero2021].
+Study 2 extended these findings by examining the IAS's associations with interoceptive, affective, personality, and belief-related traits. Consistent with prior work, the IAS correlated positively with adaptive aspects of interoceptive sensibility (e.g., MAIA subscales reflecting noticing, attention regulation, and body trust) and negatively with interoceptive difficulties, namely alexithymia and interoceptive confusion [e.g., @brand2023; @garfinkel2015knowing; @gaggero2021].
 
 <!-- Mood and psychopathological disorders domain specific -->
-Across dispositional constructs, individuals reporting higher symptoms of depression and anxiety tended to perceive themselves as less accurate in detecting bodily signals, in line with previous findings [e.g., @brand2023; @khalsa2018; @nord2022interoceptive]. Crucially, these associations were not uniform across bodily domains: the strongest, and most robust, effects involved visceral sensations (e.g., hunger, thirst), whereas cardiorespiratory and expulsion domains showed weaker or inconsistent relationships. This domain specificity suggests that beliefs about one’s visceral accuracy may be more psychologically and clinically relevant than beliefs about reflexive or surface sensations.
+Across dispositional constructs, individuals reporting higher symptoms of depression and anxiety tended to perceive themselves as less accurate in detecting bodily signals, in line with previous findings [e.g., @brand2023; @khalsa2018; @nord2022interoceptive]. Crucially, these associations were not uniform across bodily domains: the strongest, and most robust, effects involved drive-states (e.g., hunger, thirst), whereas regulatory systems, such as cardiorespiratory and expulsion domains showed weaker or inconsistent relationships. This domain specificity suggests that beliefs about one's gastrointestinal accuracy may be more psychologically and clinically relevant than beliefs about reflexive or surface sensations, and/or that the experience of these sensations is more salient and thus easier to accurately appraise, leading to meaningful variation across individuals.
 
 This pattern may help clarify inconsistencies in the literature linking interoception and emotion. Reviews and meta-analyses report that performance-based measures of interoceptive accuracy, usually cardioception, often show weak or absent correlations with depression and anxiety [@jenkinson2024interoception; @banellis2025interoceptive; @adams2022association]. In contrast, self-reported interoceptive measures, which contain items relevant to multiple bodily domains, typically show stronger, often negative, associations with internalizing traits [e.g., @brand2022; @lin2023; @clemente2024relationship]. 
 
-These discrepancies likely reflect both conceptual distinctions between perceptual accuracy and metacognitive self-belief [@khalsa2018; @garfinkel2015knowing; @suksasilp2022towards] and variation in the bodily domains assessed. The present results extend this framework by demonstrating that associations between interoceptive self-beliefs and affective traits are concentrated in psychologically salient visceral domains. Thus, the field’s heavy reliance on cardioceptive tasks may have obscured more meaningful relationships in other interoceptive modalities.
+These discrepancies likely reflect both conceptual distinctions between perceptual accuracy and metacognitive self-belief [@khalsa2018; @garfinkel2015knowing; @suksasilp2022towards] and variation in the bodily domains assessed. The present results extend this framework by demonstrating that associations between interoceptive self-beliefs and affective traits are concentrated in psychologically salient visceral domains. Thus, the field's heavy reliance on cardioceptive tasks may have obscured more meaningful relationships in other interoceptive modalities.
 
 <!-- Psychopathology -->
 Beyond mood, similar though weaker patterns emerged for autistic traits, schizotypy, and maladaptive personality dimensions. These traits tended to correlate negatively with self-perceived interoceptive accuracy, particularly within visceral and musculoskeletal domains, while showing little or no association in other areas. This selective pattern suggests that diminished beliefs in bodily perception may contribute to specific social–emotional and personality features, rather than reflecting a general interoceptive deficit. 
 
 These results align with previous evidence showing that interoceptive self-beliefs are meaningfully related to emotional awareness, social connectedness, and psychopathology [@torregrossa2022interoceptive; @williams2023characterizing; @brand2022]. The present findings extend this literature by showing that these associations are domain-specific rather than global across bodily systems.
 
-Taken together, these findings suggest that self-perceived interoceptive accuracy is a differentiated construct, varying systematically across bodily systems. Beliefs about visceral sensations, in particular, show the most consistent associations with affective and dispositional features. Although modest in magnitude, these effects underscore the value of considering domain-specificity when linking interoceptive beliefs to emotion and mental health.
+Taken together, these findings suggest that self-perceived interoceptive accuracy is a differentiated construct, varying systematically across bodily systems. Beliefs about gastrointestinal sensations, in particular, show the most consistent associations with affective and dispositional features. Although modest in magnitude, these effects underscore the value of considering domain-specificity when linking interoceptive beliefs to emotion and mental health.
 
 <!-- Methodological and applied considerations -->
-Methodologically, combining traditional psychometrics with network-based approaches proved valuable. EGA complemented, and often surpassed, factor analysis by identifying meaningful inter-item dependencies, producing a more interpretable and stable structure. The refined 14-item IAS balances parsimony and predictive validity, illustrating how network-informed scale refinement, beyond scale development [@golino2017exploratory], can enhance construct clarity.
+Methodologically, combining traditional psychometrics with network-based approaches proved valuable. EGA complemented, and often surpassed, factor analysis by identifying meaningful inter-item dependencies, producing a more interpretable and stable structure. The refined 14-item IAS balances parsimony and predictive validity, illustrating how network-informed scale refinement [@golino2017exploratory] can enhance construct clarity.
 
 The IAS nonetheless remains limited in scope. Pairing items improved interpretability and outperformed an overall score of self-reported interoceptive accuracy in associations with affective and dispositional traits, but dimensions with only two items (one per bodily domain) remain suboptimal, particularly for constructs that are broad or conceptually ambiguous [@allen2022single], such as beliefs about interoceptive accuracy across multiple bodily systems.
 
-Because perceived accuracy in one system can generalize to conceptually or functionally related sensations, two-item clusters may overemphasize these links and fail to capture variability across unrelated domains, while overall scores risk obscuring meaningful relationships.This limitation is especially important given that researchers may assume interoceptive abilities generalize across bodily domains, when in fact they do not. Building on @desmedt2022measures’ observation of a “jingle fallacy” in using self-reported interoceptive measures, the present findings extend this caution by highlighting that assuming beliefs replicate across domains constitutes a similar jingle fallacy. 
+Because perceived accuracy in one system can generalize to conceptually or functionally related sensations, two-item clusters may overemphasize these links and fail to capture variability across unrelated domains, while overall scores risk obscuring meaningful relationships.This limitation is especially important given that researchers may assume interoceptive abilities generalize across bodily domains, when in fact they do not. Building on @desmedt2022measures' observation of a "jingle fallacy" in using self-reported interoceptive measures, the present findings extend this caution by highlighting that assuming beliefs replicate across domains constitutes a similar caveat.
 
-Additionally, items lack contextual specification (e.g., physiological vs. affective triggers). For instance, a racing heart could signal anxiety or exercise; without context, it is unclear which state participants referenced from. Such ambiguities may constrain ecological validity and contribute to variability across studies [@vlemincx2023novel]. Expanding item content and adopting context-specific phrasing will be important for future measurement development to more comprehensively capture interoceptive beliefs.
+Additionally, the IAS items lack contextual specification (e.g., physiological vs. affective triggers). For instance, a racing heart could signal anxiety or exercise; without context, it is unclear which state participants referenced from. Such ambiguities may constrain ecological validity and contribute to variability across studies [@vlemincx2023novel]. Expanding item content and adopting context-specific phrasing will be important for future measurement development to more comprehensively capture interoceptive beliefs.
 
 Clinically, the domain-specific structure of the IAS highlights that interoceptive disruptions in affective and psychopathological conditions may center primarily on beliefs about visceral sensations rather than global interoceptive deficits. This perspective suggests new routes for targeted assessment and intervention focusing on specific bodily domains.
 
 <!-- Limitations and future directions -->
 Nonetheless, the current work is not without its limiations. This study focused exclusively on the IAS and did not evaluate the structure or subjective correlates of other commonly used interoception questionnaires, such as the BPQ or MAIA. Because the IAS uniquely targets interoceptive self-reported accuracy our focus was on its structure and correlates rather than introducing established measures with documented shortcomings [@ferentzi2021examining; @rogowska2023validation; @campos2021; @vig2023self].
 
-Another limitation is the lack of objective measures of interoceptive accuracy in this study. Incorporating cardiac, resporatory, and gastric performance-based measures would allow investigation of how beliefs about one’s interoceptive accuracy relate to actual performance. Such comparisons could clarify whether domain-specific self-reports reflect true perceptual sensitivity or primarily capture metacognitive and conceptual beliefs. Although prior research has shown weak or absent correlations between subjective and objective measures within the same domain [e.g., cardiac accuracy vs subjective accuracy, @brand2023; @petzke2024somatic; @arslanova2022], examining additional modalities, such as gastric perception, could reveal whether these patterns generalize across other interoceptive systems.
+Another limitation is the lack of objective measures of interoceptive accuracy in this study. Incorporating cardiac, resporatory, and gastric performance-based measures would allow investigation of how beliefs about one's interoceptive accuracy relate to actual performance. Such comparisons could clarify whether domain-specific self-reports reflect true perceptual sensitivity or primarily capture metacognitive and conceptual beliefs. Although prior research has shown weak or absent correlations between subjective and objective measures within the same domain [e.g., cardiac accuracy vs subjective accuracy, @brand2023; @petzke2024somatic; @arslanova2022], examining additional modalities, such as gastric perception, could reveal whether these patterns generalize across other interoceptive systems.
 
 <!-- Conclusion -->
-
-
-
+In summary, the present study both underlines the IAS as a solid measure of self-reported interoception, yielding typical patterns of associations with external measures, and challenges its optimal structure and scoring approach, suggesting that a refined 14-item version with seven item pairs might prove more useful in capturing domain-specific interoceptive beliefs., avoiding further adding to the conceptual confusion of interoception research.
 
 
 # References
