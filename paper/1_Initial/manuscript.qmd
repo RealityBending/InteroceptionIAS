@@ -511,7 +511,7 @@ The Lie Scale [LIE, @makowski2023structure] is a 16-item measure of lying tenden
 #| label: fig-correlations
 #| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
 #| out-width: "100%"
-#| fig-cap: "Meta-analytic associations (95% CI of standardized coefficients) between the IAS (total score and seven item pairs) and dispositional measures across 16 open-access datasets. Positive associations are shown in red, negative associations in blue. Non-significant associations (CI crossing zero) are transparent. 
+#| fig-cap: "Meta-analytic associations (95% CI of standardized coefficients) between the IAS (total score and seven item pairs) and dispositional measures across 16 open-access datasets. Positive associations are shown in red, negative associations in blue. Non-significant associations (CI crossing zero) are transparent. The IAS showed positive associations with most MAIA facets and BPQ-Body Awareness, negative associations with interoceptive deficit measures (TAS, ICQ), negative associations with the BPQ-Autonomic Reactivity, moderate negative associations with mood measures, and weaker, more selective associations with psychopathology and belief measures. Certain item pairings, particularly Hungry–Thirsty and Bruise–Blood sugar, drove the strongest effects, highlighting domain-specific patterns in self-perceived interoceptive accuracy."
 
 knitr::include_graphics("../../analysis/figures/Figure3.png")
 ```
