@@ -291,7 +291,7 @@ check_ranges <- function(var = "Neuroticism") {
 
 
 
-data <- pool_coef(with = "Gender", component = "Demographic", category = "General", name = "Gender (Female - Male)")
+data <- pool_coef(with = "Gender", component = "Demographic", category = "Demographic", name = "Gender (Female - Male)")
 ```
 
 ### Age
@@ -300,7 +300,7 @@ data <- pool_coef(with = "Gender", component = "Demographic", category = "Genera
 #| warning: false
 
 # check_ranges("Age")
-data <- rbind(data, pool_coef(with = "Age", component = "Demographic", category = "General", unequalrange=TRUE))
+data <- rbind(data, pool_coef(with = "Age", component = "Demographic", category = "Demographic", unequalrange=TRUE))
 ```
 
 
@@ -320,12 +320,12 @@ data <- rbind(data, pool_coef(with = "Age", component = "Demographic", category 
 
 data <- rbind(
   data,
-  pool_coef(with = "Neuroticism", component = "Personality", category = "General", name = "Neuroticism", unequalrange=TRUE),
-  pool_coef(with = "Agreeableness", component="Personality", category = "General", name = "Agreeableness",unequalrange=TRUE),
-  pool_coef(with = "Conscientiousness", component="Personality", category = "General", name = "Conscientiousness",unequalrange=TRUE), 
-  pool_coef(with = "Openness", component="Personality", category = "General", name = "Openness",unequalrange=TRUE),
-  pool_coef(with = "Extraversion", component="Personality", category = "General", name = "Extraversion", unequalrange=TRUE),
-  pool_coef(with = "HonestyHumility", component="Personality", category = "General", name = "Honesty-Humility", unequalrange=TRUE)
+  pool_coef(with = "Neuroticism", component = "Personality", category = "Personality", name = "Neuroticism", unequalrange=TRUE),
+  pool_coef(with = "Agreeableness", component="Personality", category = "Personality", name = "Agreeableness",unequalrange=TRUE),
+  pool_coef(with = "Conscientiousness", component="Personality", category = "Personality", name = "Conscientiousness",unequalrange=TRUE), 
+  pool_coef(with = "Openness", component="Personality", category = "Personality", name = "Openness",unequalrange=TRUE),
+  pool_coef(with = "Extraversion", component="Personality", category = "Personality", name = "Extraversion", unequalrange=TRUE),
+  pool_coef(with = "HonestyHumility", component="Personality", category = "Personality", name = "Honesty-Humility", unequalrange=TRUE)
 )
 ```
 
@@ -431,11 +431,11 @@ data <- rbind(
 # names(df9)
 # names(df14)
 
-check_ranges("PHQ15_Sum")
-check_ranges("PHQ9_Sum")
-check_ranges("BDI_Sum")
-check_ranges("PHQ4_Depression")
-check_ranges("DEP")
+# check_ranges("PHQ15_Sum")
+# check_ranges("PHQ9_Sum")
+# check_ranges("BDI_Sum")
+# check_ranges("PHQ4_Depression")
+# check_ranges("DEP")
 
 data <- rbind(
   data,
@@ -717,9 +717,15 @@ p <- data |>
          var_Interoception = str_replace(var_Interoception, "UrinateDefecate", "Urinate/Defecate"),
          var_Interoception = str_replace(var_Interoception, "WindBurp", "Wind/Burp"),
          var_Interoception = fct_relevel(var_Interoception, "Original", "Hungry/Thirsty", "Bruise/Blood sugar", "Muscles/Pain", "Cough/Sneeze", "Wind/Burp", "Breathing/Heart", "Urinate/Defecate"),
+         Category = recode(
+           Category,
+      "Demographic" = "Demographic" ,
+      "Psychopathology" = 
+      "Psychopathology and Neurodevelopmental Traits"
+    ),
          Category = fct_relevel(
-           Category, "General", "Interoception", "Mood", "Psychopathology", "Beliefs"),
-         Component = fct_relevel(Component, "Personality", "Demographic", "Interoception", "MAIA", "Anxiety", "Depression", "Schizotypic", "Autistic", "Maladaptive", "World Beliefs", "Conspiracy Beliefs", "Lying Profile")) |> 
+           Category, "Demographics", "Interoception", "Mood", "Psychopathology and Neurodevelopmental Traits", "Personality", "Beliefs"),
+         Component = fct_relevel(Component, "Demographic", "Interoception", "MAIA", "Anxiety", "Depression", "Schizotypic", "Autistic", "Maladaptive", "Personality", "World Beliefs", "Conspiracy Beliefs", "Lying Profile")) |> 
   group_by(Component) |> 
   mutate(var_Correlate = fct_reorder(var_Correlate, r, .fun=mean)) |>
   ungroup() |>
