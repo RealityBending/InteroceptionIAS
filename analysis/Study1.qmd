@@ -1842,7 +1842,7 @@ make_cfa <- function(data) {
   
   # Main models
   m_g <- '
-IAS =~ Burp + Wind + Cough + Sneeze + Hungry + Thirsty  + Urinate + Defecate + Heart + Breathing + Pain + Muscles 
+IAS =~ Burp + Wind + Cough + Sneeze + Hungry + Thirsty  + Urinate + Defecate + Heart + Breathing + Pain + Muscles + Bruise + Blood_Sugar
   '
   m_ega <- '
     CoughSneeze =~ Cough + Sneeze
