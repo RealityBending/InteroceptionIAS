@@ -719,9 +719,9 @@ p <- data |>
          var_Interoception = fct_relevel(var_Interoception, "Original", "Hungry/Thirsty", "Bruise/Blood sugar", "Muscles/Pain", "Cough/Sneeze", "Wind/Burp", "Breathing/Heart", "Urinate/Defecate"),
          Category = fct_recode(
            Category,
-      "Demo" = "Demographics"),
+      " " = "Demographics"),
          Category = fct_relevel(
-           Category, "Demo", "Interoception", "Mood", "Psychopathology and Neurodevelopmental Traits", "Personality", "Beliefs"),
+           Category, " ", "Interoception", "Mood", "Psychopathology and Neurodevelopmental Traits", "Personality", "Beliefs"),
          Component = fct_relevel(Component, "Demographic", "Interoception", "MAIA", "Anxiety", "Depression", "Schizotypic", "Autistic", "Maladaptive", "Personality", "World Beliefs", "Conspiracy Beliefs", "Lying Profile")) |> 
   group_by(Component) |> 
   mutate(var_Correlate = fct_reorder(var_Correlate, r, .fun=mean)) |>
