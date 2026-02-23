@@ -220,19 +220,13 @@ Given increasing interest in interoception across psychology and neuroscience, a
 
 # Study 1
 
-Study 1 will re-analyse and assess the factor structure of the IAS by taking advantage of the large number of open-access datasets [@brand2023; @campos2021; @lin2023; @murphy2019; @arslanova2022; @todd2022; @gaggero2021; @brand2022; @von2023; @poerio2024interoceptive; @petzke2024somatic].
-While combining these studies might provide a more robust and generalizable understanding of the IAS' factor structure, we also provide an individual analysis (i.e., applying the same method on all samples separately) to add nuance to the general picture, as all studies differ in their sample size, demographic characteristics, language, and procedure.
+Study 1 re-analyses and assesses the factor structure of the IAS by re-analyzing the raw data across 17 open-access datasets [@brand2023; @campos2021; @lin2023; @murphy2019; @arslanova2022; @todd2022; @gaggero2021; @brand2022; @von2023; @poerio2024interoceptive; @petzke2024somatic]. Combining these studies has the advantage of providing more robust and generalizable understanding of the IAS’ factor structure. However, given that studies differ in their sample size, demographic characteristics, language, and procedure, we also provide an individual study analysis (i.e., applying the same method on all samples separately) to add nuance to the general picture.
 
 ## Methods
 
 ### Datasets
 
-Our search focused on studies citing the original IAS validation paper [@murphy2019], identifying 136 papers (as of 01/05/2024).
-To qualify for inclusion, papers needed to (1) provide accessible data in open-access, (2) employ the IAS as a measure, and (3) report individual IAS items scores.
-We also included the data of five unpublished studies.
-A total of 17 datasets was included (see **Table 1**).
-
-The total number of participants was 33,526 participants (Mean = 47.96 $\pm$ 13.1, 71.3\% Female).
+Our search focused on studies citing the original IAS validation paper [@murphy2019] which identified 136 papers (as of 01/05/2024). To qualify for inclusion, papers needed to provide open-access to raw data and report individual IAS items scores.  A total of 17 datasets were used, including data from five unpublished studies (see **Table 1**). The total number of participants across these datasets was 33,526 participants (Mean = 47.96 $\pm$ 13.1, 71.3\% Female).
 
 <!-- Note: this table is generated during data analysis -->
 
@@ -244,7 +238,7 @@ The total number of participants was 33,526 participants (Mean = 47.96 $\pm$ 13.
 
 ```{r}
 #| label: tbl-table1
-#| tbl-cap: "Description of the samples used in the study."
+#| tbl-cap: "Description of the samples used in Study 1 mega-analysis."
 #| apa-note: "*Information taken from the sample description of relevant paper rather than recomputed."
 #| apa-twocolumn: true
 #| error: false 
@@ -268,31 +262,26 @@ table |>
 
 ### Data Analysis
 
-Psychometrically good items should exhibit various qualities, such as validity, reliability and discrimination, to which one of the contributing factors is the amount of inter-individual variability captured by an item. Items to which all participants' answers are concentrated around one option - i.e., exhibiting a narrow distribution - will be flagged as potentially problematic.
+Psychometrically good items should exhibit various qualities, such as validity, reliability and discrimination, to which one of the contributing factors is the amount of inter-individual variability captured by an item. IAS Items to which most participants’ answers are concentrated around one option - i.e., exhibiting a narrow distribution - were flagged as potentially problematic.
 
 <!-- UVA -->
-After examining the distributions and correlations of all IAS items, we will test for "redundant" items (e.g., due to multicollinearity or local dependency) using Unique Variable Analysis [UVA, @christensen2023unique], a novel method derived from network psychometric designed to identify and merge items that share substantial variance (which can distort the structure estimation).
-We will use a threshold of 0.30 that detects large to very large overlap to remain conservative and only suggest scale modifications if strongly justified.
+After examining the distributions and correlations of IAS items, we tested for “redundant” items (e.g., due to multicollinearity or local dependency) using Unique Variable Analysis [UVA, @christensen2023unique], a novel method derived from network psychometrics to identify and merge items that share substantial variance (which can distort the structure estimation). We used a conservative threshold of 0.30 that detects “large” to “very large” overlap between items and only suggest scale modifications if strongly justified.
 
-Following the analysis of items, we will analyze the factor structure of the IAS using three different approaches, each with particular trade-offs and assumptions, to provide a multi-verse picture of likely solutions. Namely, we will apply traditional exploratory and confirmatory Factor Analysis (EFA/CFA), hierarchical clustering (HCA), and Exploratory Graph Analysis (EGA), to the whole sample, as well as to each dataset separately (details being available in the analysis document at https://github.com/RealityBending/InteroceptionIAS), and our decisions and conclusions will try to take into account both levels of the analysis.
+Following the analysis of items, we analyzed the factor structure of the IAS using three different approaches, each with particular trade-offs and assumptions, to provide a multi-verse picture of likely solutions. Specifically, we applied traditional exploratory and confirmatory Factor Analysis (EFA/CFA), hierarchical clustering (HCA), and Exploratory Graph Analysis (EGA), to both the whole sample and each dataset separately (details being available in the analysis document at https://github.com/RealityBending/InteroceptionIAS). Decisions and conclusions consider both overall and dataset specific results. 
 
 <!-- EGA -->
-By combining network analysis with psychometric methods, the recently-developed EGA [@golino2017exploratory] framework allows to jointly estimate the number of dimensions (i.e., groups of items), the structure as well as its stability [@golino2017exploratory; @golino2020investigating].
-Evidence has underlined its suitability as an alternative to traditional factor analysis, addressing some of its limitations such as the assumption of a "latent" source of variability, possible biasing in the estimation of the optimal factor numbers depending on sample size, and the poor performance of other methods in complex population structures, while remaining comparable and interpretable [@christensen2021equivalency; @jimenez2023dimensionality].
-At a fundamental level, EGA conceptualizes variables as nodes in a network, with connections (edges) reflecting associations between them.
-Clustering these nodes reveals distinct communities of related items, in practice akin to traditional latent factors - but without explicitly assuming their presence [@christensen2021equivalency].
-We used the EGAnet package [@christensen2021estimating] to fit a hierachical EGA with the Leiden community detection algorithm.
+
+EGA is a novel framework that combines network analysis with psychometric methods [@golino2017exploratory] to jointly estimate the number of dimensions (i.e., groups of items) as well as the structure stability of a scale [@golino2017exploratory; @golino2020investigating]. EGA is a considered a suitable but still comparable and interpretable alternative to traditional factor analysis that addresses some of its limitations, including the assumption of a “latent” source of variability, possible biasing in  optimal factor number estimation by sample size [@christensen2021equivalency]. Additionally, when compared to other factor retention methods such as Kaiser criterion and parallel analysis, EGA performed better in estimating number of factors in complex population structures, such as bi-factor solutions [@jimenez2023dimensionality]. At a fundamental level, EGA conceptualizes items as nodes in a network, with connections (edges) between nodes reflecting associations between items. Clustering of nodes reveals distinct communities of related items, in practice akin to traditional latent factors albeit without explicitly assuming their presence [@christensen2021equivalency]. We used the EGAnet package [@christensen2021estimating] to fit a hierarchical EGA with the Leiden community detection algorithm.
 
 <!-- Factor Analysis -->
-While EGA offers a robust alternative to traditional factor analysis, factor analysis remains a widely used method for dimensionality assessment. As our goal is to provide a general - yet nuanced - picture, with room to show potential discrepancies emerging from the methods used, we will also include it in the present study.
-Unlike EGA, factor analysis assumes that  a latent source of variability — a common latent variable — underlies the observed set of manifest variables [@cosemans2022exploratory].
-A critical step in factor analysis is determining the optimal number of factors, for which we will used the Method Agreement Procedure [@ludecke2021performance], which involves a consensus-based decision based on multiple factor estimation methods applied concurrently.
+Although EGA is an attractive and robust alternative to traditional factor analysis, factor analysis remains a widely used method for dimensionality assessment. Since  our goal was to provide a general,  yet nuanced picture of IAS factor structure, with capability to  show potential discrepancies depending on analysis methods used, we also include traditional EFA/CFA here. Unlike EGA, factor analysis assumes that a latent source of variability (i.e., a common latent variable)  underlies the observed set of manifest variables [@cosemans2022exploratory]. A critical step in factor analysis is determining the optimal number of factors, for which we used the Method Agreement Procedure [@ludecke2021performance], a consensus-based decision method based on multiple factor estimation methods applied concurrently.
 
 <!-- HCA -->
-Finally, we will also apply Hierarchical Clustering Analysis [HCA, @murtagh2014ward], which differs from factor analysis in that it does not assume any latent source of variability, but instead iteratively groups items based on their similarity (e.g., correlation) into a hierarchy of clusters. The benefits of HCA include its interpretability and ability to capture complex relationships among items without relying on strict assumptions about data distribution or latent variables.
+
+Finally, we also applied Hierarchical Clustering Analysis [HCA, @murtagh2014ward], which unlike factor analysis, does not assume any latent source of variability, but instead iteratively groups items based on their similarity (e.g., correlation) into a hierarchy of clusters. The benefits of HCA include its interpretability and ability to capture complex relationships among items without relying on strict assumptions about data distribution or latent variables.
 
 <!-- CFA -->
-In a typical 2-step fashion, this first analysis run will be followed by a structure refinement with a further selection of items, and the final pool of items will be tested again. Additionally, various solutions (e.g., adding general factors) will be statistically compared using Confirmatory Factor Analysis (CFA).
+In a typical 2-step fashion, initial analyses were conducted, followed by structure refinement via item selection, with the  final item pool  tested for a second time. Additionally, various solutions (e.g., adding general factors) were statistically compared using Confirmatory Factor Analysis (CFA).
 
 ## Results
 
