@@ -507,7 +507,7 @@ Akin to a meta-analytic framework, datasets were treated as clusters (random gro
 
 
 <!-- Extraction of parameters -->
-From each fitted model, we extracted standardized regression coefficients (interpretable as a correlation index), and 95% confidence intervals (details on p-values, convergence status, and sample size are included in the Supplementary Materials). Results are summarized in @fig-correlation and we report the mean coefficient in the text when consistent across measures. 
+From each fitted model, we extracted standardized regression coefficients (interpretable as a correlation index), and 95% confidence intervals (details on p-values, convergence status, and sample size are included in the Supplementary Materials). Results are summarized in @fig-correlations and we report the mean coefficient in the text when consistent across measures. 
 <!-- Note that for Participants identifying as “Other” will be excluded from analyses due to limited representation. -->
 
 ## Results
