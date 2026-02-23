@@ -512,42 +512,51 @@ From each fitted model, we extracted standardized regression coefficients (inter
 
 ## Results
 
-<!-- Demographic correlates -->
+### Demographics
 
-Age showed consistent positive standardized associations across IAS correlates (mean β = .13), with all effects significant. Gender displayed near-zero effects (mean β = −.06), significant only for the Hungry–Thirsty, Wind–Burp, and Urinate–Defecate pairings.
+Age showed consistent positive standardized associations across IAS correlates (mean β = .13), including both the IAS total scores and the scores for the 7-pairs, with all effects significant. Gender displayed near-zero effects (mean β = −.06) and was only significant  for the Hungry–Thirsty, Wind–Burp, and Urinate–Defecate pairs.
 
-<!-- Interoceptive measures -->
+### Interoception and Interoception Related
 
-MAIA subscales showed robust positive standardized effects with the IAS. Noticing yielded the strongest association (mean β = .26), followed by Attention Regulation (mean β = .25) and related subscales - Body Listening, Trusting, Emotional Awareness and Self-Regulation, each in the .19–.24 range, all significant. Effects were generally strongest for the full IAS, except for Body Listening, which peaked for the Bruise–Blood pairing. Not Distracting was weakly and significantly only for the full IAS, Hungry-Thirsty, Bruise-Blood sugar and the Muscles-Pain pairings (β ≈ −.02 to .06). Not Worrying was significant only for the full IAS and the Hungry–Thirsty and Urinate–Defecate pairings (β ≈ −.01 to .04).
+MAIA subscales showed robust positive standardized associations with the IAS. Noticing had the strongest association (mean β = .26), followed by Attention Regulation (mean β = .25) with other subscales (Body Listening, Trusting, Emotional Awareness and Self-Regulation) in the .19–.24 range, all significant. Effects were generally strongest for the full IAS, except for Body Listening, which peaked for the Bruise–Blood pairing. Not Distracting was significant only for the  full IAS, Hungry-Thirsty, Bruise-Blood sugar and the Muscles-Pain pairings, albeit weakly (β ≈ −.02 to .06). Not Worrying was significant only for the full IAS and the Hungry–Thirsty and Urinate–Defecate pairings (β ≈ −.01 to .04).
 
-The BPQ's Autonomic Reactivity subscale was reliably negative across pairings (mean β = −.19), reaching significance for all except the Bruise–Blood sugar and Breathing–Heart pairings. In contrast, Body Awareness was positive and significant across most pairings  (mean β = .15; range = .10 to .22) with the exception of Wind-Burp and Urinate-Defecate.
+The BPQ’s Autonomic Reactivity subscale was reliably negatively associated across the seven item pairs (mean β = −.19), reaching significance for all pairs except Bruise–Blood sugar and Breathing–Heart. In contrast, the Body Awareness subscale of the BPQ was positive and significant across most pairings (mean β = .15; range = .10 to .22) except for Wind-Burp and Urinate-Defecate.
 
 Interoceptive deficits showed consistent negative associations: Alexithymia measures (TAS, BVAQ) were robustly negative (β ≈ −.13 to −.2), except for the BVAQ Affective subscale, which was positive for Bruise–Blood (β = .16). Interoceptive confusion (ICQ) was also negative across all IAS measures (mean β = −.32; range = −.49 to −.20).
 
-<!-- Mood-->
+### Mood and Anxiety Related
 
-Depression (mean β = −.20) and anxiety (mean β = −.20) showed consistent negative associations across the IAS and its pairings, with the strongest effects observed for the Hungry–Thirsty dimension. However, different measures showed some divergence: the MFQ was largely nonsignificant except for a notable effect in the Breathing–Heart pairing, while somatic concerns (PHQ-15) were unrelated to the total scale but showed weak negative associations with the Hungry–Thirsty, Bruise–Blood sugar, and Urinate–Defecate pairings (from −.22 to −.05). Other mood indices (PHQ-9, PHQ-4, GAD-7) produced generally weaker but often reliable negative coefficients (typically −.10 to −.15), though effects sometimes appeared only for specific pairings (e.g., PHQ-4 nonsignificant for Wind–Burp and Breathing–Heart). Across measures, the Hungry–Thirsty pairing consistently yielded the strongest standardized effects.
+Depression (mean β = −.20) and anxiety (mean β = −.20) showed consistent negative associations across the IAS and all its pairs, with the strongest effects observed for the Hungry–Thirsty dimension. However, looking at specific measures revealed some differences.
 
-<!-- Psychopathologies -->
+The MFQ was largely nonsignificant except for a negative association with Breathing–Heart, while somatic concerns (PHQ-15) were unrelated to the IAS total scale but had weak negative associations with the Hungry–Thirsty, Bruise–Blood sugar, and Urinate–Defecate pairs (from −.22 to −.05). 
 
-Autistic traits (ASQ) were generally negatively associated with IAS scores. Among ASQ subscales, Imagination (mean β = −.18) exhibited the most consistent pattern of negative associations across pairings, with the exception of Cough–Sneeze. The strongest full-scale effects were driven by the Hungry–Thirsty, Bruise–Blood sugar, and Muscles–Pain pairings, which yielded the largest negative coefficients.
+Other mood indices (PHQ-9, PHQ-4, GAD-7) produced generally weaker but often reliable negative coefficients (typically −.10 to −.15), though effects sometimes appeared only for specific pairings (e.g., PHQ-4 was significant for all pairs except  Wind–Burp and Breathing–Heart). Across anxiety and depression measures, the Hungry–Thirsty pair consistently had the strongest standardized effects.
 
-A comparable trend was observed for maladaptive personality traits. Detachment, Psychoticism, and Negative Affect demonstrated the most reliable, albeit weak, negative associations with the IAS scores (from −.08 to −.10), again primarily driven by the Hungry–Thirsty, Bruise–Blood sugar, and Muscles–Pain pairings. Other maladaptive traits were unrelated to IAS scores. Notably, Antagonism was the only trait to show a significant positive association, limited to the Bruise–Blood sugar pairing (β = .14), whereas Borderline Personality was uniquely associated with Hungry–Thirsty (mean β = −.14).
 
-Schizotypal traits showed a similarly negative pattern of associations. Social Anxiety (mean β = −.11) and No Close Friends (mean β = −.12) displayed the most consistent effects. Although some facets were unrelated to the total IAS score, they were associated with specific pairings: Unusual Perceptions with Muscles–Pain and Urinate–Defecate, and Eccentric with Hungry–Thirsty and Urinate–Defecate.
+### Psychopathology and Neurodevelopmental Traits. 
 
-<!-- Personality and beliefs -->
+Maladaptive personality traits were generally negatively associated with the IAS scores. Detachment, Psychoticism, and Negative Affect demonstrated the most reliable, albeit weak, negative associations with IAS scores (from −.08 to −.10), again primarily driven by the Hungry–Thirsty, Bruise–Blood sugar, and Muscles–Pain pairings. 
 
+Other maladaptive traits were unrelated to IAS scores. Notably, Antagonism showed a significant positive association, limited to the Bruise–Blood sugar pair (β = .14), whereas Borderline Personality was uniquely negatively associated with Hungry–Thirsty (mean β = −.14).
+
+A comparable trend was observed for autistic traits (ASQ), with the strongest effects driven by the Hungry–Thirsty, Bruise–Blood sugar, and Muscles–Pain pairs, which yielded the largest negative coefficients. Among ASQ subscales, Imagination (mean β = −.18) exhibited the most consistent pattern of negative associations across pairs except for Cough–Sneeze. 
+
+Schizotypal traits showed a similarly negative pattern of associations to IAS scores. Social Anxiety (mean β = −.11) and No Close Friends (mean β = −.12) displayed the most consistent effects. Although some facets were unrelated to the total IAS score, they were associated with specific item pairs: Unusual Perceptions with Muscles–Pain and Urinate–Defecate, and Eccentric with Hungry–Thirsty and Urinate–Defecate.
+
+
+### Personality
 <!-- TO INCLUDE? Although associations between personality and interoception have been less frequently explored than those involving mood or psychopathology, previous research has identified links between neuroticism and extroversion and interoceptive sensibility using the MAIA and BPQ measures. This study therefore included extended personality measures to clarify the broader relationships between interoception and personality traits beyond neuroticism and extraversion [@pearson2022two]. -->
 
-Among the Big Five traits, Openness (mean β = .10), Agreeableness (mean β = .08), and Conscientiousness (mean β = .11) exhibited small yet consistent positive effects, most evident for the total IAS score. Extraversion showed a weak but positive association, driven primarily by its stronger relation to the Bruise–Blood pairing (β = .17). In contrast, Honesty–Humility (mean β = −.10) demonstrated a small negative effect, most evident for the Hungry–Thirsty and Bruise–Blood sugar pairings. Finally, Neuroticism (mean β = −.23) was negatively associated with the IAS, with the strongest effect observed for the Hungry–Thirsty pairing (β = −.22).
+Among the Big Five traits, Openness (mean β = .10), Agreeableness (mean β = .08), and Conscientiousness (mean β = .11) exhibited small yet consistent positive associations, most clearly for the total IAS score. Extraversion showed a weak but positive association, driven primarily by the Bruise–Blood pair (β = .17). In contrast, Honesty–Humility (mean β = −.10) had a small negative effect, most clearly for the Hungry–Thirsty and Bruise–Blood sugar pairs. Finally, Neuroticism (mean β = −.23) was negatively associated with the IAS, with the strongest effect observed for the Hungry–Thirsty pair (β = −.22).
 
-Primal world beliefs were largely null, with small positive associations for appraising the world as being "Understandable", "Alive", and "Hierarchical", with Hungry–Thirsty (β = .09). Appraising the world as "Good" was uniquely positively related with Muscles–Pain (β = .09). Within the Lying Profile, only Lying Contextuality showed a modest negative coefficient for Bruise–Blood (β = −.12). Global Conspiracies (GCBS) beliefs were associated with the total IAS and three pairings (mean β = .10).
+### Beliefs and Misbeliefs
+
+Within the Lying Profile, only Lying Contextuality showed a modest negative coefficient for Bruise–Blood (β = −.12). Global Conspiracies (GCBS) beliefs were associated with the total IAS and three pairings (mean β = .10): the Hungry–Thirsty, Cough-Sneeze and the Urinate-Defecate. Primal world beliefs were largely null, with small positive associations for appraising the world as being “Understandable”, “Alive”, and “Hierarchical”, with Hungry–Thirsty (β = .09). Appraising the world as “Good” was uniquely positively related with Muscles–Pain (β = .09).  
 <!-- Personal Wellbeing with the full scale and the Hungry-Thirsty (mean β = .09), and Information Control (β = .06) with Cough–Sneeze. -->
 
 <!-- Differences between the full IAS and item pairings -->
 
-Overall, the original IAS total score produced the greatest number of significant standardized effects (28), though many were driven by specific pairings rather than uniform scale-wide associations. Hungry–Thirsty (17) and Bruise–Blood sugar (10) consistently yielded the strongest standardized coefficients, especially for interoception, mood, and psychopathology measures. Other pairings (Cough–Sneeze, Wind–Burp, Urinate–Defecate) contributed little unique variance and rarely yielded meaningful standardized effects. 
+Overall, the original IAS total score had the greatest number of significant standardized effects (28), though many were driven by specific item pairs rather than uniform scale-wide associations. Hungry–Thirsty (17) and Bruise–Blood sugar (10) consistently yielded the largest standardized coefficients, especially for interoception, mood, and psychopathology measures. Other item pairs (Cough–Sneeze, Wind–Burp, Urinate–Defecate) contributed little unique variance and rarely had meaningful standardized effects.
 
 
 ## Discussion
