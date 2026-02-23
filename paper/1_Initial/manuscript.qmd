@@ -287,12 +287,9 @@ In a typical 2-step fashion, initial analyses were conducted, followed by struct
 
 <!-- Distributions of items -->
 
-The distribution of the items across samples suggests the presence of a consistent modal value (@fig-distributions).
-In other words, participants are most likely to answer 4/5 (i.e., agree) on most items, with the exception of "blood sugar" and "bruise", which exhibit a different distributional pattern with a lower mode (\~2/5). While it is not a problem *per se*, the contrasting distribution might be indicative of items with non-homogeneous psychometric "difficulty".
-This is also the case for "affective touch" in samples 8a and 8b (the Chinese validation samples), which might indicate localisation issues.
-Additionally, one can note the low occurrence of extreme values (1 and 5), meaning that the bulk of answers varies between 3 values (assuming the IAS is implemented as a 5-point Likert scale following its validation).
-The samples using an analogue scale (samples 10, 11 and 12 in the figure) display a more continuous and progressive spread of answers, seemingly improving the interindividual variability, although potentially displaying a secondary lower mode at \~2 (which might be suggesting the existence of potential clusters of participants).
-The correlation matrix between all items shows an overall positive correlation pattern, with highly correlated pairs of items (e.g., Tickle-Itch, Urinate-Defecate, Pain-Wind, Hungry-Thursty) or triplets (Vomit-Sneeze-Cough, Temperature-Muscles-Pain).
+The distribution of the items across samples suggested a consistent modal value (@fig-distributions, top panel), such that participants are most likely to answer 4/5 (i.e., agree) on all IAS items except “blood sugar” and “bruise”, which show a different distributional pattern with a lower mode (~2/5). 
+
+While this difference is not problematic per se, the contrasting distributions might be indicative of items with non-homogeneous psychometric “difficulty”, potentially due to difficulty in inferring and reporting them. **Consistently with @sorokowska2021affective,** lower mode responses were also observed for “affective touch” in samples the Chinese versions, indicating translation or cultural discrepancies. More generally, the response spread (i.e., scale coverage) was narrow (which can limit  psychometric sensitivity), with a particularly low occurrence of extreme values (1 and 5), and a strong mode with most responses clustering around 4 (assuming the IAS is implemented as a 5-point Likert scale following its validation). Samples using an analogue response scale (samples 10, 11 and 12 in @fig-distributions) displayed a more continuous spread of answers, seemingly improving the interindividual variability, although potentially displaying a secondary lower mode at ~2 suggesting the existence of potential clusters of participants. The correlation matrix between all items (see Figure 2, bottom panel) shows an overall positive correlation pattern, with highly correlated item pairs (e.g., Tickle-Itch, Urinate-Defecate, Pain-Wind, Hungry-Thirsty) and triplets (e.g., Vomit-Sneeze-Cough, Temperature-Muscles-Pain).
 
 
 ```{r}
@@ -300,19 +297,19 @@ The correlation matrix between all items shows an overall positive correlation p
 #| label: fig-distributions
 #| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
 #| out-width: "100%"
-#| fig-cap: "Top: Distribution of responses across datasets reveals a consistent modal value, typically around 4 or 5 (indicating agreement), except for 'blood sugar' and 'bruise' - in dashed lines - and 'affective touch' (dotted lines) in the Chinese validation sample, which have lower modes. Most responses cluster around the middle values, with few extreme scores (1 and 5). Samples using an analogue scale (10a, 10b, 10c) show a more continuous distribution and increased interindividual variability. Since most samples use Likert scales (discrete), density plots may not be the most accurate representation but were chosen to clearly highlight variability patterns in the data. Bottom: The correlation matrix between all items shows an overall positive correlation pattern, with correlated pairs (e.g., Wind, Burp) of items or triplets (e.g., Vomit, Sneeze and Cough)."
+#| fig-cap: "Top: Distribution of responses across datasets reveals a consistent modal value, typically 4 or 5 (indicating agreement), except for ‘blood sugar’ and ‘bruise’ (dashed lines) and ‘affective touch’ (dotted lines) in the Chinese validation sample, which have lower modes. Most responses cluster around middle values, with few extreme scores (1 and 5). Samples using an analogue scale (10a-10c in Table 1 but 10-12 below) show a more continuous distribution and increased interindividual variability. Bottom: The correlation matrix between all items shows an overall positive correlation pattern, with correlated item pairs (e.g., Wind, Burp) and triplets (e.g., Vomit, Sneeze and Cough)."
 
 knitr::include_graphics("../../analysis/figures/Figure1.png")
 ```
 
 
 <!-- UVA -->
-UVA flagged two strongly redundant variables, "itch" and "tickle" - suggesting to remove the latter.
-Several more pairs of items were flagged as moderately redundant ("wind" and "burp"; "urinate" and "defecate") and mildly redundant ("sneeze" and "cough"; "heart" and "breathing"; "hungry" and "thirsty").
-These patterns consistently appeared in most samples when considered individually. We removed "tickle" from further analysis due to its high redundancy (and because it is absent from some datasets due to translation issues).
+UVA flagged two strongly redundant variables, “itch” and “tickle” indicating to remove the latter. We removed “tickle” from further analysis due to its high redundancy (and because it is absent from some datasets due to translation issues). Several more item pairs were flagged as moderately redundant (“wind” and “burp”; “urinate” and “defecate”) and mildly redundant (“sneeze” and “cough”; “heart” and “breathing”; “hungry” and “thirsty”). These patterns were observed consistently across most individual samples.
+
+### Step 1
 
 <!-- Initial run -->
-The HCA highlighted pairs and triplets of items consistently grouped together across samples, such as "wind" and "burp", "sneeze" and "cough", "itch" and "bruise", "urinate" and "defecate", and "pain", "muscles", and "temperature". This pattern was largely replicated by the EGA, with the additional presence of a unique cluster comprising "Sex arousal", "Affective touch", "Temperature", "Pain", "Muscles", and "Taste". EFA suggested the optimal number of factors to be 3, yielding one dimension with expulsion-related items ("burp", "wind", "cough", "sneeze", and "vomit"), a second dimension with visceroceptive items ("heart", "breathing", "hungry", "thirsty", "urinate", and "defecate"), and a third dimension with skin-related items ("bruise" and "blood sugar").
+HCA highlighted item pairs and triplets that were consistently grouped together across samples, such as “wind” and “burp”, “sneeze” and “cough”, “itch” and “bruise”, “urinate” and “defecate”, and “pain”, “muscles”, and “temperature”. This pattern was largely replicated with EGA, with the additional presence of a unique cluster comprising “sex arousal”, “affective touch”, “temperature”, “pain”, “muscles”, and “taste”. EFA suggested an optimal 3-factor solution with one factor comprising expulsion-related items (“burp”, “wind”, “cough”, “sneeze”, and “vomit”), a second factor comprising visceroceptive items (“heart”, “breathing”, “hungry”, “thirsty”, “urinate”, and “defecate”), and a third factor comprising items that are not directly accessible via internal bodily sensations alone (“bruise” and “blood sugar”). Results on the structure of the full scale (excluding “tickle”) are presented in the **Supplementary Materials.** 
 
 <!-- We discarded: -->
 
@@ -322,7 +319,7 @@ The HCA highlighted pairs and triplets of items consistently grouped together ac
 <!-- Itch: Less strongly associated, did not form consistent cluster -->
 <!-- More controversial: Temp and Sex_arousal: similar cluster yet less reliable -->
 
-Importantly, this initial structure analysis run highlighted some problematic items: "taste" typically displayed a lone or unstable pattern of associations, "affective touch" exhibited cross-loadings and instability, "vomit" was less strongly associated with other items, and "itch" did not form a consistent cluster. Finally, "temperature" and "sexual arousal" showed redundant patterns of associations but were less reliable. These 6 items were thus removed, and a second run of structure analysis was performed on the remaining 14 items.
+Importantly, these initial structural analyses highlighted six problematic items in addition to “tickle” identified from UVA. “Taste” typically displayed a lone or unstable pattern of associations, “affective touch” exhibited cross-loadings and instability, “vomit” was weakly associated with other items, and “itch” did not form a consistent cluster. Finally, “temperature” and “sexual arousal” showed redundant patterns of associations but were less reliable. These 6 items as well as “tickle” were removed, and a second run of structural analyses were performed on the remaining 14 items (summarized in @fig-structure).
 
 ```{r}
 #| warning: false
@@ -336,8 +333,7 @@ knitr::include_graphics("../../analysis/figures/Figure2.png")
 
 
 <!-- Second run -->
-HCA and EGA yielded highly consistent results, emphasizing pairs of items, namely Hungry-Thirsty, Bruise-Blood sugar, Urinate-Defecate, Muscles-Pain, Breathing-Heart, Cough-Sneeze, Wind-Burp. HCA also significantly grouped the Urinate-Defecate and Muscles-Pain pairs, as well as expulsion items (Wind-Burp and Cough-Sneeze).
-EFA suggested once again 3 factors as the optimal solution, with the first factor including expulsion-related items ("burp", "wind", "cough", "sneeze"), the second factor being related to the Urinate-Defecate pair, and the third factor comprising the remaining items.
+HCA and EGA yielded highly consistent results, emphasizing seven item pairs: Hungry-Thirsty, Bruise-Blood sugar, Urinate-Defecate, Muscles-Pain, Breathing-Heart, Cough-Sneeze, Wind-Burp. HCA also meaningfully grouped the Urinate-Defecate and Muscles-Pain pairs, and expulsion items pairs (Wind-Burp and Cough-Sneeze). EFA again suggested an optimal 3-factor solution with the first factor comprising expulsion-related items (“burp”, “wind”, “cough”, “sneeze”), the second factor comprising the Urinate-Defecate pair, and the third factor comprising the remaining items.
 
 <!-- CFA Model Comparison
 Name	BIC	RMSEA	Chi2	CFI	BF
@@ -368,10 +364,12 @@ fit_ega	8493.471	0.057	102.289	0.947	NA - sample 17
 
 <!-- did not converge: df1b, df2, df3, df5, df10 (missing items), df12 (errors), df15 (errors), df16,  -->
 
-<!-- CFA -->
-We then fitted and compared using CFA various candidate structures emerging from the previous analyses, including a 1-factor model (the G-model), a 3-factor model (EFA), a 3+1 model (EFA + general factor), a 5-factor model (HCA), a 5+1 model (HCA + general factor), a 7-factor model (EGA), and a 7+1 model (EGA + general factor). The EGA model with 7 factors of item pairs provided the best fit with the lowest RMSEA (0.035), lowest $\chi^2$ (2,334.112), highest CFI (0.984). It was followed by the EGA + general factor model (RMSEA = 0.054, $\chi^2$ = 6,876.395, CFI = 0.952), and the HCA model with 5 factors (RMSEA = 0.078, $\chi^2$ = 13,441.878, CFI = 0.906). The other models performed poorly, with RMSEA > 0.08 and CFI < 0.90. The unique-factor model yielded the lowest BIC (which takes into account the number of factors), followed by the EGA model. All the other models displayed significantly (BIC-based Bayes Factor < 1/100) lower evidence compared to the EGA model.
+### Step 2
 
-This result was relatively consistent across unique datasets with the EGA model providing the best fit. In all samples where CFA converged, it showed excellent performance with low RMSEA (≈ 0.025–0.057), high CFI (≥ 0.95), and substantially lower $\chi^2$ compared to alternative models. Adding a general factor systematically worsened fit, while hierarchical clustering and EFA-based models showed poorer performance (RMSEA > 0.05, CFI < 0.95). Although BIC values occasionally favored alternative specifications, Bayes factor comparisons overwhelmingly supported the EGA solution, confirming its robustness across datasets.
+<!-- CFA -->
+We fitted and compared various candidate structures emerging from the previous analyses, including a 1-factor model (the G-model), a 3-factor model (EFA), a 3+1 model (EFA + general factor), a 5-factor model (HCA), a 5+1 model (HCA + general factor), a 7-factor model (EGA), and a 7+1 model (EGA + general factor), using CFA. The EGA model with 7 factors of item pairs provided the best fit to the data with the lowest RMSEA (0.035), lowest $\chi^2$ (2,334.112), and highest CFI (0.984). This was followed by the EGA + general factor model (RMSEA = 0.054, $\chi^2$ = 6,876.395, CFI = 0.952), and then the HCA model with 5 factors (RMSEA = 0.078, $\chi^2$ = 13,441.878, CFI = 0.906). All other models performed poorly, with RMSEA > 0.08 and CFI < 0.90. The EGA model yielded the lowest BIC (which considers the number of factors), followed by the EGA plus a general factor model. All other models displayed significantly (BIC-based Bayes Factor < 1/100) lower evidence for their structures compared to the EGA model.
+
+Across individual datasets, the EGA model provided the best fit to the data in 8 out of 13 samples for which the CFA converged. In these samples, the 7-factor EGA model showed excellent performance, with low RMSEA values (≈ 0.025–0.057), high CFI values (≥ 0.95), and substantially lower $\chi^2$  values compared to alternative models. Adding a general factor improved model fit in three samples, for which the 7-factor EGA + general factor model showed acceptable RMSEA (≈ 0.048–0.061) and CFI (≈ 0.929–0.957) values. In two samples, the 5-factor plus general factor model provided the best fit, with acceptable RMSEA values (0.049 and 0.057) and CFI values (0.955 and 0.919). Bayes factor comparisons aligned with BIC-based conclusions; taken together, these results suggest that although the EGA model was preferred in most samples, bifactor models (i.e., EGA and HCA models with a general factor) provided evidence for a common IAS factor in some samples. 
 
 
 ## Discussion
