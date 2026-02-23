@@ -390,7 +390,7 @@ Overall, Study 1 suggests that, after removal of problematic items the IAS is be
 
 # Study 2
 
-Building on the structural findings from Study 1, the second study turns to the validity of the IAS by examining its dispositional correlates. Although the IAS has been widely used, evidence regarding its associations with personality traits, affective dispositions, and related psychological constructs remains scattered and inconsistent [@murphy2019; @brand2023; @lin2023; @todd2022]. Study 2 therefore had two primary goals. First, to provide a robust overview of the dispositional correlates of the IAS by leveraging the large number of available datasets. Second, to evaluate the practical benefits of using the refined 14-item version of the scale identified in Study 1, compared to the original 21-item unidimensional solution, in order to assess whether structural improvements translate into clearer and more reliable external associations.
+Although the IAS has been widely adopted, evidence regarding its associations with personality traits, affective dispositions, and related psychological constructs is scattered and inconsistent [@murphy2019; @brand2023; @lin2023; @todd2022]. In Study 2 we aimed to  provide a robust overview of the dispositional correlates of the IAS by leveraging and combining a large number of available datasets containing both the IAS, other measures of interoception, and dispositional correlates. We also sought to assess whether structural improvements of the 14-item IAS translate into clearer and more reliable external associations by comparing associations to dispositional variables with the original 21-item unidimensional solution, thereby potentially offering a more efficient alternative to the longer version for future research.
 
 ## Methods
 
@@ -416,11 +416,12 @@ Building on the structural findings from Study 1, the second study turns to the 
 #     theme_apa()
 ```
 
-We selected measures that appeared in multiple datasets from Study 1 and/or were relevant given the scope of the study, i.e., constructs related to physiology, mood, personality, psychopathology, and beliefs and misbeliefs. We merged scores of regular and abridged versions for conciseness where applicable.
+We selected measures that appeared at least once in the 17 datasets from Study 1 and/or were relevant given the scope of the study, i.e., constructs related to physiology, mood, personality, psychopathology, and beliefs and misbeliefs. We merged scores of regular and abridged versions of scales for conciseness where applicable (e.g., the 2-item Generalized Anxiety Disorder and Patient Health Questionnaire measures were combined into the Patient Health Questionnaire-4). 
 
-#### Interoception
+#### Interoception and Interoception Related
 
-Interoception-related measures included the Multidimensional Assessment of Interoceptive Awareness Version-2 [MAIA-2, @mehling2018multidimensional], the Body Perception Questionnaire Short Form [BPQ-SF, @cabrera2018assessing], and the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia]. We also included the Toronto Alexithymia Scale [TAS-20, @bagby1994twenty], and the Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity], due to the close relationship between interoception deficits and alexithymia.
+Interoception-related measures included the Multidimensional Assessment of Interoceptive Awareness Version-2  [MAIA-2, @mehling2018multidimensional], the Body Perception Questionnaire Short Form [BPQ-SF, @cabrera2018assessing], and the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia]. We also included the Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity], and the Toronto Alexithymia Scale [TAS-20, @bagby1994twenty], due to the close relationship between interoception deficits and alexithymia [e.g., @brewer2016alexithymia; @gaggero2021].  
+
 <!--
 The Multidimensional Assessment of Interoceptive Awareness Version-2 [MAIA-2, @mehling2018multidimensional] is a 37-item questionnaire assessing eight dimensions of interoception: Noticing, Not-Distracting, Not-Worrying, Attention Regulation, Emotional Awareness, Self-Regulation, Body Listening, and Trust. Responses are rated on a 6-point Likert scale (e.g., "I notice when I am uncomfortable in my body").
 
@@ -434,7 +435,7 @@ The Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity] consist
 
 <!-- Mood and Anxiety -->
 #### Mood and Anxiety Related
-Scores from depression and anxiety-related measures were included due to their established associations with interoceptive processing [@khalsa2018]; namely  the Beck Depression Inventory-II [BDI-II, @beck1996beck], the Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra], the Patient Health Questionnaire-9 [PHQ-9, @kroenke2001phq], the Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq], the Short Mood and Feelings Questionnaire [MFQ, @angold1995development], the State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual; and STAIT-T, @zsido2020development], and the Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief], and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety] - obtained from the PHQ-4.
+Scores from depression and anxiety-related measures were included due to their established associations with interoceptive processing [@khalsa2018]; namely the Patient Health Questionnaire-4 [PHQ-4, @kroenke2009ultra], the Patient Health Questionnaire-15 [PHQ-15, @kroenke2002phq], the Patient Health Questionnaire-9 [PHQ-9, @kroenke2001phq], the Short Mood and Feelings Questionnaire [MFQ, @angold1995development], the Beck Depression Inventory-II [BDI-II, @beck1996beck], the State–Trait Anxiety Inventory Trait Version [STAI-T, @spielberger1970manual; and STAIT-T, @zsido2020development], and the Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief], and General Anxiety Disorder-2 [GAD-2, @kroenke2007anxiety, obtained from the PHQ-4].
 
 <!-- 
 The Beck Depression Inventory-II [BDI-II, @beck1996beck] is a 21-item measure of depressive symptom severity, including psychological (e.g., guilt) and physiological (e.g., loss of energy) components. Items are rated on a 4-point scale (e.g., “I feel sad much of the time”).
@@ -453,8 +454,8 @@ The Generalized Anxiety Disorder Scale [GAD-7, @spitzer2006brief] is a 7-item me
 
 <!-- Psychopathology -->
 
-#### Psychopathology
-Dimensional psychopathology-related scores were included from the Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality], the Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson2016schizotypal], the McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini], and the Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction].
+#### Psychopathology and Neurodevelopmental Traits
+Dimensional psychopathology and neurodevelopmental-related scores were included from the Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality], the Autism Spectrum Quotient Short Form [ASQ-S, @hoekstra2011construction], the Schizotypal Personality Questionnaire – Brief Revised [SPQ-BR, @davidson2016schizotypal], and the McLean Screening Instrument for Borderline Personality Disorder [MSI-BPD, @zanarini2003zanarini].
 
 <!-- The Personality Inventory for DSM-5 Short Form [PID-5-SF, @thimm2016personality] consists of 25 items rated on a 4-point Likert scale, measuring five domains: disinhibition, antagonism, detachment, negative affect, and psychoticism (e.g., “Plenty of people are out to get me”).
 
@@ -476,7 +477,7 @@ The Big Five Inventory Short Form [BFI-S, @rammstedt2007measuring] is a 10-item 
 
 <!-- Beliefs and Misbeliefs -->
 #### Beliefs and Misbeliefs
-Beliefs- and misbeliefs-related measures included the Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring], the Primal World Beliefs Inventory [PI-99, @clifton2019primal] and its short form [PI-18, @clifton2021brief], and the Lie Scale [LIE, @makowski2023structure]. These instruments assess individual differences in conspiracist, world, and lying beliefs. This domain represents a novel avenue of research in the context of interoception, as such beliefs have not been previously assessed in relation to interoceptive processes.
+Beliefs- and misbeliefs-related measures included the Lie Scale [LIE, @makowski2023structure], the Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring], and the Primal World Beliefs Inventory [PI-99, @clifton2019primal] and its short form [PI-18, @clifton2021brief]. These instruments assess individual differences in conspiracist, world, and lying beliefs. This domain represents a novel avenue of research in the context of interoception, as such beliefs have not been previously assessed in relation to interoceptive processes.
 
 <!-- The Generic Conspiracist Beliefs Scale [GCBS, @brotherton2013measuring] is a 15-item measure assessing five dimensions of conspiracy beliefs: government malfeasance, extraterrestrial cover-up, malevolent global conspiracies, personal wellbeing, and control of information. Items are scored on a 5-point Likert scale (e.g., “Secret organizations communicate with extraterrestrials, but keep this fact from the public”).
 
@@ -491,22 +492,22 @@ The Lie Scale [LIE, @makowski2023structure] is a 16-item measure of lying tenden
 #| label: fig-correlations
 #| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
 #| out-width: "100%"
-#| fig-cap: "Meta-analytic associations (95% CI of standardized coefficients) between the IAS (total score and seven item pairs) and dispositional measures across 16 open-access datasets. Positive associations are shown in red, negative associations in blue. Non-significant associations (CI crossing zero) are transparent. The IAS showed positive associations with most MAIA facets and BPQ-Body Awareness, negative associations with interoceptive deficit measures (TAS, ICQ), negative associations with the BPQ-Autonomic Reactivity, moderate negative associations with mood measures, and weaker, more selective associations with psychopathology and belief measures. Certain item pairings, particularly Hungry–Thirsty and Bruise–Blood sugar, drove the strongest effects, highlighting domain-specific patterns in self-perceived interoceptive accuracy."
+#| fig-cap: "Meta-analytic associations (95% CI of standardized coefficients) between the IAS (total score and seven item pairs) and dispositional measures across 17 open-access datasets. Positive associations are shown in red, negative associations in blue. Non-significant associations (CI crossing zero) are transparent. The IAS-21 showed positive associations with most MAIA facets and BPQ-Body Awareness, negative associations with interoceptive deficit measures (TAS, ICQ), negative associations with the BPQ-Autonomic Reactivity, moderate negative associations with mood measures, and weaker, more selective associations with psychopathology and belief measures. Certain item pairings, particularly Hungry–Thirsty and Bruise–Blood sugar, drove the strongest effects, highlighting domain-specific patterns in self-perceived interoceptive accuracy."
 
 knitr::include_graphics("../../analysis/figures/Figure3.png")
 ```
 
 <!-- Preprocessing and standardization -->
-All variables from the 16 open-access datasets will be extracted and standardized (z-scored). Scores were harmonized and combined were meaningful (e.g., scores from the short 18-item form of the PI and scores from its longer 99-item version). Missing data was excluded on a per-model basis, to maximize statistical power. 
+All variables from the 17 open-access datasets were extracted and standardized (z-scored). Scores were harmonized and combined where meaningful (e.g., scores from the short 18-item form of the PI and scores from its longer 99-item version). Missing data was excluded on a per-model basis, to maximize statistical power.
 
 <!-- Multilevel modelling approach -->
-The approach chosen to approach the estimation of the multiple associations, while takin into account study heterogeneity and propagate its variable uncertainty was to treat datasets as clusters (random groups), and compute pooled estimates of the associations that account for both within- and between-sample variability, akin to a meta-analytic framework.
-Specifically, associations were estimated using mixed models implemented in the *glmmTMB* package [@glmTMB], and postprocess with the *easystats* R ecosystem [@ben2020effectsize; @ludecke2020extracting; @makowski2025modelbased]. Each predictor was entered separately (note that the focus is the effect size and confidence interval, and not the *p*-value, thus preventing concerns of multiple hypothesis testing), with the seven IAS item pairs identified in Study 1 (Hungry–Thirsty, Muscles–Pain, Wind–Burp, Urinate–Defecate, Breathing–Heart, Bruise–Blood, Cough–Sneeze) and the original IAS "total" score serving as outcomes. Models included the dataset as random intercept and the predictor as a random slope. 
+
+Akin to a meta-analytic framework, datasets were treated as clusters (random groups), and pooled estimates of the associations that account for both within- and between-sample variability were computed. This approach allowed the estimation of  multiple associations while still accounting for study heterogeneity and intra-study uncertainty (i.e., measure uncertainty within the studies). Specifically, associations were estimated using mixed models implemented in the *glmmTMB* package [@glmTMB], and postprocessed with the easystats R ecosystem [@ben2020effectsize; @ludecke2020extracting; @makowski2025modelbased]. Each predictor was entered separately with the seven IAS item pairs identified in Study 1 (Hungry–Thirsty, Muscles–Pain, Wind–Burp, Urinate–Defecate, Breathing–Heart, Bruise–Blood, Cough–Sneeze) and the original IAS “total” score serving as outcomes. Models included dataset as a random intercept and the predictor as a random slope. Note that we focus on effect sizes and confidence intervals rather than p-values to allay concerns of multiple hypothesis testing. 
 <!-- When models failed to converge, a reduced structure with random intercepts only will be used.  -->
 
 
 <!-- Extraction of parameters -->
-From each fitted model, we will extract standardized regression coefficients (intepretable as a correlation index), and 95% confidence intervals (details on *p*-values, convergence status, and effective sample size are included in the Supplementary Materials), and the results are reported in @fig-correlations. We report the mean coefficient in the text when consistent across measures.
+From each fitted model, we extracted standardized regression coefficients (interpretable as a correlation index), and 95% confidence intervals (details on p-values, convergence status, and sample size are included in the Supplementary Materials). Results are summarized in @fig-correlation and we report the mean coefficient in the text when consistent across measures. 
 <!-- Note that for Participants identifying as “Other” will be excluded from analyses due to limited representation. -->
 
 ## Results
