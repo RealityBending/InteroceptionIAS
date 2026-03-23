@@ -105,11 +105,7 @@ author:
 author-note:
   disclosures:
     gratitude: |
-      ::: {.callout-note icon=false appearance="simple"}
-      This preprint is a non-peer-reviewed work from the [**Reality Bending Lab**](https://realitybending.github.io/).
-      
-      ![](https://realitybending.github.io/media/ReBeL_LogoOnly_hu_856944d4b40322bb.png){width=20% fig-align="center"}
-      :::
+      [![](rebel_logo.png){width="60%"}](https://realitybending.github.io/)\
     study-registration: ~
     data-sharing: ~
     related-report: ~
