@@ -25,7 +25,9 @@ author:
       - Data curation
       - Writing – original draft
     affiliations:
-      - ref: "id1"
+       - ref: "id1"
+       - name: "University of Sussex"
+         department: "Brighton and Sussex Medical School"
   - name: Robyn Scharte
     orcid: 0009-0009-8474-3496
     roles:
