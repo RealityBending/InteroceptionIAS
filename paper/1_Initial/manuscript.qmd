@@ -32,7 +32,7 @@ author:
       - Writing – review & editing
     affiliations:
       - ref: "id1"
-  - name: Raquel Nogueira Arjona
+  - name: Raquel Nogueira-Arjona
     orcid: 0000-0002-5998-701X
     roles:
       - Writing – review & editing
@@ -40,12 +40,11 @@ author:
       - ref: "id1"
       - name: "University of Sussex"
         department: "Sussex Addictions Research and Intervention Centre"
-  - name: Giulia Poerio
+  - name: Giulia L. Poerio
     orcid: 0000-0002-2343-5109
     roles:
       - Writing – review & editing
     affiliations:
-      affiliations:
       - ref: "id1"
       - name: "University of Sussex"
         department:  "Sussex Centre for Consciousness Science"
