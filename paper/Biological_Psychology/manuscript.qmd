@@ -4,6 +4,7 @@ shorttitle: "IAS Mega-analysis"
 author:
   - name: Ana Neves
     orcid: 0009-0006-0020-7599
+    corresponding: true
     roles:
       - Data curation
       - Formal Analysis
@@ -51,7 +52,6 @@ author:
       - name: "University of Sussex"
         department:  "Sussex Centre for Consciousness Science"
   - name: Dominique Makowski
-    corresponding: true
     orcid: 0000-0001-5375-9967
     email: D.Makowski@sussex.ac.uk
     url: https://realitybending.github.io/
