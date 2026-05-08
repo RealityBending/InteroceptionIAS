@@ -7,6 +7,6 @@ A reanalysis of Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & 
 - [**Results - Study 1**](https://realitybending.github.io/InteroceptionIAS/analysis/Study1.html)
 - [**Results - Study 2**](https://realitybending.github.io/InteroceptionIAS/analysis/study2.html)
 
-
+Preprint avalibale [here](https://osf.io/preprints/psyarxiv/2mpqd_v1)
 
 ![](analysis/figures/Figure2.png)
