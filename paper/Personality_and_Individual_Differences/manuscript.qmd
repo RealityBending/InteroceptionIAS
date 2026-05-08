@@ -169,7 +169,7 @@ The diversity in measurement approaches illustrates that rather than there being
 #| out-width: "100%"
 #| fig-cap: "Schematic Representation of The Interoceptive Assessment Puzzle. The different modalities of interoception (e.g., cardioception) can be assessed directly or indirectly. Direct assessments can be subjective or objective, depending on whether they use conscious metacognitive appraisals or performance-based indices. Objective interoceptive tasks can be explicit (participants must consciously attend to interoceptive signals; e.g., the heartbeat counting task) or implicit (measurements of interoception are covert; e.g., heartbeat evoked potentials measured during rest). Indirect assessments evaluate constructs typically related, or dependent on, interoceptive processes (e.g., physiological indices such as heart rate variability or effect of cardiac phase) or abilities (e.g., self-report measures of emotion regulation or identification abilities)."
 
-knitr::include_graphics("figures/MeasuringInteroception.png")
+knitr::include_graphics("figures/Figure1.png")
 ```
 
 ## Self-reported Interoception
