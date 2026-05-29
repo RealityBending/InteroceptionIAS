@@ -4,6 +4,7 @@ shorttitle: "IAS Mega-analysis"
 author:
   - name: Ana Neves
     orcid: 0009-0006-0020-7599
+    email: A.Neves@sussex.ac.uk
     corresponding: true
     roles:
       - Data curation
