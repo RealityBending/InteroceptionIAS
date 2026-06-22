@@ -358,9 +358,9 @@ fit_ega	8493.471	0.057	102.289	0.947	NA - sample 17
 ## Confirmatory Factor Analysis (CFA)
 
 <!-- CFA -->
-We used CFA to fit and compare candidate structures from the previous analyses: a 1-factor (G-model), 3-factor (EFA), 3+1 (EFA + general factor), 5-factor (HCA), 5+1 (HCA + general factor), 7-factor (EGA), and 7+1 (EGA + general factor) model. The 7-factor EGA model provided the best fit (RMSEA = 0.035, χ2\chi^2
-χ2 = 2,334.112, CFI = 0.984), followed by EGA + general factor (RMSEA = 0.054, χ2\chi^2
-χ2 = 6,876.395, CFI = 0.952) and the 5-factor HCA model (RMSEA = 0.078, χ2\chi^2
+We used CFA to fit and compare candidate structures from the previous analyses: a 1-factor (G-model), 3-factor (EFA), 3+1 (EFA + general factor), 5-factor (HCA), 5+1 (HCA + general factor), 7-factor (EGA), and 7+1 (EGA + general factor) model. The 7-factor EGA model provided the best fit (RMSEA = 0.035, $\chi^2$
+χ2 = 2,334.112, CFI = 0.984), followed by EGA + general factor (RMSEA = 0.054, $\chi^2$
+χ2 = 6,876.395, CFI = 0.952) and the 5-factor HCA model (RMSEA = 0.078, $\chi^2$
 χ2 = 13,441.878, CFI = 0.906). All remaining models performed poorly (RMSEA > 0.08, CFI < 0.90). The EGA model also yielded the lowest BIC; all other models showed substantially weaker evidence (BIC-based Bayes Factor < 1/100).
 
 Across individual datasets, the 7-factor EGA model provided the best fit in 8 of 13 samples where CFA converged. In these samples, the 7-factor EGA model showed excellent performance, with low RMSEA values (≈ 0.025–0.057), high CFI values (≥ 0.95), and substantially lower χ2 values compared to alternative models. Adding a general factor improved fit in three samples  for which the 7-factor EGA + general factor model showed acceptable RMSEA (≈ 0.048–0.061) and CFI (≈ 0.929–0.957) values. The 5-factor + general factor model was preferred in two (RMSEA = 0.049/0.057, CFI = 0.955/0.919). Bayes factor comparisons aligned with BIC-based conclusions. Overall, while the EGA model was preferred in most samples, bifactor models provided some evidence for a common IAS factor.
