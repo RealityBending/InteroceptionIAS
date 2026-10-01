@@ -166,6 +166,11 @@ df14 <- cbind(data$df14, scores$sample14)
 df15 <- cbind(data$df15, scores$sample15)
 df16 <- cbind(data$df16, scores$sample16)
 df17 <- cbind(data$df17, scores$sample17)
+df18 <- cbind(data$df18, scores$sample18)
+df19 <- cbind(data$df19, scores$sample19)
+df20 <- cbind(data$df20, scores$sample20)
+df21 <- cbind(data$df21, scores$sample21)
+df22 <- cbind(data$df22, scores$sample22)
 
 vars_intero <- names(select(scores$sample1a, -Sample))
 
@@ -193,7 +198,8 @@ vars_intero <- names(select(scores$sample1a, -Sample))
 alldata <- list(df1a=df1a, df1b=df1b, df2=df2, df3=df3, df4=df4, 
                 df5=df5, df6=df6, df7a=df7a, df7b=df7b, df7c=df7c, 
                 df8a=df8a, df8b=df8b, df9=df9, df10=df10, df11=df11, 
-                df12=df12, df14=df14, df15=df15, df16=df16, df17 = df17)
+                df12=df12, df14=df14, df15=df15, df16=df16, df17 = df17,
+                df18=df18, df19=df19, df20=df20, df21=df21, df22=df22)
 ```
 
 
