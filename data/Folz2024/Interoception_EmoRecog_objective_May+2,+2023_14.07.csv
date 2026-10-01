@@ -1,0 +1,923 @@
+StartDate,EndDate,Status,IPAddress,Progress,Duration (in seconds),Finished,RecordedDate,ResponseId,RecipientLastName,RecipientFirstName,RecipientEmail,ExternalReference,LocationLatitude,LocationLongitude,DistributionChannel,UserLanguage,ID,Age,Gender,Nationality,TAS-20_1,TAS-20_2,TAS-20_3,TAS-20_4,TAS-20_5,TAS-20_6,TAS-20_7,TAS-20_8,TAS-20_9,TAS-20_10,TAS-20_11,TAS-20_12,TAS-20_13,TAS-20_14,TAS-20_15,TAS-20_16,TAS-20_17,TAS-20_18,TAS-20_19,TAS-20_20,AQ_1,AQ_2,AQ_3,AQ_4,AQ_5,AQ_6,AQ_7,AQ_8,AQ_9,AQ_10,AQ_11,AQ_12,AQ_13,AQ_14,AQ_15,AQ_16,AQ_17,AQ_18,AQ_19,AQ_20,AQ_21,AQ_22,AQ_23,AQ_24,AQ_25,AQ_26,AQ_27,AQ_28,AQ_29,AQ_30,AQ_31,AQ_32,AQ_33,AQ_34,AQ_35,AQ_36,AQ_37,AQ_38,AQ_39,AQ_40,AQ_41,AQ_42,AQ_43,AQ_44,AQ_45,AQ_46,AQ_47,AQ_48,AQ_49,AQ_50,BPQ_1,BPQ_2,BPQ_3,BPQ_4,BPQ_5,BPQ_6,BPQ_7,BPQ_8,BPQ_9,BPQ_10,BPQ_11,BPQ_12,BPQ_13,BPQ_14,BPQ_15,BPQ_16,BPQ_17,BPQ_18,BPQ_19,BPQ_20,BPQ_21,BPQ_22,BPQ_23,BPQ_24,BPQ_25,BPQ_26,BPQ_27,BPQ_28,BPQ_29,BPQ_30,BPQ_31,BPQ_32,BPQ_33,BPQ_34,BPQ_35,BPQ_36,BPQ_37,BPQ_38,BPQ_39,BPQ_40,BPQ_41,BPQ_42,BPQ_43,BPQ_44,BPQ_45,BPQ_control_eng,BPQ_control_eng_4_TEXT,IAS_1,IAS_2,IAS_3,IAS_4,IAS_5,IAS_6,IAS_7,IAS_8,IAS_9,IAS_10,IAS_11,IAS_12,IAS_13,IAS_14,IAS_15,IAS_16,IAS_17,IAS_18,IAS_19,IAS_20,IAS_21,IAS_control_eng,IAS_control_eng_4_TEXT,IATS_1,IATS_2,IATS_3,IATS_4,IATS_5,IATS_6,IATS_7,IATS_8,IATS_9,IATS_10,IATS_11,IATS_12,IATS_13,IATS_14,IATS_15,IATS_16,IATS_17,IATS_18,IATS_19,IATS_20,IATS_21,IATS_control_eng,IATS_control_eng_4_TEXT,LSAS#1_1,LSAS#1_2,LSAS#1_3,LSAS#1_4,LSAS#1_5,LSAS#1_6,LSAS#1_7,LSAS#1_8,LSAS#1_9,LSAS#1_10,LSAS#1_11,LSAS#1_12,LSAS#1_13,LSAS#1_14,LSAS#1_15,LSAS#1_16,LSAS#1_17,LSAS#1_18,LSAS#1_19,LSAS#1_20,LSAS#1_21,LSAS#1_22,LSAS#1_23,LSAS#1_24,LSAS#2_1,LSAS#2_2,LSAS#2_3,LSAS#2_4,LSAS#2_5,LSAS#2_6,LSAS#2_7,LSAS#2_8,LSAS#2_9,LSAS#2_10,LSAS#2_11,LSAS#2_12,LSAS#2_13,LSAS#2_14,LSAS#2_15,LSAS#2_16,LSAS#2_17,LSAS#2_18,LSAS#2_19,LSAS#2_20,LSAS#2_21,LSAS#2_22,LSAS#2_23,LSAS#2_24
+Start Date,End Date,Response Type,IP Address,Progress,Duration (in seconds),Finished,Recorded Date,Response ID,Recipient Last Name,Recipient First Name,Recipient Email,External Data Reference,Location Latitude,Location Longitude,Distribution Channel,User Language,Participant ID:,Age:,Gender,What is your nationality?,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I am often confused about what emotion I am feeling.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - It is difficult for me to find the right words for my feelings.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I have physical sensations that even doctors don't understand.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I am able to describe my feelings easily.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I prefer to analyze problems rather than just describe them.,"Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - When I am upset, I don't know if I am sad, frightened, or angry.",Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I am often puzzled by sensations in my body.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I prefer to just let things happen rather than to understand why they turned out that way.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I have feelings that I can't quite identify.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - Being in touch with emotions is essential.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I find it hard to describe how I feel about people.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - People tell me to describe my feelings more.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I don't know what's going on inside me.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I often don't know why I am angry.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I prefer talking to people about their daily activities rather than their feelings.,"Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I prefer to watch ""light"" entertainment shows rather than psychological dramas.","Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - It is difficult for me to reveal my innermost feelings, even to close friends.","Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I can feel close to someone, even in moments of silence.",Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - I find examination of my feelings useful in solving personal problems.,Below are several statements regarding feelings. Please read each statement very carefully and rate how strongly you agree or disagree with it. Select the answer that most accurately describes you. - Looking for hidden meanings in movies or plays distracts from their enjoyment.,"Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I prefer to do things with others rather than on my own.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I prefer to do things the same way over and over again.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - If I try to imagine something, I find it very easy to create a picture in my mind.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I frequently get so strongly absorbed in one thing that I lose sight of other things.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I often notice small sounds when others do not.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I usually notice car number plates or similar strings of information.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - Other people frequently tell me that what I’ve said is impolite, even though I think it is polite.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - When I’m reading a story, I can easily imagine what the characters might look like.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I am fascinated by dates.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - In a social group, I can easily keep track of several different people’s conversations.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find social situations easy.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I tend to notice details that others do not.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I would rather go to a library than a party.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find making up stories easy.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find myself drawn more strongly to people than to things.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I tend to have very strong interests which I get upset about if I can’t pursue.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I enjoy social chit-chat.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - When I talk, it isn’t always easy for others to get a word in edgeways.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I am fascinated by numbers.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - When I’m reading a story, I find it difficult to work out the characters’ intentions.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I don’t particularly enjoy reading fiction.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find it hard to make new friends.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I notice patterns in things all the time.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I would rather go to the theatre than a museum.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - It does not upset me if my daily routine is disturbed.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I frequently find that I don’t know how to keep a conversation going.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find it easy to “read between the lines” when someone is talking to me.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I usually concentrate more on the whole picture, rather than the small details.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I am not very good at remembering phone numbers.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I don’t usually notice small changes in a situation, or a person’s appearance.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I know how to tell if someone listening to me is getting bored.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find it easy to do more than one thing at once.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - When I talk on the phone, I’m not sure when it’s my turn to speak.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I enjoy doing things spontaneously.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I am often the last to understand the point of a joke.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find it easy to work out what someone is thinking or feeling just by looking at their face.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - If there is an interruption, I can switch back to what I was doing very quickly.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I am good at social chit-chat.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - People often tell me that I keep going on and on about the same thing.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - When I was young, I used to enjoy playing games involving pretending with other children.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I like to collect information about categories of things (e.g. types of car, types of bird, types of train, types of plant, etc.).","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find it difficult to imagine what it would be like to be someone else.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I like to plan any activities I participate in carefully.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I enjoy social occasions.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find it difficult to work out people’s intentions.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - New situations make me anxious.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I enjoy meeting new people.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I am a good diplomat.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I am not very good at remembering people’s date of birth.","Below are several statements. Please read each statement very carefully and rate on the scale how strongly you agree or disagree with it.
+
+Select the answer that most accurately describes you. - I find it very easy to play games with children that involve pretending.","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Swallowing frequently","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - A ringing in my ears","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - An urge to cough to clear my throat","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - My body swaying when I am standing","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - My mouth being dry","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - How fast I am breathing","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Watering of tearing of my eyes","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - My skin itching","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Noises associated with my digestion","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Eye fatigue or pain","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Muscle tension in my back and neck","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - A swelling of my body or parts of my body","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - An urge to urinate","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Tremor in my hands","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - An urge to defecate","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Muscle tension in my arms and legs","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - A bloated feeling because of water retension","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Muscle tension in my face","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Goose bumps","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Facial twitches","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Being exhausted","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Stomach and gut pains","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Rolling or fluttering my eyes","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Stomach distension and bloatedness","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Palms sweating","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Sweat on my forehead","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Clumsiness or bumping into people","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Tremor in my lips","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Sweat in my armpits","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Sensations of prickling, tingling, or numbness in my body","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - The temperature of my face (especially my ears)","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Grinding my teeth","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - General jitteriness","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Muscle pain","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Joint pain","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Fullness of my bladder","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - My eye movements","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Back pain","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - My nose itching","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - The hair on the back of my neck ""standing up""","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Needing to rest","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Difficulty in focusing","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - An urge to swallow","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - How hard my heart is beating","Image how aware you are of your body processes. Select the answer that most accurately describes you. Rate your awareness on each of the characteristics described below using the following 5-point scale:
+
+ 
+
+ a) never b) occasionally c) sometimes d) usually e) always
+
+ 
+
+ 
+
+ 
+
+ 
+
+During most situations I am aware of: - Feeling constipated","In this questionnaire we asked you to tell us how much attention you pay to specific bodily sensations. While you were completing the questionnaire, what did you think the term ‘awareness’ meant in this context? Please select one option that best describes your interpretation of the questionnaire. - Selected Choice","In this questionnaire we asked you to tell us how much attention you pay to specific bodily sensations. While you were completing the questionnaire, what did you think the term ‘awareness’ meant in this context? Please select one option that best describes your interpretation of the questionnaire. - None of the above. Please tell us…. - Text","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when my heart is beating fast","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am hungry","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am breathing fast","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am thirsty","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I need to urinate","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I need to defecate","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I encounter different tastes","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am going to vomit","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am going to sneeze","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am going to cough","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am hot/cold","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am sexually aroused","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am going to pass wind","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am going to burp","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when my muscles are tired/sore","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am going to get a bruise","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when I am in pain","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when my blood sugar is low","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when someone is touching me affectionately rather than non-affectionately","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when something is going to be ticklish","Below are several statements regarding how accurately you can perceive specific bodily sensations.
+Please rate on the scale how well you believe you can perceive each specific signal. For example, if you often feel you need to urinate and then realise you do not need to when you go to the toilet you would rate your accuracy perceiving this bodily signal as low.
+Please only rate how well you can perceive these signals without using external cues, for example, if you can only perceive how fast your heart is beating when you measure it by taking your pulse this would not count as accurate internal perception. - I can always accurately perceive when something is going to be itchy","In this questionnaire we asked you to tell us how accurately you can perceive specific bodily sensations. While you were completing the questionnaire, what did you think the term ‘accuracy’ meant in this context? Please select one option that best describes your interpretation of the questionnaire. - Selected Choice","In this questionnaire we asked you to tell us how accurately you can perceive specific bodily sensations. While you were completing the questionnaire, what did you think the term ‘accuracy’ meant in this context? Please select one option that best describes your interpretation of the questionnaire. - None of the above. Please tell us…. - Text","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether my heart is beating fast","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I am hungry","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I am breathing fast","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I am thirsty or dehydrated","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I need to urinate","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I need to defecate","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time when I am eating, my attention is focused on different tastes","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I am nauseated or need to vomit","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I need to sneeze","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I need to cough","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on the temperature of my body (feeling hot or cold)","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I am sexually aroused","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I need to pass wind","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I need to burp","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether my muscles are tired or sore","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I am in pain after I am hurt or injured","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether I am in pain (that is not caused by injury)","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether my blood sugar is low","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time when someone is touching me, my attention is focused on whether it is pleasant/affectionate","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether touch or materials feel ticklish on my body","Below are several statements regarding how much attention you pay to specific bodily sensations. Please rate on the scale how much attention you think you pay to each specific sensation. Think about how you feel during most situations in your daily life, rather than at a specific point in time. For example, if you often think about your heart beating, feeling hungry or needing the toilet then you would rate your attention to these sensations as high. In contrast, if you don’t often think about your heart rate, how hungry you are or whether you need the toilet then you would rate your attention to these sensations as low.
+Please only rate how much attention you pay to these sensations regardless of how well you think you can perceive them. For example, if you often feel you need the toilet but when you go to the toilet you realise you don’t need to you should still rate your attention to this signal as high. Do not worry about how often you think the sensation is truly happening inside your body – we would like to know how much of the time you pay attention to these sensations.
+The questions ask about your attention to feelings coming from inside your body. For example, if the question asks about temperature, it is referring to sensations you notice internally without using your hand to feel how warm your skin is, and if it asks about your heartbeat, it is referring to feelings you notice inside your body without taking your pulse. - Most of the time my attention is focused on whether my body feels itchy","In this questionnaire we asked you to tell us how much attention you pay to specific bodily sensations. While you were completing the questionnaire, what did you think the term ‘attention’ meant in this context? Please select one option that best describes your interpretation of the questionnaire. - Selected Choice","In this questionnaire we asked you to tell us how much attention you pay to specific bodily sensations. While you were completing the questionnaire, what did you think the term ‘attention’ meant in this context? Please select one option that best describes your interpretation of the questionnaire. - None of the above. Please tell us…. - Text",Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Telephoning in public,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Participating in small groups,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Eating in public places.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Drinking with others in public places.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Talking to people in authority.,"Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Acting, performing or giving a talk in front of an audience.",Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Going to a party.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Working while being observed.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Writing while being observed.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Calling someone you don't know very well.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Talking with people you don't know very well.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Meeting strangers.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Urinating in a public restroom.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Entering a room when others are already seated.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Being the center of attention.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Speaking up at a meeting.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Taking a test or exam.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Expressing a disagreement or disapproval to people you don't know very well.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Looking at people you don't know very well in the eyes.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Giving a report to a group.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Trying to pick up someone.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Returning goods to a store.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Giving a party.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much fear or anxiety do the following statements give you? - Resisting a high pressure salesperson.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Telephoning in public,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Participating in small groups,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Eating in public places.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Drinking with others in public places.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Talking to people in authority.,"Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Acting, performing or giving a talk in front of an audience.",Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Going to a party.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Working while being observed.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Writing while being observed.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Calling someone you don't know very well.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Talking with people you don't know very well.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Meeting strangers.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Urinating in a public restroom.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Entering a room when others are already seated.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Being the center of attention.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Speaking up at a meeting.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Taking a test or exam.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Expressing a disagreement or disapproval to people you don't know very well.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Looking at people you don't know very well in the eyes.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Giving a report to a group.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Trying to pick up someone.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Returning goods to a store.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Giving a party.,Below are several statements regarding social phobia. Please read each statement very carefully a... - How much do you tend to avoid the following statements? - Resisting a high pressure salesperson.
+"{""ImportId"":""startDate"",""timeZone"":""Europe/Berlin""}","{""ImportId"":""endDate"",""timeZone"":""Europe/Berlin""}","{""ImportId"":""status""}","{""ImportId"":""ipAddress""}","{""ImportId"":""progress""}","{""ImportId"":""duration""}","{""ImportId"":""finished""}","{""ImportId"":""recordedDate"",""timeZone"":""Europe/Berlin""}","{""ImportId"":""_recordId""}","{""ImportId"":""recipientLastName""}","{""ImportId"":""recipientFirstName""}","{""ImportId"":""recipientEmail""}","{""ImportId"":""externalDataReference""}","{""ImportId"":""locationLatitude""}","{""ImportId"":""locationLongitude""}","{""ImportId"":""distributionChannel""}","{""ImportId"":""userLanguage""}","{""ImportId"":""QID19_TEXT""}","{""ImportId"":""QID10_TEXT""}","{""ImportId"":""QID11""}","{""ImportId"":""QID16_TEXT""}","{""ImportId"":""QID15_1""}","{""ImportId"":""QID15_2""}","{""ImportId"":""QID15_3""}","{""ImportId"":""QID15_4""}","{""ImportId"":""QID15_5""}","{""ImportId"":""QID15_6""}","{""ImportId"":""QID15_7""}","{""ImportId"":""QID15_8""}","{""ImportId"":""QID15_9""}","{""ImportId"":""QID15_10""}","{""ImportId"":""QID15_11""}","{""ImportId"":""QID15_12""}","{""ImportId"":""QID15_13""}","{""ImportId"":""QID15_14""}","{""ImportId"":""QID15_15""}","{""ImportId"":""QID15_16""}","{""ImportId"":""QID15_17""}","{""ImportId"":""QID15_18""}","{""ImportId"":""QID15_19""}","{""ImportId"":""QID15_20""}","{""ImportId"":""QID2_1""}","{""ImportId"":""QID2_2""}","{""ImportId"":""QID2_3""}","{""ImportId"":""QID2_4""}","{""ImportId"":""QID2_5""}","{""ImportId"":""QID2_6""}","{""ImportId"":""QID2_7""}","{""ImportId"":""QID2_8""}","{""ImportId"":""QID2_9""}","{""ImportId"":""QID2_10""}","{""ImportId"":""QID2_11""}","{""ImportId"":""QID2_12""}","{""ImportId"":""QID2_13""}","{""ImportId"":""QID2_14""}","{""ImportId"":""QID2_15""}","{""ImportId"":""QID2_16""}","{""ImportId"":""QID2_17""}","{""ImportId"":""QID2_18""}","{""ImportId"":""QID2_19""}","{""ImportId"":""QID2_20""}","{""ImportId"":""QID2_21""}","{""ImportId"":""QID2_22""}","{""ImportId"":""QID2_23""}","{""ImportId"":""QID2_24""}","{""ImportId"":""QID2_25""}","{""ImportId"":""QID2_26""}","{""ImportId"":""QID2_27""}","{""ImportId"":""QID2_28""}","{""ImportId"":""QID2_29""}","{""ImportId"":""QID2_30""}","{""ImportId"":""QID2_31""}","{""ImportId"":""QID2_32""}","{""ImportId"":""QID2_33""}","{""ImportId"":""QID2_34""}","{""ImportId"":""QID2_35""}","{""ImportId"":""QID2_36""}","{""ImportId"":""QID2_37""}","{""ImportId"":""QID2_38""}","{""ImportId"":""QID2_39""}","{""ImportId"":""QID2_40""}","{""ImportId"":""QID2_41""}","{""ImportId"":""QID2_42""}","{""ImportId"":""QID2_43""}","{""ImportId"":""QID2_44""}","{""ImportId"":""QID2_45""}","{""ImportId"":""QID2_46""}","{""ImportId"":""QID2_47""}","{""ImportId"":""QID2_48""}","{""ImportId"":""QID2_49""}","{""ImportId"":""QID2_50""}","{""ImportId"":""QID3_1""}","{""ImportId"":""QID3_2""}","{""ImportId"":""QID3_3""}","{""ImportId"":""QID3_4""}","{""ImportId"":""QID3_5""}","{""ImportId"":""QID3_6""}","{""ImportId"":""QID3_7""}","{""ImportId"":""QID3_8""}","{""ImportId"":""QID3_9""}","{""ImportId"":""QID3_10""}","{""ImportId"":""QID3_11""}","{""ImportId"":""QID3_12""}","{""ImportId"":""QID3_13""}","{""ImportId"":""QID3_14""}","{""ImportId"":""QID3_15""}","{""ImportId"":""QID3_16""}","{""ImportId"":""QID3_17""}","{""ImportId"":""QID3_18""}","{""ImportId"":""QID3_19""}","{""ImportId"":""QID3_20""}","{""ImportId"":""QID3_21""}","{""ImportId"":""QID3_22""}","{""ImportId"":""QID3_23""}","{""ImportId"":""QID3_24""}","{""ImportId"":""QID3_25""}","{""ImportId"":""QID3_26""}","{""ImportId"":""QID3_27""}","{""ImportId"":""QID3_28""}","{""ImportId"":""QID3_29""}","{""ImportId"":""QID3_30""}","{""ImportId"":""QID3_31""}","{""ImportId"":""QID3_32""}","{""ImportId"":""QID3_33""}","{""ImportId"":""QID3_34""}","{""ImportId"":""QID3_35""}","{""ImportId"":""QID3_36""}","{""ImportId"":""QID3_37""}","{""ImportId"":""QID3_38""}","{""ImportId"":""QID3_39""}","{""ImportId"":""QID3_40""}","{""ImportId"":""QID3_41""}","{""ImportId"":""QID3_42""}","{""ImportId"":""QID3_43""}","{""ImportId"":""QID3_44""}","{""ImportId"":""QID3_45""}","{""ImportId"":""QID4""}","{""ImportId"":""QID4_4_TEXT""}","{""ImportId"":""QID5_1""}","{""ImportId"":""QID5_2""}","{""ImportId"":""QID5_3""}","{""ImportId"":""QID5_4""}","{""ImportId"":""QID5_5""}","{""ImportId"":""QID5_6""}","{""ImportId"":""QID5_7""}","{""ImportId"":""QID5_8""}","{""ImportId"":""QID5_9""}","{""ImportId"":""QID5_10""}","{""ImportId"":""QID5_11""}","{""ImportId"":""QID5_12""}","{""ImportId"":""QID5_13""}","{""ImportId"":""QID5_14""}","{""ImportId"":""QID5_15""}","{""ImportId"":""QID5_16""}","{""ImportId"":""QID5_17""}","{""ImportId"":""QID5_18""}","{""ImportId"":""QID5_19""}","{""ImportId"":""QID5_20""}","{""ImportId"":""QID5_21""}","{""ImportId"":""QID6""}","{""ImportId"":""QID6_4_TEXT""}","{""ImportId"":""QID7_1""}","{""ImportId"":""QID7_2""}","{""ImportId"":""QID7_3""}","{""ImportId"":""QID7_4""}","{""ImportId"":""QID7_5""}","{""ImportId"":""QID7_6""}","{""ImportId"":""QID7_7""}","{""ImportId"":""QID7_8""}","{""ImportId"":""QID7_9""}","{""ImportId"":""QID7_10""}","{""ImportId"":""QID7_11""}","{""ImportId"":""QID7_12""}","{""ImportId"":""QID7_13""}","{""ImportId"":""QID7_14""}","{""ImportId"":""QID7_15""}","{""ImportId"":""QID7_16""}","{""ImportId"":""QID7_17""}","{""ImportId"":""QID7_18""}","{""ImportId"":""QID7_19""}","{""ImportId"":""QID7_20""}","{""ImportId"":""QID7_21""}","{""ImportId"":""QID8""}","{""ImportId"":""QID8_4_TEXT""}","{""ImportId"":""QID18#1_1""}","{""ImportId"":""QID18#1_2""}","{""ImportId"":""QID18#1_3""}","{""ImportId"":""QID18#1_4""}","{""ImportId"":""QID18#1_5""}","{""ImportId"":""QID18#1_6""}","{""ImportId"":""QID18#1_7""}","{""ImportId"":""QID18#1_8""}","{""ImportId"":""QID18#1_9""}","{""ImportId"":""QID18#1_10""}","{""ImportId"":""QID18#1_11""}","{""ImportId"":""QID18#1_12""}","{""ImportId"":""QID18#1_13""}","{""ImportId"":""QID18#1_14""}","{""ImportId"":""QID18#1_15""}","{""ImportId"":""QID18#1_16""}","{""ImportId"":""QID18#1_17""}","{""ImportId"":""QID18#1_18""}","{""ImportId"":""QID18#1_19""}","{""ImportId"":""QID18#1_20""}","{""ImportId"":""QID18#1_21""}","{""ImportId"":""QID18#1_22""}","{""ImportId"":""QID18#1_23""}","{""ImportId"":""QID18#1_24""}","{""ImportId"":""QID18#2_1""}","{""ImportId"":""QID18#2_2""}","{""ImportId"":""QID18#2_3""}","{""ImportId"":""QID18#2_4""}","{""ImportId"":""QID18#2_5""}","{""ImportId"":""QID18#2_6""}","{""ImportId"":""QID18#2_7""}","{""ImportId"":""QID18#2_8""}","{""ImportId"":""QID18#2_9""}","{""ImportId"":""QID18#2_10""}","{""ImportId"":""QID18#2_11""}","{""ImportId"":""QID18#2_12""}","{""ImportId"":""QID18#2_13""}","{""ImportId"":""QID18#2_14""}","{""ImportId"":""QID18#2_15""}","{""ImportId"":""QID18#2_16""}","{""ImportId"":""QID18#2_17""}","{""ImportId"":""QID18#2_18""}","{""ImportId"":""QID18#2_19""}","{""ImportId"":""QID18#2_20""}","{""ImportId"":""QID18#2_21""}","{""ImportId"":""QID18#2_22""}","{""ImportId"":""QID18#2_23""}","{""ImportId"":""QID18#2_24""}"
+2022-02-21 15:47:35,2022-02-21 15:51:44,0,132.229.145.223,100,248,1,2022-02-21 15:51:44,R_2Rb0wrBtYlQypaS,,,,,52.0157928466796875,4.724700927734375,anonymous,EN,,99,1,teat,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,2,2,2,2,2,4,,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+2022-03-28 14:11:38,2022-03-28 14:14:43,1,,100,184,1,2022-03-28 14:14:44,R_31mE0CzZhB80pht,,,,,52.0157928466796875,4.724700927734375,preview,EN,,22,1,gfged,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,3,3,3,3,3,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,3,3,3,3,3,3,,1,1,1,2,2,2,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,2,,1,1,1,1,1,1,3,3,3,3,3,3,2,2,2,2,2,2,4,4,4,1,,1,1,1,1,1,1,1,1,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,4,4,4,4,4,4,4
+2022-03-29 15:25:08,2022-03-29 15:38:29,0,132.229.145.171,100,800,1,2022-03-29 15:38:29,R_3kFHNGGTsIy3gzq,,,,,52.0157928466796875,4.724700927734375,anonymous,EN,999,24,2,Dutch,1,1,1,5,3,1,1,1,2,5,2,1,1,1,3,4,4,5,5,1,3,2,4,2,3,2,1,4,1,2,3,3,4,4,4,1,4,1,1,1,1,2,3,3,2,2,4,3,3,2,4,4,1,4,1,4,4,2,1,4,1,1,2,4,1,3,4,4,3,4,1,2,1,1,1,1,1,2,2,1,3,1,1,1,1,2,1,1,1,1,1,1,1,1,3,2,1,1,2,2,3,2,1,2,4,1,2,3,2,1,3,2,2,3,1,3,,5,4,3,4,5,5,3,3,3,4,4,4,4,4,5,2,5,4,5,3,4,2,,3,1,1,1,1,1,4,1,1,1,2,1,1,1,1,3,1,2,3,1,1,1,,2,1,2,1,1,3,4,2,1,2,2,2,1,1,3,2,3,3,1,2,3,1,3,2,1,1,1,1,1,2,2,1,1,2,1,1,1,1,2,1,1,2,1,1,1,1,1,2
+2022-04-01 12:01:00,2022-04-01 12:33:31,0,132.229.145.171,100,1951,1,2022-04-01 12:33:31,R_3rHtBcJHBMbR3Vp,,,,,52.0157928466796875,4.724700927734375,anonymous,EN,1,18,2,dutch,4,4,2,2,3,4,2,3,2,4,3,5,3,2,3,2,3,4,3,3,3,3,2,2,3,2,2,3,2,3,3,2,1,2,3,2,3,2,2,3,2,2,2,3,3,2,2,2,3,3,3,2,2,3,2,3,2,3,3,2,2,2,2,3,3,2,3,3,3,3,4,4,4,2,3,3,4,2,4,4,3,2,4,2,4,3,3,3,4,2,3,2,3,2,4,2,3,3,4,3,4,4,3,4,2,2,3,4,4,2,2,3,4,3,2,2,,4,3,4,3,4,4,3,3,4,2,3,3,4,3,2,2,3,4,2,4,2,2,,4,3,4,3,4,4,2,4,4,4,2,3,4,2,4,3,4,4,3,2,3,1,,3,2,2,2,3,2,2,2,1,3,2,2,1,2,3,1,2,3,2,2,1,1,2,2,2,2,2,1,2,1,2,1,1,2,1,2,1,1,1,2,1,2,2,2,1,1,1,2
+2022-04-06 13:53:37,2022-04-06 14:14:18,0,132.229.145.171,100,1240,1,2022-04-06 14:14:18,R_3JFd4P329vh0xsN,,,,,52.0157999999999987039700499735772609710693359375,4.7247000000000003439026841078884899616241455078125,anonymous,EN,2,18,2,Dutch,3,2,1,4,3,2,2,5,2,4,2,1,2,2,4,5,1,4,4,2,4,3,4,3,3,2,1,3,2,3,4,4,1,2,3,3,4,2,1,2,3,2,2,2,3,1,3,2,4,1,4,3,2,4,2,3,2,3,2,2,1,1,2,4,2,1,4,3,2,3,3,5,4,3,5,4,5,3,3,4,3,3,4,2,4,3,4,4,5,3,4,4,2,4,4,2,4,3,4,3,2,2,2,5,3,5,2,3,4,3,2,3,3,2,3,1,,4,3,4,4,4,3,3,4,4,4,5,3,3,4,5,4,4,2,4,4,4,2,,2,3,4,4,4,3,4,3,4,4,4,3,3,3,4,5,3,2,2,2,2,1,,2,1,1,1,2,3,1,3,2,3,2,1,2,3,2,3,2,3,3,3,2,3,1,1,4,1,1,1,2,3,1,3,2,4,2,1,2,3,2,3,2,3,2,2,2,3,1,1
+2022-04-06 15:51:50,2022-04-06 16:06:21,0,132.229.145.171,100,871,1,2022-04-06 16:06:22,R_1jjNHxQbwq8C2WM,,,,,52.0157999999999987039700499735772609710693359375,4.7247000000000003439026841078884899616241455078125,anonymous,EN,3,20,2,Dutch,4,5,1,1,3,5,2,5,4,3,5,5,5,4,5,5,4,5,5,4,3,4,2,1,1,1,2,3,1,4,3,3,1,1,2,2,4,1,1,2,1,1,2,4,1,2,3,3,1,1,4,4,3,4,3,4,1,3,3,4,2,4,4,4,1,3,4,2,4,4,2,2,3,4,2,3,1,2,4,4,1,1,3,1,2,1,1,1,3,4,2,1,1,1,3,2,1,3,2,1,1,2,1,1,1,3,2,1,1,1,3,4,2,3,1,2,,3,2,4,4,4,3,4,5,4,5,2,5,4,4,3,2,4,1,4,2,3,2,,4,2,4,3,3,2,3,4,4,4,3,4,4,2,2,4,1,1,4,3,2,1,,2,1,1,1,2,3,1,2,2,2,1,1,1,2,2,2,1,3,1,1,1,1,3,1,3,2,1,1,1,2,1,1,1,3,1,1,1,1,3,2,1,4,1,1,1,1,1,1
+2022-04-15 14:21:01,2022-04-15 14:40:56,0,132.229.145.171,100,1195,1,2022-04-15 14:40:56,R_2EbCsK0gGsI3quh,,,,,52.0158,4.7247,anonymous,EN,4,22,2,Dutch,2,4,3,4,3,2,4,1,4,4,4,2,4,4,2,1,1,5,4,1,3,1,3,4,4,1,1,3,1,3,2,4,1,2,4,1,2,4,1,2,3,2,2,3,4,3,3,2,2,2,4,1,3,4,2,3,1,2,2,3,1,1,1,3,1,2,4,3,4,2,3,1,2,2,3,4,2,2,3,2,5,2,3,1,2,2,4,4,2,4,4,4,2,4,2,1,5,1,2,3,3,2,3,4,3,3,2,5,3,1,4,5,3,2,3,3,,4,2,5,2,5,3,4,5,4,4,4,4,2,2,5,4,5,3,2,4,5,2,,1,1,1,5,1,1,4,1,1,1,1,1,1,1,2,4,1,1,4,1,2,1,,1,2,1,1,2,2,1,1,1,4,2,1,1,1,1,1,2,3,1,1,2,1,1,3,2,2,1,1,3,2,2,1,1,4,2,1,1,1,1,2,2,4,1,1,2,1,1,2
+2022-04-21 11:55:09,2022-04-21 12:15:33,0,132.229.145.171,100,1224,1,2022-04-21 12:15:33,R_ysuVYkpBdfWMsp3,,,,,52.0158,4.7247,anonymous,EN,5,18,2,dutch,1,1,1,5,4,3,2,1,2,4,1,1,1,2,2,3,1,1,4,1,2,3,4,3,4,3,3,4,1,4,3,4,1,4,3,3,3,2,1,2,4,2,3,4,2,2,4,3,1,1,4,4,2,3,1,4,3,3,1,4,1,2,3,3,1,3,3,3,1,3,2,1,3,1,3,2,2,3,3,2,4,2,4,2,4,2,3,2,3,3,4,4,4,3,5,3,3,2,5,3,2,1,2,3,2,5,4,4,4,3,4,4,2,1,2,3,,4,4,4,4,4,3,4,4,5,5,5,4,4,4,5,1,2,2,5,5,4,2,,2,4,2,4,2,3,3,2,2,2,2,2,2,2,2,4,2,1,4,4,2,1,,2,1,1,1,2,4,2,2,1,3,2,2,1,1,4,3,2,3,1,2,4,2,3,2,2,2,1,1,1,2,2,2,1,3,2,2,1,1,3,3,1,2,1,1,2,1,2,3
+2022-04-25 10:51:27,2022-04-25 11:10:25,0,132.229.145.171,100,1138,1,2022-04-25 11:10:26,R_24f4HfVuGQPX77C,,,,,52.0158,4.7247,anonymous,EN,6,21,2,nederlandse,4,2,5,5,4,1,1,1,1,5,1,1,4,2,1,2,1,5,5,5,1,1,4,4,3,1,1,4,4,4,4,4,3,2,3,1,3,1,1,1,2,1,4,2,4,1,4,4,1,1,4,3,1,4,1,4,4,4,1,4,1,3,4,4,1,1,4,4,4,2,3,2,2,1,1,3,1,1,2,1,5,1,5,1,1,5,4,1,2,2,5,4,5,5,1,1,1,1,2,1,1,1,1,4,4,5,2,5,1,1,5,4,1,3,1,3,,2,4,4,5,5,4,5,5,2,3,5,2,5,5,5,3,5,5,5,5,5,2,,1,2,4,5,5,3,5,5,1,1,1,1,1,1,5,5,5,5,5,3,1,1,,1,1,3,1,1,2,2,4,4,4,2,1,2,3,1,3,4,3,4,3,4,4,4,4,2,1,3,2,2,2,3,4,4,4,2,1,2,1,1,3,1,3,4,3,4,4,4,4
+2022-04-25 12:45:36,2022-04-25 13:00:09,0,132.229.145.171,100,872,1,2022-04-25 13:00:09,R_XXqeMGUNm1G4A2l,,,,,52.0158,4.7247,anonymous,EN,7,18,2,Dutch,3,2,3,2,3,2,3,1,2,4,2,2,4,2,2,2,5,5,2,3,3,4,3,2,4,3,3,3,1,3,3,4,1,3,3,2,1,2,1,1,1,2,3,3,3,2,4,2,3,1,4,2,2,3,2,4,3,3,3,4,1,2,3,3,2,4,3,3,1,4,2,5,5,4,4,3,4,4,3,4,4,3,4,2,2,4,5,4,5,5,4,3,2,5,4,4,2,3,2,3,2,4,2,2,3,5,2,3,4,3,5,4,3,3,2,2,,4,4,3,2,2,3,3,2,3,4,4,4,5,5,4,4,3,4,4,4,3,2,,2,4,1,4,4,3,3,1,2,2,4,2,1,1,3,2,2,1,4,3,3,1,,2,3,2,1,3,4,2,3,3,4,3,4,1,2,4,4,4,3,2,1,1,2,1,1,1,2,1,1,3,4,2,2,2,4,2,3,1,1,3,4,1,2,2,1,1,1,1,1
+2022-04-25 15:05:26,2022-04-25 15:40:37,0,132.229.145.171,100,2111,1,2022-04-25 15:40:37,R_3PNQlNrVKY8Rf4r,,,,,52.0158,4.7247,anonymous,EN,8,19,2,Dutch,2,3,1,4,3,1,1,3,2,5,1,1,1,2,3,3,3,5,4,2,3,1,4,2,3,3,1,3,2,3,3,4,3,1,3,1,3,1,1,3,3,3,2,4,3,3,2,2,3,2,3,2,1,4,2,4,3,2,1,3,2,2,3,3,2,2,3,2,2,3,1,4,2,2,4,2,3,4,1,4,4,2,4,2,2,3,3,3,5,3,4,4,2,3,4,3,4,2,4,3,3,5,3,3,3,5,2,5,5,5,4,3,1,1,2,2,,1,5,2,5,5,5,4,4,4,4,4,3,3,3,4,2,4,2,3,4,4,3,,1,4,1,4,3,1,3,1,1,1,2,1,1,1,2,1,2,1,3,4,3,1,,3,1,1,1,3,2,2,1,2,2,2,1,2,1,3,2,3,2,2,2,3,2,1,1,2,1,1,1,2,2,2,1,2,3,1,1,1,1,3,2,1,1,2,1,2,2,1,1
+2022-04-26 14:29:40,2022-04-26 14:53:56,0,132.229.145.171,100,1456,1,2022-04-26 14:53:57,R_3hF0GtKqvdxoE0a,,,,,52.0158,4.7247,anonymous,EN,9,19,2,Nederlandse,2,3,1,3,4,3,2,2,3,3,3,4,3,2,2,2,3,4,3,3,3,2,2,2,2,3,1,3,2,4,2,3,2,1,3,2,2,1,3,2,2,3,2,3,3,3,3,2,1,2,3,3,2,3,2,3,2,1,1,4,1,2,2,3,3,3,3,3,1,3,2,3,4,3,3,3,4,4,4,4,3,3,4,3,2,3,2,2,3,3,4,4,3,4,4,4,4,3,4,2,1,1,2,3,2,4,4,2,2,2,3,3,2,2,2,1,,2,5,5,5,5,3,4,4,4,4,4,4,4,4,3,2,4,3,3,3,3,2,,2,3,3,2,2,2,3,1,2,2,2,2,2,2,2,2,2,2,4,3,3,1,,3,2,3,2,2,4,2,2,2,2,3,2,1,3,3,2,2,2,2,3,2,2,1,2,4,2,3,1,2,4,2,2,1,3,3,2,1,2,3,2,1,2,3,2,1,2,1,2
+2022-04-26 16:35:51,2022-04-26 16:55:21,0,132.229.145.171,100,1169,1,2022-04-26 16:55:21,R_Rsg1mUmaU0sV5Lj,,,,,52.0158,4.7247,anonymous,EN,10,20,2,Dutch,2,1,1,4,2,2,1,2,2,4,1,1,3,3,2,1,1,5,4,1,3,4,4,3,2,2,1,3,4,1,1,2,1,1,4,2,3,1,2,1,1,4,3,4,1,2,3,1,1,1,3,2,2,3,2,3,2,2,3,3,1,2,1,3,1,4,2,3,1,3,2,5,5,5,5,3,5,5,2,3,5,4,4,5,4,3,5,2,3,3,5,5,3,5,4,4,5,3,4,3,2,2,2,4,4,5,3,5,5,3,5,5,4,4,5,1,,3,3,3,4,4,4,4,5,5,5,3,3,4,4,5,4,5,2,4,4,4,2,,4,4,2,4,4,4,5,4,5,5,3,4,4,4,5,5,5,2,4,5,5,1,,2,3,1,1,2,4,3,3,1,3,3,4,1,1,4,4,2,4,2,4,1,2,2,3,2,3,1,1,1,3,3,1,1,2,2,3,1,1,4,4,1,4,2,4,1,1,2,2
+2022-05-03 11:00:01,2022-05-03 11:20:09,0,132.229.145.221,100,1207,1,2022-05-03 11:20:09,R_2aUFMNQQ1Veyt1l,,,,,52.0158,4.7247,anonymous,EN,11,18,2,Dutch,2,3,3,4,4,3,1,1,3,5,1,2,3,1,1,3,5,5,5,1,3,2,4,2,3,3,1,4,1,3,3,4,3,3,4,1,3,1,1,2,1,1,3,4,2,2,3,2,3,1,4,2,4,3,1,4,3,4,1,3,1,1,3,3,3,4,4,3,4,3,3,2,2,3,5,2,4,5,5,2,3,2,4,3,2,2,3,2,2,2,4,3,2,3,2,1,3,1,1,4,2,3,2,2,2,4,3,2,3,1,3,3,2,2,1,3,,5,4,5,5,4,5,5,5,2,3,4,4,4,1,4,1,5,2,2,3,4,2,,3,5,2,5,4,2,4,1,2,2,4,2,2,1,3,2,3,1,4,2,4,1,,4,2,3,2,2,2,3,4,3,4,1,1,2,4,2,3,4,3,1,1,4,4,4,3,4,2,3,2,1,2,2,4,3,4,1,1,1,3,3,1,1,3,1,1,4,4,4,4
+2022-05-03 14:58:51,2022-05-03 15:14:12,0,132.229.145.221,100,920,1,2022-05-03 15:14:12,R_1mWeuzDtxOLJ2ZY,,,,,52.0158,4.7247,anonymous,EN,12,21,2,Polish,3,4,2,3,2,2,2,3,2,4,2,3,2,3,2,1,1,4,4,4,2,2,4,3,4,4,2,4,3,3,3,4,2,4,2,3,3,2,3,2,3,1,3,2,2,2,2,2,1,1,2,3,1,4,3,3,2,3,2,4,3,1,3,2,2,1,3,3,2,2,2,4,5,4,4,5,5,5,5,5,5,5,5,4,5,4,3,4,4,3,4,5,4,5,3,1,4,4,4,3,4,2,4,5,5,5,5,5,4,1,5,4,5,3,3,1,,3,5,5,5,5,5,5,3,4,5,5,3,4,5,4,3,5,5,4,3,4,2,,2,4,4,4,4,4,4,2,2,3,4,3,3,3,4,4,4,4,3,3,4,1,,1,1,1,1,2,2,1,2,2,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1,2,2,1,3,2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,4
+2022-05-03 17:27:03,2022-05-03 17:48:47,0,132.229.145.221,100,1304,1,2022-05-03 17:48:48,R_1rP9gNc45smmhQp,,,,,52.0158,4.7247,anonymous,EN,13,20,2,German,4,3,5,3,3,4,3,2,3,4,2,3,4,4,3,4,4,3,3,2,3,3,3,4,3,2,1,3,2,3,1,3,2,3,3,2,2,1,3,1,1,3,2,2,3,3,2,2,2,2,3,2,3,2,2,3,2,2,2,4,1,2,2,3,2,3,3,2,4,3,3,3,4,2,2,3,2,5,3,4,5,1,5,4,1,2,5,4,3,2,5,4,1,5,1,4,3,1,3,2,2,1,5,2,1,3,4,2,2,1,4,5,3,3,3,3,,3,2,3,2,3,2,3,3,4,4,4,2,4,3,2,1,2,2,1,3,2,2,,2,4,2,3,5,3,2,1,3,3,4,2,2,1,2,4,2,3,3,1,3,1,,3,2,2,3,1,4,3,3,2,2,3,3,1,3,4,3,3,4,3,3,3,4,4,3,3,2,3,2,3,1,2,2,2,2,2,3,3,2,2,2,3,1,2,3,2,1,2,4
+2022-05-12 12:12:25,2022-05-12 12:37:21,0,132.229.145.221,100,1495,1,2022-05-12 12:37:21,R_3PtVpvpItbKlN6t,,,,,52.0158,4.7247,anonymous,EN,15,21,1,Dutch,2,4,1,2,5,5,3,2,4,5,4,4,2,2,3,4,4,5,3,1,3,3,4,4,3,1,1,4,1,2,1,3,1,3,3,1,2,1,2,2,1,3,2,2,2,4,3,2,3,2,2,2,1,4,1,2,2,1,1,4,3,2,2,3,3,4,3,2,3,2,2,4,5,3,4,3,5,4,4,3,4,2,5,3,3,4,2,1,4,5,5,3,3,2,3,5,4,1,3,4,2,1,3,5,3,4,4,4,3,2,4,4,2,3,2,3,,4,5,5,5,5,3,4,2,4,4,2,4,4,4,5,2,4,1,4,4,5,2,,2,5,2,5,4,2,5,2,3,3,3,4,2,2,4,5,2,1,5,2,5,1,,3,2,2,1,1,4,2,2,1,2,3,3,1,2,4,4,2,4,1,3,4,2,3,3,2,2,2,1,1,3,2,1,1,2,2,2,1,1,4,4,2,4,1,3,3,1,3,3
+2022-05-12 14:00:39,2022-05-12 14:32:19,0,132.229.145.221,100,1899,1,2022-05-12 14:32:19,R_6zMdFkoSkGKCHXr,,,,,52.0158,4.7247,anonymous,EN,16,19,2,Dutch,1,1,1,5,4,1,1,1,4,5,1,1,2,2,2,2,1,4,5,2,2,2,1,3,2,1,1,1,1,3,3,2,1,1,2,3,4,1,2,1,1,2,1,4,3,2,3,3,2,2,4,3,1,4,1,3,4,3,3,4,2,3,3,4,2,3,3,3,3,4,1,5,5,1,4,1,4,5,3,4,1,2,5,2,4,1,1,1,4,5,4,5,4,4,3,1,2,1,3,5,1,2,4,4,4,5,2,2,5,1,3,2,2,2,4,2,,2,4,4,2,5,4,4,4,4,5,5,2,4,4,4,1,4,1,4,4,2,2,,1,2,1,4,2,2,4,1,2,2,4,2,2,1,2,5,1,1,4,2,2,1,,1,1,1,1,2,3,2,2,1,2,3,3,2,1,4,2,1,2,1,2,3,1,2,1,1,1,1,1,1,2,2,1,1,2,2,2,2,1,3,2,1,1,2,1,4,1,4,4
+2022-05-16 12:07:32,2022-05-16 12:25:07,0,132.229.145.221,100,1054,1,2022-05-16 12:25:08,R_2zj3CjfwN7SA0kC,,,,,52.0158,4.7247,anonymous,EN,17,23,2,Dutch,1,2,3,4,4,1,3,4,2,5,2,1,1,1,1,1,3,4,4,4,2,2,4,3,4,2,2,4,2,2,3,3,1,3,2,3,2,2,1,1,2,1,3,3,3,2,2,2,2,1,3,3,2,4,3,4,2,1,3,2,2,3,2,3,2,2,2,3,2,3,3,5,4,2,4,2,4,4,4,3,4,4,3,3,3,2,3,3,4,4,4,4,2,3,1,3,2,2,3,3,1,4,3,4,3,3,3,2,3,1,4,4,1,1,3,1,,2,4,3,4,4,3,4,4,4,2,3,4,2,3,4,2,4,1,4,4,4,2,,2,4,2,4,2,3,5,2,1,3,4,4,1,1,4,2,1,1,4,3,3,1,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+2022-05-16 13:57:01,2022-05-16 14:05:03,1,,100,481,1,2022-05-16 14:05:03,R_R9TenMOnWnjwBaN,,,,,52.0158,4.7247,preview,EN,999,99,2,jkhhl,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,3,,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,2,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+2022-05-16 15:51:23,2022-05-16 16:10:16,0,132.229.145.221,100,1132,1,2022-05-16 16:10:16,R_3MyrKMkDXfxBxbE,,,,,52.0158,4.7247,anonymous,EN,18,20,1,Polish,2,2,3,3,4,2,4,1,4,4,1,2,3,1,3,5,4,5,4,4,3,2,2,4,3,1,3,1,1,2,2,3,4,2,3,1,2,4,1,3,3,2,2,1,4,3,3,1,3,2,2,2,3,3,3,3,3,2,4,1,3,3,1,2,3,1,3,2,2,2,2,3,4,4,3,2,5,4,3,4,3,2,4,4,4,3,3,1,4,5,4,4,2,3,4,4,3,2,4,3,2,1,3,4,4,4,3,4,4,1,3,4,4,2,3,2,,2,5,2,5,3,4,4,5,4,4,4,4,2,4,5,4,2,1,4,5,4,2,,2,5,2,4,4,3,4,1,3,4,4,4,3,2,4,4,4,1,4,4,4,1,,3,2,1,1,3,2,2,3,2,4,3,3,1,2,2,2,1,2,1,2,1,3,3,3,3,3,1,1,3,2,2,2,1,3,2,2,1,1,2,2,1,2,1,1,1,3,3,3
+2022-05-24 12:11:39,2022-05-24 12:29:20,0,132.229.145.221,100,1061,1,2022-05-24 12:29:21,R_6JaMhKF9ryjlHON,,,,,52.0158,4.7247,anonymous,EN,19,20,2,dutch,5,5,3,4,2,4,3,4,5,5,3,4,4,3,1,1,4,5,4,3,2,3,3,2,2,3,4,2,4,1,2,1,1,1,4,2,2,4,4,4,4,2,1,2,4,2,1,2,2,4,1,3,2,3,4,2,2,3,3,2,2,4,2,2,4,2,2,2,2,1,3,4,5,4,4,2,4,4,3,4,1,1,4,3,2,2,3,2,4,3,4,4,4,3,2,3,5,3,3,4,3,1,2,3,3,3,1,1,4,3,4,4,3,4,2,1,,4,4,3,4,4,3,4,3,4,4,4,4,4,4,4,3,3,2,4,3,2,2,,2,4,2,2,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,,2,3,1,2,3,4,3,4,3,3,2,3,2,2,4,4,4,4,1,2,2,2,4,3,3,2,1,2,2,3,3,4,3,4,2,2,2,1,3,3,4,4,1,1,1,2,4,3
+2022-05-24 13:51:52,2022-05-24 14:12:55,0,132.229.145.221,100,1262,1,2022-05-24 14:12:55,R_2EoQHF7LDpuaofe,,,,,52.0158,4.7247,anonymous,EN,20,18,2,Polish,1,2,1,5,3,1,1,1,1,5,1,1,2,1,1,2,1,5,5,1,2,1,1,3,2,3,1,1,1,2,1,1,4,1,2,2,1,3,4,4,2,4,1,1,3,4,1,4,2,4,1,2,4,3,4,1,1,1,2,1,4,4,1,1,4,3,1,1,1,2,2,5,5,2,5,3,5,5,5,3,4,4,5,3,5,3,4,4,5,5,5,5,2,4,4,2,5,4,4,4,4,3,4,3,3,4,3,4,5,1,4,5,2,4,3,1,,5,5,3,4,4,5,4,5,5,5,5,5,3,4,4,2,2,3,5,4,4,2,,1,4,1,4,2,4,4,5,4,4,2,4,1,2,2,2,2,1,5,2,1,1,,1,1,2,1,1,2,2,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,2,1,1,2,1,1,3,1,2,1,1,2,1,3,1
+2022-05-24 16:04:55,2022-05-24 16:16:15,0,132.229.145.221,100,679,1,2022-05-24 16:16:15,R_1q2GV7jpScWEU5R,,,,,52.0158,4.7247,anonymous,EN,21,18,2,Dutch,5,5,1,1,4,1,5,1,5,5,5,1,5,1,1,1,1,5,5,1,4,2,2,2,4,4,2,2,2,4,2,4,4,2,2,2,4,2,4,4,4,4,4,2,4,2,4,2,1,1,3,3,4,1,4,2,3,3,4,4,4,1,1,1,1,1,1,2,2,2,2,2,4,1,3,2,4,4,3,4,2,1,3,1,1,1,1,2,3,1,4,2,1,1,1,2,3,1,4,1,1,2,2,3,1,3,1,2,2,1,4,4,2,1,3,1,,4,4,4,4,4,2,1,4,4,3,4,4,4,2,4,4,4,2,5,5,2,2,,1,5,1,5,5,1,2,2,2,2,4,4,2,2,3,2,2,1,5,4,4,1,,1,1,1,1,4,1,1,4,4,4,1,1,1,4,1,1,3,4,2,1,1,4,1,3,1,1,1,1,4,1,1,4,4,4,1,1,1,4,1,1,1,3,2,1,1,4,1,4
+2022-05-30 11:52:13,2022-05-30 12:05:11,0,132.229.145.235,100,778,1,2022-05-30 12:05:12,R_3me4UIxmJr2DKCw,,,,,52.0158,4.7247,anonymous,EN,22,19,2,Dutch,2,3,1,4,4,2,4,4,2,5,2,1,2,1,1,3,2,5,2,5,3,2,1,2,1,2,1,1,3,2,3,2,4,2,1,1,2,4,4,3,2,3,3,3,3,2,3,2,2,3,2,3,3,3,2,1,3,2,2,1,1,2,2,1,3,2,1,2,3,1,4,4,3,4,4,4,5,3,3,5,4,3,5,2,2,4,4,3,3,2,5,5,5,4,3,2,4,2,2,2,1,3,3,3,3,3,2,4,2,1,5,4,4,4,3,2,,5,4,4,4,5,2,2,4,4,3,3,4,2,2,4,3,5,1,4,4,3,2,,4,4,5,4,5,2,2,4,5,4,2,4,2,2,4,5,5,1,4,4,3,2,,2,2,1,1,3,4,2,3,1,3,3,2,1,1,2,3,4,4,1,2,1,1,3,3,1,1,1,1,3,4,1,2,1,2,2,2,1,1,2,3,4,4,1,2,1,1,2,3
+2022-06-08 14:31:43,2022-06-08 14:46:01,0,132.229.145.235,100,857,1,2022-06-08 14:46:01,R_30fdhyn0DiJDtEs,,,,,52.0158,4.7247,anonymous,EN,23,19,2,Indonesian,1,2,1,4,5,1,1,1,1,5,1,3,1,1,1,2,2,4,5,2,3,2,1,3,2,3,4,1,2,2,2,2,1,2,1,2,3,3,1,3,4,3,2,3,3,4,1,3,3,3,4,2,4,2,3,2,3,3,3,2,4,3,1,2,3,2,3,2,2,2,4,4,4,5,2,4,4,5,5,3,2,2,4,2,4,2,2,2,3,2,4,3,3,3,4,3,4,3,5,5,3,3,4,2,2,3,2,5,3,1,4,5,5,4,4,1,,4,4,5,4,4,4,4,5,4,3,5,4,4,5,4,3,4,2,5,4,5,2,,4,3,4,5,4,4,4,4,5,4,5,4,4,4,4,5,3,2,4,4,4,1,,1,2,1,2,3,3,3,3,3,2,3,3,2,3,4,3,2,2,2,1,1,2,4,2,1,1,1,1,3,2,3,2,2,1,2,2,1,2,3,2,1,3,2,1,1,1,4,1
+2022-06-08 16:28:36,2022-06-08 16:45:52,0,132.229.145.235,100,1035,1,2022-06-08 16:45:52,R_1CqEp2d7mPbqEy5,,,,,52.0158,4.7247,anonymous,EN,24,19,2,hungarian,2,4,5,3,4,2,5,2,2,5,4,2,3,2,1,3,2,4,5,3,3,2,1,3,1,2,4,2,2,1,2,2,3,1,1,2,4,4,3,4,4,2,2,2,3,3,1,3,2,4,1,2,3,1,4,1,3,2,3,1,2,3,2,1,3,2,2,2,2,2,2,2,3,4,1,3,5,2,4,5,4,4,4,2,2,3,3,5,4,3,5,4,4,3,2,1,1,1,2,4,5,2,2,4,4,4,4,4,2,2,3,5,2,4,1,2,,4,3,4,4,2,4,2,5,4,5,5,4,5,5,5,5,5,2,4,4,4,2,,2,2,3,4,3,1,4,3,3,1,5,2,1,1,4,4,4,1,3,4,3,1,,2,3,1,1,2,4,2,2,1,2,1,1,1,3,4,2,2,2,3,3,3,2,3,4,2,2,1,1,1,2,2,2,1,1,1,1,1,1,3,2,1,1,3,2,3,1,2,3
+2022-06-21 11:56:24,2022-06-21 12:19:37,0,132.229.145.32,100,1392,1,2022-06-21 12:19:38,R_1LbAokSTEYvKN24,,,,,52.0158,4.7247,anonymous,EN,25,19,2,dutch,2,4,4,2,4,2,3,2,2,4,3,4,2,2,3,3,4,2,3,2,2,2,3,3,2,4,4,2,4,2,3,3,4,1,1,4,3,3,4,3,3,2,2,2,3,2,2,3,3,4,2,2,2,3,4,2,3,3,3,1,4,2,4,3,3,1,2,2,1,2,2,2,3,4,3,3,2,3,3,3,2,3,2,3,2,3,2,2,3,2,4,2,2,3,4,4,3,1,4,2,3,1,2,4,3,2,2,4,3,1,4,3,2,3,1,2,,3,2,4,3,3,4,3,3,2,4,4,4,4,3,3,2,4,2,4,4,4,2,,2,4,4,2,3,3,4,3,1,3,3,3,2,1,3,4,4,2,4,4,3,1,,3,2,3,2,2,4,2,3,3,2,2,2,2,3,3,2,4,2,3,3,2,3,3,2,3,2,2,1,1,4,2,2,3,2,1,1,3,4,2,1,2,3,2,3,3,4,2,2
+2022-06-21 14:01:32,2022-06-21 14:23:53,0,132.229.145.32,100,1341,1,2022-06-21 14:23:54,R_29crmS1A5MbNi0b,,,,,52.0158,4.7247,anonymous,EN,26,23,1,Dutch,2,2,1,4,4,3,3,2,4,5,2,1,1,4,2,1,1,5,5,1,2,3,2,2,4,4,2,2,3,2,2,1,4,3,2,1,1,4,3,4,2,4,2,3,2,1,2,3,2,3,2,4,3,1,2,1,3,3,4,2,2,3,4,1,4,2,1,2,1,3,3,4,5,3,5,3,5,4,4,4,4,3,3,2,3,4,4,2,3,1,4,1,1,4,4,4,4,1,3,3,4,2,2,2,2,4,1,3,3,1,4,3,3,2,2,2,,2,4,4,5,3,3,4,5,3,4,4,4,3,3,4,4,4,1,4,3,4,2,,1,4,3,4,4,2,4,1,3,4,3,4,3,3,3,3,3,1,5,3,3,1,,1,2,1,1,2,4,1,2,1,1,2,2,3,1,2,2,1,1,1,2,3,1,2,1,1,2,1,1,1,3,1,1,1,2,3,2,3,1,2,2,1,1,2,2,3,1,1,2
+2022-06-21 15:50:28,2022-06-21 16:04:50,0,132.229.145.32,100,862,1,2022-06-21 16:04:51,R_1Gw3bYYF59HFZjl,,,,,52.0158,4.7247,anonymous,EN,27,21,2,Dutch,2,2,3,4,3,4,4,2,3,4,3,3,3,4,2,3,2,5,4,1,2,2,1,3,2,3,4,1,2,2,2,3,4,1,1,2,1,4,3,4,3,3,2,1,2,3,1,2,2,3,2,1,3,1,4,2,2,2,2,1,3,4,2,1,4,2,2,3,2,1,3,2,3,1,2,2,2,3,3,3,2,1,4,1,2,1,3,3,2,3,3,5,2,5,3,4,4,2,2,1,1,2,2,2,1,4,4,1,3,2,3,4,2,2,3,3,,3,4,4,4,5,4,4,4,5,3,3,4,4,3,3,2,4,1,4,5,4,2,,3,4,3,4,5,4,5,3,3,4,3,4,4,2,4,2,4,1,4,4,4,1,,2,1,3,1,3,3,1,2,2,2,3,2,2,2,2,3,2,4,1,2,3,1,1,2,1,1,2,1,3,2,1,2,2,1,2,2,1,1,2,3,1,4,1,2,3,1,1,2
+2022-06-29 10:26:15,2022-06-29 10:44:19,0,132.229.145.13,100,1084,1,2022-06-29 10:44:20,R_VKiNyGFP29KPiFz,,,,,52.0158,4.7247,anonymous,EN,28,19,2,Nederlands,3,2,1,4,4,2,3,4,2,3,2,2,2,2,2,2,2,4,4,3,2,3,2,3,3,4,4,2,2,2,2,2,4,2,1,4,2,4,4,3,2,4,3,1,2,4,3,2,2,3,1,3,3,2,3,1,2,2,3,2,4,3,3,1,4,4,1,2,3,2,2,2,3,3,2,2,3,4,3,4,2,2,4,2,3,3,4,3,4,4,4,4,5,4,3,4,5,4,4,4,3,3,3,4,3,4,4,4,4,3,3,4,3,3,3,1,,3,4,3,5,4,3,4,3,4,4,4,4,3,4,4,4,4,2,4,4,4,2,,2,3,4,4,4,3,4,4,4,3,4,3,3,4,3,4,3,2,4,3,3,1,,3,2,3,1,3,4,2,4,2,3,2,1,1,2,3,3,3,3,3,2,2,2,3,3,4,2,2,2,2,3,2,3,2,3,2,2,2,2,3,2,3,3,2,2,2,2,2,2
+2022-06-29 12:30:12,2022-06-29 12:47:55,0,132.229.145.13,100,1063,1,2022-06-29 12:47:56,R_abpkXyX0o5gQJoZ,,,,,52.0158,4.7247,anonymous,EN,29,23,2,German,4,3,4,3,5,4,3,1,3,5,4,4,3,3,3,3,3,5,4,2,2,2,1,2,1,1,2,2,3,2,2,1,3,2,3,2,2,3,2,3,3,3,1,3,3,2,3,2,1,3,2,3,2,1,3,2,2,2,2,2,1,3,3,1,3,3,1,1,3,3,3,1,3,2,4,3,3,2,3,4,3,2,2,1,2,3,2,3,2,3,3,2,3,3,2,2,3,1,4,1,2,2,2,2,1,2,3,2,3,2,3,3,2,3,2,2,,1,4,2,4,3,3,4,4,3,3,4,3,4,5,3,2,4,2,3,3,4,3,,2,4,2,3,1,1,4,1,3,4,3,2,3,3,2,1,2,3,5,3,2,1,,1,1,1,1,2,3,1,3,2,2,3,3,1,2,2,2,2,3,3,2,2,1,2,1,2,2,2,2,3,2,2,2,1,2,3,2,2,2,3,2,2,2,3,2,2,1,1,1
+2022-06-30 13:45:41,2022-06-30 14:00:53,0,132.229.145.13,100,912,1,2022-06-30 14:00:53,R_2dFQdN6rayTYMWj,,,,,52.1839,4.4784,anonymous,EN,30,22,2,Turkish,4,4,1,3,5,5,5,1,4,5,1,1,3,3,2,2,4,5,5,5,2,1,1,1,4,3,2,1,1,2,3,1,3,4,3,1,2,2,2,4,4,3,1,4,4,4,1,4,2,3,1,3,1,2,4,1,2,2,2,1,3,4,1,1,4,1,2,2,2,1,3,1,3,3,3,2,3,4,3,1,5,2,1,1,3,2,4,4,4,4,4,4,4,4,1,4,4,4,4,4,2,1,2,4,3,2,4,5,5,2,4,5,5,1,3,1,,5,4,4,2,4,4,5,3,4,4,4,5,5,5,4,5,5,3,2,4,4,2,,1,4,1,3,2,3,4,2,2,3,4,3,2,2,4,4,2,1,3,4,4,1,,1,2,1,1,3,4,3,2,3,4,2,2,1,2,3,4,1,3,3,1,2,1,4,3,1,2,1,1,3,4,2,3,3,4,2,2,2,1,4,2,1,2,3,1,3,1,4,4
+2022-06-30 15:53:20,2022-06-30 16:12:21,0,132.229.145.13,100,1140,1,2022-06-30 16:12:21,R_SIc8zkY68SvZNa9,,,,,52.1839,4.4784,anonymous,EN,31,21,2,Turkish,2,2,2,4,4,4,3,2,2,4,2,2,2,2,4,2,2,4,4,2,2,4,1,3,4,4,4,1,2,3,2,2,2,1,2,1,2,3,3,3,3,3,3,3,4,4,1,3,2,3,3,2,3,3,4,1,2,2,4,1,4,3,1,2,4,2,3,2,2,1,4,4,4,4,4,4,4,4,2,4,4,4,4,4,4,4,2,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,4,3,3,4,4,4,1,4,4,4,4,4,2,,4,4,4,4,4,4,3,4,4,4,4,4,3,4,4,4,4,4,4,4,4,2,,3,3,4,4,4,4,4,3,3,3,4,4,4,4,4,4,4,4,4,4,4,1,,1,2,2,1,2,2,3,3,2,2,2,2,2,3,2,3,2,2,2,1,1,3,3,3,1,1,2,1,2,1,2,2,1,2,2,2,2,2,1,1,1,2,1,1,1,2,3,3
+2022-07-05 11:53:42,2022-07-05 12:19:12,0,132.229.145.13,100,1530,1,2022-07-05 12:19:13,R_3OjlGFsU21qrF0p,,,,,52.1839,4.4784,anonymous,EN,32,26,2,German,2,2,2,4,5,1,3,1,2,5,2,1,1,1,2,3,5,5,5,3,3,2,1,3,1,2,3,1,3,1,2,2,2,1,2,3,1,3,3,3,3,2,4,3,3,2,2,1,2,2,1,3,4,1,4,3,2,3,4,1,4,4,2,2,3,3,1,2,3,1,3,5,5,4,4,4,5,5,5,5,5,4,5,4,5,4,5,2,3,3,4,4,2,4,3,1,1,1,2,3,1,3,2,4,2,4,5,5,3,1,5,5,3,2,3,2,,3,4,4,5,5,5,5,4,5,4,5,5,4,4,5,5,5,4,4,4,4,2,,1,4,1,4,2,2,4,1,3,2,3,2,2,2,4,2,1,1,4,4,1,1,,1,1,2,1,2,2,1,2,1,2,1,2,1,1,2,1,3,2,1,1,1,2,2,1,2,1,1,1,2,2,3,1,1,1,1,2,3,2,2,1,1,2,1,1,1,2,2,1
+2022-07-12 12:50:00,2022-07-12 13:02:34,0,132.229.145.13,100,753,1,2022-07-12 13:02:34,R_3HwB2YPN2O508fY,,,,,52.1839,4.4784,anonymous,EN,33,22,1,Turkish,4,3,2,4,5,4,3,4,3,4,2,2,1,3,2,1,3,4,4,3,2,3,2,2,4,2,4,1,1,2,1,2,1,3,3,2,2,2,1,3,2,4,2,3,4,4,3,3,1,4,2,3,3,2,3,2,3,2,3,2,1,3,2,2,3,2,1,2,3,2,2,2,4,3,4,4,5,5,4,3,4,3,5,4,5,4,4,3,3,3,4,4,4,5,3,4,3,3,3,3,5,4,2,3,4,4,5,4,3,5,4,5,3,5,3,3,,4,4,5,5,5,5,4,3,2,4,4,4,3,4,4,4,4,4,4,5,5,3,,4,3,4,4,5,5,3,4,4,3,4,5,4,3,3,4,4,5,4,4,4,2,,2,1,2,1,2,1,3,2,2,2,1,1,3,3,3,2,3,3,2,1,3,1,3,2,2,1,2,1,2,1,3,2,2,1,2,2,3,2,3,2,2,3,2,1,3,1,3,2
+2022-07-21 12:44:43,2022-07-21 12:59:21,0,132.229.145.13,100,877,1,2022-07-21 12:59:21,R_tMqeQultv9WGhUZ,,,,,52.1839,4.4784,anonymous,EN,34,23,2,German,4,3,4,2,4,2,2,3,3,5,2,2,2,2,3,2,1,4,4,2,2,3,1,3,3,2,3,2,4,2,1,3,4,2,1,3,2,3,3,4,3,4,2,2,3,3,2,2,1,2,2,3,3,2,4,2,3,2,4,1,3,4,2,2,3,3,1,2,2,2,2,1,2,3,1,2,4,4,3,2,2,1,4,2,4,4,4,3,4,2,1,4,1,4,2,2,3,1,2,3,1,2,2,3,2,4,3,3,3,2,2,3,1,2,3,2,,2,2,2,2,4,4,4,3,4,4,5,4,4,4,5,2,4,4,3,4,4,2,,2,4,2,4,4,2,2,2,3,2,2,4,3,3,4,3,3,4,3,3,3,1,,1,1,2,1,3,3,2,4,3,2,2,2,1,3,2,2,2,3,1,2,3,1,4,2,1,1,2,2,3,3,2,3,3,2,2,2,1,3,2,3,2,3,1,2,4,1,4,3
+2022-07-21 14:35:50,2022-07-21 14:53:39,0,132.229.145.13,100,1069,1,2022-07-21 14:53:39,R_3KNo6VqSYrFYPJo,,,,,52.1839,4.4784,anonymous,EN,35,25,2,Mexican,4,5,2,2,5,3,1,3,4,5,3,2,3,2,3,2,5,5,5,2,2,3,4,1,1,2,2,3,4,1,2,1,3,3,2,2,1,3,4,3,4,2,1,1,2,1,2,3,1,2,1,4,2,1,3,2,4,3,2,1,4,2,2,1,2,2,1,2,1,1,2,4,3,2,3,2,4,2,3,4,3,1,4,3,4,3,1,2,4,3,3,3,4,3,2,3,4,1,2,2,2,3,3,3,3,4,2,2,2,1,3,4,2,2,4,3,,3,2,4,3,2,2,2,5,4,4,5,4,4,4,5,1,3,2,5,3,4,2,,2,3,2,4,5,3,3,2,2,2,3,2,2,2,4,3,2,1,3,1,2,1,,2,1,2,1,3,3,2,3,3,3,3,2,1,2,3,2,3,4,2,3,3,2,4,4,2,1,2,1,2,3,2,2,4,4,3,3,1,1,2,1,1,3,2,2,2,2,2,3
+2022-09-15 10:18:22,2022-09-15 10:50:14,0,132.229.145.105,100,1911,1,2022-09-15 10:50:14,R_pbp1uIX2Zdhgel3,,,,,52.1839,4.4784,anonymous,EN,36,19,2,polish,2,4,1,4,5,2,4,4,2,5,3,3,1,1,3,1,2,5,4,5,3,4,1,4,2,1,4,1,4,3,2,2,3,1,2,2,2,4,2,4,1,4,1,2,1,3,1,1,2,3,1,2,4,1,4,1,1,1,4,1,2,4,2,1,4,1,1,2,1,1,1,2,5,2,4,4,5,5,5,5,4,2,5,2,5,5,4,2,4,5,5,5,5,5,4,4,5,2,4,5,5,4,2,3,4,2,2,5,5,4,5,5,2,3,4,4,"how aware I am of them, if they occur",4,4,5,4,5,5,2,2,5,5,2,4,2,4,2,1,3,1,4,5,5,2,,1,2,1,2,1,1,4,1,1,1,2,1,1,1,3,4,1,1,3,2,2,1,,1,1,2,1,2,3,1,4,2,2,2,2,1,1,1,3,3,1,1,2,2,1,1,1,1,1,2,1,1,2,1,3,2,1,1,1,1,1,2,3,1,1,1,2,2,1,1,1
+2022-09-19 10:02:47,2022-09-19 10:24:15,0,132.229.145.105,100,1288,1,2022-09-19 10:24:15,R_3pchxQSDJAuHCFr,,,,,52.1839,4.4784,anonymous,EN,37,18,2,Dutch,1,2,1,4,3,2,2,2,3,4,1,1,1,1,2,2,1,5,3,3,2,3,1,2,1,1,1,1,3,2,1,1,4,2,2,3,1,4,3,3,1,4,2,1,2,3,3,2,2,4,1,2,4,2,4,2,2,2,3,1,4,1,3,1,4,3,2,2,4,2,4,4,5,2,4,4,3,3,2,2,4,2,4,1,4,3,4,2,4,1,4,4,3,3,4,4,4,2,4,2,2,1,2,4,3,4,4,4,4,3,3,3,3,2,3,1,,4,4,4,4,4,4,4,3,3,4,4,4,4,4,4,4,4,3,4,4,4,2,,2,3,2,3,3,3,4,1,1,3,1,1,1,1,1,1,1,1,4,3,2,1,,2,1,1,1,2,3,1,3,3,3,2,2,1,2,2,2,4,1,2,1,1,1,1,2,2,1,1,1,2,3,1,2,2,2,1,1,1,1,2,2,1,1,2,1,1,1,1,1
+2022-09-19 11:53:49,2022-09-19 12:17:27,0,132.229.145.105,100,1417,1,2022-09-19 12:17:27,R_1CstOalIwcQ2HiZ,,,,,52.1839,4.4784,anonymous,EN,38,22,2,Chilean,1,1,1,5,3,1,2,2,1,5,1,1,1,1,2,5,1,5,5,1,3,2,1,1,4,4,4,1,4,2,3,4,2,2,2,2,4,3,4,4,2,2,2,2,2,4,1,1,1,1,1,4,3,2,3,2,2,4,4,2,4,4,3,2,4,1,2,3,4,3,1,4,4,3,4,3,5,3,1,2,4,4,5,5,5,5,1,1,3,3,5,5,5,4,3,3,3,2,1,5,5,2,3,5,4,5,1,4,3,1,5,5,3,1,5,1,,3,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4,5,4,5,2,4,2,,1,5,1,4,5,5,3,1,2,2,4,2,2,2,3,3,1,1,1,2,2,3,,1,1,1,1,3,4,1,2,2,4,4,4,1,1,4,2,3,3,1,2,1,2,1,1,1,1,1,1,2,4,4,2,2,3,3,4,1,1,4,2,1,4,1,1,1,2,4,4
+2022-09-22 10:00:42,2022-09-22 10:20:25,0,132.229.145.105,100,1183,1,2022-09-22 10:20:26,R_2pVnWYaIDXPv5WJ,,,,,52.1839,4.4784,anonymous,EN,39,18,2,Czech,1,3,2,4,4,1,1,1,2,5,2,2,1,1,2,3,4,5,3,3,3,4,1,3,2,1,4,2,2,2,1,1,3,2,4,3,1,3,3,3,4,4,2,3,2,4,3,2,2,3,1,2,4,2,4,1,3,1,3,2,1,3,3,1,4,3,1,1,2,1,4,4,4,4,4,5,4,3,4,3,4,3,5,1,5,3,3,4,4,4,4,3,3,4,3,2,3,1,3,2,3,4,4,3,2,2,3,2,5,5,4,4,3,3,3,1,,4,5,5,4,5,5,4,4,4,4,5,4,4,4,4,4,4,4,5,5,5,2,,2,4,2,4,3,3,5,1,2,4,4,2,2,2,2,2,2,2,3,4,4,1,,1,1,2,2,3,1,1,3,3,2,1,2,1,2,1,2,3,3,1,2,1,2,2,3,1,2,2,2,2,2,1,3,3,1,2,3,1,2,2,3,1,2,1,2,1,1,1,3
+2022-09-22 11:55:59,2022-09-22 12:15:22,0,132.229.145.105,100,1162,1,2022-09-22 12:15:22,R_zZL26LSjF5FglFf,,,,,52.1839,4.4784,anonymous,EN,40,23,2,Greek,1,4,1,2,5,1,1,2,2,5,2,4,1,1,2,1,5,5,4,1,2,3,1,1,4,4,4,2,4,2,2,4,1,2,1,2,3,4,4,3,3,3,2,3,1,4,1,2,1,4,1,1,4,2,3,3,1,2,4,2,4,4,1,2,3,1,1,1,3,1,4,1,2,2,5,4,5,4,4,4,2,1,5,3,5,1,4,3,2,2,4,5,4,4,5,5,4,2,4,1,5,4,2,2,2,5,3,2,4,2,4,3,2,4,1,2,,2,4,5,5,5,5,5,4,3,2,5,4,4,4,4,1,5,1,4,5,2,2,,2,4,4,5,5,5,4,5,4,2,5,2,4,2,4,4,2,1,5,4,2,3,,1,2,3,1,3,4,3,4,2,3,2,2,2,3,4,3,3,4,4,3,3,3,2,1,1,2,3,2,3,4,2,3,2,2,1,1,3,4,4,3,1,4,4,2,3,3,1,1
+2022-09-26 14:17:21,2022-09-26 14:46:34,0,132.229.145.22,100,1752,1,2022-09-26 14:46:34,R_DqNFNAuiSeR9Ahb,,,,,52.1839,4.4784,anonymous,EN,41,18,2,Polish,5,4,1,1,4,4,4,2,4,3,4,2,4,2,1,1,4,5,4,5,1,3,1,2,4,1,4,1,3,1,1,2,4,1,1,1,1,2,4,4,3,4,1,2,3,4,1,2,2,3,1,3,4,2,3,1,4,1,4,1,4,4,2,1,4,3,1,2,2,2,1,2,1,5,1,1,1,4,2,3,1,2,1,1,1,3,1,5,5,5,5,2,5,5,4,3,1,1,5,4,1,1,1,1,3,1,3,2,2,1,1,5,2,5,2,1,,3,2,1,1,2,4,1,2,3,5,3,3,3,2,2,1,3,1,5,2,4,2,,4,5,1,1,2,2,1,1,2,2,2,3,2,1,3,3,2,1,3,2,4,1,,1,1,4,1,2,4,1,2,2,2,1,1,2,1,1,3,2,2,1,1,1,2,1,1,1,1,4,1,2,1,1,3,3,1,1,1,1,1,1,1,2,4,1,1,1,3,1,2
+2022-09-26 16:00:59,2022-09-26 16:25:14,0,132.229.145.22,100,1454,1,2022-09-26 16:25:14,R_pt6YP0KWrxG7W6t,,,,,52.1839,4.4784,anonymous,EN,42,18,1,Turkish/Spanish,2,3,1,3,5,2,4,2,4,5,4,3,3,4,1,4,3,3,3,1,1,3,1,3,2,1,4,2,2,1,2,2,4,1,2,3,1,3,2,4,4,4,3,4,3,2,1,2,3,1,2,2,4,1,4,1,2,1,4,2,1,4,4,1,4,2,1,1,1,2,2,1,4,4,3,2,1,3,3,3,4,2,2,3,2,4,2,2,2,1,3,1,2,2,4,2,3,1,2,2,3,2,3,4,4,2,2,4,4,1,4,3,2,1,2,1,,5,5,5,4,4,5,3,4,5,5,4,5,5,3,5,3,5,2,5,5,5,2,,2,4,3,3,3,3,4,1,3,2,1,3,2,2,4,5,4,1,1,2,3,1,,2,1,2,1,2,3,1,2,2,1,1,1,1,3,1,2,2,2,1,1,2,1,2,1,2,1,2,1,2,2,1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,2,1
+2022-09-28 09:45:52,2022-09-28 10:07:35,0,132.229.145.22,100,1303,1,2022-09-28 10:07:36,R_OPgEgf7UkcQciVb,,,,,52.1839,4.4784,anonymous,EN,43,26,2,Finnish,1,2,2,4,4,1,2,2,2,5,2,1,4,1,1,4,4,5,5,1,4,4,1,1,4,2,3,1,1,2,2,3,3,1,2,3,3,3,3,3,4,3,2,1,1,3,2,1,3,4,2,1,4,1,3,2,2,2,4,1,4,1,4,2,2,3,3,2,4,3,2,2,2,3,2,2,3,3,3,2,3,3,3,2,2,2,2,2,4,3,3,3,4,3,1,3,3,1,3,3,2,3,2,3,1,3,3,2,2,2,3,3,2,3,1,3,,5,5,4,4,5,5,3,2,2,3,5,5,2,2,4,2,4,1,4,2,2,2,,3,4,2,3,4,2,4,2,2,2,2,2,2,2,2,2,2,1,4,2,2,1,,1,2,1,1,3,3,2,2,2,2,1,1,1,2,2,3,1,3,1,3,3,1,2,1,1,2,1,1,3,3,2,3,2,2,2,2,1,1,2,3,1,3,2,3,3,1,2,1
+2022-09-28 12:00:40,2022-09-28 12:35:31,0,132.229.145.22,100,2090,1,2022-09-28 12:35:32,R_1FsQt4mcUEFr9OL,,,,,52.1839,4.4784,anonymous,EN,44,21,2,Dutch,2,2,1,4,4,2,2,2,2,4,2,1,2,2,3,4,4,4,3,2,2,2,1,2,4,4,4,1,4,4,2,3,4,4,2,2,1,3,4,3,3,3,2,2,3,3,2,2,2,2,2,3,3,2,3,3,4,2,3,2,4,3,2,1,3,2,2,3,2,3,1,3,3,3,2,2,3,3,1,3,4,2,3,1,2,3,3,4,3,3,4,4,2,4,2,2,2,2,3,4,2,3,2,3,2,4,2,3,3,1,3,3,2,2,3,3,,2,2,2,2,4,2,2,5,5,4,4,4,4,4,2,2,4,2,4,2,2,2,,2,4,2,2,2,2,4,1,1,1,2,2,2,2,2,4,2,2,4,4,2,1,,2,2,1,1,3,3,2,2,2,2,2,2,1,2,3,2,3,2,2,2,2,1,2,1,2,2,1,1,2,2,2,1,1,2,2,2,1,2,2,2,1,2,2,2,1,1,2,1
+2022-10-06 09:58:52,2022-10-06 10:19:10,0,132.229.145.22,100,1218,1,2022-10-06 10:19:10,R_302FWHa1KU2a1G6,,,,,52.1839,4.4784,anonymous,EN,45,22,2,Dutch,2,2,1,4,4,1,1,1,1,5,1,1,1,1,3,4,1,5,5,2,1,3,2,2,2,3,4,2,4,1,1,2,4,1,1,2,1,1,4,3,3,4,2,3,1,4,2,2,2,2,1,1,3,1,3,2,3,1,3,1,4,2,4,1,2,3,1,2,2,3,2,2,2,1,2,3,3,3,3,3,2,1,2,1,1,3,1,1,3,2,2,1,4,3,2,3,3,1,1,2,1,1,1,3,1,3,2,1,1,1,2,3,1,2,1,2,,4,4,4,5,5,3,2,4,2,5,4,4,4,4,5,5,5,2,3,5,3,2,,2,4,2,5,4,3,2,1,2,2,2,2,1,1,4,2,2,1,2,3,4,1,,1,2,1,1,2,3,1,3,2,1,1,1,3,2,1,1,2,2,2,1,2,1,1,1,1,1,1,1,2,3,1,3,2,2,1,1,4,1,1,1,1,1,2,1,1,1,1,1
+2022-10-06 12:16:16,2022-10-06 12:48:35,0,132.229.145.22,100,1939,1,2022-10-06 12:48:36,R_2uL0peBZtYQjlrD,,,,,52.1839,4.4784,anonymous,EN,46,20,1,Germany,1,2,5,4,5,1,2,1,1,5,4,1,1,1,2,1,1,3,5,1,2,2,1,3,4,4,4,2,4,4,2,2,3,4,3,1,3,4,1,4,4,4,2,2,4,3,2,2,1,2,1,4,4,2,1,2,3,3,4,1,2,2,2,1,3,4,2,1,1,1,3,2,5,2,2,4,5,5,5,4,3,3,5,3,5,4,5,2,4,2,5,5,2,4,4,4,4,3,2,3,4,4,3,5,5,5,3,4,5,5,4,3,3,3,4,1,,3,5,4,2,5,5,3,5,5,5,4,4,4,4,4,4,5,2,2,3,4,2,,2,3,2,1,4,1,4,1,1,1,3,1,2,1,2,2,2,1,4,2,2,1,,2,2,1,1,3,3,1,3,3,2,1,1,1,1,2,3,3,3,1,3,1,2,1,3,3,1,1,1,2,2,1,3,3,1,2,2,1,1,4,3,2,4,1,3,1,3,1,3
+2022-10-12 09:57:46,2022-10-12 10:24:37,0,132.229.145.22,100,1611,1,2022-10-12 10:24:37,R_10Cstm0kLvy35vc,,,,,52.1839,4.4784,anonymous,EN,47,19,2,German,5,5,5,1,5,4,2,1,4,5,1,1,2,1,1,1,2,5,5,1,1,2,2,1,1,2,4,1,4,2,3,1,4,4,1,2,4,3,4,4,2,4,2,3,4,3,1,3,2,4,1,2,4,2,2,1,2,4,4,2,4,3,3,2,4,2,2,2,2,3,4,3,3,2,4,4,5,4,5,5,5,5,4,5,4,4,4,2,4,5,4,4,4,4,2,2,4,1,2,4,4,1,2,4,4,4,3,4,3,1,5,5,4,4,3,3,,5,5,5,5,4,4,4,2,2,2,5,4,2,2,4,4,2,2,5,5,4,2,,5,5,5,2,4,4,4,5,4,2,5,4,4,2,4,5,2,2,5,5,4,1,,2,3,1,1,3,4,3,3,4,2,3,3,3,3,4,3,4,3,2,2,2,4,4,4,2,2,1,1,3,4,3,2,4,1,3,2,1,1,4,4,1,2,1,2,2,1,4,2
+2022-10-12 11:50:29,2022-10-12 12:13:29,0,132.229.145.22,100,1379,1,2022-10-12 12:13:29,R_3MceirBoD5Mxhfg,,,,,52.1839,4.4784,anonymous,EN,48,19,2,"Czech ",2,2,2,4,4,2,3,2,2,4,2,2,2,1,2,2,2,5,5,2,3,2,2,2,3,3,4,2,3,3,3,2,2,3,2,1,3,3,3,3,2,3,1,2,3,3,1,2,2,3,2,2,3,1,3,2,2,3,2,2,4,3,1,1,3,4,1,1,2,4,3,2,3,4,2,4,5,5,3,4,4,2,5,4,5,3,3,2,3,2,4,2,1,2,2,3,4,3,3,4,1,2,3,3,4,2,1,5,3,2,3,4,3,3,4,1,,5,2,4,4,4,5,3,2,4,4,3,4,3,3,4,4,4,5,4,4,4,2,,2,4,3,2,3,2,2,1,1,1,2,2,2,2,1,4,1,2,4,4,2,3,,2,2,2,3,2,4,2,2,2,2,2,2,2,3,3,2,2,2,1,2,1,1,3,2,2,2,1,2,1,2,2,2,1,1,2,1,2,2,2,2,1,2,1,1,1,1,3,1
+2022-10-12 14:32:50,2022-10-12 14:56:42,0,132.229.145.22,100,1431,1,2022-10-12 14:56:42,R_1G4VyketEuFDmkV,,,,,52.1839,4.4784,anonymous,EN,49,20,2,Dutch,3,2,2,5,3,2,2,3,4,5,2,1,2,3,2,3,2,5,4,2,3,1,1,1,1,1,3,1,4,2,3,1,4,2,1,1,2,2,4,3,3,3,2,1,4,3,3,3,2,4,1,2,2,2,2,1,3,2,2,1,3,4,2,1,3,1,1,2,3,1,3,3,4,2,4,3,2,4,2,4,5,3,4,4,3,2,2,3,4,3,4,4,2,2,2,2,4,2,4,3,3,3,4,4,3,4,2,4,3,2,4,4,3,4,2,2,,5,3,4,1,4,4,4,4,4,4,4,3,3,4,3,3,5,2,4,5,3,2,,4,4,4,2,2,2,3,4,1,1,3,2,1,1,4,5,3,1,5,4,3,1,,2,3,1,1,2,3,2,2,1,3,2,2,1,2,2,2,4,2,2,2,1,3,2,2,2,1,1,1,2,1,2,1,1,3,2,2,1,2,1,2,1,3,1,1,1,3,1,1
+2022-10-13 10:01:56,2022-10-13 10:23:09,0,132.229.145.22,100,1273,1,2022-10-13 10:23:10,R_1OPOni8sz1Lvlex,,,,,52.1839,4.4784,anonymous,EN,50,19,2,Lithuanian,5,5,3,1,3,5,3,2,5,2,5,5,5,5,5,1,5,4,3,1,3,1,1,3,2,4,1,2,4,3,4,1,3,2,4,3,3,2,4,4,1,1,3,4,3,1,4,2,1,4,3,2,1,1,3,4,4,3,2,1,2,1,4,2,1,2,2,3,1,1,3,3,2,1,4,5,5,5,4,4,4,4,4,4,4,4,1,2,2,3,2,4,1,1,2,1,5,1,5,5,1,1,2,3,3,4,4,4,4,1,5,5,1,3,4,1,,4,4,5,2,5,5,5,3,3,5,2,5,5,5,2,1,1,1,4,2,2,2,,4,3,3,3,3,3,4,1,1,1,1,4,1,1,4,4,4,1,4,3,3,1,,2,3,4,2,4,4,4,4,4,3,3,3,1,4,4,4,2,3,2,3,3,3,4,4,2,3,4,2,3,3,3,1,1,1,3,3,1,3,3,4,1,2,2,3,3,3,4,4
+2022-10-13 11:53:26,2022-10-13 12:27:47,0,132.229.145.22,100,2060,1,2022-10-13 12:27:47,R_27p2Yj1fymlmcQb,,,,,52.1839,4.4784,anonymous,EN,51,18,2,Italian,2,4,3,2,4,2,2,5,4,5,2,3,2,1,2,4,1,5,4,2,2,2,1,2,4,1,4,2,4,3,2,1,4,2,2,2,2,2,4,3,2,3,1,2,2,3,1,1,3,3,2,3,3,1,2,2,2,2,3,2,3,3,3,1,3,2,1,2,1,2,1,2,2,4,1,1,4,2,4,3,3,2,2,2,2,3,2,1,4,3,2,3,2,3,1,2,4,1,5,2,4,2,2,3,2,3,3,2,1,2,2,3,1,2,3,3,,4,5,4,2,3,5,4,5,3,5,2,3,4,5,5,2,3,3,5,3,5,1,,1,3,1,2,4,2,3,1,2,2,4,1,2,2,3,5,2,1,4,3,1,2,,2,1,1,1,2,2,1,2,4,2,1,1,2,1,2,1,2,2,3,1,2,3,1,1,2,1,1,1,3,2,1,3,4,3,1,1,1,1,1,1,1,3,4,1,4,4,4,4
+2022-10-13 13:56:50,2022-10-13 14:09:28,0,132.229.145.22,100,757,1,2022-10-13 14:09:29,R_WffvJOc9u9XK6KB,,,,,52.1839,4.4784,anonymous,EN,52,18,2,Indonesian,2,2,1,4,4,2,1,2,4,5,4,2,1,3,2,2,4,4,2,3,3,2,1,1,1,1,3,1,3,2,2,2,1,2,3,1,2,3,1,3,4,4,2,1,3,3,2,3,4,3,2,3,3,4,4,1,2,2,3,1,4,2,1,2,3,2,1,2,3,1,2,3,2,4,4,3,2,3,1,2,5,2,4,1,5,5,5,4,5,4,5,2,3,5,1,2,2,1,1,2,1,2,1,2,1,4,1,5,5,2,5,5,4,4,5,1,,4,5,4,5,5,5,4,4,2,2,4,2,4,4,5,1,4,1,4,5,4,2,,2,5,4,4,5,5,4,3,4,2,2,1,2,2,4,1,1,1,2,4,4,2,,1,2,1,1,3,3,1,3,1,2,2,2,1,3,2,2,2,3,3,1,4,1,1,2,1,2,1,1,2,3,4,2,1,3,2,2,1,4,3,2,4,2,3,1,4,1,1,4
+2022-10-17 10:22:01,2022-10-17 10:43:58,0,132.229.145.22,100,1316,1,2022-10-17 10:43:58,R_AI4ESJoLB08cr97,,,,,52.1839,4.4784,anonymous,EN,53,20,2,Slovakia,2,2,5,4,4,3,4,1,2,5,1,1,1,1,1,1,1,4,4,5,3,2,1,1,1,2,4,1,3,4,4,1,2,1,3,2,3,3,4,4,3,3,2,1,4,1,1,2,2,2,1,3,3,3,3,1,4,3,2,2,3,4,1,3,4,1,3,3,1,1,4,2,5,3,3,5,3,5,5,5,5,4,5,3,4,4,4,5,5,2,5,5,2,5,4,2,5,2,4,4,3,4,2,4,4,2,2,5,5,4,5,5,5,4,4,1,,5,5,5,5,5,4,2,5,5,4,5,5,4,2,4,1,5,1,4,2,2,2,,4,5,5,5,5,4,4,5,2,5,5,4,3,2,2,5,5,1,2,3,4,1,,3,2,4,1,3,4,2,4,4,4,3,2,2,4,4,4,4,2,2,3,3,2,1,3,3,1,4,1,2,4,2,4,4,4,3,1,1,4,4,4,1,3,3,3,3,3,1,4
+2022-10-17 12:17:22,2022-10-17 12:36:33,0,132.229.145.22,100,1150,1,2022-10-17 12:36:33,R_2RPoocgRaZlqv7O,,,,,52.1839,4.4784,anonymous,EN,54,19,2,Italian,5,5,2,1,2,3,4,2,5,4,4,5,5,4,2,2,5,4,4,2,2,2,2,2,2,3,3,2,3,2,3,1,4,1,2,1,2,3,2,3,4,3,2,3,2,1,1,3,1,4,1,3,2,2,2,1,3,4,2,2,4,3,3,2,3,2,1,1,3,2,3,3,3,3,4,4,4,5,4,5,5,3,4,3,3,3,5,4,4,3,5,4,4,5,2,3,5,2,4,3,4,1,3,4,4,5,4,5,4,2,5,5,3,2,3,3,,3,2,4,4,4,4,4,3,4,4,3,2,3,4,4,3,4,2,1,3,4,2,,3,5,3,4,4,4,4,2,4,3,4,4,3,2,3,3,5,2,5,3,4,1,,3,2,4,1,2,3,1,3,4,3,4,4,3,4,3,2,4,3,1,2,3,1,4,3,2,2,3,1,2,2,1,2,3,2,2,2,1,3,2,2,2,3,1,2,3,1,3,3
+2022-10-17 14:21:24,2022-10-17 14:40:02,0,132.229.145.22,100,1117,1,2022-10-17 14:40:03,R_tPS0qiSPUQyLxXb,,,,,52.1839,4.4784,anonymous,EN,55,19,2,Belgian,2,5,1,2,4,3,3,2,4,5,4,2,3,4,2,3,1,3,4,3,3,2,1,1,2,3,2,2,4,2,1,2,3,3,2,1,1,3,3,3,4,3,2,2,3,3,2,3,1,4,2,2,3,3,4,1,2,1,1,1,4,2,2,2,2,4,2,2,3,3,1,1,2,1,1,1,2,1,1,2,4,1,2,1,1,1,2,1,1,1,4,4,1,4,2,1,3,1,2,2,2,2,1,1,1,1,1,3,3,1,4,4,1,1,1,3,,5,5,5,5,5,5,4,4,4,3,5,5,4,4,5,3,5,2,4,3,4,2,,1,2,1,1,1,1,4,4,1,1,1,3,1,1,1,1,2,1,3,2,2,1,,1,1,1,1,2,3,1,3,3,1,1,1,1,1,2,1,2,3,1,1,1,1,3,2,1,1,1,1,3,1,1,2,3,1,1,1,1,1,2,1,1,4,3,1,1,1,1,4
+2022-10-19 09:56:24,2022-10-19 10:21:39,0,132.229.145.22,100,1514,1,2022-10-19 10:21:39,R_1LCOCqC5hRujFOw,,,,,52.1839,4.4784,anonymous,EN,56,19,2,Czech,4,3,1,2,2,1,2,1,2,4,4,2,2,1,2,3,1,5,5,2,2,2,2,1,2,1,4,3,2,1,3,2,3,1,1,3,3,4,1,2,3,3,1,3,3,2,3,3,1,3,2,4,2,1,3,3,4,4,2,1,2,3,2,2,1,1,2,2,3,1,4,4,5,4,4,5,5,4,3,3,2,2,3,2,3,2,4,2,3,4,3,2,4,3,2,1,5,2,2,2,2,1,2,3,3,4,2,2,4,1,5,5,5,4,3,1,,2,4,5,4,5,4,3,4,4,4,5,3,2,2,3,4,4,1,4,3,2,2,,2,4,4,2,3,3,3,2,2,2,4,3,1,2,2,2,3,1,4,2,2,3,,1,3,4,1,3,4,2,2,3,2,3,2,2,4,4,4,3,4,2,4,3,4,4,4,1,2,4,1,2,4,2,2,3,2,2,2,3,2,4,4,1,4,2,4,2,4,4,4
+2022-10-19 12:10:36,2022-10-19 12:46:14,0,132.229.145.22,100,2138,1,2022-10-19 12:46:15,R_O1nNDaxc3Nyq8a5,,,,,52.1839,4.4784,anonymous,EN,57,18,1,German,2,1,1,4,5,1,1,1,1,4,2,1,1,1,2,1,2,3,5,1,3,3,1,2,2,4,3,2,4,3,3,3,2,2,2,3,3,3,3,4,4,4,3,2,2,4,3,2,3,2,2,1,2,1,3,2,3,3,4,1,3,4,3,1,3,2,2,2,2,1,2,2,2,3,3,2,2,4,2,3,3,2,3,2,3,3,3,1,2,2,3,2,2,3,1,2,4,1,3,2,2,1,3,3,3,4,2,3,2,1,4,4,2,3,2,1,,4,2,5,2,4,4,2,5,5,5,5,5,4,2,5,4,4,2,4,4,4,2,,1,4,1,2,2,2,2,2,1,1,4,1,1,1,2,1,2,4,1,1,2,1,,2,2,1,1,2,1,2,2,2,3,2,1,3,1,2,1,2,2,1,1,2,2,1,1,4,2,1,1,2,1,3,2,2,4,2,1,3,1,2,2,1,3,2,1,4,4,4,2
+2022-10-19 14:42:19,2022-10-19 15:11:18,0,132.229.145.22,100,1739,1,2022-10-19 15:11:19,R_2f9UbWDUQWAdEWc,,,,,52.1839,4.4784,anonymous,EN,58,24,1,Polish,4,5,3,1,4,4,2,1,4,3,4,5,4,1,2,1,5,5,4,1,3,4,4,1,2,1,2,4,4,3,3,1,1,1,2,2,4,3,1,4,2,1,1,4,3,1,1,2,1,3,1,3,2,4,3,1,3,4,3,1,3,4,1,3,4,2,3,2,1,2,2,2,5,4,4,2,3,4,2,5,1,4,4,4,4,3,3,1,2,2,4,4,2,2,1,2,4,1,4,4,1,4,3,2,3,5,2,4,3,1,3,4,2,2,3,2,,2,4,5,4,5,4,2,3,2,3,2,3,2,1,2,3,4,1,2,4,3,1,,1,2,1,2,2,3,2,1,3,3,2,2,3,1,3,4,3,1,4,2,4,3,,3,2,2,3,2,4,2,3,1,3,3,3,3,1,2,3,1,2,3,3,4,2,3,1,4,2,2,3,2,2,3,2,2,4,3,3,2,2,3,3,1,2,4,2,4,1,2,4
+2022-10-20 09:47:39,2022-10-20 10:06:42,0,132.229.145.22,100,1142,1,2022-10-20 10:06:42,R_1rN9TcI76ESzCAQ,,,,,52.1839,4.4784,anonymous,EN,59,19,1,Polish,1,1,1,5,5,1,1,1,1,1,1,1,1,1,1,1,1,5,5,1,1,1,1,1,4,4,4,1,4,4,2,4,2,1,1,2,2,2,2,4,4,4,1,1,4,3,1,1,2,1,1,4,4,2,4,1,2,2,4,1,4,3,3,1,4,3,2,2,1,1,2,2,5,2,4,2,5,2,4,5,1,2,5,2,5,1,4,2,4,2,5,5,5,5,2,2,5,4,2,4,4,4,4,4,4,5,2,5,5,1,5,4,4,2,2,1,,2,5,2,2,5,5,4,2,4,5,3,5,5,5,2,2,5,1,5,4,2,2,,1,2,1,1,1,1,4,1,1,1,2,2,1,1,1,4,4,1,5,5,2,1,,1,1,1,1,3,2,3,3,2,1,1,1,1,1,1,1,2,1,3,1,2,2,2,2,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1,1,1,4,1,1,2,2,1
+2022-10-20 11:38:51,2022-10-20 11:59:08,0,132.229.145.22,100,1217,1,2022-10-20 11:59:08,R_2zD3pPsW8y5I4RK,,,,,52.1839,4.4784,anonymous,EN,60,21,2,Germany,2,2,2,4,4,2,3,2,3,4,4,5,2,2,2,2,2,4,4,4,1,3,2,3,1,1,4,1,3,2,3,2,3,3,1,2,3,3,3,4,1,3,2,3,3,1,1,3,1,4,3,2,3,1,1,1,1,4,4,1,4,3,3,2,3,2,1,2,1,2,3,3,4,4,4,4,4,4,5,4,5,4,5,4,4,5,4,4,5,5,5,5,4,5,4,5,5,4,5,4,4,4,4,5,5,5,4,5,5,5,4,5,4,4,4,1,,4,2,3,2,4,4,5,4,5,4,5,4,4,4,4,3,4,2,4,4,4,2,,3,3,3,3,3,3,5,1,1,1,3,3,1,1,3,3,4,1,4,2,2,3,,3,3,2,1,2,3,2,2,1,2,2,2,1,2,3,3,3,2,2,3,2,1,1,1,3,3,2,1,2,3,2,2,1,2,2,3,1,2,3,3,3,3,3,3,2,1,2,1
+2022-10-20 13:11:28,2022-10-20 13:27:17,0,132.229.145.22,100,948,1,2022-10-20 13:27:17,R_1pEgHf5eKXEoBQQ,,,,,52.1839,4.4784,anonymous,EN,61,25,1,Italy,2,3,1,3,5,4,3,1,2,4,3,4,4,2,1,1,2,3,5,5,2,2,3,1,1,1,2,1,1,1,1,2,3,1,2,1,1,3,2,4,4,4,2,3,4,3,1,1,1,3,1,3,2,1,4,1,2,1,2,2,1,4,2,1,4,3,1,1,1,2,1,3,2,1,1,4,4,1,4,4,3,2,2,3,2,4,2,2,1,2,3,2,3,3,3,3,1,1,1,2,4,2,4,4,3,3,5,4,4,2,3,4,2,5,1,2,,4,3,4,1,1,1,4,4,2,3,4,4,3,3,4,4,4,2,5,5,4,2,,4,3,4,1,1,1,5,3,2,4,4,3,3,2,4,4,4,1,5,5,4,2,,1,1,3,1,2,1,1,1,1,2,2,2,4,2,3,2,3,2,1,1,2,3,3,1,2,2,2,1,1,1,1,1,1,2,2,1,3,2,2,1,1,2,1,1,2,3,1,1
+2022-10-21 12:20:45,2022-10-21 12:50:12,0,132.229.145.22,100,1767,1,2022-10-21 12:50:12,R_1hRN3RAB9HN6goW,,,,,52.1839,4.4784,anonymous,EN,62,24,1,Italian,5,4,1,2,5,3,4,4,5,3,5,4,4,2,3,2,5,4,2,2,3,4,2,2,2,4,4,2,4,3,3,4,2,3,1,1,2,2,3,4,3,2,3,3,4,2,4,2,3,2,2,2,1,2,2,4,3,3,3,3,4,2,2,2,2,4,1,2,1,3,2,3,4,4,4,4,2,2,4,2,2,4,4,2,4,4,4,4,1,3,2,2,2,3,4,4,4,2,4,2,4,4,2,4,2,4,3,3,4,3,4,4,4,1,4,2,,2,4,4,5,5,4,3,2,4,2,4,4,4,4,5,2,4,1,2,4,4,2,,1,3,2,4,4,3,4,2,3,2,3,5,4,4,3,4,5,1,2,3,4,1,,3,2,2,1,4,3,1,4,2,3,1,1,1,4,3,3,2,3,3,2,3,3,1,4,3,1,1,1,4,2,1,3,1,2,1,1,1,3,2,2,1,4,3,2,3,2,2,2
+2022-10-26 11:27:37,2022-10-26 11:48:00,0,132.229.145.22,100,1223,1,2022-10-26 11:48:00,R_1CkBwx4hw0PMO89,,,,,52.1839,4.4784,anonymous,EN,63,18,2,Dutch,2,3,1,3,4,3,2,2,2,4,2,3,1,2,1,1,3,5,3,1,3,2,1,3,2,3,3,2,4,3,3,4,3,2,2,3,2,4,4,4,3,4,2,3,3,2,2,3,2,3,4,3,2,2,4,2,3,2,3,2,3,3,3,2,3,2,3,2,2,2,3,4,3,3,2,2,2,2,4,3,3,1,5,2,2,3,1,2,1,2,3,1,1,1,3,2,3,2,3,2,3,1,2,2,1,4,2,2,2,1,3,3,3,2,2,1,,1,2,4,1,2,3,3,4,4,4,1,4,4,5,4,2,4,2,4,4,1,2,,2,4,4,2,5,4,3,1,2,2,3,3,2,3,3,4,1,3,4,2,1,1,,3,2,1,1,2,4,2,2,2,3,2,2,1,2,3,4,2,2,2,2,2,3,2,1,4,2,1,1,2,4,2,2,2,4,2,2,1,2,2,4,1,2,2,2,2,3,2,1
+2022-10-26 13:24:21,2022-10-26 13:43:02,0,132.229.145.22,100,1120,1,2022-10-26 13:43:02,R_2XoYhVgsq6w1try,,,,,52.1839,4.4784,anonymous,EN,64,18,2,swiss,3,3,2,4,4,3,2,3,2,4,2,1,4,2,2,4,4,4,2,2,4,2,3,3,2,2,4,2,3,3,2,2,4,4,1,3,3,3,4,4,4,3,3,2,2,3,1,3,2,4,2,3,4,2,4,2,2,2,4,1,3,3,2,2,3,1,3,2,3,4,1,4,2,1,4,3,4,4,4,4,3,1,5,3,4,3,3,3,5,5,4,5,1,4,5,5,1,2,4,4,3,2,2,3,2,4,3,3,4,1,4,4,1,4,2,1,,1,4,3,2,4,4,2,4,4,4,5,4,4,3,4,1,4,1,4,2,2,2,,3,4,2,3,4,3,4,3,4,2,5,4,2,3,2,4,2,1,4,2,1,1,,2,2,3,1,3,4,3,4,4,3,4,4,1,3,4,3,3,2,1,3,3,3,3,4,2,1,2,1,2,4,2,4,4,3,3,3,1,3,4,2,1,1,1,2,3,2,2,4
+2022-11-02 12:09:15,2022-11-02 12:30:00,0,132.229.145.22,100,1244,1,2022-11-02 12:30:00,R_2aLHJ7E7cOVt1fx,,,,,52.1839,4.4784,anonymous,EN,65,18,2,Indonesian,5,5,4,2,3,4,4,3,4,4,5,5,5,3,4,3,4,5,5,5,2,2,1,1,1,2,3,2,3,2,4,1,3,3,3,2,3,3,3,3,4,1,2,2,2,1,2,3,2,3,2,4,3,2,3,2,3,4,3,2,3,2,2,3,3,1,3,3,1,1,4,4,3,2,4,4,5,4,4,5,4,4,5,4,3,3,4,3,5,3,5,5,3,5,2,3,4,4,4,4,2,2,4,4,4,4,4,4,5,5,4,5,5,4,4,1,,4,3,4,4,3,3,4,4,4,4,4,4,3,2,2,2,3,1,2,2,4,2,,4,4,3,4,5,3,4,4,5,4,4,4,3,4,4,4,3,2,3,4,5,1,,3,3,2,4,4,4,4,4,3,4,4,3,3,4,4,4,4,4,4,4,3,3,4,3,2,3,2,4,4,4,4,4,3,4,4,3,4,3,4,4,3,3,2,4,3,4,4,3
+2022-11-14 17:39:16,2022-11-14 18:02:43,0,132.229.145.22,100,1407,1,2022-11-14 18:02:43,R_10oeefyd8BoPV5U,,,,,52.1839,4.4784,anonymous,EN,66,20,1,Austria,2,4,5,3,4,3,2,1,5,3,5,1,3,1,1,3,5,5,4,1,2,3,3,1,1,1,4,2,3,3,4,1,3,3,3,1,3,3,3,3,2,1,1,3,3,1,4,1,1,2,3,4,2,2,1,4,4,3,3,4,1,4,1,2,3,1,2,1,1,4,2,2,2,2,3,2,4,3,2,2,4,2,3,3,2,2,2,2,2,1,3,2,3,2,2,2,4,2,2,3,2,3,2,3,3,3,2,3,3,1,3,3,3,2,2,1,,3,4,3,4,3,3,5,5,5,5,3,3,3,4,4,3,3,3,3,4,2,2,,1,2,3,2,2,2,3,2,3,3,3,3,1,2,3,4,3,4,5,2,3,1,,3,3,2,2,2,4,4,4,4,2,2,2,2,3,4,4,4,2,3,4,4,4,3,1,3,2,2,2,2,4,3,2,4,2,2,3,2,2,3,2,1,2,3,4,3,3,4,1
+2023-01-12 12:15:25,2023-01-12 12:36:10,0,132.229.145.22,100,1244,1,2023-01-12 12:36:10,R_8uBe4XWfsmoq209,,,,,52.17,4.4728,anonymous,EN,68,25,2,German,2,3,2,4,5,2,4,1,3,5,2,1,1,3,1,5,2,5,5,1,2,2,1,2,2,3,4,1,4,2,2,1,3,1,1,2,2,4,4,4,3,3,2,2,2,3,2,3,1,3,3,3,4,2,3,1,3,2,3,1,4,3,2,2,4,2,2,2,1,2,3,2,1,1,2,2,1,1,1,1,1,1,2,2,1,1,1,3,3,3,1,2,2,1,3,3,3,2,3,3,3,2,3,1,1,2,1,1,1,1,1,3,3,3,1,3,,4,2,3,4,3,4,4,3,4,3,4,4,2,2,3,1,3,1,4,2,3,2,,3,2,2,2,2,2,3,2,2,2,4,2,2,2,2,2,2,2,4,3,2,1,,2,2,1,1,2,2,1,2,2,2,2,2,1,2,2,2,3,3,2,2,3,2,2,1,2,1,1,1,1,2,1,2,2,1,2,2,1,1,2,1,2,3,1,1,4,2,2,1
+2023-01-18 14:24:20,2023-01-18 14:40:54,0,132.229.145.22,100,994,1,2023-01-18 14:40:57,R_2YhRlsGI5Id81zD,,,,,52.17,4.4728,anonymous,EN,69,18,2,dutch,2,2,1,4,4,2,1,1,1,4,2,2,1,1,3,2,2,4,4,2,2,3,1,2,3,3,4,2,4,2,2,3,4,3,2,4,2,3,4,3,2,3,4,2,2,3,3,2,1,2,2,3,3,2,3,2,2,2,4,2,4,3,3,2,4,2,3,3,1,2,1,1,2,3,2,3,3,3,2,3,3,1,2,2,2,1,1,3,2,2,3,1,2,2,3,3,2,2,2,2,1,2,2,1,1,2,2,1,2,2,3,2,1,2,2,2,,4,2,2,4,4,2,4,4,3,3,3,2,4,2,4,2,3,4,4,3,3,2,,2,2,3,2,2,2,4,1,2,3,2,2,2,2,2,2,1,3,4,2,2,2,,2,2,3,1,3,4,2,2,2,2,2,3,1,2,3,3,2,3,3,3,2,1,3,3,2,1,3,1,3,3,1,1,1,2,3,3,1,2,3,3,1,3,3,3,3,1,2,4
+2023-01-18 17:39:32,2023-01-18 18:04:49,0,132.229.145.22,100,1516,1,2023-01-18 18:04:50,R_2aPs0TnqvESmOgM,,,,,52.17,4.4728,anonymous,EN,70,18,2,Dutch,2,4,1,2,5,4,2,1,3,5,2,2,3,2,2,4,1,5,5,2,2,3,3,2,4,3,4,3,3,4,3,2,4,2,1,2,1,4,3,3,2,3,4,3,2,2,2,4,1,4,1,3,3,2,2,2,4,1,3,1,3,2,2,1,3,2,1,2,3,3,3,1,5,4,3,3,5,4,5,5,3,3,4,3,4,5,5,2,4,4,4,4,3,4,3,2,4,3,3,3,2,2,3,4,4,4,2,4,3,2,4,5,4,2,2,1,,5,2,4,2,2,2,4,2,4,5,5,4,5,5,5,3,4,2,4,4,4,2,,1,4,2,2,4,3,2,4,3,4,5,4,4,4,5,5,5,2,4,4,5,1,,2,1,2,1,2,4,2,2,1,3,2,3,4,2,2,3,1,3,1,2,1,1,2,2,4,2,2,1,2,2,1,1,1,2,2,1,4,2,2,3,1,2,2,2,1,1,1,2
+2023-01-19 14:26:22,2023-01-19 14:48:54,0,132.229.145.22,100,1351,1,2023-01-19 14:48:55,R_UMZMEWtMSvHDoxb,,,,,52.17,4.4728,anonymous,EN,71,19,2,dutch,3,4,2,3,3,2,2,4,3,3,2,2,2,2,4,2,3,4,3,2,3,2,2,3,4,4,3,3,4,3,3,4,3,3,3,2,3,3,4,2,3,2,4,2,3,2,3,2,2,2,3,2,3,2,3,3,2,3,3,2,2,3,3,3,3,2,3,2,3,3,1,1,3,2,3,2,3,2,2,1,4,1,3,1,1,3,3,1,1,2,4,2,1,4,3,1,2,1,2,1,1,1,2,3,2,3,1,4,2,1,2,3,1,1,2,3,,4,4,3,4,4,3,2,3,3,4,4,4,3,2,4,2,4,1,2,2,3,2,,1,4,2,2,2,3,2,1,3,2,4,3,3,2,4,4,1,2,4,3,3,3,,3,2,1,1,2,3,2,3,2,3,3,3,1,3,3,4,2,3,2,2,2,2,3,2,3,2,1,1,2,1,1,1,1,2,2,2,1,1,2,2,1,3,1,1,1,1,3,2
+2023-01-24 11:14:45,2023-01-24 11:37:01,0,132.229.145.22,100,1335,1,2023-01-24 11:37:01,R_3ksKnLU9RFAARqt,,,,,52.1286,4.4477,anonymous,EN,72,20,2,german,4,3,2,3,4,4,3,3,2,4,3,2,4,2,2,2,2,3,4,2,2,2,2,3,3,4,4,2,4,1,2,3,4,2,1,4,3,3,4,3,4,2,3,2,2,3,2,1,1,2,1,2,4,1,4,2,2,2,3,1,4,4,3,1,3,3,2,2,3,2,4,2,3,3,1,1,2,1,1,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,2,2,1,2,1,1,1,3,1,1,3,1,1,1,2,2,1,1,1,,2,4,4,4,4,4,4,2,3,4,4,3,4,3,4,4,4,3,3,3,3,2,,1,2,2,2,2,2,3,2,2,2,3,2,2,2,2,2,4,2,2,2,2,1,,1,1,1,1,2,1,1,2,2,3,2,2,1,1,2,2,2,2,2,1,1,3,2,2,1,1,1,1,2,1,1,2,2,3,1,1,4,1,1,2,1,2,2,1,1,4,2,2
+2023-01-24 12:43:07,2023-01-24 13:00:49,0,132.229.145.22,100,1061,1,2023-01-24 13:00:49,R_2v5Ie4RhhMcYP8C,,,,,52.1286,4.4477,anonymous,EN,73,22,2,Nederlands,3,3,1,3,4,3,3,4,2,4,3,3,2,4,4,2,3,3,4,2,2,4,4,3,2,3,4,4,3,2,2,3,4,4,1,2,1,3,3,2,3,2,3,4,2,2,2,3,2,2,1,3,4,1,3,3,3,3,3,1,4,2,2,1,2,3,1,2,4,2,3,2,2,1,4,2,2,2,1,4,2,1,3,1,1,1,1,2,1,2,4,1,1,1,1,1,3,1,1,2,3,1,1,3,1,4,1,2,1,1,4,3,1,1,1,1,,3,4,4,4,5,4,4,4,5,5,5,4,4,3,4,3,4,2,3,3,3,1,,2,4,3,2,4,3,2,2,3,3,4,2,3,3,4,3,3,3,3,3,3,1,,1,1,1,1,1,1,1,2,2,2,1,1,1,1,2,1,1,2,1,1,1,1,3,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+2023-01-25 15:20:59,2023-01-25 15:36:28,0,132.229.145.22,100,929,1,2023-01-25 15:36:29,R_1PYTgTxuE0DNnS0,,,,,52.1286,4.4477,anonymous,EN,74,20,2,German,2,4,1,3,5,1,1,3,1,4,2,2,1,1,1,1,5,5,4,1,2,3,2,4,4,4,4,1,4,2,2,2,2,1,1,4,2,3,4,4,2,3,3,4,1,4,1,3,1,4,1,1,3,1,2,1,2,2,3,2,4,3,3,2,4,2,2,3,3,1,4,1,2,3,1,1,2,3,3,5,5,2,4,2,2,1,1,1,3,1,5,3,1,3,5,2,5,2,1,5,1,1,2,2,2,4,1,3,1,1,5,3,4,1,1,3,,2,5,1,1,5,2,2,5,5,5,5,5,2,3,5,2,3,5,5,5,5,2,,1,3,1,4,1,1,2,1,1,1,4,2,1,3,1,4,1,4,2,3,3,1,,1,2,1,1,1,3,1,3,3,1,1,1,1,2,3,3,4,4,1,2,1,1,2,1,1,2,1,1,1,2,1,3,2,1,1,1,1,1,3,4,3,4,1,1,1,1,2,1
+2023-01-25 17:14:37,2023-01-25 17:30:27,0,132.229.145.22,100,950,1,2023-01-25 17:30:28,R_3dFmb1CEbF65siw,,,,,52.1286,4.4477,anonymous,EN,75,18,2,Nederlands,4,4,1,3,4,4,3,4,2,5,2,4,2,3,2,1,4,4,3,5,2,3,1,2,1,1,4,1,2,3,2,2,4,2,2,3,1,4,4,4,3,4,2,3,3,4,2,3,2,4,1,2,3,2,2,2,3,2,4,2,3,1,3,1,3,3,1,2,2,2,5,4,5,4,5,2,5,4,5,2,3,1,5,3,1,4,4,5,5,3,2,4,3,5,2,3,3,2,2,4,4,3,2,4,4,5,2,2,4,1,3,2,4,2,2,1,,4,4,3,5,5,4,5,3,4,5,5,4,3,4,4,2,4,2,5,5,3,2,,1,3,1,4,3,1,2,2,2,2,4,2,1,1,2,3,3,1,2,2,2,1,,2,1,2,2,1,2,2,3,3,2,1,1,3,2,3,2,1,2,1,2,1,1,1,2,2,1,1,1,1,2,1,2,2,2,1,1,3,1,3,3,1,2,2,2,1,1,1,3
+2023-01-26 10:39:03,2023-01-26 10:56:53,0,132.229.145.22,100,1069,1,2023-01-26 10:56:53,R_3EQ4p3GHkynvMuw,,,,,52.1286,4.4477,anonymous,EN,76,19,2,"Nederlandse ",4,5,3,2,3,2,4,2,4,4,2,4,3,4,2,4,5,4,3,2,2,1,2,3,4,3,4,2,3,3,1,2,4,2,1,2,2,4,4,3,2,3,2,2,4,3,3,3,2,3,1,2,2,2,3,3,3,2,3,2,3,3,2,1,3,2,1,2,4,2,2,4,4,4,4,5,3,2,3,4,3,2,5,3,3,2,3,2,2,2,4,5,3,4,2,3,4,3,3,3,4,3,3,2,2,4,1,2,2,4,4,4,5,2,3,1,,4,3,5,4,5,3,4,3,4,2,5,4,4,4,3,2,4,4,4,5,2,2,,1,2,4,3,5,3,4,4,2,2,5,3,2,2,3,3,5,4,4,2,2,1,,2,1,2,1,3,4,1,2,2,2,2,1,1,2,3,3,2,3,2,3,1,1,1,3,1,1,2,1,2,2,1,2,1,2,2,1,2,2,3,2,1,3,2,2,1,1,1,3
+2023-01-26 12:05:38,2023-01-26 12:23:13,0,132.229.145.22,100,1054,1,2023-01-26 12:23:13,R_2wyk4YErfdJN6f9,,,,,52.1286,4.4477,anonymous,EN,77,19,2,Nederlands,4,5,3,1,4,3,3,4,4,2,3,2,4,2,4,2,1,2,2,2,2,1,2,2,2,2,3,1,4,1,4,3,4,3,4,3,3,3,4,3,1,2,2,3,4,3,3,3,4,3,2,3,2,3,2,2,3,3,3,1,3,2,2,2,3,1,2,2,1,2,1,1,4,4,4,2,4,2,3,4,3,1,4,1,1,1,1,1,3,3,2,2,1,1,1,1,1,1,3,2,2,1,1,2,1,4,1,3,1,1,2,3,1,1,1,2,,3,4,3,4,4,3,4,2,4,4,2,2,4,4,2,2,4,3,2,4,4,1,,1,4,3,4,5,2,2,1,1,2,2,2,1,1,2,1,1,1,2,3,2,3,,3,2,1,1,3,4,2,4,4,4,3,3,2,4,4,4,2,3,1,2,1,1,3,2,3,1,1,1,2,4,1,1,3,4,3,2,1,1,3,3,1,2,1,1,1,1,3,1
+2023-01-26 13:50:23,2023-01-26 14:14:16,0,132.229.145.22,100,1432,1,2023-01-26 14:14:16,R_1GWCpAF89hAn6N5,,,,,52.1286,4.4477,anonymous,EN,78,20,2,netherlands,5,5,3,2,5,4,5,1,4,2,3,3,2,2,1,3,3,4,4,3,2,4,2,2,2,2,4,2,3,4,3,2,4,2,2,1,1,3,4,2,3,3,1,4,2,2,1,3,3,4,1,4,1,2,3,2,1,2,3,1,3,4,3,1,2,2,2,3,4,1,3,4,4,2,2,4,4,4,4,4,1,3,4,1,1,3,4,2,4,2,4,4,2,4,2,2,4,1,2,2,2,1,3,2,2,4,5,2,3,1,4,5,2,2,2,1,,4,4,3,2,2,3,4,4,4,2,2,4,3,2,4,2,2,4,2,2,2,2,,2,2,4,4,4,3,2,1,1,1,2,2,2,2,3,4,2,3,2,3,4,3,,3,2,1,1,3,4,2,3,2,4,3,2,1,1,3,3,2,2,4,2,1,1,1,2,3,1,1,1,2,3,1,1,1,4,2,2,1,1,4,2,1,1,3,2,1,3,1,2
+2023-01-26 15:29:40,2023-01-26 15:44:17,0,132.229.145.22,100,877,1,2023-01-26 15:44:17,R_3s03fLWH6cRlctQ,,,,,52.1286,4.4477,anonymous,EN,79,18,2,Dutch,2,4,1,3,2,2,2,3,3,4,2,3,1,1,3,2,2,4,4,1,2,3,1,2,2,3,4,1,3,1,1,2,1,1,1,2,1,2,3,3,4,3,3,2,1,3,2,3,1,3,2,2,4,1,3,2,2,1,3,1,2,4,3,1,3,4,1,2,2,1,1,1,2,2,2,2,2,4,4,2,4,5,5,2,4,3,1,3,5,4,5,4,2,3,4,3,4,2,4,3,2,1,4,3,3,4,3,4,3,4,5,5,4,2,4,2,,4,4,4,4,4,4,4,4,2,5,5,4,2,1,4,2,4,2,4,4,4,2,,1,3,1,3,4,3,4,1,1,1,3,2,2,1,2,1,2,1,4,1,1,2,,1,1,1,1,2,2,1,2,2,1,1,2,1,1,1,1,3,2,1,1,1,1,1,3,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,2
+2023-01-30 10:59:35,2023-01-30 11:21:42,0,132.229.145.22,100,1326,1,2023-01-30 11:21:42,R_tFmON38irPXGVR7,,,,,52.1286,4.4477,anonymous,EN,80,19,2,Netherlands,1,2,1,4,2,1,2,2,1,4,1,2,1,1,2,1,4,4,4,2,2,3,1,2,2,4,3,2,4,2,1,4,4,4,1,4,1,3,3,2,2,4,3,2,1,4,2,2,1,2,1,2,4,1,3,3,1,1,3,2,4,4,3,1,2,2,1,3,1,1,1,5,1,2,1,3,4,1,1,1,4,1,1,1,1,1,3,1,2,1,2,1,1,1,4,1,5,2,1,1,1,1,1,1,1,3,4,1,3,2,3,5,1,2,1,3,,2,1,4,2,1,1,4,4,5,4,4,5,4,5,4,3,3,1,4,5,4,3,,2,5,2,1,5,5,1,1,1,1,1,3,2,1,2,2,2,1,4,1,1,1,,1,2,1,1,3,3,1,2,2,4,1,1,1,3,4,3,2,2,2,1,1,1,2,2,1,1,1,1,3,2,1,2,1,3,1,1,1,2,2,3,1,1,1,1,1,1,1,2
+2023-01-30 12:20:00,2023-01-30 12:37:14,0,132.229.145.22,100,1034,1,2023-01-30 12:37:14,R_2ruwjq1URjnT8qe,,,,,52.1286,4.4477,anonymous,EN,81,19,2,Dutch,5,4,1,2,4,4,4,2,4,4,5,4,2,4,2,1,5,3,2,5,1,1,2,1,2,2,2,3,2,3,1,1,2,2,3,1,2,2,2,4,4,4,1,4,3,2,2,4,1,4,1,4,1,1,4,1,3,2,1,1,1,3,2,2,4,2,2,2,3,2,2,1,4,4,4,3,2,2,2,2,5,1,1,1,1,1,4,4,3,1,5,3,2,4,2,1,4,1,2,1,3,1,3,2,2,1,2,5,4,1,5,4,3,2,1,3,,4,4,4,5,5,4,4,4,5,5,5,5,5,4,2,4,5,2,5,5,5,2,,1,4,4,4,2,2,4,1,1,4,4,4,1,2,2,4,4,1,4,4,4,1,,1,1,2,1,2,3,2,3,3,3,3,2,1,2,3,3,4,3,2,2,2,2,4,3,1,1,2,1,1,2,3,2,2,4,4,2,1,1,4,2,1,2,1,1,3,2,4,2
+2023-01-31 10:59:28,2023-01-31 11:14:31,0,132.229.145.22,100,903,1,2023-01-31 11:14:32,R_22tvitMgcw9Zodu,,,,,52.1286,4.4477,anonymous,EN,82,18,2,Dutch,4,2,1,4,3,2,3,4,3,2,4,2,2,2,5,4,5,4,2,3,2,2,2,3,3,3,3,3,2,2,3,2,2,3,3,3,3,3,2,3,3,3,3,2,2,1,2,3,3,3,2,2,3,1,3,2,1,2,3,3,4,3,2,3,3,2,3,3,3,3,2,2,3,2,2,2,2,2,1,1,2,1,3,1,1,1,1,1,3,2,3,3,2,2,3,2,1,2,2,2,2,1,1,2,1,1,1,2,2,1,2,2,2,1,1,1,,4,4,4,4,4,3,4,3,4,4,5,4,4,3,3,3,5,1,4,3,4,2,,1,4,2,3,3,1,3,2,2,2,2,2,2,2,2,2,2,1,3,1,1,1,,2,3,2,1,2,4,2,2,2,3,3,3,2,3,3,4,2,2,2,3,3,2,3,2,2,2,2,1,2,4,2,2,1,2,2,2,1,2,2,3,1,2,2,3,2,2,2,2
+2023-02-01 14:52:47,2023-02-01 15:11:16,0,132.229.145.22,100,1108,1,2023-02-01 15:11:16,R_yD3LF2fldVtM3iF,,,,,52.1286,4.4477,anonymous,EN,83,22,2,Dutch,4,1,1,5,5,5,2,1,4,5,2,4,2,2,2,3,5,4,4,5,3,2,1,2,1,2,2,1,3,2,2,2,4,3,2,2,2,3,4,3,4,2,1,1,4,4,3,3,2,4,2,1,2,1,4,1,2,2,3,2,2,4,3,2,4,2,2,3,3,4,1,4,4,4,2,3,5,4,4,5,5,2,4,3,3,4,4,3,5,4,2,4,5,3,5,5,4,3,5,4,4,2,3,4,3,5,4,2,5,2,2,5,2,4,4,2,,4,4,4,1,5,3,4,4,5,2,2,4,4,2,3,2,2,1,5,4,5,2,,2,4,2,1,4,3,4,2,3,2,2,2,4,2,4,4,4,1,4,2,4,1,,2,2,2,2,3,3,2,3,3,2,3,3,2,2,3,3,2,3,1,2,1,2,3,4,2,1,2,1,3,2,1,1,1,1,2,3,1,2,3,3,1,3,1,2,1,1,1,4
+2023-02-07 12:40:41,2023-02-07 13:11:02,0,132.229.145.22,100,1821,1,2023-02-07 13:11:02,R_3MhzkohTqsYFAZn,,,,,52.1286,4.4477,anonymous,EN,84,21,2,Dutch,3,4,1,3,2,4,3,3,3,4,2,1,2,4,4,5,3,4,2,3,2,1,1,2,1,1,4,1,3,2,1,1,3,1,2,3,1,2,4,3,4,4,3,1,3,3,2,2,3,3,1,2,2,1,2,2,4,1,3,1,3,3,2,1,3,3,1,3,2,1,1,2,4,2,3,3,3,4,4,3,4,1,4,1,2,1,4,2,3,2,4,4,2,4,2,2,5,1,4,3,2,1,1,3,1,4,3,2,2,1,4,3,1,2,3,2,,2,4,3,2,5,3,5,5,5,5,4,4,3,4,4,4,2,1,4,4,4,2,,2,4,4,2,4,3,5,3,1,5,4,2,3,1,4,4,2,1,5,3,4,1,,1,2,1,1,3,2,1,4,3,3,2,2,2,1,2,2,3,4,2,2,1,2,1,3,1,2,1,1,3,2,1,3,3,3,2,2,2,1,2,2,3,4,2,2,1,2,1,3
+2023-02-14 10:47:34,2023-02-14 11:04:48,0,132.229.145.22,100,1033,1,2023-02-14 11:04:49,R_QhOQGasdoJMP0WJ,,,,,52.1286,4.4477,anonymous,EN,85,18,2,Dutch,2,2,1,4,4,2,2,4,2,4,2,2,1,4,1,1,1,5,4,1,2,2,1,3,2,1,4,1,3,4,2,1,4,2,1,3,2,2,2,3,3,3,2,2,3,2,3,3,3,3,2,2,4,1,2,2,3,3,4,1,4,4,2,1,3,2,1,2,4,2,3,2,4,3,4,3,5,5,4,5,5,4,5,3,5,4,4,5,5,5,5,5,4,2,4,2,4,2,4,4,4,3,4,4,4,5,3,4,5,2,4,5,2,2,4,1,,2,4,4,4,4,4,3,4,4,4,5,2,4,4,5,5,4,2,3,4,2,2,,2,4,4,4,4,4,2,4,4,4,2,2,4,4,2,4,2,1,4,2,2,1,,1,2,1,1,2,2,1,3,1,3,2,2,1,2,3,3,3,3,2,2,3,1,1,2,1,2,1,1,2,1,1,1,1,3,2,2,2,1,3,3,1,1,2,1,4,1,1,1
+2023-02-14 12:25:19,2023-02-14 12:49:46,0,132.229.145.22,100,1467,1,2023-02-14 12:49:46,R_272tWNWu7BnroxB,,,,,52.1286,4.4477,anonymous,EN,86,22,2,Dutch,1,1,1,5,1,1,1,4,2,5,1,1,1,2,1,5,1,2,5,5,1,1,1,3,1,2,3,1,2,1,2,3,4,3,2,2,2,3,4,4,3,3,3,2,1,2,3,1,3,1,2,4,2,1,2,3,3,2,4,2,4,4,3,2,2,2,2,4,1,2,1,1,1,1,1,4,4,2,5,4,2,1,1,1,1,1,2,2,1,3,4,1,1,3,4,2,4,1,2,1,1,1,1,2,2,1,1,3,2,1,3,4,3,3,3,1,,2,4,4,3,4,3,3,3,3,3,4,4,3,3,3,4,4,2,4,3,4,1,,3,4,5,2,1,2,1,1,1,2,3,2,2,1,1,1,1,1,4,1,3,1,,2,3,2,1,3,3,2,3,2,2,3,3,1,1,2,2,3,2,3,4,3,2,1,1,2,3,1,1,4,3,1,2,1,3,4,2,1,1,2,2,2,3,2,4,3,1,1,1
+2023-02-28 11:41:18,2023-02-28 12:09:37,0,132.229.145.224,100,1698,1,2023-02-28 12:09:38,R_3nv0pFzBxJE1hEa,,,,,52.1286,4.4477,anonymous,EN,88,18,1,Dutch,1,4,1,2,3,1,2,4,2,4,4,5,3,5,2,2,5,4,4,2,2,2,2,1,3,2,2,1,3,3,4,2,3,1,3,4,4,3,4,3,2,1,3,3,2,1,2,4,3,3,2,3,2,2,3,2,3,4,3,2,3,2,3,2,3,1,2,3,1,3,2,5,4,3,4,2,4,4,2,4,4,4,4,4,4,4,4,4,3,4,4,4,3,4,3,3,4,1,3,4,2,2,4,4,4,4,3,4,4,4,4,4,4,2,4,2,,2,2,4,2,4,4,3,4,4,3,4,3,4,4,4,4,4,4,5,4,4,2,,4,4,2,2,2,2,4,1,1,1,4,2,1,1,2,2,3,2,3,1,1,1,,3,1,2,2,1,4,2,2,1,3,3,3,2,2,2,2,3,2,2,3,4,2,2,1,4,2,2,2,1,4,2,2,1,4,3,3,2,2,3,2,1,2,2,3,4,2,4,1
+2023-03-08 16:21:52,2023-03-08 16:37:31,0,132.229.145.101,100,938,1,2023-03-08 16:37:31,R_3GptsprsuE1hv95,,,,,52.1643,4.4986,anonymous,EN,89,18,2,Dutch,4,4,2,2,4,4,4,2,4,4,3,4,4,4,2,2,4,4,4,2,3,1,2,2,4,1,2,3,3,4,3,2,2,2,3,2,3,2,3,3,3,2,2,3,4,4,3,2,4,2,3,4,2,3,3,3,3,3,1,3,1,2,1,3,2,2,3,2,3,3,4,4,4,3,4,2,4,4,2,2,2,1,4,2,3,2,2,2,4,3,4,3,2,2,4,2,2,2,3,2,1,2,3,2,2,3,2,2,3,4,4,4,4,2,2,3,,1,4,4,2,4,4,2,2,3,4,4,4,2,2,4,4,4,2,2,3,4,2,,1,4,1,4,2,2,2,2,4,5,2,4,2,4,4,2,2,1,4,4,3,3,,3,2,2,1,2,4,3,3,3,3,2,3,1,2,2,2,2,2,2,2,1,1,2,3,3,2,2,2,1,2,2,3,2,3,2,3,4,2,2,3,1,1,3,1,1,1,1,2
+2023-03-14 10:18:50,2023-03-14 10:33:40,0,132.229.145.101,100,890,1,2023-03-14 10:33:41,R_tQZ6n5iNTAuFdcd,,,,,52.1643,4.4986,anonymous,EN,90,19,2,Argentinian,2,1,1,5,5,4,3,1,3,5,1,1,2,2,1,1,1,5,5,1,3,1,2,1,3,2,3,1,2,1,3,1,3,4,1,1,2,3,2,3,3,3,2,1,4,3,1,3,1,4,4,3,4,2,3,2,2,2,3,1,3,2,1,1,3,1,2,2,4,1,4,1,3,1,3,5,5,5,5,5,5,4,5,3,5,4,5,2,5,5,5,5,5,5,4,3,5,5,5,3,2,5,3,5,3,3,5,5,5,5,3,3,5,2,4,2,,2,5,3,5,3,5,1,4,4,3,4,4,4,4,4,1,3,1,4,3,1,2,,1,5,4,5,4,4,2,1,1,2,1,1,3,2,4,3,4,4,5,5,2,1,,3,1,1,1,2,4,2,3,3,1,1,2,1,3,4,4,3,4,1,4,1,1,4,4,3,2,1,1,2,3,1,2,2,1,1,1,3,2,4,4,2,4,1,4,1,1,4,4
+2023-03-14 12:21:50,2023-03-14 12:42:05,0,132.229.145.101,100,1214,1,2023-03-14 12:42:05,R_2vcuo6mKOC9R1xK,,,,,52.1643,4.4986,anonymous,EN,91,21,2,Dutch,2,1,3,4,5,2,4,1,3,5,2,1,2,2,1,2,1,4,5,2,2,2,1,2,2,3,4,1,4,1,1,2,4,2,2,2,1,2,4,4,4,4,2,3,3,3,1,3,1,4,2,1,3,2,3,2,3,1,2,2,3,4,2,1,3,3,1,2,1,2,2,5,4,2,4,4,4,5,3,2,4,3,4,2,4,3,4,2,5,5,4,5,2,3,4,5,4,3,5,4,5,1,4,4,4,3,2,4,5,2,3,3,1,4,3,1,,4,2,4,4,4,4,3,2,5,2,4,2,5,4,4,3,4,1,2,4,4,2,,3,4,3,2,2,2,4,2,2,2,4,2,2,2,3,3,3,1,5,4,2,1,,1,1,3,1,2,2,1,2,2,3,2,2,1,2,2,2,2,2,1,2,2,1,3,2,1,1,2,1,1,2,1,2,1,3,2,2,1,2,2,2,1,2,1,1,2,1,3,4
+2023-03-21 10:19:02,2023-03-21 10:36:48,0,132.229.145.101,100,1066,1,2023-03-21 10:36:49,R_2cvApNO6ghEeGUM,,,,,52.1643,4.4986,anonymous,EN,92,18,2,Dutch,4,5,1,2,4,4,3,4,4,1,1,4,3,1,1,2,4,3,3,1,4,3,1,3,4,4,3,1,4,1,1,1,4,3,2,3,1,3,4,4,3,4,1,2,1,4,1,2,1,3,1,1,2,1,3,2,1,1,3,1,4,3,1,1,3,2,1,2,2,2,4,5,5,2,3,4,5,5,4,5,4,3,5,4,5,5,4,2,4,4,3,3,4,5,3,2,2,4,3,4,5,3,1,2,2,5,4,4,5,2,4,2,3,2,4,3,,2,5,5,5,5,5,5,5,5,4,5,5,3,3,4,1,2,4,4,4,3,2,,2,4,4,4,4,3,5,2,1,1,3,3,2,2,4,4,2,3,4,5,5,2,,2,3,1,2,4,3,1,4,2,2,1,1,1,1,1,2,3,2,1,2,3,3,2,3,2,2,3,1,4,4,1,3,3,3,2,1,4,1,2,2,4,3,1,2,2,3,1,3
+2023-03-22 11:19:46,2023-03-22 11:41:42,0,132.229.145.101,100,1315,1,2023-03-22 11:41:42,R_1LLGuFRhTFkxc41,,,,,52.1485,4.4844,anonymous,EN,93,21,2,Slovak,2,3,4,3,4,4,4,2,3,4,2,2,2,4,2,1,3,4,5,1,3,4,2,2,3,3,4,2,1,2,2,2,2,1,2,2,2,2,4,3,2,3,1,2,2,4,1,2,2,3,2,2,4,2,4,2,3,1,3,2,3,3,4,1,4,3,1,1,1,1,5,5,4,4,3,4,4,3,4,4,4,3,4,4,5,3,4,2,4,4,5,5,4,5,3,3,4,5,4,3,4,2,3,4,5,4,3,4,3,2,4,5,4,4,3,1,,3,3,4,4,4,4,4,3,3,4,4,4,4,4,3,2,4,2,4,4,4,2,,4,4,4,3,3,3,4,2,2,2,4,3,3,3,2,4,4,3,4,3,2,1,,1,1,2,1,3,2,1,1,1,1,1,1,1,1,1,1,3,2,1,1,1,1,1,1,2,1,2,1,2,2,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,3
+2023-03-22 13:10:12,2023-03-22 13:31:23,0,132.229.145.101,100,1271,1,2023-03-22 13:31:24,R_usnr64uO3WFbmed,,,,,52.1485,4.4844,anonymous,EN,94,19,2,the netherlands,2,2,3,4,3,2,2,4,3,4,2,4,2,2,3,4,4,4,4,2,2,2,1,3,3,3,4,1,3,2,2,3,4,1,1,3,1,3,4,3,2,3,3,2,2,3,2,1,1,3,1,2,3,1,3,2,3,2,3,1,3,3,3,1,3,2,2,2,1,2,3,3,4,4,3,2,4,3,4,2,3,2,4,3,3,2,3,2,3,3,4,2,3,3,2,4,4,3,5,4,3,4,3,3,2,4,3,2,4,2,4,4,3,2,2,1,,3,2,3,4,4,4,4,4,4,3,4,4,4,2,3,2,3,2,3,3,4,2,,2,3,2,4,4,3,4,2,4,4,5,3,3,2,3,3,2,2,4,3,4,3,,3,2,4,2,2,4,2,2,2,4,2,2,2,2,3,3,2,2,2,2,3,2,3,1,3,2,3,1,2,2,2,2,1,2,1,1,1,1,2,3,1,2,2,1,3,2,3,1
+2023-03-29 14:30:10,2023-03-29 14:54:18,0,132.229.145.101,100,1448,1,2023-03-29 14:54:19,R_3ipPp7ziqu9J2o4,,,,,52.1485,4.4844,anonymous,EN,95,18,2,Dutch,2,4,2,4,3,4,2,2,1,4,3,4,1,3,4,2,3,4,4,2,3,2,1,3,2,1,4,1,1,2,2,2,3,2,2,3,2,4,2,4,4,3,3,1,4,2,3,2,1,3,2,2,4,2,4,3,2,2,4,1,3,2,1,1,3,3,2,3,4,1,2,3,3,4,3,4,2,2,1,2,4,1,2,1,1,3,1,1,3,3,4,2,3,2,3,3,4,2,4,2,3,2,2,3,1,3,3,4,2,2,3,2,2,2,1,3,,4,5,4,5,4,3,4,3,4,4,4,4,4,3,3,2,3,3,4,4,3,2,,1,4,3,4,3,2,4,2,3,3,4,2,1,1,2,1,1,3,4,4,2,1,,2,1,1,1,2,3,2,2,1,3,2,2,1,2,2,1,2,3,2,3,2,2,1,1,2,1,1,1,2,3,2,2,1,2,2,2,2,2,2,1,1,2,2,2,2,2,1,3
+2023-04-21 11:43:19,2023-04-21 11:59:05,0,132.229.145.132,100,945,1,2023-04-21 11:59:05,R_6PEFNpCSUQsT1sJ,,,,,52.1485,4.4844,anonymous,EN,96,22,2,Dutch,2,3,1,4,4,2,2,2,1,4,2,2,1,4,2,3,2,4,5,3,3,2,3,3,4,3,1,4,3,1,2,1,3,4,3,4,1,4,4,4,3,3,2,3,1,3,3,3,1,3,3,3,2,1,3,2,3,2,4,2,3,3,1,1,3,3,2,2,3,2,3,1,3,3,2,4,2,3,4,1,3,1,3,2,1,2,2,3,1,2,4,3,1,2,2,1,4,1,3,2,4,1,3,4,2,3,1,3,2,2,4,4,2,3,2,1,,2,4,4,4,4,4,4,2,4,3,2,3,4,2,4,1,4,2,4,2,4,2,,2,4,4,3,3,2,4,2,2,3,2,3,2,3,4,4,3,2,4,3,4,3,,4,2,2,1,2,4,1,3,2,3,2,2,2,3,3,2,3,3,4,2,1,2,1,3,2,1,2,1,2,4,1,2,2,3,2,2,3,2,3,2,3,3,3,2,1,2,1,3
+2023-04-24 14:34:35,2023-04-24 14:50:11,0,132.229.145.132,100,936,1,2023-04-24 14:50:13,R_WDwjHCbnfE4rExX,,,,,52.1485,4.4844,anonymous,EN,97,18,2,Nederlands,2,2,1,3,4,2,4,2,2,4,3,4,2,2,4,4,5,4,4,4,2,2,3,4,4,2,4,2,2,2,3,3,2,2,2,4,2,3,2,1,4,2,3,2,3,2,3,2,3,2,1,2,2,2,4,2,2,3,4,2,3,2,2,2,3,2,2,3,3,2,2,2,3,2,3,3,4,4,4,5,3,3,5,3,5,2,4,2,4,4,4,3,3,4,3,5,4,1,4,3,4,3,3,3,3,5,3,3,5,3,4,5,3,1,2,1,,1,4,2,2,4,4,4,3,4,4,4,3,3,3,4,2,4,1,4,3,4,2,,1,4,1,2,3,3,4,2,2,2,4,3,2,2,2,4,2,1,4,3,2,1,,2,2,1,1,3,3,2,2,2,4,3,3,2,2,2,3,3,4,2,3,2,3,2,4,4,2,1,1,3,3,2,3,3,4,3,3,3,4,3,4,2,3,2,2,3,3,2,4
+2023-04-24 15:56:27,2023-04-24 16:14:09,0,132.229.145.132,100,1062,1,2023-04-24 16:14:10,R_RXPbAcqo33SBFhD,,,,,52.1485,4.4844,anonymous,EN,98,21,2,Dutch,2,5,5,1,3,4,4,4,5,5,5,5,5,1,1,1,2,5,5,5,2,2,3,4,1,1,4,2,4,2,3,1,4,2,3,3,4,4,2,4,1,1,1,1,1,4,1,3,2,1,4,3,4,1,4,2,3,4,4,2,4,3,3,1,3,1,3,2,3,1,3,1,3,1,1,3,4,5,5,5,5,5,5,5,5,5,5,4,5,5,5,5,5,5,5,5,5,5,5,5,1,1,4,5,5,5,1,5,5,5,3,4,1,2,4,1,,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4,5,3,4,3,5,2,,2,5,2,2,2,3,4,2,2,2,4,3,2,2,2,4,2,2,4,3,5,2,,1,3,1,1,3,4,1,2,2,3,3,3,1,2,4,4,2,3,1,4,3,1,3,3,1,2,1,1,2,4,1,1,2,3,3,3,3,1,4,4,1,2,1,4,3,1,4,2
+2023-04-24 17:53:34,2023-04-24 18:04:56,0,132.229.145.132,100,682,1,2023-04-24 18:04:57,R_1IM0CtcmjjEP4sf,,,,,52.1485,4.4844,anonymous,EN,99,18,2,Netherlands/Dutch,3,4,2,2,4,2,2,2,3,4,4,4,3,3,2,3,4,4,3,4,1,2,1,3,3,2,3,2,2,3,2,2,3,2,3,3,2,3,2,2,3,3,1,2,3,3,2,2,3,3,2,2,2,2,3,2,2,2,3,2,3,2,2,2,3,2,2,2,2,3,2,3,3,4,3,2,2,3,3,2,3,1,2,2,2,3,3,2,2,2,3,2,3,3,2,2,3,3,4,3,4,1,2,3,2,3,2,3,2,2,2,2,3,2,2,1,,4,3,3,4,4,4,3,4,4,3,4,4,3,4,4,2,3,3,4,4,4,2,,3,4,2,4,3,3,4,2,2,2,3,2,2,3,4,3,2,2,4,4,3,1,,3,2,3,1,2,4,2,3,2,3,2,3,1,2,3,2,2,2,1,2,3,2,2,2,4,2,4,2,2,3,2,2,2,3,2,3,2,2,3,2,1,2,1,2,3,2,2,4
+2023-04-25 13:51:57,2023-04-25 14:07:56,0,132.229.145.132,100,958,1,2023-04-25 14:07:56,R_Atl6SIdcHTZaBLH,,,,,52.1485,4.4844,anonymous,EN,100,21,2,Dutch,2,3,3,4,4,4,4,1,4,5,2,2,2,2,1,3,4,4,5,3,2,2,3,3,2,4,4,4,4,3,2,2,2,1,2,4,2,4,3,4,4,2,1,1,2,3,3,1,1,3,2,2,4,2,1,2,2,2,4,1,4,4,3,2,3,2,1,1,1,1,4,5,4,4,5,4,4,4,4,5,3,2,4,4,4,4,4,4,3,5,5,5,5,5,5,4,4,3,3,4,4,5,5,5,5,4,4,5,5,5,4,5,4,2,4,2,,4,5,5,3,4,5,2,4,5,5,4,3,4,4,5,4,4,2,4,2,2,2,,1,2,2,1,2,2,2,1,1,1,2,1,2,1,1,4,1,1,4,3,1,1,,2,2,1,1,3,3,2,2,2,3,1,1,2,2,2,1,1,2,1,2,1,3,3,2,2,2,1,1,2,3,2,1,1,3,1,1,2,1,2,1,2,2,1,2,1,3,4,2
+2023-04-25 15:42:30,2023-04-25 15:50:07,0,132.229.145.132,100,456,1,2023-04-25 15:50:08,R_1BXBFpv8DyRtSs2,,,,,52.1485,4.4844,anonymous,EN,101,25,2,Dutch,3,2,1,3,3,1,1,1,1,4,2,4,1,1,3,3,3,3,3,3,3,4,3,3,3,3,3,3,3,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,3,3,3,3,3,3,3,3,1,1,3,4,1,3,3,3,1,1,1,1,1,3,3,1,1,1,3,1,1,1,1,1,3,3,1,1,1,1,1,1,3,3,1,1,1,1,3,3,1,1,1,1,1,1,1,1,4,4,2,4,1,1,,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+2023-04-25 17:22:45,2023-04-25 17:38:14,0,132.229.145.132,100,928,1,2023-04-25 17:38:14,R_3iW2eLBy0Io0qlc,,,,,52.1485,4.4844,anonymous,EN,102,20,2,Dutch,4,4,1,2,3,4,4,4,4,5,2,4,3,3,2,4,4,4,5,2,2,1,2,4,3,2,4,3,4,3,2,3,4,2,2,3,2,3,3,2,3,3,2,2,1,3,2,3,1,3,2,3,4,1,3,1,3,2,4,1,4,2,4,2,3,3,2,2,1,2,3,4,4,1,4,2,4,4,1,1,4,1,4,1,3,2,4,1,4,3,4,3,3,4,3,1,4,1,2,2,3,1,2,2,2,4,1,4,2,1,3,3,3,3,3,1,,2,4,3,4,4,3,2,4,4,3,4,4,4,4,4,2,4,4,3,5,4,2,,2,4,2,4,3,3,2,3,1,2,2,3,2,3,4,4,3,4,5,4,4,2,,1,2,1,1,3,3,1,2,1,2,2,2,1,2,2,2,3,3,3,2,3,3,2,3,3,2,2,2,2,2,1,2,1,2,2,2,3,2,2,2,2,3,3,2,3,3,2,3
+2023-04-26 11:19:56,2023-04-26 11:38:44,0,132.229.145.132,100,1127,1,2023-04-26 11:38:45,R_2VjswdmRN41OZ6M,,,,,52.1485,4.4844,anonymous,EN,103,19,2,Dutch,4,4,1,3,3,3,4,2,4,4,2,4,4,3,3,2,4,4,4,3,2,3,2,2,2,1,4,2,3,1,2,2,4,3,2,2,2,1,4,2,2,1,2,3,2,3,2,3,4,4,2,2,3,1,2,1,2,2,4,2,4,2,1,2,2,2,2,2,4,2,1,2,2,1,3,4,3,3,1,2,2,1,4,3,1,2,1,1,3,2,4,2,2,2,4,1,2,1,3,2,2,1,1,2,2,4,2,3,2,1,3,4,2,3,1,1,,4,4,4,4,3,3,4,4,4,4,4,4,3,4,4,3,4,4,4,4,4,3,,2,3,3,3,4,2,1,2,1,1,2,2,2,1,3,4,4,4,3,2,2,1,,1,2,1,1,2,3,1,2,1,2,2,2,2,2,2,2,1,2,1,2,1,1,1,2,1,2,1,1,3,1,1,1,1,1,3,1,1,1,1,2,1,2,1,1,1,1,1,1
+2023-04-26 13:13:51,2023-04-26 13:28:37,0,132.229.145.132,100,885,1,2023-04-26 13:28:37,R_SZxwntogLZclVqp,,,,,52.1485,4.4844,anonymous,EN,104,20,2,dutch,2,3,5,3,4,4,3,5,3,4,4,2,2,4,3,4,5,2,4,5,3,2,1,1,1,1,2,1,1,1,1,1,2,1,1,2,1,1,1,3,2,4,1,1,2,4,1,3,4,4,1,1,4,1,4,1,1,1,4,3,3,3,1,1,3,2,1,3,4,2,2,4,5,2,1,1,1,2,2,3,4,2,4,2,3,1,4,3,4,5,5,5,3,5,1,3,4,1,5,1,5,2,1,1,1,3,1,3,2,1,3,4,2,3,4,3,,4,2,2,3,2,2,4,5,4,1,4,5,2,1,3,2,4,2,4,2,2,2,,1,1,3,4,3,3,2,5,4,5,4,4,3,3,4,4,4,2,3,4,4,1,,1,3,1,2,1,2,1,3,1,1,1,2,1,3,1,1,2,1,1,2,1,4,1,3,1,3,1,1,1,2,3,2,1,1,1,2,1,2,1,1,2,1,1,2,1,4,1,2
+2023-05-02 10:20:57,2023-05-02 10:40:32,0,132.229.145.52,100,1174,1,2023-05-02 10:40:33,R_2rue8jWpd6AFjA1,,,,,52.1485,4.4844,anonymous,EN,105,18,2,Dutch,2,4,1,2,4,5,3,4,3,4,2,4,4,5,3,3,2,5,5,2,4,2,1,1,2,2,4,1,2,4,2,2,4,1,2,2,1,4,4,3,4,3,3,1,2,2,2,3,1,2,1,2,2,1,2,1,1,1,2,1,3,3,1,1,2,2,1,2,3,1,2,3,5,3,2,1,4,4,4,5,3,3,4,2,3,4,4,1,4,3,5,5,4,4,5,4,5,3,3,2,2,3,3,4,3,5,2,4,5,3,4,4,2,2,3,2,,2,4,4,4,4,4,4,2,4,5,5,4,4,2,4,5,5,2,5,5,4,2,,2,2,2,4,3,2,4,2,1,1,4,2,2,1,4,4,2,2,4,2,4,1,,3,2,1,1,2,3,2,4,4,4,3,2,2,3,3,4,2,4,3,2,3,1,4,2,3,2,2,1,1,2,2,4,4,3,2,1,2,3,2,3,2,3,2,2,2,1,4,2
