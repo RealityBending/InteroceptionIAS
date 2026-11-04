@@ -208,7 +208,9 @@ df6 <- haven::read_sav("../data/Brand2022/LatentVariableApproach.sav") |>
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
     PHQ4_Depression= PHQ2_sum,
     PHQ4_Anxiety = GAD2_sum
-  ) 
+  ) |>
+  mutate(IATS_Mean = rowMeans(across(IATS_01:IATS_21)), # Interoceptive Attention Scale, mean item score (1-5)
+         SSS8_Sum = SSS8_sum - 8) # Somatic Symptom Scale-8, items stored 1-5; converted to the standard 0-32 sum
 ```
 
 ### Sample 7
@@ -315,6 +317,7 @@ df8a <- haven::read_sav("../data/Lin2023/Study 1 & 3.sav") |>
   ) 
 
 df8a$BPQ_BodyAwareness <- rowMeans(select(df8a,BPQ1:BPQ12), na.rm = FALSE)
+df8a$IATS_Mean <- df8a$IATS_sum / 21 # Interoceptive Attention Scale sum (21-105) converted to mean item score (1-5)
 
 
 df8b <- haven::read_sav("../data/Lin2023/Study 2.sav") |>
@@ -700,8 +703,25 @@ df17$PHQ4_Anxiety <- df17$PH01_03 + df17$PH01_04
 
 ```{r}
 df18 <- readxl::read_excel("../data/Adams2026/Whole sample data N519.xlsx") |>
-  select(Age, CatGen, starts_with(c("IAS", "TAS", "DASS", "AQ"))) |>
+  select(Age, CatGen, starts_with(c("IAS", "TAS", "DASS", "AQ")), matches("^IATS[0-9]+$"), matches("^NIES[0-9]+$"),
+         matches("^CAIT[0-9]+$")) |>
   mutate(across(everything(), as.numeric)) |>
+  mutate(
+    # AQ-Short (Hoekstra et al., 2011), items in the published order, stored 1-4 and already keyed (all items correlate
+    # positively with the total). Rescaled to 0-3 and averaged per subscale, as in Sample 10 (Makowski).
+    # Mapping taken from Sample 10's item labels; items correlate more within (mean r = .42) than between (r = .25) subscales.
+    ASQ_LackSocialSkills = rowMeans(across(paste0("AQ", c(1, 9, 10, 12, 15, 24, 27)))) - 1,
+    ASQ_Routine = rowMeans(across(paste0("AQ", c(2, 17, 19, 26)))) - 1,
+    ASQ_LowAttentionalSwitching = rowMeans(across(paste0("AQ", c(4, 8, 18, 21)))) - 1,
+    ASQ_Imagination = rowMeans(across(paste0("AQ", c(3, 6, 11, 14, 20, 23, 25, 28)))) - 1,
+    ASQ_Patterns = rowMeans(across(paste0("AQ", c(5, 7, 13, 16, 22)))) - 1,
+    # Interoceptive Attention Scale (21 items, 1-5), mean item score
+    IATS_Mean = rowMeans(across(matches("^IATS[0-9]+$"))),
+    # Negative Interoceptive Evaluation Scale (20 items, 1-5), mean item score
+    NIES_Mean = rowMeans(across(matches("^NIES[0-9]+$"))),
+    # Comprehensive Autistic Trait Inventory (42 items, 1-5), mean item score. Total only: the file does not
+    # identify which items belong to which subscale.
+    CATI_Mean = rowMeans(across(matches("^CAIT[0-9]+$")))) |>
   mutate(Gender = case_when(
     CatGen == 0 ~ "Male",
     CatGen == 1 ~ "Female",
@@ -711,8 +731,12 @@ df18 <- readxl::read_excel("../data/Adams2026/Whole sample data N519.xlsx") |>
     Urinate = IAS5, Defecate = IAS6, Taste = IAS7, Vomit = IAS8, Sneeze = IAS9,
     Cough = IAS10, Temp = IAS11, Sex_arousal = IAS12, Wind = IAS13, Burp = IAS14,
     Muscles = IAS15, Bruise = IAS16, Pain = IAS17, Blood_Sugar = IAS18,
-    Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21
+    Affective_touch = IAS19, Tickle = IAS20, Itch = IAS21,
+    # DASS-21 depression and anxiety subscales (7 items each, 0-3), sums as computed by the authors
+    DASS_Depression = DASSDEP, DASS_Anxiety = DASSANX
   )
+# Note: TAS-20 subscales are not computed because the item order in the file does not follow the standard
+# questionnaire (e.g., TAS item 2 is uncorrelated with items 6 and 13) and no codebook is available.
 ```
 
 ### Sample 19
@@ -741,7 +765,7 @@ df19 <- dat |>
       race_ethnicity == "5" ~ "Middle Eastern/North African",
       race_ethnicity == "7" ~ "White",
       race_ethnicity %in% c("1", "8") ~ "Other")) |>
-  select(Age = age_desc, Gender, Ethnicity, starts_with("IAS_"), -ias_tot, phq9_tot) |>
+  select(Age = age_desc, Gender, Ethnicity, starts_with("IAS_"), -ias_tot, phq9_tot, maia_trust_tot, iats_tot, isq_tot, panas_neg_tot, panas_pos_tot_scale) |>
   mutate(across(-c(Gender, Ethnicity), as.numeric)) |>
   rename(
     Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
@@ -751,7 +775,15 @@ df19 <- dat |>
     Affective_touch = IAS_19, Tickle = IAS_20, Itch = IAS_21,
     PHQ9_Sum = phq9_tot
   ) |>
-  mutate(PHQ9_Sum = PHQ9_Sum / 9) # mean item score, as in the other samples
+  mutate(PHQ9_Sum = PHQ9_Sum / 9, # mean item score, as in the other samples
+         MAIA_Trusting = maia_trust_tot / 3, # MAIA-2 Trusting is stored as a sum of 3 items (0-15); converted to the 0-5 mean
+         IATS_Mean = iats_tot / 21, # IATS sum of 21 items (1-5); converted to the mean item score
+         ISQ_Mean = isq_tot / 20, # Interoceptive Sensory Questionnaire, sum of 20 items (1-7); converted to the mean item score
+         # PANAS: negative affect is stored as a sum (9-45); positive affect is only available z-scored in this file.
+         # Both are only present in this sample and are standardised in Study 2, so the different metrics do not matter.
+         PANAS_Negative = panas_neg_tot,
+         PANAS_Positive = panas_pos_tot_scale,
+         .keep = "unused")
 df19 <- df19[complete.cases(select(df19, all_of(ias_vars))), ] # 51 participants with missing IAS items
 rm(dat)
 ```
@@ -768,7 +800,14 @@ df20 <- read.csv("../data/Reid-Russell2026/masterdatabase_wave3.csv") |>
   mutate(Age = suppressWarnings(as.numeric(Age)), # "DATA_EXPIRED" -> NA
          Gender = Sex) |>
   mutate(Ethnicity = harmonise_ethnicity(Ethnicity.simplified)) |>
-  select(Age, Gender, Ethnicity, starts_with("IAS_"), -IAS_total) |>
+  # MAIA-2 subscales (0-5 means) as computed by the authors
+  select(Age, Gender, Ethnicity, starts_with("IAS_"), -IAS_total,
+         MAIA_Noticing = MAIA_noticing, MAIA_NotDistracting = MAIA_notDistracting,
+         MAIA_NotWorrying = MAIA_notworrying, MAIA_AttentionReg = MAIA_atteReg,
+         MAIA_EmoAwareness = MAIA_emotionAw, MAIA_SelfReg = MAIA_selfReg,
+         MAIA_BodyListening = MAIA_bodyListen, MAIA_Trusting = MAIA_bodyTrust,
+         IATS_Total = IATS_total) |>
+  mutate(IATS_Mean = IATS_Total / 21, .keep = "unused") |> # IATS sum of 21 items (1-5); converted to the mean item score
   rename(
     Heart = IAS_1, Hungry = IAS_2, Breathing = IAS_3, Thirsty = IAS_4,
     Urinate = IAS_5, Defecate = IAS_6, Taste = IAS_7, Vomit = IAS_8, Sneeze = IAS_9,
@@ -787,7 +826,7 @@ df20 <- read.csv("../data/Reid-Russell2026/masterdatabase_wave3.csv") |>
 
 ```{r}
 df21 <- read.csv("../data/kvamme2026/dfc_interoception_profiling.csv") |>
-  select(Age = age, gender, starts_with(c("ias_", "tas_", "phq_9_", "gad_7_", "stai_"))) |>
+  select(Age = age, gender, starts_with(c("ias_", "iats_", "tas_", "phq_9_", "gad_7_", "stai_", "sss_8_"))) |>
   mutate(Gender = case_when(
     gender == 1 ~ "Male",
     gender == 2 ~ "Female",
@@ -806,6 +845,9 @@ df21 <- read.csv("../data/kvamme2026/dfc_interoception_profiling.csv") |>
     TAS_DDF = tas_2 + tas_4 + tas_11 + tas_12 + tas_17,
     TAS_EOT = tas_5 + tas_8 + tas_10 + tas_15 + tas_16 + tas_18 + tas_19 + tas_20,
     PHQ9_Sum = rowMeans(across(starts_with("phq_9_"))) - 1,
+    GAD7_Sum = rowSums(across(starts_with("gad_7_"))) - 7, # items stored 1-4; converted to the standard 0-21 sum
+    SSS8_Sum = rowSums(across(starts_with("sss_8_"))) - 8, # Somatic Symptom Scale-8, items stored 1-5; converted to the standard 0-32 sum
+    IATS_Mean = rowMeans(across(matches("^iats_[0-9]+$"))), # Interoceptive Attention Scale, mean item score (1-5)
     STAIT_Mean = rowMeans(across(starts_with("stai_"))))
 ```
 
@@ -820,8 +862,30 @@ df21 <- read.csv("../data/kvamme2026/dfc_interoception_profiling.csv") |>
 df22a <- read.csv("../data/Folz2024/Interoception_EmoRecog_objective_May+2,+2023_14.07.csv", check.names = FALSE) |>
   slice(-(1:2)) |> # Qualtrics question text and import id rows
   filter(Status == "0") |> # remove survey previews
-  select(Age, Gender, all_of(paste0("IAS_", 1:21))) |>
+  select(Age, Gender, all_of(paste0("IAS_", 1:21)), all_of(paste0("IATS_", 1:21)), starts_with("TAS-20_"), matches("^BPQ_[0-9]+$"),
+         all_of(paste0("AQ_", 1:50)), matches("^LSAS#[12]_[0-9]+$")) |>
   mutate(across(everything(), as.numeric)) |>
+  mutate(
+    # Autism-Spectrum Quotient (AQ-50; standard item order, 1 = definitely agree ... 4 = definitely disagree).
+    # Keyed so that higher = more autistic traits (0-3 per item: 3 = definitely endorsing the autistic response) and averaged.
+    across(paste0("AQ_", c(2, 4, 5, 6, 7, 9, 12, 13, 16, 18, 19, 20, 21, 22, 23, 26, 33, 35, 39, 41, 42, 43, 45, 46)), \(x) 4 - x),
+    across(paste0("AQ_", setdiff(1:50, c(2, 4, 5, 6, 7, 9, 12, 13, 16, 18, 19, 20, 21, 22, 23, 26, 33, 35, 39, 41, 42, 43, 45, 46))), \(x) x - 1),
+    AQ50_Mean = rowMeans(across(paste0("AQ_", 1:50))),
+    # Liebowitz Social Anxiety Scale (24 situations x fear/anxiety and avoidance, stored 1-4); standard 0-144 total
+    LSAS_Total = rowSums(across(matches("^LSAS#[12]_[0-9]+$"))) - 48) |>
+  select(-all_of(paste0("AQ_", 1:50)), -matches("^LSAS#[12]_[0-9]+$")) |>
+  # Interoceptive Attention Scale (21 items, 1-5), mean item score
+  mutate(IATS_Mean = rowMeans(across(all_of(paste0("IATS_", 1:21))))) |>
+  select(-all_of(paste0("IATS_", 1:21))) |>
+  # TAS-20 (1-5, raw; items 4, 5, 10, 18, 19 reversed) summed per subscale, as in the other samples
+  mutate(across(paste0("TAS-20_", c(4, 5, 10, 18, 19)), \(x) 6 - x)) |>
+  mutate(
+    TAS_DIF = rowSums(across(paste0("TAS-20_", c(1, 3, 6, 7, 9, 13, 14)))),
+    TAS_DDF = rowSums(across(paste0("TAS-20_", c(2, 4, 11, 12, 17)))),
+    TAS_EOT = rowSums(across(paste0("TAS-20_", c(5, 8, 10, 15, 16, 18, 19, 20)))),
+    # BPQ Body Awareness, full 45-item version (1-5): mean item score, as for the BPQ short forms
+    BPQ_BodyAwareness = rowMeans(across(matches("^BPQ_[0-9]+$")))) |>
+  select(-starts_with("TAS-20_"), -matches("^BPQ_[0-9]+$")) |>
   mutate(Age = ifelse(Age > 90, NA, Age), # misreported age (99)
          Gender = case_when(
            Gender == 1 ~ "Male",
@@ -876,6 +940,8 @@ df23 <- read.csv("../data/Koike2026/Noh_interoception.csv", fileEncoding = "UTF-
   mutate(Gender = case_when(
     gender == 1 ~ "Male",
     gender == 2 ~ "Female"),
+    # Japanese Interoceptive Attention Scale (IATS-J; 20 items, 1-5), mean item score
+    IATS_Mean = rowMeans(across(matches("^IATS\\.[0-9]+$"))),
     # MAIA subscales as computed by the authors (Japanese 25-item MAIA, items scored 0-5)
     MAIA_AttentionReg = (MAIA.7 + MAIA.8 + MAIA.9 + MAIA.10 + MAIA.11 + MAIA.12 + MAIA.13) / 7,
     MAIA_BodyListening = (MAIA.19 + MAIA.20 + MAIA.21 + MAIA.22) / 4,
