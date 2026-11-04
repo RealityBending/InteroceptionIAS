@@ -69,62 +69,63 @@ gt_apastyle <- function(gt_table, font.size=12) {
 table <- data.frame(
   Questionnaire = c(
     # Interoception
-    "Interoceptive Related", "MAIA-2", "BPQ-SF", "BPQ-VSF", "ICQ", "TAS-20", "BVAQ",
+    "Interoceptive Related", "MAIA-2", "BPQ-SF", "BPQ-VSF", "ICQ", "TAS-20", "BVAQ", "IATS", "NIES", "ISQ",
     # Mood/Anxiety
-    "Mood", "BDI-II", "PHQ-4", "PHQ-9", "PHQ-15", "MFQ", "STAI-T", "GAD-7",
+    "Mood", "BDI-II", "PHQ-4", "PHQ-9", "PHQ-15", "SSS-8", "MFQ", "STAI-T", "GAD-7", "DASS-21 (depression and anxiety subscales)", "PANAS", "LSAS",
     # Personality
     "Personality", "NEO-FFI (neuroticism subscale)", "Mini IPIP6", "BFI-S",
     # Psychopathology
-    "Psychopathology", "PID-5-SFF", "SPQ-BR", "MSI-BPD", "ASQ - Short",
+    "Psychopathology", "PID-5-SFF", "SPQ-BR", "MSI-BPD", "ASQ - Short", "CATI", "AQ-50",
     # Beliefs and Misbeliefs
     "Beliefs and Misbeliefs", "GCBS", "PI-18", "LIE scale"
   ),
   Number_of_Dimensions = c(
-    "", 8, 2, 1, 3, 3, 5,
-    "", 2, 2, 1, 1, 1, 1, 1,
+    "", 8, 2, 1, 3, 3, 5, 1, 1, 1,
+    "", 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2,
     "", 1, 6, 5,
-    "", 5, 9, 1, 5,
+    "", 5, 9, 1, 5, 1, 1,
     "", 5, 3, 4
   ),
   Assessment = c(
-    "", "Interoceptive awareness", "Body awareness and autonomic reactivity", "Body awareness", "Interoceptive confusion", "Alexithymia", "Alexithymia", 
-    "", "Depressive symptoms severity", "Depression and Anxiety", "Depressive symptoms", "Somatic symptom distress", "Mood and affect", "Trait anxiety", "General anxiety disorder symptoms",
+    "", "Interoceptive awareness", "Body awareness and autonomic reactivity", "Body awareness", "Interoceptive confusion", "Alexithymia", "Alexithymia", "Interoceptive attention", "Negative interoceptive evaluation", "Interoceptive difficulties",
+    "", "Depressive symptoms severity", "Depression and Anxiety", "Depressive symptoms", "Somatic symptom distress", "Somatic symptom burden", "Mood and affect", "Trait anxiety", "General anxiety disorder symptoms", "Depression and anxiety", "Positive and negative affect", "Social anxiety (fear and avoidance)",
     "", "Neuroticism", "Personality traits", "Personality traits",
-    "", "Maladaptive personality traits", "Schizotypy", "Borderline personality disorder", "Autistic traits",
+    "", "Maladaptive personality traits", "Schizotypy", "Borderline personality disorder", "Autistic traits", "Autistic traits (total score)", "Autistic traits (total score)",
     "", "Conspiracy beliefs", "Primal world beliefs", "Lying tendencies"
   ),
   Number_of_Items = c(
-    "", 37, 46, 12, 20, 20, 40,
-    "", 21, 4, 9, 15, 13, 20, 7,
+    "", 37, 46, 12, 20, 20, 40, 21, 20, 20,
+    "", 21, 4, 9, 15, 8, 13, 20, 7, 14, 20, 48,
     "", 12, 24, 10,
-    "", 25, 32, 9, 28,
+    "", 25, 32, 9, 28, 42, 50,
     "", 15, 18, 16
   ),
   Scoring = c(
-    "", "6-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale",
-    "", "4-point scale", "4-point Likert scale", "4-point Likert scale", "3-point scale", "3-point scale", "4-point Likert scale", "4-point Likert scale",
+    "", "6-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "7-point Likert scale",
+    "", "4-point scale", "4-point Likert scale", "4-point Likert scale", "3-point scale", "5-point Likert scale", "3-point scale", "4-point Likert scale", "4-point Likert scale", "4-point Likert scale", "5-point Likert scale", "4-point Likert scale",
     "", "5-point Likert scale", "Visual analogue scales", "7-point Likert scale",
-    "", "4-point Likert scale", "5-point Likert scale", "Dichotomous (yes/no)", "4-point Likert scale",
+    "", "4-point Likert scale", "5-point Likert scale", "Dichotomous (yes/no)", "4-point Likert scale", "5-point Likert scale", "4-point Likert scale",
     "", "5-point Likert scale", "5-point Likert scale", "Visual analogue scales"
   ),
   Example_Items = c(
     # Interoception
-    "", "I notice when I am uncomfortable in my body", "My heart often beats irregularily", "My mouth being dry", " I cannot tell when my muscles are sore or tight", "I have feelings I can't quite identify", "I like to tell others how I feel",
+    "", "I notice when I am uncomfortable in my body", "My heart often beats irregularily", "My mouth being dry", " I cannot tell when my muscles are sore or tight", "I have feelings I can't quite identify", "I like to tell others how I feel", "", "", "",
     #Mood
-    "", "I feel sad much of the time","Little interest or pleasure in doing things", "Feeling tired or having little energy?", "Over the last week, how often have you been bothered by back pain?", "I felt miserable or unhappy", "I worry too much about something that really doesn't matter", "Not being able to stop or control worrying",
+    "", "I feel sad much of the time","Little interest or pleasure in doing things", "Feeling tired or having little energy?", "Over the last week, how often have you been bothered by back pain?", "", "I felt miserable or unhappy", "I worry too much about something that really doesn't matter", "Not being able to stop or control worrying", "I felt I was close to panic", "", "",
     # Personality
     "", "I often feel inferior to others", "Am the life of the party", "I see myself as someone who ...is considerate and kind to almost everyone", 
    # Psychopathology
-    "", "Plenty of people are out to get me", "I am an odd, unusual person", "Have any of your closest relationships been troubled by a lot of arguments or repeated breakups?", "I find it difficult to work out people’s intentions",
+    "", "Plenty of people are out to get me", "I am an odd, unusual person", "Have any of your closest relationships been troubled by a lot of arguments or repeated breakups?", "I find it difficult to work out people’s intentions", "", "",
    # Beliefs and Misbeliefs
     "", "Secret organizations communicate with extraterrestrials, but keep this fact from the public", "Nearly everything in the world is beautiful", "I am a good liar"
 ),
   # N (participants) and k (samples) per questionnaire, from the `nk` summary in "Sample sizes" below
+  # (computed after the dataset update of 04/11/2026; update if the data change)
   N_k = c(
-    "", "3,750–4,555 (9–10)", "1,329–4,024 (2–7)ᵇ", "ᵇ", "1,262 (2)", "2,970–3,470 (6–7)", "814 (1)",
-    "", "836 (1)", "2,194 (4)", "2,484 (5)", "2,747 (3)", "106 (1)", "3,866 (6)", "279 (1)",
+    "", "4,368–5,612 (10–13)", "1,329–4,128 (2–8)ᵇ", "ᵇ", "1,262 (2)", "3,074–3,574 (7–8)", "814 (1)", "3,791 (8)", "519 (1)", "393 (1)",
+    "", "836 (1)", "2,194 (4)", "2,484 (5)", "2,747 (3)", "1,449 (2)", "106 (1)", "3,866 (6)", "1,111 (2)", "519 (1)", "392–396 (1)", "103 (1)",
     "", "ᵃ", "ᵃ", "ᵃ",
-    "", "485 (1)", "485 (1)", "442 (1)", "485 (1)",
+    "", "485 (1)", "485 (1)", "442 (1)", "1,004 (2)", "519 (1)", "104 (1)",
     "", "485 (1)", "588 (2)", "485 (1)"
   ),
    stringsAsFactors = FALSE
@@ -410,6 +411,14 @@ data <- rbind(
 # names(df7c)[str_detect(names(df7c), "ICQ")] 
 
 data <- rbind(data, pool_coef(with = "ICQ", component="Interoception", category = "Interoception", name = "Interoceptive Confusion - ICQ", unequalrange=TRUE))
+
+# Interoceptive attention (IATS) and negative interoceptive evaluation (NIES)
+data <- rbind(
+  data,
+  pool_coef(with = "IATS_Mean", component="Interoception", category = "Interoception", name = "Interoceptive Attention - IATS", unequalrange=TRUE),
+  pool_coef(with = "NIES_Mean", component="Interoception", category = "Interoception", name = "Negative Interoceptive Evaluation - NIES", unequalrange=TRUE),
+  pool_coef(with = "ISQ_Mean", component="Interoception", category = "Interoception", name = "Interoceptive Difficulties - ISQ", unequalrange=TRUE)
+)
 ```
 
 
@@ -458,11 +467,13 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "PHQ15_Sum", component="Depression", category = "Mood", name = "Somatic Concerns - PHQ-15",unequalrange=TRUE), 
+  pool_coef(with = "PHQ15_Sum", component="Depression", category = "Mood", name = "Somatic Concerns - PHQ-15",unequalrange=TRUE),
+  pool_coef(with = "SSS8_Sum", component = "Depression", category = "Mood", name = "Somatic Symptoms - SSS-8", unequalrange=TRUE),
   pool_coef(with = "PHQ9_Sum", component="Depression", category = "Mood", name = "Depression - PHQ-9", unequalrange=TRUE), 
   pool_coef(with = "BDI_Sum", component="Depression", category = "Mood", name = "Depression - BDI"), 
   pool_coef(with = "PHQ4_Depression", component="Depression", category = "Mood", name = "Depression - PHQ-4", unequalrange=TRUE),
-  pool_coef(with = "DEP", component = "Depression", category = "Mood", name = "Depression - MFQ")
+  pool_coef(with = "DEP", component = "Depression", category = "Mood", name = "Depression - MFQ"),
+  pool_coef(with = "DASS_Depression", component = "Depression", category = "Mood", name = "Depression - DASS-21")
 )
 ```
 
@@ -487,7 +498,11 @@ data <- rbind(
   data,
   pool_coef(with = "STAIT_Mean", component="Anxiety", category = "Mood", name = "Anxiety - STAI-T", unequalrange=TRUE), 
   pool_coef(with = "PHQ4_Anxiety", component="Anxiety", category = "Mood", name = "Anxiety - PHQ-4",  unequalrange=TRUE),
-  pool_coef(with = "GAD7_Sum", component="Anxiety", category = "Mood", name = "Anxiety - GAD-7")
+  pool_coef(with = "GAD7_Sum", component="Anxiety", category = "Mood", name = "Anxiety - GAD-7", unequalrange=TRUE),
+  pool_coef(with = "DASS_Anxiety", component = "Anxiety", category = "Mood", name = "Anxiety - DASS-21"),
+  pool_coef(with = "LSAS_Total", component = "Anxiety", category = "Mood", name = "Social Anxiety - LSAS", unequalrange=TRUE),
+  pool_coef(with = "PANAS_Negative", component = "Affect", category = "Mood", name = "Negative Affect - PANAS", unequalrange=TRUE),
+  pool_coef(with = "PANAS_Positive", component = "Affect", category = "Mood", name = "Positive Affect - PANAS", unequalrange=TRUE)
 )
 ```
 
@@ -543,11 +558,13 @@ data <- rbind(
 
 data <- rbind(
   data,
-  pool_coef(with = "ASQ_Imagination", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Imagination - ASQ"),
-  pool_coef(with = "ASQ_LackSocialSkills", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Lack of Social Skills - ASQ"), 
-  pool_coef(with = "ASQ_LowAttentionalSwitching", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Low Attentional Switching - ASQ"),
-  pool_coef(with = "ASQ_Patterns", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Patterns and Numbers - ASQ"),
-  pool_coef(with = "ASQ_Routine", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Routines - ASQ")
+  pool_coef(with = "ASQ_Imagination", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Imagination - ASQ", unequalrange=TRUE),
+  pool_coef(with = "ASQ_LackSocialSkills", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Lack of Social Skills - ASQ", unequalrange=TRUE), 
+  pool_coef(with = "ASQ_LowAttentionalSwitching", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Low Attentional Switching - ASQ", unequalrange=TRUE),
+  pool_coef(with = "ASQ_Patterns", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Patterns and Numbers - ASQ", unequalrange=TRUE),
+  pool_coef(with = "ASQ_Routine", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Routines - ASQ", unequalrange=TRUE),
+  pool_coef(with = "CATI_Mean", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Autistic Traits - CATI", unequalrange=TRUE),
+  pool_coef(with = "AQ50_Mean", component="Autistic", category = "Psychopathology and Neurodevelopmental Traits", name = "Autistic Traits - AQ-50", unequalrange=TRUE)
 )
 ```
 
@@ -724,11 +741,32 @@ nk <- data |>
   summarise(N = max(N), k = max(k), .by = c(Category, var_Correlate)) |>
   arrange(Category, desc(N))
 
-nk
+# Range for the text and the table note
+nk_range <- paste0(format(min(nk$N), big.mark = ","), "–", format(max(nk$N), big.mark = ","),
+                   "; k = ", min(nk$k), "–", max(nk$k))
 
-# Range for the text
-paste0("N = ", format(min(nk$N), big.mark = ","), "–", format(max(nk$N), big.mark = ","),
-       "; k = ", min(nk$k), "–", max(nk$k))
+nk |>
+  mutate(var_Correlate = str_replace(var_Correlate, "Boderline", "Borderline"),
+         Category = fct_relevel(Category, "Demographics", "Interoception", "Mood", "Personality",
+                                "Psychopathology and Neurodevelopmental Traits", "Beliefs")) |>
+  # "Subscale - Questionnaire" -> two columns (labels without a questionnaire, e.g. "Gender (Female - Male)", stay whole)
+  mutate(Questionnaire = replace_na(str_match(var_Correlate, " - ([^()]+)$")[, 2], ""),
+         Subscale = str_remove(var_Correlate, " - [^()]+$"),
+         .keep = "unused") |>
+  arrange(Category, desc(N)) |>
+  gt(groupname_col = "Category") |>
+  cols_move_to_start(c(Questionnaire, Subscale)) |>
+  cols_label(Questionnaire = "Questionnaire", Subscale = "Dimension", N = "N", k = "k") |>
+  fmt_integer(N) |>
+  cols_align("left", c(Questionnaire, Subscale)) |>
+  cols_align("center", c(N, k)) |>
+  tab_style(style = cell_fill(color = "#FFF8E1"), locations = cells_body(rows = k == 1)) |>
+  tab_style(style = cell_text(weight = "bold"), locations = cells_row_groups()) |>
+  tab_header(title = "Sample size per association") |>
+  tab_footnote(paste0("Note. N = largest number of participants across the IAS outcomes; k = number of samples. ",
+                      "Across all associations, N = ", nk_range, ". ",
+                      "Shaded rows are based on a single sample (k = 1) and should be considered exploratory.")) |>
+  gt_apastyle(font.size = 11)
 ```
 
 ## Summary
@@ -754,7 +792,7 @@ p <- data |>
       " " = "Demographics"),
          Category = fct_relevel(
            Category, " ", "Interoception", "Mood", "Psychopathology and Neurodevelopmental Traits", "Personality", "Beliefs"),
-         Component = fct_relevel(Component, "Demographic", "Interoception", "MAIA", "Anxiety", "Depression", "Schizotypic", "Autistic", "Maladaptive", "Personality", "World Beliefs", "Conspiracy Beliefs", "Lying Profile")) |> 
+         Component = fct_relevel(Component, "Demographic", "Interoception", "MAIA", "Anxiety", "Depression", "Affect", "Schizotypic", "Autistic", "Maladaptive", "Personality", "World Beliefs", "Conspiracy Beliefs", "Lying Profile")) |> 
   group_by(Component) |> 
   mutate(var_Correlate = fct_reorder(var_Correlate, r, .fun=mean)) |>
   ungroup() |>
