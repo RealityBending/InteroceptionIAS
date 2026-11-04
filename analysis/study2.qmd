@@ -119,6 +119,14 @@ table <- data.frame(
    # Beliefs and Misbeliefs
     "", "Secret organizations communicate with extraterrestrials, but keep this fact from the public", "Nearly everything in the world is beautiful", "I am a good liar"
 ),
+  # N (participants) and k (samples) per questionnaire, from the `nk` summary in "Sample sizes" below
+  N_k = c(
+    "", "3,750–4,555 (9–10)", "1,329–4,024 (2–7)ᵇ", "ᵇ", "1,262 (2)", "2,970–3,470 (6–7)", "814 (1)",
+    "", "836 (1)", "2,194 (4)", "2,484 (5)", "2,747 (3)", "106 (1)", "3,866 (6)", "279 (1)",
+    "", "ᵃ", "ᵃ", "ᵃ",
+    "", "485 (1)", "485 (1)", "442 (1)", "485 (1)",
+    "", "485 (1)", "588 (2)", "485 (1)"
+  ),
    stringsAsFactors = FALSE
 )
 
@@ -127,8 +135,11 @@ table <- data.frame(
 table_apa <- table |> 
   gt() |>
   cols_align(align = c("right"), columns = "Scoring") |> 
-  cols_label(Number_of_Dimensions = "Number of Dimensions", Number_of_Items = "Number of Items", Example_Items = "Example Items")  |>
-  # tab_footnote("* Information taken from the sample description of relevant paper rather than recomputed.") 
+  cols_label(Number_of_Dimensions = "Number of Dimensions", Number_of_Items = "Number of Items", Example_Items = "Example Items", N_k = "N (k)")  |>
+  # tab_footnote("* Information taken from the sample description of relevant paper rather than recomputed.")
+  tab_footnote("Note. N = number of participants; k = number of samples. Ranges indicate the minimum and maximum across a questionnaire's subscales.") |>
+  tab_footnote("ᵃ Personality scales were pooled by trait: Neuroticism N = 22,826 (k = 3); Agreeableness, Conscientiousness, Extraversion and Openness N ≈ 22,300 (k = 2); Honesty-Humility N = 485 (k = 1).") |>
+  tab_footnote("ᵇ BPQ-SF and BPQ-VSF body awareness scores were pooled.") |>
   tab_style( style = list(cell_text(weight = "bold")), locations = cells_body(columns = Questionnaire, rows = Questionnaire %in% c("Interoceptive Related", "Mood", "Personality", "Psychopathology", "Beliefs and Misbeliefs")))
   
 gt_apastyle(table_apa, font.size=12)
@@ -281,6 +292,7 @@ pool_coef <- function(with = "Age", component = "Demographic", category = "Demog
     out$Type <- type
     out$Converged <- insight::is_converged(m)
     out$N <- nrow(data)
+    out$k <- length(unique(data$Sample))
     rez <- rbind(rez, out)
     
   }
@@ -705,6 +717,19 @@ average_corr |>
   gt::fmt_auto()
 ```
 
+## Sample sizes
+
+```{r}
+nk <- data |>
+  summarise(N = max(N), k = max(k), .by = c(Category, var_Correlate)) |>
+  arrange(Category, desc(N))
+
+nk
+
+# Range for the text
+paste0("N = ", format(min(nk$N), big.mark = ","), "–", format(max(nk$N), big.mark = ","),
+       "; k = ", min(nk$k), "–", max(nk$k))
+```
 
 ## Summary
 
