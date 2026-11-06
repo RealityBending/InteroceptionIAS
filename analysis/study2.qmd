@@ -107,26 +107,21 @@ table <- data.frame(
     "", "4-point Likert scale", "5-point Likert scale", "Dichotomous (yes/no)", "4-point Likert scale", "5-point Likert scale", "4-point Likert scale",
     "", "5-point Likert scale", "5-point Likert scale", "Visual analogue scales"
   ),
-  Example_Items = c(
-    # Interoception
-    "", "I notice when I am uncomfortable in my body", "My heart often beats irregularily", "My mouth being dry", " I cannot tell when my muscles are sore or tight", "I have feelings I can't quite identify", "I like to tell others how I feel", "", "", "",
-    #Mood
-    "", "I feel sad much of the time","Little interest or pleasure in doing things", "Feeling tired or having little energy?", "Over the last week, how often have you been bothered by back pain?", "", "I felt miserable or unhappy", "I worry too much about something that really doesn't matter", "Not being able to stop or control worrying", "I felt I was close to panic", "", "",
-    # Personality
-    "", "I often feel inferior to others", "Am the life of the party", "I see myself as someone who ...is considerate and kind to almost everyone", 
-   # Psychopathology
-    "", "Plenty of people are out to get me", "I am an odd, unusual person", "Have any of your closest relationships been troubled by a lot of arguments or repeated breakups?", "I find it difficult to work out people’s intentions", "", "",
-   # Beliefs and Misbeliefs
-    "", "Secret organizations communicate with extraterrestrials, but keep this fact from the public", "Nearly everything in the world is beautiful", "I am a good liar"
-),
-  # N (participants) and k (samples) per questionnaire, from the `nk` summary in "Sample sizes" below
-  # (computed after the dataset update of 04/11/2026; update if the data change)
-  N_k = c(
-    "", "4,368–5,612 (10–13)", "1,329–4,128 (2–8)ᵇ", "ᵇ", "1,262 (2)", "3,074–3,574 (7–8)", "814 (1)", "3,791 (8)", "519 (1)", "393 (1)",
-    "", "836 (1)", "2,194 (4)", "2,484 (5)", "2,747 (3)", "1,449 (2)", "106 (1)", "3,866 (6)", "1,111 (2)", "519 (1)", "392–396 (1)", "103 (1)",
+  # N (participants who completed the questionnaire) and k (samples they came from), from the `nk`
+  # summary in "Sample sizes" below (computed after the dataset update of 04/11/2026; update if the data change)
+  N = c(
+    "", "4,368–5,612", "1,329–4,128ᵇ", "ᵇ", "1,262", "3,074–3,574", "814", "3,791", "519", "393",
+    "", "836", "2,194", "2,484", "2,747", "1,449", "106", "3,866", "1,111", "519", "392–396", "103",
     "", "ᵃ", "ᵃ", "ᵃ",
-    "", "485 (1)", "485 (1)", "442 (1)", "1,004 (2)", "519 (1)", "104 (1)",
-    "", "485 (1)", "588 (2)", "485 (1)"
+    "", "485", "485", "442", "1,004", "519", "104",
+    "", "485", "588", "485"
+  ),
+  k = c(
+    "", "10–13", "2–8ᵇ", "ᵇ", "2", "7–8", "1", "8", "1", "1",
+    "", "1", "4", "5", "3", "2", "1", "6", "2", "1", "1", "1",
+    "", "ᵃ", "ᵃ", "ᵃ",
+    "", "1", "1", "1", "2", "1", "1",
+    "", "1", "2", "1"
   ),
    stringsAsFactors = FALSE
 )
@@ -135,10 +130,11 @@ table <- data.frame(
 
 table_apa <- table |> 
   gt() |>
-  cols_align(align = c("right"), columns = "Scoring") |> 
-  cols_label(Number_of_Dimensions = "Number of Dimensions", Number_of_Items = "Number of Items", Example_Items = "Example Items", N_k = "N (k)")  |>
+  cols_align(align = c("right"), columns = "Scoring") |>
+  cols_align(align = "center", columns = c(N, k)) |>
+  cols_label(Number_of_Dimensions = "Number of Dimensions", Number_of_Items = "Number of Items", N = "N", k = "k")  |>
   # tab_footnote("* Information taken from the sample description of relevant paper rather than recomputed.")
-  tab_footnote("Note. N = number of participants; k = number of samples. Ranges indicate the minimum and maximum across a questionnaire's subscales.") |>
+  tab_footnote("Note. N = number of participants who completed the questionnaire; k = number of samples they came from. Ranges indicate the minimum and maximum across a questionnaire's subscales.") |>
   tab_footnote("ᵃ Personality scales were pooled by trait: Neuroticism N = 22,826 (k = 3); Agreeableness, Conscientiousness, Extraversion and Openness N ≈ 22,300 (k = 2); Honesty-Humility N = 485 (k = 1).") |>
   tab_footnote("ᵇ BPQ-SF and BPQ-VSF body awareness scores were pooled.") |>
   tab_style( style = list(cell_text(weight = "bold")), locations = cells_body(columns = Questionnaire, rows = Questionnaire %in% c("Interoceptive Related", "Mood", "Personality", "Psychopathology", "Beliefs and Misbeliefs")))
@@ -765,7 +761,7 @@ nk |>
   tab_header(title = "Sample size per association") |>
   tab_footnote(paste0("Note. N = largest number of participants across the IAS outcomes; k = number of samples. ",
                       "Across all associations, N = ", nk_range, ". ",
-                      "Shaded rows are based on a single sample (k = 1) and should be considered exploratory.")) |>
+                      "Shaded rows are based on a single sample (k = 1).")) |>
   gt_apastyle(font.size = 11)
 ```
 
