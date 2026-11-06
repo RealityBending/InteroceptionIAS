@@ -134,7 +134,8 @@ table_apa <- table |>
   cols_align(align = "center", columns = c(N, k)) |>
   cols_label(Number_of_Dimensions = "Number of Dimensions", Number_of_Items = "Number of Items", N = "N", k = "k")  |>
   # tab_footnote("* Information taken from the sample description of relevant paper rather than recomputed.")
-  tab_footnote("Note. N = number of participants who completed the questionnaire; k = number of samples they came from. Ranges indicate the minimum and maximum across a questionnaire's subscales.") |>
+  tab_footnote("Note. N = number of participants who completed the questionnaire; k = number of samples they came from. Ranges indicate the minimum and maximum across a questionnaire's subscales. Shaded rows are based on a single sample (k = 1) and should be considered exploratory.") |>
+  tab_style(style = cell_fill(color = "#FFF8E1"), locations = cells_body(rows = k == "1")) |>
   tab_footnote("ᵃ Personality scales were pooled by trait: Neuroticism N = 22,826 (k = 3); Agreeableness, Conscientiousness, Extraversion and Openness N ≈ 22,300 (k = 2); Honesty-Humility N = 485 (k = 1).") |>
   tab_footnote("ᵇ BPQ-SF and BPQ-VSF body awareness scores were pooled.") |>
   tab_style( style = list(cell_text(weight = "bold")), locations = cells_body(columns = Questionnaire, rows = Questionnaire %in% c("Interoceptive Related", "Mood", "Personality", "Psychopathology", "Beliefs and Misbeliefs")))
@@ -741,7 +742,7 @@ nk <- data |>
 nk_range <- paste0(format(min(nk$N), big.mark = ","), "–", format(max(nk$N), big.mark = ","),
                    "; k = ", min(nk$k), "–", max(nk$k))
 
-nk |>
+nk_table <- nk |>
   mutate(var_Correlate = str_replace(var_Correlate, "Boderline", "Borderline"),
          Category = fct_relevel(Category, "Demographics", "Interoception", "Mood", "Personality",
                                 "Psychopathology and Neurodevelopmental Traits", "Beliefs")) |>
@@ -750,6 +751,12 @@ nk |>
          Subscale = str_remove(var_Correlate, " - [^()]+$"),
          .keep = "unused") |>
   arrange(Category, desc(N)) |>
+  select(Category, Questionnaire, Subscale, N, k)
+
+# Saved as data (rebuilt as a flextable in the manuscript's supplementary materials, Table S1)
+saveRDS(nk_table, "figures/table3.rds")
+
+nk_table |>
   gt(groupname_col = "Category") |>
   cols_move_to_start(c(Questionnaire, Subscale)) |>
   cols_label(Questionnaire = "Questionnaire", Subscale = "Dimension", N = "N", k = "k") |>
@@ -823,6 +830,81 @@ p <- data |>
         strip.background.x = element_rect(fill = "#F8BBD0", color = "white"))
 p
 ggsave("figures/Figure3.png", p, width=25*0.55, height=38*0.4, dpi=300, bg="white")
+```
+
+## Correlation Matrix Between Dimensions
+
+Pooled correlations between the correlate dimensions most often measured together (the IAS is not included). For each pair of dimensions, correlations were computed within each sample measuring both (n ≥ 20) and pooled with a DerSimonian–Laird random-effects model on Fisher-z values. Questionnaire dimensions (not totals) are correlated.
+
+```{r}
+#| warning: false
+#| fig-width: 10
+#| fig-height: 10
+
+core <- c(
+  "MAIA_Noticing", "MAIA_NotDistracting", "MAIA_NotWorrying", "MAIA_AttentionReg", "MAIA_EmoAwareness",
+  "MAIA_SelfReg", "MAIA_BodyListening", "MAIA_Trusting", "BPQ_BodyAwareness",
+  "TAS_DIF", "TAS_DDF", "TAS_EOT", "ICQ", "IATS_Mean",
+  "STAIT_Mean", "PHQ4_Anxiety", "PHQ9_Sum", "PHQ4_Depression", "Neuroticism")
+# Other dimensions were only added if they shared at least two samples with most of these dimensions;
+# autistic traits (ASQ, CATI, AQ-50) and the remaining measures overlap with them in one sample at most.
+
+# Within-sample correlations for one pair of dimensions, pooled across samples (random effects, Fisher z)
+pool_r <- function(a, b) {
+  st <- do.call(rbind, lapply(names(alldata), \(s) {
+    x <- alldata[[s]]
+    if (!all(c(a, b) %in% names(x))) return(NULL)
+    d <- na.omit(data.frame(a = as.numeric(x[[a]]), b = as.numeric(x[[b]])))
+    if (nrow(d) < 20 || sd(d$a) == 0 || sd(d$b) == 0) return(NULL)
+    data.frame(sample = s, r = cor(d$a, d$b), n = nrow(d))
+  }))
+  if (is.null(st)) return(data.frame(z = NA, se = NA, k = 0, N = 0))
+  z <- atanh(st$r); v <- 1 / (st$n - 3); w <- 1 / v
+  zf <- sum(w * z) / sum(w); Q <- sum(w * (z - zf)^2); k <- nrow(st)
+  tau2 <- if (k > 1) max(0, (Q - (k - 1)) / (sum(w) - sum(w^2) / sum(w))) else 0
+  ws <- 1 / (v + tau2)
+  data.frame(z = sum(ws * z) / sum(ws), se = sqrt(1 / sum(ws)), k = k, N = sum(st$n))
+}
+
+pairs_core <- t(combn(core, 2))
+cormat <- do.call(rbind, lapply(seq_len(nrow(pairs_core)), \(i) {
+  cbind(var1 = pairs_core[i, 1], var2 = pairs_core[i, 2], pool_r(pairs_core[i, 1], pairs_core[i, 2]))
+})) |>
+  mutate(r = tanh(z), p = 2 * pnorm(-abs(z / se)),
+         stars = case_when(p < .001 ~ "***", p < .01 ~ "**", p < .05 ~ "*", TRUE ~ ""))
+
+lab <- c(Original = "IAS total", HungryThirsty = "IAS Hungry–Thirsty", MusclesPain = "IAS Muscles–Pain", WindBurp = "IAS Wind–Burp",
+         UrinateDefecate = "IAS Urinate–Defecate", BreathingHeart = "IAS Breathing–Heart", BruiseBlood = "IAS Bruise–Blood sugar",
+         CoughSneeze = "IAS Cough–Sneeze", MAIA_Noticing = "MAIA Noticing", MAIA_NotDistracting = "MAIA Not-Distracting",
+         MAIA_NotWorrying = "MAIA Not-Worrying", MAIA_AttentionReg = "MAIA Attention Regulation", MAIA_EmoAwareness = "MAIA Emotional Awareness",
+         MAIA_SelfReg = "MAIA Self-Regulation", MAIA_BodyListening = "MAIA Body Listening", MAIA_Trusting = "MAIA Trusting",
+         BPQ_BodyAwareness = "BPQ Body Awareness", TAS_DIF = "TAS Difficulty Identifying", TAS_DDF = "TAS Difficulty Describing",
+         TAS_EOT = "TAS Externally Oriented", ICQ = "ICQ Interoceptive Confusion", IATS_Mean = "IATS Attention",
+         STAIT_Mean = "STAI-T Trait Anxiety", PHQ4_Anxiety = "PHQ-4 Anxiety", PHQ9_Sum = "PHQ-9 Depression",
+         PHQ4_Depression = "PHQ-4 Depression", Neuroticism = "Neuroticism")
+lv <- unname(lab[core])
+fmt_r <- function(x) sub("^(-?)0[.]", "\\1.", sprintf("%.2f", x))
+
+d_cor <- cormat |>
+  mutate(v1 = factor(lab[var1], levels = lv), v2 = factor(lab[var2], levels = lv),
+         label = ifelse(k == 0, "", paste0(fmt_r(r), stars, "\nk = ", k)))
+
+p_cor <- ggplot(d_cor, aes(x = v1, y = v2)) +
+  geom_tile(aes(fill = r), colour = "white") +
+  geom_tile(data = filter(d_cor, k == 1), fill = NA, colour = "black", linewidth = 0.6, linetype = "dashed") +
+  geom_text(aes(label = label), size = 2.2, lineheight = 0.9) +
+  scale_fill_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", limits = c(-1, 1), name = "Pooled r",
+                       na.value = "grey90") +
+  scale_y_discrete(limits = rev(lv[-1])) +
+  coord_fixed() +
+  theme_minimal(base_size = 9) +
+  theme(axis.title = element_blank(), axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        panel.grid = element_blank(), legend.position = c(0.85, 0.75),
+        plot.caption = element_text(hjust = 0, size = 7.5)) +
+  labs(caption = paste0("Each cell: pooled within-sample correlation (random-effects, Fisher z) and number of samples (k).\n",
+                        "* p < .05, ** p < .01, *** p < .001; dashed outline = single sample (k = 1); grey = never measured in the same sample."))
+p_cor
+ggsave("figures/FigureS_correlations.png", p_cor, width = 10, height = 10, dpi = 300, bg = "white")
 ```
 
 ## Discussion
