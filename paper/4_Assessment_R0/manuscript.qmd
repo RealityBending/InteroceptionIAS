@@ -162,7 +162,6 @@ Interoception refers to sensing, interpreting and integrating information of int
 Given interoception's centrality to brain function, many measures could be seen as "indirectly" assessing (whether intentionally or not) interoceptive processes, including indices quantifying coupling between physiological signals and cognitive or behavioural processes (e.g., Heart Rate Variability), or constructs theoretically dependent on interoceptive information (e.g., alexithymia). Critically, various *direct* measures have also been developed (see @fig-measures), spanning "objective" and "subjective" assessments (e.g., heartbeat counting/tracking tasks *vs.* questionnaires and scales), "explicit" and "implicit" paradigms (i.e., directing *vs.* covertly measuring attention to interoceptive processes), multiple modalities (e.g., cardioception, respiroception, gastroception), and theoretical dimensions (e.g., accuracy, sensitivity, awareness).
 <!-- While there is no consensus as to which particular approach provides the most accurate and "pure" measure of interoception and interoceptive abilities (assuming it is a unidimensional construct), it is instead plausible that each measure has strengths and limitations, and a utility dependent on the context and goal at hand [@jahedi2014; @Desmedt2023accuracy]. -->
 The diversity of measures reflects the absence of a "gold-standard" for interoception, with each having strengths and limitations depending on the research context and dimension assessed [@jahedi2014; @Desmedt2023accuracy].
-**Importantly, interoceptive dimensions and the instruments used to assess them have often been used interchangeably: dimensions are frequently defined by the type of measure used to assess them (e.g., interoceptive accuracy by behavioural tasks, interoceptive sensibility by questionnaires), and questionnaires developed for different purposes are often grouped under the same label [@desmedt2022measures; @desmedt2025discrepancies]. Throughout this paper, we therefore distinguish between interoceptive dimensions (e.g., interoceptive accuracy, attention, or beliefs about one's interoceptive accuracy) and the instruments used to assess them, treating the IAS as one self-report measure of beliefs about interoceptive accuracy rather than as a definition of the construct itself.**
 
 ```{r}
 #| warning: false
@@ -185,11 +184,14 @@ Perhaps more surprisingly, lack of convergence also exists amongst objective or 
 One striking example concerns the assessment of interoceptive sensibility - the self-reported tendency to focus on (with or without correctly detecting) internal sensations [@garfinkel2015knowing; @khalsa2018interoception].
 A recent systematic review suggested that questionnaires designed to assess interoceptive sensibility may in fact measure distinct constructs, with researchers often treating them as equivalent despite low overall convergence [@desmedt2022measures].
 The review included popular measures, such as the Body Perception Questionnaire [BPQ, @porges1993body], the Multidimensional Assessment of Interoceptive Awareness [MAIA, @mehling2012; MAIA-2, @mehling2018multidimensional], the Body Awareness Questionnaire [BAQ, @shields1989body], the Private subscale of the Body Consciousness Questionnaire [PBCS, @miller1981consciousness], and the Self-Awareness Questionnaire [SAQ, @longarzo2015self] which comprised 86% of all citations. Their low-to-moderate intercorrelations suggest they capture different aspects of interoception rather than a common construct, emphasizing the need for conceptual clarity regarding what each measures, how they relate to different interoception dimensions, and their overlap with constructs such as alexithymia and body awareness. One avenue for addressing these issues is the investigation of newer measures not included in prior reviews.
+**Importantly, interoceptive dimensions and the instruments used to assess them have often been used interchangeably: dimensions are frequently defined by the type of measure used to assess them (e.g., interoceptive accuracy by behavioural tasks, interoceptive sensibility by questionnaires), and questionnaires developed for different purposes are often grouped under the same label [@desmedt2022measures; @desmedt2025discrepancies].**
+**Throughout this paper, we therefore distinguish between interoceptive dimensions and the instruments used to assess them, treating the IAS as one self-report measure of a specific dimension rather than as a definition of the construct itself.**
 
 ## The Interoceptive Accuracy Scale (IAS)
 
 <!-- Introducing the IAS -->
 
+**Within the hierarchical framework proposed by @desmedt2025discrepancies, which recommends specifying both the measurement type and the bodily domain of an interoceptive construct, the IAS can be described as a self-report measure of interoceptive detection across multiple bodily domains, that is, individuals’ self-perceived capacity to accurately detect internal sensations [@murphy2019].**
 Focusing on self-perceived *accuracy*, the Interoceptive Accuracy Scale [IAS, @murphy2019] is a recently developed measure with rapidly growing popularity. The IAS was designed to clarify both what and how interoception is measured, by treating interoceptive accuracy and attention as distinct dimensions, whereas many existing models conflate them [e.g., @garfinkel2015knowing; @khalsa2018interoception]. Individuals may thus report attending to bodily signals while recognising their perception of those signals is inaccurate. This distinction positions the IAS as the only tool specifically designed to assess subjective interoceptive accuracy, marking a conceptual advance in interoceptive measurement.
 
 The IAS comprises 21 Likert-scale items assessing perceived accuracy across physiological modalities, one item per modality such as respiration (*"I can always accurately perceive when I am breathing fast"*), heart (*"I can always accurately perceive when my heart is beating fast"*), skin (*"I can always accurately perceive when something is going to be ticklish"*), arousal or bodily functions like coughing (*"I can always accurately perceive when I am going to cough"*) or urinating (*"I can always accurately perceive when I need to urinate"*). Its items capture specific interoceptive behaviors and "objective" experiences (albeit subjectively reported), a notable distinction from other popular questionnaires, such as the MAIA-2, which includes broader metacognitive items (e.g., *"I trust my body sensations"*, *"I can notice an unpleasant body sensation without worrying about it"*), and dimensions related to attention and emotion regulation (e.g., Not-distracting and Not-worrying subscales respectively).
@@ -394,7 +396,7 @@ We selected measures appearing in at least one Study 1 dataset and/or relevant t
 
 #### Interoception and Interoception Related Measures
 
-Interoception-related measures included the Multidimensional Assessment of Interoceptive Awareness Version-2  [MAIA-2, @mehling2018multidimensional], the Body Perception Questionnaire Short Form [BPQ-SF, @cabrera2018assessing], and the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia]. We also included the Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity], and the Toronto Alexithymia Scale [TAS-20, @bagby1994twenty], due to the close relationship between interoception deficits and alexithymia [e.g., @brewer2016alexithymia; @gaggero2021].  
+Interoception-related measures included the Multidimensional Assessment of Interoceptive Awareness Version-2  [MAIA-2, @mehling2018multidimensional], the Body Perception Questionnaire Short Form [BPQ-SF, @cabrera2018assessing], and the Interoceptive Confusion Questionnaire [ICQ, @brewer2016alexithymia]. We also included the Bermond–Vorst Alexithymia Questionnaire [BVAQ, @vorst2001validity], and the Toronto Alexithymia Scale [TAS-20, @bagby1994twenty], **because alexithymia, although conceptually distinct from interoception, has been repeatedly associated with self-reported interoception [e.g., @brewer2016alexithymia; @gaggero2021], with associations that vary in strength and direction across interoceptive dimensions and alexithymia facets [@trevisan2019meta; @vanbael2024systematic].**
 
 <!--
 The Multidimensional Assessment of Interoceptive Awareness Version-2 [MAIA-2, @mehling2018multidimensional] is a 37-item questionnaire assessing eight dimensions of interoception: Noticing, Not-Distracting, Not-Worrying, Attention Regulation, Emotional Awareness, Self-Regulation, Body Listening, and Trust. Responses are rated on a 6-point Likert scale (e.g., "I notice when I am uncomfortable in my body").
@@ -469,7 +471,7 @@ The Lie Scale [LIE, @makowski2023structure] is a 16-item measure of lying tenden
 #| label: fig-correlations
 #| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
 #| out-width: "100%"
-#| fig-cap: "Meta-analytic associations (95% CI of standardised coefficients) between the IAS (total score and seven item pairs) and dispositional measures across 17 open-access datasets. Positive associations are shown in red, negative associations in blue. Non-significant associations (CI crossing zero) are transparent. The IAS-21 showed positive associations with most MAIA facets and BPQ-Body Awareness, negative associations with interoceptive deficit measures (TAS, ICQ), negative associations with the BPQ-Autonomic Reactivity, moderate negative associations with mood measures, and weaker, more selective associations with psychopathological and neurodevelopmental traits and belief measures. Certain item pairings, particularly Hungry–Thirsty and Bruise–Blood sugar, drove the strongest effects, highlighting domain-specific patterns in self-perceived interoceptive accuracy."
+#| fig-cap: "Meta-analytic associations (95% CI of standardised coefficients) between the IAS (total score and seven item pairs) and dispositional measures across 17 open-access datasets. Positive associations are shown in red, negative associations in blue. Non-significant associations (CI crossing zero) are transparent. The IAS-21 showed positive associations with most MAIA facets and BPQ-Body Awareness, negative associations with interoceptive confusion (ICQ) and alexithymia (TAS), negative associations with the BPQ-Autonomic Reactivity, moderate negative associations with mood measures, and weaker, more selective associations with psychopathological and neurodevelopmental traits and belief measures. Certain item pairings, particularly Hungry–Thirsty and Bruise–Blood sugar, drove the strongest effects, highlighting domain-specific patterns in self-perceived interoceptive accuracy."
 
 knitr::include_graphics("../../analysis/figures/Figure3.png")
 ```
@@ -497,7 +499,7 @@ MAIA subscales showed robust positive standardised associations with the IAS. No
 
 The BPQ's Autonomic Reactivity subscale was reliably negatively associated across the seven item pairs (β = −.19), reaching significance for all pairs except Bruise–Blood sugar and Breathing–Heart. In contrast, the Body Awareness subscale of the BPQ was positive and significant across most pairs (β = .15; range = .10 to .22) except for Wind-Burp and Urinate-Defecate.
 
-Interoceptive deficits showed consistent negative associations: Alexithymia measures (TAS, BVAQ) were robustly negative (β ≈ −.13 to −.2), except for the BVAQ Affective subscale, which was positive for Bruise–Blood sugar (β = .16). Interoceptive confusion (ICQ) was also negative across all IAS measures (β = −.32; range = −.49 to −.20).
+**Alexithymia was negatively associated with the IAS, but the strength of this association depended on the facet. It was strongest for difficulty identifying feelings (TAS; mean β = −.21) and the BVAQ cognitive dimension (β = −.20), intermediate for difficulty describing feelings (β = −.16), and weakest for externally oriented thinking (β = −.10; non-significant for Hungry–Thirsty and Bruise–Blood sugar). The BVAQ affective dimension was unrelated to the IAS (β ≈ .04), except for a small positive association with Bruise–Blood sugar (β = .16). Interoceptive confusion (ICQ) was negatively associated with all IAS scores (β = −.32; range = −.49 to −.20).**
 
 ### Mood and Anxiety Related Measures
 Depression (β = −.20) and anxiety (β = −.20) showed consistent negative associations across the IAS and all its pairs, with the strongest effects observed for the Hungry–Thirsty dimension. However, looking at specific measures revealed some differences.
@@ -536,7 +538,8 @@ Overall, the original IAS total score had the greatest number of significant sta
 Using a meta-analytical approach across 17 datasets, Study 2 examined the dispositional correlates of the IAS and whether the refined 14-item version translated into clearer and more reliable associations than the  original 21-item scale. 
 
 <!-- Interoception and correlates - item specific -->
-The IAS showed positive associations with all MAIA facets except Not-Distracting and Not-Worrying, replicating prior findings [@brand2023; @todd2022], and positive associations with the BPQ Body Awareness subscale, consistent with previous research [@brand2023; @koike2023; @gaggero2021]. Autonomic reactivity indices were more strongly and negatively associated with IAS scores, supporting earlier observations that reactivity may reflect bodily signal processing captured by self-reported interoceptive accuracy [@todd2022]. Measures of interoceptive difficulties — alexithymia and interoceptive confusion — were negatively associated with IAS scores, consistent with prior work [@brand2023; @koike2023; @lin2023; @murphy2019].
+The IAS showed positive associations with all MAIA facets except Not-Distracting and Not-Worrying, replicating prior findings [@brand2023; @todd2022], and positive associations with the BPQ Body Awareness subscale, consistent with previous research [@brand2023; @koike2023; @gaggero2021]. Autonomic reactivity indices were more strongly and negatively associated with IAS scores, supporting earlier observations that reactivity may reflect bodily signal processing captured by self-reported interoceptive accuracy [@todd2022].
+**Interoceptive confusion and alexithymia were negatively associated with IAS scores, consistent with prior work [@brand2023; @koike2023; @lin2023; @murphy2019]. For alexithymia, however, this association was facet-specific: self-reported interoceptive detection was most closely related to difficulties identifying feelings, whereas externally oriented thinking and the affective dimension of alexithymia were weakly related or unrelated. This is consistent with evidence that the link between alexithymia and interoception depends on both the interoceptive dimension and the alexithymia facet considered [@trevisan2019meta; @vanbael2024systematic].**
 
 Although the BPQ Body Awareness–IAS association replicates some findings, others have reported null [@murphy2019], negative [@lin2023], or even quadratic relationships [@campos2021]. Mixed findings may reflect inconsistent interpretations of BPQ items; specifically, whether they capture attentional focus or perceived detection accuracy [@gabriele2022dissociations; @campos2021] and should therefore be interpreted cautiously. Future studies should assess participants' understanding of BPQ items to clarify this relationship.
 
@@ -571,7 +574,8 @@ Consistent with this, self-reported interoceptive abilities across related bodil
 
 <!-- Interoception and interoception-related -->
 
-Study 2 examined the IAS's associations with interoceptive, affective, personality, and belief-related traits. Consistent with prior research, the IAS correlated positively with adaptive interoceptive sensibility (e.g., MAIA noticing, attention regulation, and body trusting subscales) and negatively with interoceptive difficulties such as alexithymia and interoceptive confusion [@brand2023; @garfinkel2015knowing; @gaggero2021].
+Study 2 examined the IAS's associations with interoceptive, affective, personality, and belief-related traits. 
+**Consistent with prior research, the IAS correlated positively with most MAIA facets (e.g., noticing, attention regulation, and trusting), and negatively with interoceptive confusion and, more selectively, with alexithymia, mainly difficulties identifying feelings [@brand2023; @garfinkel2015knowing; @gaggero2021].**
 
 <!-- Mood and psychopathological disorders domain specific -->
 Also consistent with prior research, higher depression and anxiety symptoms were associated with lower perceived interoceptive accuracy [@brand2023; @khalsa2018; @nord2022interoceptive]. Crucially, these associations were not uniform across bodily domains: the strongest effects involved drive-states (hunger, thirst), while cardiorespiratory and expulsion domains showed weaker or inconsistent relationships. This domain specificity suggests that beliefs about gastrointestinal accuracy may be more psychologically and clinically relevant than beliefs about reflexive or surface sensations, or that these signals are more salient and easier to appraise, yielding greater inter-individual variation.
@@ -602,34 +606,3 @@ In summary, our research demonstrates that the IAS is a solid measure of self-re
 
 ::: {#refs}
 :::
-
-\pagebreak
-
-
-# Supplementary Materials
-
-```{r}
-#| label: tbl-s1
-#| tbl-cap: "Number of Participants (N) and Samples (k) Contributing to Each Questionnaire Dimension in Study 2"
-#| apa-note: "N = largest number of participants across the IAS outcomes; k = number of samples. Shaded rows are based on a single sample (k = 1) and should be considered exploratory."
-#| apa-twocolumn: true
-#| out-width: "100%"
-#| error: false
-#| warning: false
-
-library(flextable)
-
-table_s1 <- readRDS("../../analysis/figures/table3.rds")
-
-table_s1 |>
-    dplyr::mutate(Category = as.character(Category)) |>
-    as_grouped_data(groups = "Category") |>
-    as_flextable(hide_grouplabel = TRUE) |>
-    set_header_labels(Questionnaire = "Questionnaire", Subscale = "Dimension", N = "N", k = "k") |>
-    theme_apa() |>
-    colformat_int(j = "N", big.mark = ",") |>
-    bold(i = ~ !is.na(Category), bold = TRUE, part = "body") |>
-    bg(i = ~ !is.na(k) & k == 1, bg = "#FFF8E1", part = "body") |>
-    align(j = c("N", "k"), align = "center", part = "all") |>
-    set_table_properties(layout = "autofit", opts_pdf = list(arraystretch = 1))
-```
