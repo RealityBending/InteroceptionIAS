@@ -70,8 +70,9 @@ table <- data.frame(
   Questionnaire = c(
     # Interoception
     "Interoceptive Related", "MAIA-2", "BPQ-SF", "BPQ-VSF", "ICQ", "TAS-20", "BVAQ", "IATS", "NIES", "ISQ",
+    "PBCS", "BAQ", "BRS", "EDI-2 (interoceptive awareness subscale)", "FFMQ (observing and describing subscales)",
     # Mood/Anxiety
-    "Mood", "BDI-II", "PHQ-4", "PHQ-9", "PHQ-15", "SSS-8", "MFQ", "STAI-T", "GAD-7", "DASS-21 (depression and anxiety subscales)", "PANAS", "LSAS",
+    "Mood", "BDI-II", "PHQ-4", "PHQ-9", "PHQ-15", "SSS-8", "MFQ", "STAI-T", "GAD-7", "DASS-21 (depression and anxiety subscales)", "PANAS", "LSAS", "ASI-3",
     # Personality
     "Personality", "NEO-FFI (neuroticism subscale)", "Mini IPIP6", "BFI-S",
     # Psychopathology
@@ -81,28 +82,32 @@ table <- data.frame(
   ),
   Number_of_Dimensions = c(
     "", 8, 2, 1, 3, 3, 5, 1, 1, 1,
-    "", 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2,
+    1, 1, 1, 1, 2,
+    "", 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1,
     "", 1, 6, 5,
     "", 5, 9, 1, 5, 1, 1,
     "", 5, 3, 4
   ),
   Assessment = c(
     "", "Interoceptive awareness", "Body awareness and autonomic reactivity", "Body awareness", "Interoceptive confusion", "Alexithymia", "Alexithymia", "Interoceptive attention", "Negative interoceptive evaluation", "Interoceptive difficulties",
-    "", "Depressive symptoms severity", "Depression and Anxiety", "Depressive symptoms", "Somatic symptom distress", "Somatic symptom burden", "Mood and affect", "Trait anxiety", "General anxiety disorder symptoms", "Depression and anxiety", "Positive and negative affect", "Social anxiety (fear and avoidance)",
+    "Private body consciousness", "Body awareness", "Body responsiveness", "Interoceptive awareness", "Mindfulness (observing and describing)",
+    "", "Depressive symptoms severity", "Depression and Anxiety", "Depressive symptoms", "Somatic symptom distress", "Somatic symptom burden", "Mood and affect", "Trait anxiety", "General anxiety disorder symptoms", "Depression and anxiety", "Positive and negative affect", "Social anxiety (fear and avoidance)", "Anxiety sensitivity",
     "", "Neuroticism", "Personality traits", "Personality traits",
     "", "Maladaptive personality traits", "Schizotypy", "Borderline personality disorder", "Autistic traits", "Autistic traits (total score)", "Autistic traits (total score)",
     "", "Conspiracy beliefs", "Primal world beliefs", "Lying tendencies"
   ),
   Number_of_Items = c(
     "", 37, 46, 12, 20, 20, 40, 21, 20, 20,
-    "", 21, 4, 9, 15, 8, 13, 20, 7, 14, 20, 48,
+    5, 18, 4, 10, 16,
+    "", 21, 4, 9, 15, 8, 13, 20, 7, 14, 20, 48, 18,
     "", 12, 24, 10,
     "", 25, 32, 9, 28, 42, 50,
     "", 15, 18, 16
   ),
   Scoring = c(
     "", "6-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "5-point Likert scale", "7-point Likert scale",
-    "", "4-point scale", "4-point Likert scale", "4-point Likert scale", "3-point scale", "5-point Likert scale", "3-point scale", "4-point Likert scale", "4-point Likert scale", "4-point Likert scale", "5-point Likert scale", "4-point Likert scale",
+    "5-point Likert scale", "7-point Likert scale", "7-point Likert scale", "4-point scale", "5-point Likert scale",
+    "", "4-point scale", "4-point Likert scale", "4-point Likert scale", "3-point scale", "5-point Likert scale", "3-point scale", "4-point Likert scale", "4-point Likert scale", "4-point Likert scale", "5-point Likert scale", "4-point Likert scale", "5-point Likert scale",
     "", "5-point Likert scale", "Visual analogue scales", "7-point Likert scale",
     "", "4-point Likert scale", "5-point Likert scale", "Dichotomous (yes/no)", "4-point Likert scale", "5-point Likert scale", "4-point Likert scale",
     "", "5-point Likert scale", "5-point Likert scale", "Visual analogue scales"
@@ -111,14 +116,16 @@ table <- data.frame(
   # summary in "Sample sizes" below (computed after the dataset update of 04/11/2026; update if the data change)
   N = c(
     "", "4,368–5,612", "1,329–4,128ᵇ", "ᵇ", "1,262", "3,074–3,574", "814", "3,791", "519", "393",
-    "", "836", "2,194", "2,484", "2,747", "1,449", "106", "3,866", "1,111", "519", "392–396", "103",
+    "802", "802", "802", "513", "522",
+    "", "836", "2,194", "2,484", "2,747", "1,449", "106", "3,866", "1,111", "519", "392–396", "103", "60",
     "", "ᵃ", "ᵃ", "ᵃ",
     "", "485", "485", "442", "1,004", "519", "104",
     "", "485", "588", "485"
   ),
   k = c(
     "", "10–13", "2–8ᵇ", "ᵇ", "2", "7–8", "1", "8", "1", "1",
-    "", "1", "4", "5", "3", "2", "1", "6", "2", "1", "1", "1",
+    "1", "1", "1", "1", "1",
+    "", "1", "4", "5", "3", "2", "1", "6", "2", "1", "1", "1", "1",
     "", "ᵃ", "ᵃ", "ᵃ",
     "", "1", "1", "1", "2", "1", "1",
     "", "1", "2", "1"
@@ -181,6 +188,17 @@ df20 <- cbind(data$df20, scores$sample20)
 df21 <- cbind(data$df21, scores$sample21)
 df22 <- cbind(data$df22, scores$sample22)
 df23 <- cbind(data$df23, scores$sample23)
+
+# Additional single-sample measures (scores reproduce the IAS correlations reported in the source papers,
+# except BRS: r = .24 here vs .21 in Todd et al., 2022)
+df4$PBCS_Mean <- rowMeans(df4[grep("^PBCS_PBCS[0-9]", names(df4))])  # Private Body Consciousness (5 items, 0-4)
+df4$BAQ_Mean <- rowMeans(df4[grep("^BAQ_BAQ[0-9]", names(df4))])     # Body Awareness Questionnaire (18 items, 1-7)
+df4$BRS_Mean <- rowMeans(df4[grep("^BRS_BRS[0-9]", names(df4))])     # Body Responsiveness Scale (4 items, 1-7)
+df7a$FFMQ_Observing <- df7a$FFMQ_OBSERVATION                          # FFMQ Observing (sum score)
+df7a$FFMQ_Describing <- df7a$FFMQ_DESCRIPTION                         # FFMQ Describing (sum score)
+df7c$ASI_Sum <- df7c$ASI_sum   # ASI-3 anxiety sensitivity (only the Potsdam subsample, n = 226). Note: Brand et al. (2023)
+                               # report r = -.15 with the Potsdam IAS translation; Study 2 uses the Vienna translation
+# df8a$EDI_IA: EDI-2 Interoceptive Awareness, already reverse-scored (higher = better perceived interoceptive awareness)
 
 vars_intero <- names(select(scores$sample1a, -Sample))
 
@@ -416,6 +434,15 @@ data <- rbind(
   pool_coef(with = "NIES_Mean", component="Interoception", category = "Interoception", name = "Negative Interoceptive Evaluation - NIES", unequalrange=TRUE),
   pool_coef(with = "ISQ_Mean", component="Interoception", category = "Interoception", name = "Interoceptive Difficulties - ISQ", unequalrange=TRUE)
 )
+
+# Other body awareness measures (single samples)
+data <- rbind(
+  data,
+  pool_coef(with = "PBCS_Mean", component="Interoception", category = "Interoception", name = "Private Body Consciousness - PBCS", unequalrange=TRUE),
+  pool_coef(with = "BAQ_Mean", component="Interoception", category = "Interoception", name = "Body Awareness - BAQ", unequalrange=TRUE),
+  pool_coef(with = "BRS_Mean", component="Interoception", category = "Interoception", name = "Body Responsiveness - BRS", unequalrange=TRUE),
+  pool_coef(with = "EDI_IA", component="Interoception", category = "Interoception", name = "Interoceptive Awareness (reversed) - EDI-2", unequalrange=TRUE)
+)
 ```
 
 
@@ -438,7 +465,10 @@ data <- rbind(
   pool_coef(with = "TAS_DDF", component="Interoception", category = "Interoception", name = "Difficulties Describing Feelings - TAS", unequalrange=TRUE),
   pool_coef(with = "TAS_EOT", component="Interoception", category = "Interoception", name = "External Thinking - TAS",unequalrange=TRUE),
   pool_coef(with = "BVAQ_Affective", component="Interoception", category = "Interoception", name = "Affective - BVAQ"), 
-  pool_coef(with = "BVAQ_Cognitive", component="Interoception", category = "Interoception", name = "Cognitive - BVAQ")
+  pool_coef(with = "BVAQ_Cognitive", component="Interoception", category = "Interoception", name = "Cognitive - BVAQ"),
+  # Mindfulness facets related to alexithymia (single sample)
+  pool_coef(with = "FFMQ_Observing", component="Interoception", category = "Interoception", name = "Observing - FFMQ"),
+  pool_coef(with = "FFMQ_Describing", component="Interoception", category = "Interoception", name = "Describing - FFMQ")
 )
 ```
 
@@ -498,6 +528,7 @@ data <- rbind(
   pool_coef(with = "GAD7_Sum", component="Anxiety", category = "Mood", name = "Anxiety - GAD-7", unequalrange=TRUE),
   pool_coef(with = "DASS_Anxiety", component = "Anxiety", category = "Mood", name = "Anxiety - DASS-21"),
   pool_coef(with = "LSAS_Total", component = "Anxiety", category = "Mood", name = "Social Anxiety - LSAS", unequalrange=TRUE),
+  pool_coef(with = "ASI_Sum", component = "Anxiety", category = "Mood", name = "Anxiety Sensitivity - ASI-3", unequalrange=TRUE),
   pool_coef(with = "PANAS_Negative", component = "Affect", category = "Mood", name = "Negative Affect - PANAS", unequalrange=TRUE),
   pool_coef(with = "PANAS_Positive", component = "Affect", category = "Mood", name = "Positive Affect - PANAS", unequalrange=TRUE)
 )
@@ -646,8 +677,8 @@ data <- rbind(
 -   ICQ - Interocpetive Confusion Questionnaire
 -   TAS - Toronto Alexithymia Scale
 -   BAQ - Body awareness questionnaire
-<!-- -   PBCS - The Private Bodily Consciousness Scale -->
-<!-- -   BRS - the body responsiveness scale -->
+-   PBCS - The Private Body Consciousness Scale
+-   BRS - The Body Responsiveness Scale
 -   PHQ-2 - Patient Health Questionnaire 2 items on major depressive episodes
 -   PHQ-4 - atient Health Questionnaire 4 items assessing anxiety and depression
 -   PHQ-9 - Patient Health Questionnaire 9-Item Version assesses depressive symptoms
@@ -658,9 +689,9 @@ data <- rbind(
 -   STAIT - State-Trait-Anxiety Inventory Trait subscale
 -   FFMQ - Observation and Description subscales of the Five Facet Mindfulness Questionnaire
 -   NEOFFI - Neuroticism Neo Five-Factor Inventory Neuroticism subscale
-<!-- -   ASI - Anxiety Sensitivity Inventory 3 -->
+-   ASI-3 - Anxiety Sensitivity Index 3
 -   BDI - The Beck Depression Inventory
-<!-- -   EDI_IA - Eating Disorder Inventory, interoceptive awareness subscale -->
+-   EDI-2 IA - Eating Disorder Inventory 2, interoceptive awareness subscale
 -   BFI - Big Five inventory-10
 -   ASQ - Autism-Spectrum Quotient
 <!-- -   MSI-BPD - Mclean Screening Instrument for Borderline Personality Disorder -->
@@ -829,7 +860,7 @@ p <- data |>
         strip.background.y = element_rect(fill = "#E0E0E0", color = "white"),
         strip.background.x = element_rect(fill = "#F8BBD0", color = "white"))
 p
-ggsave("figures/Figure3.png", p, width=25*0.55, height=38*0.4, dpi=300, bg="white")
+ggsave("figures/Figure3.png", p, width=25*0.55, height=42*0.4, dpi=300, bg="white")
 ```
 
 ## Correlation Matrix Between Dimensions
@@ -905,6 +936,122 @@ p_cor <- ggplot(d_cor, aes(x = v1, y = v2)) +
                         "* p < .05, ** p < .01, *** p < .001; dashed outline = single sample (k = 1); grey = never measured in the same sample."))
 p_cor
 ggsave("figures/FigureS_correlations.png", p_cor, width = 10, height = 10, dpi = 300, bg = "white")
+```
+
+## Expected Correlations from the Literature
+
+Correlations between the IAS total score and other measures reported in published papers (and manuscripts) of the samples included here, plus independent studies, were extracted from the papers (`data/literature_correlations.csv`; one row per sample and correlation, with the source location and exclusion reasons). Zero-order Pearson or Spearman correlations were pooled per dimension with a DerSimonian–Laird random-effects model on Fisher-z values and compared with the Study 2 estimates for the original IAS total score.
+
+```{r}
+#| warning: false
+#| message: false
+#| cache.extra: !expr tools::md5sum("../data/literature_correlations.csv")
+
+lit <- read_csv("../data/literature_correlations.csv", show_col_types = FALSE) |>
+  # Alexithymia and related (emotional awareness/mindfulness) measures get their own table
+  mutate(Category = if_else(Category == "Interoception and interoception-related" &
+                              str_detect(Dimension, "^TAS|^BVAQ|^Galex|^STS|^FFMQ"),
+                            "Alexithymia and related constructs", Category))
+
+pool_lit <- function(r, n) {
+  z <- atanh(r); v <- 1 / (n - 3); w <- 1 / v; k <- length(r)
+  zf <- sum(w * z) / sum(w); Q <- sum(w * (z - zf)^2)
+  tau2 <- if (k > 1) max(0, (Q - (k - 1)) / (sum(w) - sum(w^2) / sum(w))) else 0
+  ws <- 1 / (v + tau2); zr <- sum(ws * z) / sum(ws); se <- sqrt(1 / sum(ws))
+  tibble(k_lit = k, N_lit = sum(n), r_lit = tanh(zr), lo_lit = tanh(zr - 1.96 * se), hi_lit = tanh(zr + 1.96 * se),
+         I2 = if (k > 1 && Q > 0) max(0, (Q - (k - 1)) / Q) * 100 else NA_real_)
+}
+
+study2_original <- data |>
+  filter(var_Interoception == "Original") |>
+  select(Study2_name = var_Correlate, r_s2 = r, lo_s2 = CI_low, hi_s2 = CI_high, k_s2 = k)
+
+lit_pooled <- lit |>
+  filter(is.na(exclude), !is.na(r), !is.na(N)) |>
+  group_by(Category, Dimension, Study2_name) |>
+  group_modify(\(g, ...) bind_cols(pool_lit(g$r, g$N),
+                                   tibble(k_independent = sum(g$independent),
+                                          Sources = paste(unique(g$citation), collapse = "; ")))) |>
+  ungroup() |>
+  left_join(study2_original, by = "Study2_name") |>
+  arrange(Category, desc(k_lit), Dimension)
+
+saveRDS(lit_pooled, "figures/tableS_literature.rds")
+
+fmt_r <- function(x) sub("^(-?)0[.]", "\\1.", sprintf("%.2f", x))
+fmt_ci <- function(r, lo, hi) ifelse(is.na(r), "", paste0(fmt_r(r), " [", fmt_r(lo), ", ", fmt_r(hi), "]"))
+
+# Short column labels per paper (first author + year); samples not in the mega-analysis get ᵃ
+paper_label <- function(citation, independent) {
+  lab <- paste(str_extract(citation, "^[A-Za-z-]+"), coalesce(str_extract(citation, "(19|20)[0-9]{2}"), "(ms)"))
+  ifelse(independent, paste0(lab, "ᵃ"), lab)
+}
+
+# Supplementary table: dimensions in rows, papers in columns (correlations as reported; one value per
+# sample, separated by "/"), followed by the pooled literature correlation and the Study 2 estimate
+make_lit_table <- function(cat, title) {
+  d <- lit |>
+    filter(is.na(exclude), !is.na(r), !is.na(N), Category == cat) |>
+    mutate(Paper = paper_label(citation, independent))
+  papers <- d |> group_by(Paper) |>
+    summarise(Ns = ifelse(min(N) == max(N), format(min(N), big.mark = ","),
+                          paste0(format(min(N), big.mark = ","), "–", format(max(N), big.mark = ","))), .groups = "drop") |>
+    mutate(year = coalesce(str_extract(Paper, "[0-9]{4}"), "9999")) |>
+    arrange(year, Paper)
+  cells <- d |>
+    group_by(Dimension, Paper) |>
+    summarise(val = paste(fmt_r(r), collapse = " / "), .groups = "drop") |>
+    pivot_wider(names_from = Paper, values_from = val, values_fill = "")
+  pooled_cat <- lit_pooled |>
+    filter(Category == cat) |>
+    transmute(Dimension, k = k_lit,
+              Pooled = paste0(fmt_ci(r_lit, lo_lit, hi_lit), ifelse(k_lit == 1, "*", ""), "<br>k = ", k_lit),
+              Study2 = fmt_ci(r_s2, lo_s2, hi_s2),
+              family = str_extract(Dimension, "^[^ ]+"))
+  tab <- cells |>
+    left_join(pooled_cat, by = "Dimension") |>
+    group_by(family) |> mutate(k_family = max(k)) |> ungroup() |>
+    arrange(desc(k_family), family, desc(k), Dimension) |>
+    select(Dimension, all_of(papers$Paper), Pooled, Study2)
+
+  gt_tab <- tab |>
+    gt() |>
+    text_transform(locations = cells_body(columns = Pooled), fn = \(x) map(x, html)) |>
+    cols_label(Pooled = "Pooled r [95% CI]", Study2 = "Study 2 β [95% CI]") |>
+    cols_align("center", -Dimension) |>
+    cols_align("left", Dimension) |>
+    tab_spanner(label = "Correlations reported per paper", columns = all_of(papers$Paper)) |>
+    tab_header(title = title) |>
+    tab_footnote(paste0("Note. Values are zero-order correlations between the IAS total score and each measure as reported in each paper; ",
+                        "papers with several samples show one value per sample, separated by \"/\"; N = sample size (range across samples). ",
+                        "Pooled r = random-effects pooled correlation across samples (DerSimonian–Laird estimator, Fisher z), with k = number of samples underneath; ",
+                        "Study 2 β = standardised association with the original IAS total score in the present mega-analysis.")) |>
+    tab_footnote("* Pooled correlations based on a single sample.") |>
+    gt_apastyle(font.size = 9)
+  # Independent samples (not in the mega-analysis): columns shaded in blue
+  indep_papers <- papers$Paper[str_detect(papers$Paper, "ᵃ$")]
+  if (length(indep_papers) > 0) {
+    gt_tab <- gt_tab |>
+      tab_style(style = cell_fill(color = "#E3F2FD"),
+                locations = list(cells_body(columns = all_of(indep_papers)),
+                                 cells_column_labels(columns = all_of(indep_papers)))) |>
+      tab_footnote("ᵃ Independent sample, not included in the present mega-analysis (shaded in blue).")
+  }
+  # Paper labels with the sample sizes underneath
+  for (i in seq_len(nrow(papers))) {
+    gt_tab <- gt_tab |> cols_label(!!papers$Paper[i] := html(paste0(papers$Paper[i], "<br><span style='font-weight:normal'>N = ", papers$Ns[i], "</span>")))
+  }
+  gt_tab
+}
+
+make_lit_table("Interoception and interoception-related", "IAS correlations reported in the literature: interoceptive questionnaires")
+make_lit_table("Alexithymia and related constructs", "IAS correlations reported in the literature: alexithymia and related constructs")
+make_lit_table("Interoceptive tasks", "IAS correlations reported in the literature: interoceptive tasks")
+make_lit_table("Mood", "IAS correlations reported in the literature: mood")
+make_lit_table("Psychopathology and neurodevelopmental traits", "IAS correlations reported in the literature: psychopathology and neurodevelopmental traits")
+make_lit_table("Personality", "IAS correlations reported in the literature: personality")
+make_lit_table("Beliefs", "IAS correlations reported in the literature: beliefs")
+make_lit_table("Other", "IAS correlations reported in the literature: other measures")
 ```
 
 ## Discussion
