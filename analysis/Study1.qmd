@@ -27,6 +27,7 @@ library(ggraph)
 library(tidySEM)
 library(EGAnet)
 library(haven)
+library(pvclust)  # attached so that plot() dispatches to plot.pvclust for cached pvclust objects
 
 ias_vars <- c(
   "Heart", "Hungry", "Breathing", "Thirsty", "Urinate", "Defecate", "Taste", "Vomit", "Sneeze", "Cough", "Temp",
@@ -4882,7 +4883,7 @@ format_cfa <- function(fit_table) {
            Chi2_df = if_else(is.na(Chi2), "",
                              sprintf("%s (%d)", format(round(Chi2, 1), big.mark = ",", nsmall = 1, trim = TRUE), as.integer(df)))) |>
     # Ties (the just-identified 3-factor + general model) are ordered after the simpler equivalent model
-    arrange(BIC, Name == "fit_efag") |>
+    arrange(round(BIC, 2), Name == "fit_efag") |>
     mutate(Delta_BIC = BIC - min(BIC)) |>
     select(Model, N, Parameters = npar, Chi2_df, CFI, TLI, RMSEA_90CI, SRMR, BIC, Delta_BIC)
 }
