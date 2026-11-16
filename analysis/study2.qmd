@@ -803,6 +803,58 @@ nk_table |>
   gt_apastyle(font.size = 11)
 ```
 
+## Multiple Comparisons and Effect Sizes
+
+All pooled coefficients (every correlate × the original IAS total and the seven item pairs) are corrected for multiple comparisons with the Benjamini–Hochberg false discovery rate (FDR). Coefficients are interpreted by magnitude: |β| < .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large.
+
+```{r}
+#| warning: false
+
+data <- data |>
+  mutate(p_fdr = p.adjust(p, method = "BH"),
+         Magnitude = cut(abs(r), c(-Inf, .10, .30, .50, Inf), right = FALSE,
+                         labels = c("Negligible", "Small", "Moderate", "Large")))
+
+# Overall counts (for the text)
+fdr_summary <- data |>
+  summarise(n_coef = n(),
+            n_sig_raw = sum(p < .05, na.rm = TRUE),
+            n_sig_fdr = sum(p_fdr < .05, na.rm = TRUE),
+            n_sig_fdr_min_small = sum(p_fdr < .05 & abs(r) >= .10, na.rm = TRUE),
+            n_min_moderate = sum(abs(r) >= .30, na.rm = TRUE))
+fdr_summary
+
+# One row per correlate: original IAS total, plus the range across the seven pairs
+effects <- data |>
+  group_by(Category, var_Correlate) |>
+  summarise(k = max(k), N = max(N),
+            beta_IAS = r[var_Interoception == "Original"],
+            CI_low_IAS = CI_low[var_Interoception == "Original"],
+            CI_high_IAS = CI_high[var_Interoception == "Original"],
+            p_fdr_IAS = p_fdr[var_Interoception == "Original"],
+            pairs_min = min(r[var_Interoception != "Original"]),
+            pairs_max = max(r[var_Interoception != "Original"]),
+            strongest_pair = var_Interoception[var_Interoception != "Original"][which.max(abs(r[var_Interoception != "Original"]))],
+            n_pairs_fdr = sum(p_fdr[var_Interoception != "Original"] < .05),
+            .groups = "drop") |>
+  mutate(Magnitude_IAS = cut(abs(beta_IAS), c(-Inf, .10, .30, .50, Inf), right = FALSE,
+                             labels = c("Negligible", "Small", "Moderate", "Large"))) |>
+  arrange(Category, desc(abs(beta_IAS)))
+
+saveRDS(effects, "figures/study2_effects.rds")
+
+effects |>
+  mutate(IAS = sprintf("%.2f [%.2f, %.2f]%s", beta_IAS, CI_low_IAS, CI_high_IAS, ifelse(p_fdr_IAS < .05, "*", "")),
+         Pairs = sprintf("%.2f to %.2f", pairs_min, pairs_max)) |>
+  select(Category, var_Correlate, k, N, IAS, Magnitude_IAS, Pairs, strongest_pair, n_pairs_fdr) |>
+  gt(groupname_col = "Category") |>
+  cols_label(var_Correlate = "Measure", IAS = "IAS total β [95% CI]", Magnitude_IAS = "Magnitude",
+             Pairs = "Range across pairs", strongest_pair = "Strongest pair", n_pairs_fdr = "Pairs (FDR p < .05)") |>
+  fmt_integer(N) |>
+  tab_footnote("* FDR-corrected p < .05 (Benjamini–Hochberg, across all coefficients). Magnitude: |β| < .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large.") |>
+  gt_apastyle(font.size = 10)
+```
+
 ## Summary
 
 ```{r}
@@ -811,7 +863,8 @@ nk_table |>
 #| fig-width: 15
 
 p <- data |>
-  mutate(sig = ifelse(p < .01, "p < .01", ifelse(p < .001, "p < .001", "N.S.")),
+  # Opaque = FDR-corrected p < .05; transparent = not significant after correction
+  mutate(sig = factor(ifelse(p_fdr < .05, "FDR p < .05", "N.S."), levels = c("N.S.", "FDR p < .05")),
          dir = sign(r),
          var_Interoception = str_replace(var_Interoception, "CoughSneeze", "Cough/Sneeze"),
          var_Interoception = str_replace(var_Interoception, "HungryThirsty", "Hungry/Thirsty"),
