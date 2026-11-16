@@ -11,9 +11,17 @@ format:
     toc: true
     fig-dpi: 300
     fig-width: 11.33
-execute: 
+execute:
   cache: true
 ---
+
+```{css apa-tables}
+/* APA-style tables: remove the alternating grey/white row striping that Quarto's Bootstrap theme adds */
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-bg-type: transparent;
+  --bs-table-color-type: inherit;
+}
+```
 
 ```{r}
 #| message: false
@@ -839,6 +847,9 @@ effects <- data |>
             .groups = "drop") |>
   mutate(Magnitude_IAS = cut(abs(beta_IAS), c(-Inf, .10, .30, .50, Inf), right = FALSE,
                              labels = c("Negligible", "Small", "Moderate", "Large"))) |>
+  mutate(var_Correlate = str_replace(var_Correlate, "Boderline", "Borderline"),
+         Category = fct_relevel(Category, "Demographics", "Interoception", "Mood", "Personality",
+                                "Psychopathology and Neurodevelopmental Traits", "Beliefs")) |>
   arrange(Category, desc(abs(beta_IAS)))
 
 saveRDS(effects, "figures/study2_effects.rds")
@@ -852,7 +863,11 @@ effects |>
              Pairs = "Range across pairs", strongest_pair = "Strongest pair", n_pairs_fdr = "Pairs (FDR p < .05)") |>
   fmt_integer(N) |>
   tab_footnote("* FDR-corrected p < .05 (Benjamini–Hochberg, across all coefficients). Magnitude: |β| < .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large.") |>
-  gt_apastyle(font.size = 10)
+  gt_apastyle(font.size = 10) |>
+  tab_style(style = list(cell_text(weight = "bold", size = px(14)),
+                         cell_fill(color = "#ECEFF1"),
+                         cell_borders(sides = c("top", "bottom"), color = "#455A64", weight = px(1.5))),
+            locations = cells_row_groups())
 ```
 
 ## Summary
