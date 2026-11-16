@@ -279,6 +279,8 @@ Although EGA is an attractive and robust alternative to traditional factor analy
 
 We also applied HCA [@murtagh2014ward], which unlike factor analysis assumes no latent structure, but instead iteratively groups items based on their similarity (e.g., correlation) into a hierarchy of clusters. The benefits of HCA include its interpretability and ability to capture complex relationships among items without relying on strict assumptions about data distribution or latent variables.
 
+**Because previous discrepancies in the IAS structure may partly reflect reliance on a single method and sample, we triangulated across three approaches with different assumptions (latent common factors in EFA, conditional dependencies in EGA, and assumption-free similarity clustering in HCA) and retained only the structure that converged across them, before testing it confirmatorily.**
+
 <!-- CFA -->
 In a typical 2-step fashion, initial analyses were followed by refinement via item selection (e.g., removing items with low stability, weak associations with other items, low reliability, or high cross-loadings), with the final item pool re-tested. Additionally, various solutions (e.g., adding general factors) were compared using Confirmatory Factor Analysis (CFA). Of note, datasets with missing items were excluded from analyses requiring the complete set of scale items.
 
