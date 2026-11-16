@@ -2352,7 +2352,7 @@ rez_efa$p
 # the sandwich covariance matrix rank-deficient (lavaan warns that vcov is not positive definite) and robust
 # CFI/TLI uncomputable. Between-sample heterogeneity is instead addressed by fitting all models separately in
 # each sample (per-sample CFAs below). The `cluster` argument is kept for sensitivity checks.
-make_cfa <- function(data, cluster = NULL) {
+make_cfa <- function(data, cluster = NULL, light = FALSE) {
   if (!is.null(cluster)) data$.Sample <- cluster
   fit_cfa <- function(model) {
     if (is.null(cluster)) {
@@ -2408,7 +2408,7 @@ IAS =~ Burp + Wind + Cough + Sneeze + Hungry + Thirsty  + Urinate + Defecate + H
   fit_hclustg <- fit_cfa(m_hclustg)
   
   # Test
-  bf <- test_bf(fit_ega, fit_g, fit_egag, fit_efa, fit_efag, fit_hclust, fit_hclustg) |> 
+  bf <- test_bf(fit_ega, fit_g, fit_egag, fit_efa, fit_efag, fit_hclust, fit_hclustg) |>
     as.data.frame() |> 
     select(Name = Model, BF)
   
@@ -2434,6 +2434,8 @@ IAS =~ Burp + Wind + Cough + Sneeze + Hungry + Thirsty  + Urinate + Defecate + H
                RMSEA_CI_low = fm[["rmsea.ci.lower.robust"]], RMSEA_CI_high = fm[["rmsea.ci.upper.robust"]],
                SRMR = fm[["srmr"]], BIC = fm[["bic"]])
   })
+  # Light mode (sensitivity analyses): fit indices only
+  if (light) return(fit_table)
 
   test <- fit_table |>
     merge(bf, by = "Name") |>
@@ -4958,6 +4960,114 @@ table_s_cfa_samples |>
   gt_apastyle(font.size = 10)
 
 saveRDS(table_s_cfa_samples, "figures/tableS_cfa_samples.rds")
+```
+
+### Supplementary Table: Leave-One-Dataset-Out CFA
+
+Sensitivity analysis for the influence of individual datasets on the pooled CFA (Reviewer 3): all models are refitted on the pooled data after removing one dataset at a time.
+
+```{r}
+#| warning: false
+#| message: false
+
+# Samples contributing complete data to the pooled CFA (listwise deletion drops samples with missing items)
+complete_ids <- unique(sample_id[complete.cases(data_allf)])
+
+loo <- map_dfr(complete_ids, \(s) {
+  make_cfa(data_allf[sample_id != s, ], light = TRUE) |>
+    mutate(Left_out = s)
+})
+
+# Relabel the left-out dataset with the Table 1 numbering and reference
+loo_label <- \(s) {
+  id <- ifelse(s %in% names(code_to_table1), code_to_table1[s], s)
+  ref <- table1_refs$Reference[match(paste("Sample", id), table1_refs$Sample)]
+  paste0("Sample ", id, " (", ref, ")")
+}
+
+table_s_loo <- loo |>
+  group_by(Left_out) |>
+  arrange(round(BIC, 2), Name == "fit_efag", .by_group = TRUE) |>
+  summarise(N = first(N),
+            Best = cfa_labels[first(Name)],
+            CFI_7 = CFI[Name == "fit_ega"], RMSEA_7 = RMSEA[Name == "fit_ega"], SRMR_7 = SRMR[Name == "fit_ega"],
+            CFI_7g = CFI[Name == "fit_egag"], RMSEA_7g = RMSEA[Name == "fit_egag"],
+            Delta_BIC_next = sort(unique(round(BIC, 2)))[2] - min(BIC, na.rm = TRUE), .groups = "drop") |>
+  mutate(Left_out = loo_label(Left_out),
+         Left_out = factor(Left_out, levels = Left_out[order(as.numeric(str_extract(Left_out, "[0-9]+")), Left_out)])) |>
+  arrange(Left_out)
+
+table_s_loo |>
+  gt() |>
+  cols_label(Left_out = "Dataset left out", Best = "Best model (BIC)",
+             CFI_7 = "CFI", RMSEA_7 = "RMSEA", SRMR_7 = "SRMR", CFI_7g = "CFI", RMSEA_7g = "RMSEA",
+             Delta_BIC_next = "ΔBIC to next model") |>
+  tab_spanner("7-factor (EGA item pairs)", c(CFI_7, RMSEA_7, SRMR_7)) |>
+  tab_spanner("7-factor + higher-order general", c(CFI_7g, RMSEA_7g)) |>
+  fmt_number(c(CFI_7, RMSEA_7, SRMR_7, CFI_7g, RMSEA_7g), decimals = 3) |>
+  fmt_number(Delta_BIC_next, decimals = 1) |>
+  fmt_integer(N) |>
+  cols_align("left", c(Left_out, Best)) |>
+  tab_header(title = "Leave-one-dataset-out CFA model comparison") |>
+  tab_footnote(paste0("Note. Each row refits all models on the pooled data without the listed dataset (robust maximum likelihood; ",
+                      "robust CFI and RMSEA). N = remaining participants. Only datasets with all 14 items contribute to the pooled CFA.")) |>
+  gt_apastyle(font.size = 10)
+
+saveRDS(table_s_loo, "figures/tableS_cfa_loo.rds")
+```
+
+### Supplementary Table: Multigroup CFA Across Datasets
+
+Configural (same 7-pair structure, all parameters free in each dataset) and metric (loadings constrained equal across datasets) multigroup CFA of the 7-factor model, treating datasets as groups.
+
+```{r}
+#| warning: false
+#| message: false
+
+m_pairs <- '
+  CoughSneeze =~ Cough + Sneeze
+  UrinateDefecate =~ Urinate + Defecate
+  BruiseBloodsugar =~ Bruise + Blood_Sugar
+  WindBurp =~ Wind + Burp
+  HeartBreath =~ Heart + Breathing
+  MusclesPain =~ Muscles + Pain
+  HungryThirsty =~ Hungry + Thirsty
+'
+d_mg <- data_allf
+d_mg$.Sample <- sample_id
+d_mg <- d_mg[complete.cases(d_mg), ]
+
+fit_configural <- lavaan::cfa(m_pairs, data = d_mg, group = ".Sample", estimator = "MLR")  # marker-variable identification in both models
+fit_metric <- lavaan::cfa(m_pairs, data = d_mg, group = ".Sample", group.equal = "loadings", estimator = "MLR")
+
+mg_row <- \(f, name) {
+  fm <- lavaan::fitMeasures(f, c("chisq.scaled", "df.scaled", "cfi.robust", "tli.robust", "rmsea.robust",
+                                 "rmsea.ci.lower.robust", "rmsea.ci.upper.robust", "srmr", "bic"))
+  data.frame(Model = name, Groups = lavaan::lavInspect(f, "ngroups"), N = lavaan::nobs(f) |> sum(),
+             Converged = lavaan::lavInspect(f, "converged"),
+             Admissible = suppressWarnings(lavaan::lavInspect(f, "post.check")),
+             Chi2_df = sprintf("%s (%d)", format(round(fm[["chisq.scaled"]], 1), big.mark = ",", nsmall = 1), as.integer(fm[["df.scaled"]])),
+             CFI = fm[["cfi.robust"]], TLI = fm[["tli.robust"]],
+             RMSEA_90CI = sprintf("%.3f [%.3f, %.3f]", fm[["rmsea.robust"]], fm[["rmsea.ci.lower.robust"]], fm[["rmsea.ci.upper.robust"]]),
+             SRMR = fm[["srmr"]], BIC = fm[["bic"]])
+}
+table_s_mg <- rbind(mg_row(fit_configural, "Configural"), mg_row(fit_metric, "Metric (equal loadings)")) |>
+  mutate(Delta_CFI = CFI - first(CFI))
+
+table_s_mg |>
+  gt() |>
+  cols_label(Chi2_df = "χ² (df)", RMSEA_90CI = "RMSEA [90% CI]", Delta_CFI = "ΔCFI") |>
+  fmt_number(c(CFI, TLI, SRMR, Delta_CFI), decimals = 3) |>
+  fmt_number(BIC, decimals = 1) |>
+  fmt_integer(c(Groups, N)) |>
+  tab_header(title = "Multigroup CFA of the 7-factor model across datasets") |>
+  tab_footnote(paste0("Note. Datasets with all 14 items were treated as groups (robust maximum likelihood). ",
+                      "A decrease in CFI of more than .010 from the configural to the metric model indicates non-invariant loadings (Chen, 2007). ",
+                      "Admissible = FALSE indicates improper estimates (e.g., negative residual variances or non-positive-definite factor ",
+                      "covariances) in some of the smaller datasets, a known issue with two-indicator factors in small samples.")) |>
+  gt_apastyle(font.size = 10)
+
+saveRDS(table_s_mg, "figures/tableS_cfa_multigroup.rds")
 ```
 
 
