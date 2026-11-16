@@ -11,9 +11,17 @@ format:
     toc: true
     fig-dpi: 100
     fig-width: 11.33
-execute: 
+execute:
   cache: true
 ---
+
+```{css apa-tables}
+/* APA-style tables: remove the alternating grey/white row striping that Quarto's Bootstrap theme adds */
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-bg-type: transparent;
+  --bs-table-color-type: inherit;
+}
+```
 
 ```{r}
 #| message: false
