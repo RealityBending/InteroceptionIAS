@@ -224,7 +224,7 @@ Study 1 re-analyses the factor structure of the IAS using raw data across 17 ope
 
 ### Datasets
 
-We searched papers citing the original IAS validation paper [@murphy2019], identifying 136 (as of 01/05/2024). Inclusion required open-access raw data with individual IAS item scores; datasets shared directly by authors were also included. Consequently, **23** datasets were used, including five from unpublished studies (see **Table 1**), totaling **35,644** participants (Mean = 47.96 $\pm$ 13.1, 71.3\% Female).
+We searched papers citing the original IAS validation paper [@murphy2019], identifying 136 (as of **3/10/2026**). Inclusion required open-access raw data with individual IAS item scores; datasets shared directly by authors were also included. Consequently, **23** datasets were used, including five from unpublished studies (see **Table 1**), totaling **35,644** participants (Mean = 47.96 $\pm$ 13.1, 71.3\% Female). **Overall, of the 23,701 people with ethnicity data (10 samples), 92.2% are White, 2.9% Asian, 2.1% Mixed, 1.5% Black, 0.6% Other, 0.5% Hispanic/Latino and 0.3% Middle Eastern/North African.**
 **The study was not pre-registered.**
 
 <!-- Note: this table is generated during data analysis -->
@@ -282,10 +282,12 @@ Although the EGA is an attractive and robust alternative, factor analysis remain
 <!-- HCA -->
 We also applied HCA, which, unlike factor analysis, assumes no latent structure but instead iteratively groups items based on their similarity into a hierarchy of clusters. **We used 1 − Pearson correlation as the distance between items and complete linkage, and assessed the stability of each cluster with multiscale bootstrap resampling (1,000 resamples; approximately unbiased p-values) using the *pvclust* package [@suzuki2006pvclust].** The benefits of HCA include its interpretability and ability to capture complex relationships among items without relying on strict assumptions about data distribution or latent variables.
 
-**Because previous discrepancies in the IAS structure may partly reflect reliance on a single method and sample, we triangulated across three approaches with different assumptions (latent common factors in EFA, conditional dependencies in EGA, and assumption-free similarity clustering in HCA) and retained only the structure that converged across them, before testing it with CFA.**
+**Because previous discrepancies in the IAS structure may partly reflect reliance on a single method and sample, we triangulated across three approaches with different assumptions (latent common factors in EFA, conditional dependencies in EGA, and assumption-free similarity clustering in HCA), and retained structure on which these methods converged before testing it with CFA.**
 
 <!-- CFA -->
 In a typical 2-step fashion, initial analyses were followed by refinement via item selection.**First, UVA [@christensen2023unique] was used to identify redundant items (weighted topological overlap ≥ .30). Second, items were removed when the HCA and EGA converged: the item did not form a reciprocal pair in the HCA (i.e., its most strongly correlated item was more strongly correlated with a different item) and showed structural instability (EGA item stability below .70 [@christensen2021estimating]) in several individual samples. EFA loadings were examined as corroborating evidence: weak primary loadings (< .40) or split loadings (primary–secondary difference < .20) supported removal when consistent with the HCA and EGA**. Additionally, various solutions (e.g., adding general factors) were compared using Confirmatory Factor Analysis (CFA). **CFA used robust maximum likelihood [MLR; *lavaan*, @rosseel2012lavaan] with latent variances fixed to 1, because responses were ordinal (5-point) in most samples but continuous in the three analogue-scale samples.** Of note, datasets with missing items were excluded from analyses requiring the complete set of scale items.
+**Model fit was evaluated with the robust CFI, TLI and RMSEA (with 90% CI), the SRMR as an absolute fit index, and the BIC; the χ² test is reported for completeness only, as it is significant for virtually any model at this sample size.**
+<!-- Full fit indices for the pooled data and each individual sample are reported in the Supplementary Materials (Tables Sx–Sx).-->
 
 ## Results
 
@@ -342,44 +344,54 @@ knitr::include_graphics("../../analysis/figures/Figure2.png")
 <!-- Second run -->
 HCA and EGA yielded highly consistent results, identifying seven stable item pairs: Hungry-Thirsty, Bruise-Blood sugar, Urinate-Defecate, Muscles-Pain, Breathing-Heart, Cough-Sneeze, and Wind-Burp. HCA additionally grouped Urinate-Defecate with Muscles-Pain, and the two expulsion pairs (Wind-Burp, Cough-Sneeze) together. EFA again suggested a 3-factor solution: expulsion items ("burp", "wind", "cough", "sneeze"), the Urinate-Defecate pair, and the remaining items.
 
-<!-- CFA Model Comparison
-Name	BIC	RMSEA	Chi2	CFI	BF
-fit_g	940941.8	0.124	27,398.095	0.783	Inf
-fit_ega	1110166.4	0.035	2,334.112	0.984	NA
-fit_egag	1114563.1	0.054	6,876.395	0.952	0
-fit_hclust	1121159.8	0.078	13,441.878	0.906	0
-fit_hclustg	1122347.5	0.079	14,681.532	0.897	0
-fit_efag	1124348.4	0.083	16,703.253	0.883	0
-fit_efa	1124348.4	0.083	16,703.253	0.883	0 -->
-
-
-<!-- Samples where CFA converged
-fit_ega	15870.94	0.026	72.825	0.988	NA - sample 1a
-fit_ega	28320.01	0.025	83.537	0.991	NA - sample 4
-fit_ega	20224.33	0.046	130.586	0.978	NA - sample 6
-it_ega	17647.14	0.038	98.571	0.973	NA - sample 7a
-fit_ega	68203.78	0.033	178.485	0.982	NA - sample 7b
-fit_ega	23336.33	0.036	102.630	0.976	NA - sample 7c
-fit_ega	40816.35	0.033	128.727	0.976	NA - sample 8a
-fit_ega	18031.48	0.031	83.225	0.977	NA - sample 8b
-it_ega	720615.2	0.041	2,068.422	0.980	NA - sample 9
-fit_ega	29023.36	0.052	181.784	0.948	NA - sample 11
-fit_ega	25899.23	0.038	116.734	0.977	NA - sample 13
-fit_ega	3975.352	0.040	65.620	0.975	NA - sampple 14 
-fit_ega	8493.471	0.057	102.289	0.947	NA - sample 17
--->
-
-<!-- did not converge: df1b, df2, df3, df5, df10 (missing items), df12 (errors), df15 (errors), df16,  -->
-
 ## Confirmatory Factor Analysis (CFA)
 
 <!-- CFA -->
-We used CFA to fit and compare candidate structures from the previous analyses: a 1-factor (G-model), 3-factor (EFA), 3+1 (EFA + general factor), 5-factor (HCA), 5+1 (HCA + general factor), 7-factor (EGA), and 7+1 (EGA + general factor) model. The 7-factor EGA model provided the best fit (RMSEA = 0.035, $\chi^2$ = 2,334.112, CFI = 0.984), followed by EGA + general factor (RMSEA = 0.054, $\chi^2$ = 6,876.395, CFI = 0.952) and the 5-factor HCA model (RMSEA = 0.078, $\chi^2$ = 13,441.878, CFI = 0.906). All remaining models performed poorly (RMSEA > 0.08, CFI < 0.90). The EGA model also yielded the lowest BIC; all other models showed substantially weaker evidence (BIC-based Bayes Factor < 1/100).
+We used CFA to fit and compare candidate structures from the previous analyses: a 1-factor (G-model), 3-factor (EFA), 3+1 (EFA + general factor), 5-factor (HCA), 5+1 (HCA + general factor), 7-factor (EGA), and 7+1 (EGA + general factor) model **(item composition in @tbl-cfa-models)**.
+**In the pooled data, the 7-factor EGA model provided the best fit on all indices, followed by the 7-factor + general factor model (@tbl-cfa-models); all other models fitted poorly (CFI ≤ .909, RMSEA ≥ .078), and the χ² test was significant for all models, as expected given the sample size.**
 
-**Because each pair factor has only two indicators, the 7-factor + general-factor model is statistically equivalent to a unidimensional model with correlated residuals within each item pair (i.e., local dependencies within an otherwise unifactorial scale). The correlated 7-factor model fitted better than this model in the pooled data (CFI = .984 vs .951; RMSEA = .035 [.034, .037] vs .056 [.055, .057]; ΔBIC = 5,024) and in all 16 samples in which both converged, indicating that the item pairs are better represented as distinct, correlated dimensions than as error covariances.**
 
-Across individual datasets, the 7-factor EGA model provided the best fit in 8 of 13 samples where CFA converged. In these samples, the 7-factor EGA model showed excellent performance, with low RMSEA values (≈ 0.025–0.057), high CFI values (≥ 0.95), and substantially lower χ2 values compared to alternative models. Adding a general factor improved fit in three samples  for which the 7-factor EGA + general factor model showed acceptable RMSEA (≈ 0.048–0.061) and CFI (≈ 0.929–0.957) values. The 5-factor + general factor model was preferred in two (RMSEA = 0.049/0.057, CFI = 0.955/0.919). Bayes factor comparisons aligned with BIC-based conclusions. Overall, while the EGA model was preferred in most samples, bifactor models provided some evidence for a common IAS factor.
 
+```{r}
+#| label: tbl-cfa-models
+#| tbl-cap: "Candidate CFA Models and Their Fit in the Pooled Data (N = 34,943)."
+#| apa-note: "All models were fitted to the 14 retained items with robust maximum likelihood (MLR; robust χ², CFI, TLI and RMSEA reported) and latent variances fixed to 1. Higher-order models add a general factor loading on the first-order factors. Models are ordered by BIC; ΔBIC = difference from the best-fitting model. ᵃEquivalent to the 3-factor model, as a higher-order factor over three first-order factors is just-identified."
+#| error: false
+#| warning: false
+
+readRDS("../../analysis/figures/table_cfa_models.rds") |>
+    flextable() |>
+    theme_apa() |>
+    line_spacing(space = 1, part = "all") |>
+    set_header_labels(Factors = "First-order factors (items)", Parameters = "Free param.",
+                      Chi2_df = "χ² (df)", RMSEA_90CI = "RMSEA [90% CI]", Delta_BIC = "ΔBIC") |>
+    align(j = c("Model", "Factors"), align = "left", part = "all") |>
+    fontsize(size = 10, part = "all") |>
+    set_table_properties(layout = "fixed") |>
+    width(j = c("Model", "Factors", "Parameters", "Chi2_df", "CFI", "TLI", "RMSEA_90CI", "SRMR", "BIC", "Delta_BIC"),
+          width = c(1.4, 2.5, 0.5, 0.9, 0.45, 0.45, 1.0, 0.45, 0.75, 0.55))
+```
+
+
+<!-- **In the pooled data (*N* = 34,943),** the 7-factor EGA model provided the best fit (**$\chi^2$(56) = 1,872.6, CFI = .984, TLI = .974, RMSEA = .035 [90% CI .034, .037], SRMR = .020**), followed by EGA + general factor (**$\chi^2$(70) = 5,625.3, CFI = .951, TLI = .937, RMSEA = .056 [.055, .057], SRMR = .039**) and the 5-factor HCA model (**$\chi^2$(67) = 10,323.4, CFI = .909, TLI = .876, RMSEA = .078 [.077, .079], SRMR = .041**). All remaining models performed poorly (**RMSEA ≥ .079, CFI ≤ .900**). The EGA model also yielded the lowest BIC (**ΔBIC = 5,024 relative to the next-best model**); all other models showed substantially weaker evidence (BIC-based Bayes Factor < 1/100). **As expected given the sample size, the $\chi^2$ test was significant for all models.** -->
+
+<!-- IS the IAS a unidimensional scale with factors correlated due to similarities -->
+
+**The 7-factor + general model also tests whether the IAS is a single scale in which the paired items are simply more similar to each other (i.e., correlated errors), as the two models are equivalent when factors have only two items. Because this model fitted worse than the 7-factor model, in the pooled data and in all 16 samples in which both converged, the pairs are better understood as distinct dimensions.** 
+
+**Because global fit indices can mask weak items and do not show whether factors are empirically distinct, we also examined the standardised loadings and factor correlations of the 7-factor model. All loadings were substantial (.53–.81), and factor correlations were moderate (.40–.73), well below levels indicating redundancy.**
+
+<!-- Individual datasets model fits -->
+
+Across individual datasets, the 7-factor EGA model provided the best fit **(lowest BIC) in 11 of the 18 samples with complete item data**. In these samples, the 7-factor EGA model showed excellent performance (**CFI = .955–1.000, RMSEA = .000–.052, SRMR = .021–.045**). Adding a general factor improved fit in three samples, for which the 7-factor EGA + general factor model showed acceptable fit (**CFI = .942–.962, RMSEA = .044–.055, SRMR = .042–.075**). The 5-factor + general factor model was preferred in two (**CFI = .934/.926, RMSEA = .051/.055, SRMR = .046/.042**)**, the 5-factor HCA model in one (CFI = .962, RMSEA = .045, SRMR = .038), and the 3-factor EFA model in one small sample (*N* = 204), in which it nonetheless fitted poorly (CFI = .847, RMSEA = .062) and the 7-factor model fitted well (CFI = 1.000, RMSEA = .000) but was penalised by BIC for its additional parameters (Supplementary Table Sx)**. Bayes factor comparisons aligned with BIC-based conclusions. Overall, while the EGA model was preferred in most samples, **higher-order** models provided some evidence for a common IAS factor.
+
+
+<!-- Sensitive analysis: leave-one-out  -->
+**As sensitivity analyses, and given that one dataset contributed 61% of the pooled sample (Sample 9) and that datasets differed in language, population and procedure, we examined whether the pooled results were driven by individual datasets.**
+**First, all models were refitted to the pooled data after leaving out each dataset in turn; the 7-factor model remained the best-fitting model in all 25 refits (CFI = .984–.985, RMSEA = .031–.036), indicating that the pooled result was not driven by any single dataset.**
+**Second, because the pooled analysis treats the aggregated data as a single sample, we fitted a multigroup CFA with datasets as groups to test whether the 7-factor structure and its loadings held across datasets. Constraining loadings to equality did not reduce fit (configural: CFI = .981, RMSEA = .038 [.037, .040]; metric: CFI = .980, RMSEA = .037 [.035, .038]; ΔCFI = −.0004, below the .01 criterion; Chen, 2007), supporting metric invariance across datasets, although some small datasets produced improper solutions (e.g., negative residual variances).**
+
+**Full fit indices for each individual sample, the standardised loadings and factor correlations, and the leave-one-dataset-out and multigroup analyses are reported in the Study 1 analysis report (Sensitivity Analysis section; [LINK REDACTED FOR REVIEW]).**
 
 ## Discussion
 
