@@ -5158,3 +5158,48 @@ scores <- list(
 save(scores, file = "../data/scores.RData")
 ```
 
+## Figures
+
+::: {.panel-tabset}
+
+### Table: CFA Model Comparison
+
+Combined table for the manuscript: item composition of each candidate CFA model and its fit in the pooled data (saved to `figures/table_cfa_models.rds`).
+
+```{r cfa-models-table}
+#| warning: false
+#| message: false
+
+factors_txt <- c(
+  "7-factor (EGA item pairs)" = "Hungry–Thirsty; Urinate–Defecate; Heart–Breathing; Muscles–Pain; Cough–Sneeze; Wind–Burp; Bruise–Blood sugar",
+  "7-factor + higher-order general factor" = "Seven pairs + higher-order general factor",
+  "5-factor (HCA)" = "Heart–Breathing; Bruise–Blood sugar; Hungry–Thirsty; Cough, Sneeze, Wind, Burp; Urinate, Defecate, Muscles, Pain",
+  "5-factor + higher-order general factor" = "Five HCA factors + higher-order general factor",
+  "3-factor (EFA)" = "Urinate–Defecate; Cough, Sneeze, Wind, Burp; Heart, Breathing, Muscles, Pain, Hungry, Thirsty, Bruise, Blood sugar",
+  "3-factor + higher-order general factorᵃ" = "Three EFA factors + higher-order general factor",
+  "1-factor (general)" = "All 14 items")
+
+table_cfa_models <- readRDS("figures/tableS_cfa_pooled.rds") |>
+  as.data.frame() |>
+  mutate(Model = unname(Model),
+         Factors = unname(factors_txt[Model]),
+         across(c(CFI, TLI, SRMR), \(v) sub("^0", "", sprintf("%.3f", v))),
+         RMSEA_90CI = gsub("0\\.", ".", RMSEA_90CI),
+         BIC = format(round(BIC), big.mark = ","),
+         Delta_BIC = format(round(Delta_BIC), big.mark = ",")) |>
+  select(Model, Factors, Parameters, Chi2_df, CFI, TLI, RMSEA_90CI, SRMR, BIC, Delta_BIC)
+stopifnot(!anyNA(table_cfa_models$Factors))
+
+saveRDS(table_cfa_models, "figures/table_cfa_models.rds")
+
+table_cfa_models |>
+  gt() |>
+  cols_label(Factors = "First-order factors (items)", Parameters = "Free param.", Chi2_df = "χ² (df)",
+             RMSEA_90CI = "RMSEA [90% CI]", Delta_BIC = "ΔBIC") |>
+  tab_header(title = "Candidate CFA Models and Their Fit in the Pooled Data (N = 34,943)") |>
+  tab_footnote("Models ordered by BIC; robust (MLR) χ², CFI, TLI and RMSEA. ΔBIC = difference from the best-fitting model. ᵃ Equivalent to the 3-factor model (just-identified higher-order factor).") |>
+  gt_apastyle(font.size = 11)
+```
+
+:::
+

@@ -2225,6 +2225,7 @@ vertical-align: -.125em;
   <li><a href="#structure-invariance" id="toc-structure-invariance" class="nav-link" data-scroll-target="#structure-invariance">Structure Invariance</a></li>
   <li><a href="#sensitivity-analysis" id="toc-sensitivity-analysis" class="nav-link" data-scroll-target="#sensitivity-analysis">Sensitivity Analysis</a></li>
   <li><a href="#scores" id="toc-scores" class="nav-link" data-scroll-target="#scores">Scores</a></li>
+  <li><a href="#figures" id="toc-figures" class="nav-link" data-scroll-target="#figures">Figures</a></li>
   </ul>
 </nav>
 </div>
@@ -57068,6 +57069,562 @@ height: 0px !important;
 <span id="cb528-55"><a href="#cb528-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb528-56"><a href="#cb528-56" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(scores, <span class="at">file =</span> <span class="st">&quot;../data/scores.RData&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+</div>
+</section>
+<section id="figures" class="level2">
+<h2 class="anchored" data-anchor-id="figures">Figures</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-62-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-62-1" role="tab" aria-controls="tabset-62-1" aria-selected="true" href>Table: CFA Model Comparison</a></li></ul>
+<div class="tab-content">
+<div id="tabset-62-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-62-1-tab">
+<p>Combined table for the manuscript: item composition of each candidate CFA model and its fit in the pooled data (saved to <code>figures/table_cfa_models.rds</code>).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb529"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb529-1"><a href="#cb529-1" aria-hidden="true" tabindex="-1"></a>factors_txt <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb529-2"><a href="#cb529-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;7-factor (EGA item pairs)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Hungry–Thirsty; Urinate–Defecate; Heart–Breathing; Muscles–Pain; Cough–Sneeze; Wind–Burp; Bruise–Blood sugar&quot;</span>,</span>
+<span id="cb529-3"><a href="#cb529-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;7-factor + higher-order general factor&quot;</span> <span class="ot">=</span> <span class="st">&quot;Seven pairs + higher-order general factor&quot;</span>,</span>
+<span id="cb529-4"><a href="#cb529-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;5-factor (HCA)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Heart–Breathing; Bruise–Blood sugar; Hungry–Thirsty; Cough, Sneeze, Wind, Burp; Urinate, Defecate, Muscles, Pain&quot;</span>,</span>
+<span id="cb529-5"><a href="#cb529-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;5-factor + higher-order general factor&quot;</span> <span class="ot">=</span> <span class="st">&quot;Five HCA factors + higher-order general factor&quot;</span>,</span>
+<span id="cb529-6"><a href="#cb529-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;3-factor (EFA)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Urinate–Defecate; Cough, Sneeze, Wind, Burp; Heart, Breathing, Muscles, Pain, Hungry, Thirsty, Bruise, Blood sugar&quot;</span>,</span>
+<span id="cb529-7"><a href="#cb529-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;3-factor + higher-order general factorᵃ&quot;</span> <span class="ot">=</span> <span class="st">&quot;Three EFA factors + higher-order general factor&quot;</span>,</span>
+<span id="cb529-8"><a href="#cb529-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;1-factor (general)&quot;</span> <span class="ot">=</span> <span class="st">&quot;All 14 items&quot;</span>)</span>
+<span id="cb529-9"><a href="#cb529-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb529-10"><a href="#cb529-10" aria-hidden="true" tabindex="-1"></a>table_cfa_models <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;figures/tableS_cfa_pooled.rds&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb529-11"><a href="#cb529-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb529-12"><a href="#cb529-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="fu">unname</span>(Model),</span>
+<span id="cb529-13"><a href="#cb529-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">Factors =</span> <span class="fu">unname</span>(factors_txt[Model]),</span>
+<span id="cb529-14"><a href="#cb529-14" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">c</span>(CFI, TLI, SRMR), \(v) <span class="fu">sub</span>(<span class="st">&quot;^0&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;%.3f&quot;</span>, v))),</span>
+<span id="cb529-15"><a href="#cb529-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">RMSEA_90CI =</span> <span class="fu">gsub</span>(<span class="st">&quot;0</span><span class="sc">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;.&quot;</span>, RMSEA_90CI),</span>
+<span id="cb529-16"><a href="#cb529-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">BIC =</span> <span class="fu">format</span>(<span class="fu">round</span>(BIC), <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb529-17"><a href="#cb529-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">Delta_BIC =</span> <span class="fu">format</span>(<span class="fu">round</span>(Delta_BIC), <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb529-18"><a href="#cb529-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Model, Factors, Parameters, Chi2_df, CFI, TLI, RMSEA_90CI, SRMR, BIC, Delta_BIC)</span>
+<span id="cb529-19"><a href="#cb529-19" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(table_cfa_models<span class="sc">$</span>Factors))</span>
+<span id="cb529-20"><a href="#cb529-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb529-21"><a href="#cb529-21" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(table_cfa_models, <span class="st">&quot;figures/table_cfa_models.rds&quot;</span>)</span>
+<span id="cb529-22"><a href="#cb529-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb529-23"><a href="#cb529-23" aria-hidden="true" tabindex="-1"></a>table_cfa_models <span class="sc">|&gt;</span></span>
+<span id="cb529-24"><a href="#cb529-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb529-25"><a href="#cb529-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">Factors =</span> <span class="st">&quot;First-order factors (items)&quot;</span>, <span class="at">Parameters =</span> <span class="st">&quot;Free param.&quot;</span>, <span class="at">Chi2_df =</span> <span class="st">&quot;χ² (df)&quot;</span>,</span>
+<span id="cb529-26"><a href="#cb529-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">RMSEA_90CI =</span> <span class="st">&quot;RMSEA [90% CI]&quot;</span>, <span class="at">Delta_BIC =</span> <span class="st">&quot;ΔBIC&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb529-27"><a href="#cb529-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Candidate CFA Models and Their Fit in the Pooled Data (N = 34,943)&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb529-28"><a href="#cb529-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="st">&quot;Models ordered by BIC; robust (MLR) χ², CFI, TLI and RMSEA. ΔBIC = difference from the best-fitting model. ᵃ Equivalent to the 3-factor model (just-identified higher-order factor).&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb529-29"><a href="#cb529-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_apastyle</span>(<span class="at">font.size =</span> <span class="dv">11</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fyhcggsldi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fyhcggsldi table {
+font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#fyhcggsldi thead, #fyhcggsldi tbody, #fyhcggsldi tfoot, #fyhcggsldi tr, #fyhcggsldi td, #fyhcggsldi th {
+border-style: none;
+}
+#fyhcggsldi p {
+margin: 0;
+padding: 0;
+}
+#fyhcggsldi .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 11px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #000000;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#fyhcggsldi .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#fyhcggsldi .gt_title {
+color: #333333;
+font-size: 11px;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#fyhcggsldi .gt_subtitle {
+color: #333333;
+font-size: 11px;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#fyhcggsldi .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#fyhcggsldi .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+}
+#fyhcggsldi .gt_col_headings {
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-bottom-color: #000000;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#fyhcggsldi .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#fyhcggsldi .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#fyhcggsldi .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#fyhcggsldi .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#fyhcggsldi .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-bottom-color: #000000;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#fyhcggsldi .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#fyhcggsldi .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#fyhcggsldi .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#fyhcggsldi .gt_from_md > :first-child {
+margin-top: 0;
+}
+#fyhcggsldi .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#fyhcggsldi .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: none;
+border-top-width: 1px;
+border-top-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#fyhcggsldi .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#fyhcggsldi .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#fyhcggsldi .gt_row_group_first td {
+border-top-width: 2px;
+}
+#fyhcggsldi .gt_row_group_first th {
+border-top-width: 2px;
+}
+#fyhcggsldi .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#fyhcggsldi .gt_first_summary_row {
+border-top-style: none;
+border-top-color: #D3D3D3;
+}
+#fyhcggsldi .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#fyhcggsldi .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#fyhcggsldi .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#fyhcggsldi .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: none;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#fyhcggsldi .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: none;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#fyhcggsldi .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#fyhcggsldi .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+}
+#fyhcggsldi .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#fyhcggsldi .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#fyhcggsldi .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#fyhcggsldi .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#fyhcggsldi .gt_left {
+text-align: left;
+}
+#fyhcggsldi .gt_center {
+text-align: center;
+}
+#fyhcggsldi .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#fyhcggsldi .gt_font_normal {
+font-weight: normal;
+}
+#fyhcggsldi .gt_font_bold {
+font-weight: bold;
+}
+#fyhcggsldi .gt_font_italic {
+font-style: italic;
+}
+#fyhcggsldi .gt_super {
+font-size: 65%;
+}
+#fyhcggsldi .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#fyhcggsldi .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#fyhcggsldi .gt_indent_1 {
+text-indent: 5px;
+}
+#fyhcggsldi .gt_indent_2 {
+text-indent: 10px;
+}
+#fyhcggsldi .gt_indent_3 {
+text-indent: 15px;
+}
+#fyhcggsldi .gt_indent_4 {
+text-indent: 20px;
+}
+#fyhcggsldi .gt_indent_5 {
+text-indent: 25px;
+}
+#fyhcggsldi .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#fyhcggsldi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="10" class="gt_heading gt_title gt_font_normal gt_bottom_border">Candidate CFA Models and Their Fit in the Pooled Data (N = 34,943)</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Model" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Model</th>
+<th id="Factors" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">First-order factors (items)</th>
+<th id="Parameters" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Free param.</th>
+<th id="Chi2_df" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">χ² (df)</th>
+<th id="CFI" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">CFI</th>
+<th id="TLI" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">TLI</th>
+<th id="RMSEA_90CI" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">RMSEA [90% CI]</th>
+<th id="SRMR" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SRMR</th>
+<th id="BIC" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">BIC</th>
+<th id="Delta_BIC" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ΔBIC</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model">7-factor (EGA item pairs)</td>
+<td class="gt_row gt_left" headers="Factors">Hungry–Thirsty; Urinate–Defecate; Heart–Breathing; Muscles–Pain; Cough–Sneeze; Wind–Burp; Bruise–Blood sugar</td>
+<td class="gt_row gt_right" headers="Parameters">49</td>
+<td class="gt_row gt_right" headers="Chi2_df">1,872.6 (56)</td>
+<td class="gt_row gt_right" headers="CFI">.984</td>
+<td class="gt_row gt_right" headers="TLI">.974</td>
+<td class="gt_row gt_left" headers="RMSEA_90CI">.035 [.034, .037]</td>
+<td class="gt_row gt_right" headers="SRMR">.020</td>
+<td class="gt_row gt_right" headers="BIC">1,187,675</td>
+<td class="gt_row gt_right" headers="Delta_BIC">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model">7-factor + higher-order general factor</td>
+<td class="gt_row gt_left" headers="Factors">Seven pairs + higher-order general factor</td>
+<td class="gt_row gt_right" headers="Parameters">35</td>
+<td class="gt_row gt_right" headers="Chi2_df">5,625.3 (70)</td>
+<td class="gt_row gt_right" headers="CFI">.951</td>
+<td class="gt_row gt_right" headers="TLI">.937</td>
+<td class="gt_row gt_left" headers="RMSEA_90CI">.056 [.055, .057]</td>
+<td class="gt_row gt_right" headers="SRMR">.039</td>
+<td class="gt_row gt_right" headers="BIC">1,192,699</td>
+<td class="gt_row gt_right" headers="Delta_BIC">5,024</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model">5-factor (HCA)</td>
+<td class="gt_row gt_left" headers="Factors">Heart–Breathing; Bruise–Blood sugar; Hungry–Thirsty; Cough, Sneeze, Wind, Burp; Urinate, Defecate, Muscles, Pain</td>
+<td class="gt_row gt_right" headers="Parameters">38</td>
+<td class="gt_row gt_right" headers="Chi2_df">10,323.4 (67)</td>
+<td class="gt_row gt_right" headers="CFI">.909</td>
+<td class="gt_row gt_right" headers="TLI">.876</td>
+<td class="gt_row gt_left" headers="RMSEA_90CI">.078 [.077, .079]</td>
+<td class="gt_row gt_right" headers="SRMR">.041</td>
+<td class="gt_row gt_right" headers="BIC">1,199,324</td>
+<td class="gt_row gt_right" headers="Delta_BIC">11,650</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model">5-factor + higher-order general factor</td>
+<td class="gt_row gt_left" headers="Factors">Five HCA factors + higher-order general factor</td>
+<td class="gt_row gt_right" headers="Parameters">33</td>
+<td class="gt_row gt_right" headers="Chi2_df">11,404.8 (72)</td>
+<td class="gt_row gt_right" headers="CFI">.900</td>
+<td class="gt_row gt_right" headers="TLI">.873</td>
+<td class="gt_row gt_left" headers="RMSEA_90CI">.079 [.078, .080]</td>
+<td class="gt_row gt_right" headers="SRMR">.045</td>
+<td class="gt_row gt_right" headers="BIC">1,200,738</td>
+<td class="gt_row gt_right" headers="Delta_BIC">13,063</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model">3-factor (EFA)</td>
+<td class="gt_row gt_left" headers="Factors">Urinate–Defecate; Cough, Sneeze, Wind, Burp; Heart, Breathing, Muscles, Pain, Hungry, Thirsty, Bruise, Blood sugar</td>
+<td class="gt_row gt_right" headers="Parameters">31</td>
+<td class="gt_row gt_right" headers="Chi2_df">13,100.5 (74)</td>
+<td class="gt_row gt_right" headers="CFI">.885</td>
+<td class="gt_row gt_right" headers="TLI">.858</td>
+<td class="gt_row gt_left" headers="RMSEA_90CI">.083 [.082, .085]</td>
+<td class="gt_row gt_right" headers="SRMR">.050</td>
+<td class="gt_row gt_right" headers="BIC">1,203,041</td>
+<td class="gt_row gt_right" headers="Delta_BIC">15,366</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model">3-factor + higher-order general factorᵃ</td>
+<td class="gt_row gt_left" headers="Factors">Three EFA factors + higher-order general factor</td>
+<td class="gt_row gt_right" headers="Parameters">31</td>
+<td class="gt_row gt_right" headers="Chi2_df">13,100.5 (74)</td>
+<td class="gt_row gt_right" headers="CFI">.885</td>
+<td class="gt_row gt_right" headers="TLI">.858</td>
+<td class="gt_row gt_left" headers="RMSEA_90CI">.083 [.082, .085]</td>
+<td class="gt_row gt_right" headers="SRMR">.050</td>
+<td class="gt_row gt_right" headers="BIC">1,203,041</td>
+<td class="gt_row gt_right" headers="Delta_BIC">15,366</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model">1-factor (general)</td>
+<td class="gt_row gt_left" headers="Factors">All 14 items</td>
+<td class="gt_row gt_right" headers="Parameters">28</td>
+<td class="gt_row gt_right" headers="Chi2_df">24,036.0 (77)</td>
+<td class="gt_row gt_right" headers="CFI">.782</td>
+<td class="gt_row gt_right" headers="TLI">.743</td>
+<td class="gt_row gt_left" headers="RMSEA_90CI">.112 [.111, .114]</td>
+<td class="gt_row gt_right" headers="SRMR">.068</td>
+<td class="gt_row gt_right" headers="BIC">1,218,981</td>
+<td class="gt_row gt_right" headers="Delta_BIC">31,307</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="10" class="gt_footnote">Models ordered by BIC; robust (MLR) χ², CFI, TLI and RMSEA. ΔBIC = difference from the best-fitting model. ᵃ Equivalent to the 3-factor model (just-identified higher-order factor).</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
 
