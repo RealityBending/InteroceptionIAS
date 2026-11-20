@@ -503,7 +503,7 @@ knitr::include_graphics("../../analysis/figures/Figure3.png")
 ```
 
 <!-- Preprocessing and standardization -->
-**For each participant, each pair score was computed as the unweighted mean of its two items, and the original IAS total score as the mean of all items except Tickle, which was removed in Study 1. Where one item of a pair was not administered in a sample (e.g., the Blood Sugar item in the Japanese IAS), the pair score was based on the remaining item.**
+**For each participant, each pair score was computed as the unweighted mean of its two items, and the original IAS total score as the mean of all available items except Tickle, which was removed in Study 1. Where one item of a pair was not administered in a sample (e.g., the Blood Sugar item in the Japanese IAS), the pair score was based on the remaining item.**
 All variables were extracted and standardised (z-scored) for the aggregated dataset. Scores were harmonised where meaningful (e.g., the 18-item and 99-item PI versions were combined) and missing data were excluded per-model to maximise statistical power.
 
 <!-- Multilevel modelling approach -->
