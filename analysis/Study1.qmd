@@ -5085,10 +5085,114 @@ table_s_mg |>
 saveRDS(table_s_mg, "figures/tableS_cfa_multigroup.rds")
 ```
 
+### Pair Recovery per Sample
 
+Sensitivity of the exploratory methods to the pooled covariance structure (Reviewer 3): for each individual sample (final 14-item set), we check whether HCA merges the two items of each pair with each other first (i.e., as a two-item cluster before joining any other item), and whether EGA assigns them to the same (lower-order) community. EGA is re-estimated here with a fixed seed, so partitions can differ slightly from the bootstrap runs shown in the Structure Invariance tabs.
 
+```{r pair-recovery}
+#| warning: false
+#| message: false
 
+final_sets <- list("1a" = data1af, "1b" = data1bf, "2" = data2f, "3" = data3f, "4" = data4f, "5" = data5f,
+                   "6" = data6f, "7a" = data7af, "7b" = data7bf, "7c" = data7cf, "8a" = data8af, "8b" = data8bf,
+                   "9" = data9f, "10" = data17f, "11" = data10f, "12" = data11f, "13" = data12f, "14" = data13f,
+                   "15" = data14f, "16" = data15f, "17" = data16f, "18" = data18f, "19" = data19f, "20" = data20f,
+                   "21" = data21f, "22" = data22f, "23" = data23f)  # names = Table 1 sample numbers
 
+target_pairs <- list("Hungry–Thirsty" = c("Hungry", "Thirsty"), "Urinate–Defecate" = c("Urinate", "Defecate"),
+                     "Heart–Breathing" = c("Heart", "Breathing"), "Muscles–Pain" = c("Muscles", "Pain"),
+                     "Cough–Sneeze" = c("Cough", "Sneeze"), "Wind–Burp" = c("Wind", "Burp"),
+                     "Bruise–Blood sugar" = c("Bruise", "Blood_Sugar"))
+
+pair_recovery <- imap_dfr(final_sets, \(d, s) {
+  d <- as.data.frame(d)
+  # HCA: same distance and linkage as make_hclust (1 - Pearson r, complete linkage)
+  h <- hclust(as.dist(1 - cor(d, use = "pairwise.complete.obs")), method = "complete")
+  leaf_pairs <- lapply(which(h$merge[, 1] < 0 & h$merge[, 2] < 0), \(j) sort(h$labels[-h$merge[j, ]]))
+  # EGA: empirical hierarchical EGA (lower-order communities), fixed seed
+  set.seed(123)
+  wc <- suppressWarnings(suppressMessages(
+    EGAnet::hierEGA(d, model = "glasso", loading.method = "original", plot.EGA = FALSE, verbose = FALSE)
+  ))$lower_order$wc
+  imap_dfr(target_pairs, \(it, p) {
+    avail <- all(it %in% names(d))
+    data.frame(Sample = s, N = nrow(d), Pair = p, Available = avail,
+               HCA = if (avail) any(sapply(leaf_pairs, \(lp) identical(lp, sort(it)))) else NA,
+               EGA = if (avail) isTRUE(wc[it[1]] == wc[it[2]]) else NA)
+  })
+})
+saveRDS(pair_recovery, "figures/tableS_pair_recovery.rds")
+
+frac <- \(v) paste0(sum(v, na.rm = TRUE), "/", sum(!is.na(v)))
+
+# Per pair
+pair_recovery |>
+  group_by(Pair) |>
+  summarise(HCA = frac(HCA), EGA = frac(EGA), .groups = "drop") |>
+  bind_rows(tibble(Pair = "All pair × sample combinations", HCA = frac(pair_recovery$HCA), EGA = frac(pair_recovery$EGA))) |>
+  gt() |>
+  cols_label(HCA = "HCA (merged first)", EGA = "EGA (same community)") |>
+  tab_header(title = "Recovery of Each Item Pair Across Individual Samples") |>
+  tab_footnote("Counts are samples in which the pair was recovered / samples in which both items were administered.") |>
+  gt_apastyle(font.size = 11)
+
+# Per sample
+pair_recovery |>
+  filter(Available) |>
+  group_by(Sample, N) |>
+  summarise(Pairs = n(), HCA = sum(HCA), EGA = sum(EGA), .groups = "drop") |>
+  mutate(Sample = factor(Sample, levels = names(final_sets))) |>
+  arrange(Sample) |>
+  gt() |>
+  cols_label(Pairs = "Pairs testable", HCA = "Recovered (HCA)", EGA = "Recovered (EGA)") |>
+  tab_header(title = "Number of Item Pairs Recovered per Sample") |>
+  gt_apastyle(font.size = 11)
+```
+
+### Leave-One-Dataset-Out HCA and EGA
+
+Leave-one-dataset-out sensitivity analysis for the exploratory methods (Reviewer 3): the pooled HCA and EGA are re-estimated after removing one dataset at a time (same complete-case samples as the CFA leave-one-out), and we count how many of the seven item pairs each method recovers (same criteria as in the previous tab).
+
+```{r loo-exploratory}
+#| warning: false
+#| message: false
+
+recover_pairs <- function(d) {
+  d <- as.data.frame(d)
+  h <- hclust(as.dist(1 - cor(d)), method = "complete")
+  leaf_pairs <- lapply(which(h$merge[, 1] < 0 & h$merge[, 2] < 0), \(j) sort(h$labels[-h$merge[j, ]]))
+  set.seed(123)
+  wc <- suppressWarnings(suppressMessages(
+    EGAnet::hierEGA(d, model = "glasso", loading.method = "original", plot.EGA = FALSE, verbose = FALSE)
+  ))$lower_order$wc
+  data.frame(
+    HCA = sum(sapply(target_pairs, \(it) any(sapply(leaf_pairs, \(lp) identical(lp, sort(it)))))),
+    EGA = sum(sapply(target_pairs, \(it) isTRUE(wc[it[1]] == wc[it[2]]))),
+    EGA_communities = length(unique(na.omit(wc))))
+}
+
+d_complete <- data_allf[complete.cases(data_allf), ]
+id_complete <- sample_id[complete.cases(data_allf)]
+
+loo_exploratory <- bind_rows(
+  recover_pairs(d_complete) |> mutate(Left_out = "None (full pooled data)", N = nrow(d_complete)),
+  map_dfr(complete_ids, \(s) {
+    d <- d_complete[id_complete != s, ]
+    recover_pairs(d) |> mutate(Left_out = loo_label(s), N = nrow(d))
+  })
+) |>
+  select(Left_out, N, HCA, EGA, EGA_communities)
+saveRDS(loo_exploratory, "figures/tableS_loo_exploratory.rds")
+
+loo_exploratory |>
+  gt() |>
+  fmt_integer(N) |>
+  cols_label(Left_out = "Dataset left out", HCA = "Pairs recovered (HCA)", EGA = "Pairs recovered (EGA)",
+             EGA_communities = "EGA communities") |>
+  tab_header(title = "Leave-One-Dataset-Out Pooled HCA and EGA") |>
+  tab_footnote("Out of seven item pairs. HCA: the two items merge with each other first; EGA: the two items share a (lower-order) community.") |>
+  gt_apastyle(font.size = 11)
+```
 
 :::
 
