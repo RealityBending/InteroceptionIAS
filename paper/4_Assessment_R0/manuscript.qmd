@@ -503,7 +503,7 @@ knitr::include_graphics("../../analysis/figures/Figure3.png")
 ```
 
 <!-- Preprocessing and standardization -->
-**For each participant, each pair score was computed as the unweighted mean of its two items, and the original IAS total score as the mean of all available items except Tickle, which was removed in Study 1. Where one item of a pair was not administered in a sample (e.g., the Blood Sugar item in the Japanese IAS), the pair score was based on the remaining item.**
+**For each participant, each pair score was computed as the unweighted mean of its two items, and the original IAS total score as the mean of all available items, including Tickle (which was removed from the structural analyses in Study 1; in Samples 8a and 8b, Itch and Tickle were assessed as a single item). Where one item of a pair was not administered in a sample (e.g., the Blood Sugar item in the Japanese IAS), the pair score was based on the remaining item.**
 All variables were extracted and standardised (z-scored) for the aggregated dataset. Scores were harmonised where meaningful (e.g., the 18-item and 99-item PI versions were combined) and missing data were excluded per-model to maximise statistical power.
 
 <!-- Multilevel modelling approach -->
@@ -556,7 +556,7 @@ Among the Big Five traits, Openness (β = .10), Agreeableness (β = .08), and Co
 Within the Lying Profile, only Lying Contextuality showed a modest negative coefficient for Bruise–Blood sugar (β = −.12). Global Conspiracies (GCBS) beliefs were associated with the total IAS and **four** pairs (β = .10): Hungry–Thirsty, Cough-Sneeze, Urinate-Defecate **and Breathing–Heart**. **Primal world beliefs were largely null or small. Appraising the world as "Understandable" was positively associated with the IAS total and all pairs except Urinate–Defecate (β = .11); "Alive", "Hierarchical" and "Enticing" showed small positive associations with the IAS total and two pairs each, and "Good" with Muscles–Pain and Breathing–Heart (β = .09–.13).**
 <!-- Personal Wellbeing with the full scale and the Hungry-Thirsty (β = .09), and Information Control (β = .06) with Cough–Sneeze. -->
 <!-- Differences between the full IAS and item pairings -->
-**Overall, 400 of 688 coefficients remained significant after FDR correction, but most associations were negligible (47%) or small (48%); only 35 (5%) were moderate or larger, mostly with other interoceptive measures, depression, negative affect and autistic traits. The original IAS total score had the most significant associations (62 of 86 measures), followed by Hungry–Thirsty (59) and Muscles–Pain (56); Cough–Sneeze had the fewest (38).** Hungry–Thirsty and Bruise–Blood sugar consistently yielded the largest standardised coefficients, especially for interoception, mood, and psychopathological and neurodevelopmental trait measures.
+**Overall, 400 of 688 coefficients remained significant after FDR correction, but most associations were negligible (47%) or small (48%); only 37 (5%) were moderate or larger, mostly with other interoceptive measures, depression, positive and negative affect, and autistic traits. The original IAS total score had the most significant associations (62 of 86 measures), followed by Hungry–Thirsty (59) and Muscles–Pain (56); Cough–Sneeze had the fewest (38).** Hungry–Thirsty and Bruise–Blood sugar consistently yielded the largest standardised coefficients, especially for interoception, mood, and psychopathological and neurodevelopmental trait measures.
 
 
 ## Discussion

@@ -1866,6 +1866,11 @@ Discarded the following items:
 - Tickle: not present in the same dataset and consistently flagged as redundant in UVA analysis.
 
 ```{r}
+# Keep Tickle responses so the original IAS total score (Scores section) can include all 21 items
+tickle <- lapply(mget(c("data1a", "data1b", paste0("data", 2:6), "data7a", "data7b", "data7c",
+                        "data8a", "data8b", paste0("data", 9:23))),
+                 \(d) if ("Tickle" %in% names(d)) d$Tickle else NULL)
+
 data_all <- select(data_all, -Tickle)
 data1a <- select(data1a, -Tickle)
 data1b <- select(data1b, -Tickle)
@@ -5206,8 +5211,11 @@ Note the usage of descriptive factor names relating directly to the items to avo
 
 # Add empirical variables
 add_empirical <- function(data, sample = "Sample 1a") {
+  # Original IAS total: mean of all administered items, including Tickle (removed from the
+  # structural analyses only); in Samples 8a/8b Itch and Tickle were a single item
+  t <- tickle[[sub("Sample ", "data", sample)]]
   x <- data.frame(
-    Original = rowMeans(data),
+    Original = rowMeans(if (is.null(t)) data else cbind(data, Tickle = t)),
     HungryThirsty = (data$Hungry + data$Thirsty) / 2,
     MusclesPain = (data$Muscles + data$Pain) / 2,
     WindBurp = (data$Wind + data$Burp) / 2,

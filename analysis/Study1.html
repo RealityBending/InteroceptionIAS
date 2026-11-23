@@ -5399,34 +5399,39 @@ $remove
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb190"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>data_all <span class="ot">&lt;-</span> <span class="fu">select</span>(data_all, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a>data1a <span class="ot">&lt;-</span> <span class="fu">select</span>(data1a, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-3"><a href="#cb190-3" aria-hidden="true" tabindex="-1"></a>data1b <span class="ot">&lt;-</span> <span class="fu">select</span>(data1b, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-4"><a href="#cb190-4" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">select</span>(data2, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-5"><a href="#cb190-5" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">select</span>(data3, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-6"><a href="#cb190-6" aria-hidden="true" tabindex="-1"></a>data4 <span class="ot">&lt;-</span> <span class="fu">select</span>(data4, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-7"><a href="#cb190-7" aria-hidden="true" tabindex="-1"></a>data5 <span class="ot">&lt;-</span> <span class="fu">select</span>(data5, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-8"><a href="#cb190-8" aria-hidden="true" tabindex="-1"></a>data6 <span class="ot">&lt;-</span> <span class="fu">select</span>(data6, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-9"><a href="#cb190-9" aria-hidden="true" tabindex="-1"></a>data7a <span class="ot">&lt;-</span> <span class="fu">select</span>(data7a, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-10"><a href="#cb190-10" aria-hidden="true" tabindex="-1"></a>data7b <span class="ot">&lt;-</span> <span class="fu">select</span>(data7b, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-11"><a href="#cb190-11" aria-hidden="true" tabindex="-1"></a>data7c <span class="ot">&lt;-</span> <span class="fu">select</span>(data7c, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-12"><a href="#cb190-12" aria-hidden="true" tabindex="-1"></a><span class="co"># data8a &lt;- select(data8a, -Tickle)</span></span>
-<span id="cb190-13"><a href="#cb190-13" aria-hidden="true" tabindex="-1"></a><span class="co"># data8b &lt;- select(data8b, -Tickle)</span></span>
-<span id="cb190-14"><a href="#cb190-14" aria-hidden="true" tabindex="-1"></a>data9 <span class="ot">&lt;-</span> <span class="fu">select</span>(data9, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-15"><a href="#cb190-15" aria-hidden="true" tabindex="-1"></a>data10 <span class="ot">&lt;-</span> <span class="fu">select</span>(data10, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-16"><a href="#cb190-16" aria-hidden="true" tabindex="-1"></a>data11 <span class="ot">&lt;-</span> <span class="fu">select</span>(data11 , <span class="sc">-</span>Tickle)</span>
-<span id="cb190-17"><a href="#cb190-17" aria-hidden="true" tabindex="-1"></a>data12 <span class="ot">&lt;-</span> <span class="fu">select</span>(data12 , <span class="sc">-</span>Tickle)</span>
-<span id="cb190-18"><a href="#cb190-18" aria-hidden="true" tabindex="-1"></a>data13 <span class="ot">&lt;-</span> <span class="fu">select</span>(data13 , <span class="sc">-</span>Tickle)</span>
-<span id="cb190-19"><a href="#cb190-19" aria-hidden="true" tabindex="-1"></a>data14 <span class="ot">&lt;-</span> <span class="fu">select</span>(data14 , <span class="sc">-</span>Tickle)</span>
-<span id="cb190-20"><a href="#cb190-20" aria-hidden="true" tabindex="-1"></a>data15 <span class="ot">&lt;-</span> <span class="fu">select</span>(data15 , <span class="sc">-</span>Tickle)</span>
-<span id="cb190-21"><a href="#cb190-21" aria-hidden="true" tabindex="-1"></a>data16 <span class="ot">&lt;-</span> <span class="fu">select</span>(data16 , <span class="sc">-</span>Tickle)</span>
-<span id="cb190-22"><a href="#cb190-22" aria-hidden="true" tabindex="-1"></a>data17 <span class="ot">&lt;-</span> <span class="fu">select</span>(data17 , <span class="sc">-</span>Tickle)</span>
-<span id="cb190-23"><a href="#cb190-23" aria-hidden="true" tabindex="-1"></a>data18 <span class="ot">&lt;-</span> <span class="fu">select</span>(data18, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-24"><a href="#cb190-24" aria-hidden="true" tabindex="-1"></a>data19 <span class="ot">&lt;-</span> <span class="fu">select</span>(data19, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-25"><a href="#cb190-25" aria-hidden="true" tabindex="-1"></a>data20 <span class="ot">&lt;-</span> <span class="fu">select</span>(data20, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-26"><a href="#cb190-26" aria-hidden="true" tabindex="-1"></a>data21 <span class="ot">&lt;-</span> <span class="fu">select</span>(data21, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-27"><a href="#cb190-27" aria-hidden="true" tabindex="-1"></a>data22 <span class="ot">&lt;-</span> <span class="fu">select</span>(data22, <span class="sc">-</span>Tickle)</span>
-<span id="cb190-28"><a href="#cb190-28" aria-hidden="true" tabindex="-1"></a>data23 <span class="ot">&lt;-</span> <span class="fu">select</span>(data23, <span class="sc">-</span>Tickle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb190"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep Tickle responses so the original IAS total score (Scores section) can include all 21 items</span></span>
+<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a>tickle <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">mget</span>(<span class="fu">c</span>(<span class="st">&quot;data1a&quot;</span>, <span class="st">&quot;data1b&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;data&quot;</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>), <span class="st">&quot;data7a&quot;</span>, <span class="st">&quot;data7b&quot;</span>, <span class="st">&quot;data7c&quot;</span>,</span>
+<span id="cb190-3"><a href="#cb190-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;data8a&quot;</span>, <span class="st">&quot;data8b&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;data&quot;</span>, <span class="dv">9</span><span class="sc">:</span><span class="dv">23</span>))),</span>
+<span id="cb190-4"><a href="#cb190-4" aria-hidden="true" tabindex="-1"></a>                 \(d) <span class="cf">if</span> (<span class="st">&quot;Tickle&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(d)) d<span class="sc">$</span>Tickle <span class="cf">else</span> <span class="cn">NULL</span>)</span>
+<span id="cb190-5"><a href="#cb190-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb190-6"><a href="#cb190-6" aria-hidden="true" tabindex="-1"></a>data_all <span class="ot">&lt;-</span> <span class="fu">select</span>(data_all, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-7"><a href="#cb190-7" aria-hidden="true" tabindex="-1"></a>data1a <span class="ot">&lt;-</span> <span class="fu">select</span>(data1a, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-8"><a href="#cb190-8" aria-hidden="true" tabindex="-1"></a>data1b <span class="ot">&lt;-</span> <span class="fu">select</span>(data1b, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-9"><a href="#cb190-9" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">select</span>(data2, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-10"><a href="#cb190-10" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">select</span>(data3, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-11"><a href="#cb190-11" aria-hidden="true" tabindex="-1"></a>data4 <span class="ot">&lt;-</span> <span class="fu">select</span>(data4, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-12"><a href="#cb190-12" aria-hidden="true" tabindex="-1"></a>data5 <span class="ot">&lt;-</span> <span class="fu">select</span>(data5, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-13"><a href="#cb190-13" aria-hidden="true" tabindex="-1"></a>data6 <span class="ot">&lt;-</span> <span class="fu">select</span>(data6, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-14"><a href="#cb190-14" aria-hidden="true" tabindex="-1"></a>data7a <span class="ot">&lt;-</span> <span class="fu">select</span>(data7a, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-15"><a href="#cb190-15" aria-hidden="true" tabindex="-1"></a>data7b <span class="ot">&lt;-</span> <span class="fu">select</span>(data7b, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-16"><a href="#cb190-16" aria-hidden="true" tabindex="-1"></a>data7c <span class="ot">&lt;-</span> <span class="fu">select</span>(data7c, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-17"><a href="#cb190-17" aria-hidden="true" tabindex="-1"></a><span class="co"># data8a &lt;- select(data8a, -Tickle)</span></span>
+<span id="cb190-18"><a href="#cb190-18" aria-hidden="true" tabindex="-1"></a><span class="co"># data8b &lt;- select(data8b, -Tickle)</span></span>
+<span id="cb190-19"><a href="#cb190-19" aria-hidden="true" tabindex="-1"></a>data9 <span class="ot">&lt;-</span> <span class="fu">select</span>(data9, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-20"><a href="#cb190-20" aria-hidden="true" tabindex="-1"></a>data10 <span class="ot">&lt;-</span> <span class="fu">select</span>(data10, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-21"><a href="#cb190-21" aria-hidden="true" tabindex="-1"></a>data11 <span class="ot">&lt;-</span> <span class="fu">select</span>(data11 , <span class="sc">-</span>Tickle)</span>
+<span id="cb190-22"><a href="#cb190-22" aria-hidden="true" tabindex="-1"></a>data12 <span class="ot">&lt;-</span> <span class="fu">select</span>(data12 , <span class="sc">-</span>Tickle)</span>
+<span id="cb190-23"><a href="#cb190-23" aria-hidden="true" tabindex="-1"></a>data13 <span class="ot">&lt;-</span> <span class="fu">select</span>(data13 , <span class="sc">-</span>Tickle)</span>
+<span id="cb190-24"><a href="#cb190-24" aria-hidden="true" tabindex="-1"></a>data14 <span class="ot">&lt;-</span> <span class="fu">select</span>(data14 , <span class="sc">-</span>Tickle)</span>
+<span id="cb190-25"><a href="#cb190-25" aria-hidden="true" tabindex="-1"></a>data15 <span class="ot">&lt;-</span> <span class="fu">select</span>(data15 , <span class="sc">-</span>Tickle)</span>
+<span id="cb190-26"><a href="#cb190-26" aria-hidden="true" tabindex="-1"></a>data16 <span class="ot">&lt;-</span> <span class="fu">select</span>(data16 , <span class="sc">-</span>Tickle)</span>
+<span id="cb190-27"><a href="#cb190-27" aria-hidden="true" tabindex="-1"></a>data17 <span class="ot">&lt;-</span> <span class="fu">select</span>(data17 , <span class="sc">-</span>Tickle)</span>
+<span id="cb190-28"><a href="#cb190-28" aria-hidden="true" tabindex="-1"></a>data18 <span class="ot">&lt;-</span> <span class="fu">select</span>(data18, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-29"><a href="#cb190-29" aria-hidden="true" tabindex="-1"></a>data19 <span class="ot">&lt;-</span> <span class="fu">select</span>(data19, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-30"><a href="#cb190-30" aria-hidden="true" tabindex="-1"></a>data20 <span class="ot">&lt;-</span> <span class="fu">select</span>(data20, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-31"><a href="#cb190-31" aria-hidden="true" tabindex="-1"></a>data21 <span class="ot">&lt;-</span> <span class="fu">select</span>(data21, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-32"><a href="#cb190-32" aria-hidden="true" tabindex="-1"></a>data22 <span class="ot">&lt;-</span> <span class="fu">select</span>(data22, <span class="sc">-</span>Tickle)</span>
+<span id="cb190-33"><a href="#cb190-33" aria-hidden="true" tabindex="-1"></a>data23 <span class="ot">&lt;-</span> <span class="fu">select</span>(data23, <span class="sc">-</span>Tickle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="initial" class="level4">
@@ -58791,60 +58796,63 @@ height: 0px !important;
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb531"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb531-1"><a href="#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add empirical variables</span></span>
 <span id="cb531-2"><a href="#cb531-2" aria-hidden="true" tabindex="-1"></a>add_empirical <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">sample =</span> <span class="st">&quot;Sample 1a&quot;</span>) {</span>
-<span id="cb531-3"><a href="#cb531-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb531-4"><a href="#cb531-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Original =</span> <span class="fu">rowMeans</span>(data),</span>
-<span id="cb531-5"><a href="#cb531-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">HungryThirsty =</span> (data<span class="sc">$</span>Hungry <span class="sc">+</span> data<span class="sc">$</span>Thirsty) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb531-6"><a href="#cb531-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">MusclesPain =</span> (data<span class="sc">$</span>Muscles <span class="sc">+</span> data<span class="sc">$</span>Pain) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb531-7"><a href="#cb531-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">WindBurp =</span> (data<span class="sc">$</span>Wind <span class="sc">+</span> data<span class="sc">$</span>Burp) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb531-8"><a href="#cb531-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">UrinateDefecate =</span> (data<span class="sc">$</span>Urinate <span class="sc">+</span> data<span class="sc">$</span>Defecate) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb531-9"><a href="#cb531-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">BreathingHeart =</span> (data<span class="sc">$</span>Heart <span class="sc">+</span> data<span class="sc">$</span>Breathing) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb531-10"><a href="#cb531-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb531-11"><a href="#cb531-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="st">&quot;Blood_Sugar&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(data)) {</span>
-<span id="cb531-12"><a href="#cb531-12" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>BruiseBlood <span class="ot">&lt;-</span> (data<span class="sc">$</span>Blood_Sugar <span class="sc">+</span> data<span class="sc">$</span>Bruise) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb531-13"><a href="#cb531-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb531-14"><a href="#cb531-14" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>BruiseBlood <span class="ot">&lt;-</span> data<span class="sc">$</span>Bruise</span>
-<span id="cb531-15"><a href="#cb531-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb531-16"><a href="#cb531-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb531-17"><a href="#cb531-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="st">&quot;Cough&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(data)) {</span>
-<span id="cb531-18"><a href="#cb531-18" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>CoughSneeze <span class="ot">&lt;-</span> (data<span class="sc">$</span>Cough <span class="sc">+</span> data<span class="sc">$</span>Sneeze) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb531-19"><a href="#cb531-19" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb531-20"><a href="#cb531-20" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>CoughSneeze <span class="ot">&lt;-</span> data<span class="sc">$</span>Sneeze</span>
-<span id="cb531-21"><a href="#cb531-21" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb531-22"><a href="#cb531-22" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>Sample <span class="ot">&lt;-</span> sample</span>
-<span id="cb531-23"><a href="#cb531-23" aria-hidden="true" tabindex="-1"></a>  x</span>
-<span id="cb531-24"><a href="#cb531-24" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb531-25"><a href="#cb531-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb531-26"><a href="#cb531-26" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb531-27"><a href="#cb531-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample1a =</span> <span class="fu">add_empirical</span>(data1a, <span class="st">&quot;Sample 1a&quot;</span>),</span>
-<span id="cb531-28"><a href="#cb531-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample1b =</span> <span class="fu">add_empirical</span>(data1b, <span class="st">&quot;Sample 1b&quot;</span>),</span>
-<span id="cb531-29"><a href="#cb531-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample2 =</span> <span class="fu">add_empirical</span>(data2, <span class="st">&quot;Sample 2&quot;</span>),</span>
-<span id="cb531-30"><a href="#cb531-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample3 =</span> <span class="fu">add_empirical</span>(data3, <span class="st">&quot;Sample 3&quot;</span>),</span>
-<span id="cb531-31"><a href="#cb531-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample4 =</span> <span class="fu">add_empirical</span>(data4, <span class="st">&quot;Sample 4&quot;</span>),</span>
-<span id="cb531-32"><a href="#cb531-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample5 =</span> <span class="fu">add_empirical</span>(data5, <span class="st">&quot;Sample 5&quot;</span>),</span>
-<span id="cb531-33"><a href="#cb531-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample6 =</span> <span class="fu">add_empirical</span>(data6, <span class="st">&quot;Sample 6&quot;</span>),</span>
-<span id="cb531-34"><a href="#cb531-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7a =</span> <span class="fu">add_empirical</span>(data7a, <span class="st">&quot;Sample 7a&quot;</span>),</span>
-<span id="cb531-35"><a href="#cb531-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7b =</span> <span class="fu">add_empirical</span>(data7b, <span class="st">&quot;Sample 7b&quot;</span>),</span>
-<span id="cb531-36"><a href="#cb531-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7c =</span> <span class="fu">add_empirical</span>(data7c, <span class="st">&quot;Sample 7c&quot;</span>),</span>
-<span id="cb531-37"><a href="#cb531-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample8a =</span> <span class="fu">add_empirical</span>(data8a, <span class="st">&quot;Sample 8a&quot;</span>),</span>
-<span id="cb531-38"><a href="#cb531-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample8b =</span> <span class="fu">add_empirical</span>(data8b, <span class="st">&quot;Sample 8b&quot;</span>),</span>
-<span id="cb531-39"><a href="#cb531-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample9 =</span> <span class="fu">add_empirical</span>(data9, <span class="st">&quot;Sample 9&quot;</span>),</span>
-<span id="cb531-40"><a href="#cb531-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample10 =</span> <span class="fu">add_empirical</span>(data10, <span class="st">&quot;Sample 10&quot;</span>),</span>
-<span id="cb531-41"><a href="#cb531-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample11 =</span> <span class="fu">add_empirical</span>(data11 , <span class="st">&quot;Sample 11&quot;</span>),</span>
-<span id="cb531-42"><a href="#cb531-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample12 =</span> <span class="fu">add_empirical</span>(data12 , <span class="st">&quot;Sample 12&quot;</span>),</span>
-<span id="cb531-43"><a href="#cb531-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample13 =</span> <span class="fu">add_empirical</span>(data13, <span class="st">&quot;Sample 13&quot;</span>),</span>
-<span id="cb531-44"><a href="#cb531-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample14 =</span> <span class="fu">add_empirical</span>(data14 , <span class="st">&quot;Sample 14&quot;</span>),</span>
-<span id="cb531-45"><a href="#cb531-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample15 =</span> <span class="fu">add_empirical</span>(data15 , <span class="st">&quot;Sample 15&quot;</span>),</span>
-<span id="cb531-46"><a href="#cb531-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample16 =</span> <span class="fu">add_empirical</span>(data16, <span class="st">&quot;Sample 16&quot;</span>),</span>
-<span id="cb531-47"><a href="#cb531-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample17 =</span> <span class="fu">add_empirical</span>(data17, <span class="st">&quot;Sample 17&quot;</span>),</span>
-<span id="cb531-48"><a href="#cb531-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample18 =</span> <span class="fu">add_empirical</span>(data18, <span class="st">&quot;Sample 18&quot;</span>),</span>
-<span id="cb531-49"><a href="#cb531-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample19 =</span> <span class="fu">add_empirical</span>(data19, <span class="st">&quot;Sample 19&quot;</span>),</span>
-<span id="cb531-50"><a href="#cb531-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample20 =</span> <span class="fu">add_empirical</span>(data20, <span class="st">&quot;Sample 20&quot;</span>),</span>
-<span id="cb531-51"><a href="#cb531-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample21 =</span> <span class="fu">add_empirical</span>(data21, <span class="st">&quot;Sample 21&quot;</span>),</span>
-<span id="cb531-52"><a href="#cb531-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample22 =</span> <span class="fu">add_empirical</span>(data22, <span class="st">&quot;Sample 22&quot;</span>),</span>
-<span id="cb531-53"><a href="#cb531-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample23 =</span> <span class="fu">add_empirical</span>(data23, <span class="st">&quot;Sample 23&quot;</span>)</span>
-<span id="cb531-54"><a href="#cb531-54" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb531-55"><a href="#cb531-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb531-56"><a href="#cb531-56" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(scores, <span class="at">file =</span> <span class="st">&quot;../data/scores.RData&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb531-3"><a href="#cb531-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Original IAS total: mean of all administered items, including Tickle (removed from the</span></span>
+<span id="cb531-4"><a href="#cb531-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># structural analyses only); in Samples 8a/8b Itch and Tickle were a single item</span></span>
+<span id="cb531-5"><a href="#cb531-5" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> tickle[[<span class="fu">sub</span>(<span class="st">&quot;Sample &quot;</span>, <span class="st">&quot;data&quot;</span>, sample)]]</span>
+<span id="cb531-6"><a href="#cb531-6" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb531-7"><a href="#cb531-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Original =</span> <span class="fu">rowMeans</span>(<span class="cf">if</span> (<span class="fu">is.null</span>(t)) data <span class="cf">else</span> <span class="fu">cbind</span>(data, <span class="at">Tickle =</span> t)),</span>
+<span id="cb531-8"><a href="#cb531-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">HungryThirsty =</span> (data<span class="sc">$</span>Hungry <span class="sc">+</span> data<span class="sc">$</span>Thirsty) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb531-9"><a href="#cb531-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">MusclesPain =</span> (data<span class="sc">$</span>Muscles <span class="sc">+</span> data<span class="sc">$</span>Pain) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb531-10"><a href="#cb531-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">WindBurp =</span> (data<span class="sc">$</span>Wind <span class="sc">+</span> data<span class="sc">$</span>Burp) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb531-11"><a href="#cb531-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">UrinateDefecate =</span> (data<span class="sc">$</span>Urinate <span class="sc">+</span> data<span class="sc">$</span>Defecate) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb531-12"><a href="#cb531-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">BreathingHeart =</span> (data<span class="sc">$</span>Heart <span class="sc">+</span> data<span class="sc">$</span>Breathing) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb531-13"><a href="#cb531-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb531-14"><a href="#cb531-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="st">&quot;Blood_Sugar&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(data)) {</span>
+<span id="cb531-15"><a href="#cb531-15" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>BruiseBlood <span class="ot">&lt;-</span> (data<span class="sc">$</span>Blood_Sugar <span class="sc">+</span> data<span class="sc">$</span>Bruise) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb531-16"><a href="#cb531-16" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb531-17"><a href="#cb531-17" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>BruiseBlood <span class="ot">&lt;-</span> data<span class="sc">$</span>Bruise</span>
+<span id="cb531-18"><a href="#cb531-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb531-19"><a href="#cb531-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb531-20"><a href="#cb531-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="st">&quot;Cough&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(data)) {</span>
+<span id="cb531-21"><a href="#cb531-21" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>CoughSneeze <span class="ot">&lt;-</span> (data<span class="sc">$</span>Cough <span class="sc">+</span> data<span class="sc">$</span>Sneeze) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb531-22"><a href="#cb531-22" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb531-23"><a href="#cb531-23" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>CoughSneeze <span class="ot">&lt;-</span> data<span class="sc">$</span>Sneeze</span>
+<span id="cb531-24"><a href="#cb531-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb531-25"><a href="#cb531-25" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>Sample <span class="ot">&lt;-</span> sample</span>
+<span id="cb531-26"><a href="#cb531-26" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb531-27"><a href="#cb531-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb531-28"><a href="#cb531-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb531-29"><a href="#cb531-29" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb531-30"><a href="#cb531-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample1a =</span> <span class="fu">add_empirical</span>(data1a, <span class="st">&quot;Sample 1a&quot;</span>),</span>
+<span id="cb531-31"><a href="#cb531-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample1b =</span> <span class="fu">add_empirical</span>(data1b, <span class="st">&quot;Sample 1b&quot;</span>),</span>
+<span id="cb531-32"><a href="#cb531-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample2 =</span> <span class="fu">add_empirical</span>(data2, <span class="st">&quot;Sample 2&quot;</span>),</span>
+<span id="cb531-33"><a href="#cb531-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample3 =</span> <span class="fu">add_empirical</span>(data3, <span class="st">&quot;Sample 3&quot;</span>),</span>
+<span id="cb531-34"><a href="#cb531-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample4 =</span> <span class="fu">add_empirical</span>(data4, <span class="st">&quot;Sample 4&quot;</span>),</span>
+<span id="cb531-35"><a href="#cb531-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample5 =</span> <span class="fu">add_empirical</span>(data5, <span class="st">&quot;Sample 5&quot;</span>),</span>
+<span id="cb531-36"><a href="#cb531-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample6 =</span> <span class="fu">add_empirical</span>(data6, <span class="st">&quot;Sample 6&quot;</span>),</span>
+<span id="cb531-37"><a href="#cb531-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7a =</span> <span class="fu">add_empirical</span>(data7a, <span class="st">&quot;Sample 7a&quot;</span>),</span>
+<span id="cb531-38"><a href="#cb531-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7b =</span> <span class="fu">add_empirical</span>(data7b, <span class="st">&quot;Sample 7b&quot;</span>),</span>
+<span id="cb531-39"><a href="#cb531-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7c =</span> <span class="fu">add_empirical</span>(data7c, <span class="st">&quot;Sample 7c&quot;</span>),</span>
+<span id="cb531-40"><a href="#cb531-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample8a =</span> <span class="fu">add_empirical</span>(data8a, <span class="st">&quot;Sample 8a&quot;</span>),</span>
+<span id="cb531-41"><a href="#cb531-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample8b =</span> <span class="fu">add_empirical</span>(data8b, <span class="st">&quot;Sample 8b&quot;</span>),</span>
+<span id="cb531-42"><a href="#cb531-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample9 =</span> <span class="fu">add_empirical</span>(data9, <span class="st">&quot;Sample 9&quot;</span>),</span>
+<span id="cb531-43"><a href="#cb531-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample10 =</span> <span class="fu">add_empirical</span>(data10, <span class="st">&quot;Sample 10&quot;</span>),</span>
+<span id="cb531-44"><a href="#cb531-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample11 =</span> <span class="fu">add_empirical</span>(data11 , <span class="st">&quot;Sample 11&quot;</span>),</span>
+<span id="cb531-45"><a href="#cb531-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample12 =</span> <span class="fu">add_empirical</span>(data12 , <span class="st">&quot;Sample 12&quot;</span>),</span>
+<span id="cb531-46"><a href="#cb531-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample13 =</span> <span class="fu">add_empirical</span>(data13, <span class="st">&quot;Sample 13&quot;</span>),</span>
+<span id="cb531-47"><a href="#cb531-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample14 =</span> <span class="fu">add_empirical</span>(data14 , <span class="st">&quot;Sample 14&quot;</span>),</span>
+<span id="cb531-48"><a href="#cb531-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample15 =</span> <span class="fu">add_empirical</span>(data15 , <span class="st">&quot;Sample 15&quot;</span>),</span>
+<span id="cb531-49"><a href="#cb531-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample16 =</span> <span class="fu">add_empirical</span>(data16, <span class="st">&quot;Sample 16&quot;</span>),</span>
+<span id="cb531-50"><a href="#cb531-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample17 =</span> <span class="fu">add_empirical</span>(data17, <span class="st">&quot;Sample 17&quot;</span>),</span>
+<span id="cb531-51"><a href="#cb531-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample18 =</span> <span class="fu">add_empirical</span>(data18, <span class="st">&quot;Sample 18&quot;</span>),</span>
+<span id="cb531-52"><a href="#cb531-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample19 =</span> <span class="fu">add_empirical</span>(data19, <span class="st">&quot;Sample 19&quot;</span>),</span>
+<span id="cb531-53"><a href="#cb531-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample20 =</span> <span class="fu">add_empirical</span>(data20, <span class="st">&quot;Sample 20&quot;</span>),</span>
+<span id="cb531-54"><a href="#cb531-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample21 =</span> <span class="fu">add_empirical</span>(data21, <span class="st">&quot;Sample 21&quot;</span>),</span>
+<span id="cb531-55"><a href="#cb531-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample22 =</span> <span class="fu">add_empirical</span>(data22, <span class="st">&quot;Sample 22&quot;</span>),</span>
+<span id="cb531-56"><a href="#cb531-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample23 =</span> <span class="fu">add_empirical</span>(data23, <span class="st">&quot;Sample 23&quot;</span>)</span>
+<span id="cb531-57"><a href="#cb531-57" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb531-58"><a href="#cb531-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb531-59"><a href="#cb531-59" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(scores, <span class="at">file =</span> <span class="st">&quot;../data/scores.RData&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
