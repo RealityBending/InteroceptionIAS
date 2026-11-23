@@ -562,7 +562,7 @@ Within the Lying Profile, only Lying Contextuality showed a modest negative coef
 ## Discussion
 
 <!-- Aim and conceptual focus -->
-Using a meta-analytical approach across **23** datasets, Study 2 examined the dispositional correlates of the IAS and whether the refined 14-item version translated into clearer and more reliable associations than the  original 21-item scale. 
+Using a meta-analytical approach across **23** datasets, Study 2 examined the dispositional correlates of the IAS and **scoring the seven item pairs separately provided more specific information than the original IAS total score.**. 
 
 <!-- Interoception and correlates - item specific -->
 The IAS showed positive associations with all MAIA facets except Not-Distracting and Not-Worrying, replicating prior findings [@brand2023; @todd2022], and positive associations with the BPQ Body Awareness subscale, consistent with previous research [@brand2023; @koike2023; @gaggero2021]. Autonomic reactivity indices were more strongly and negatively associated with IAS scores, supporting earlier observations that reactivity may reflect bodily signal processing captured by self-reported interoceptive accuracy [@todd2022].
@@ -583,9 +583,9 @@ Notably, this study prioritised general patterns across aggregated datasets rath
 
 <!-- Short IAS benefits and summary-->
 
-In summary, the 14-item IAS performed comparably to the original 21-item version across mood, psychopathological, neurodevelopmental, and interoceptive measures. However, associations were often non-uniform across bodily domains, driven primarily by specific item pairs — particularly Hungry–Thirsty and Bruise–Blood Sugar, which showed the strongest and most consistent associations with interoceptive, affective, and personality measures. Other pairs contributed little unique information, especially for psychopathological, neurodevelopmental, and belief measures. The homeostatic salience of Hungry–Thirsty and the contextual relevance and visual/psychological prominence of Bruise–Blood Sugar may underlie their stronger dispositional associations.
+**In summary, the seven pair scores showed associations in the same direction as the original IAS total score across mood, psychopathological, neurodevelopmental, and interoceptive measures.** However, associations were often non-uniform across bodily domains, driven primarily by specific item pairs — particularly Hungry–Thirsty and Bruise–Blood Sugar, which showed the strongest and most consistent associations with interoceptive, affective, and personality measures. Other pairs contributed little unique information, especially for psychopathological, neurodevelopmental, and belief measures. The homeostatic salience of Hungry–Thirsty and the contextual relevance and visual/psychological prominence of Bruise–Blood Sugar may underlie their stronger dispositional associations.
 
-Overall, findings support the validity of the original IAS general score while positioning the refined 14-item scale as a more efficient and interpretively nuanced alternative.
+Overall, findings support the validity of the original IAS general score while **suggesting that the seven pair scores, rather than a single total, offer a more specific account of self-perceived interoceptive accuracy across bodily domains.**
 
 
 # General Discussion
@@ -619,7 +619,7 @@ Together, Studies 1 and 2 suggest that self-perceived interoceptive accuracy is 
 <!-- Methodological and applied considerations -->
 Our results support use of the refined 14-item IAS, illustrating how network-informed scale refinement [@golino2017exploratory] can enhance parsimony and construct clarity. Methodologically, combining traditional psychometrics with network-based approaches proved valuable: EGA complemented, and often surpassed, factor analysis by identifying meaningful inter-item dependencies, yielding a more interpretable and stable structure.
 
-Nevertheless, use of the 14-item IAS warrants careful consideration. Although item pairs improved interpretability and outperformed the full IAS in associations with affective and dispositional traits, two-item dimensions remain suboptimal — particularly for broad or conceptually ambiguous constructs [@allen2022single] like **self-perceived interoceptive accuracy** across multiple bodily systems. Two-item clusters may overemphasize links between functionally related sensations while failing to capture variability across unrelated domains. Conversely, overall scores risk obscuring domain-specific relationships and assume interoceptive abilities generalise across bodily systems. Building on @desmedt2022measures' "jingle fallacy" observation, the present results caution against assuming self-reported accuracy generalises across domains or can be captured by a single construct. 
+Nevertheless, use of the 14-item IAS warrants careful consideration. Although **item pairs provided domain-specific information beyond the full IAS**, in associations with affective and dispositional traits, two-item dimensions remain suboptimal — particularly for broad or conceptually ambiguous constructs [@allen2022single] like **self-perceived interoceptive accuracy** across multiple bodily systems. Two-item clusters may overemphasize links between functionally related sensations while failing to capture variability across unrelated domains. Conversely, overall scores risk obscuring domain-specific relationships and assume interoceptive abilities generalise across bodily systems. Building on @desmedt2022measures' "jingle fallacy" observation, the present results caution against assuming self-reported accuracy generalises across domains or can be captured by a single construct. 
 **Moreover, factors defined by only two indicators are weakly identified, so the pairs are best treated as domain-specific composites rather than as latent traits.**
 
 ## Limitations and Future Directions
