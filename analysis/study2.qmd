@@ -857,16 +857,25 @@ saveRDS(effects, "figures/study2_effects.rds")
 effects |>
   mutate(IAS = sprintf("%.2f [%.2f, %.2f]%s", beta_IAS, CI_low_IAS, CI_high_IAS, ifelse(p_fdr_IAS < .05, "*", "")),
          Pairs = sprintf("%.2f to %.2f", pairs_min, pairs_max)) |>
-  select(Category, var_Correlate, k, N, IAS, Magnitude_IAS, Pairs, strongest_pair, n_pairs_fdr) |>
+  # Magnitude cell colour: hue = sign of the IAS total β (blue negative, orange-red positive),
+  # intensity = magnitude category (barely tinted for negligible, strongest for large)
+  mutate(mag_fill = {
+    base <- ifelse(beta_IAS < 0, "#2196F3", "#FF5722")
+    alpha <- c(Negligible = .06, Small = .30, Moderate = .60, Large = .95)[as.character(Magnitude_IAS)]
+    rgb_base <- col2rgb(base) / 255
+    rgb(t(1 - sweep(1 - rgb_base, 2, alpha, `*`)))
+  }) |>
+  select(Category, var_Correlate, k, N, IAS, Magnitude_IAS, Pairs, strongest_pair, n_pairs_fdr, mag_fill) |>
   gt(groupname_col = "Category") |>
   cols_label(var_Correlate = "Measure", IAS = "IAS total β [95% CI]", Magnitude_IAS = "Magnitude",
              Pairs = "Range across pairs", strongest_pair = "Strongest pair", n_pairs_fdr = "Pairs (FDR p < .05)") |>
   fmt_integer(N) |>
-  tab_footnote("* FDR-corrected p < .05 (Benjamini–Hochberg, across all coefficients). Magnitude: |β| < .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large.") |>
+  data_color(columns = mag_fill, target_columns = Magnitude_IAS, fn = identity) |>
+  cols_hide(mag_fill) |>
+  tab_footnote("* FDR-corrected p < .05 (Benjamini–Hochberg, across all coefficients). Magnitude refers to the IAS total β: |β| < .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large; cell colour shows direction (blue = negative, red = positive) and is stronger for larger magnitudes.") |>
   gt_apastyle(font.size = 10) |>
-  tab_style(style = list(cell_text(weight = "bold", size = px(14)),
-                         cell_fill(color = "#ECEFF1"),
-                         cell_borders(sides = c("top", "bottom"), color = "#455A64", weight = px(1.5))),
+  tab_style(style = list(cell_text(weight = "bold"),
+                         cell_borders(sides = c("top", "bottom"), color = "black", weight = px(1))),
             locations = cells_row_groups())
 ```
 

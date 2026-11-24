@@ -5198,17 +5198,26 @@ height: 0px !important;
 <span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>effects <span class="sc">|&gt;</span></span>
 <span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IAS =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%.2f [%.2f, %.2f]%s&quot;</span>, beta_IAS, CI_low_IAS, CI_high_IAS, <span class="fu">ifelse</span>(p_fdr_IAS <span class="sc">&lt;</span> .<span class="dv">05</span>, <span class="st">&quot;*&quot;</span>, <span class="st">&quot;&quot;</span>)),</span>
 <span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">Pairs =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%.2f to %.2f&quot;</span>, pairs_min, pairs_max)) <span class="sc">|&gt;</span></span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Category, var_Correlate, k, N, IAS, Magnitude_IAS, Pairs, strongest_pair, n_pairs_fdr) <span class="sc">|&gt;</span></span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">&quot;Category&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">var_Correlate =</span> <span class="st">&quot;Measure&quot;</span>, <span class="at">IAS =</span> <span class="st">&quot;IAS total β [95% CI]&quot;</span>, <span class="at">Magnitude_IAS =</span> <span class="st">&quot;Magnitude&quot;</span>,</span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>             <span class="at">Pairs =</span> <span class="st">&quot;Range across pairs&quot;</span>, <span class="at">strongest_pair =</span> <span class="st">&quot;Strongest pair&quot;</span>, <span class="at">n_pairs_fdr =</span> <span class="st">&quot;Pairs (FDR p &lt; .05)&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(N) <span class="sc">|&gt;</span></span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="st">&quot;* FDR-corrected p &lt; .05 (Benjamini–Hochberg, across all coefficients). Magnitude: |β| &lt; .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large.&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_apastyle</span>(<span class="at">font.size =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">list</span>(<span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="fu">px</span>(<span class="dv">14</span>)),</span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">&quot;#ECEFF1&quot;</span>),</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="fu">c</span>(<span class="st">&quot;top&quot;</span>, <span class="st">&quot;bottom&quot;</span>), <span class="at">color =</span> <span class="st">&quot;#455A64&quot;</span>, <span class="at">weight =</span> <span class="fu">px</span>(<span class="fl">1.5</span>))),</span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_row_groups</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Magnitude cell colour: hue = sign of the IAS total β (blue negative, orange-red positive),</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># intensity = magnitude category (barely tinted for negligible, strongest for large)</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mag_fill =</span> {</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    base <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(beta_IAS <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">&quot;#2196F3&quot;</span>, <span class="st">&quot;#FF5722&quot;</span>)</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    alpha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Negligible =</span> .<span class="dv">06</span>, <span class="at">Small =</span> .<span class="dv">30</span>, <span class="at">Moderate =</span> .<span class="dv">60</span>, <span class="at">Large =</span> .<span class="dv">95</span>)[<span class="fu">as.character</span>(Magnitude_IAS)]</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>    rgb_base <span class="ot">&lt;-</span> <span class="fu">col2rgb</span>(base) <span class="sc">/</span> <span class="dv">255</span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rgb</span>(<span class="fu">t</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sweep</span>(<span class="dv">1</span> <span class="sc">-</span> rgb_base, <span class="dv">2</span>, alpha, <span class="st">`</span><span class="at">*</span><span class="st">`</span>)))</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">|&gt;</span></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Category, var_Correlate, k, N, IAS, Magnitude_IAS, Pairs, strongest_pair, n_pairs_fdr, mag_fill) <span class="sc">|&gt;</span></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">&quot;Category&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">var_Correlate =</span> <span class="st">&quot;Measure&quot;</span>, <span class="at">IAS =</span> <span class="st">&quot;IAS total β [95% CI]&quot;</span>, <span class="at">Magnitude_IAS =</span> <span class="st">&quot;Magnitude&quot;</span>,</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>             <span class="at">Pairs =</span> <span class="st">&quot;Range across pairs&quot;</span>, <span class="at">strongest_pair =</span> <span class="st">&quot;Strongest pair&quot;</span>, <span class="at">n_pairs_fdr =</span> <span class="st">&quot;Pairs (FDR p &lt; .05)&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(N) <span class="sc">|&gt;</span></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(<span class="at">columns =</span> mag_fill, <span class="at">target_columns =</span> Magnitude_IAS, <span class="at">fn =</span> identity) <span class="sc">|&gt;</span></span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(mag_fill) <span class="sc">|&gt;</span></span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="st">&quot;* FDR-corrected p &lt; .05 (Benjamini–Hochberg, across all coefficients). Magnitude refers to the IAS total β: |β| &lt; .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large; cell colour shows direction (blue = negative, red = positive) and is stronger for larger magnitudes.&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_apastyle</span>(<span class="at">font.size =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">list</span>(<span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="fu">c</span>(<span class="st">&quot;top&quot;</span>, <span class="st">&quot;bottom&quot;</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">weight =</span> <span class="fu">px</span>(<span class="dv">1</span>))),</span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_row_groups</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="razqfgdcyt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -5623,14 +5632,14 @@ height: 0px !important;
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<th colspan="8" id="Demographics" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-size: 14px; font-weight: bold; background-color: #ECEFF1; border-top-width: 1.5px; border-top-style: solid; border-top-color: #455A64; border-bottom-width: 1.5px; border-bottom-style: solid; border-bottom-color: #455A64" scope="colgroup">Demographics</th>
+<th colspan="8" id="Demographics" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black" scope="colgroup">Demographics</th>
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left" headers="Demographics  var_Correlate">Age</td>
 <td class="gt_row gt_right" headers="Demographics  k">24</td>
 <td class="gt_row gt_right" headers="Demographics  N">33,638</td>
 <td class="gt_row gt_left" headers="Demographics  IAS">0.18 [0.13, 0.22]*</td>
-<td class="gt_row gt_center" headers="Demographics  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Demographics  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Demographics  Pairs">0.07 to 0.17</td>
 <td class="gt_row gt_left" headers="Demographics  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Demographics  n_pairs_fdr">7</td>
@@ -5640,20 +5649,20 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Demographics  k">24</td>
 <td class="gt_row gt_right" headers="Demographics  N">33,158</td>
 <td class="gt_row gt_left" headers="Demographics  IAS">-0.07 [-0.12, -0.01]*</td>
-<td class="gt_row gt_center" headers="Demographics  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Demographics  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Demographics  Pairs">-0.21 to 0.06</td>
 <td class="gt_row gt_left" headers="Demographics  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Demographics  n_pairs_fdr">3</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="8" id="Interoception" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-size: 14px; font-weight: bold; background-color: #ECEFF1; border-top-width: 1.5px; border-top-style: solid; border-top-color: #455A64; border-bottom-width: 1.5px; border-bottom-style: solid; border-bottom-color: #455A64" scope="colgroup">Interoception</th>
+<th colspan="8" id="Interoception" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black" scope="colgroup">Interoception</th>
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left" headers="Interoception  var_Correlate">Interoceptive Difficulties - ISQ</td>
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">393</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">-0.55 [-0.63, -0.47]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Large</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #2C9BF4; color: #FFFFFF">Large</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.54 to -0.18</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5663,7 +5672,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">2</td>
 <td class="gt_row gt_right" headers="Interoception  N">1,262</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">-0.49 [-0.56, -0.42]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #7AC0F8; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.35 to -0.20</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5673,7 +5682,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">513</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.42 [0.34, 0.49]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FF9A7A; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.18 to 0.30</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5683,7 +5692,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">802</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.41 [0.35, 0.48]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FF9A7A; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.17 to 0.45</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5693,7 +5702,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">12</td>
 <td class="gt_row gt_right" headers="Interoception  N">5,218</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.39 [0.34, 0.44]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FF9A7A; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.16 to 0.38</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5703,7 +5712,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">13</td>
 <td class="gt_row gt_right" headers="Interoception  N">5,612</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.37 [0.33, 0.42]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FF9A7A; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.17 to 0.36</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5713,7 +5722,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">12</td>
 <td class="gt_row gt_right" headers="Interoception  N">5,216</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.37 [0.33, 0.41]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FF9A7A; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.16 to 0.31</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5723,7 +5732,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">8</td>
 <td class="gt_row gt_right" headers="Interoception  N">3,574</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">-0.31 [-0.35, -0.28]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #7AC0F8; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.26 to -0.13</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5733,7 +5742,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">522</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.31 [0.23, 0.39]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FF9A7A; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.09 to 0.23</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">6</td>
@@ -5743,7 +5752,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">814</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">-0.31 [-0.37, -0.24]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #7AC0F8; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.24 to -0.11</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5753,7 +5762,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">12</td>
 <td class="gt_row gt_right" headers="Interoception  N">5,218</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.30 [0.27, 0.33]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FF9A7A; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.14 to 0.26</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5763,7 +5772,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">802</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.28 [0.22, 0.35]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.10 to 0.34</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5773,7 +5782,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">522</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.27 [0.19, 0.35]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.07 to 0.24</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">5</td>
@@ -5783,7 +5792,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">11</td>
 <td class="gt_row gt_right" headers="Interoception  N">5,173</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.27 [0.23, 0.31]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.10 to 0.25</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5793,7 +5802,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">12</td>
 <td class="gt_row gt_right" headers="Interoception  N">5,219</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.26 [0.23, 0.30]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.09 to 0.27</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5803,7 +5812,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">519</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">-0.26 [-0.34, -0.18]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.28 to -0.08</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">UrinateDefecate</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">6</td>
@@ -5813,7 +5822,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">2</td>
 <td class="gt_row gt_right" headers="Interoception  N">1,329</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">-0.26 [-0.34, -0.17]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.25 to -0.03</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">UrinateDefecate</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">5</td>
@@ -5823,7 +5832,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">8</td>
 <td class="gt_row gt_right" headers="Interoception  N">3,574</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">-0.25 [-0.30, -0.20]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.19 to -0.12</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5833,7 +5842,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">802</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.24 [0.17, 0.31]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.08 to 0.26</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5843,7 +5852,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">8</td>
 <td class="gt_row gt_right" headers="Interoception  N">4,128</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.23 [0.09, 0.37]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.11 to 0.20</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">7</td>
@@ -5853,7 +5862,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">7</td>
 <td class="gt_row gt_right" headers="Interoception  N">3,074</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">-0.16 [-0.21, -0.12]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.15 to -0.02</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">5</td>
@@ -5863,7 +5872,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">11</td>
 <td class="gt_row gt_right" headers="Interoception  N">4,414</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.07 [0.02, 0.12]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">0.01 to 0.12</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">3</td>
@@ -5873,7 +5882,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">10</td>
 <td class="gt_row gt_right" headers="Interoception  N">4,368</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.06 [0.02, 0.11]*</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.00 to 0.11</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">UrinateDefecate</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">3</td>
@@ -5883,7 +5892,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">1</td>
 <td class="gt_row gt_right" headers="Interoception  N">814</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.04 [-0.03, 0.11]</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.04 to 0.16</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">1</td>
@@ -5893,20 +5902,20 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Interoception  k">8</td>
 <td class="gt_row gt_right" headers="Interoception  N">3,791</td>
 <td class="gt_row gt_left" headers="Interoception  IAS">0.02 [-0.08, 0.11]</td>
-<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Interoception  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Interoception  Pairs">-0.09 to 0.11</td>
 <td class="gt_row gt_left" headers="Interoception  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Interoception  n_pairs_fdr">2</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="8" id="Mood" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-size: 14px; font-weight: bold; background-color: #ECEFF1; border-top-width: 1.5px; border-top-style: solid; border-top-color: #455A64; border-bottom-width: 1.5px; border-bottom-style: solid; border-bottom-color: #455A64" scope="colgroup">Mood</th>
+<th colspan="8" id="Mood" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black" scope="colgroup">Mood</th>
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left" headers="Mood  var_Correlate">Negative Affect - PANAS</td>
 <td class="gt_row gt_right" headers="Mood  k">1</td>
 <td class="gt_row gt_right" headers="Mood  N">396</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.32 [-0.41, -0.23]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #7AC0F8; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.29 to -0.14</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">7</td>
@@ -5916,7 +5925,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">1</td>
 <td class="gt_row gt_right" headers="Mood  N">836</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.31 [-0.37, -0.24]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #7AC0F8; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.34 to -0.13</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">7</td>
@@ -5926,7 +5935,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">1</td>
 <td class="gt_row gt_right" headers="Mood  N">392</td>
 <td class="gt_row gt_left" headers="Mood  IAS">0.30 [0.21, 0.40]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #FF9A7A; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">0.15 to 0.28</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">7</td>
@@ -5936,7 +5945,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">6</td>
 <td class="gt_row gt_right" headers="Mood  N">3,866</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.28 [-0.35, -0.22]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.32 to -0.11</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">7</td>
@@ -5946,7 +5955,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">5</td>
 <td class="gt_row gt_right" headers="Mood  N">2,484</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.26 [-0.32, -0.21]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.28 to -0.12</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">7</td>
@@ -5956,7 +5965,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">1</td>
 <td class="gt_row gt_right" headers="Mood  N">519</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.23 [-0.31, -0.15]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.22 to -0.04</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">UrinateDefecate</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">5</td>
@@ -5966,7 +5975,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">1</td>
 <td class="gt_row gt_right" headers="Mood  N">519</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.22 [-0.30, -0.13]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.20 to -0.09</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">6</td>
@@ -5976,7 +5985,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">2</td>
 <td class="gt_row gt_right" headers="Mood  N">1,111</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.22 [-0.27, -0.16]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.27 to -0.06</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">6</td>
@@ -5986,7 +5995,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">1</td>
 <td class="gt_row gt_right" headers="Mood  N">106</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.20 [-0.38, -0.01]</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.35 to -0.01</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">1</td>
@@ -5996,7 +6005,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">3</td>
 <td class="gt_row gt_right" headers="Mood  N">2,747</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.19 [-0.38, -0.00]</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.22 to -0.04</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">UrinateDefecate</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">4</td>
@@ -6006,7 +6015,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">4</td>
 <td class="gt_row gt_right" headers="Mood  N">2,194</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.13 [-0.20, -0.06]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.17 to -0.03</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">4</td>
@@ -6016,7 +6025,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">4</td>
 <td class="gt_row gt_right" headers="Mood  N">2,194</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.12 [-0.18, -0.06]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.18 to -0.01</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">4</td>
@@ -6026,7 +6035,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">1</td>
 <td class="gt_row gt_right" headers="Mood  N">103</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.12 [-0.31, 0.07]</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.15 to 0.03</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">0</td>
@@ -6036,7 +6045,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">2</td>
 <td class="gt_row gt_right" headers="Mood  N">1,449</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.08 [-0.15, -0.01]*</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.19 to 0.05</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">2</td>
@@ -6046,20 +6055,20 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Mood  k">1</td>
 <td class="gt_row gt_right" headers="Mood  N">60</td>
 <td class="gt_row gt_left" headers="Mood  IAS">-0.06 [-0.31, 0.19]</td>
-<td class="gt_row gt_center" headers="Mood  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Mood  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Mood  Pairs">-0.14 to 0.14</td>
 <td class="gt_row gt_left" headers="Mood  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Mood  n_pairs_fdr">0</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="8" id="Personality" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-size: 14px; font-weight: bold; background-color: #ECEFF1; border-top-width: 1.5px; border-top-style: solid; border-top-color: #455A64; border-bottom-width: 1.5px; border-bottom-style: solid; border-bottom-color: #455A64" scope="colgroup">Personality</th>
+<th colspan="8" id="Personality" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black" scope="colgroup">Personality</th>
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left" headers="Personality  var_Correlate">Openness</td>
 <td class="gt_row gt_right" headers="Personality  k">2</td>
 <td class="gt_row gt_right" headers="Personality  N">22,303</td>
 <td class="gt_row gt_left" headers="Personality  IAS">0.16 [0.12, 0.20]*</td>
-<td class="gt_row gt_center" headers="Personality  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Personality  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Personality  Pairs">0.07 to 0.13</td>
 <td class="gt_row gt_left" headers="Personality  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Personality  n_pairs_fdr">7</td>
@@ -6069,7 +6078,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Personality  k">2</td>
 <td class="gt_row gt_right" headers="Personality  N">22,299</td>
 <td class="gt_row gt_left" headers="Personality  IAS">0.16 [0.11, 0.21]*</td>
-<td class="gt_row gt_center" headers="Personality  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Personality  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Personality  Pairs">0.06 to 0.17</td>
 <td class="gt_row gt_left" headers="Personality  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Personality  n_pairs_fdr">5</td>
@@ -6079,7 +6088,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Personality  k">1</td>
 <td class="gt_row gt_right" headers="Personality  N">485</td>
 <td class="gt_row gt_left" headers="Personality  IAS">-0.16 [-0.25, -0.07]*</td>
-<td class="gt_row gt_center" headers="Personality  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Personality  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Personality  Pairs">-0.22 to -0.01</td>
 <td class="gt_row gt_left" headers="Personality  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Personality  n_pairs_fdr">3</td>
@@ -6089,7 +6098,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Personality  k">2</td>
 <td class="gt_row gt_right" headers="Personality  N">22,304</td>
 <td class="gt_row gt_left" headers="Personality  IAS">0.16 [0.10, 0.21]*</td>
-<td class="gt_row gt_center" headers="Personality  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Personality  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Personality  Pairs">0.05 to 0.15</td>
 <td class="gt_row gt_left" headers="Personality  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Personality  n_pairs_fdr">5</td>
@@ -6099,7 +6108,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Personality  k">2</td>
 <td class="gt_row gt_right" headers="Personality  N">22,300</td>
 <td class="gt_row gt_left" headers="Personality  IAS">0.13 [0.10, 0.17]*</td>
-<td class="gt_row gt_center" headers="Personality  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Personality  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Personality  Pairs">0.05 to 0.09</td>
 <td class="gt_row gt_left" headers="Personality  strongest_pair">CoughSneeze</td>
 <td class="gt_row gt_right" headers="Personality  n_pairs_fdr">6</td>
@@ -6109,20 +6118,20 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Personality  k">3</td>
 <td class="gt_row gt_right" headers="Personality  N">22,826</td>
 <td class="gt_row gt_left" headers="Personality  IAS">-0.12 [-0.17, -0.08]*</td>
-<td class="gt_row gt_center" headers="Personality  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Personality  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Personality  Pairs">-0.23 to -0.04</td>
 <td class="gt_row gt_left" headers="Personality  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Personality  n_pairs_fdr">5</td>
 </tr>
 <tr class="gt_group_heading_row odd">
-<th colspan="8" id="Psychopathology-and-Neurodevelopmental-Traits" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-size: 14px; font-weight: bold; background-color: #ECEFF1; border-top-width: 1.5px; border-top-style: solid; border-top-color: #455A64; border-bottom-width: 1.5px; border-bottom-style: solid; border-bottom-color: #455A64" scope="colgroup">Psychopathology and Neurodevelopmental Traits</th>
+<th colspan="8" id="Psychopathology-and-Neurodevelopmental-Traits" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black" scope="colgroup">Psychopathology and Neurodevelopmental Traits</th>
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  var_Correlate">Autistic Traits - CATI</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">519</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.39 [-0.47, -0.31]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #7AC0F8; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.36 to -0.13</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">7</td>
@@ -6132,7 +6141,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">2</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">1,004</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.32 [-0.38, -0.25]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Moderate</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #7AC0F8; color: #000000">Moderate</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.26 to -0.13</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">7</td>
@@ -6142,7 +6151,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">2</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">1,004</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.29 [-0.38, -0.20]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.26 to -0.08</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">6</td>
@@ -6152,7 +6161,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">2</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">1,004</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.22 [-0.32, -0.13]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.23 to -0.04</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">6</td>
@@ -6162,7 +6171,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">2</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">1,004</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.19 [-0.25, -0.13]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.19 to -0.05</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">5</td>
@@ -6172,7 +6181,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.17 [-0.26, -0.08]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.17 to -0.06</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">3</td>
@@ -6182,7 +6191,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.16 [-0.25, -0.07]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.19 to -0.02</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">4</td>
@@ -6192,7 +6201,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.15 [-0.24, -0.06]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.13 to -0.01</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">2</td>
@@ -6202,7 +6211,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.14 [-0.23, -0.05]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.14 to -0.02</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">5</td>
@@ -6212,7 +6221,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.13 [-0.22, -0.04]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.17 to 0.00</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">3</td>
@@ -6222,7 +6231,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.13 [-0.21, -0.04]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.17 to 0.00</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">2</td>
@@ -6232,7 +6241,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.12 [-0.21, -0.03]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.15 to -0.00</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">4</td>
@@ -6242,7 +6251,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.10 [-0.19, -0.01]*</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #BCE0FB; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.14 to -0.03</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">2</td>
@@ -6252,7 +6261,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">2</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">1,004</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.09 [-0.27, 0.09]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.12 to 0.00</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">1</td>
@@ -6262,7 +6271,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">442</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.09 [-0.18, 0.01]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.14 to 0.02</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">1</td>
@@ -6272,7 +6281,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.07 [-0.16, 0.02]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.14 to 0.05</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">2</td>
@@ -6282,7 +6291,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">0.07 [-0.02, 0.16]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.05 to 0.08</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">0</td>
@@ -6292,7 +6301,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">104</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.05 [-0.24, 0.14]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.14 to 0.06</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">CoughSneeze</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">0</td>
@@ -6302,7 +6311,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.04 [-0.13, 0.04]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.11 to 0.02</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">1</td>
@@ -6312,7 +6321,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.04 [-0.13, 0.05]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.08 to 0.02</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">WindBurp</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">0</td>
@@ -6322,7 +6331,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.02 [-0.11, 0.07]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.06 to 0.07</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">0</td>
@@ -6332,20 +6341,20 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  k">1</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  N">485</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  IAS">-0.02 [-0.11, 0.07]</td>
-<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Psychopathology-and-Neurodevelopmental-Traits  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  Pairs">-0.08 to 0.14</td>
 <td class="gt_row gt_left" headers="Psychopathology-and-Neurodevelopmental-Traits  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Psychopathology-and-Neurodevelopmental-Traits  n_pairs_fdr">1</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="8" id="Beliefs" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-size: 14px; font-weight: bold; background-color: #ECEFF1; border-top-width: 1.5px; border-top-style: solid; border-top-color: #455A64; border-bottom-width: 1.5px; border-bottom-style: solid; border-bottom-color: #455A64" scope="colgroup">Beliefs</th>
+<th colspan="8" id="Beliefs" class="gt_group_heading" data-quarto-table-cell-role="th" style="font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black" scope="colgroup">Beliefs</th>
 </tr>
 <tr class="gt_row_group_first odd">
 <td class="gt_row gt_left" headers="Beliefs  var_Correlate">Good - Primal Belief</td>
 <td class="gt_row gt_right" headers="Beliefs  k">2</td>
 <td class="gt_row gt_right" headers="Beliefs  N">588</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.22 [0.01, 0.43]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.01 to 0.13</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">2</td>
@@ -6355,7 +6364,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">2</td>
 <td class="gt_row gt_right" headers="Beliefs  N">588</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.17 [0.09, 0.25]*</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">0.02 to 0.13</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">BreathingHeart</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">6</td>
@@ -6365,7 +6374,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.15 [0.06, 0.24]*</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">0.01 to 0.14</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">4</td>
@@ -6375,7 +6384,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">2</td>
 <td class="gt_row gt_right" headers="Beliefs  N">588</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.15 [0.05, 0.25]*</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.01 to 0.13</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">2</td>
@@ -6385,7 +6394,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">2</td>
 <td class="gt_row gt_right" headers="Beliefs  N">588</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.14 [0.04, 0.24]*</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">0.03 to 0.18</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">1</td>
@@ -6395,7 +6404,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.13 [0.04, 0.22]*</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">0.04 to 0.13</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">2</td>
@@ -6405,7 +6414,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">2</td>
 <td class="gt_row gt_right" headers="Beliefs  N">588</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.12 [0.04, 0.21]*</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.00 to 0.12</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">1</td>
@@ -6415,7 +6424,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.10 [0.01, 0.19]*</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Small</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFCDBD; color: #000000">Small</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">0.01 to 0.09</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">0</td>
@@ -6425,7 +6434,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.09 [0.00, 0.18]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.06 to 0.12</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">CoughSneeze</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">1</td>
@@ -6435,7 +6444,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.09 [0.00, 0.18]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.02 to 0.10</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">CoughSneeze</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">0</td>
@@ -6445,7 +6454,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.08 [-0.01, 0.17]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">0.03 to 0.08</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">WindBurp</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">0</td>
@@ -6455,7 +6464,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">-0.07 [-0.15, 0.02]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.09 to 0.03</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">0</td>
@@ -6465,7 +6474,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">2</td>
 <td class="gt_row gt_right" headers="Beliefs  N">588</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.05 [-0.08, 0.17]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.08 to 0.06</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">HungryThirsty</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">0</td>
@@ -6475,7 +6484,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.04 [-0.05, 0.13]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.02 to 0.06</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">0</td>
@@ -6485,7 +6494,7 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">2</td>
 <td class="gt_row gt_right" headers="Beliefs  N">588</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">0.02 [-0.06, 0.10]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #FFF5F2; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.01 to 0.05</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">MusclesPain</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">0</td>
@@ -6495,14 +6504,14 @@ height: 0px !important;
 <td class="gt_row gt_right" headers="Beliefs  k">1</td>
 <td class="gt_row gt_right" headers="Beliefs  N">485</td>
 <td class="gt_row gt_left" headers="Beliefs  IAS">-0.01 [-0.10, 0.08]</td>
-<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS">Negligible</td>
+<td class="gt_row gt_center" headers="Beliefs  Magnitude_IAS" style="background-color: #F2F9FE; color: #000000">Negligible</td>
 <td class="gt_row gt_left" headers="Beliefs  Pairs">-0.12 to 0.04</td>
 <td class="gt_row gt_left" headers="Beliefs  strongest_pair">BruiseBlood</td>
 <td class="gt_row gt_right" headers="Beliefs  n_pairs_fdr">1</td>
 </tr>
 </tbody><tfoot>
 <tr class="gt_footnotes odd">
-<td colspan="8" class="gt_footnote">* FDR-corrected p &lt; .05 (Benjamini–Hochberg, across all coefficients). Magnitude: |β| &lt; .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large.</td>
+<td colspan="8" class="gt_footnote">* FDR-corrected p &lt; .05 (Benjamini–Hochberg, across all coefficients). Magnitude refers to the IAS total β: |β| &lt; .10 negligible, .10–.29 small, .30–.49 moderate, ≥ .50 large; cell colour shows direction (blue = negative, red = positive) and is stronger for larger magnitudes.</td>
 </tr>
 </tfoot>
 
