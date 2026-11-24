@@ -4833,13 +4833,13 @@ plot(rez_efa$n_fac)
 
 ## Sensitivity Analysis
 
-Supplementary analyses of the confirmatory models: local parameters, full fit indices for the pooled data and each sample, leave-one-dataset-out refits, and multigroup invariance across datasets.
+Supplementary analyses of the confirmatory models (local parameters, full fit indices for the pooled data and each sample, leave-one-dataset-out refits, and multigroup invariance across datasets) and of the exploratory methods (per-sample pair recovery, and leave-one-dataset-out HCA, EGA and EFA).
 
 ::: {.panel-tabset}
 
 ### Local Parameters (7-Factor Model)
 
-Standardised loadings and factor correlations of the pooled 7-factor model, as local evidence complementing global fit (Reviewer 1).
+Standardised loadings and factor correlations of the pooled 7-factor model, as local evidence complementing global fit.
 
 ```{r}
 #| warning: false
@@ -4984,7 +4984,7 @@ saveRDS(table_s_cfa_samples, "figures/tableS_cfa_samples.rds")
 
 ### Leave-One-Dataset-Out CFA
 
-Sensitivity analysis for the influence of individual datasets on the pooled CFA (Reviewer 3): all models are refitted on the pooled data after removing one dataset at a time.
+Sensitivity analysis for the influence of individual datasets on the pooled CFA: all models are refitted on the pooled data after removing one dataset at a time.
 
 ```{r}
 #| warning: false
@@ -5092,7 +5092,7 @@ saveRDS(table_s_mg, "figures/tableS_cfa_multigroup.rds")
 
 ### Pair Recovery per Sample
 
-Sensitivity of the exploratory methods to the pooled covariance structure (Reviewer 3): for each individual sample (final 14-item set), we check whether HCA merges the two items of each pair with each other first (i.e., as a two-item cluster before joining any other item), and whether EGA assigns them to the same (lower-order) community. EGA is re-estimated here with a fixed seed, so partitions can differ slightly from the bootstrap runs shown in the Structure Invariance tabs.
+Sensitivity of the exploratory methods to the pooled covariance structure: for each individual sample (final 14-item set), we check whether HCA merges the two items of each pair with each other first (i.e., as a two-item cluster before joining any other item), and whether EGA assigns them to the same (lower-order) community. EGA is re-estimated here with a fixed seed, so partitions can differ slightly from the bootstrap runs shown in the Structure Invariance tabs.
 
 ```{r pair-recovery}
 #| warning: false
@@ -5156,7 +5156,7 @@ pair_recovery |>
 
 ### Leave-One-Dataset-Out HCA and EGA
 
-Leave-one-dataset-out sensitivity analysis for the exploratory methods (Reviewer 3): the pooled HCA and EGA are re-estimated after removing one dataset at a time (same complete-case samples as the CFA leave-one-out), and we count how many of the seven item pairs each method recovers (same criteria as in the previous tab).
+Leave-one-dataset-out sensitivity analysis for the exploratory methods: the pooled HCA and EGA are re-estimated after removing one dataset at a time (same complete-case samples as the CFA leave-one-out), and we count how many of the seven item pairs each method recovers (same criteria as in the previous tab).
 
 ```{r loo-exploratory}
 #| warning: false
@@ -5196,6 +5196,58 @@ loo_exploratory |>
              EGA_communities = "EGA communities") |>
   tab_header(title = "Leave-One-Dataset-Out Pooled HCA and EGA") |>
   tab_footnote("Out of seven item pairs. HCA: the two items merge with each other first; EGA: the two items share a (lower-order) community.") |>
+  gt_apastyle(font.size = 11)
+```
+
+### Leave-One-Dataset-Out EFA
+
+Leave-one-dataset-out sensitivity analysis for the EFA: the pooled 3-factor EFA on the 20 items (before item removal; oblimin rotation, as in the main analysis) is re-estimated after removing one dataset at a time (all 27 samples, pairwise correlations as in the main EFA). For each item we record the primary and secondary absolute loadings and whether the item is flagged by the same criteria as in the main analysis: weak primary loading (< .40) or split loading (primary − secondary < .20).
+
+```{r loo-efa}
+#| warning: false
+#| message: false
+
+removed_items <- c("Taste", "Affective_touch", "Vomit", "Itch", "Sex_arousal", "Temp")
+
+efa_loadings <- function(d) {
+  fa <- factor_analysis(d, n = 3, sort = TRUE, rotation = "oblimin")
+  L <- abs(unclass(attributes(fa)$model$loadings))
+  s <- t(apply(L, 1, \(r) sort(r, decreasing = TRUE)[1:2]))
+  data.frame(Item = rownames(L), Primary = s[, 1], Secondary = s[, 2])
+}
+efa_flag <- \(p, s) p < .40 | (p - s) < .20
+
+efa_full <- efa_loadings(data_all)
+loo_efa <- map_dfr(unique(sample_id), \(s) efa_loadings(data_all[sample_id != s, ]) |> mutate(Left_out = s))
+
+table_s_loo_efa <- loo_efa |>
+  group_by(Item) |>
+  summarise(LOO_range = sprintf("%.2f–%.2f", min(Primary), max(Primary)),
+            Weak = sum(Primary < .40),
+            Split = sum(Primary >= .40 & (Primary - Secondary) < .20),
+            Flagged = paste0(sum(efa_flag(Primary, Secondary)), "/", n()),
+            No9 = sprintf("%.2f / %.2f%s", Primary[Left_out == "9"], Secondary[Left_out == "9"],
+                          ifelse(efa_flag(Primary[Left_out == "9"], Secondary[Left_out == "9"]), "†", "")),
+            .groups = "drop") |>
+  left_join(efa_full |> transmute(Item, Pooled = sprintf("%.2f / %.2f%s", Primary, Secondary,
+                                                         ifelse(efa_flag(Primary, Secondary), "†", ""))),
+            by = "Item") |>
+  mutate(Status = ifelse(Item %in% removed_items, "Removed", "Retained"),
+         Item = str_replace(Item, "_", " ")) |>
+  arrange(desc(Status), Item) |>
+  select(Status, Item, Pooled, LOO_range, Weak, Split, Flagged, No9)
+saveRDS(table_s_loo_efa, "figures/tableS_loo_efa.rds")
+
+table_s_loo_efa |>
+  gt(groupname_col = "Status") |>
+  cols_label(Pooled = "Pooled (primary / secondary)", LOO_range = "Primary loading range",
+             Weak = "Weak (< .40)", Split = "Split (Δ < .20)", Flagged = "Flagged (either)",
+             No9 = "Without Sample 9 (primary / secondary)") |>
+  tab_spanner("Leave-one-dataset-out refits (k = 27)", c(LOO_range, Weak, Split, Flagged)) |>
+  tab_header(title = "Leave-One-Dataset-Out Pooled EFA (20 Items, 3 Factors)") |>
+  tab_footnote(paste0("Absolute loadings from the 3-factor oblimin EFA. Weak and Split give the number of refits in which the item ",
+                      "had a primary loading below .40, or a primary loading of at least .40 that exceeded the secondary loading by ",
+                      "less than .20. † = flagged (weak or split loading). Sample 9 contributes 61% of the pooled sample.")) |>
   gt_apastyle(font.size = 11)
 ```
 

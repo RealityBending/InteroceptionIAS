@@ -52046,9 +52046,9 @@ height: 0px !important;
 </section>
 <section id="sensitivity-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="sensitivity-analysis">Sensitivity Analysis</h2>
-<p>Supplementary analyses of the confirmatory models: local parameters, full fit indices for the pooled data and each sample, leave-one-dataset-out refits, and multigroup invariance across datasets.</p>
+<p>Supplementary analyses of the confirmatory models (local parameters, full fit indices for the pooled data and each sample, leave-one-dataset-out refits, and multigroup invariance across datasets) and of the exploratory methods (per-sample pair recovery, and leave-one-dataset-out HCA, EGA and EFA).</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-61-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-1" role="tab" aria-controls="tabset-61-1" aria-selected="true" href>Local Parameters (7-Factor Model)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-2" role="tab" aria-controls="tabset-61-2" aria-selected="false" href>CFA Model Comparison (Pooled Data)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-3" role="tab" aria-controls="tabset-61-3" aria-selected="false" href>CFA Model Comparison per Sample</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-4" role="tab" aria-controls="tabset-61-4" aria-selected="false" href>Leave-One-Dataset-Out CFA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-5" role="tab" aria-controls="tabset-61-5" aria-selected="false" href>Multigroup CFA Across Datasets</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-6" role="tab" aria-controls="tabset-61-6" aria-selected="false" href>Pair Recovery per Sample</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-7" role="tab" aria-controls="tabset-61-7" aria-selected="false" href>Leave-One-Dataset-Out HCA and EGA</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-61-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-1" role="tab" aria-controls="tabset-61-1" aria-selected="true" href>Local Parameters (7-Factor Model)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-2" role="tab" aria-controls="tabset-61-2" aria-selected="false" href>CFA Model Comparison (Pooled Data)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-3" role="tab" aria-controls="tabset-61-3" aria-selected="false" href>CFA Model Comparison per Sample</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-4" role="tab" aria-controls="tabset-61-4" aria-selected="false" href>Leave-One-Dataset-Out CFA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-5" role="tab" aria-controls="tabset-61-5" aria-selected="false" href>Multigroup CFA Across Datasets</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-6" role="tab" aria-controls="tabset-61-6" aria-selected="false" href>Pair Recovery per Sample</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-7" role="tab" aria-controls="tabset-61-7" aria-selected="false" href>Leave-One-Dataset-Out HCA and EGA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-61-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-61-8" role="tab" aria-controls="tabset-61-8" aria-selected="false" href>Leave-One-Dataset-Out EFA</a></li></ul>
 <div class="tab-content">
 <div id="tabset-61-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-61-1-tab">
 <p>Standardised loadings and factor correlations of the pooled 7-factor model, as local evidence complementing global fit (Reviewer 1).</p>
@@ -58785,6 +58785,680 @@ height: 0px !important;
 </div>
 </div>
 </div>
+<div id="tabset-61-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-61-8-tab">
+<p>Leave-one-dataset-out sensitivity analysis for the EFA (Reviewer 3): the pooled 3-factor EFA on the 20 items (before item removal; oblimin rotation, as in the main analysis) is re-estimated after removing one dataset at a time (all 27 samples, pairwise correlations as in the main EFA). For each item we record the primary and secondary absolute loadings and whether the item is flagged by the same criteria as in the main analysis: weak primary loading (&lt; .40) or split loading (primary − secondary &lt; .20).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb531"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb531-1"><a href="#cb531-1" aria-hidden="true" tabindex="-1"></a>removed_items <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Taste&quot;</span>, <span class="st">&quot;Affective_touch&quot;</span>, <span class="st">&quot;Vomit&quot;</span>, <span class="st">&quot;Itch&quot;</span>, <span class="st">&quot;Sex_arousal&quot;</span>, <span class="st">&quot;Temp&quot;</span>)</span>
+<span id="cb531-2"><a href="#cb531-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb531-3"><a href="#cb531-3" aria-hidden="true" tabindex="-1"></a>efa_loadings <span class="ot">&lt;-</span> <span class="cf">function</span>(d) {</span>
+<span id="cb531-4"><a href="#cb531-4" aria-hidden="true" tabindex="-1"></a>  fa <span class="ot">&lt;-</span> <span class="fu">factor_analysis</span>(d, <span class="at">n =</span> <span class="dv">3</span>, <span class="at">sort =</span> <span class="cn">TRUE</span>, <span class="at">rotation =</span> <span class="st">&quot;oblimin&quot;</span>)</span>
+<span id="cb531-5"><a href="#cb531-5" aria-hidden="true" tabindex="-1"></a>  L <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">unclass</span>(<span class="fu">attributes</span>(fa)<span class="sc">$</span>model<span class="sc">$</span>loadings))</span>
+<span id="cb531-6"><a href="#cb531-6" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(L, <span class="dv">1</span>, \(r) <span class="fu">sort</span>(r, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]))</span>
+<span id="cb531-7"><a href="#cb531-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">Item =</span> <span class="fu">rownames</span>(L), <span class="at">Primary =</span> s[, <span class="dv">1</span>], <span class="at">Secondary =</span> s[, <span class="dv">2</span>])</span>
+<span id="cb531-8"><a href="#cb531-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb531-9"><a href="#cb531-9" aria-hidden="true" tabindex="-1"></a>efa_flag <span class="ot">&lt;-</span> \(p, s) p <span class="sc">&lt;</span> .<span class="dv">40</span> <span class="sc">|</span> (p <span class="sc">-</span> s) <span class="sc">&lt;</span> .<span class="dv">20</span></span>
+<span id="cb531-10"><a href="#cb531-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb531-11"><a href="#cb531-11" aria-hidden="true" tabindex="-1"></a>efa_full <span class="ot">&lt;-</span> <span class="fu">efa_loadings</span>(data_all)</span>
+<span id="cb531-12"><a href="#cb531-12" aria-hidden="true" tabindex="-1"></a>loo_efa <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">unique</span>(sample_id), \(s) <span class="fu">efa_loadings</span>(data_all[sample_id <span class="sc">!=</span> s, ]) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Left_out =</span> s))</span>
+<span id="cb531-13"><a href="#cb531-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb531-14"><a href="#cb531-14" aria-hidden="true" tabindex="-1"></a>table_s_loo_efa <span class="ot">&lt;-</span> loo_efa <span class="sc">|&gt;</span></span>
+<span id="cb531-15"><a href="#cb531-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Item) <span class="sc">|&gt;</span></span>
+<span id="cb531-16"><a href="#cb531-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">LOO_range =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%.2f–%.2f&quot;</span>, <span class="fu">min</span>(Primary), <span class="fu">max</span>(Primary)),</span>
+<span id="cb531-17"><a href="#cb531-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">Weak =</span> <span class="fu">sum</span>(Primary <span class="sc">&lt;</span> .<span class="dv">40</span>),</span>
+<span id="cb531-18"><a href="#cb531-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">Split =</span> <span class="fu">sum</span>(Primary <span class="sc">&gt;=</span> .<span class="dv">40</span> <span class="sc">&amp;</span> (Primary <span class="sc">-</span> Secondary) <span class="sc">&lt;</span> .<span class="dv">20</span>),</span>
+<span id="cb531-19"><a href="#cb531-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">Flagged =</span> <span class="fu">paste0</span>(<span class="fu">sum</span>(<span class="fu">efa_flag</span>(Primary, Secondary)), <span class="st">&quot;/&quot;</span>, <span class="fu">n</span>()),</span>
+<span id="cb531-20"><a href="#cb531-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">No9 =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%.2f / %.2f%s&quot;</span>, Primary[Left_out <span class="sc">==</span> <span class="st">&quot;9&quot;</span>], Secondary[Left_out <span class="sc">==</span> <span class="st">&quot;9&quot;</span>],</span>
+<span id="cb531-21"><a href="#cb531-21" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">ifelse</span>(<span class="fu">efa_flag</span>(Primary[Left_out <span class="sc">==</span> <span class="st">&quot;9&quot;</span>], Secondary[Left_out <span class="sc">==</span> <span class="st">&quot;9&quot;</span>]), <span class="st">&quot;†&quot;</span>, <span class="st">&quot;&quot;</span>)),</span>
+<span id="cb531-22"><a href="#cb531-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb531-23"><a href="#cb531-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(efa_full <span class="sc">|&gt;</span> <span class="fu">transmute</span>(Item, <span class="at">Pooled =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%.2f / %.2f%s&quot;</span>, Primary, Secondary,</span>
+<span id="cb531-24"><a href="#cb531-24" aria-hidden="true" tabindex="-1"></a>                                                         <span class="fu">ifelse</span>(<span class="fu">efa_flag</span>(Primary, Secondary), <span class="st">&quot;†&quot;</span>, <span class="st">&quot;&quot;</span>))),</span>
+<span id="cb531-25"><a href="#cb531-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="st">&quot;Item&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb531-26"><a href="#cb531-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Status =</span> <span class="fu">ifelse</span>(Item <span class="sc">%in%</span> removed_items, <span class="st">&quot;Removed&quot;</span>, <span class="st">&quot;Retained&quot;</span>),</span>
+<span id="cb531-27"><a href="#cb531-27" aria-hidden="true" tabindex="-1"></a>         <span class="at">Item =</span> <span class="fu">str_replace</span>(Item, <span class="st">&quot;_&quot;</span>, <span class="st">&quot; &quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb531-28"><a href="#cb531-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Status), Item) <span class="sc">|&gt;</span></span>
+<span id="cb531-29"><a href="#cb531-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Status, Item, Pooled, LOO_range, Weak, Split, Flagged, No9)</span>
+<span id="cb531-30"><a href="#cb531-30" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(table_s_loo_efa, <span class="st">&quot;figures/tableS_loo_efa.rds&quot;</span>)</span>
+<span id="cb531-31"><a href="#cb531-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb531-32"><a href="#cb531-32" aria-hidden="true" tabindex="-1"></a>table_s_loo_efa <span class="sc">|&gt;</span></span>
+<span id="cb531-33"><a href="#cb531-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">&quot;Status&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb531-34"><a href="#cb531-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">Pooled =</span> <span class="st">&quot;Pooled (primary / secondary)&quot;</span>, <span class="at">LOO_range =</span> <span class="st">&quot;Primary loading range&quot;</span>,</span>
+<span id="cb531-35"><a href="#cb531-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">Weak =</span> <span class="st">&quot;Weak (&lt; .40)&quot;</span>, <span class="at">Split =</span> <span class="st">&quot;Split (Δ &lt; .20)&quot;</span>, <span class="at">Flagged =</span> <span class="st">&quot;Flagged (either)&quot;</span>,</span>
+<span id="cb531-36"><a href="#cb531-36" aria-hidden="true" tabindex="-1"></a>             <span class="at">No9 =</span> <span class="st">&quot;Without Sample 9 (primary / secondary)&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb531-37"><a href="#cb531-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="st">&quot;Leave-one-dataset-out refits (k = 27)&quot;</span>, <span class="fu">c</span>(LOO_range, Weak, Split, Flagged)) <span class="sc">|&gt;</span></span>
+<span id="cb531-38"><a href="#cb531-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Leave-One-Dataset-Out Pooled EFA (20 Items, 3 Factors)&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb531-39"><a href="#cb531-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="fu">paste0</span>(<span class="st">&quot;Absolute loadings from the 3-factor oblimin EFA. Weak and Split give the number of refits in which the item &quot;</span>,</span>
+<span id="cb531-40"><a href="#cb531-40" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;had a primary loading below .40, or a primary loading of at least .40 that exceeded the secondary loading by &quot;</span>,</span>
+<span id="cb531-41"><a href="#cb531-41" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;less than .20. † = flagged (weak or split loading). Sample 9 contributes 61% of the pooled sample.&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb531-42"><a href="#cb531-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_apastyle</span>(<span class="at">font.size =</span> <span class="dv">11</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="dhxsjwiqvc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dhxsjwiqvc table {
+font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#dhxsjwiqvc thead, #dhxsjwiqvc tbody, #dhxsjwiqvc tfoot, #dhxsjwiqvc tr, #dhxsjwiqvc td, #dhxsjwiqvc th {
+border-style: none;
+}
+#dhxsjwiqvc p {
+margin: 0;
+padding: 0;
+}
+#dhxsjwiqvc .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 11px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #000000;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#dhxsjwiqvc .gt_title {
+color: #333333;
+font-size: 11px;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#dhxsjwiqvc .gt_subtitle {
+color: #333333;
+font-size: 11px;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#dhxsjwiqvc .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+}
+#dhxsjwiqvc .gt_col_headings {
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-bottom-color: #000000;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#dhxsjwiqvc .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#dhxsjwiqvc .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#dhxsjwiqvc .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#dhxsjwiqvc .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-bottom-color: #000000;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#dhxsjwiqvc .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#dhxsjwiqvc .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#dhxsjwiqvc .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#dhxsjwiqvc .gt_from_md > :first-child {
+margin-top: 0;
+}
+#dhxsjwiqvc .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#dhxsjwiqvc .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: none;
+border-top-width: 1px;
+border-top-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#dhxsjwiqvc .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#dhxsjwiqvc .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#dhxsjwiqvc .gt_row_group_first td {
+border-top-width: 2px;
+}
+#dhxsjwiqvc .gt_row_group_first th {
+border-top-width: 2px;
+}
+#dhxsjwiqvc .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#dhxsjwiqvc .gt_first_summary_row {
+border-top-style: none;
+border-top-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#dhxsjwiqvc .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#dhxsjwiqvc .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: none;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: none;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#dhxsjwiqvc .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+}
+#dhxsjwiqvc .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#dhxsjwiqvc .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#dhxsjwiqvc .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#dhxsjwiqvc .gt_left {
+text-align: left;
+}
+#dhxsjwiqvc .gt_center {
+text-align: center;
+}
+#dhxsjwiqvc .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#dhxsjwiqvc .gt_font_normal {
+font-weight: normal;
+}
+#dhxsjwiqvc .gt_font_bold {
+font-weight: bold;
+}
+#dhxsjwiqvc .gt_font_italic {
+font-style: italic;
+}
+#dhxsjwiqvc .gt_super {
+font-size: 65%;
+}
+#dhxsjwiqvc .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#dhxsjwiqvc .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#dhxsjwiqvc .gt_indent_1 {
+text-indent: 5px;
+}
+#dhxsjwiqvc .gt_indent_2 {
+text-indent: 10px;
+}
+#dhxsjwiqvc .gt_indent_3 {
+text-indent: 15px;
+}
+#dhxsjwiqvc .gt_indent_4 {
+text-indent: 20px;
+}
+#dhxsjwiqvc .gt_indent_5 {
+text-indent: 25px;
+}
+#dhxsjwiqvc .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#dhxsjwiqvc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border">Leave-One-Dataset-Out Pooled EFA (20 Items, 3 Factors)</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row even">
+<th rowspan="2" id="Item" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Item</th>
+<th rowspan="2" id="Pooled" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Pooled (primary / secondary)</th>
+<th colspan="4" id="Leave-one-dataset-out-refits-(k-=-27)" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Leave-one-dataset-out refits (k = 27)
+</div></th>
+<th rowspan="2" id="No9" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Without Sample 9 (primary / secondary)</th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="LOO_range" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Primary loading range</th>
+<th id="Weak" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Weak (&lt; .40)</th>
+<th id="Split" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Split (Δ &lt; .20)</th>
+<th id="Flagged" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Flagged (either)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="7" id="Retained" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Retained</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Retained  Item">Blood Sugar</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.47 / 0.07</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.42–0.48</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.42 / 0.11</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Retained  Item">Breathing</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.50 / 0.21</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.40–0.51</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">1</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">1/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.40 / 0.28†</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Retained  Item">Bruise</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.52 / 0.20</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.46–0.53</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.46 / 0.22</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Retained  Item">Burp</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.69 / 0.09</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.57–0.69</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.57 / 0.12</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Retained  Item">Cough</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.72 / 0.03</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.71–0.72</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.72 / 0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Retained  Item">Defecate</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.57 / 0.24</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.52–0.58</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.52 / 0.24</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Retained  Item">Heart</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.31 / 0.26†</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.29–0.32</td>
+<td class="gt_row gt_right" headers="Retained  Weak">27</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">27/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.29 / 0.29†</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Retained  Item">Hungry</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.65 / 0.14</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.64–0.66</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.65 / 0.11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Retained  Item">Muscles</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.30 / 0.26†</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.29–0.31</td>
+<td class="gt_row gt_right" headers="Retained  Weak">27</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">27/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.31 / 0.25†</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Retained  Item">Pain</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.41 / 0.26†</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.40–0.47</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">26</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">26/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.47 / 0.22</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Retained  Item">Sneeze</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.69 / 0.04</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.68–0.71</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.71 / 0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Retained  Item">Thirsty</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.65 / 0.10</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.63–0.66</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.63 / 0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Retained  Item">Urinate</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.67 / 0.16</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.66–0.68</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.66 / 0.18</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Retained  Item">Wind</td>
+<td class="gt_row gt_left" headers="Retained  Pooled">0.63 / 0.04</td>
+<td class="gt_row gt_left" headers="Retained  LOO_range">0.51–0.64</td>
+<td class="gt_row gt_right" headers="Retained  Weak">0</td>
+<td class="gt_row gt_right" headers="Retained  Split">0</td>
+<td class="gt_row gt_right" headers="Retained  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Retained  No9">0.51 / 0.10</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="7" id="Removed" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Removed</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="Removed  Item">Affective touch</td>
+<td class="gt_row gt_left" headers="Removed  Pooled">0.26 / 0.26†</td>
+<td class="gt_row gt_left" headers="Removed  LOO_range">0.26–0.28</td>
+<td class="gt_row gt_right" headers="Removed  Weak">27</td>
+<td class="gt_row gt_right" headers="Removed  Split">0</td>
+<td class="gt_row gt_right" headers="Removed  Flagged">27/27</td>
+<td class="gt_row gt_left" headers="Removed  No9">0.28 / 0.22†</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Removed  Item">Itch</td>
+<td class="gt_row gt_left" headers="Removed  Pooled">0.37 / 0.25†</td>
+<td class="gt_row gt_left" headers="Removed  LOO_range">0.32–0.40</td>
+<td class="gt_row gt_right" headers="Removed  Weak">27</td>
+<td class="gt_row gt_right" headers="Removed  Split">0</td>
+<td class="gt_row gt_right" headers="Removed  Flagged">27/27</td>
+<td class="gt_row gt_left" headers="Removed  No9">0.32 / 0.29†</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Removed  Item">Sex arousal</td>
+<td class="gt_row gt_left" headers="Removed  Pooled">0.40 / 0.23†</td>
+<td class="gt_row gt_left" headers="Removed  LOO_range">0.39–0.46</td>
+<td class="gt_row gt_right" headers="Removed  Weak">24</td>
+<td class="gt_row gt_right" headers="Removed  Split">2</td>
+<td class="gt_row gt_right" headers="Removed  Flagged">26/27</td>
+<td class="gt_row gt_left" headers="Removed  No9">0.46 / 0.14</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Removed  Item">Taste</td>
+<td class="gt_row gt_left" headers="Removed  Pooled">0.27 / 0.26†</td>
+<td class="gt_row gt_left" headers="Removed  LOO_range">0.26–0.29</td>
+<td class="gt_row gt_right" headers="Removed  Weak">27</td>
+<td class="gt_row gt_right" headers="Removed  Split">0</td>
+<td class="gt_row gt_right" headers="Removed  Flagged">27/27</td>
+<td class="gt_row gt_left" headers="Removed  No9">0.29 / 0.24†</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Removed  Item">Temp</td>
+<td class="gt_row gt_left" headers="Removed  Pooled">0.42 / 0.24†</td>
+<td class="gt_row gt_left" headers="Removed  LOO_range">0.40–0.46</td>
+<td class="gt_row gt_right" headers="Removed  Weak">0</td>
+<td class="gt_row gt_right" headers="Removed  Split">26</td>
+<td class="gt_row gt_right" headers="Removed  Flagged">26/27</td>
+<td class="gt_row gt_left" headers="Removed  No9">0.46 / 0.15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Removed  Item">Vomit</td>
+<td class="gt_row gt_left" headers="Removed  Pooled">0.46 / 0.19</td>
+<td class="gt_row gt_left" headers="Removed  LOO_range">0.45–0.47</td>
+<td class="gt_row gt_right" headers="Removed  Weak">0</td>
+<td class="gt_row gt_right" headers="Removed  Split">0</td>
+<td class="gt_row gt_right" headers="Removed  Flagged">0/27</td>
+<td class="gt_row gt_left" headers="Removed  No9">0.45 / 0.15</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="7" class="gt_footnote">Absolute loadings from the 3-factor oblimin EFA. Weak and Split give the number of refits in which the item had a primary loading below .40, or a primary loading of at least .40 that exceeded the secondary loading by less than .20. † = flagged (weak or split loading). Sample 9 contributes 61% of the pooled sample.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -58794,65 +59468,65 @@ height: 0px !important;
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb531"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb531-1"><a href="#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add empirical variables</span></span>
-<span id="cb531-2"><a href="#cb531-2" aria-hidden="true" tabindex="-1"></a>add_empirical <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">sample =</span> <span class="st">&quot;Sample 1a&quot;</span>) {</span>
-<span id="cb531-3"><a href="#cb531-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Original IAS total: mean of all administered items, including Tickle (removed from the</span></span>
-<span id="cb531-4"><a href="#cb531-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># structural analyses only); in Samples 8a/8b Itch and Tickle were a single item</span></span>
-<span id="cb531-5"><a href="#cb531-5" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> tickle[[<span class="fu">sub</span>(<span class="st">&quot;Sample &quot;</span>, <span class="st">&quot;data&quot;</span>, sample)]]</span>
-<span id="cb531-6"><a href="#cb531-6" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb531-7"><a href="#cb531-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Original =</span> <span class="fu">rowMeans</span>(<span class="cf">if</span> (<span class="fu">is.null</span>(t)) data <span class="cf">else</span> <span class="fu">cbind</span>(data, <span class="at">Tickle =</span> t)),</span>
-<span id="cb531-8"><a href="#cb531-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">HungryThirsty =</span> (data<span class="sc">$</span>Hungry <span class="sc">+</span> data<span class="sc">$</span>Thirsty) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb531-9"><a href="#cb531-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">MusclesPain =</span> (data<span class="sc">$</span>Muscles <span class="sc">+</span> data<span class="sc">$</span>Pain) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb531-10"><a href="#cb531-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">WindBurp =</span> (data<span class="sc">$</span>Wind <span class="sc">+</span> data<span class="sc">$</span>Burp) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb531-11"><a href="#cb531-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">UrinateDefecate =</span> (data<span class="sc">$</span>Urinate <span class="sc">+</span> data<span class="sc">$</span>Defecate) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb531-12"><a href="#cb531-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">BreathingHeart =</span> (data<span class="sc">$</span>Heart <span class="sc">+</span> data<span class="sc">$</span>Breathing) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb531-13"><a href="#cb531-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb531-14"><a href="#cb531-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="st">&quot;Blood_Sugar&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(data)) {</span>
-<span id="cb531-15"><a href="#cb531-15" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>BruiseBlood <span class="ot">&lt;-</span> (data<span class="sc">$</span>Blood_Sugar <span class="sc">+</span> data<span class="sc">$</span>Bruise) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb531-16"><a href="#cb531-16" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb531-17"><a href="#cb531-17" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>BruiseBlood <span class="ot">&lt;-</span> data<span class="sc">$</span>Bruise</span>
-<span id="cb531-18"><a href="#cb531-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb531-19"><a href="#cb531-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb531-20"><a href="#cb531-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="st">&quot;Cough&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(data)) {</span>
-<span id="cb531-21"><a href="#cb531-21" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>CoughSneeze <span class="ot">&lt;-</span> (data<span class="sc">$</span>Cough <span class="sc">+</span> data<span class="sc">$</span>Sneeze) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb531-22"><a href="#cb531-22" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb531-23"><a href="#cb531-23" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>CoughSneeze <span class="ot">&lt;-</span> data<span class="sc">$</span>Sneeze</span>
-<span id="cb531-24"><a href="#cb531-24" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb531-25"><a href="#cb531-25" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>Sample <span class="ot">&lt;-</span> sample</span>
-<span id="cb531-26"><a href="#cb531-26" aria-hidden="true" tabindex="-1"></a>  x</span>
-<span id="cb531-27"><a href="#cb531-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb531-28"><a href="#cb531-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb531-29"><a href="#cb531-29" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb531-30"><a href="#cb531-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample1a =</span> <span class="fu">add_empirical</span>(data1a, <span class="st">&quot;Sample 1a&quot;</span>),</span>
-<span id="cb531-31"><a href="#cb531-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample1b =</span> <span class="fu">add_empirical</span>(data1b, <span class="st">&quot;Sample 1b&quot;</span>),</span>
-<span id="cb531-32"><a href="#cb531-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample2 =</span> <span class="fu">add_empirical</span>(data2, <span class="st">&quot;Sample 2&quot;</span>),</span>
-<span id="cb531-33"><a href="#cb531-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample3 =</span> <span class="fu">add_empirical</span>(data3, <span class="st">&quot;Sample 3&quot;</span>),</span>
-<span id="cb531-34"><a href="#cb531-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample4 =</span> <span class="fu">add_empirical</span>(data4, <span class="st">&quot;Sample 4&quot;</span>),</span>
-<span id="cb531-35"><a href="#cb531-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample5 =</span> <span class="fu">add_empirical</span>(data5, <span class="st">&quot;Sample 5&quot;</span>),</span>
-<span id="cb531-36"><a href="#cb531-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample6 =</span> <span class="fu">add_empirical</span>(data6, <span class="st">&quot;Sample 6&quot;</span>),</span>
-<span id="cb531-37"><a href="#cb531-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7a =</span> <span class="fu">add_empirical</span>(data7a, <span class="st">&quot;Sample 7a&quot;</span>),</span>
-<span id="cb531-38"><a href="#cb531-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7b =</span> <span class="fu">add_empirical</span>(data7b, <span class="st">&quot;Sample 7b&quot;</span>),</span>
-<span id="cb531-39"><a href="#cb531-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7c =</span> <span class="fu">add_empirical</span>(data7c, <span class="st">&quot;Sample 7c&quot;</span>),</span>
-<span id="cb531-40"><a href="#cb531-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample8a =</span> <span class="fu">add_empirical</span>(data8a, <span class="st">&quot;Sample 8a&quot;</span>),</span>
-<span id="cb531-41"><a href="#cb531-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample8b =</span> <span class="fu">add_empirical</span>(data8b, <span class="st">&quot;Sample 8b&quot;</span>),</span>
-<span id="cb531-42"><a href="#cb531-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample9 =</span> <span class="fu">add_empirical</span>(data9, <span class="st">&quot;Sample 9&quot;</span>),</span>
-<span id="cb531-43"><a href="#cb531-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample10 =</span> <span class="fu">add_empirical</span>(data10, <span class="st">&quot;Sample 10&quot;</span>),</span>
-<span id="cb531-44"><a href="#cb531-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample11 =</span> <span class="fu">add_empirical</span>(data11 , <span class="st">&quot;Sample 11&quot;</span>),</span>
-<span id="cb531-45"><a href="#cb531-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample12 =</span> <span class="fu">add_empirical</span>(data12 , <span class="st">&quot;Sample 12&quot;</span>),</span>
-<span id="cb531-46"><a href="#cb531-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample13 =</span> <span class="fu">add_empirical</span>(data13, <span class="st">&quot;Sample 13&quot;</span>),</span>
-<span id="cb531-47"><a href="#cb531-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample14 =</span> <span class="fu">add_empirical</span>(data14 , <span class="st">&quot;Sample 14&quot;</span>),</span>
-<span id="cb531-48"><a href="#cb531-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample15 =</span> <span class="fu">add_empirical</span>(data15 , <span class="st">&quot;Sample 15&quot;</span>),</span>
-<span id="cb531-49"><a href="#cb531-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample16 =</span> <span class="fu">add_empirical</span>(data16, <span class="st">&quot;Sample 16&quot;</span>),</span>
-<span id="cb531-50"><a href="#cb531-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample17 =</span> <span class="fu">add_empirical</span>(data17, <span class="st">&quot;Sample 17&quot;</span>),</span>
-<span id="cb531-51"><a href="#cb531-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample18 =</span> <span class="fu">add_empirical</span>(data18, <span class="st">&quot;Sample 18&quot;</span>),</span>
-<span id="cb531-52"><a href="#cb531-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample19 =</span> <span class="fu">add_empirical</span>(data19, <span class="st">&quot;Sample 19&quot;</span>),</span>
-<span id="cb531-53"><a href="#cb531-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample20 =</span> <span class="fu">add_empirical</span>(data20, <span class="st">&quot;Sample 20&quot;</span>),</span>
-<span id="cb531-54"><a href="#cb531-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample21 =</span> <span class="fu">add_empirical</span>(data21, <span class="st">&quot;Sample 21&quot;</span>),</span>
-<span id="cb531-55"><a href="#cb531-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample22 =</span> <span class="fu">add_empirical</span>(data22, <span class="st">&quot;Sample 22&quot;</span>),</span>
-<span id="cb531-56"><a href="#cb531-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample23 =</span> <span class="fu">add_empirical</span>(data23, <span class="st">&quot;Sample 23&quot;</span>)</span>
-<span id="cb531-57"><a href="#cb531-57" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb531-58"><a href="#cb531-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb531-59"><a href="#cb531-59" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(scores, <span class="at">file =</span> <span class="st">&quot;../data/scores.RData&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb532"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb532-1"><a href="#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add empirical variables</span></span>
+<span id="cb532-2"><a href="#cb532-2" aria-hidden="true" tabindex="-1"></a>add_empirical <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">sample =</span> <span class="st">&quot;Sample 1a&quot;</span>) {</span>
+<span id="cb532-3"><a href="#cb532-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Original IAS total: mean of all administered items, including Tickle (removed from the</span></span>
+<span id="cb532-4"><a href="#cb532-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># structural analyses only); in Samples 8a/8b Itch and Tickle were a single item</span></span>
+<span id="cb532-5"><a href="#cb532-5" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> tickle[[<span class="fu">sub</span>(<span class="st">&quot;Sample &quot;</span>, <span class="st">&quot;data&quot;</span>, sample)]]</span>
+<span id="cb532-6"><a href="#cb532-6" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb532-7"><a href="#cb532-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Original =</span> <span class="fu">rowMeans</span>(<span class="cf">if</span> (<span class="fu">is.null</span>(t)) data <span class="cf">else</span> <span class="fu">cbind</span>(data, <span class="at">Tickle =</span> t)),</span>
+<span id="cb532-8"><a href="#cb532-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">HungryThirsty =</span> (data<span class="sc">$</span>Hungry <span class="sc">+</span> data<span class="sc">$</span>Thirsty) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb532-9"><a href="#cb532-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">MusclesPain =</span> (data<span class="sc">$</span>Muscles <span class="sc">+</span> data<span class="sc">$</span>Pain) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb532-10"><a href="#cb532-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">WindBurp =</span> (data<span class="sc">$</span>Wind <span class="sc">+</span> data<span class="sc">$</span>Burp) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb532-11"><a href="#cb532-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">UrinateDefecate =</span> (data<span class="sc">$</span>Urinate <span class="sc">+</span> data<span class="sc">$</span>Defecate) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb532-12"><a href="#cb532-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">BreathingHeart =</span> (data<span class="sc">$</span>Heart <span class="sc">+</span> data<span class="sc">$</span>Breathing) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb532-13"><a href="#cb532-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb532-14"><a href="#cb532-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="st">&quot;Blood_Sugar&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(data)) {</span>
+<span id="cb532-15"><a href="#cb532-15" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>BruiseBlood <span class="ot">&lt;-</span> (data<span class="sc">$</span>Blood_Sugar <span class="sc">+</span> data<span class="sc">$</span>Bruise) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb532-16"><a href="#cb532-16" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb532-17"><a href="#cb532-17" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>BruiseBlood <span class="ot">&lt;-</span> data<span class="sc">$</span>Bruise</span>
+<span id="cb532-18"><a href="#cb532-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb532-19"><a href="#cb532-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb532-20"><a href="#cb532-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="st">&quot;Cough&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(data)) {</span>
+<span id="cb532-21"><a href="#cb532-21" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>CoughSneeze <span class="ot">&lt;-</span> (data<span class="sc">$</span>Cough <span class="sc">+</span> data<span class="sc">$</span>Sneeze) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb532-22"><a href="#cb532-22" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb532-23"><a href="#cb532-23" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>CoughSneeze <span class="ot">&lt;-</span> data<span class="sc">$</span>Sneeze</span>
+<span id="cb532-24"><a href="#cb532-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb532-25"><a href="#cb532-25" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>Sample <span class="ot">&lt;-</span> sample</span>
+<span id="cb532-26"><a href="#cb532-26" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb532-27"><a href="#cb532-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb532-28"><a href="#cb532-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb532-29"><a href="#cb532-29" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb532-30"><a href="#cb532-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample1a =</span> <span class="fu">add_empirical</span>(data1a, <span class="st">&quot;Sample 1a&quot;</span>),</span>
+<span id="cb532-31"><a href="#cb532-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample1b =</span> <span class="fu">add_empirical</span>(data1b, <span class="st">&quot;Sample 1b&quot;</span>),</span>
+<span id="cb532-32"><a href="#cb532-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample2 =</span> <span class="fu">add_empirical</span>(data2, <span class="st">&quot;Sample 2&quot;</span>),</span>
+<span id="cb532-33"><a href="#cb532-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample3 =</span> <span class="fu">add_empirical</span>(data3, <span class="st">&quot;Sample 3&quot;</span>),</span>
+<span id="cb532-34"><a href="#cb532-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample4 =</span> <span class="fu">add_empirical</span>(data4, <span class="st">&quot;Sample 4&quot;</span>),</span>
+<span id="cb532-35"><a href="#cb532-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample5 =</span> <span class="fu">add_empirical</span>(data5, <span class="st">&quot;Sample 5&quot;</span>),</span>
+<span id="cb532-36"><a href="#cb532-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample6 =</span> <span class="fu">add_empirical</span>(data6, <span class="st">&quot;Sample 6&quot;</span>),</span>
+<span id="cb532-37"><a href="#cb532-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7a =</span> <span class="fu">add_empirical</span>(data7a, <span class="st">&quot;Sample 7a&quot;</span>),</span>
+<span id="cb532-38"><a href="#cb532-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7b =</span> <span class="fu">add_empirical</span>(data7b, <span class="st">&quot;Sample 7b&quot;</span>),</span>
+<span id="cb532-39"><a href="#cb532-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample7c =</span> <span class="fu">add_empirical</span>(data7c, <span class="st">&quot;Sample 7c&quot;</span>),</span>
+<span id="cb532-40"><a href="#cb532-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample8a =</span> <span class="fu">add_empirical</span>(data8a, <span class="st">&quot;Sample 8a&quot;</span>),</span>
+<span id="cb532-41"><a href="#cb532-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample8b =</span> <span class="fu">add_empirical</span>(data8b, <span class="st">&quot;Sample 8b&quot;</span>),</span>
+<span id="cb532-42"><a href="#cb532-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample9 =</span> <span class="fu">add_empirical</span>(data9, <span class="st">&quot;Sample 9&quot;</span>),</span>
+<span id="cb532-43"><a href="#cb532-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample10 =</span> <span class="fu">add_empirical</span>(data10, <span class="st">&quot;Sample 10&quot;</span>),</span>
+<span id="cb532-44"><a href="#cb532-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample11 =</span> <span class="fu">add_empirical</span>(data11 , <span class="st">&quot;Sample 11&quot;</span>),</span>
+<span id="cb532-45"><a href="#cb532-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample12 =</span> <span class="fu">add_empirical</span>(data12 , <span class="st">&quot;Sample 12&quot;</span>),</span>
+<span id="cb532-46"><a href="#cb532-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample13 =</span> <span class="fu">add_empirical</span>(data13, <span class="st">&quot;Sample 13&quot;</span>),</span>
+<span id="cb532-47"><a href="#cb532-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample14 =</span> <span class="fu">add_empirical</span>(data14 , <span class="st">&quot;Sample 14&quot;</span>),</span>
+<span id="cb532-48"><a href="#cb532-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample15 =</span> <span class="fu">add_empirical</span>(data15 , <span class="st">&quot;Sample 15&quot;</span>),</span>
+<span id="cb532-49"><a href="#cb532-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample16 =</span> <span class="fu">add_empirical</span>(data16, <span class="st">&quot;Sample 16&quot;</span>),</span>
+<span id="cb532-50"><a href="#cb532-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample17 =</span> <span class="fu">add_empirical</span>(data17, <span class="st">&quot;Sample 17&quot;</span>),</span>
+<span id="cb532-51"><a href="#cb532-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample18 =</span> <span class="fu">add_empirical</span>(data18, <span class="st">&quot;Sample 18&quot;</span>),</span>
+<span id="cb532-52"><a href="#cb532-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample19 =</span> <span class="fu">add_empirical</span>(data19, <span class="st">&quot;Sample 19&quot;</span>),</span>
+<span id="cb532-53"><a href="#cb532-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample20 =</span> <span class="fu">add_empirical</span>(data20, <span class="st">&quot;Sample 20&quot;</span>),</span>
+<span id="cb532-54"><a href="#cb532-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample21 =</span> <span class="fu">add_empirical</span>(data21, <span class="st">&quot;Sample 21&quot;</span>),</span>
+<span id="cb532-55"><a href="#cb532-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample22 =</span> <span class="fu">add_empirical</span>(data22, <span class="st">&quot;Sample 22&quot;</span>),</span>
+<span id="cb532-56"><a href="#cb532-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample23 =</span> <span class="fu">add_empirical</span>(data23, <span class="st">&quot;Sample 23&quot;</span>)</span>
+<span id="cb532-57"><a href="#cb532-57" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb532-58"><a href="#cb532-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb532-59"><a href="#cb532-59" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(scores, <span class="at">file =</span> <span class="st">&quot;../data/scores.RData&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -58866,35 +59540,35 @@ height: 0px !important;
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb532"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb532-1"><a href="#cb532-1" aria-hidden="true" tabindex="-1"></a>factors_txt <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb532-2"><a href="#cb532-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;7-factor (EGA item pairs)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Hungry–Thirsty; Urinate–Defecate; Heart–Breathing; Muscles–Pain; Cough–Sneeze; Wind–Burp; Bruise–Blood sugar&quot;</span>,</span>
-<span id="cb532-3"><a href="#cb532-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;7-factor + higher-order general factor&quot;</span> <span class="ot">=</span> <span class="st">&quot;Seven pairs + higher-order general factor&quot;</span>,</span>
-<span id="cb532-4"><a href="#cb532-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;5-factor (HCA)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Heart–Breathing; Bruise–Blood sugar; Hungry–Thirsty; Cough, Sneeze, Wind, Burp; Urinate, Defecate, Muscles, Pain&quot;</span>,</span>
-<span id="cb532-5"><a href="#cb532-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;5-factor + higher-order general factor&quot;</span> <span class="ot">=</span> <span class="st">&quot;Five HCA factors + higher-order general factor&quot;</span>,</span>
-<span id="cb532-6"><a href="#cb532-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;3-factor (EFA)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Urinate–Defecate; Cough, Sneeze, Wind, Burp; Heart, Breathing, Muscles, Pain, Hungry, Thirsty, Bruise, Blood sugar&quot;</span>,</span>
-<span id="cb532-7"><a href="#cb532-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;3-factor + higher-order general factorᵃ&quot;</span> <span class="ot">=</span> <span class="st">&quot;Three EFA factors + higher-order general factor&quot;</span>,</span>
-<span id="cb532-8"><a href="#cb532-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;1-factor (general)&quot;</span> <span class="ot">=</span> <span class="st">&quot;All 14 items&quot;</span>)</span>
-<span id="cb532-9"><a href="#cb532-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb532-10"><a href="#cb532-10" aria-hidden="true" tabindex="-1"></a>table_cfa_models <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;figures/tableS_cfa_pooled.rds&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb532-11"><a href="#cb532-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
-<span id="cb532-12"><a href="#cb532-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="fu">unname</span>(Model),</span>
-<span id="cb532-13"><a href="#cb532-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">Factors =</span> <span class="fu">unname</span>(factors_txt[Model]),</span>
-<span id="cb532-14"><a href="#cb532-14" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">c</span>(CFI, TLI, SRMR), \(v) <span class="fu">sub</span>(<span class="st">&quot;^0&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;%.3f&quot;</span>, v))),</span>
-<span id="cb532-15"><a href="#cb532-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">RMSEA_90CI =</span> <span class="fu">gsub</span>(<span class="st">&quot;0</span><span class="sc">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;.&quot;</span>, RMSEA_90CI),</span>
-<span id="cb532-16"><a href="#cb532-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">BIC =</span> <span class="fu">format</span>(<span class="fu">round</span>(BIC), <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb532-17"><a href="#cb532-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">Delta_BIC =</span> <span class="fu">format</span>(<span class="fu">round</span>(Delta_BIC), <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb532-18"><a href="#cb532-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Model, Factors, Parameters, Chi2_df, CFI, TLI, RMSEA_90CI, SRMR, BIC, Delta_BIC)</span>
-<span id="cb532-19"><a href="#cb532-19" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(table_cfa_models<span class="sc">$</span>Factors))</span>
-<span id="cb532-20"><a href="#cb532-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb532-21"><a href="#cb532-21" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(table_cfa_models, <span class="st">&quot;figures/table_cfa_models.rds&quot;</span>)</span>
-<span id="cb532-22"><a href="#cb532-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb532-23"><a href="#cb532-23" aria-hidden="true" tabindex="-1"></a>table_cfa_models <span class="sc">|&gt;</span></span>
-<span id="cb532-24"><a href="#cb532-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb532-25"><a href="#cb532-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">Factors =</span> <span class="st">&quot;First-order factors (items)&quot;</span>, <span class="at">Parameters =</span> <span class="st">&quot;Free param.&quot;</span>, <span class="at">Chi2_df =</span> <span class="st">&quot;χ² (df)&quot;</span>,</span>
-<span id="cb532-26"><a href="#cb532-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">RMSEA_90CI =</span> <span class="st">&quot;RMSEA [90% CI]&quot;</span>, <span class="at">Delta_BIC =</span> <span class="st">&quot;ΔBIC&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb532-27"><a href="#cb532-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Candidate CFA Models and Their Fit in the Pooled Data (N = 34,943)&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb532-28"><a href="#cb532-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="st">&quot;Models ordered by BIC; robust (MLR) χ², CFI, TLI and RMSEA. ΔBIC = difference from the best-fitting model. ᵃ Equivalent to the 3-factor model (just-identified higher-order factor).&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb532-29"><a href="#cb532-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_apastyle</span>(<span class="at">font.size =</span> <span class="dv">11</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb533"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb533-1"><a href="#cb533-1" aria-hidden="true" tabindex="-1"></a>factors_txt <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb533-2"><a href="#cb533-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;7-factor (EGA item pairs)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Hungry–Thirsty; Urinate–Defecate; Heart–Breathing; Muscles–Pain; Cough–Sneeze; Wind–Burp; Bruise–Blood sugar&quot;</span>,</span>
+<span id="cb533-3"><a href="#cb533-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;7-factor + higher-order general factor&quot;</span> <span class="ot">=</span> <span class="st">&quot;Seven pairs + higher-order general factor&quot;</span>,</span>
+<span id="cb533-4"><a href="#cb533-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;5-factor (HCA)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Heart–Breathing; Bruise–Blood sugar; Hungry–Thirsty; Cough, Sneeze, Wind, Burp; Urinate, Defecate, Muscles, Pain&quot;</span>,</span>
+<span id="cb533-5"><a href="#cb533-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;5-factor + higher-order general factor&quot;</span> <span class="ot">=</span> <span class="st">&quot;Five HCA factors + higher-order general factor&quot;</span>,</span>
+<span id="cb533-6"><a href="#cb533-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;3-factor (EFA)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Urinate–Defecate; Cough, Sneeze, Wind, Burp; Heart, Breathing, Muscles, Pain, Hungry, Thirsty, Bruise, Blood sugar&quot;</span>,</span>
+<span id="cb533-7"><a href="#cb533-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;3-factor + higher-order general factorᵃ&quot;</span> <span class="ot">=</span> <span class="st">&quot;Three EFA factors + higher-order general factor&quot;</span>,</span>
+<span id="cb533-8"><a href="#cb533-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;1-factor (general)&quot;</span> <span class="ot">=</span> <span class="st">&quot;All 14 items&quot;</span>)</span>
+<span id="cb533-9"><a href="#cb533-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb533-10"><a href="#cb533-10" aria-hidden="true" tabindex="-1"></a>table_cfa_models <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;figures/tableS_cfa_pooled.rds&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb533-11"><a href="#cb533-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb533-12"><a href="#cb533-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="fu">unname</span>(Model),</span>
+<span id="cb533-13"><a href="#cb533-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">Factors =</span> <span class="fu">unname</span>(factors_txt[Model]),</span>
+<span id="cb533-14"><a href="#cb533-14" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">c</span>(CFI, TLI, SRMR), \(v) <span class="fu">sub</span>(<span class="st">&quot;^0&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;%.3f&quot;</span>, v))),</span>
+<span id="cb533-15"><a href="#cb533-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">RMSEA_90CI =</span> <span class="fu">gsub</span>(<span class="st">&quot;0</span><span class="sc">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;.&quot;</span>, RMSEA_90CI),</span>
+<span id="cb533-16"><a href="#cb533-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">BIC =</span> <span class="fu">format</span>(<span class="fu">round</span>(BIC), <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb533-17"><a href="#cb533-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">Delta_BIC =</span> <span class="fu">format</span>(<span class="fu">round</span>(Delta_BIC), <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb533-18"><a href="#cb533-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Model, Factors, Parameters, Chi2_df, CFI, TLI, RMSEA_90CI, SRMR, BIC, Delta_BIC)</span>
+<span id="cb533-19"><a href="#cb533-19" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(table_cfa_models<span class="sc">$</span>Factors))</span>
+<span id="cb533-20"><a href="#cb533-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb533-21"><a href="#cb533-21" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(table_cfa_models, <span class="st">&quot;figures/table_cfa_models.rds&quot;</span>)</span>
+<span id="cb533-22"><a href="#cb533-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb533-23"><a href="#cb533-23" aria-hidden="true" tabindex="-1"></a>table_cfa_models <span class="sc">|&gt;</span></span>
+<span id="cb533-24"><a href="#cb533-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb533-25"><a href="#cb533-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">Factors =</span> <span class="st">&quot;First-order factors (items)&quot;</span>, <span class="at">Parameters =</span> <span class="st">&quot;Free param.&quot;</span>, <span class="at">Chi2_df =</span> <span class="st">&quot;χ² (df)&quot;</span>,</span>
+<span id="cb533-26"><a href="#cb533-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">RMSEA_90CI =</span> <span class="st">&quot;RMSEA [90% CI]&quot;</span>, <span class="at">Delta_BIC =</span> <span class="st">&quot;ΔBIC&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb533-27"><a href="#cb533-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Candidate CFA Models and Their Fit in the Pooled Data (N = 34,943)&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb533-28"><a href="#cb533-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="st">&quot;Models ordered by BIC; robust (MLR) χ², CFI, TLI and RMSEA. ΔBIC = difference from the best-fitting model. ᵃ Equivalent to the 3-factor model (just-identified higher-order factor).&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb533-29"><a href="#cb533-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_apastyle</span>(<span class="at">font.size =</span> <span class="dv">11</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fyhcggsldi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
