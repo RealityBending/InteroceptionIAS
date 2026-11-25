@@ -225,7 +225,7 @@ Study 1 re-analyses the factor structure of the IAS using raw data across **23 d
 
 ### Datasets
 
-We searched papers citing the original IAS validation paper [@murphy2019], identifying 136 (as of **3/10/2026**). Inclusion required open-access raw data with individual IAS item scores; datasets shared directly by authors were also included. Consequently, **23** datasets were used, including five from unpublished studies (see @tbl-table1), totaling **35,644** participants (Mean = 47.96 $\pm$ 13.1, 71.3\% Female). **Overall, of the 23,701 people with ethnicity data (10 samples), 92.2% are White, 2.9% Asian, 2.1% Mixed, 1.5% Black, 0.6% Other, 0.5% Hispanic/Latino and 0.3% Middle Eastern/North African.**
+We searched papers citing the original IAS validation paper [@murphy2019], identifying 136 (as of **3 of October 2026**). Inclusion required open-access raw data with individual IAS item scores; datasets shared directly by authors were also included. Consequently, **23** datasets were used, including five from unpublished studies (see @tbl-table1), totaling **35,644** participants (Mean = 47.96 $\pm$ 13.1, 71.3\% Female). **Overall, of the 23,701 people with ethnicity data (10 samples), 92.2% are White, 2.9% Asian, 2.1% Mixed, 1.5% Black, 0.6% Other, 0.5% Hispanic/Latino and 0.3% Middle Eastern/North African.**
 **The study was not pre-registered.**
 
 <!-- Note: this table is generated during data analysis -->
@@ -266,12 +266,12 @@ Psychometrically sound items should exhibit validity, reliability, and discrimin
 <!-- UVA -->
 We then tested for "redundant" items (e.g., due to multicollinearity or local dependency) using Unique Variable Analysis [UVA, @christensen2023unique], a network psychometrics method that identifies and merges items sharing substantial variance (which can distort the structure estimation). We applied a conservative threshold **(weighted topological overlap ≥ .30)**, detecting “large” to “very large” item overlap.
 
-**Previous discrepancies in the IAS structure may partly reflect reliance on a single method and sample. We therefore triangulated across three approaches with different assumptions and trade-offs: Exploratory Factor Analysis (EFA; latent common factors), Exploratory Graph Analysis (EGA; conditional dependencies between items) and Hierarchical Clustering Analysis (HCA; similarity clustering without a latent structure).**
+**Previous discrepancies in the IAS structure may partly reflect reliance on a single method and sample. We therefore triangulated across three approaches with different assumptions and trade-offs: Exploratory Graph Analysis (EGA), Hierarchical Clustering Analysis (HCA), and Exploratory Factor Analysis (EFA), and Hierarchical Clustering Analysis (HCA).** 
 **Each was applied to the pooled** sample and each dataset separately (full details at [https://github.com/RealityBending/InteroceptionIAS](https://github.com/RealityBending/InteroceptionIAS)) and conclusions draw on both overall and dataset-specific results.
 
 <!-- EGA -->
-EGA combines network analysis with psychometric methods [@golino2017exploratory] to jointly estimate the number of dimensions (i.e., groups of items) and structure stability of a scale [@golino2017exploratory; @golino2020investigating]. EGA is considered a suitable but still comparable and interpretable alternative to traditional factor analysis, addressing several of its limitations, including the "latent" source of variability assumption and the potential bias in estimating the optimal number of factors as a function of sample size [@christensen2021equivalency]. EGA also outperforms methods like the Kaiser criterion and parallel analysis in estimating factor number in complex structures such as bi-factor solutions [@jimenez2023dimensionality]. At a fundamental level, EGA conceptualizes items as nodes in a network, with connections (edges) between nodes reflecting associations between items. Clustering of nodes reveals distinct communities of related items, in practice akin to traditional latent factors albeit without explicitly assuming their presence [@christensen2021equivalency]. We used the EGAnet package [@christensen2021estimating] to fit a hierarchical EGA with the Leiden community detection algorithm.^[**The Leiden algorithm [@traag2019louvain] identifies communities by iteratively moving nodes between communities, refining the resulting partition, and aggregating the network until modularity is optimised, which guarantees that the detected communities are internally well connected. In EGAnet, modularity is used as the objective function.**]
-**Structural stability was assessed with bootstrap EGA (500 non-parametric resamples): item stability, the proportion of resamples in which an item was assigned to its empirical community, below .70 indicated an unstable item [@christensen2021estimating].**
+EGA combines network analysis with psychometric methods [@golino2017exploratory] to jointly estimate the number of dimensions (i.e., groups of items) and structure stability of a scale [@golino2017exploratory; @golino2020investigating]. EGA is considered a suitable but still comparable and interpretable alternative to traditional factor analysis, addressing several of its limitations, including the "latent" source of variability assumption and the potential bias in estimating the optimal number of factors as a function of sample size [@christensen2021equivalency]. EGA also outperforms methods like the Kaiser criterion and parallel analysis in estimating factor number in complex structures such as bi-factor solutions [@jimenez2023dimensionality]. At a fundamental level, EGA conceptualizes items as nodes in a network, with connections (edges) between nodes reflecting associations between items. Clustering of nodes reveals distinct communities of related items, in practice akin to traditional latent factors albeit without explicitly assuming their presence [@christensen2021equivalency]. We used the EGAnet package [@christensen2021estimating] to fit a hierarchical EGA with the Leiden community detection algorithm**[@traag2019louvain], optimising modularity.**
+**Item stability was assessed with bootstrap EGA (500 resamples) as the proportion of resamples in which an item was assigned to its empirical community; values below .70 indicated an unstable item [@christensen2021estimating].**
 
 <!-- Factor Analysis -->
 Although EGA is an attractive and robust alternative, **we also included EFA for continuity with past literature**, as factor analysis remains the most widely used method for dimensionality assessment.
@@ -279,18 +279,19 @@ Unlike EGA, factor analysis assumes a latent source of variability (i.e., a comm
 **Primary loadings below .40 were considered weak, and a difference of less than .20 between an item’s primary and secondary loadings was considered a split (cross-) loading [@howard2016review].**
 
 <!-- HCA -->
-We also applied HCA, which, unlike factor analysis, assumes no latent structure but instead iteratively groups items based on their similarity into a hierarchy of clusters. **We used 1 − Pearson correlation as the distance between items and complete linkage, and assessed the stability of each cluster with multiscale bootstrap resampling (1,000 resamples; approximately unbiased p-values) using the *pvclust* package [@suzuki2006pvclust].** 
+We also applied HCA, which, unlike factor analysis, assumes no latent structure but instead iteratively groups items based on their similarity into a hierarchy of clusters. 
+**We used 1 − Pearson correlation as the distance between items (so more strongly correlated items are closer) and complete linkage (clusters merge only when all their items are close), and assessed the stability of each cluster with multiscale bootstrap resampling (1,000 resamples; approximately unbiased p-values) using the pvclust package [@suzuki2006pvclust].** 
 
-<!-- The benefits of HCA include its interpretability and ability to capture complex relationships among items without relying on strict assumptions about data distribution or latent variables. -->
 
 <!-- CFA -->
-In a typical 2-step fashion, initial analyses were followed by refinement via item selection. **Items flagged by the UVA were removed first. Further items were removed when the HCA and EGA converged: the item did not form a reciprocal pair in the HCA (i.e., it and its most strongly correlated item were not each other’s strongest correlate) and was unstable in the EGA in several individual samples. EFA loadings served as corroborating evidence. The analyses were then re-run on the retained items.**
-**Finally**, various solutions (e.g., adding general factors) were compared using Confirmatory Factor Analysis (CFA). **CFA used robust maximum likelihood [MLR, *lavaan*, @rosseel2012lavaan] with latent variances fixed to 1, because responses were ordinal (5-point) in most samples but continuous in the three analogue-scale samples.** 
+Item selection **was done in two-steps.** 
+**Items flagged by the UVA were removed first. Further items were removed when the HCA and EGA converged: the item did not form a reciprocal pair in the HCA (i.e., it and its most strongly correlated item were not each other’s strongest correlate) and was unstable in the EGA in several individual samples. EFA loadings served as corroborating evidence. The analyses were then re-run on the retained items.**
+**Finally**, various solutions (e.g., adding general factors) were compared using Confirmatory Factor Analysis (CFA). **CFA used robust maximum likelihood [MLR, *lavaan*, @rosseel2012lavaan] with latent variances fixed to 1, to account for non-normality, and because three samples used continuous (analogue) scales, precluding a single ordinal estimator across datasets.** 
 **Model fit was evaluated with the robust CFI, TLI and RMSEA (with 90% CI), the SRMR as an absolute fit index, and the BIC; the χ² test is reported for completeness only, as it is significant for virtually any model at this sample size.**
 Of note, datasets with missing items were excluded from analyses requiring the complete set of scale items.
 
 <!-- Sensitive Analysis -->
-**To assess whether the pooled results were driven by individual datasets, particularly Sample 9 (61% of the pooled sample), we conducted three sensitivity analyses. First, the pooled EFA, HCA, EGA and CFA were refitted after leaving out each dataset in turn. Second, we counted how many individual datasets recovered each item pair in their HCA and EGA. Third, a multigroup CFA with datasets as groups tested whether the factor loadings were equal across datasets (metric invariance).**
+**Lastly, to assess whether the pooled results were driven by individual datasets, particularly Sample 9 (61% of the pooled sample), we conducted three sensitivity analyses. First, the pooled EFA, HCA, EGA and CFA were refitted after leaving out each dataset in turn. Second, we counted how many individual datasets recovered each item pair in their HCA and EGA. Third, a multigroup CFA with datasets as groups tested whether the factor loadings were equal across datasets (metric invariance).**
 
 ## Results
 
@@ -306,7 +307,7 @@ While not problematic per se, this contrast may reflect non-homogeneous psychome
 #| label: fig-distributions
 #| apa-twocolumn: true  # A Figure Spanning Two Columns When in Journal Mode
 #| out-width: "100%"
-#| fig-cap: "Top: Distribution of responses across datasets reveals a consistent modal value, typically 4 or 5 (indicating agreement), except for ‘blood sugar' and ‘bruise' (dashed lines) and ‘affective touch' (dotted lines) in the Chinese validation sample, which have lower modes. Most responses cluster around middle values, with few extreme scores (1 and 5). Samples using an analogue scale (10a-10c in Table 1 but 10-12 below) show a more continuous distribution and increased interindividual variability. Bottom: The correlation matrix between all items shows an overall positive correlation pattern, with correlated item pairs (e.g., Wind-Burp) and triplets (e.g., Vomit-Sneeze-Cough)."
+#| fig-cap: "Top: Distribution of responses across datasets reveals a consistent modal value, typically 4 or 5 (indicating agreement), except for ‘blood sugar' and ‘bruise' (dashed lines) and ‘affective touch' (dotted lines) in the Chinese validation sample, which have lower modes. Most responses cluster around middle values, with few extreme scores (1 and 5). Samples using an analogue scale (11-13 in Table 1) show a more continuous distribution and increased interindividual variability. Bottom: The correlation matrix between all items shows an overall positive correlation pattern, with correlated item pairs (e.g., Wind-Burp) and triplets (e.g., Vomit-Sneeze-Cough)."
 
 knitr::include_graphics("../../analysis/figures/Figure1.png")
 ```
@@ -351,7 +352,7 @@ HCA and EGA yielded highly consistent results, identifying seven stable item pai
 
 <!-- CFA -->
 We used CFA to fit and compare candidate structures from the previous analyses: a 1-factor (G-model), 3-factor (EFA), 3+1 (EFA + general factor), 5-factor (HCA), 5+1 (HCA + general factor), 7-factor (EGA), and 7+1 (EGA + general factor) model **(item composition in @tbl-cfa-models)**.
-**In the pooled data, the 7-factor EGA model provided the best fit on all indices, followed by the 7-factor + general factor model (@tbl-cfa-models); all other models fitted poorly (CFI ≤ .909, RMSEA ≥ .078), and the χ² test was significant for all models, as expected given the sample size.**
+**In the pooled data, the 7-factor EGA model provided the best fit on all indices (including the BIC, which penalises additional parameters) followed by the 7-factor + general factor model (@tbl-cfa-models); all other models fitted poorly (CFI ≤ .909, RMSEA ≥ .078), and the χ² test was significant for all models, as expected given the sample size.**
 
 ::: landscape 
 
@@ -377,35 +378,32 @@ readRDS("../../analysis/figures/table_cfa_models.rds") |>
 
 :::
 
-<!-- **In the pooled data (*N* = 34,943),** the 7-factor EGA model provided the best fit (**$\chi^2$(56) = 1,872.6, CFI = .984, TLI = .974, RMSEA = .035 [90% CI .034, .037], SRMR = .020**), followed by EGA + general factor (**$\chi^2$(70) = 5,625.3, CFI = .951, TLI = .937, RMSEA = .056 [.055, .057], SRMR = .039**) and the 5-factor HCA model (**$\chi^2$(67) = 10,323.4, CFI = .909, TLI = .876, RMSEA = .078 [.077, .079], SRMR = .041**). All remaining models performed poorly (**RMSEA ≥ .079, CFI ≤ .900**). The EGA model also yielded the lowest BIC (**ΔBIC = 5,024 relative to the next-best model**); all other models showed substantially weaker evidence (BIC-based Bayes Factor < 1/100). **As expected given the sample size, the $\chi^2$ test was significant for all models.** -->
-
 <!-- IS the IAS a unidimensional scale with factors correlated due to similarities -->
 
-**The 7-factor + general model also tests whether the IAS is a single scale in which the paired items are simply more similar to each other (i.e., correlated errors), as the two models are equivalent when factors have only two items. Because this model fitted worse than the 7-factor model in the pooled data and was preferred (lowest BIC) in only three individual samples (see below), the pairs are better understood as distinct, correlated domains than as local dependencies within a single scale.** 
+**The 7-factor + general model also tests whether the IAS is a single scale in which the paired items are simply more similar to each other (i.e., correlated errors), as the two models are equivalent when factors have only two items. This model fitted worse than the 7-factor model in the pooled data and was preferred (lowest BIC) in only three individual samples (see below) so the pairs are better understood as distinct, correlated domains than as local dependencies within a single scale.** 
 
-**Because global fit indices can mask weak items and do not show whether factors are empirically distinct, we also examined the standardised loadings and factor correlations of the 7-factor model. All loadings were substantial (.53–.81), and factor correlations were moderate (.40–.73), well below levels indicating redundancy.**
+**Global fit indices can mask weak items [@mcneish2018thorny] and do not show whether factors are empirically distinct [@ronkko2022updated], so we also examined the standardised loadings and factor correlations of the 7-factor model. All loadings were substantial (.53–.81; @tbl-loadings), and factor correlations were moderate (.40–.73; @tbl-faccor), below the .80 threshold indicating poor discriminant validity [@ronkko2022updated].**
 
 <!-- Individual datasets model fits -->
 
-Across individual datasets, the 7-factor EGA model provided the best fit **(lowest BIC) in 11 of the 18 samples with complete item data**. In these samples, the 7-factor EGA model showed excellent performance (**CFI = .955–1.000, RMSEA = .000–.052, SRMR = .021–.045**). Adding a general factor improved fit in three samples, for which the 7-factor EGA + general factor model showed acceptable fit (**CFI = .942–.962, RMSEA = .044–.055, SRMR = .042–.075**). The 5-factor + general factor model was preferred in two (**CFI = .934/.926, RMSEA = .051/.055, SRMR = .046/.042**)**, the 5-factor HCA model in one (CFI = .962, RMSEA = .045, SRMR = .038), and the 3-factor EFA model in one small sample (*N* = 204), in which it nonetheless fitted poorly (CFI = .847, RMSEA = .062) and the 7-factor model fitted well (CFI = 1.000, RMSEA = .000) but was penalised by BIC for its additional parameters (see @sampleCFA)**. Bayes factor comparisons aligned with BIC-based conclusions. Overall, while the EGA model was preferred in most samples, **higher-order** models provided some evidence for a common IAS factor.
+Across individual datasets, the 7-factor EGA model provided the best fit **(lowest BIC) in 11 of the 18 samples with complete item data**. In these samples, the 7-factor EGA model showed excellent performance (**CFI = .955–1.000, RMSEA = .000–.052, SRMR = .021–.045**). Adding a general factor improved fit in three samples, for which the 7-factor EGA + general factor model showed acceptable fit (**CFI = .942–.962, RMSEA = .044–.055, SRMR = .042–.075**). The 5-factor + general factor model was preferred in two (**CFI = .934/.926, RMSEA = .051/.055, SRMR = .046/.042**)**, the 5-factor HCA model in one (CFI = .962, RMSEA = .045, SRMR = .038), and the 3-factor EFA model in one small sample (*N* = 204), in which it nonetheless fitted poorly (CFI = .847, RMSEA = .062) and the 7-factor model fitted well (CFI = 1.000, RMSEA = .000) but was penalised by BIC for its additional parameters (see @tbl-sampleCFA)**. Bayes factor comparisons aligned with BIC-based conclusions. Overall, while the EGA model was preferred in most samples, **higher-order** models provided some evidence for a common IAS factor.
 
 
 <!-- Sensitive analysis: leave-one-out  -->
-**As sensitivity analyses, and given that one dataset contributed 61% of the pooled sample (Sample 9) and that datasets differed in language, population and procedure, we examined whether the pooled results were driven by individual datasets.**
-**First, all models were refitted to the pooled data after leaving out each dataset in turn; the 7-factor model remained the best-fitting model in all 25 refits (CFI = .984–.985, RMSEA = .031–.036), indicating that the pooled result was not driven by any single dataset.**
-**Second, because the pooled analysis treats the aggregated data as a single sample, we fitted a multigroup CFA with datasets as groups to test whether the 7-factor structure and its loadings held across datasets. Constraining loadings to equality did not reduce fit (configural: CFI = .981, RMSEA = .038 [.037, .040]; metric: CFI = .980, RMSEA = .037 [.035, .038]; ΔCFI = −.0004, below the .01 criterion; [@chen2007], supporting metric invariance across datasets, although some small datasets produced improper solutions (e.g., negative residual variances).The pooled HCA and EGA likewise recovered all seven pairs in all 25 leave-one-out refits. Within individual datasets, EGA placed the items of each pair in the same community in 89% of pair–dataset combinations and HCA in 77%, with less consistent recovery for Muscles–Pain and Bruise–Blood sugar and in smaller samples.**
-**The pooled EFA, refitted after leaving out each of the 27 datasets in turn, flagged the same items in every refit except the one without Sample 9, in which sexual arousal, temperature and pain no longer showed split loadings, whereas breathing did. This did not affect item selection, which relied on the HCA and on EGA stability within individual datasets, with the EFA serving only as corroborating evidence.**
-
-**Full fit indices for each individual sample, the standardised loadings and factor correlations, and the leave-one-dataset-out and multigroup analyses are reported in the Study 1 analysis report (Sensitivity Analysis section; [LINK REDACTED FOR REVIEW]).**
+**Sensitivity analyses indicated that the pooled results were not driven by individual datasets.**
+**When each dataset was left out in turn, the 7-factor model remained the best-fitting model in all 25 refits (CFI = .984–.985, RMSEA = .031–.036), and the pooled HCA and EGA recovered all seven pairs in every refit (@tbl-loo).**
+**The pooled EFA flagged the same items in every refit except the one without Sample 9 (@tbl-loo-efa).**
+**Within individual samples, EGA recovered the pairs in 89\% of pair–sample combinations and HCA in 77\%, with less consistent recovery for Muscles–Pain and Bruise–Blood sugar and in smaller samples (@tbl-pair-recovery).**
+**Finally, constraining loadings to equality across datasets in a multigroup CFA did not reduce fit (ΔCFI = −.0004; configural CFI = .980, metric CFI = .980 [@chen2007]), supporting metric invariance, although some small datasets produced improper solutions (@tbl-multigroup).**
 
 ## Discussion
 
 <!-- Aim and previous factor structures -->
-Study 1 aimed to systematically evaluate the structure of the IAS using a mega-analytic approach with both factor-analytic and network-based methods. Previous research has highlighted inconsistencies in optimal factor structure [e.g., unidimensional, bifactor, and two-factor solutions; @brand2023; @campos2021; @lin2023; @murphy2019; @koike2023] and raised concerns about specific items (e.g., low discrimination, local dependencies, items less accessible to interoception). To address these concerns and issues, we combined **23** datasets with over 33,000 participants, to provide the most comprehensive analysis of IAS structure to date. We conducted analyses across both combined and individual datasets, allowing an examination of overall and dataset-specific results and how they compared across three different structural analysis methods (EFA, HCA, EGA).
+Study 1 aimed to systematically evaluate the structure of the IAS using a mega-analytic approach with both factor-analytic and network-based methods. Previous research has highlighted inconsistencies in optimal factor structure [e.g., unidimensional, bifactor, and two-factor solutions; @brand2023; @campos2021; @lin2023; @murphy2019; @koike2023] and raised concerns about specific items (e.g., low discrimination, local dependencies, items less accessible to interoception). To address these issues, we combined **23** datasets with over **35,000** participants, to provide the most comprehensive analysis of IAS structure to date. We conducted analyses across both combined and individual datasets, allowing an examination of overall and dataset-specific results and how they compared across three different structural analysis methods (EFA, HCA, EGA).
 
 <!-- Item pairs and optimal structure -->
-**All the items were removed on statistical grounds. Post hoc, however, we note that five of the seven removed items (taste, tickle, affective touch, temperature, itch) refer to signals that are wholly or partly processed through the external surface of the skin or the classical senses, and therefore fall wholly or partly outside the definition of interoception adopted here, which limits interoception to signals below the skin and excludes the classical senses [@desmedt2025discrepancies, pp. 87–88], although broader, pathway-based definitions include temperature, itch and affective touch [@craig2002; @khalsa2018interoception]. This offers a plausible conceptual account of their poor psychometric performance. Conversely, two retained items may be partly detected through non-interoceptive cues: bruise (e.g., visually) and pain (when cutaneous).**
-Seven item pairs (Hungry-Thirsty, Bruise-Blood Sugar, Urinate-Defecate, Muscles-Pain, Breathing-Heart, Cough-Sneeze, Wind-Burp) emerged consistently across datasets and methods, yielding a refined 14-item IAS with superior fit over alternative models. Rather than measuring a broad "interoceptive accuracy" construct, the IAS appears to reflect clusters of tightly coupled items tied to specific bodily sensations - both directly felt and inferred or anticipatory (e.g., Bruise-Blood Sugar). Notably, while $\chi^2$ and BIC can be sensitive to large samples, conclusions are further supported by replication across analytic approaches and individual datasets.
+**All items were removed on statistical grounds. Post hoc, however, five of the seven (taste, tickle, affective touch, temperature, itch) involve signals processed wholly or partly through the skin surface or the classical senses, which fall outside the definition of interoception adopted here [@desmedt2025discrepancies, pp. 87–88], although broader, pathway-based definitions include temperature, itch and affective touch [@craig2002; @khalsa2018interoception]. This may partly explain their poor psychometric performance. Conversely, two retained items, bruise (e.g., seen) and pain (when cutaneous), may be partly detected through non-interoceptive cues.**
+Seven item pairs (Hungry-Thirsty, Bruise-Blood Sugar, Urinate-Defecate, Muscles-Pain, Breathing-Heart, Cough-Sneeze, Wind-Burp) emerged across methods in the pooled data **and in most individual samples**, yielding a refined 14-item IAS **that fitted better than alternative models in the pooled data and in most samples**. Rather than measuring a broad "interoceptive accuracy" construct, the IAS appears to reflect clusters of tightly coupled items tied to specific bodily sensations - both directly felt and inferred or anticipatory (e.g., Bruise-Blood Sugar). Notably, while $\chi^2$ is sensitive to large samples, conclusions are further supported by replication across analytic approaches and individual datasets.
 
 <!-- Implications for scale interpretation -->
 Alternatively, item pairings may also reflect shared temporal or functional characteristics. For instance, Cough-Sneeze and Wind-Burp involve rapid reflexive responses and frequent co-occurrence, while Hungry-Thirsty and Urinate-Defecate reflect homeostatic regulation and recurrent need states, potentially eliciting similar response strategies despite distinct underlying physiology. These explanations need not exclude interpretation of pairings as intuitive bodily domains (e.g., visceral, expulsion, musculoskeletal). Indeed, temporal and functional similarities are themselves grounded in bodily organisation, suggesting multiple overlapping sources of structure. This convergence may contribute to the intuitive coherence of the item pairs while also increasing redundancy and instability when weakly discriminating items are retained, thereby complicating factor-analytic solutions and likely contributing to inconsistencies in prior findings [@campos2021; @lin2023].
@@ -413,7 +411,7 @@ Alternatively, item pairings may also reflect shared temporal or functional char
 Study 1 findings highlight the need for targeted scale refinement and context-sensitive interoception measures. Many bodily sensations are inherently ambiguous (e.g., a racing heart may signal exertion, anxiety, or excitement), making it unclear which state participants reference when responding. Such ambiguity likely constrains ecological validity and contributes to cross-study variability; context-specific phrasing may therefore be necessary to more accurately capture **self-perceived interoceptive accuracy** and reduce measurement noise [e.g., @vlemincx2023novel; @makowski2025mint].
 
 <!-- Summary -->
-Overall, Study 1 suggests that, after removal of problematic items the IAS is best conceptualized as a set of item clusters rather than a unidimensional scale. This structural insight forms the foundation for Study 2, where dispositional correlates are examined to further evaluate the IAS's construct validity.
+Overall, Study 1 suggests that, after removal of problematic items, the IAS is best conceptualised as a set of **correlated, domain-specific item clusters rather than a unidimensional scale, although higher-order models in some samples suggest that these clusters share a common component. Study 2 therefore examines both the item pairs and the total score**, to further evaluate the IAS’s construct validity.
 
 # Study 2
 
@@ -694,4 +692,169 @@ grouped |>
   set_table_properties(layout = "fixed") |>
   width(j = c("Model", "Parameters", "Chi2_df", "CFI", "TLI", "RMSEA_90CI", "SRMR", "BIC", "Delta_BIC"),
         width = c(1.95, 0.45, 0.8, 0.4, 0.4, 0.95, 0.4, 0.6, 0.45))
+```
+
+```{r}
+#| label: tbl-loadings
+#| tbl-cap: "Standardised Factor Loadings of the 7-Factor Model in the Pooled Data."
+#| apa-note: "Loadings from the correlated 7-factor model fitted to the pooled data with robust maximum likelihood (MLR) and latent variances fixed to 1. 95% CI = 95% confidence interval."
+#| error: false
+#| warning: false
+
+local_cfa <- readRDS("../../analysis/figures/tableS_cfa_local.rds")
+pair_label <- c(HungryThirsty = "Hungry–Thirsty", MusclesPain = "Muscles–Pain", WindBurp = "Wind–Burp",
+                UrinateDefecate = "Urinate–Defecate", HeartBreath = "Heart–Breathing",
+                BruiseBloodsugar = "Bruise–Blood sugar", CoughSneeze = "Cough–Sneeze")
+
+local_cfa$loadings |>
+  as.data.frame() |>
+  mutate(Factor = pair_label[Factor],
+         Item = str_replace(Item, "_", " ") |> str_to_sentence(),
+         Loading = apa(Loading),
+         CI = paste0("[", apa(CI_low), ", ", apa(CI_high), "]")) |>
+  select(Factor, Item, Loading, CI) |>
+  flextable() |>
+  set_header_labels(Factor = "Factor (item pair)", Loading = "λ", CI = "95% CI") |>
+  merge_v(j = "Factor") |>
+  valign(j = "Factor", valign = "top") |>
+  theme_apa() |>
+  line_spacing(space = 1, part = "all") |>
+  align(j = c("Factor", "Item"), align = "left", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+```
+
+```{r}
+#| label: tbl-faccor
+#| tbl-cap: "Factor Correlations of the 7-Factor Model in the Pooled Data."
+#| apa-note: "Correlations between the seven item-pair factors of the correlated 7-factor model fitted to the pooled data (MLR). All correlations are significant (all 95% CIs exclude zero) and below the .80 threshold indicating poor discriminant validity."
+#| error: false
+#| warning: false
+
+fc <- as.data.frame(local_cfa$factor_correlations)
+fac <- names(pair_label)
+m <- matrix("", 7, 7, dimnames = list(pair_label[fac], pair_label[fac]))
+for (k in seq_len(nrow(fc))) {
+  i <- match(fc$Factor_1[k], fac); j <- match(fc$Factor_2[k], fac)
+  m[max(i, j), min(i, j)] <- apa(fc$r[k])
+}
+diag(m) <- "—"
+m <- m[, -7]
+data.frame(Factor = paste0(1:7, ". ", rownames(m)), m, check.names = FALSE) |>
+  setNames(c("Factor", paste0(1:6, "."))) |>
+  flextable() |>
+  theme_apa() |>
+  line_spacing(space = 1, part = "all") |>
+  align(j = "Factor", align = "left", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+```
+
+```{r}
+#| label: tbl-loo
+#| tbl-cap: "Leave-One-Dataset-Out Sensitivity Analyses of the Pooled Structure."
+#| apa-note: "Each row shows the pooled analyses refitted after leaving out the dataset in that row; only datasets with all 14 retained items are shown. CFA fit indices are for the 7-factor model, which had the lowest BIC in every refit; ΔBIC = BIC difference from the next-best model. HCA and EGA = number of the seven item pairs recovered by each method."
+#| error: false
+#| warning: false
+
+loo_cfa <- readRDS("../../analysis/figures/tableS_cfa_loo.rds") |>
+  as.data.frame() |>
+  mutate(Left_out = as.character(Left_out))
+loo_expl <- readRDS("../../analysis/figures/tableS_loo_exploratory.rds")
+
+loo_expl |>
+  left_join(select(loo_cfa, -N, -Best), by = "Left_out") |>
+  arrange(Left_out != "None (full pooled data)", as.numeric(str_extract(Left_out, "[0-9]+")), Left_out) |>
+  mutate(N = format(N, big.mark = ",", trim = TRUE),
+         across(c(CFI_7, RMSEA_7, SRMR_7), function(x) ifelse(is.na(x), "", apa(x))),
+         Delta_BIC_next = ifelse(is.na(Delta_BIC_next), "", format(round(Delta_BIC_next), big.mark = ",", trim = TRUE)),
+         HCA = paste0(HCA, "/7"), EGA = paste0(EGA, "/7")) |>
+  select(Left_out, N, CFI_7, RMSEA_7, SRMR_7, Delta_BIC_next, HCA, EGA) |>
+  flextable() |>
+  set_header_labels(Left_out = "Dataset left out", CFI_7 = "CFI", RMSEA_7 = "RMSEA", SRMR_7 = "SRMR",
+                    Delta_BIC_next = "ΔBIC") |>
+  theme_apa() |>
+  line_spacing(space = 1, part = "all") |>
+  align(j = "Left_out", align = "left", part = "all") |>
+  fontsize(size = 9, part = "all") |>
+  autofit()
+```
+
+```{r}
+#| label: tbl-multigroup
+#| tbl-cap: "Multigroup CFA of the 7-Factor Model Across Datasets."
+#| apa-note: "Datasets with all 14 retained items were treated as groups (MLR estimation). The configural model estimates loadings freely in each dataset; the metric model constrains them to be equal across datasets. A ΔCFI above −.01 supports invariance [@chen2007]. Both models converged, but some small datasets produced improper solutions (e.g., negative residual variances)."
+#| error: false
+#| warning: false
+
+readRDS("../../analysis/figures/tableS_cfa_multigroup.rds") |>
+  mutate(N = format(N, big.mark = ",", trim = TRUE),
+         RMSEA_90CI = gsub("0[.]", ".", RMSEA_90CI),
+         across(c(CFI, TLI, SRMR), apa),
+         BIC = format(round(BIC), big.mark = ",", trim = TRUE),
+         Delta_CFI = ifelse(Delta_CFI == 0, "", sub("^-0[.]", "−.", sprintf("%.4f", Delta_CFI)))) |>
+  select(Model, Groups, N, Chi2_df, CFI, TLI, RMSEA_90CI, SRMR, BIC, Delta_CFI) |>
+  flextable() |>
+  set_header_labels(Chi2_df = "χ² (df)", RMSEA_90CI = "RMSEA [90% CI]", Delta_CFI = "ΔCFI") |>
+  theme_apa() |>
+  line_spacing(space = 1, part = "all") |>
+  align(j = "Model", align = "left", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+```
+
+```{r}
+#| label: tbl-loo-efa
+#| tbl-cap: "Leave-One-Dataset-Out EFA (20 Items, 3 Factors, Oblimin Rotation)."
+#| apa-note: "Loadings are absolute primary / secondary loadings. An item was flagged (†) when its primary loading was below .40 (weak) or the difference between its primary and secondary loadings was below .20 (split). Leave-one-out range = range of primary loadings across the 27 refits, each leaving out one sample; Flagged = number of refits in which the item was flagged."
+#| error: false
+#| warning: false
+
+readRDS("../../analysis/figures/tableS_loo_efa.rds") |>
+  mutate(Item = recode(Item, "Sex arousal" = "Sexual arousal", "Temp" = "Temperature"),
+         across(c(Pooled, LOO_range, No9), function(x) gsub("0[.]", ".", x))) |>
+  select(Status, Item, Pooled, LOO_range, Flagged, No9) |>
+  as_grouped_data(groups = "Status") |>
+  as_flextable(hide_grouplabel = TRUE) |>
+  set_header_labels(Pooled = "Pooled", LOO_range = "Leave-one-out range", No9 = "Without Sample 9") |>
+  theme_apa() |>
+  italic(i = ~ !is.na(Status)) |>
+  line_spacing(space = 1, part = "all") |>
+  align(j = "Item", align = "left", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+```
+
+```{r}
+#| label: tbl-pair-recovery
+#| tbl-cap: "Recovery of the Seven Item Pairs Within Each Sample."
+#| apa-note: "H = the two items formed a reciprocal pair in the sample's HCA (each was the other's first merge); E = the two items were placed in the same EGA community; – = recovered by neither method; n/a = one item of the pair was not administered. Totals = number of samples recovering the pair out of those in which it was available."
+#| error: false
+#| warning: false
+
+pr <- readRDS("../../analysis/figures/tableS_pair_recovery.rds") |>
+  mutate(Sample = factor(Sample, levels = str_sort(unique(Sample), numeric = TRUE)),
+         Cell = case_when(!Available ~ "n/a",
+                          HCA & EGA ~ "H E", HCA ~ "H", EGA ~ "E", TRUE ~ "–"))
+pairs <- unique(pr$Pair)
+
+totals <- pr |>
+  filter(Available) |>
+  group_by(Pair) |>
+  summarise(Cell = paste0("H ", sum(HCA), "/", n(), "; E ", sum(EGA), "/", n()), .groups = "drop") |>
+  mutate(Sample = "Total", N = "")
+
+pr |>
+  mutate(Sample = as.character(Sample), N = format(N, big.mark = ",", trim = TRUE)) |>
+  select(Sample, N, Pair, Cell) |>
+  arrange(factor(Sample, levels = str_sort(unique(Sample), numeric = TRUE))) |>
+  bind_rows(totals) |>
+  pivot_wider(names_from = Pair, values_from = Cell) |>
+  select(Sample, N, all_of(pairs)) |>
+  flextable() |>
+  theme_apa() |>
+  bold(i = ~ Sample == "Total") |>
+  line_spacing(space = 1, part = "all") |>
+  fontsize(size = 9, part = "all") |>
+  autofit()
 ```
