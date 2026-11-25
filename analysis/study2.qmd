@@ -865,10 +865,10 @@ effects |>
     rgb_base <- col2rgb(base) / 255
     rgb(t(1 - sweep(1 - rgb_base, 2, alpha, `*`)))
   }) |>
-  select(Category, var_Correlate, k, N, IAS, Magnitude_IAS, Pairs, strongest_pair, n_pairs_fdr, mag_fill) |>
+  select(Category, var_Correlate, k, N, IAS, Magnitude_IAS, Pairs, n_pairs_fdr, mag_fill) |>
   gt(groupname_col = "Category") |>
   cols_label(var_Correlate = "Measure", IAS = "IAS total β [95% CI]", Magnitude_IAS = "Magnitude",
-             Pairs = "Range across pairs", strongest_pair = "Strongest pair", n_pairs_fdr = "Pairs (FDR p < .05)") |>
+             Pairs = "Range across pairs", n_pairs_fdr = "Pairs (FDR p < .05)") |>
   fmt_integer(N) |>
   data_color(columns = mag_fill, target_columns = Magnitude_IAS, fn = identity) |>
   cols_hide(mag_fill) |>
