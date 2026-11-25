@@ -799,12 +799,12 @@ rm(dat)
 
 ### Sample 20
 
-- Reid-Russell et al. (2026) - Heart Rate Matching Task, experiment 2
+- Moffatt et al. (2026) - Heart Rate Matching Task, experiment 2
   - https://osf.io/vgeq4 (masterdatabase_wave3.csv from hrm_validation_analysis.zip)
   - Only participants passing all four attention checks are kept
 
 ```{r}
-df20 <- read.csv("../data/Reid-Russell2026/masterdatabase_wave3.csv") |>
+df20 <- read.csv("../data/Moffatt2026/masterdatabase_wave3.csv") |>
   filter(attentioncheck1 == 6, attenctioncheck2 == 2, attentioncheck3 == 1, attentioncheck4 == 4) |>
   mutate(Age = suppressWarnings(as.numeric(Age)), # "DATA_EXPIRED" -> NA
          Gender = Sex) |>
@@ -1013,7 +1013,7 @@ save(data, file = "../data/data.RData")
 - **Sample 17 **: Data from [Petzke's (2024)](https://osf.io/seru4) study, downloaded from OSF, included `r report::report_participants(df17, age = "Age", gender = "Gender")`. 
 - **Sample 18**: Data from [Adams's (2026)](https://osf.io/vnb6m) study, downloaded from OSF, included `r report::report_participants(df18, age = "Age", gender = "Gender")`.
 - **Sample 19**: Data from [Reid-Russell's (2025)](https://osf.io/z4fcp) study, downloaded from OSF, included `r report::report_participants(df19, age = "Age", gender = "Gender")`.
-- **Sample 20**: Data from [Reid-Russell's (2026)](https://osf.io/vgeq4) study 2, downloaded from OSF, included `r report::report_participants(df20, age = "Age", gender = "Gender")`.
+- **Sample 20**: Data from [Moffatt et al.'s (2026)](https://osf.io/vgeq4) study 2, downloaded from OSF, included `r report::report_participants(df20, age = "Age", gender = "Gender")`.
 - **Sample 21**: Data from [Kvamme's (2026)](https://osf.io/7he2j) study, downloaded from OSF, included `r report::report_participants(df21, age = "Age", gender = "Gender")`.
 - **Sample 22**: Data from [Folz's (2024)](https://doi.org/10.34894/TOUSTD) study, downloaded from DataverseNL, included `r report::report_participants(df22, age = "Age", gender = "Gender")`.
 - **Sample 23**: Data from [Koike's (2026)](https://osf.io/eubt6) study, downloaded from OSF, included `r report::report_participants(df23, age = "Age", gender = "Gender")`.
@@ -1131,7 +1131,7 @@ make_female <- function(df) {
 # Create the dataframe
 table <- data.frame(
   Sample = c('', 'Sample 1a', 'Sample 1b', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', '', 'Sample 7a', 'Sample 7b', 'Sample 7c', '', 'Sample 8a', 'Sample 8b', 'Sample 9', 'Sample 10', 'Sample 11', 'Sample 12', 'Sample 13', 'Sample 14', 'Sample 15', 'Sample 16', 'Sample 17', 'Sample 18', 'Sample 19', 'Sample 20', 'Sample 21', 'Sample 22', 'Sample 23', ''),   
-  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Petzke et al., (2024)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Arjona et al., unpublished', 'Adams et al., (2026)', 'Reid-Russell et al., (2025)', 'Reid-Russell et al., (2026)', 'Kvamme et al., (2026)', 'Folz et al., (2024)', 'Koike et al., (2026)', 'Total'),
+  Reference = c('Murphy et al., (2020)', '', '', 'Gaggero et al., (2021)', 'Campos et al., (2022)', 'Todd et al., (2022)', 'Arslanova et al., (2022)', 'Brand et al., (2022)', 'Brand et al., (2023)', '', '', '', 'Lin et al., (2023)', '', '', 'VonMohr et al., (2023)', 'Petzke et al., (2024)', 'Makowski et al., (2023a)', 'Makowski et al., (2023b)', 'Makowski et al., (2023c)', 'Makowski et al., (2024)', 'Poerio et al., (2024)', 'Poerio et al., unpublished', 'Arjona et al., unpublished', 'Adams et al., (2026)', 'Reid-Russell et al., (2025)', 'Moffatt et al., (2026)', 'Kvamme et al., (2026)', 'Folz et al., (2024)', 'Koike et al., (2026)', 'Total'),
   Language = c('', 'English', 'English' , 'English and Italian', 'Portuguese', 'English', 'English', 'German', '', 'German', 'German', 'German', '', 'Chinese', 'Chinese', 'English', 'German', 'English', 'English', 'English', 'English', 'English', 'English','English', 'English', 'English', 'English', 'English', 'English', 'Japanese', ''),
   N = c('', nrow(df1a), nrow(df1b), nrow(df2), nrow(df3), nrow(df4), nrow(df5_attention), nrow(df6),'', nrow(df7a), nrow(df7b), nrow(df7c),'', nrow(df8a), nrow(df8b), nrow(df9), nrow(df17), nrow(df10), nrow(df11), nrow(df12), nrow(df13), nrow(df14), nrow(df15), nrow(df16), nrow(df18), nrow(df19), nrow(df20), nrow(df21), nrow(df22), nrow(df23), ''),
   'Difference' = c('','', '', '', '', '', '', '', '', '', '', '', '', 'Itch/Tickle\ncollapsed', 'Itch/Tickle\ncollapsed', '', '','Analog scale;\nno Taste, Cough,\nBlood sugar', 'Analog scale', 'Analog scale', '', '', '', '', '', '', '', '', '', 'No Taste,\nBlood sugar†',''),
