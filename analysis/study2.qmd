@@ -879,6 +879,147 @@ effects |>
             locations = cells_row_groups())
 ```
 
+## IAS-14 Total Score
+
+The IAS-14 total is the mean of the 14 items retained in Study 1 (in samples without the Blood sugar or Cough item, the mean of the available retained items). It is related to the same correlates with the same models as the other IAS scores. Its 86 coefficients are FDR-corrected as a separate set, so the 688 coefficients above are unchanged.
+
+```{r ias14}
+#| warning: false
+
+retained <- c("Hungry", "Thirsty", "Muscles", "Pain", "Wind", "Burp", "Urinate", "Defecate",
+              "Heart", "Breathing", "Bruise", "Blood_Sugar", "Cough", "Sneeze")
+alldata14 <- lapply(alldata, function(d) {
+  d$IAS14 <- rowMeans(d[intersect(retained, names(d))])
+  d
+})
+
+# Correlation between the IAS-14 and the original total score within each sample
+ias14_r <- sapply(alldata14, function(d) cor(d$IAS14, d$Original, use = "complete.obs"))
+range(ias14_r)
+
+# Same correlates and settings as above (one row per pool_coef() call)
+specs <- tribble(
+  ~with, ~component, ~category, ~name, ~unequalrange,
+  "Gender", "Demographic", "Demographics", "Gender (Female - Male)", FALSE,
+  "Age", "Demographic", "Demographics", "Age", TRUE,
+  "Neuroticism", "Personality", "Personality", "Neuroticism", TRUE,
+  "Agreeableness", "Personality", "Personality", "Agreeableness", TRUE,
+  "Conscientiousness", "Personality", "Personality", "Conscientiousness", TRUE,
+  "Openness", "Personality", "Personality", "Openness", TRUE,
+  "Extraversion", "Personality", "Personality", "Extraversion", TRUE,
+  "HonestyHumility", "Personality", "Personality", "Honesty-Humility", TRUE,
+  "MAIA_AttentionReg", "MAIA", "Interoception", "Attention Regulation - MAIA", TRUE,
+  "MAIA_BodyListening", "MAIA", "Interoception", "Listening - MAIA", TRUE,
+  "MAIA_Trusting", "MAIA", "Interoception", "Trusting - MAIA", TRUE,
+  "MAIA_EmoAwareness", "MAIA", "Interoception", "Emotional Awareness - MAIA", TRUE,
+  "MAIA_NotDistracting", "MAIA", "Interoception", "Not Distracting - MAIA", TRUE,
+  "MAIA_Noticing", "MAIA", "Interoception", "Noticing - MAIA", TRUE,
+  "MAIA_NotWorrying", "MAIA", "Interoception", "Not Worrying - MAIA", TRUE,
+  "MAIA_SelfReg", "MAIA", "Interoception", "Self Regulation - MAIA", TRUE,
+  "BPQ_BodyAwareness", "Interoception", "Interoception", "Body Awareness - BPQ", TRUE,
+  "BPQ_AutonomicReactivity", "Interoception", "Interoception", "Autonomic Reactivity - BPQ", TRUE,
+  "ICQ", "Interoception", "Interoception", "Interoceptive Confusion - ICQ", TRUE,
+  "IATS_Mean", "Interoception", "Interoception", "Interoceptive Attention - IATS", TRUE,
+  "NIES_Mean", "Interoception", "Interoception", "Negative Interoceptive Evaluation - NIES", TRUE,
+  "ISQ_Mean", "Interoception", "Interoception", "Interoceptive Difficulties - ISQ", TRUE,
+  "PBCS_Mean", "Interoception", "Interoception", "Private Body Consciousness - PBCS", TRUE,
+  "BAQ_Mean", "Interoception", "Interoception", "Body Awareness - BAQ", TRUE,
+  "BRS_Mean", "Interoception", "Interoception", "Body Responsiveness - BRS", TRUE,
+  "EDI_IA", "Interoception", "Interoception", "Interoceptive Awareness (reversed) - EDI-2", TRUE,
+  "TAS_DIF", "Interoception", "Interoception", "Difficulties Identifying Feelings - TAS", TRUE,
+  "TAS_DDF", "Interoception", "Interoception", "Difficulties Describing Feelings - TAS", TRUE,
+  "TAS_EOT", "Interoception", "Interoception", "External Thinking - TAS", TRUE,
+  "BVAQ_Affective", "Interoception", "Interoception", "Affective - BVAQ", FALSE,
+  "BVAQ_Cognitive", "Interoception", "Interoception", "Cognitive - BVAQ", FALSE,
+  "FFMQ_Observing", "Interoception", "Interoception", "Observing - FFMQ", FALSE,
+  "FFMQ_Describing", "Interoception", "Interoception", "Describing - FFMQ", FALSE,
+  "PHQ15_Sum", "Depression", "Mood", "Somatic Concerns - PHQ-15", TRUE,
+  "SSS8_Sum", "Depression", "Mood", "Somatic Symptoms - SSS-8", TRUE,
+  "PHQ9_Sum", "Depression", "Mood", "Depression - PHQ-9", TRUE,
+  "BDI_Sum", "Depression", "Mood", "Depression - BDI", FALSE,
+  "PHQ4_Depression", "Depression", "Mood", "Depression - PHQ-4", TRUE,
+  "DEP", "Depression", "Mood", "Depression - MFQ", FALSE,
+  "DASS_Depression", "Depression", "Mood", "Depression - DASS-21", FALSE,
+  "STAIT_Mean", "Anxiety", "Mood", "Anxiety - STAI-T", TRUE,
+  "PHQ4_Anxiety", "Anxiety", "Mood", "Anxiety - PHQ-4", TRUE,
+  "GAD7_Sum", "Anxiety", "Mood", "Anxiety - GAD-7", TRUE,
+  "DASS_Anxiety", "Anxiety", "Mood", "Anxiety - DASS-21", FALSE,
+  "LSAS_Total", "Anxiety", "Mood", "Social Anxiety - LSAS", TRUE,
+  "ASI_Sum", "Anxiety", "Mood", "Anxiety Sensitivity - ASI-3", TRUE,
+  "PANAS_Negative", "Affect", "Mood", "Negative Affect - PANAS", TRUE,
+  "PANAS_Positive", "Affect", "Mood", "Positive Affect - PANAS", TRUE,
+  "BPD", "Maladaptive", "Psychopathology and Neurodevelopmental Traits", "Boderline Personality", FALSE,
+  "PID5_Antagonism", "Maladaptive", "Psychopathology and Neurodevelopmental Traits", "Antagonism - PID-5", FALSE,
+  "PID5_Detachment", "Maladaptive", "Psychopathology and Neurodevelopmental Traits", "Detachment - PID-5", FALSE,
+  "PID5_Disinhibition", "Maladaptive", "Psychopathology and Neurodevelopmental Traits", "Disinhibition - PID-5", FALSE,
+  "PID5_NegativeAffect", "Maladaptive", "Psychopathology and Neurodevelopmental Traits", "Negative Affect - PID-5", FALSE,
+  "PID5_Psychoticism", "Maladaptive", "Psychopathology and Neurodevelopmental Traits", "Psychoticism - PID-5", FALSE,
+  "SPQ_ConstrictedAffect", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "Constricted Affect - SPQ", FALSE,
+  "SPQ_Eccentric", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "Eccentric - SPQ", FALSE,
+  "SPQ_MagicalThinking", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "Magical Thinking - SPQ", FALSE,
+  "SPQ_NoCloseFriends", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "No Close Friends - SPQ", FALSE,
+  "SPQ_OddSpeech", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "Odd Speech - SPQ", FALSE,
+  "SPQ_Reference", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "Reference - SPQ", FALSE,
+  "SPQ_SocialAnxiety", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "Social Anxiety - SPQ", FALSE,
+  "SPQ_Suspiciousness", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "Suspiciousness - SPQ", FALSE,
+  "SPQ_UnusualPerceptions", "Schizotypic", "Psychopathology and Neurodevelopmental Traits", "Unusual Perceptions - SPQ", FALSE,
+  "ASQ_Imagination", "Autistic", "Psychopathology and Neurodevelopmental Traits", "Imagination - ASQ", TRUE,
+  "ASQ_LackSocialSkills", "Autistic", "Psychopathology and Neurodevelopmental Traits", "Lack of Social Skills - ASQ", TRUE,
+  "ASQ_LowAttentionalSwitching", "Autistic", "Psychopathology and Neurodevelopmental Traits", "Low Attentional Switching - ASQ", TRUE,
+  "ASQ_Patterns", "Autistic", "Psychopathology and Neurodevelopmental Traits", "Patterns and Numbers - ASQ", TRUE,
+  "ASQ_Routine", "Autistic", "Psychopathology and Neurodevelopmental Traits", "Routines - ASQ", TRUE,
+  "CATI_Mean", "Autistic", "Psychopathology and Neurodevelopmental Traits", "Autistic Traits - CATI", TRUE,
+  "AQ50_Mean", "Autistic", "Psychopathology and Neurodevelopmental Traits", "Autistic Traits - AQ-50", TRUE,
+  "GCBS_Extraterrestrial", "Conspiracy Beliefs", "Beliefs", "Extraterrestrial - GCBS", FALSE,
+  "GCBS_GlobalConspiracies", "Conspiracy Beliefs", "Beliefs", "Global Conspiracies - GCBS", FALSE,
+  "GCBS_GovernmentMalfeasance", "Conspiracy Beliefs", "Beliefs", "Government Malfeasance - GCBS", FALSE,
+  "GCBS_InformationControl", "Conspiracy Beliefs", "Beliefs", "Information Control - GCBS", FALSE,
+  "GCBS_PersonalWellbeing", "Conspiracy Beliefs", "Beliefs", "Personal Wellbeing - GCBS", FALSE,
+  "LIE_Ability", "Lying Profile", "Beliefs", "Lying Ability", FALSE,
+  "LIE_Frequency", "Lying Profile", "Beliefs", "Lying Frequency", FALSE,
+  "LIE_Contextuality", "Lying Profile", "Beliefs", "Lying Contextuality", FALSE,
+  "LIE_Negativity", "Lying Profile", "Beliefs", "Lying Negativity", FALSE,
+  "PI_Alive", "World Beliefs", "Beliefs", "Alive - Primal Belief", TRUE,
+  "PI_Changing", "World Beliefs", "Beliefs", "Changing - Primal Belief", TRUE,
+  "PI_Enticing", "World Beliefs", "Beliefs", "Enticing - Primal Belief", TRUE,
+  "PI_Good", "World Beliefs", "Beliefs", "Good - Primal Belief", TRUE,
+  "PI_Hierarchical", "World Beliefs", "Beliefs", "Hierarchical - Primal Belief", TRUE,
+  "PI_Safe", "World Beliefs", "Beliefs", "Safe - Primal Belief", TRUE,
+  "PI_Understandable", "World Beliefs", "Beliefs", "Understandable - Primal Belief", TRUE
+)
+
+# Fit with the IAS-14 as the only outcome, then restore the original settings
+alldata_main <- alldata; vars_intero_main <- vars_intero
+alldata <- alldata14; vars_intero <- "IAS14"
+ias14 <- pmap_dfr(specs, function(with, component, category, name, unequalrange) {
+  pool_coef(with = with, component = component, category = category, name = name, unequalrange = unequalrange)
+})
+alldata <- alldata_main; vars_intero <- vars_intero_main
+
+ias14$p_fdr <- p.adjust(ias14$p, method = "BH")
+
+# Original and IAS-14 totals side by side
+# N and k as reported in the text (largest across the IAS scores)
+tableS_ias14 <- data |>
+  filter(var_Interoception == "Original") |>
+  select(Category, var_Correlate, r_orig = r, low_orig = CI_low, high_orig = CI_high, p_fdr_orig = p_fdr) |>
+  left_join(summarise(data, N = max(N), k = max(k), .by = var_Correlate), by = "var_Correlate") |>
+  left_join(ias14 |> select(var_Correlate, r_14 = r, low_14 = CI_low, high_14 = CI_high, p_fdr_14 = p_fdr, type_14 = Type),
+            by = "var_Correlate") |>
+  mutate(var_Correlate = str_replace(var_Correlate, "Boderline", "Borderline"),
+         Category = fct_relevel(Category, "Demographics", "Interoception", "Mood", "Personality",
+                                "Psychopathology and Neurodevelopmental Traits", "Beliefs")) |>
+  arrange(Category, desc(abs(r_orig)))
+
+saveRDS(list(table = tableS_ias14, r_range = range(ias14_r)), "figures/tableS_ias14.rds")
+
+# Summary for the text
+tableS_ias14 |>
+  summarise(n = n(), sig_orig = sum(p_fdr_orig < .05), sig_14 = sum(p_fdr_14 < .05),
+            max_abs_diff = max(abs(r_14 - r_orig)), cor_coefficients = cor(r_orig, r_14),
+            reduced_models = sum(type_14 == "Reduced"))
+```
+
 ## Summary
 
 ```{r}
